@@ -174,3 +174,15 @@ source=employee/external/guardian_report代表内部录入来源，不是专业�
 validation包含record_ready、completion_enabled=false、checks(code/label/passed)。检查当前查看人是否本人/岗位匹配、本人接收、running、active、条件已设/当前条件版本、依据所见任务修订、说明、必需资料/附件及访问是否撤销。POST check核对未保存输入，版本冲突拒绝，不会保存草稿；等待body时重新检查有效会话。通用项目齐备不代表专业条件已授权，也不完成或生成任务。界面重读保留填写和选择，已选引用即使超过200条新选择范围仍可查看。
 
 task时间轴新增conditions/evidence动作，含条件/依据版本、task_revision、原因/说明、固定引用id清单；责任/执行取当时不可变task_events快照。完整方案见task-completion.md。本轮仍没有complete接口。
+
+## V0.13 明确提交与通用完成
+
+POST /tasks/:id/completion/submit：expected_task_revision、condition_version、evidence_version为当前已保存版本，output_summary必填<=1000、reason必填<=300。不接受未保存notes/引用或专业确认字段。当前有效岗位的本人且已接收、running、active、尚未完成，当前条件/草稿/任务修订一致、说明及必需引用齐备、所有附件仍可访问，才能201返回completion及completion_status=completed。写入task_completions、task.complete审计与幂等同事务；不更新执行事件或推进其他业务。
+
+陈旧分别409 TASK_CONFLICT/CONDITION_CONFLICT/EVIDENCE_CONFLICT；不足409 COMPLETION_NOT_READY，非本人403 NOT_ASSIGNEE；取消409 TASK_CANCELLED，完成409 TASK_COMPLETED。提交后的所有交接/执行/异常/条件/依据写入拒绝。不同键竞争仅一个产出，同键原响应重放，改变内容409 IDEMPOTENCY_CONFLICT；等待请求体的会话撤销仍401。
+
+GET completion增加completion及task.completion_status/effective_execution_status；完成记录含scope、固定条件/依据/任务修订、output_summary/reason、snapshot_json/snapshot_sha256、completed_at/completed_by、当前author_name及解析snapshot。snapshot为原任务/条件/依据、资料版本元信息、附件稳定元信息/内容哈希和提交时通过的检查，不含事后可变撤销标记。draft仍返回当前revoked_at用于区分访问状态与原产出。
+
+validation新增OPEN检查。GET已保存依据和保存结果只有全部通过时completion_enabled=true；POST check始终false，persisted=false，即使当前输入record_ready=true也不能直接完成。浏览器有未保存说明/来源/引用时禁用提交，独立产出表单冲突重读保留内容。
+
+GET /tasks新增completion=all（默认）/open/completed，items增加completion_status、effective_execution_status、completed_at；counts.completed及lanes.completed使用完整匹配数量。执行pending/running/paused筛选及running/paused计数排除已完成任务，完成筛选应选择execution=all。完成状态优先于异常/分派/执行分列。GET /tasks/:id增加completion，events仍为完成前的不可变执行历史。客户overview增加tasks_completed并排除完成的运行/暂停计数；timeline新增task/complete真实产出事件。

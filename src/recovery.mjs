@@ -1,13 +1,14 @@
+import { verifyCompletions } from './task-completions.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { createHash, randomUUID } from 'node:crypto';
 import { createReadStream, constants, copyFileSync, chmodSync, lstatSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, join, resolve } from 'node:path';
 import { openDatabase } from './db.mjs';
 
-const tables=['stores','users','user_security','customers','customer_profile_versions','family_contacts','guardian_links','service_cycles','cycle_versions','visits','visit_cycles','visit_cycle_versions','work_tasks','task_events','task_conditions','task_evidence','task_evidence_documents','task_evidence_attachments','attachment_blobs','attachments','document_records','document_versions','version_attachments','audit_events','idempotency','sessions'];
+const tables=['stores','users','user_security','customers','customer_profile_versions','family_contacts','guardian_links','service_cycles','cycle_versions','visits','visit_cycles','visit_cycle_versions','work_tasks','task_events','task_conditions','task_evidence','task_evidence_documents','task_evidence_attachments','task_completions','attachment_blobs','attachments','document_records','document_versions','version_attachments','audit_events','idempotency','sessions'];
 const digest=value=>createHash('sha256').update(value).digest('hex');
 const version=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
-const migrations=['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql','005_customer_profiles.sql','006_cycle_versions.sql','007_work_tasks.sql','008_task_execution.sql','009_task_exceptions.sql','010_task_evidence.sql'];
+const migrations=['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql','005_customer_profiles.sql','006_cycle_versions.sql','007_work_tasks.sql','008_task_execution.sql','009_task_exceptions.sql','010_task_evidence.sql','011_task_completions.sql'];
 let expectedSchema;
 const schema=db=>digest(JSON.stringify(db.prepare("SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE sql IS NOT NULL AND name NOT LIKE 'sqlite_%' ORDER BY type,name").all()));
 function canonicalSchema(){if(!expectedSchema){const db=openDatabase(':memory:');try{expectedSchema=schema(db);}finally{db.close();}}return expectedSchema;}
@@ -27,6 +28,7 @@ export function inspectDatabase(path){
     if(db.prepare("SELECT 1 FROM work_tasks t LEFT JOIN visit_cycle_versions v ON v.visit_id=t.visit_id AND v.cycle_id=t.cycle_id WHERE t.context_basis='visit_cycle' AND (v.basis IS NOT 'captured' OR t.cycle_version IS NOT v.version) LIMIT 1").get())throw Error('任务与到店固定需求引用核对失败');
     for(const table of ['task_conditions','task_evidence'])if(db.prepare(`SELECT 1 FROM ${table} GROUP BY task_id HAVING min(version)<>1 OR count(*)<>max(version) LIMIT 1`).get())throw Error('任务条件或依据历史版本不连续');
     for(const row of db.prepare('SELECT * FROM task_evidence').iterate()){const documents=db.prepare('SELECT document_version_id FROM task_evidence_documents WHERE task_id=? AND evidence_version=? ORDER BY document_version_id').all(row.task_id,row.version).map(r=>r.document_version_id),attachments=db.prepare('SELECT attachment_id FROM task_evidence_attachments WHERE task_id=? AND evidence_version=? ORDER BY attachment_id').all(row.task_id,row.version).map(r=>r.attachment_id);if(documents.length>10||attachments.length>10||row.references_json!==JSON.stringify({document_version_ids:documents,attachment_ids:attachments}))throw Error('任务依据固定资料引用核对失败');}
+    verifyCompletions(db);
     for(const blob of db.prepare('SELECT * FROM attachment_blobs').iterate())if(blob.size!==blob.bytes.length||digest(blob.bytes)!==blob.sha256)throw Error('附件内容校验失败');
     if(db.prepare('SELECT 1 FROM attachments a JOIN attachment_blobs b ON b.sha256=a.blob_sha256 WHERE a.size<>b.size LIMIT 1').get())throw Error('附件元信息校验失败');
     return {schema_sha256:schema(db),migrations:applied,counts:Object.fromEntries(tables.map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n])),integrity:'ok',foreign_keys:'ok',attachments:'ok'};

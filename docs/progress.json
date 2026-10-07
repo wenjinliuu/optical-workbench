@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.12基础验证：通用核对条件版本、依据草稿/固定资料附件引用、只读缺项校验、历史与恢复；整体阶段未验收",
+  "productStatus": "V0.13基础验证：通用核对明确提交/完成门禁、固定产出、已完成筛选/看板/历史与恢复；整体阶段未验收",
   "currentTask": "T03.02",
   "nextTask": "T03.02",
   "stage": "P00",
@@ -87,6 +87,12 @@
       "version": "V0.12",
       "type": "工程推进",
       "summary": "明确本任务通用核对范围及资料/附件要求，条件和依据分别保存不可变版本；草稿允许缺项，独立校验本人/接收/执行/异常/版本/引用访问，不完成任务或自动推进。新增4条件/4草稿演示，schema10迁移/恢复/时间轴及手机界面接通；业务验收待完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.13",
+      "type": "工程推进",
+      "summary": "本人明确提交已保存通用条件及依据，事务实时复核身份/状态/版本/引用访问；不可变完成产出固定原资料/附件及操作人，完成后锁定，队列/八列看板/时间轴/恢复同步。新增待提交和已完成虚构案例，schema11非空升级不自动完成旧任务；专业确认与业务验收仍待完成。"
     }
   ],
   "tasks": [
@@ -469,10 +475,12 @@
         "docs/task-completion.md",
         "src/task-evidence.mjs",
         "public/task-evidence.js",
-        "migrations/010_task_evidence.sql"
+        "migrations/010_task_evidence.sql",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql"
       ],
       "updated": "2026-10-07",
-      "note": "V0.12部分实现：既有异常处理保留；明确通用核对范围/资料附件要求，条件版本、依据草稿版本/来源/保存原因/原资料版本与附件引用不可变，任务/条件/草稿并发核对，缺项或阻塞可留草稿，取消不能保存。只读校验当前本人/接收/执行/异常/条件及任务版本/缺项/附件撤销；不完成任务或自动推进。专业输入规则/授权完成、串并行汇合/循环/时限和整体验收仍待完成。"
+      "note": "V0.13部分实现：通用明确提交复用已保存条件/依据，实时本人/岗位/接收/运行/异常/版本/引用访问门禁；不可变产出固定上下文、原资料/附件/核对项及提交人/时间，事务/审计/幂等/并发；完成后禁止交接、执行、异常及条件/依据写入。专业规则/授权完成、串并行汇合/循环/时限与整体验收仍待完成。"
     },
     {
       "id": "T03.03",
@@ -508,10 +516,12 @@
         "docs/task-completion.md",
         "src/task-evidence.mjs",
         "public/task-evidence.js",
-        "migrations/010_task_evidence.sql"
+        "migrations/010_task_evidence.sql",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql"
       ],
       "updated": "2026-10-07",
-      "note": "V0.12部分实现：列表/七列看板/状态流程沿用同一任务，增加核对依据入口、条件设置/历史、草稿编辑/历史/固定引用及只读缺项；冲突重读保留输入，手机适配和退出清理。角色今日任务/正式业务依赖图/时限提醒/专业原单及整体验收仍待完成。"
+      "note": "V0.13部分实现：列表/八列看板/状态流程共用已完成状态、完成筛选及完整分列统计，客户总览/时间轴/交接历史展示固定完成产出；未保存依据和预览不允许提交，冲突重读保留产出说明，手机适配和退出清理。角色今日任务/真实业务依赖图/时限提醒/专业原单及整体验收仍待完成。"
     },
     {
       "id": "T03.04",
@@ -2208,9 +2218,11 @@
         "migrations/010_task_evidence.sql",
         "src/timeline.mjs",
         "src/demo-data.mjs",
-        "docs/task-completion.md"
+        "docs/task-completion.md",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql"
       ],
-      "note": "V0.12部分实现：通用条件版本/依据草稿/只读校验与异常处理接通，事务/并发/幂等及失败回滚；保存、核对通过均不完成任务，专业授权完成、自动下一任务、扣次/资金/库存未实现。"
+      "note": "V0.13部分实现：明确通用提交的本人/状态/版本/访问门禁；失败不完成，不同键竞争仅一个产出，同键原响应重放；事务/审计及完成锁定。专业授权、自动下游、串并行/循环/扣次/资金/库存未实现。"
     },
     {
       "id": "C04",
@@ -2935,9 +2947,11 @@
         "migrations/010_task_evidence.sql",
         "src/timeline.mjs",
         "src/demo-data.mjs",
-        "docs/task-completion.md"
+        "docs/task-completion.md",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql"
       ],
-      "note": "V0.12部分实现：明确通用核对范围、资料/附件要求；草稿固定资料版本、附件、来源/保存依据，缺项与撤销提示；历史/时间轴/恢复一致。正式专业输入规则、补充人链和专业完成条件未实现。"
+      "note": "V0.13部分实现：通用条件和依据原版本固定，当前输入预览不保存/不完成，明确提交仅采用齐备且当前的已保存依据；缺项/陈旧/撤销均拒绝，完成后历史/时间轴/恢复一致。专业输入规则、补充人链和专业完成条件仍未实现。"
     },
     {
       "id": "H4",
@@ -2961,9 +2975,11 @@
         "migrations/010_task_evidence.sql",
         "src/timeline.mjs",
         "src/demo-data.mjs",
-        "docs/task-completion.md"
+        "docs/task-completion.md",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql"
       ],
-      "note": "V0.12部分实现：通用条件/依据草稿和取消原因均有不可变版本与审计/时间轴/恢复；正式完成产出/确认/审批/结案仍未实现。"
+      "note": "V0.13部分实现：通用核对完成产出说明、依据、条件/资料/附件原版本、操作人/时间及当时核对项不可变，事后撤销标记独立显示；完成不能改写。专业确认/审批/结案、完成更正及整体验收仍未实现。"
     },
     {
       "id": "S01",
@@ -3187,8 +3203,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 104,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用核对条件和依据版本/只读校验、恢复与诊断；不代表整阶段业务验收"
+      "tests": 117,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/核对条件/依据/明确完成及固定产出、恢复与诊断；不代表整阶段业务验收"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
@@ -3225,7 +3241,10 @@
         "generic condition and evidence versions with fixed historic V1 input",
         "condition conflict refresh keeps notes and selected references",
         "readonly generic checks and revoked attachment handling",
-        "manager cannot save another owner draft; mobile evidence history and logout cleanup"
+        "manager cannot save another owner draft; mobile evidence history and logout cleanup",
+        "saved-only explicit completion and unsaved/preview submit guards",
+        "stale completion condition refresh retains output and requires resaved current evidence",
+        "fixed completion receipt, completed queue/board/history and mobile logout cleanup"
       ]
     },
     "baseline": {
@@ -3234,7 +3253,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十个迁移保留非空旧任务/执行/异常/固定版本/幂等响应；旧任务不补造核对条件或依据，外键及不可变保护通过",
-    "recovery": "条件/依据/固定引用进入一致快照，版本连续和引用清单一致核对；16任务/49事件/4条件/4草稿全新及重复CLI、备份核对与独立恢复一致；正式目标及完整账待确认"
+    "migration": "十一迁移保留非空旧任务/执行/异常/固定版本/条件/依据/幂等；V0.12升级不自动完成旧任务，外键与完成/历史不可变保护通过",
+    "recovery": "完成固定快照及指纹逐项对照原任务/条件/依据/引用；事后附件撤销及员工改名/改岗/停用保留产出；18任务/55事件/6条件/6依据/1完成的全新/重复CLI、备份及独立恢复一致，恢复会话为0；正式目标及完整账待确认"
   }
 }

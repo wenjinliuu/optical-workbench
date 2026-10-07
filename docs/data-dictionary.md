@@ -101,3 +101,13 @@ block将active变blocked；unblock明确解决后变active。cancel保存取消�
 | task_evidence_attachments | task_id/evidence_version/attachment_id、customer_id | 同草稿/客户/附件复合外键，撤销后保留历史引用 |
 
 四表禁止更新/删除。conditions/evidence从V1连续追加，保存不改变任务revision，task_revision记录所见历史。references_json为按编号排序的document_version_ids/attachment_ids清单，与实际关系逐项一致、每类最多10项，恢复工具检查，不能通过追加关联改变旧草稿。条件、依据与task_events为不同记录，时间轴用各自实际保存时间及当时任务历史状态。旧库升级不生成虚构条件或依据。
+
+## V0.13 固定完成产出（迁移011）
+
+| 表 | 字段 | 关联与不变量 |
+| --- | --- | --- |
+| task_completions | task_id PK、customer_id、scope固定generic_record_review、condition_version、evidence_version、task_revision、output_summary<=1000、reason<=300、snapshot_json、snapshot_sha256、completed_at、completed_by | 同客户任务/条件/依据复合外键、原执行事件修订外键、员工外键；每任务最多一个完成记录，不可改/删 |
+
+snapshot固定完整原任务/条件/依据、资料版本标题/来源、附件id/filename/content_type/size/blob_sha256/created_at/created_by、全部通过的核对项；按稳定键顺序生成JSON和指纹。没有当前员工姓名/岗位或附件revoked_at，合法事后变化不会改写原产出。操作人id固定、界面姓名为当前显示名。完成后原任务所有写入及新增执行事件/条件/依据/引用被触发器锁定。
+
+completion_status=open/completed、effective_execution_status=pending/running/paused/completed为查询投影，完成取优先；原work_tasks.execution_status/revision和task_events是完成前最后执行快照。完成实际时间、产出及状态来源于独立receipt，升级不会给旧任务补造完成。
