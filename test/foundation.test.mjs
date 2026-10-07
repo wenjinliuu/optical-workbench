@@ -5,9 +5,10 @@ import { DatabaseSync } from 'node:sqlite';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { once } from 'node:events';
+import { request as httpRequest } from 'node:http';
 import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
-import { seedDemoScenarios, demoScenarios } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, demoScenarios } from '../src/demo-data.mjs';
 
 async function fixture(t,{persist=false}={}) {
   const dir=mkdtempSync(join(tmpdir(),'optical-test-'));
@@ -25,7 +26,7 @@ async function fixture(t,{persist=false}={}) {
     const r=await fetch(origin+path,{method,headers:{...(cookie?{Cookie:cookie}:{}),...(csrf?{'X-CSRF-Token':csrf}:{}),...(key?{'Idempotency-Key':key}:{}),...(data?{'Content-Type':'application/json'}:{}),...headers},body:data?JSON.stringify(data):undefined});
     return {status:r.status,body:await r.json(),cookie:r.headers.get('set-cookie')?.split(';')[0],headers:r.headers};
   };
-  const login=async(username)=>{const r=await request('/api/auth/login',{method:'POST',data:{username,password:'test-password-only'}});assert.equal(r.status,200);const m=await request('/api/me',{cookie:r.cookie});return {cookie:r.cookie,csrf:m.body.csrf};};
+  const login=async(username,password='test-password-only')=>{const r=await request('/api/auth/login',{method:'POST',data:{username,password}});assert.equal(r.status,200);const m=await request('/api/me',{cookie:r.cookie});return {cookie:r.cookie,csrf:m.body.csrf};};
   return {...app,request,login,path,dir,origin};
 }
 
@@ -98,7 +99,7 @@ test('audit is append-only, health checks database and disabling user revokes ac
   const {request,login,db}=await fixture(t),session=await login('manager');
   assert.throws(()=>db.exec("DELETE FROM audit_events"),/append-only/);
   assert.throws(()=>db.exec("UPDATE audit_events SET action='tamper'"),/append-only/);
-  assert.equal((await request('/api/health')).body.schema,3);
+  assert.equal((await request('/api/health')).body.schema,4);
   const audit=await request('/api/audit',session);assert.equal(audit.body.items[0].action,'session.login');assert.equal(audit.body.items[0].after_json,undefined);
   db.prepare("UPDATE users SET active=0 WHERE id='manager'").run();assert.equal((await request('/api/me',session)).status,401);
 });
@@ -108,7 +109,7 @@ test('disk persistence, repeatable migrations and consistent backup restore pres
   const backup=join(dir,'backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);
   const counts=Object.fromEntries(['customers','audit_events','service_cycles'].map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n]));
   await new Promise(resolve=>server.close(resolve));
-  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,3);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
+  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,4);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
 });
 test('production mode refuses unreviewed deployment; HTML and assets use security headers',async t=>{
   assert.throws(()=>createApp({mode:'production'}),/Production is blocked/);
@@ -120,7 +121,7 @@ test('organization directory is store scoped, manager only and omits credentials
   const {request,login}=await fixture(t),manager=await login('manager'),front=await login('front'),parent=await login('parent');
   const org=await request('/api/organization',manager);assert.equal(org.status,200);
   assert.ok(org.body.items.some(u=>u.id==='parent'));assert.ok(!org.body.items.some(u=>u.id==='other'));
-  assert.ok(org.body.items.every(u=>u.password_hash===undefined&&u.username===undefined));
+  assert.ok(org.body.items.every(u=>u.password_hash===undefined&&u.token_hash===undefined&&u.csrf===undefined));
   assert.equal((await request('/api/organization',front)).status,403);
   assert.equal((await request('/api/demo/scenarios',parent)).status,403);
 });
@@ -265,4 +266,114 @@ test('consistent backup restores attachment bytes and immutable document referen
   const d=await request('/api/customers/child-a/documents',{...manager,method:'POST',data:{title:'备份资料',content:'保留引用',source:'employee',attachment_ids:[f.body.attachment.id]},key:'backup-document-key'});
   assert.equal(d.status,201);const target=join(dir,'files-backup.sqlite');db.prepare('VACUUM INTO ?').run(target);const backup=openDatabase(target);
   try{assert.deepEqual(Buffer.from(backup.prepare('SELECT bytes FROM attachment_blobs').get().bytes),bytes);assert.equal(backup.prepare('SELECT attachment_id FROM version_attachments').get().attachment_id,f.body.attachment.id);assert.equal(backup.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}finally{backup.close();}
+});
+
+test('staff onboarding is scoped, idempotent and gated until initial password is changed',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),front=await login('front');
+  const data={username:'sample-new',display_name:'新员工（虚构）',role:'reception',initial_password:'initial-password-only',reason:'虚构入职演示'},options={...manager,method:'POST',data,key:'staff-create-one'};
+  assert.equal((await request('/api/organization/staff',{...options,...front})).status,403);
+  assert.equal((await request('/api/organization/staff',{...options,data:{...data,store_id:'b'}})).status,422);
+  const created=await request('/api/organization/staff',options);assert.equal(created.status,201);assert.equal(created.body.staff.store_id,'a');assert.equal(created.body.staff.must_change_password,1);
+  assert.deepEqual((await request('/api/organization/staff',options)).body,created.body);
+  assert.equal((await request('/api/organization/staff',{...options,key:'staff-create-two'})).status,409);
+  const newcomer=await login(data.username,data.initial_password);
+  assert.equal((await request('/api/me',newcomer)).body.must_change_password,true);
+  for(const path of ['/api/customers','/api/customers/child-a/attachments','/api/demo/scenarios'])assert.equal((await request(path,newcomer)).body.error.code,'PASSWORD_CHANGE_REQUIRED');
+  const changed=await request('/api/auth/password',{...newcomer,method:'POST',data:{current_password:data.initial_password,new_password:'new-personal-password'},key:'initial-password-change'});assert.equal(changed.status,200);
+  assert.equal((await request('/api/me',newcomer)).body.must_change_password,false);assert.equal((await request('/api/customers',newcomer)).status,200);
+  const logs=JSON.stringify(db.prepare('SELECT * FROM audit_events').all())+JSON.stringify(db.prepare('SELECT * FROM idempotency').all());assert.ok(!logs.includes(data.initial_password)&&!logs.includes('new-personal-password')&&!logs.includes('password_hash'));
+});
+test('personnel editing rejects cross-store, self and guardian targets and revokes changed permissions',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),front=await login('front'),parent=await login('parent');
+  const data={display_name:'前台（虚构）',role:'professional',active:true,expected_revision:1,reason:'演示岗位调整'},options={...manager,method:'POST',data,key:'staff-role-change'};
+  assert.equal((await request('/api/organization/staff/front',{...options,...parent})).status,403);
+  for(const id of ['other','parent'])assert.equal((await request(`/api/organization/staff/${id}`,options)).status,404);
+  assert.equal((await request('/api/organization/staff/manager',options)).body.error.code,'SELF_MANAGEMENT');
+  assert.equal((await request('/api/organization/staff/front',{...options,data:{...data,store_id:'b'}})).status,422);
+  const updated=await request('/api/organization/staff/front',options);assert.equal(updated.status,200);assert.equal(updated.body.staff.revision,2);assert.equal(updated.body.revoked_sessions,1);
+  assert.equal((await request('/api/customers',front)).status,401);
+  const next=await login('front');assert.equal((await request('/api/me',next)).body.role,'professional');
+  assert.equal((await request('/api/customers',{...next,method:'POST',data:{name:'不应创建'},key:'professional-create'})).status,403);
+  assert.deepEqual((await request('/api/organization/staff/front',options)).body,updated.body);
+  assert.equal(db.prepare("SELECT count(*) n FROM audit_events WHERE action='staff.update'").get().n,1);
+});
+test('disable, reactivate and reset require fresh revisions; old sessions and passwords stay revoked',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),front=await login('front');
+  const edit=(active,expected_revision,key)=>request('/api/organization/staff/front',{...manager,method:'POST',data:{display_name:'前台（虚构）',role:'reception',active,expected_revision,reason:'虚构停用或恢复'},key});
+  assert.equal((await edit(false,1,'staff-disable-key')).status,200);assert.equal((await request('/api/me',front)).status,401);
+  assert.equal((await request('/api/auth/login',{method:'POST',data:{username:'front',password:'test-password-only'}})).status,401);
+  assert.equal((await edit(true,1,'staff-stale-enable')).body.error.code,'STALE_ACCOUNT');
+  assert.equal((await edit(true,2,'staff-enable-key')).status,200);const resumed=await login('front');assert.equal((await request('/api/me',front)).status,401);
+  const reset={...manager,method:'POST',data:{initial_password:'reset-password-only',expected_revision:3,reason:'虚构密码重置'},key:'staff-reset-password'};
+  const changed=await request('/api/organization/staff/front/reset-password',reset);assert.equal(changed.status,200);assert.equal(changed.body.staff.must_change_password,1);
+  assert.equal((await request('/api/me',resumed)).status,401);
+  assert.equal((await request('/api/auth/login',{method:'POST',data:{username:'front',password:'test-password-only'}})).status,401);
+  const temporary=await login('front','reset-password-only');assert.equal((await request('/api/customers',temporary)).status,403);
+  const revoke=await request('/api/organization/staff/front/revoke-sessions',{...manager,method:'POST',data:{expected_revision:4,reason:'虚构会话撤销'},key:'staff-revoke-sessions'});assert.equal(revoke.body.revoked_sessions,1);assert.equal((await request('/api/me',temporary)).status,401);
+  assert.equal(db.prepare("SELECT count(*) n FROM customers WHERE created_by='front'").get().n,0);
+});
+test('own password change verifies current secret, keeps this session and revokes others; retries do not repeat',async t=>{
+  const {request,login}=await fixture(t),one=await login('manager'),two=await login('manager');
+  const options={...one,method:'POST',data:{current_password:'test-password-only',new_password:'my-new-password-only'},key:'own-password-change'};
+  assert.equal((await request('/api/auth/password',{...options,csrf:undefined})).status,403);
+  assert.equal((await request('/api/auth/password',{...options,data:{...options.data,new_password:'short'}})).status,422);
+  assert.equal((await request('/api/auth/password',{...options,data:{...options.data,current_password:'wrong'}})).body.error.code,'CURRENT_PASSWORD');
+  const changed=await request('/api/auth/password',options);assert.equal(changed.status,200);assert.equal(changed.body.revoked_sessions,1);
+  assert.equal((await request('/api/me',one)).status,200);assert.equal((await request('/api/me',two)).status,401);
+  assert.deepEqual((await request('/api/auth/password',options)).body,changed.body);
+  assert.equal((await request('/api/auth/login',{method:'POST',data:{username:'manager',password:'test-password-only'}})).status,401);
+  await login('manager','my-new-password-only');
+});
+test('concurrent personnel mutations accept one fresh revision and preserve the successful retry',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager');
+  const opts=name=>({...manager,method:'POST',data:{display_name:name,role:'reception',active:true,expected_revision:1,reason:'虚构并发修改'},key:'concurrent-'+name});
+  const a=opts('first'),b=opts('second'),results=await Promise.all([request('/api/organization/staff/front',a),request('/api/organization/staff/front',b)]);
+  assert.deepEqual(results.map(x=>x.status).sort(),[200,409]);const index=results.findIndex(x=>x.status===200);
+  assert.deepEqual((await request('/api/organization/staff/front',index===0?a:b)).body,results[index].body);
+  assert.equal(db.prepare("SELECT count(*) n FROM audit_events WHERE action='staff.update'").get().n,1);
+});
+test('audit failures roll back account creation, password resets, revisions and session revocation together',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),front=await login('front'),before=db.prepare("SELECT password_hash FROM users WHERE id='front'").get().password_hash;
+  db.exec("CREATE TRIGGER fail_staff_audit BEFORE INSERT ON audit_events WHEN NEW.action LIKE 'staff.%' OR NEW.action='account.password' BEGIN SELECT RAISE(ABORT,'forced test failure'); END;");
+  assert.equal((await request('/api/organization/staff',{...manager,method:'POST',data:{username:'failed-person',display_name:'失败（虚构）',role:'reception',initial_password:'initial-password-only',reason:'虚构回滚'},key:'staff-failure-create'})).status,500);
+  assert.equal(db.prepare("SELECT 1 FROM users WHERE username='failed-person'").get(),undefined);
+  assert.equal((await request('/api/organization/staff/front/reset-password',{...manager,method:'POST',data:{initial_password:'reset-password-only',expected_revision:1,reason:'虚构回滚'},key:'staff-failure-reset'})).status,500);
+  assert.equal(db.prepare("SELECT password_hash FROM users WHERE id='front'").get().password_hash,before);assert.equal(db.prepare("SELECT 1 FROM user_security WHERE user_id='front'").get(),undefined);
+  assert.equal((await request('/api/organization/staff/front',{...manager,method:'POST',data:{display_name:'不得保存',role:'professional',active:false,expected_revision:1,reason:'虚构失败'},key:'staff-failure-edit'})).status,500);
+  assert.equal((await request('/api/auth/password',{...manager,method:'POST',data:{current_password:'test-password-only',new_password:'new-password-only'},key:'own-failure-password'})).status,500);
+  assert.equal(db.prepare("SELECT role,active FROM users WHERE id='front'").get().role,'reception');
+  assert.equal((await request('/api/me',front)).status,200);assert.equal(db.prepare("SELECT count(*) n FROM idempotency WHERE operation LIKE 'staff.%'").get().n,0);
+  await login('manager');
+});
+test('revocation blocks a request already waiting for its body before any business mutation',async t=>{
+  const {request,login,server,origin,db}=await fixture(t),manager=await login('manager'),front=await login('front');
+  const accepted=once(server,'request');
+  const pending=httpRequest(origin+'/api/customers',{method:'POST',headers:{Cookie:front.cookie,'X-CSRF-Token':front.csrf,'Idempotency-Key':'slow-revoked-request','Content-Type':'application/json'}});
+  const response=new Promise((resolve,reject)=>{pending.on('error',reject);pending.on('response',r=>{let text='';r.on('data',chunk=>text+=chunk);r.on('end',()=>resolve({status:r.statusCode,body:JSON.parse(text)}));});});
+  pending.flushHeaders();await accepted;
+  const revoke=await request('/api/organization/staff/front/revoke-sessions',{...manager,method:'POST',data:{expected_revision:1,reason:'虚构处理中撤销'},key:'revoke-pending-session'});assert.equal(revoke.status,200);
+  pending.end(JSON.stringify({name:'不得保存（虚构）'}));assert.equal((await response).status,401);
+  assert.equal(db.prepare("SELECT 1 FROM customers WHERE name='不得保存（虚构）'").get(),undefined);
+});
+
+test('synthetic personnel append once and preserve account state and passwords on repeated initialization',async t=>{
+  const {db}=await fixture(t);
+  db.prepare('INSERT INTO stores VALUES (?,?)').run('store-a','示例门店');
+  db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','负责人（虚构）',hashPassword('test-password-only'),'manager','store-a');
+  assert.deepEqual(seedDemoPeople(db),{added:2});
+  const hash=db.prepare("SELECT password_hash FROM users WHERE id='demo-onboarding'").get().password_hash;
+  db.prepare("UPDATE users SET active=0,display_name='已调整（虚构）' WHERE id='demo-onboarding'").run();
+  db.prepare("UPDATE user_security SET revision=7,must_change_password=0 WHERE user_id='demo-onboarding'").run();
+  assert.deepEqual(seedDemoPeople(db),{added:0});
+  const row=db.prepare("SELECT u.*,s.revision,s.must_change_password FROM users u JOIN user_security s ON s.user_id=u.id WHERE u.id='demo-onboarding'").get();
+  assert.equal(row.password_hash,hash);assert.equal(row.active,0);assert.equal(row.revision,7);assert.equal(row.must_change_password,0);
+});
+test('backup preserves personnel roles, disabled state and required-password-change revisions',async t=>{
+  const {request,login,db,dir}=await fixture(t,{persist:true}),manager=await login('manager');
+  const created=await request('/api/organization/staff',{...manager,method:'POST',data:{username:'restore-staff',display_name:'恢复样例（虚构）',role:'professional',initial_password:'initial-password-only',reason:'虚构恢复核对'},key:'restore-staff-create'});
+  const id=created.body.staff.id;
+  await request(`/api/organization/staff/${id}`,{...manager,method:'POST',data:{display_name:'恢复样例（虚构）',role:'reception',active:false,expected_revision:1,reason:'虚构停用'},key:'restore-staff-disable'});
+  const backup=join(dir,'personnel-backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);const restored=openDatabase(backup);
+  try{const row=restored.prepare('SELECT u.role,u.active,s.revision,s.must_change_password FROM users u JOIN user_security s ON s.user_id=u.id WHERE u.id=?').get(id);assert.deepEqual({...row},{role:'reception',active:0,revision:2,must_change_password:1});assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}
+  finally{restored.close();}
 });

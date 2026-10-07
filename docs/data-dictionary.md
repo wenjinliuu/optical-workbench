@@ -33,3 +33,9 @@
 - version_attachments：version_id、attachment_id、customer_id；复合外键限定同一客户，禁止更新/删除原关联。应用仅在创建新版本时插入引用，没有给旧版本追加引用的接口。
 
 JSON请求的版本编号用于乐观并发校验；未知来源不能自动归类为实测，记录业务确认状态将在专业模块单独建立。迁移与历史记录保持原有身份和授权。
+
+## V0.4 账号安全（004_account_security.sql）
+
+user_security：user_id PK/FK、revision正整数默认1、must_change_password 0/1。已有用户迁移建立版本1、无需强制改密；新建员工使用版本1且待改密。账号编辑、密码重置、会话撤销、本人改密均递增修订号；安全状态随一致性备份保留。测试/开发直接插入无元信息的账号按版本1、无需改密读取。
+
+sessions新增user_id索引用于即时撤销与有效会话计数。人员资料不删除，停用保留客户/资料/审计外键；密码仅哈希。API的用户名仅向本店负责人返回，不返回password_hash、token_hash或其他会话csrf。

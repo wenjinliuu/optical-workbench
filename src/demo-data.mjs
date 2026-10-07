@@ -1,5 +1,5 @@
-import { randomUUID, createHash } from 'node:crypto';
-import { transaction } from './db.mjs';
+import { randomUUID, createHash, randomBytes } from 'node:crypto';
+import { transaction, hashPassword } from './db.mjs';
 
 // Static snapshots explain future workflows; they are never executable tasks.
 export const demoScenarios = [
@@ -48,5 +48,23 @@ export function seedDemoScenarios(db) {
     }
     if(customers||cycles||visits||documents||attachments)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.seed','demo-scenarios',null,JSON.stringify({source:'synthetic',customers,cycles,visits,documents,attachments}),now);
     return {customers,cycles,visits,documents,attachments};
+  });
+}
+
+export function seedDemoPeople(db) {
+  const manager=db.prepare("SELECT id FROM users WHERE id='demo-manager' AND username='demo-manager' AND role='manager' AND store_id='store-a'").get();
+  if(!manager)throw Error('人员样例仅用于独立示例数据库。');
+  return transaction(db,()=>{
+    let added=0;
+    for(const [id,name,active] of [['demo-onboarding','入职人员（虚构）',1],['demo-inactive','停用人员（虚构）',0]]){
+      const existing=db.prepare('SELECT username,store_id FROM users WHERE id=?').get(id);
+      if(existing){if(existing.username!==id||existing.store_id!=='store-a')throw Error('人员样例编号冲突，已回滚；不会覆盖账号。');continue;}
+      if(db.prepare('SELECT 1 FROM users WHERE username=?').get(id))throw Error('人员样例账号冲突，已回滚。');
+      // A new demo staff member is usable after its manager resets the unknown password.
+      db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,?)').run(id,id,name,hashPassword(randomBytes(24).toString('base64url')),'reception','store-a',active);
+      db.prepare('INSERT INTO user_security VALUES (?,1,1)').run(id);added++;
+    }
+    if(added)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.people','demo-people',null,JSON.stringify({source:'synthetic',added}),new Date().toISOString());
+    return {added};
   });
 }

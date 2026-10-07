@@ -5,10 +5,12 @@ import { fileURLToPath } from 'node:url';
 import { openDatabase, transaction, hashPassword, verifyPassword } from './db.mjs';
 import { demoScenarios } from './demo-data.mjs';
 import { createDocumentsHandler } from './documents.mjs';
+import { createOrganizationHandler } from './organization.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
 const roles = {manager:['customers:read','customers:create','cycles:create','audit:read','organization:read','guardians:manage','visits:create','visits:close','demo:read'],reception:['customers:read','customers:create','cycles:create','visits:create','visits:close','demo:read'],professional:['customers:read','cycles:create','demo:read'],guardian:['customers:read']};
 for(const role of ['manager','reception','professional'])roles[role].push('attachments:read','attachments:upload','attachments:revoke','documents:read','documents:write');
+roles.manager.push('organization:manage');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -55,6 +57,8 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
     const key=req.headers['idempotency-key'];
     if(typeof key!=='string'||!/^[\w-]{8,100}$/.test(key)) fail(400,'IDEMPOTENCY_REQUIRED','提交需要有效的防重复标识');
     return transaction(db,()=>{
+      const live=db.prepare('SELECT u.role,u.store_id FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.user_id=? AND s.expires_at>? AND u.active=1').get(user.token_hash,user.id,Date.now());
+      if(!live||live.role!==user.role||live.store_id!==user.store_id)fail(401,'UNAUTHENTICATED','账号权限或登录会话已变更，请重新登录');
       const fingerprint=sha(JSON.stringify(input));
       const prior=db.prepare('SELECT * FROM idempotency WHERE actor_id=? AND operation=? AND request_key=?').get(user.id,operation,key);
       if(prior) { if(prior.request_hash!==fingerprint) fail(409,'IDEMPOTENCY_CONFLICT','同一提交标识不能用于不同内容'); return JSON.parse(prior.response_json); }
@@ -62,6 +66,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
     });
   }
   const documents=createDocumentsHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const organization=createOrganizationHandler(db,{need,field,fail,body,mutation,audit});
   const server=createServer(async(req,res)=>{
     res.setHeader('Cache-Control','no-store'); res.setHeader('X-Content-Type-Options','nosniff'); res.setHeader('Referrer-Policy','same-origin');
     res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
@@ -70,7 +75,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -92,17 +97,15 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
         return json(200,{ok:true});
       }
       const token=/\bow_session=([a-f0-9]{64})(?:;|$)/.exec(req.headers.cookie||'')?.[1];
-      const session=token && db.prepare('SELECT s.csrf,s.expires_at,u.* FROM sessions s JOIN users u ON s.user_id=u.id WHERE token_hash=? AND expires_at>? AND u.active=1').get(sha(token),Date.now());
+      const session=token && db.prepare('SELECT s.token_hash,s.csrf,s.expires_at,u.*,COALESCE(sec.must_change_password,0) AS must_change_password FROM sessions s JOIN users u ON s.user_id=u.id LEFT JOIN user_security sec ON sec.user_id=u.id WHERE token_hash=? AND expires_at>? AND u.active=1').get(sha(token),Date.now());
       if(!session) fail(401,'UNAUTHENTICATED','请登录后继续');
       const user=session;
       if(req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'CSRF','会话校验失败，请重新加载');
-      if(path==='/api/me' && req.method==='GET') return json(200,{id:user.id,name:user.display_name,role:user.role,store:user.store_id?db.prepare('SELECT * FROM stores WHERE id=?').get(user.store_id):null,permissions:roles[user.role],csrf:session.csrf});
+      if(path==='/api/me' && req.method==='GET') return json(200,{id:user.id,name:user.display_name,role:user.role,store:user.store_id?db.prepare('SELECT * FROM stores WHERE id=?').get(user.store_id):null,permissions:roles[user.role],csrf:session.csrf,must_change_password:Boolean(user.must_change_password)});
       if(path==='/api/auth/logout' && req.method==='POST') { transaction(db,()=>{db.prepare('DELETE FROM sessions WHERE token_hash=?').run(sha(token));audit(user,'session.logout',user.id,{});});res.setHeader('Set-Cookie','ow_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return json(200,{ok:true}); }
+      if(user.must_change_password&&path!=='/api/auth/password')fail(403,'PASSWORD_CHANGE_REQUIRED','请先修改初始或重置密码');
+      if(await organization(req,res,path,user,json))return;
       if(await documents(req,res,path,user,json))return;
-      if(path==='/api/organization' && req.method==='GET') {
-        need(user,'organization:read');
-        return json(200,{items:db.prepare('SELECT id,display_name,role,active FROM users u WHERE store_id=? OR (role=\'guardian\' AND EXISTS(SELECT 1 FROM guardian_links g JOIN customers c ON c.id=g.customer_id WHERE g.user_id=u.id AND c.store_id=?)) ORDER BY role,display_name LIMIT 100').all(user.store_id,user.store_id)});
-      }
       if(path==='/api/demo/scenarios' && req.method==='GET') {
         need(user,'demo:read');
         const items=demoScenarios.filter(s=>{const c=db.prepare('SELECT store_id,name FROM customers WHERE id=?').get(s.customer_id);return c?.store_id===user.store_id && c.name===s.name;});

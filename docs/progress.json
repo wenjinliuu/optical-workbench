@@ -2,8 +2,8 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.3基础验证：授权附件与不可变资料版本；保持明亮浅色、虚构场景；整体阶段未验收",
-  "currentTask": "T01.03",
+  "productStatus": "V0.4基础验证：本店人员管理、密码与会话控制；明亮浅色和虚构场景保留；整体阶段未验收",
+  "currentTask": "T01.02",
   "nextTask": "T01.04",
   "stage": "P00",
   "blockers": [
@@ -33,6 +33,12 @@
       "version": "V0.3",
       "type": "工程推进",
       "summary": "新增客户附件上传/授权下载/撤销、通用资料不可变版本/修订并发/历史、虚构附件与双版本；专业确认/审批、正式存储与原业务规则仍待完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.4",
+      "type": "工程推进",
+      "summary": "新增本店员工建立/岗位停用管理/并发修订、重置与本人改密、首次改密门禁、即时撤销与处理中会话校验、两个人员状态虚构样例；正式身份和资质职责仍待确认。"
     }
   ],
   "tasks": [
@@ -160,10 +166,13 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "src/organization.mjs",
+        "public/organization.js",
+        "migrations/004_account_security.sql"
       ],
       "updated": "2026-10-07",
-      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
+      "note": "V0.4部分实现：本店人员建立/岗位与状态管理、密码重置/本人改密、首次改密门禁、即时会话撤销与处理中请求复核。正式身份/组织层级、资质职责、跨店指派、邀请与身份恢复仍待完成。"
     },
     {
       "id": "T01.03",
@@ -1855,15 +1864,23 @@
     },
     {
       "id": "M15-D",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
     },
     {
       "id": "M15-R",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
     },
     {
       "id": "M15-L",
@@ -2142,10 +2159,11 @@
     {
       "id": "U06",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "docs/handover.md",
-        "test/foundation.test.mjs"
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2200,41 +2218,45 @@
     {
       "id": "N01",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "docs/handover.md",
-        "test/foundation.test.mjs"
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N02",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "docs/handover.md",
-        "test/foundation.test.mjs"
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N03",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "src/documents.mjs",
         "test/foundation.test.mjs",
-        "docs/handover.md"
+        "docs/handover.md",
+        "scripts/browser-check.mjs"
       ],
       "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
     },
     {
       "id": "N04",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "docs/handover.md",
-        "test/foundation.test.mjs"
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2246,9 +2268,13 @@
     },
     {
       "id": "N06",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
     },
     {
       "id": "N07",
@@ -2927,8 +2953,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 22,
-      "scope": "公共基础与档案/周期草稿切片，不代表完整阶段业务验收"
+      "tests": 31,
+      "scope": "公共基础、档案/周期草稿与本店人员/密码会话控制切片，不代表完整阶段业务验收"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
@@ -2947,7 +2973,10 @@
         "multi-cycle visit and independent close",
         "store directory",
         "attachment upload/download/revoke",
-        "document revisions and history"
+        "document revisions and history",
+        "staff create/edit/reset/revoke/disable",
+        "forced initial/reset password change",
+        "own password change"
       ]
     },
     "baseline": {
@@ -2956,6 +2985,6 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "V0.1升级至三个迁移保留资料；包含二进制附件与版本引用的备份恢复通过"
+    "migration": "V0.1升级至四个迁移保留账号与资料；包含二进制附件、版本引用、人员安全状态/修订号的备份恢复通过"
   }
 }
