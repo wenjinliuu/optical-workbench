@@ -4,9 +4,11 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { openDatabase, transaction, hashPassword, verifyPassword } from './db.mjs';
 import { demoScenarios } from './demo-data.mjs';
+import { createDocumentsHandler } from './documents.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
 const roles = {manager:['customers:read','customers:create','cycles:create','audit:read','organization:read','guardians:manage','visits:create','visits:close','demo:read'],reception:['customers:read','customers:create','cycles:create','visits:create','visits:close','demo:read'],professional:['customers:read','cycles:create','demo:read'],guardian:['customers:read']};
+for(const role of ['manager','reception','professional'])roles[role].push('attachments:read','attachments:upload','attachments:revoke','documents:read','documents:write');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -21,9 +23,9 @@ function date(value) {
   if(!/^\d{4}-\d{2}-\d{2}$/.test(v) || Number.isNaN(Date.parse(v)) || new Date(v).toISOString().slice(0,10)!==v || v>new Date().toISOString().slice(0,10)) fail(422,'VALIDATION','出生日期必须为有效的过去日期');
   return v;
 }
-async function body(req) {
+async function body(req,limit=16384) {
   if(!req.headers['content-type']?.startsWith('application/json')) fail(415,'CONTENT_TYPE','请使用 JSON 请求');
-  let data=''; for await(const chunk of req) { data+=chunk; if(Buffer.byteLength(data)>16384) fail(413,'TOO_LARGE','请求内容过大'); }
+  let data=''; for await(const chunk of req) { data+=chunk; if(Buffer.byteLength(data)>limit) fail(413,'TOO_LARGE','请求内容过大'); }
   try { const value=JSON.parse(data); if(!value || Array.isArray(value) || typeof value!=='object') throw Error(); return value; } catch { fail(400,'BAD_JSON','请求格式不正确'); }
 }
 export function createApp({databasePath='data/workbench.sqlite', mode='development'}={}) {
@@ -59,6 +61,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const result=fn(); db.prepare('INSERT INTO idempotency VALUES (?,?,?,?,?)').run(user.id,operation,key,fingerprint,JSON.stringify(result)); return result;
     });
   }
+  const documents=createDocumentsHandler(db,{need,customer,field,fail,body,mutation,audit});
   const server=createServer(async(req,res)=>{
     res.setHeader('Cache-Control','no-store'); res.setHeader('X-Content-Type-Options','nosniff'); res.setHeader('Referrer-Policy','same-origin');
     res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
@@ -67,7 +70,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -95,6 +98,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       if(req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'CSRF','会话校验失败，请重新加载');
       if(path==='/api/me' && req.method==='GET') return json(200,{id:user.id,name:user.display_name,role:user.role,store:user.store_id?db.prepare('SELECT * FROM stores WHERE id=?').get(user.store_id):null,permissions:roles[user.role],csrf:session.csrf});
       if(path==='/api/auth/logout' && req.method==='POST') { transaction(db,()=>{db.prepare('DELETE FROM sessions WHERE token_hash=?').run(sha(token));audit(user,'session.logout',user.id,{});});res.setHeader('Set-Cookie','ow_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return json(200,{ok:true}); }
+      if(await documents(req,res,path,user,json))return;
       if(path==='/api/organization' && req.method==='GET') {
         need(user,'organization:read');
         return json(200,{items:db.prepare('SELECT id,display_name,role,active FROM users u WHERE store_id=? OR (role=\'guardian\' AND EXISTS(SELECT 1 FROM guardian_links g JOIN customers c ON c.id=g.customer_id WHERE g.user_id=u.id AND c.store_id=?)) ORDER BY role,display_name LIMIT 100').all(user.store_id,user.store_id)});

@@ -29,6 +29,11 @@ async function fixture(t,{persist=false}={}) {
   return {...app,request,login,path,dir,origin};
 }
 
+async function upload(origin,session,customerId='child-a',{bytes=Buffer.from('虚构资料清单'),type='text/plain',filename='资料（虚构）.txt',key='file-upload-key'}={}){
+  const r=await fetch(`${origin}/api/customers/${customerId}/attachments`,{method:'POST',headers:{Cookie:session.cookie,'X-CSRF-Token':session.csrf,'Content-Type':type,'X-File-Name':encodeURIComponent(filename),'Idempotency-Key':key},body:bytes});
+  return {status:r.status,body:await r.json()};
+}
+
 test('unauthenticated requests, invalid credentials and CSRF are rejected; logout revokes session',async t=>{
   const {request,login}=await fixture(t);
   assert.equal((await request('/api/customers')).status,401);
@@ -93,7 +98,7 @@ test('audit is append-only, health checks database and disabling user revokes ac
   const {request,login,db}=await fixture(t),session=await login('manager');
   assert.throws(()=>db.exec("DELETE FROM audit_events"),/append-only/);
   assert.throws(()=>db.exec("UPDATE audit_events SET action='tamper'"),/append-only/);
-  assert.equal((await request('/api/health')).body.schema,2);
+  assert.equal((await request('/api/health')).body.schema,3);
   const audit=await request('/api/audit',session);assert.equal(audit.body.items[0].action,'session.login');assert.equal(audit.body.items[0].after_json,undefined);
   db.prepare("UPDATE users SET active=0 WHERE id='manager'").run();assert.equal((await request('/api/me',session)).status,401);
 });
@@ -103,7 +108,7 @@ test('disk persistence, repeatable migrations and consistent backup restore pres
   const backup=join(dir,'backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);
   const counts=Object.fromEntries(['customers','audit_events','service_cycles'].map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n]));
   await new Promise(resolve=>server.close(resolve));
-  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,2);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
+  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,3);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
 });
 test('production mode refuses unreviewed deployment; HTML and assets use security headers',async t=>{
   assert.throws(()=>createApp({mode:'production'}),/Production is blocked/);
@@ -169,7 +174,7 @@ test('scenario expansion is repeatable and never overwrites a conflicting custom
     db.exec("INSERT INTO stores VALUES ('store-a','A')");
     db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','演示店长',hashPassword('test-only'),'manager','store-a');
     const first=seedDemoScenarios(db);assert.equal(first.customers,6);assert.equal(first.cycles,6);assert.equal(first.visits,6);
-    assert.deepEqual(seedDemoScenarios(db),{customers:0,cycles:0,visits:0});
+    assert.deepEqual(seedDemoScenarios(db),{customers:0,cycles:0,visits:0,documents:0,attachments:0});
     assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,1);
     db.prepare('UPDATE customers SET name=? WHERE id=?').run('conflicting record',demoScenarios[0].customer_id);
     assert.throws(()=>seedDemoScenarios(db),/不会覆盖/);assert.equal(db.prepare('SELECT name FROM customers WHERE id=?').get(demoScenarios[0].customer_id).name,'conflicting record');
@@ -195,4 +200,69 @@ test('migration upgrades a V0.1 database without losing customers, cycles or exi
     assert.equal(upgraded.prepare('SELECT relationship FROM guardian_links').get().relationship,null);
     assert.equal(upgraded.prepare('PRAGMA integrity_check').get().integrity_check,'ok');
   }finally{old?.close();upgraded?.close();rmSync(dir,{recursive:true,force:true});}
+});
+
+test('attachments store exact bytes, scope downloads, deduplicate retries and log reads',async t=>{
+  const {origin,login,db}=await fixture(t),manager=await login('manager'),other=await login('other'),parent=await login('parent');
+  const bytes=Buffer.from('仅供演示\n客户独立档案\n');
+  const [a,b]=await Promise.all([upload(origin,manager,'child-a',{bytes}),upload(origin,manager,'child-a',{bytes})]);
+  assert.equal(a.status,201);assert.deepEqual(a.body,b.body);assert.equal(db.prepare('SELECT count(*) n FROM attachments').get().n,1);assert.equal(db.prepare('SELECT count(*) n FROM attachment_blobs').get().n,1);
+  const id=a.body.attachment.id,r=await fetch(`${origin}/api/attachments/${id}/download`,{headers:{Cookie:manager.cookie}});
+  assert.equal(r.status,200);assert.match(r.headers.get('content-disposition'),/^attachment;/);assert.match(r.headers.get('content-security-policy'),/sandbox/);assert.deepEqual(Buffer.from(await r.arrayBuffer()),bytes);
+  assert.equal((await fetch(`${origin}/api/attachments/${id}/download`,{headers:{Cookie:other.cookie}})).status,404);
+  assert.equal((await fetch(`${origin}/api/attachments/${id}/download`,{headers:{Cookie:parent.cookie}})).status,403);
+  assert.equal(db.prepare("SELECT count(*) n FROM audit_events WHERE action='attachment.download'").get().n,1);
+});
+test('attachments reject paths, active content, empty/oversized files and invalid encoding',async t=>{
+  const {origin,login}=await fixture(t),manager=await login('manager');
+  for(const filename of ['../other.txt','bad\\name.txt','bad\nname.txt'])assert.equal((await upload(origin,manager,'child-a',{filename})).status,422);
+  assert.equal((await upload(origin,manager,'child-a',{type:'text/html',bytes:Buffer.from('<script>alert(1)</script>')})).status,415);
+  assert.equal((await upload(origin,manager,'child-a',{type:'image/png',bytes:Buffer.from('not PNG')})).status,415);
+  assert.equal((await upload(origin,manager,'child-a',{bytes:Buffer.from([255,255])})).status,415);
+  assert.equal((await upload(origin,manager,'child-a',{bytes:Buffer.alloc(0)})).status,422);
+  assert.equal((await upload(origin,manager,'child-a',{bytes:Buffer.alloc(1048577,65)})).status,413);
+});
+test('attachment revoke stops downloads, restricts other uploaders and preserves historical references',async t=>{
+  const {origin,request,login,db}=await fixture(t),manager=await login('manager'),front=await login('front');
+  const uploaded=await upload(origin,manager),id=uploaded.body.attachment.id;
+  const d=await request('/api/customers/child-a/documents',{...manager,method:'POST',data:{title:'资料备忘',content:'家长自报，不当作实测',source:'guardian_report',attachment_ids:[id]},key:'document-with-file'});
+  assert.equal(d.status,201);
+  const options={...front,method:'POST',data:{reason:'演示撤销访问'},key:'file-revoke-key'};
+  assert.equal((await request(`/api/attachments/${id}/revoke`,options)).status,403);
+  const revoked=await request(`/api/attachments/${id}/revoke`,{...options,...manager});assert.equal(revoked.status,200);
+  assert.equal((await fetch(`${origin}/api/attachments/${id}/download`,{headers:{Cookie:front.cookie}})).status,410);
+  const history=await request(`/api/documents/${d.body.document.record_id}`,manager);assert.equal(history.body.versions[0].attachments[0].id,id);assert.ok(history.body.versions[0].attachments[0].revoked_at);
+  assert.equal(db.prepare('SELECT count(*) n FROM attachment_blobs').get().n,1);
+  assert.equal((await request(`/api/attachments/${id}/revoke`,{...options,...manager,key:'another-revoke-key'})).status,409);
+});
+test('document revisions preserve old values, replay once and reject simultaneous stale versions',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),professional=await login('professional'),other=await login('other'),parent=await login('parent');
+  const initial={title:'初始资料',content:'原始需求记录',source:'guardian_report'};
+  const first=await request('/api/customers/child-a/documents',{...manager,method:'POST',data:initial,key:'version-one-key'});assert.equal(first.status,201);
+  const id=first.body.document.record_id,options={...professional,method:'POST',data:{title:'补充资料',content:'补充内容',source:'employee',expected_version:1,revision_reason:'补充接待依据'},key:'version-two-key'};
+  const alternative={...options,key:'another-writer-key',data:{...options.data,content:'另一个修改'}};
+  const [a,b]=await Promise.all([request(`/api/documents/${id}/versions`,options),request(`/api/documents/${id}/versions`,alternative)]);
+  assert.deepEqual([a.status,b.status].sort(),[201,409]);const winning=a.status===201?options:alternative;assert.equal((await request(`/api/documents/${id}/versions`,winning)).status,201);
+  const history=await request(`/api/documents/${id}`,manager);assert.equal(history.body.versions.length,2);assert.equal(history.body.versions[1].content,initial.content);assert.equal(history.body.versions[1].source,'guardian_report');
+  assert.equal((await request(`/api/documents/${id}`,other)).status,404);assert.equal((await request(`/api/documents/${id}`,parent)).status,403);
+  assert.throws(()=>db.exec("UPDATE document_versions SET content='tampered'"),/immutable/);assert.throws(()=>db.exec('DELETE FROM document_versions'),/immutable/);
+});
+test('documents reject cross-customer attachments and roll back both file/version writes on audit failure',async t=>{
+  const {origin,request,login,db}=await fixture(t),manager=await login('manager');
+  const other=await upload(origin,manager,'sibling-a',{key:'sibling-file-key'});
+  const data={title:'demo',content:'demo',source:'external',attachment_ids:[other.body.attachment.id]};
+  assert.equal((await request('/api/customers/child-a/documents',{...manager,method:'POST',data,key:'bad-file-document'})).status,422);
+  assert.equal(db.prepare('SELECT count(*) n FROM document_records').get().n,0);
+  db.exec("CREATE TRIGGER reject_document_audit BEFORE INSERT ON audit_events WHEN NEW.action IN('attachment.upload','document.create') BEGIN SELECT RAISE(ABORT,'simulate'); END;");
+  assert.equal((await upload(origin,manager,'child-a',{bytes:Buffer.from('new rollback bytes'),key:'rollback-file-key'})).status,500);
+  assert.equal(db.prepare('SELECT count(*) n FROM attachments').get().n,1);assert.equal(db.prepare('SELECT count(*) n FROM attachment_blobs').get().n,1);
+  assert.equal((await request('/api/customers/child-a/documents',{...manager,method:'POST',data:{...data,attachment_ids:[]},key:'rollback-document-key'})).status,500);
+  assert.equal(db.prepare('SELECT count(*) n FROM document_records').get().n,0);assert.equal(db.prepare('SELECT count(*) n FROM document_versions').get().n,0);
+});
+test('consistent backup restores attachment bytes and immutable document references',async t=>{
+  const {origin,request,login,db,dir}=await fixture(t,{persist:true}),manager=await login('manager');
+  const bytes=Buffer.from('备份中的虚构附件'),f=await upload(origin,manager,'child-a',{bytes});
+  const d=await request('/api/customers/child-a/documents',{...manager,method:'POST',data:{title:'备份资料',content:'保留引用',source:'employee',attachment_ids:[f.body.attachment.id]},key:'backup-document-key'});
+  assert.equal(d.status,201);const target=join(dir,'files-backup.sqlite');db.prepare('VACUUM INTO ?').run(target);const backup=openDatabase(target);
+  try{assert.deepEqual(Buffer.from(backup.prepare('SELECT bytes FROM attachment_blobs').get().bytes),bytes);assert.equal(backup.prepare('SELECT attachment_id FROM version_attachments').get().attachment_id,f.body.attachment.id);assert.equal(backup.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}finally{backup.close();}
 });

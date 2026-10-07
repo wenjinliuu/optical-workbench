@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { transaction } from './db.mjs';
 
 // Static snapshots explain future workflows; they are never executable tasks.
@@ -15,7 +15,7 @@ export function seedDemoScenarios(db) {
   const manager=db.prepare("SELECT id FROM users WHERE id='demo-manager' AND username='demo-manager' AND role='manager' AND store_id='store-a'").get();
   if(!manager) throw Error('请先在独立开发数据库执行 npm run demo；此脚本仅扩展示例账号的数据。');
   return transaction(db,()=>{
-    let customers=0,cycles=0,visits=0;const now=new Date().toISOString();
+    let customers=0,cycles=0,visits=0,documents=0,attachments=0;const now=new Date().toISOString();
     for(const s of demoScenarios){
       const existing=db.prepare('SELECT name,store_id FROM customers WHERE id=?').get(s.customer_id);
       if(existing&&(existing.name!==s.name||existing.store_id!=='store-a'))throw Error('示例编号与现有资料冲突，已回滚；不会覆盖档案。');
@@ -26,8 +26,27 @@ export function seedDemoScenarios(db) {
         db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run(visit_id,s.customer_id,'store-a',s.goal,s.visit_status,now,s.visit_status==='closed'?now:null,manager.id);
         db.prepare('INSERT INTO visit_cycles VALUES (?,?,?)').run(visit_id,cycle_id,s.customer_id);visits++;
       }
+      const document_id=`demo-document-${s.id}`,attachment_id=`demo-attachment-${s.id}`;
+      if(!db.prepare('SELECT 1 FROM document_records WHERE id=?').get(document_id)){
+        const bytes=Buffer.from(`虚构资料，仅用于开发展示\n客户：${s.name}\n需求：${s.goal}\n本附件不包含专业检查或诊断结论。\n`),hash=createHash('sha256').update(bytes).digest('hex');
+        if(!db.prepare('SELECT 1 FROM attachments WHERE id=?').get(attachment_id)){
+          db.prepare('INSERT OR IGNORE INTO attachment_blobs VALUES (?,?,?)').run(hash,bytes,bytes.length);
+          db.prepare('INSERT INTO attachments (id,customer_id,filename,content_type,blob_sha256,size,created_at,created_by) VALUES (?,?,?,?,?,?,?,?)').run(attachment_id,s.customer_id,'到店资料清单（虚构）.txt','text/plain',hash,bytes.length,now,manager.id);attachments++;
+        }
+        const f=db.prepare('SELECT customer_id FROM attachments WHERE id=?').get(attachment_id);if(f.customer_id!==s.customer_id)throw Error('示例附件编号冲突，已回滚。');
+        db.prepare('INSERT INTO document_records VALUES (?,?,?,?)').run(document_id,s.customer_id,now,manager.id);
+        const initial_id=`demo-version-${s.id}-1`;
+        db.prepare('INSERT INTO document_versions VALUES (?,?,?,?,?,?,?,?,?,?)').run(initial_id,document_id,s.customer_id,1,'服务资料备忘（虚构）',`家长需求登记：${s.goal}\n来源：虚构演示资料；尚未形成专业结论。`,'guardian_report','初始演示记录',now,manager.id);
+        db.prepare('INSERT INTO version_attachments VALUES (?,?,?)').run(initial_id,attachment_id,s.customer_id);
+        if(['plan','followup'].includes(s.id)){
+          const version_id=`demo-version-${s.id}-2`;
+          db.prepare('INSERT INTO document_versions VALUES (?,?,?,?,?,?,?,?,?,?)').run(version_id,document_id,s.customer_id,2,'服务资料备忘（虚构）',`补充资料记录：${s.goal}\n演示衔接：${s.next}\n旧版需求记录保留，不自动成为专业确认。`,'employee','补充接待资料与后续安排（虚构）',now,manager.id);
+          db.prepare('INSERT INTO version_attachments VALUES (?,?,?)').run(version_id,attachment_id,s.customer_id);
+        }
+        documents++;
+      }
     }
-    if(customers||cycles||visits)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.seed','demo-scenarios',null,JSON.stringify({source:'synthetic',customers,cycles,visits}),now);
-    return {customers,cycles,visits};
+    if(customers||cycles||visits||documents||attachments)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.seed','demo-scenarios',null,JSON.stringify({source:'synthetic',customers,cycles,visits,documents,attachments}),now);
+    return {customers,cycles,visits,documents,attachments};
   });
 }

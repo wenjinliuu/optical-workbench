@@ -23,3 +23,13 @@
 家庭与客户通过成员关联，监护、联系、付款身份独立。到店与服务周期的 M:N 关联及独立结束已实现，后续增加到店任务。计划 1:N 不可变版本，当次执行引用当时版本。订单与周期 M:N，处方快照与订单相连；退款不自动终止计划。权益账与购买/规则版本/实际执行关联，资金账与原付款/退款独立关联。检查 1:N 版本、版本 1:N 单眼测量；未做、无法测、待补、不适用的原因和值分开。报告发布引用固定确认版本与授权范围，撤回后限制新访问。采购、验收、批次、库存变化和交付流向关联。
 
 专业单位、眼别与条件、唯一业务键、来源、保留期限、跨店关系和删除策略仍待真实表单/规则确认，不能将本草案视为 T00.02 全量验收。
+
+## V0.3 资料与附件（003_documents_attachments.sql）
+
+- attachment_blobs：sha256 PK、bytes BLOB、size；限制1 MB，禁止修改/删除字节。按内容去重，具体客户的访问元信息独立。
+- attachments：id、customer_id、filename、content_type、blob_sha256、size、created_at/by、revoked_at/by、revocation_reason。撤销访问不删除历史文件。
+- document_records：id、customer_id、created_at/by，只作为稳定资料身份。
+- document_versions：id、record_id、customer_id、version、title、content、source、revision_reason、created_at/by；record_id+version唯一，禁止更新/删除。当前实现的是通用内部资料记录，不是已确认专业检查或报告。
+- version_attachments：version_id、attachment_id、customer_id；复合外键限定同一客户，禁止更新/删除原关联。应用仅在创建新版本时插入引用，没有给旧版本追加引用的接口。
+
+JSON请求的版本编号用于乐观并发校验；未知来源不能自动归类为实测，记录业务确认状态将在专业模块单独建立。迁移与历史记录保持原有身份和授权。

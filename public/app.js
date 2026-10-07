@@ -1,8 +1,9 @@
+import { createDocumentPanels } from './documents.js';
 const $=s=>document.querySelector(s);
 let me, selected, csrf, customers=[], searchVersion=0, toastTimer, sessionEpoch=0;
 const roleNames={manager:'门店负责人',reception:'前台 / 销售',professional:'专业人员',guardian:'家长 / 客户'};
 const cycleNames={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
-const actions={'session.login':'登录工作台','session.logout':'退出工作台','customer.create':'新建客户档案','cycle.create':'创建服务周期草稿','guardian.authorize':'授权家长关联','guardian.revoke':'撤销家长授权','visit.register':'登记到店','visit.close':'结束本次到店','demo.seed':'扩展虚构案例'};
+const actions={'session.login':'登录工作台','session.logout':'退出工作台','customer.create':'新建客户档案','cycle.create':'创建服务周期草稿','guardian.authorize':'授权家长关联','guardian.revoke':'撤销家长授权','visit.register':'登记到店','visit.close':'结束本次到店','demo.seed':'扩展虚构案例','attachment.upload':'上传附件','attachment.download':'下载附件','attachment.revoke':'撤销附件访问','document.create':'建立资料版本','document.revise':'修订资料版本'};
 function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;}
 function toast(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,6000);}
 async function api(path,{method='GET',data,key}={}){
@@ -10,7 +11,8 @@ async function api(path,{method='GET',data,key}={}){
   const r=await fetch(`/api${path}`,{method,headers,body:data?JSON.stringify(data):undefined});const b=await r.json();if(epoch!==sessionEpoch)throw Error('会话已切换，请重新操作');
   if(!r.ok){if(r.status===401&&path!=='/auth/login')showLogin();throw Error(b.error?.message||'操作失败，请重试');}return b;
 }
-function showLogin(){sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
+const documentPanels=createDocumentPanels({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,reload:openCustomer,toast,showLogin});
+function showLogin(){documentPanels.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
 async function boot(){
   try{me=await api('/me');csrf=me.csrf;$('#login-view').hidden=true;$('#workspace').hidden=false;$('#loading').hidden=true;$('#user-name').textContent=me.name;$('#user-role').textContent=roleNames[me.role];$('#user-avatar').textContent=me.name.slice(0,1);$('#store-name').textContent=me.store?.name||'授权家庭范围';$('#demo-nav').hidden=!me.permissions.includes('demo:read');$('#organization-nav').hidden=!me.permissions.includes('organization:read');$('#audit-nav').hidden=!me.permissions.includes('audit:read');$('#new-customer').hidden=!me.permissions.includes('customers:create');$('#search').placeholder=me.role==='guardian'?'按客户姓名搜索':'姓名、联系人、电话或编号';switchView('customers');await loadCustomers();}
   catch(e){if(me)$('#global-error').textContent=e.message;else showLogin();}
@@ -38,6 +40,7 @@ async function openCustomer(id){
     if(me.role==='guardian'){
       detail.append(el('p','当前仅展示授权基本资料；专业报告发布功能尚未实现。','muted'));
     }else{
+      const documentsTarget=el('div',undefined,'documents-area');detail.append(documentsTarget);documentPanels.render(documentsTarget,id);
       const head=el('div',undefined,'cycle-heading');head.append(el('h2',`独立服务周期 · ${cycles.length}`));
       if(me.permissions.includes('cycles:create')){
         const button=el('button','＋ 新建周期');button.onclick=()=>{$('#cycle-form').reset();$('#cycle-error').textContent='';$('#cycle-dialog').showModal();};head.append(button);

@@ -1,4 +1,4 @@
-# API v0.2
+# API v0.3
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -26,3 +26,20 @@
 家长关联需要已有本店家长身份（账号归属本店，或有本店客户的历史关联）。新增授权要求账号有效；已停用账号仍可撤销关系。变更保留前后值及操作依据，不将开发版记录视为正式监护证明核验。撤销后立即停止后续访问。
 
 到店 registered → closed 必须有结束说明；重复同键返回原响应，另一个键再次关闭返回409。数据库复合外键阻止跨客户周期关联。到店登记可以不关联周期，以支持先接待后定服务类型。
+
+## 资料版本与附件
+
+| 方法 / 路径 | 输入 | 输出 / 权限 |
+| --- | --- | --- |
+| GET /customers/:id/attachments | 无 | 前100条本客户附件元信息；员工，家长拒绝 |
+| POST /customers/:id/attachments | 二进制请求体、Content-Type、X-File-Name(encodeURIComponent编码)、CSRF、防重复键 | attachment；员工；1 MB限额，类型/文件头/UTF-8校验 |
+| GET /attachments/:id/download | 会话 | 实际字节，强制attachment、sandbox、no-store；员工门店授权；撤销返回410，每次下载追加审计 |
+| POST /attachments/:id/revoke | reason | 撤销访问；上传员工本人或本店负责人；原字节保留 |
+| GET /customers/:id/documents | 无 | 前100份资料最新版本，含当时附件引用；员工 |
+| POST /customers/:id/documents | title、content、source、attachment_ids? | 新记录V1；员工，手工资料，不产生专业确认 |
+| GET /documents/:id | 无 | record及最近100个历史版本；员工客户范围 |
+| POST /documents/:id/versions | 上述资料字段、expected_version、revision_reason | 新版本；旧版不可覆盖；版本冲突409 |
+
+source枚举employee / external / guardian_report，对应员工记录 / 外部资料转录 / 家长自报转录；内容最多6000字符，JSON请求最多64 KB。附件关联最多20个，必须是同一客户且当前未撤销的附件。旧版内容/来源/修订依据/附件引用不改写；撤销附件访问只影响当前下载许可。
+
+所有新增和撤销使用幂等键；文件字节、元信息、版本、引用、幂等结果和审计同库事务。默认文件读取权限不给家长，正式报告发布与专业确认尚未实现。本地类型校验不是生产文件扫描或完整PDF/图片解析。

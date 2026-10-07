@@ -61,6 +61,35 @@ try{
   await page.locator('.family-row .badge').filter({hasText:active==='true'?'已授权':'已撤销'}).waitFor();
  }
 
+ await page.getByRole('button',{name:'＋ 上传附件',exact:true}).click();
+ await page.locator('#attachment-form input[type=file]').setInputFiles({name:'资料清单（虚构）.txt',mimeType:'text/plain',buffer:Buffer.from('虚构资料；仅用于开发展示')});
+ await page.locator('#attachment-form button[type=submit]').click();
+ await page.locator('.attachment-row .file-download').filter({hasText:'资料清单（虚构）.txt'}).waitFor();
+ await page.getByRole('button',{name:'＋ 新建资料',exact:true}).click();
+ await page.locator('#document-form input[name=title]').fill('接待资料备忘（虚构）');
+ await page.locator('#document-form select[name=source]').selectOption('guardian_report');
+ await page.locator('#document-form textarea[name=content]').fill('家长描述到店目的，等待进一步核对。');
+ await page.locator('#document-file-options input[type=checkbox]').check();
+ await page.locator('#document-form button[type=submit]').click();
+ await page.locator('.document-card .badge').filter({hasText:'V1'}).waitFor();
+ await page.getByRole('button',{name:'新增修订版本',exact:true}).click();
+ await page.locator('#document-form select[name=source]').selectOption('employee');
+ await page.locator('#document-form textarea[name=content]').fill('补充接待记录与后续安排（虚构），原始需求记录保留。');
+ await page.locator('#document-form textarea[name=revision_reason]').fill('补充现场沟通内容（虚构）');
+ await page.locator('#document-form button[type=submit]').click();
+ await page.locator('.document-card .badge').filter({hasText:'V2'}).waitFor();
+ await page.getByRole('button',{name:'查看历史版本',exact:true}).click();
+ await page.locator('.version-card').first().waitFor();
+ assert.equal(await page.locator('.version-card').count(),2);
+ const downloadPromise=page.waitForEvent('download');
+ await page.locator('.version-card').first().getByRole('button',{name:'资料清单（虚构）.txt',exact:true}).click();
+ const download=await downloadPromise;assert.equal(download.suggestedFilename(),'资料清单（虚构）.txt');
+ await page.screenshot({path:'data/browser-check/versions-desktop.png',fullPage:true});
+ await page.locator('#history-dialog [data-close]').click();
+ await page.locator('.attachment-row').getByRole('button',{name:'撤销访问',exact:true}).click();
+ await page.locator('#revoke-file-form textarea').fill('演示资料访问撤销，历史引用保留');
+ await page.locator('#revoke-file-form button[type=submit]').click();
+ await page.locator('.attachment-row .file-download:disabled').waitFor();
  await page.screenshot({path:'data/browser-check/desktop.png',fullPage:true});
  await page.getByRole('button',{name:'操作审计',exact:false}).click();
  await page.locator('#audit-items tr').filter({hasText:'创建服务周期草稿'}).first().waitFor();
@@ -85,5 +114,5 @@ try{
  await page.locator('#login-view').waitFor({state:'visible'});
  assert.equal(await page.locator('#customer-items').textContent(),'');
  assert.deepEqual(errors,[]);
- console.log('Browser checks passed: vivid light theme, six synthetic scenarios, family authorize/revoke, multi-cycle visit/close, audit, desktop/mobile, Escape, logout and no runtime errors.');
+ console.log('Browser checks passed: attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
