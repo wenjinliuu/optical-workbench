@@ -1,3 +1,4 @@
+import { insertStockEvent,insertReservation,orderInventory } from './inventory.mjs';
 import { productRecord, insertProductVersion, insertOrderVersion } from './retail.mjs';
 import { completionSnapshot, completionDigest, completionRecord } from './task-completions.mjs';
 import { randomUUID, createHash, randomBytes } from 'node:crypto';
@@ -278,5 +279,17 @@ export function seedDemoRetail(db){
   }
   const frame=productRecord(db,'demo-product-frame');if(frame.version===1&&products&&orders){const value=insertProductVersion(db,frame.id,{...frame,list_price_cents:72800,reason:'虚构演示：目录调价，已保存订单仍用原价'},actor.id,now);audit('retail.product.revise',frame.id,value);versions++;}
   return {products,orders,versions};
+ });
+}
+
+export function seedDemoInventory(db){
+ const actor=db.prepare("SELECT u.id FROM users u LEFT JOIN user_security s ON s.user_id=u.id WHERE u.id='demo-manager' AND u.username='demo-manager' AND u.store_id='store-a' AND u.role='manager' AND u.active=1 AND COALESCE(s.must_change_password,0)=0").get();if(!actor)throw Error('库存样例仅用于有效示例负责人的独立开发库。');
+ if(db.prepare('SELECT 1 FROM inventory_events LIMIT 1').get())return {movements:0,reservations:0};
+ return transaction(db,()=>{const now=new Date().toISOString();let movements=0,reservations=0;const audit=(action,id,after)=>db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',actor.id,action,id,null,JSON.stringify({source:'synthetic',...after}),now);
+  const goods=[['frame',8,'副','frame'],['lens',16,'片','lens'],['case',10,'个','accessory']];if(goods.some(([key,,unit,category])=>{const p=productRecord(db,'demo-product-'+key);return !p||p.store_id!=='store-a'||p.unit!==unit||p.category!==category||p.status!=='active';}))return {movements:0,reservations:0};
+  function move(key,action,quantity,reason){const p=productRecord(db,'demo-product-'+key),event=insertStockEvent(db,{product_id:p.id,product_version:p.version,store_id:'store-a',action,quantity,reason:'虚构演示：'+reason,created_at:now,created_by:actor.id});audit('inventory.'+action,p.id,{event});movements++;}
+  for(const [key,quantity] of goods)move(key,'receive',quantity,'登记商品数量，不代表采购验收');move('frame','isolate',1,'一副镜架暂时隔离，不能预留');move('case','isolate',2,'镜盒隔离检查登记');move('case','unquarantine',1,'明确解除一只镜盒的隔离');
+  for(const [id,release] of [['demo-order-revised',false],['demo-order-draft',true]]){const s=orderInventory(db,id);if(!s||!s.can_reserve)continue;let value=insertReservation(db,id,'reserve','虚构演示：按已保存明细预留商品',actor.id,now);audit('inventory.order.reserve',id,value);reservations++;movements+=value.active.lines.length;if(release){const n=value.active.lines.length;value=insertReservation(db,id,'release','虚构演示：修改选品前先释放预留',actor.id,now);audit('inventory.order.release',id,value);reservations++;movements+=n;}}
+  return {movements,reservations};
  });
 }

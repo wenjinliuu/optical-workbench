@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.16配镜业务切片：商品目录、真实订单草稿/明细/修订/取消、固定原需求与资料版本已接通；库存、收款和加工交付继续推进，整体未验收",
+  "productStatus": "V0.17配镜业务切片：基础库存、可用/预留/隔离、原单全量预留与明确释放已接通；收款、加工质检交付继续推进，整体未验收",
   "currentTask": "T04.01",
-  "nextTask": "T04.01",
+  "nextTask": "T04.02",
   "stage": "P00",
   "blockers": [
     "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
@@ -111,6 +111,12 @@
       "version": "V0.16",
       "type": "配镜业务开发",
       "summary": "开发主线转入商品与配镜订单：目录不可变版本、整数分明细与单价、客户/原到店需求/资料版本固定、新建/查询/修订/取消及电脑手机入口；schema13、四个真实虚构订单阶段、时间轴/事务/恢复接通。基础库存与预留下一步，优惠收退款及专业确认不补造，业务验收待完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.17",
+      "type": "配镜库存开发",
+      "summary": "新增基础实物库存连续流水、可用/预留/隔离数量、原订单逐行预留和释放历史；重复商品聚合、服务排除、并发不超卖，修订/取消前先释放，建账单位锁定。schema14旧订单升级保持，时间轴/恢复/电脑手机贯通，追加14流水/3预留释放虚构阶段；下一基础收款，整体业务验收待完成。"
     }
   ],
   "tasks": [
@@ -601,10 +607,16 @@
         "src/recovery.mjs",
         "src/timeline.mjs",
         "docs/retail-orders.md",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/inventory.mjs",
+        "public/inventory.js",
+        "migrations/014_inventory.sql",
+        "test/inventory.test.mjs",
+        "scripts/inventory-browser-check.mjs",
+        "docs/inventory.md"
       ],
       "updated": "2026-10-07",
-      "implementationNote": "仅商品目录与订单草稿切片：固定版本、明细、修订/取消、跨模块关联已落地。库存数量/流水/预留/隔离、优惠组合、订金尾款与业务验收未完成；原依赖链保留，不视为整项通过。"
+      "implementationNote": "商品/订单草稿及基础库存入库/隔离/解除、原单全量预留/释放已落地；并发不超卖、连续历史/时间轴/恢复接通。库存出库/调拨/批次/盘点、优惠组合、订金尾款和整项业务验收未完成；原依赖链保留。"
     },
     {
       "id": "T04.02",
@@ -1830,7 +1842,10 @@
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
       ]
     },
     {
@@ -1858,7 +1873,10 @@
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
       ]
     },
     {
@@ -1868,7 +1886,10 @@
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
       ]
     },
     {
@@ -1878,7 +1899,10 @@
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
       ]
     },
     {
@@ -1967,21 +1991,33 @@
     },
     {
       "id": "M13-D",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
     },
     {
       "id": "M13-R",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
     },
     {
       "id": "M13-L",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
     },
     {
       "id": "M13-A",
@@ -2485,7 +2521,10 @@
         "test/recovery.test.mjs",
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2577,7 +2616,10 @@
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
       ]
     },
     {
@@ -2732,15 +2774,23 @@
     },
     {
       "id": "W5-N4",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
     },
     {
       "id": "W5-N5",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
     },
     {
       "id": "W5-N6",
@@ -3285,11 +3335,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 162,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化"
+      "tests": 186,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser && npm run test:retail-browser",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -3298,7 +3348,8 @@
       "evidence": [
         "scripts/browser-check.mjs",
         "docs/handover.md",
-        "scripts/retail-browser-check.mjs"
+        "scripts/retail-browser-check.mjs",
+        "scripts/inventory-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -3339,7 +3390,11 @@
         "saved product creation and multi-line retail order with exact cents and original visit V1/document/attachment",
         "catalog repricing and competing order conflicts reread preserves complete/partial inputs and references",
         "order historical detail/cancellation/customer timeline focus; mobile reception create/detail and role restrictions",
-        "held retail detail response after logout cannot restore data"
+        "held retail detail response after logout cannot restore data",
+        "stock quantities/history and conflicted stock reread preserves quantity/action/reason",
+        "original-row reserve/release and stale stock reread preserves reason; occupied-order edit/cancel guard",
+        "missing stock stays visible and cannot partially reserve; reception mobile release/re-reserve and readonly roles",
+        "authorized stock response held until logout cannot rebuild cards"
       ]
     },
     "baseline": {
@@ -3348,7 +3403,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十三迁移；V0.15非空旧库所有原表逐项保持，新商品/订单七表为空，不补造历史订单；旧版升级检查继续保留",
-    "recovery": "schema13七个商品/订单表和连续历史/商品时间/明细合计/固定来源/取消副本核对；全新及重复CLI四订单/六版本/十二行/六资料引用/六附件引用、五商品/六版本，备份与独立恢复逐表一致，恢复会话0；原26任务及74执行事件保持；正式目标和完整账待确认"
+    "migration": "十四迁移；V0.16非空商品/订单及所有原表逐项保持，新库存三表为空，不补造数量或预留；此前旧库升级检查保留",
+    "recovery": "schema14三库存表及数量算术/连续版本/计量单位/原单明细/双向事件/当前预留/释放来源核对；CLI初始14库存流水/3预留释放/8明细、新建与重复及独立恢复逐表一致，会话0；原商品、订单、26任务/74事件保持；正式目标和完整账待确认"
   }
 }

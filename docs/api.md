@@ -1,4 +1,4 @@
-# API v0.16
+# API v0.17
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -228,3 +228,10 @@ role=all/manager/reception/professional按当前接收人岗位筛选，无接�
 | POST /retail/orders/:id/cancel | expected_version、reason | order取消新版本，内容复制原单；负责人/前台 |
 
 写入均需CSRF/Idempotency-Key，实时会话/动作/门店事务复核。金额API为整数分；目录list_price_cents与订单unit_price_cents独立。新商品引用须当前启用版本，已保存的原单商品版本允许保留。409冲突类型PRODUCT_CONFLICT/PRODUCT_CHANGED/ORDER_CONFLICT/CONTEXT_CONFLICT/ORDER_CANCELLED/NO_CHANGE/IDEMPOTENCY_CONFLICT/SKU_EXISTS；越店404，未知字段422。订单不接受优惠/收款/退款/库存/专业确认状态。时间轴新增kind=retail；总览增加订单草稿与已取消完整数量。
+
+
+## V0.17 库存与预留
+
+接口完整契约见[inventory.md](inventory.md)。新增GET inventory/products、GET inventory/products/:id（limit/offset历史）、POST inventory/products/:id/events（负责人，receive/isolate/unquarantine、expected_sequence/expected_product_version、quantity/reason）；订单新增GET retail/orders/:id/inventory及POST /inventory/reserve、/inventory/release（负责人/前台、expected_order_version/expected_revision/reason，reserve另带完整stock_versions）。员工读，家长拒绝；实时会话与门店、CSRF、幂等沿用。
+
+当前订单需求由原明细计算，服务排除、重复SKU聚合；新预留要求启用商品/匹配单位及足够可用，全部原行一事务写入，释放原明细后才能修订/取消。错误包括STOCK_CONFLICT、INSUFFICIENT_STOCK、RESERVATION_CONFLICT、STOCK_PRODUCT_CHANGED、ALREADY_RESERVED/NOT_RESERVED、NO_STOCK_ITEMS/SERVICE_NOT_STOCKED；原订单写入ORDER_RESERVED，目录单位/品类更改STOCK_UNIT_LOCKED。客户时间轴新增kind=inventory。

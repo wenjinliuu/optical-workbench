@@ -139,3 +139,14 @@ completion_status=open/completed、effective_execution_status=pending/running/pa
 | retail_order_attachments | order_id/version、customer_id/store_id、attachment_id | 每版最多10，同客户；新引用须可访问，原单已引用撤销项可保留历史 |
 
 全部七表禁止更新/删除；版本、商品行和引用清单匹配由触发器保护，保存事务写入明细/引用/审计/幂等，恢复核对总额、连续历史及固定关联。商品启用不代表库存可售；无资金、税、折扣、预留或专业字段。当前一单可固定一个配镜需求与一个到店，完整多周期订单关联仍后续实现。
+
+
+## V0.17 基础库存（014_inventory.sql）
+
+| 表 | 关键字段 | 约束与历史 |
+| --- | --- | --- |
+| inventory_events | id、product_id/version/store_id、sequence、action/quantity、available/reserved/quarantined、order_event_id/position、reason/time/by | 连续逐SKU流水；receive/isolate/unquarantine/reserve/release，正整数数量和非负状态计数；计量单位/品类建立账后保持 |
+| inventory_order_events | id、order_id/version/customer_id/store_id、revision、action/source_id、manifest_json、reason/time/by | 连续逐订单reserve/release；引用原draft，释放固定上一预留来源；有效预留不能改订单 |
+| inventory_order_lines | event_id、原order_id/version/position/customer/store、product_id/version/quantity、stock_event_id | 固定原实物行，服务排除；与库存事件延迟双向外键且唯一关联，规范清单一致 |
+
+数量来自最后流水，未建账明确未知，不跨商品单位汇总数量。重复SKU需求聚合且全部实物行一事务预留；任何商品不足不部分占用。全部三表禁止覆盖/删除，数量、原行/版本、连续历史、单位及释放来源进入恢复。当前未实现采购/批次/加工出库/盘点调整或完整库存成本。

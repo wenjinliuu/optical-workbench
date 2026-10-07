@@ -1,3 +1,4 @@
+import { createInventoryHandler } from './inventory.mjs';
 import { createRetailHandler } from './retail.mjs';
 import { createServer } from 'node:http';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
@@ -25,7 +26,9 @@ for(const role of ['manager','reception','professional'])roles[role].push('tasks
 for(const role of ['manager','reception'])roles[role].push('tasks:assign');
 for(const role of ['manager','reception','professional'])roles[role].push('retail:read');
 for(const role of ['manager','reception'])roles[role].push('retail:write');
-roles.manager.push('retail:catalog');
+roles.manager.push('retail:catalog','inventory:manage');
+for(const role of ['manager','reception','professional'])roles[role].push('inventory:read');
+for(const role of ['manager','reception'])roles[role].push('inventory:reserve');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -87,6 +90,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const cycleRecords=createCyclesHandler(db,{need,customer,field,fail,body,mutation,audit});
   const tasks=createTasksHandler(db,{need,customer,field,fail,body,mutation,audit});
   const taskEvidence=createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const inventory=createInventoryHandler(db,{need,customer,field,fail,body,mutation,audit});
   const retail=createRetailHandler(db,{need,customer,field,fail,body,mutation,audit});
   const timeline=createTimelineHandler(db,{need,customer,fail});
   const server=createServer(async(req,res)=>{
@@ -98,7 +102,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -133,6 +137,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
         return json(200,{database:'ok',mode,schema:db.prepare('SELECT count(*) n FROM schema_migrations').get().n,...runtime.snapshot(user.store_id)});
       }
       if(await organization(req,res,path,user,json))return;
+      if(await inventory(req,path,url,user,json))return;
       if(await retail(req,path,url,user,json))return;
       if(await documents(req,res,path,user,json))return;
       if(await cycleRecords.handle(req,path,user,json))return;
