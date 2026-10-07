@@ -31,3 +31,7 @@
 #task-history-items{max-height:660px;overflow:auto}#task-dialog select{width:100%}
 @media(max-width:700px){.task-grid{grid-template-columns:1fr}.task-card{padding:16px}.task-queue-filters label{flex:1;min-width:130px}.task-card .record-head{flex-wrap:wrap}#task-history-items{max-height:55vh}}
 .task-card .record-actions button.primary{color:#fff}
+.task-state-line{display:flex;gap:8px;margin-top:12px}.task-state-line .badge.neutral{background:#f1f4fb;color:#687c9f}.task-queue-filters label{min-width:140px}.task-queue-filters select{max-width:100%}
+@media(max-width:700px){.task-queue-filters{gap:10px}.task-queue-filters label{min-width:130px;max-width:100%}}
+.demo-stat.sky{border-top-color:#4979f4}.demo-stat.sky strong{color:#4168f5}
+@media(max-width:700px){.task-card .record-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.task-card .record-actions button{min-width:0}}

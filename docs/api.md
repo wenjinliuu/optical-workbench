@@ -1,4 +1,4 @@
-# API v0.9
+# API v0.10
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -120,4 +120,22 @@ basis=captured代表已经保存的引用；legacy_unknown代表迁移前没有�
 
 任务上下文创建后不可覆盖：客户与门店由原档案确定，关联到店/周期必须属于同一客户。仅关联周期时必须提交当前需求版本，陈旧409 CONTEXT_CONFLICT。关联到店和周期时必须使用到店已有的固定引用，允许历史V1，即使当前周期已V3；版本不一致409。legacy_unknown或未关联周期422 UNKNOWN_CONTEXT，不能补造当时需求；可另建仅客户/到店任务或独立当前周期任务。关联已关闭到店可用于后续资料交接，任务不改变到店/周期状态。
 
-assignment_status与execution_status分别存储；当前执行仅pending，不提供开始/暂停/退回/完成接口、专业完成条件或自动下游任务。所有员工可以读取本店通用协作队列，不授予专业确认职责。姓名为当前账号/客户显示名，需求内容为固定版本；截止日、优先级、岗位候选队列、工作日历和通知仍待后续实现。客户时间轴新增task类别，总览API新增tasks_awaiting/tasks_accepted完整数量。
+assignment_status与execution_status分别存储；V0.9时执行仅pending（V0.10扩展见下），当时不提供开始/暂停/退回/完成接口、专业完成条件或自动下游任务。所有员工可以读取本店通用协作队列，不授予专业确认职责。姓名为当前账号/客户显示名，需求内容为固定版本；截止日、优先级、岗位候选队列、工作日历和通知仍待后续实现。客户时间轴新增task类别，总览API新增tasks_awaiting/tasks_accepted完整数量。
+
+## V0.10 岗位认领和任务执行
+
+POST /customers/:id/tasks和POST /tasks/:id/transfer扩展candidate_role（manager/reception/professional），与assignee_id必须恰选一个。分给岗位时assignee_id=null、assignment_status=queued；不自动指定员工，暂无有效员工时保留队列并返回candidate_count=0。原员工分派请求保持兼容，V0.9既有幂等响应升级后仍返回原结果。
+
+| 方法 / 路径 | 输入 | 输出 / 条件 |
+| --- | --- | --- |
+| POST /tasks/:id/claim | expected_revision、reason | 本店同候选岗位员工本人认领；queued→awaiting，尚未接收；两人同时认领仅一人成功 |
+| POST /tasks/:id/start | expected_revision、reason | 当前本人且accepted，pending→running |
+| POST /tasks/:id/pause | expected_revision、reason | 当前本人且accepted，running→paused |
+| POST /tasks/:id/resume | expected_revision、reason | 当前本人且accepted，paused→running |
+| POST /tasks/:id/return | expected_revision、reason、candidate_role | 当前本人明确退回岗位；负责人清空，queued；运行中先变paused，已暂停保留paused，未开始保留pending |
+
+原accept仍是awaiting→accepted，不改变执行状态。transfer可给另一有效员工或岗位；执行中转交会paused，已暂停保持，接收/认领/接收均不自动恢复。恢复要求新负责人主动提交resume。门店负责人可以转交任意本店任务，但不能代替员工接收/开始/暂停/恢复/退回；岗位不匹配认领403 NOT_CANDIDATE，已认领409 ALREADY_CLAIMED；所认领岗位后来变化409 ROLE_CHANGED，需要负责人重新交接。错误状态409 NOT_ACCEPTED/INVALID_TASK_STATE，陈旧修订409 TASK_CONFLICT。所有操作明确reason、CSRF与幂等键，任务状态/事件/审计/防重复同事务。
+
+GET /tasks的scope增加role（本人岗位尚未认领任务），assignment增加queued，execution=all/pending/running/paused，role=all/manager/reception/professional。所有筛选仍限定本店；默认个人队列、显示最近100条，counts.total/queued/running/paused统计完整匹配范围，不受列表上限影响。role筛选使用当前任务candidate_role，直接指定员工且没有岗位队列时为null。客户总览API增加tasks_queued/tasks_running/tasks_paused；时间轴和历史包括全部执行与退回事件，接收人与候选岗位可为空/有值，旧版本明确保留null岗位，不补造旧角色。
+
+任务关联客户/周期/到店/需求版本及原说明保持不可变。认领/开始/暂停/恢复时间取对应不可变事件的UTC时间，没有开始事件就不推测开始时间。候选使用当前本地岗位，不代表专业资质授权；本轮不提供complete、专业确认、自动下游任务、资金/权益变化、截止日/工作日历/提醒或自动代理。

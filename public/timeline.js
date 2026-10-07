@@ -7,7 +7,7 @@ function describe(event){
  if(event.kind==='profile')return {title:`${d.source==='legacy'?'保存存量档案基线':d.version===1?'建立客户档案':'修订客户档案'} · V${d.version}`,text:d.name,reason:d.reason};
  if(event.kind==='cycle')return {title:`${d.source==='unrecorded'?'建立早期':d.source==='legacy'?'保存存量':d.version>1?'修订':'建立'}${types[d.type]}周期${d.version?' · V'+d.version:'草稿'}`,text:d.goal||'初始需求未留存',reason:d.reason};
  if(event.kind==='visit')return {title:d.action==='close'?'结束本次到店':'登记到店',text:d.purpose,reason:d.action==='close'?d.reason:`关联 ${d.cycle_count} 个独立周期${d.cycle_refs?.length?' · '+d.cycle_refs.map(r=>types[r.type]+(r.version?' V'+r.version:'（旧版未记录）')).join(' / '):''}`};
- if(event.kind==='task')return {title:`${{assign:'分派任务',accept:'接收任务',transfer:'转交任务'}[d.action]} · 修订 ${d.revision}`,text:`${d.title} → ${d.assignee_name}${d.cycle_version?' · 固定需求 V'+d.cycle_version:''}`,reason:d.reason};
+ if(event.kind==='task')return {title:`${{assign:'分派任务',claim:'认领任务',accept:'接收任务',start:'开始任务',pause:'暂停任务',resume:'恢复执行',return:'退回岗位',transfer:'转交任务'}[d.action]} · 修订 ${d.revision}`,text:`${d.title} → ${d.assignee_name||{manager:'门店负责人',reception:'前台 / 销售',professional:'专业人员'}[d.candidate_role]+'候选队列'} · ${{pending:'待开始',running:'执行中',paused:'已暂停'}[d.execution_status]}${d.cycle_version?' · 固定需求 V'+d.cycle_version:''}`,reason:d.reason};
  if(event.kind==='document')return {title:`${d.version===1?'建立':'修订'}资料 · V${d.version}`,text:d.title,reason:d.reason};
  if(event.kind==='attachment')return {title:d.action==='revoke'?'撤销附件访问':'上传附件',text:d.filename,reason:d.reason};
  if(event.kind==='authorization')return {title:d.action==='guardian.authorize'?'授权家长查看':'撤销家长查看授权',text:d.relationship,reason:d.reason};

@@ -74,3 +74,11 @@ visit_cycle_versions：visit_id+cycle_id主键，customer_id、version(nullable)
 | task_events | task_id+revision PK，customer_id，action(assign/accept/transfer)，from_assignee_id、assignee_id，独立分派/执行状态、reason、created_at、actor_id | 每次分派、本人接收或转交保存不可变记录；同库审计、时间轴、恢复；账号姓名为当前显示名 |
 
 context_basis为customer/cycle/visit/visit_cycle，与所选关联一致。周期编号和版本同时存在或同时为空；visit_cycle需要已有到店关联，服务端核对captured固定版本。创建后不追随新需求，不复制独立客户或周期。转交仅改变当前接收人和接收状态，修订号递增；新接收人必须再确认。人员停用保留旧任务及历史，负责人明确安排接收人。未落地字段包括执行完成条件、时限/优先级/岗位队列/代理职责及专业资质。
+
+## V0.10 岗位候选与执行（迁移008）
+
+迁移在同一事务重建work_tasks/task_events，复制原身份、状态、说明、版本引用、修订号、事件、时间及幂等记录；新candidate_role为空，不根据当前用户岗位补造旧角色。复合外键和原历史保护重建，升级后foreign_key_check通过。
+
+两表新增candidate_role（manager/reception/professional，可空），assignee_id可空；assignment_status扩展queued/awaiting/accepted，execution_status扩展pending/running/paused。queued要求接收人为空且候选岗位非空；awaiting/accepted要求接收人非空；running只能配accepted。task_events.action扩展claim/start/pause/resume/return，保存每次结果的候选岗位、责任人及执行状态。
+
+claim从岗位队列给本人，仍需accept；start仅未开始、pause仅运行中、resume仅已暂停。运行中return或transfer先暂停；后续接收不会替代主动恢复。return明确退回岗位及原因，不恢复原用户或自动派代理。历史事件时间作为认领/开始/暂停/恢复时间的依据，不添加未知旧时间；姓名显示当前账号名称，旧candidate_role=null保留。新索引tasks_role_queue支持门店/岗位/接收状态查询。
