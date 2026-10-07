@@ -3,9 +3,10 @@ import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { openDatabase, transaction, hashPassword, verifyPassword } from './db.mjs';
+import { demoScenarios } from './demo-data.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
-const roles = {manager:['customers:read','customers:create','cycles:create','audit:read'],reception:['customers:read','customers:create','cycles:create'],professional:['customers:read','cycles:create'],guardian:['customers:read']};
+const roles = {manager:['customers:read','customers:create','cycles:create','audit:read','organization:read','guardians:manage','visits:create','visits:close','demo:read'],reception:['customers:read','customers:create','cycles:create','visits:create','visits:close','demo:read'],professional:['customers:read','cycles:create','demo:read'],guardian:['customers:read']};
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -39,8 +40,14 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
     if(user.role==='guardian') return {id:row.id,name:row.name,birth_date:row.birth_date};
     return safe;
   }
-  function audit(user,action,id,after) {
-    db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),user.store_id,user.id,action,id,null,JSON.stringify(after),new Date().toISOString());
+  function audit(user,action,id,after,before=null) {
+    db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),user.store_id,user.id,action,id,before===null?null:JSON.stringify(before),JSON.stringify(after),new Date().toISOString());
+  }
+  function visitsFor(id) {
+    return db.prepare('SELECT id,purpose,status,created_at,closed_at FROM visits WHERE customer_id=? ORDER BY created_at DESC,id LIMIT 100').all(id).map(v=>({...v,cycle_ids:db.prepare('SELECT cycle_id FROM visit_cycles WHERE visit_id=? ORDER BY cycle_id').all(v.id).map(x=>x.cycle_id)}));
+  }
+  function localGuardian(user,id) {
+    return db.prepare("SELECT id,display_name,active FROM users u WHERE u.id=? AND u.role='guardian' AND (u.store_id=? OR EXISTS(SELECT 1 FROM guardian_links g JOIN customers c ON c.id=g.customer_id WHERE g.user_id=u.id AND c.store_id=?))").get(id,user.store_id,user.store_id);
   }
   function mutation(req,user,operation,input,fn) {
     const key=req.headers['idempotency-key'];
@@ -88,6 +95,15 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       if(req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'CSRF','会话校验失败，请重新加载');
       if(path==='/api/me' && req.method==='GET') return json(200,{id:user.id,name:user.display_name,role:user.role,store:user.store_id?db.prepare('SELECT * FROM stores WHERE id=?').get(user.store_id):null,permissions:roles[user.role],csrf:session.csrf});
       if(path==='/api/auth/logout' && req.method==='POST') { transaction(db,()=>{db.prepare('DELETE FROM sessions WHERE token_hash=?').run(sha(token));audit(user,'session.logout',user.id,{});});res.setHeader('Set-Cookie','ow_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return json(200,{ok:true}); }
+      if(path==='/api/organization' && req.method==='GET') {
+        need(user,'organization:read');
+        return json(200,{items:db.prepare('SELECT id,display_name,role,active FROM users u WHERE store_id=? OR (role=\'guardian\' AND EXISTS(SELECT 1 FROM guardian_links g JOIN customers c ON c.id=g.customer_id WHERE g.user_id=u.id AND c.store_id=?)) ORDER BY role,display_name LIMIT 100').all(user.store_id,user.store_id)});
+      }
+      if(path==='/api/demo/scenarios' && req.method==='GET') {
+        need(user,'demo:read');
+        const items=demoScenarios.filter(s=>{const c=db.prepare('SELECT store_id,name FROM customers WHERE id=?').get(s.customer_id);return c?.store_id===user.store_id && c.name===s.name;});
+        return json(200,{items,source:'synthetic',snapshot_only:true});
+      }
       if(path==='/api/customers' && req.method==='GET') {
         need(user,'customers:read');const q=(url.searchParams.get('q')||'').slice(0,100);
         const scope=user.role==='guardian' ? 'EXISTS(SELECT 1 FROM guardian_links g WHERE g.customer_id=c.id AND g.user_id=? AND g.active=1)' : 'c.store_id=?';
@@ -106,11 +122,11 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
           return {customer:visible(user,row),duplicate_candidates:db.prepare('SELECT id,name FROM customers WHERE store_id=? AND id<>? AND (name=? OR (? IS NOT NULL AND phone=?)) LIMIT 20').all(user.store_id,row.id,row.name,row.phone,row.phone)};
         });return json(201,result);
       }
-      const match=/^\/api\/customers\/([\w-]+)(\/cycles)?$/.exec(path);
+      const match=/^\/api\/customers\/([\w-]+)(\/(?:cycles|guardians|visits))?$/.exec(path);
       if(match) {
         const row=customer(user,match[1]);
-        if(req.method==='GET' && !match[2]) return json(200,{customer:visible(user,row),cycles:user.role==='guardian'?[]:db.prepare('SELECT id,type,goal,status,created_at FROM service_cycles WHERE customer_id=? ORDER BY created_at DESC').all(row.id)});
-        if(req.method==='POST' && match[2]) {
+        if(req.method==='GET' && !match[2]) return json(200,{customer:visible(user,row),cycles:user.role==='guardian'?[]:db.prepare('SELECT id,type,goal,status,created_at FROM service_cycles WHERE customer_id=? ORDER BY created_at DESC').all(row.id),visits:user.role==='guardian'?[]:visitsFor(row.id),guardians:user.role==='guardian'?[]:db.prepare('SELECT g.user_id,u.display_name,g.relationship,g.active FROM guardian_links g JOIN users u ON u.id=g.user_id WHERE customer_id=? ORDER BY g.active DESC,u.display_name').all(row.id)});
+        if(req.method==='POST' && match[2]==='/cycles') {
           need(user,'cycles:create');const b=await body(req), input={type:field(b.type,'周期类型',20,true),goal:field(b.goal,'服务目标',300,true)};
           if(!['followup','training','retail'].includes(input.type)) fail(422,'VALIDATION','周期类型不正确');
           return json(201,mutation(req,user,`cycles.create:${row.id}`,input,()=>{
@@ -118,6 +134,42 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
             db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(...Object.values(cycle));audit(user,'cycle.create',cycle.id,cycle);return {cycle};
           }));
         }
+        if(req.method==='POST' && match[2]==='/guardians') {
+          need(user,'guardians:manage');const b=await body(req);
+          const input={user_id:field(b.user_id,'家长账号',100,true),relationship:field(b.relationship,'关系',40,true),active:b.active,reason:field(b.reason,'授权或撤销依据',300,true)};
+          if(typeof input.active!=='boolean')fail(422,'VALIDATION','授权状态必须为明确的是或否');
+          return json(200,mutation(req,user,`guardians.update:${row.id}`,input,()=>{
+            const guardian=localGuardian(user,input.user_id);if(!guardian||(!guardian.active&&input.active))fail(404,'NOT_FOUND','家长账号不存在、已停用或不在本店范围内');
+            const before=db.prepare('SELECT * FROM guardian_links WHERE user_id=? AND customer_id=?').get(input.user_id,row.id)||null;
+            if(!input.active&&!before)fail(409,'NO_RELATIONSHIP','没有可撤销的关联');
+            const now=new Date().toISOString();
+            db.prepare('INSERT INTO guardian_links (user_id,customer_id,active,relationship,updated_at,updated_by) VALUES (?,?,?,?,?,?) ON CONFLICT(user_id,customer_id) DO UPDATE SET active=excluded.active,relationship=excluded.relationship,updated_at=excluded.updated_at,updated_by=excluded.updated_by').run(input.user_id,row.id,Number(input.active),input.relationship,now,user.id);
+            audit(user,input.active?'guardian.authorize':'guardian.revoke',row.id,{...input,customer_id:row.id},before);
+            return {user_id:input.user_id,customer_id:row.id,active:input.active,relationship:input.relationship};
+          }));
+        }
+        if(req.method==='POST' && match[2]==='/visits') {
+          need(user,'visits:create');const b=await body(req),input={purpose:field(b.purpose,'到店目的',300,true),cycle_ids:b.cycle_ids??[]};
+          if(!Array.isArray(input.cycle_ids)||input.cycle_ids.length>20||input.cycle_ids.some(id=>typeof id!=='string')||new Set(input.cycle_ids).size!==input.cycle_ids.length)fail(422,'VALIDATION','服务周期列表不正确');
+          input.cycle_ids.sort();
+          return json(201,mutation(req,user,`visits.create:${row.id}`,input,()=>{
+            for(const id of input.cycle_ids)if(!db.prepare('SELECT 1 FROM service_cycles WHERE id=? AND customer_id=?').get(id,row.id))fail(422,'INVALID_CYCLE','只能关联当前客户的服务周期');
+            const visit={id:randomUUID(),customer_id:row.id,store_id:row.store_id,purpose:input.purpose,status:'registered',created_at:new Date().toISOString(),closed_at:null,created_by:user.id};
+            db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run(...Object.values(visit));
+            for(const id of input.cycle_ids)db.prepare('INSERT INTO visit_cycles VALUES (?,?,?)').run(visit.id,id,row.id);
+            audit(user,'visit.register',visit.id,{...visit,cycle_ids:input.cycle_ids});return {visit:{...visit,cycle_ids:input.cycle_ids}};
+          }));
+        }
+      }
+      const close=/^\/api\/visits\/([\w-]+)\/close$/.exec(path);
+      if(close&&req.method==='POST'){
+        need(user,'visits:close');const v=db.prepare('SELECT * FROM visits WHERE id=?').get(close[1]);if(!v)fail(404,'NOT_FOUND','到店记录不存在');customer(user,v.customer_id);
+        const b=await body(req),input={reason:field(b.reason,'结束说明',300,true)};
+        return json(200,mutation(req,user,`visits.close:${v.id}`,input,()=>{
+          const before=db.prepare('SELECT * FROM visits WHERE id=?').get(v.id);if(before.status==='closed')fail(409,'ALREADY_CLOSED','本次到店已经结束');
+          const closed_at=new Date().toISOString();db.prepare("UPDATE visits SET status='closed',closed_at=? WHERE id=?").run(closed_at,v.id);
+          audit(user,'visit.close',v.id,{...before,status:'closed',closed_at,reason:input.reason},before);return {visit:{...before,status:'closed',closed_at}};
+        }));
       }
       if(path==='/api/audit' && req.method==='GET') {need(user,'audit:read');return json(200,{items:db.prepare('SELECT id,actor_id,action,entity_id,created_at FROM audit_events WHERE store_id=? ORDER BY rowid DESC LIMIT 100').all(user.store_id)});}
       fail(404,'NOT_FOUND','接口不存在');

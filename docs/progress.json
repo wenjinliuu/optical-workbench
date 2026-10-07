@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "第一阶段基础切片已实现；整体阶段未验收",
+  "productStatus": "V0.2基础验证继续：鲜明浅色主题、家长授权、多周期到店与分阶段虚构演示；整体阶段未验收",
   "currentTask": "T00.01",
   "nextTask": "T00.01",
   "stage": "P00",
@@ -21,6 +21,12 @@
       "version": "V0.1",
       "type": "工程启动",
       "summary": "需求完整保留，建立本地基础验证切片；规则、正式架构、附件和版本服务未完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.2",
+      "type": "工程推进",
+      "summary": "用户确认浅色鲜明配色、继续开发与分阶段虚构展示；新增本店目录、家长关联授权/撤销、多周期到店与独立关闭、六场景演示；不改变原范围与业务验收状态。"
     }
   ],
   "tasks": [
@@ -146,11 +152,12 @@
       "status": "进行中",
       "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
       "evidence": [
-        "docs/phase-one.md",
-        "docs/handover.md"
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "updated": "2026-10-07",
-      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
     },
     {
       "id": "T01.03",
@@ -171,11 +178,12 @@
       "status": "进行中",
       "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
       "evidence": [
-        "docs/phase-one.md",
-        "docs/handover.md"
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "updated": "2026-10-07",
-      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
     },
     {
       "id": "T01.04",
@@ -220,11 +228,12 @@
       "status": "进行中",
       "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
       "evidence": [
-        "docs/phase-one.md",
-        "docs/handover.md"
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "updated": "2026-10-07",
-      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
     },
     {
       "id": "T02.02",
@@ -244,11 +253,12 @@
       "status": "进行中",
       "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
       "evidence": [
-        "docs/phase-one.md",
-        "docs/handover.md"
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "updated": "2026-10-07",
-      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
     },
     {
       "id": "T02.03",
@@ -1159,21 +1169,33 @@
     },
     {
       "id": "M02-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "M02-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "M02-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "M02-F04",
@@ -1183,15 +1205,23 @@
     },
     {
       "id": "M02-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "M02-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "M02-L",
@@ -1201,9 +1231,13 @@
     },
     {
       "id": "M02-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "M03-F01",
@@ -1987,9 +2021,13 @@
     },
     {
       "id": "C01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "C02",
@@ -2047,9 +2085,13 @@
     },
     {
       "id": "U01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "U02",
@@ -2071,15 +2113,23 @@
     },
     {
       "id": "U05",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "U06",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "G01",
@@ -2131,27 +2181,43 @@
     },
     {
       "id": "N01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N05",
@@ -2837,7 +2903,7 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 10,
+      "tests": 16,
       "scope": "公共基础与档案/周期草稿切片，不代表完整阶段业务验收"
     },
     "browser": {
@@ -2850,6 +2916,12 @@
       "evidence": [
         "scripts/browser-check.mjs",
         "docs/handover.md"
+      ],
+      "scenarios": [
+        "six synthetic snapshots",
+        "family authorize/revoke",
+        "multi-cycle visit and independent close",
+        "store directory"
       ]
     },
     "baseline": {
@@ -2857,6 +2929,7 @@
       "requirements": 287,
       "all_task_links_resolve": true
     },
-    "businessAcceptance": "待确认"
+    "businessAcceptance": "待确认",
+    "migration": "V0.1数据保留升级通过"
   }
 }

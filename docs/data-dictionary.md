@@ -8,16 +8,18 @@
 | users | id PK、username 唯一、display_name、password_hash、role 枚举、store_id FK、active | 员工本轮单店；家长可无门店。哈希从不返回 API |
 | sessions | token_hash PK、user_id FK、csrf、expires_at 毫秒 | 会话令牌不明文存储；到期、退出、停用拒绝访问 |
 | customers | id PK、store_id FK、name 必填(80)、birth_date nullable、contact_name nullable(80)、phone nullable(32)、created_at、created_by FK | 联系人是临时基本字段；完整家庭关系尚未实现。查询限授权门店/有效监护 |
-| guardian_links | user_id + customer_id 复合主键、active | 一个监护用户可关联多个客户；撤销即时生效；来源证明待确认 |
+| guardian_links | user_id + customer_id 复合主键、active、relationship、updated_at、updated_by | 一个监护用户可关联多个客户；撤销即时生效；来源证明待确认 |
 | service_cycles | id PK、customer_id FK、type=followup/training/retail、goal 必填(300)、status=draft、created_at、created_by FK | 客户 1:N 周期，草稿只登记目标；计划、订单、专业确认尚未建立 |
 | audit_events | id PK、store_id、actor_id、action、entity_id、before_json/after_json、created_at | 新增动作 before=null；前后值留存于库，查询仅授权门店元信息，禁止修改删除 |
 | idempotency | actor_id + operation + request_key 主键、request_hash、response_json | 同动作/身份/标识重放；内容不同 409；周期动作包含客户编号 |
 | schema_migrations | name PK、applied_at | 工程版本与业务规则版本分开 |
 
-字段、外键、枚举及空值以 migrations/001_foundation.sql 为实现依据。
+字段、外键、枚举及空值以 migrations/001_foundation.sql 和 002_family_visits.sql 为实现依据。V0.1 存量迁移保留既有客户、周期和授权；未登记关系保持 null。
+
+新增 visits：id、customer_id、store_id、purpose、status(registered/closed)、created_at、closed_at、created_by；客户与门店复合外键确保一致。visit_cycles 是到店与周期的 M:N 关联，复合外键限定属于同一客户。结束到店只更新 visits，不改变 service_cycles。
 
 ## 保留的后续实体关系（尚未实现）
 
-家庭与客户通过成员关联，监护、联系、付款身份独立。到店与服务周期通过 M:N 关联；到店结束不结束周期。计划 1:N 不可变版本，当次执行引用当时版本。订单与周期 M:N，处方快照与订单相连；退款不自动终止计划。权益账与购买/规则版本/实际执行关联，资金账与原付款/退款独立关联。检查 1:N 版本、版本 1:N 单眼测量；未做、无法测、待补、不适用的原因和值分开。报告发布引用固定确认版本与授权范围，撤回后限制新访问。采购、验收、批次、库存变化和交付流向关联。
+家庭与客户通过成员关联，监护、联系、付款身份独立。到店与服务周期的 M:N 关联及独立结束已实现，后续增加到店任务。计划 1:N 不可变版本，当次执行引用当时版本。订单与周期 M:N，处方快照与订单相连；退款不自动终止计划。权益账与购买/规则版本/实际执行关联，资金账与原付款/退款独立关联。检查 1:N 版本、版本 1:N 单眼测量；未做、无法测、待补、不适用的原因和值分开。报告发布引用固定确认版本与授权范围，撤回后限制新访问。采购、验收、批次、库存变化和交付流向关联。
 
 专业单位、眼别与条件、唯一业务键、来源、保留期限、跨店关系和删除策略仍待真实表单/规则确认，不能将本草案视为 T00.02 全量验收。

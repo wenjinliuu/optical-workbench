@@ -1,11 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync, readFileSync } from 'node:fs';
+import { DatabaseSync } from 'node:sqlite';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { once } from 'node:events';
 import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
+import { seedDemoScenarios, demoScenarios } from '../src/demo-data.mjs';
 
 async function fixture(t,{persist=false}={}) {
   const dir=mkdtempSync(join(tmpdir(),'optical-test-'));
@@ -15,7 +17,7 @@ async function fixture(t,{persist=false}={}) {
     db.exec("INSERT INTO stores VALUES ('a','A'),('b','B')");
     for(const [id,role,store] of [['manager','manager','a'],['front','reception','a'],['professional','professional','a'],['other','manager','b'],['parent','guardian',null]])db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run(id,id,id,hashPassword('test-password-only'),role,store);
     for(const [id,store] of [['child-a','a'],['sibling-a','a'],['child-b','b']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,store,id,'2017-01-01','shared-parent','10000000000',new Date().toISOString(),store==='a'?'manager':'other');
-    db.prepare('INSERT INTO guardian_links VALUES (?,?,1)').run('parent','child-a');
+    db.prepare('INSERT INTO guardian_links (user_id,customer_id,active) VALUES (?,?,1)').run('parent','child-a');
   });
   server.listen(0,'127.0.0.1');await once(server,'listening');const origin=`http://127.0.0.1:${server.address().port}`;
   t.after(async()=>{if(server.listening)await new Promise(resolve=>server.close(resolve));rmSync(dir,{recursive:true,force:true});});
@@ -91,7 +93,7 @@ test('audit is append-only, health checks database and disabling user revokes ac
   const {request,login,db}=await fixture(t),session=await login('manager');
   assert.throws(()=>db.exec("DELETE FROM audit_events"),/append-only/);
   assert.throws(()=>db.exec("UPDATE audit_events SET action='tamper'"),/append-only/);
-  assert.equal((await request('/api/health')).body.schema,1);
+  assert.equal((await request('/api/health')).body.schema,2);
   const audit=await request('/api/audit',session);assert.equal(audit.body.items[0].action,'session.login');assert.equal(audit.body.items[0].after_json,undefined);
   db.prepare("UPDATE users SET active=0 WHERE id='manager'").run();assert.equal((await request('/api/me',session)).status,401);
 });
@@ -101,10 +103,96 @@ test('disk persistence, repeatable migrations and consistent backup restore pres
   const backup=join(dir,'backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);
   const counts=Object.fromEntries(['customers','audit_events','service_cycles'].map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n]));
   await new Promise(resolve=>server.close(resolve));
-  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,1);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
+  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,2);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
 });
 test('production mode refuses unreviewed deployment; HTML and assets use security headers',async t=>{
   assert.throws(()=>createApp({mode:'production'}),/Production is blocked/);
   const {origin}=await fixture(t);const r=await fetch(origin);assert.equal(r.status,200);assert.match(r.headers.get('content-security-policy'),/frame-ancestors 'none'/);assert.match(await r.text(),/lang="zh-CN"/);
   assert.equal((await fetch(origin+'/../package.json')).status,404);
+});
+
+test('organization directory is store scoped, manager only and omits credentials',async t=>{
+  const {request,login}=await fixture(t),manager=await login('manager'),front=await login('front'),parent=await login('parent');
+  const org=await request('/api/organization',manager);assert.equal(org.status,200);
+  assert.ok(org.body.items.some(u=>u.id==='parent'));assert.ok(!org.body.items.some(u=>u.id==='other'));
+  assert.ok(org.body.items.every(u=>u.password_hash===undefined&&u.username===undefined));
+  assert.equal((await request('/api/organization',front)).status,403);
+  assert.equal((await request('/api/demo/scenarios',parent)).status,403);
+});
+test('manager can authorize siblings and revoke with reason, replay once and keep audit before/after',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),parent=await login('parent'),front=await login('front');
+  const data={user_id:'parent',relationship:'监护人（虚构）',active:true,reason:'演示资料授权核对'};
+  const options={...manager,method:'POST',data,key:'family-authorize-key'};
+  assert.equal((await request('/api/customers/sibling-a/guardians',{...options,...front})).status,403);
+  assert.equal((await request('/api/customers/child-b/guardians',options)).status,404);
+  assert.equal((await request('/api/customers/sibling-a/guardians',{...options,data:{...data,user_id:'other'}})).status,404);
+  assert.equal((await request('/api/customers/sibling-a/guardians',{...options,data:{...data,reason:''}})).status,422);
+  const granted=await request('/api/customers/sibling-a/guardians',options);assert.equal(granted.status,200);
+  assert.deepEqual((await request('/api/customers/sibling-a/guardians',options)).body,granted.body);
+  assert.equal((await request('/api/customers',parent)).body.items.length,2);
+  assert.equal((await request('/api/customers/sibling-a',parent)).body.guardians.length,0);
+  const revoke=await request('/api/customers/sibling-a/guardians',{...options,key:'family-revoke-key',data:{...data,active:false,reason:'演示：监护授权撤销'}});assert.equal(revoke.status,200);
+  assert.equal((await request('/api/customers/sibling-a',parent)).status,404);
+  const audit=db.prepare("SELECT before_json,after_json FROM audit_events WHERE action='guardian.revoke'").get();assert.equal(JSON.parse(audit.before_json).active,1);assert.equal(JSON.parse(audit.after_json).active,false);
+  assert.equal(db.prepare("SELECT count(*) n FROM audit_events WHERE action='guardian.authorize'").get().n,1);
+});
+test('one visit links multiple customer cycles, rejects mismatches and closes independently',async t=>{
+  const {request,login,db}=await fixture(t),front=await login('front'),professional=await login('professional');
+  const ids=[];
+  for(const [type,goal] of [['followup','review'],['training','training']]){
+    const r=await request('/api/customers/child-a/cycles',{...front,method:'POST',data:{type,goal},key:`visit-cycle-${type}`});ids.push(r.body.cycle.id);
+  }
+  const options={...front,method:'POST',data:{purpose:'复查与服务需求登记',cycle_ids:ids},key:'register-multi-cycle'};
+  assert.equal((await request('/api/customers/child-a/visits',{...options,...professional})).status,403);
+  assert.equal((await request('/api/customers/sibling-a/visits',options)).status,422);
+  const [a,b]=await Promise.all([request('/api/customers/child-a/visits',options),request('/api/customers/child-a/visits',options)]);assert.equal(a.status,201);assert.deepEqual(a.body,b.body);
+  assert.equal(db.prepare('SELECT count(*) n FROM visits').get().n,1);
+  const visit=a.body.visit.id,close={...front,method:'POST',data:{reason:'本次到店结束，后续周期继续'},key:'close-visit-key'};
+  const closed=await request(`/api/visits/${visit}/close`,close);assert.equal(closed.status,200);assert.equal(closed.body.visit.status,'closed');
+  assert.deepEqual((await request(`/api/visits/${visit}/close`,close)).body,closed.body);
+  assert.equal((await request(`/api/visits/${visit}/close`,{...close,key:'second-close-key'})).status,409);
+  const detail=await request('/api/customers/child-a',front);assert.equal(detail.body.visits[0].cycle_ids.length,2);assert.ok(detail.body.cycles.every(c=>c.status==='draft'));
+});
+test('visit close failure rolls back status and audit; other store cannot close it',async t=>{
+  const {request,login,db}=await fixture(t),front=await login('front'),other=await login('other');
+  const r=await request('/api/customers/child-a/visits',{...front,method:'POST',data:{purpose:'demo visit'},key:'rollback-visit-register'});const id=r.body.visit.id;
+  const options={...front,method:'POST',data:{reason:'finished'},key:'rollback-visit-close'};
+  assert.equal((await request(`/api/visits/${id}/close`,{...options,...other})).status,404);
+  db.exec("CREATE TRIGGER reject_visit_audit BEFORE INSERT ON audit_events WHEN NEW.action='visit.close' BEGIN SELECT RAISE(ABORT,'simulate'); END;");
+  assert.equal((await request(`/api/visits/${id}/close`,options)).status,500);
+  assert.equal(db.prepare('SELECT status FROM visits WHERE id=?').get(id).status,'registered');
+  db.exec('DROP TRIGGER reject_visit_audit');assert.equal((await request(`/api/visits/${id}/close`,options)).status,200);
+});
+test('scenario expansion is repeatable and never overwrites a conflicting customer',()=>{
+  const db=openDatabase(':memory:');
+  try{
+    db.exec("INSERT INTO stores VALUES ('store-a','A')");
+    db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','演示店长',hashPassword('test-only'),'manager','store-a');
+    const first=seedDemoScenarios(db);assert.equal(first.customers,6);assert.equal(first.cycles,6);assert.equal(first.visits,6);
+    assert.deepEqual(seedDemoScenarios(db),{customers:0,cycles:0,visits:0});
+    assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,1);
+    db.prepare('UPDATE customers SET name=? WHERE id=?').run('conflicting record',demoScenarios[0].customer_id);
+    assert.throws(()=>seedDemoScenarios(db),/不会覆盖/);assert.equal(db.prepare('SELECT name FROM customers WHERE id=?').get(demoScenarios[0].customer_id).name,'conflicting record');
+  }finally{db.close();}
+});
+
+test('migration upgrades a V0.1 database without losing customers, cycles or existing authorization',()=>{
+  const dir=mkdtempSync(join(tmpdir(),'optical-upgrade-')),path=join(dir,'old.sqlite');let old,upgraded;
+  try{
+    old=new DatabaseSync(path);old.exec('PRAGMA foreign_keys=ON; CREATE TABLE schema_migrations(name TEXT PRIMARY KEY,applied_at TEXT NOT NULL)');
+    old.exec(readFileSync(new URL('../migrations/001_foundation.sql',import.meta.url),'utf8'));
+    old.prepare('INSERT INTO schema_migrations VALUES (?,?)').run('001_foundation.sql',new Date().toISOString());
+    old.exec("INSERT INTO stores VALUES ('a','A')");
+    old.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('manager','manager','manager',hashPassword('test-only'),'manager','a');
+    old.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('parent','parent','parent',hashPassword('test-only'),'guardian',null);
+    old.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run('child','a','original',null,null,null,new Date().toISOString(),'manager');
+    old.exec("INSERT INTO guardian_links VALUES ('parent','child',1)");
+    old.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('cycle','child','followup','original goal','draft',new Date().toISOString(),'manager');
+    old.close();old=undefined;
+    upgraded=openDatabase(path);assert.equal(upgraded.prepare('SELECT name FROM customers').get().name,'original');
+    assert.equal(upgraded.prepare('SELECT goal FROM service_cycles').get().goal,'original goal');
+    assert.equal(upgraded.prepare('SELECT active FROM guardian_links').get().active,1);
+    assert.equal(upgraded.prepare('SELECT relationship FROM guardian_links').get().relationship,null);
+    assert.equal(upgraded.prepare('PRAGMA integrity_check').get().integrity_check,'ok');
+  }finally{old?.close();upgraded?.close();rmSync(dir,{recursive:true,force:true});}
 });
