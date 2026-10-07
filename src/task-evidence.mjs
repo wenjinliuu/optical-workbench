@@ -1,3 +1,4 @@
+import { sourceInput, completionSource } from './task-amendments.mjs';
 import { completionRecord, completionSnapshot, completionDigest } from './task-completions.mjs';
 const sources=['employee','external','guardian_report'];
 export function createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit}){
@@ -17,13 +18,23 @@ export function createTaskEvidenceHandler(db,{need,customer,field,fail,body,muta
  }
  function snapshot(user,t){const condition=latest('task_conditions',t.id),draft=expanded(latest('task_evidence',t.id)),conditions=db.prepare('SELECT c.*,u.display_name author_name FROM task_conditions c JOIN users u ON u.id=c.created_by WHERE task_id=? ORDER BY version DESC LIMIT 101').all(t.id),evidence=db.prepare('SELECT * FROM task_evidence WHERE task_id=? ORDER BY version DESC LIMIT 101').all(t.id);return {task:{...t,completion_status:db.prepare('SELECT 1 FROM task_completions WHERE task_id=?').get(t.id)?'completed':'open',effective_execution_status:db.prepare('SELECT 1 FROM task_completions WHERE task_id=?').get(t.id)?'completed':t.execution_status},completion:completionRecord(db,t.id),condition,draft,conditions:conditions.slice(0,100),evidence:evidence.slice(0,100).map(expanded),history_limit:100,conditions_truncated:conditions.length>100,evidence_truncated:evidence.length>100,validation:validate(user,t,draft,condition,{documents:draft?.documents||[],attachments:draft?.attachments||[]})};}
  return async(req,path,url,user,json)=>{
-  const match=/^\/api\/tasks\/([\w-]+)\/completion(?:\/(conditions|evidence|check|references|submit))?$/.exec(path);if(!match)return false;need(user,'tasks:read');const t=task(user,match[1]),action=match[2];
+  const match=/^\/api\/tasks\/([\w-]+)\/completion(?:\/(conditions|evidence|check|references|submit|corrections))?$/.exec(path);if(!match)return false;need(user,'tasks:read');const t=task(user,match[1]),action=match[2];
   if(req.method==='GET'&&!action){json(200,snapshot(user,t));return true;}
   if(req.method==='GET'&&action==='references'){const docs=db.prepare('SELECT id,record_id,version,title,source FROM document_versions WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 201').all(t.customer_id),attachments=db.prepare('SELECT id,filename,revoked_at FROM attachments WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 201').all(t.customer_id);json(200,{documents:docs.slice(0,200),attachments:attachments.slice(0,200),limit:200,documents_truncated:docs.length>200,attachments_truncated:attachments.length>200});return true;}
-  if(req.method!=='POST'||!['conditions','evidence','check','submit'].includes(action))fail(405,'METHOD','不支持此请求');need(user,action==='conditions'?'tasks:assign':'tasks:receive');const b=await body(req);
+  if(req.method!=='POST'||!['conditions','evidence','check','submit','corrections'].includes(action))fail(405,'METHOD','不支持此请求');need(user,action==='conditions'?'tasks:assign':'tasks:receive');const b=await body(req);
   if(action==='conditions'){
    if(Object.keys(b).some(k=>!['expected_task_revision','expected_condition_version','description','require_document','require_attachment','reason'].includes(k))||typeof b.require_document!=='boolean'||typeof b.require_attachment!=='boolean')fail(422,'VALIDATION','请明确通用资料核对范围及资料、附件要求');const data={expected_task_revision:version(b.expected_task_revision,'当前任务修订号'),expected_condition_version:version(b.expected_condition_version,'当前条件版本（首次为0）',true),description:field(b.description,'通用核对范围',300,true),require_document:b.require_document,require_attachment:b.require_attachment,reason:field(b.reason,'设定依据',300,true)};
    json(201,mutation(req,user,`task.conditions:${t.id}`,data,()=>{const current=task(user,t.id);open(current);fresh(current,data);if(current.lifecycle_status==='cancelled')fail(409,'TASK_CANCELLED','任务已取消，请先恢复');const before=latest('task_conditions',t.id);if((before?.version||0)!==data.expected_condition_version)fail(409,'CONDITION_CONFLICT','核对条件已变化，请读取最新条件');const now=new Date().toISOString(),v=data.expected_condition_version+1;db.prepare("INSERT INTO task_conditions VALUES (?,?,?,?,'generic_record_review',?,?,?,?,?,?)").run(t.id,t.customer_id,v,current.revision,data.description,Number(data.require_document),Number(data.require_attachment),data.reason,now,user.id);const row=latest('task_conditions',t.id);audit(user,'task.conditions',t.id,row,before);return {condition:row};}));return true;
+  }
+  if(action==='corrections'){
+   if(Object.keys(b).some(k=>!['expected_correction_version','completion_sha256','output_summary','reason'].includes(k)))fail(422,'VALIDATION','更正仅可追加通用产出说明与原因，原依据和状态保持固定');
+   const data={...sourceInput(b,fail),output_summary:field(b.output_summary,'更正后的产出说明',1000,true),reason:field(b.reason,'更正依据',300,true)};
+   json(201,mutation(req,user,`task.correct:${t.id}`,data,()=>{
+    const current=task(user,t.id),source=completionSource(db,t.id,data,fail);if(user.role!=='manager'&&source.completion.completed_by!==user.id)fail(403,'NOT_COMPLETION_AUTHOR','只有原提交人或门店负责人可以追加通用完成说明更正');
+    if(source.output_summary===data.output_summary)fail(409,'NO_CHANGE','更正后的说明与当前版本相同');
+    const now=new Date().toISOString(),v=data.expected_correction_version+1;db.prepare('INSERT INTO task_completion_corrections VALUES (?,?,?,?,?,?,?,?)').run(t.id,current.customer_id,v,source.completion.snapshot_sha256,data.output_summary,data.reason,now,user.id);
+    const row=db.prepare('SELECT * FROM task_completion_corrections WHERE task_id=? AND version=?').get(t.id,v);audit(user,'task.correct',t.id,row,source.correction||source.completion);return {correction:row};
+   }));return true;
   }
   if(action==='submit'){
    if(Object.keys(b).some(k=>!['expected_task_revision','condition_version','evidence_version','output_summary','reason'].includes(k)))fail(422,'VALIDATION','提交仅采用已保存的通用条件和依据版本');

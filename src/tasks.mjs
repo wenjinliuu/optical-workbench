@@ -1,3 +1,4 @@
+import { sourceInput, completionSource, taskOrigin, taskFollowups } from './task-amendments.mjs';
 import { completionRecord } from './task-completions.mjs';
 import { randomUUID } from 'node:crypto';
 
@@ -8,8 +9,13 @@ export function createTasksHandler(db,{need,customer,field,fail,body,mutation,au
  function assignee(user,id,role=null){const row=db.prepare(eligibleSQL+' AND u.id=?').get(user.store_id,id);if(!row)fail(422,'ASSIGNEE_UNAVAILABLE','接收人须为本店有效且已完成初始改密的员工');if(role&&row.role!==role)fail(409,'ROLE_CHANGED','当前岗位与候选岗位不符，请负责人重新安排交接');return row;}
  function target(b){const id=field(b.assignee_id,'接收人',100),role=field(b.candidate_role,'候选岗位',40);if(Boolean(id)===Boolean(role)||role&&!staffRoles.includes(role))fail(422,'VALIDATION','请选择一位员工或一个候选岗位');return {assignee_id:id,...(role?{candidate_role:role}:{})};}
  function task(user,id){const row=db.prepare('SELECT * FROM work_tasks WHERE id=?').get(id);if(!row)fail(404,'NOT_FOUND','任务不存在');customer(user,row.customer_id);return row;}
- function visible(row){const employee=row.assignee_id?db.prepare('SELECT display_name FROM users WHERE id=?').get(row.assignee_id):null,eligible=row.assignee_id?db.prepare(eligibleSQL+' AND u.id=?').get(row.store_id,row.assignee_id):null;const completion=db.prepare('SELECT completed_at FROM task_completions WHERE task_id=?').get(row.id);return {...row,completion_status:completion?'completed':'open',effective_execution_status:completion?'completed':row.execution_status,completed_at:completion?.completed_at||null,assignee_name:employee?.display_name||null,assignee_available:Boolean(eligible&&(!row.candidate_role||eligible.role===row.candidate_role)),candidate_count:row.assignment_status==='queued'?db.prepare('SELECT count(*) n FROM ('+eligibleSQL+') WHERE role=?').get(row.store_id,row.candidate_role).n:null,customer_name:db.prepare('SELECT name FROM customers WHERE id=?').get(row.customer_id).name,cycle_goal:row.cycle_id?db.prepare('SELECT goal FROM cycle_versions WHERE cycle_id=? AND version=?').get(row.cycle_id,row.cycle_version).goal:null,visit_purpose:row.visit_id?db.prepare('SELECT purpose FROM visits WHERE id=?').get(row.visit_id).purpose:null};}
+ function visible(row){const employee=row.assignee_id?db.prepare('SELECT display_name FROM users WHERE id=?').get(row.assignee_id):null,eligible=row.assignee_id?db.prepare(eligibleSQL+' AND u.id=?').get(row.store_id,row.assignee_id):null;const completion=db.prepare('SELECT completed_at FROM task_completions WHERE task_id=?').get(row.id);return {...row,origin:taskOrigin(db,row.id),completion_status:completion?'completed':'open',effective_execution_status:completion?'completed':row.execution_status,completed_at:completion?.completed_at||null,assignee_name:employee?.display_name||null,assignee_available:Boolean(eligible&&(!row.candidate_role||eligible.role===row.candidate_role)),candidate_count:row.assignment_status==='queued'?db.prepare('SELECT count(*) n FROM ('+eligibleSQL+') WHERE role=?').get(row.store_id,row.candidate_role).n:null,customer_name:db.prepare('SELECT name FROM customers WHERE id=?').get(row.customer_id).name,cycle_goal:row.cycle_id?db.prepare('SELECT goal FROM cycle_versions WHERE cycle_id=? AND version=?').get(row.cycle_id,row.cycle_version).goal:null,visit_purpose:row.visit_id?db.prepare('SELECT purpose FROM visits WHERE id=?').get(row.visit_id).purpose:null};}
  function event(user,row,action,reason,from=null){db.prepare('INSERT INTO task_events (task_id,customer_id,revision,action,from_assignee_id,assignee_id,assignment_status,execution_status,reason,created_at,actor_id,candidate_role,lifecycle_status,exception_reason,restore_status,restore_reason) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)').run(row.id,row.customer_id,row.revision,action,from,row.assignee_id,row.assignment_status,row.execution_status,reason,row.updated_at,user.id,row.candidate_role,row.lifecycle_status,row.exception_reason,row.restore_status,row.restore_reason);}
+ function assign(user,c,input,basis){
+  if(input.assignee_id)assignee(user,input.assignee_id);const id=randomUUID(),now=new Date().toISOString();
+  db.prepare('INSERT INTO work_tasks (id,customer_id,store_id,title,instructions,cycle_id,cycle_version,visit_id,context_basis,assignee_id,assignment_status,execution_status,revision,created_at,updated_at,created_by,candidate_role) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)').run(id,c.id,c.store_id,input.title,input.instructions,input.cycle_id,input.cycle_version,input.visit_id,basis,input.assignee_id,input.assignee_id?'awaiting':'queued','pending',1,now,now,user.id,input.candidate_role||null);
+  const row=task(user,id);event(user,row,'assign',input.reason);audit(user,'task.assign',id,{...row,reason:input.reason},null);return row;
+ }
  function context(user,c,input){
   let basis='customer';
   if(input.visit_id){const v=db.prepare('SELECT * FROM visits WHERE id=? AND customer_id=?').get(input.visit_id,c.id);if(!v)fail(422,'INVALID_CONTEXT','到店必须属于当前客户');basis='visit';}
@@ -19,8 +25,19 @@ export function createTasksHandler(db,{need,customer,field,fail,body,mutation,au
   }return basis;
  }
  return async(req,path,url,user,json)=>{
-  const staffPath=path==='/api/tasks/assignees',queuePath=path==='/api/tasks',customerMatch=/^\/api\/customers\/([\w-]+)\/tasks$/.exec(path),match=/^\/api\/tasks\/([\w-]+)(\/(claim|accept|start|pause|resume|return|transfer|block|unblock|cancel|restore))?$/.exec(path);
-  if(!staffPath&&!queuePath&&!customerMatch&&!match)return false;need(user,'tasks:read');
+  const followupMatch=/^\/api\/tasks\/([\w-]+)\/followups$/.exec(path),staffPath=path==='/api/tasks/assignees',queuePath=path==='/api/tasks',customerMatch=/^\/api\/customers\/([\w-]+)\/tasks$/.exec(path),match=/^\/api\/tasks\/([\w-]+)(\/(claim|accept|start|pause|resume|return|transfer|block|unblock|cancel|restore))?$/.exec(path);
+  if(!followupMatch&&!staffPath&&!queuePath&&!customerMatch&&!match)return false;need(user,'tasks:read');
+  if(followupMatch){
+   const parent=task(user,followupMatch[1]);if(req.method==='GET'){json(200,taskFollowups(db,parent.id));return true;}
+   if(req.method!=='POST')fail(405,'METHOD','不支持此请求');need(user,'tasks:assign');const b=await body(req);
+   if(Object.keys(b).some(k=>!['expected_correction_version','completion_sha256','title','instructions','assignee_id','candidate_role','reason'].includes(k)))fail(422,'VALIDATION','后续任务继承原客户、到店和固定需求版本，请仅明确任务、接收人及分派依据');
+   const input={...sourceInput(b,fail),title:field(b.title,'后续任务名称',120,true),instructions:field(b.instructions,'交接说明',1000,true),...target(b),reason:field(b.reason,'分派依据',300,true)};
+   json(201,mutation(req,user,`task.followup:${parent.id}`,input,()=>{
+    const current=task(user,parent.id),source=completionSource(db,parent.id,input,fail),c=customer(user,current.customer_id),row=assign(user,c,{...input,cycle_id:current.cycle_id,cycle_version:current.cycle_version,visit_id:current.visit_id},current.context_basis);
+    db.prepare('INSERT INTO task_followups VALUES (?,?,?,?,?,?,?,?,?)').run(row.id,c.id,current.id,source.correction?.version||null,source.completion.snapshot_sha256,source.output_summary,input.reason,row.created_at,user.id);
+    const link=taskOrigin(db,row.id);audit(user,'task.followup',current.id,link,null);return {task:visible(row),origin:link};
+   }));return true;
+  }
   if(staffPath){if(req.method!=='GET')fail(405,'METHOD','不支持此请求');json(200,{items:db.prepare(eligibleSQL+' ORDER BY u.display_name,u.id').all(user.store_id),roles:staffRoles});return true;}
   if(queuePath){
    if(req.method!=='GET')fail(405,'METHOD','不支持此请求');const scope=url.searchParams.get('scope')||'mine',state=url.searchParams.get('assignment')||'all',execution=url.searchParams.get('execution')||'all',role=url.searchParams.get('role')||'all',lifecycle=url.searchParams.get('lifecycle')||'all',completion=url.searchParams.get('completion')||'all';
@@ -36,13 +53,10 @@ export function createTasksHandler(db,{need,customer,field,fail,body,mutation,au
    if(Object.keys(b).some(k=>!['title','instructions','cycle_id','cycle_version','visit_id','assignee_id','candidate_role','reason'].includes(k)))fail(422,'VALIDATION','任务身份与状态由系统保存');
    const selected=target(b),input={title:field(b.title,'任务名称',120,true),instructions:field(b.instructions,'交接说明',1000,true),cycle_id:field(b.cycle_id,'周期编号',100),cycle_version:b.cycle_version??null,visit_id:field(b.visit_id,'到店编号',100),assignee_id:selected.assignee_id,reason:field(b.reason,'分派依据',300,true),...(selected.candidate_role?{candidate_role:selected.candidate_role}:{})};
    if(input.cycle_id?(!Number.isSafeInteger(input.cycle_version)||input.cycle_version<1):input.cycle_version!==null)fail(422,'VALIDATION','关联周期需要明确需求版本');
-   json(201,mutation(req,user,`task.assign:${c.id}`,input,()=>{customer(user,c.id);if(input.assignee_id)assignee(user,input.assignee_id);const basis=context(user,c,input),id=randomUUID(),now=new Date().toISOString();
-    db.prepare('INSERT INTO work_tasks (id,customer_id,store_id,title,instructions,cycle_id,cycle_version,visit_id,context_basis,assignee_id,assignment_status,execution_status,revision,created_at,updated_at,created_by,candidate_role) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)').run(id,c.id,c.store_id,input.title,input.instructions,input.cycle_id,input.cycle_version,input.visit_id,basis,input.assignee_id,input.assignee_id?'awaiting':'queued','pending',1,now,now,user.id,input.candidate_role||null);
-    const row=task(user,id);event(user,row,'assign',input.reason);audit(user,'task.assign',id,{...row,reason:input.reason});return {task:visible(row)};
-   }));return true;
+   json(201,mutation(req,user,`task.assign:${c.id}`,input,()=>{customer(user,c.id);if(input.assignee_id)assignee(user,input.assignee_id);const basis=context(user,c,input);return {task:visible(assign(user,c,input,basis))};}));return true;
   }
   const row=task(user,match[1]);
-  if(req.method==='GET'&&!match[2]){json(200,{task:visible(row),completion:completionRecord(db,row.id),events:db.prepare('SELECT e.*,u.display_name AS actor_name,a.display_name AS assignee_name,f.display_name AS from_assignee_name FROM task_events e JOIN users u ON u.id=e.actor_id LEFT JOIN users a ON a.id=e.assignee_id LEFT JOIN users f ON f.id=e.from_assignee_id WHERE task_id=? ORDER BY revision DESC LIMIT 100').all(row.id),limit:100});return true;}
+  if(req.method==='GET'&&!match[2]){json(200,{task:visible(row),completion:completionRecord(db,row.id),followups:taskFollowups(db,row.id),events:db.prepare('SELECT e.*,u.display_name AS actor_name,a.display_name AS assignee_name,f.display_name AS from_assignee_name FROM task_events e JOIN users u ON u.id=e.actor_id LEFT JOIN users a ON a.id=e.assignee_id LEFT JOIN users f ON f.id=e.from_assignee_id WHERE task_id=? ORDER BY revision DESC LIMIT 100').all(row.id),limit:100});return true;}
   if(req.method!=='POST'||!match[2])fail(405,'METHOD','不支持此请求');const action=match[3];if(!actions.includes(action))fail(405,'METHOD','不支持此请求');need(user,'tasks:receive');const b=await body(req),allowed=['expected_revision','reason',...(action==='transfer'?['assignee_id','candidate_role']:action==='return'?['candidate_role']:[])];
   if(Object.keys(b).some(k=>!allowed.includes(k)))fail(422,'VALIDATION','请仅提供本次任务操作资料');
   const input={expected_revision:b.expected_revision,reason:field(b.reason,'操作依据',300,true),...(action==='transfer'?target(b):action==='return'?{candidate_role:field(b.candidate_role,'退回岗位',40,true)}:{})};

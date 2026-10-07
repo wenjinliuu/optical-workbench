@@ -186,3 +186,15 @@ GET completion增加completion及task.completion_status/effective_execution_stat
 validation新增OPEN检查。GET已保存依据和保存结果只有全部通过时completion_enabled=true；POST check始终false，persisted=false，即使当前输入record_ready=true也不能直接完成。浏览器有未保存说明/来源/引用时禁用提交，独立产出表单冲突重读保留内容。
 
 GET /tasks新增completion=all（默认）/open/completed，items增加completion_status、effective_execution_status、completed_at；counts.completed及lanes.completed使用完整匹配数量。执行pending/running/paused筛选及running/paused计数排除已完成任务，完成筛选应选择execution=all。完成状态优先于异常/分派/执行分列。GET /tasks/:id增加completion，events仍为完成前的不可变执行历史。客户overview增加tasks_completed并排除完成的运行/暂停计数；timeline新增task/complete真实产出事件。
+
+## V0.14 追加说明更正与显式后续分派
+
+POST /tasks/:id/completion/corrections：expected_correction_version（原说明为0）、completion_sha256（所见原完成指纹）、output_summary必填<=1000、reason必填<=300；仅当前本店原提交人或负责人，201返回correction新版本。仅说明可更正，不接受条件/资料/附件/专业字段；同内容409 NO_CHANGE，非原提交人/负责人403 NOT_COMPLETION_AUTHOR，未完成409 COMPLETION_REQUIRED，原指纹不符409 COMPLETION_CONFLICT，所见更正陈旧409 CORRECTION_CONFLICT。更正、审计与幂等同事务；原完成/执行历史不变。
+
+POST /tasks/:id/followups：expected_correction_version、completion_sha256、title<=120、instructions<=1000、assignee_id或candidate_role（两者择一）、reason<=300均明确；负责人/前台，201返回task和origin。原客户/门店/周期版本/到店/context_basis由服务端继承，不允许输入替换；所见产出及更正事务复核。新任务awaiting或queued、pending、revision1，需本人认领/接收/开始；不复制条件/依据、不自动完成。新任务/分派事件/来源/两类审计/幂等同事务；任何失败全部回滚。无效/跨店/未改初始密码接收人422，原版本冲突与更正接口一致。
+
+GET /tasks/:id/followups：items最近100、limit、truncated、total完整量，含task_id/customer_id/parent_task_id、source_correction_version（原产出null）、source_completion_sha256、source_output_summary、reason/created_at/created_by及当前子任务title/接收/执行/异常/完成状态；本店员工读取，家长/跨店拒绝。
+
+completionRecord增加correction_version、effective_output_summary、corrections最近100及corrections_truncated/history_limit、followups清单。原output_summary/snapshot_json/snapshot_sha256保持；更正history包含author_name（当前账号名），操作人id固定。任务items/task增加origin（非后续为null），包含不可变分派时来源及原任务标题。GET task增加followups。旧幂等原响应重放不更新为当前查询投影。
+
+时间轴新增task/correct（更正version/说明/原因/原指纹）和task/followup（子任务、原任务、来源版本/说明/固定需求版本/原因），overview增加tasks_followups。界面更正/分派遇冲突重读保留填写，子任务“查看来源产出”读取当前原任务历史，卡片另明确显示分派时的旧版说明。完成仍锁定，当前关联不自动充当正式流程规则。

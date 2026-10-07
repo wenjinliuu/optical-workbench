@@ -1,3 +1,4 @@
+import { latestCorrection, taskFollowups } from './task-amendments.mjs';
 import { createHash } from 'node:crypto';
 
 export const completionCheckCodes=['OWNER','ACCEPTED','RUNNING','ACTIVE','OPEN','CONDITIONS','CONDITION_VERSION','TASK_REVISION','NOTES','DOCUMENTS','ATTACHMENTS','ATTACHMENT_ACCESS'];
@@ -14,7 +15,7 @@ export function completionSnapshot(db,taskId,conditionVersion,evidenceVersion){
 }
 export function completionRecord(db,taskId){
  const row=db.prepare('SELECT * FROM task_completions WHERE task_id=?').get(taskId);if(!row)return null;
- return {...row,snapshot:JSON.parse(row.snapshot_json),author_name:db.prepare('SELECT display_name FROM users WHERE id=?').get(row.completed_by).display_name};
+ const correction=latestCorrection(db,taskId),history=db.prepare('SELECT c.*,u.display_name author_name FROM task_completion_corrections c JOIN users u ON u.id=c.created_by WHERE c.task_id=? ORDER BY c.version DESC LIMIT 101').all(taskId);return {...row,snapshot:JSON.parse(row.snapshot_json),author_name:db.prepare('SELECT display_name FROM users WHERE id=?').get(row.completed_by).display_name,correction_version:correction?.version||0,effective_output_summary:correction?.output_summary||row.output_summary,corrections:history.slice(0,100),corrections_truncated:history.length>100,history_limit:100,followups:taskFollowups(db,taskId)};
 }
 export function verifyCompletions(db){
  for(const row of db.prepare('SELECT * FROM task_completions').iterate()){

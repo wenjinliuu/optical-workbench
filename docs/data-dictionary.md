@@ -111,3 +111,12 @@ block将active变blocked；unblock明确解决后变active。cancel保存取消�
 snapshot固定完整原任务/条件/依据、资料版本标题/来源、附件id/filename/content_type/size/blob_sha256/created_at/created_by、全部通过的核对项；按稳定键顺序生成JSON和指纹。没有当前员工姓名/岗位或附件revoked_at，合法事后变化不会改写原产出。操作人id固定、界面姓名为当前显示名。完成后原任务所有写入及新增执行事件/条件/依据/引用被触发器锁定。
 
 completion_status=open/completed、effective_execution_status=pending/running/paused/completed为查询投影，完成取优先；原work_tasks.execution_status/revision和task_events是完成前最后执行快照。完成实际时间、产出及状态来源于独立receipt，升级不会给旧任务补造完成。
+
+## V0.14 通用说明更正与后续来源（迁移012）
+
+| 表 | 字段 | 关联与保护 |
+| --- | --- | --- |
+| task_completion_corrections | task_id+version PK、customer_id、completion_sha256、output_summary<=1000、reason<=300、created_at/by | 同客户完成记录复合外键，task/version/customer唯一；版本连续，不同于当前说明；原提交人或负责人，不可改/删 |
+| task_followups | task_id（子任务PK）、customer_id、parent_task_id、source_correction_version可空、source_completion_sha256、source_output_summary、reason、created_at/by | 子任务/同客户完成来源/可选更正版本复合外键；不可自指或改删，子任务初始状态/上下文/原来源/分派人一致 |
+
+原产出来源版本存null（API所见expected_version为0），更正来源为具体>=1版本；固定分派时说明，后来更正不追写。completion的correction_version/effective_output_summary与任务origin/后续列表为查询投影，不修改原receipt。子任务仍独立revision和接收/执行/异常/完成状态，无继承的核对条件或依据。原操作人/分派人id固定、姓名为当前账号显示名。
