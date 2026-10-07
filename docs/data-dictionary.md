@@ -65,3 +65,12 @@ cycle_versions：cycle_id+version复合主键，customer_id、type、goal、sour
 visit_cycle_versions：visit_id+cycle_id主键，customer_id、version(nullable)、basis(captured/legacy_unknown)；复合外键同时限定原到店关联与需求版本的客户。新visit_cycles关联由触发器捕获最新版本，引用禁止更新/删除；迁移前已有关联建立legacy_unknown记录，不推测当时版本。每个到店关联必须有引用记录，恢复工具核对新表、外键和完整性。
 
 需求、专业计划、订单、权益和任务保留独立身份与状态；本轮只实施需求和到店衔接。后续共用能力及待确认条件见capability-map.md。
+
+## V0.9 通用协作任务（迁移007）
+
+| 表 | 字段与约束 | 衔接 |
+| --- | --- | --- |
+| work_tasks | id/customer_id/store_id，title/instructions，cycle_id+cycle_version，visit_id，context_basis，assignee_id，assignment_status(awaiting/accepted)，execution_status(pending)，revision>=1，created/updated时间、创建人 | 客户/门店、需求版本/客户、到店/客户、到店周期关联均复合外键；上下文及原说明不可覆盖，任务不可删除 |
+| task_events | task_id+revision PK，customer_id，action(assign/accept/transfer)，from_assignee_id、assignee_id，独立分派/执行状态、reason、created_at、actor_id | 每次分派、本人接收或转交保存不可变记录；同库审计、时间轴、恢复；账号姓名为当前显示名 |
+
+context_basis为customer/cycle/visit/visit_cycle，与所选关联一致。周期编号和版本同时存在或同时为空；visit_cycle需要已有到店关联，服务端核对captured固定版本。创建后不追随新需求，不复制独立客户或周期。转交仅改变当前接收人和接收状态，修订号递增；新接收人必须再确认。人员停用保留旧任务及历史，负责人明确安排接收人。未落地字段包括执行完成条件、时限/优先级/岗位队列/代理职责及专业资质。

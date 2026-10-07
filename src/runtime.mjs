@@ -4,8 +4,8 @@ import { performance } from 'node:perf_hooks';
 function routeLabel(url){
   let path;try{path=new URL(url,'http://localhost').pathname;}catch{return '/api/unknown';}
   if(!path.startsWith('/api/'))return null;
-  if(['/api/health','/api/me','/api/auth/login','/api/auth/logout','/api/auth/password','/api/organization','/api/organization/staff','/api/customers','/api/audit','/api/demo/scenarios','/api/operations'].includes(path))return path;
-  const routes=[[/^\/api\/cycles\/[\w-]+(\/versions)?$/,'/api/cycles/:id'],[/^\/api\/customers\/[\w-]+(\/(?:cycles|guardians|visits|attachments|documents|profile|profile-history|contacts|overview|timeline))?$/,'/api/customers/:id'],[/^\/api\/contacts\/[\w-]+$/,'/api/contacts/:id'],[/^\/api\/attachments\/[\w-]+\/(download|revoke)$/,'/api/attachments/:id'],[/^\/api\/documents\/[\w-]+(\/versions)?$/,'/api/documents/:id'],[/^\/api\/visits\/[\w-]+\/close$/,'/api/visits/:id/close'],[/^\/api\/organization\/staff\/[\w-]+(\/(?:reset-password|revoke-sessions))?$/,'/api/organization/staff/:id']];
+  if(['/api/health','/api/me','/api/auth/login','/api/auth/logout','/api/auth/password','/api/organization','/api/organization/staff','/api/customers','/api/audit','/api/demo/scenarios','/api/operations','/api/tasks','/api/tasks/assignees'].includes(path))return path;
+  const routes=[[/^\/api\/tasks\/[\w-]+(\/(?:accept|transfer))?$/,'/api/tasks/:id'],[/^\/api\/cycles\/[\w-]+(\/versions)?$/,'/api/cycles/:id'],[/^\/api\/customers\/[\w-]+(\/(?:cycles|guardians|visits|attachments|documents|profile|profile-history|contacts|overview|timeline|tasks))?$/,'/api/customers/:id'],[/^\/api\/contacts\/[\w-]+$/,'/api/contacts/:id'],[/^\/api\/attachments\/[\w-]+\/(download|revoke)$/,'/api/attachments/:id'],[/^\/api\/documents\/[\w-]+(\/versions)?$/,'/api/documents/:id'],[/^\/api\/visits\/[\w-]+\/close$/,'/api/visits/:id/close'],[/^\/api\/organization\/staff\/[\w-]+(\/(?:reset-password|revoke-sessions))?$/,'/api/organization/staff/:id']];
   for(const [pattern,label] of routes){const match=pattern.exec(path);if(match)return label+(match[1]?('/'+match[1].replace(/^\//,'')):'');}
   return '/api/unknown';
 }

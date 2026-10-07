@@ -1,4 +1,4 @@
-# API v0.8
+# API v0.9
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -103,3 +103,21 @@ GET /cycles/:id：本店员工，返回cycle（包含version/source）和最近1
 basis=captured代表已经保存的引用；legacy_unknown代表迁移前没有保存需求版本，version/goal/source为null（类型为周期原类型）。不把升级时当前需求补成旧到店实际需求。周期仍为draft，需求修订不是专业计划确认或业务状态推进；结束到店不修改周期。
 
 时间轴cycle条目按需求版本呈现；存量周期另外保留原创建时间的早期条目，初始需求明确未留存。到店登记条目的cycle_refs也使用固定版本。修改后原客户总览数量、资料/附件和查看授权保持各自状态。
+
+## V0.9 通用任务分派、接收与交接
+
+| 方法 / 路径 | 输入 | 输出 / 权限 |
+| --- | --- | --- |
+| GET /tasks/assignees | 无 | 本店有效、已完成初始改密的员工id/display_name/role；员工，家长拒绝 |
+| GET /tasks?scope=mine&assignment=all | scope=mine/store，assignment=all/awaiting/accepted | 当前店最近100条匹配任务，items/limit/truncated；员工 |
+| GET /customers/:id/tasks | 客户编号 | 最近100条客户任务，items/limit/truncated；员工客户范围 |
+| POST /customers/:id/tasks | title(120)、instructions(1000)、assignee_id、reason(300)，cycle_id/cycle_version/visit_id可选 | task，负责人/前台；初版revision=1、awaiting、execution_status=pending |
+| GET /tasks/:id | 任务编号 | task及最近100次不可变events，limit=100；员工本店 |
+| POST /tasks/:id/accept | expected_revision、reason | task；仅当前接收人，awaiting→accepted，执行仍pending |
+| POST /tasks/:id/transfer | expected_revision、assignee_id、reason | task；当前接收人或负责人，改接收人且回到awaiting |
+
+所有写入需要CSRF及幂等键，任务/交接事件/审计/重试结果同事务。陈旧修订号409 TASK_CONFLICT；非本人接收403 NOT_ASSIGNEE；非本人/负责人转交403 NOT_OWNER。同键重试返回原响应，不重复交接；没有操作依据422。人员停用/重置密码后任务保留，接收人不可用，负责人可以显式转给另一有效员工；不自动选代理。
+
+任务上下文创建后不可覆盖：客户与门店由原档案确定，关联到店/周期必须属于同一客户。仅关联周期时必须提交当前需求版本，陈旧409 CONTEXT_CONFLICT。关联到店和周期时必须使用到店已有的固定引用，允许历史V1，即使当前周期已V3；版本不一致409。legacy_unknown或未关联周期422 UNKNOWN_CONTEXT，不能补造当时需求；可另建仅客户/到店任务或独立当前周期任务。关联已关闭到店可用于后续资料交接，任务不改变到店/周期状态。
+
+assignment_status与execution_status分别存储；当前执行仅pending，不提供开始/暂停/退回/完成接口、专业完成条件或自动下游任务。所有员工可以读取本店通用协作队列，不授予专业确认职责。姓名为当前账号/客户显示名，需求内容为固定版本；截止日、优先级、岗位候选队列、工作日历和通知仍待后续实现。客户时间轴新增task类别，总览API新增tasks_awaiting/tasks_accepted完整数量。

@@ -1,4 +1,4 @@
-const kinds={profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权'};
+const kinds={profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
@@ -7,6 +7,7 @@ function describe(event){
  if(event.kind==='profile')return {title:`${d.source==='legacy'?'保存存量档案基线':d.version===1?'建立客户档案':'修订客户档案'} · V${d.version}`,text:d.name,reason:d.reason};
  if(event.kind==='cycle')return {title:`${d.source==='unrecorded'?'建立早期':d.source==='legacy'?'保存存量':d.version>1?'修订':'建立'}${types[d.type]}周期${d.version?' · V'+d.version:'草稿'}`,text:d.goal||'初始需求未留存',reason:d.reason};
  if(event.kind==='visit')return {title:d.action==='close'?'结束本次到店':'登记到店',text:d.purpose,reason:d.action==='close'?d.reason:`关联 ${d.cycle_count} 个独立周期${d.cycle_refs?.length?' · '+d.cycle_refs.map(r=>types[r.type]+(r.version?' V'+r.version:'（旧版未记录）')).join(' / '):''}`};
+ if(event.kind==='task')return {title:`${{assign:'分派任务',accept:'接收任务',transfer:'转交任务'}[d.action]} · 修订 ${d.revision}`,text:`${d.title} → ${d.assignee_name}${d.cycle_version?' · 固定需求 V'+d.cycle_version:''}`,reason:d.reason};
  if(event.kind==='document')return {title:`${d.version===1?'建立':'修订'}资料 · V${d.version}`,text:d.title,reason:d.reason};
  if(event.kind==='attachment')return {title:d.action==='revoke'?'撤销附件访问':'上传附件',text:d.filename,reason:d.reason};
  if(event.kind==='authorization')return {title:d.action==='guardian.authorize'?'授权家长查看':'撤销家长查看授权',text:d.relationship,reason:d.reason};
@@ -16,7 +17,7 @@ export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
   if(event.kind==='profile'){document.querySelector('.profile-actions button:last-child')?.click();return;}
-  const key={cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
+  const key={task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
   const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===event.entity_id):document.querySelector('#detail .family-access-area');
   if(!target){toast('对应记录未显示在当前列表中，可刷新档案后再查看。');return;}target.scrollIntoView({behavior:'smooth',block:'center'});target.classList.remove('timeline-focus');void target.offsetWidth;target.classList.add('timeline-focus');
  }
@@ -44,7 +45,7 @@ export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
    const params=new URLSearchParams({kind:category.value,limit:'20'});if(from.value)params.set('from',from.value);if(to.value)params.set('to',to.value);if(pageCursor)params.set('cursor',pageCursor);
    try{
     const data=await api(`/customers/${id}/timeline?${params}`);if(!same()||version!==generation)return;
-    for(const event of data.items){const item=el('li',undefined,'timeline-event');item.dataset.eventId=event.event_id;item.dataset.kind=event.kind;const info=describe(event),head=el('div',undefined,'timeline-event-head');head.append(el('h3',info.title),el('span',kinds[event.kind],`badge ${{profile:'violet',cycle:'mint',visit:'sky',contact:'coral',document:'violet',attachment:'violet',authorization:'coral'}[event.kind]}`));item.append(head);
+    for(const event of data.items){const item=el('li',undefined,'timeline-event');item.dataset.eventId=event.event_id;item.dataset.kind=event.kind;const info=describe(event),head=el('div',undefined,'timeline-event-head');head.append(el('h3',info.title),el('span',kinds[event.kind],`badge ${{profile:'violet',cycle:'mint',visit:'sky',contact:'coral',document:'violet',attachment:'violet',authorization:'coral',task:'sky'}[event.kind]}`));item.append(head);
      const time=el('time',new Date(event.at).toLocaleString('zh-CN',{hour12:false}));time.dateTime=event.at;item.append(time,el('p',info.text||'未登记详细内容'));
      if(info.reason)item.append(el('p',info.reason,'small muted'));item.append(el('small',`${sources[event.details.source]||''}${event.details.source?' · ':''}${event.actor_name||'操作人未登记'}`,'muted'));
      const jump=el('button',event.kind==='profile'?'查看档案版本':'定位对应记录');jump.type='button';jump.onclick=()=>locate(event);item.append(jump);list.append(item);

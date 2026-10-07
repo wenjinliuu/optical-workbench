@@ -2,8 +2,8 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.8基础验证：周期需求修订/历史、到店固定版本引用、跨模块时间轴与恢复核对；整体阶段未验收",
-  "currentTask": "T02.02",
+  "productStatus": "V0.9基础验证：通用任务分派/本人接收/带依据交接、固定需求上下文、个人与本店队列；整体阶段未验收",
+  "currentTask": "T03.01",
   "nextTask": "T03.01",
   "stage": "P00",
   "blockers": [
@@ -63,6 +63,12 @@
       "version": "V0.8",
       "type": "工程推进",
       "summary": "按用户计划持续开发，暂缓本人测试；周期需求版本、固定到店引用/陈旧校验、时间轴衔接、虚构复访和整体能力清单；专业与资金规则继续待确认。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.9",
+      "type": "工程推进",
+      "summary": "通用任务分派、本人接收与换班交接，接收/执行独立、固定客户周期到店需求版本、个人/本店队列、时间轴与恢复；完整执行流转和专业完成条件仍待完成。"
     }
   ],
   "tasks": [
@@ -395,10 +401,18 @@
         "T02.04",
         "T02.05"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（后期验收，待指定）",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/007_work_tasks.sql",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/capability-map.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "V0.9部分实现：通用分派/本人接收/带依据转交、个人和本店队列及客户定位；岗位候选、开始/暂停/退回/完成、三视图、时限/通知和专业完成条件未完成，原阶段依赖及业务验收未通过。"
     },
     {
       "id": "T03.02",
@@ -438,10 +452,18 @@
         "T03.01",
         "T03.02"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（后期验收，待指定）",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/007_work_tasks.sql",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/capability-map.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "V0.9部分实现：通用分派/本人接收/带依据转交、个人和本店队列及客户定位；岗位候选、开始/暂停/退回/完成、三视图、时限/通知和专业完成条件未完成，原阶段依赖及业务验收未通过。"
     },
     {
       "id": "T03.04",
@@ -1199,9 +1221,15 @@
     },
     {
       "id": "M01-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.9通用协作仅分派/本人接收/转交、接收与执行独立、原客户/需求上下文及个人/本店列表；岗位专项、完整执行流转、时间条件和代理规则待实现。"
     },
     {
       "id": "M01-R",
@@ -2105,15 +2133,27 @@
     },
     {
       "id": "C04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.9通用协作仅分派/本人接收/转交、接收与执行独立、原客户/需求上下文及个人/本店列表；岗位专项、完整执行流转、时间条件和代理规则待实现。"
     },
     {
       "id": "C05",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.9通用协作仅分派/本人接收/转交、接收与执行独立、原客户/需求上下文及个人/本店列表；岗位专项、完整执行流转、时间条件和代理规则待实现。"
     },
     {
       "id": "C06",
@@ -3023,8 +3063,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 44,
-      "scope": "公共基础、档案/人员、校验备份/独立恢复与诊断切片，不代表完整阶段业务验收"
+      "tests": 75,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务交接、恢复与运行诊断；不代表整阶段业务验收"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
@@ -3048,7 +3088,10 @@
         "forced initial/reset password change",
         "own password change",
         "correlated request errors and successful retry",
-        "store operations desktop/mobile"
+        "store operations desktop/mobile",
+        "task assign/accept/transfer with frozen historic visit V1",
+        "receiving employee mobile queue and immutable handoff history",
+        "task queue customer navigation and logout cleanup"
       ]
     },
     "baseline": {
@@ -3057,7 +3100,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "V0.1升级至四个迁移保留账号与资料；包含二进制附件、版本引用、人员安全状态/修订号的备份恢复通过",
+    "migration": "V0.1/V0.5/V0.7/V0.8升级到七个迁移保留客户/周期/到店，旧需求引用未知不补造，新任务为空；资料/任务/历史/引用独立恢复通过",
     "recovery": "在线一致快照核对、独立目录恢复/回执、原库不覆盖、旧会话撤销及重新登录通过；正式RPO/RTO和完整账未确认"
   }
 }

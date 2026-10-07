@@ -9,7 +9,7 @@ import { request as httpRequest } from 'node:http';
 import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
 import { createBackup,restoreBackup } from '../src/recovery.mjs';
-import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, demoScenarios } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, seedDemoTasks, demoScenarios } from '../src/demo-data.mjs';
 
 async function fixture(t,{persist=false,logger=()=>{}}={}) {
   const dir=mkdtempSync(join(tmpdir(),'optical-test-'));
@@ -100,7 +100,7 @@ test('audit is append-only, health checks database and disabling user revokes ac
   const {request,login,db}=await fixture(t),session=await login('manager');
   assert.throws(()=>db.exec("DELETE FROM audit_events"),/append-only/);
   assert.throws(()=>db.exec("UPDATE audit_events SET action='tamper'"),/append-only/);
-  assert.equal((await request('/api/health')).body.schema,6);
+  assert.equal((await request('/api/health')).body.schema,7);
   const audit=await request('/api/audit',session);assert.equal(audit.body.items[0].action,'session.login');assert.equal(audit.body.items[0].after_json,undefined);
   db.prepare("UPDATE users SET active=0 WHERE id='manager'").run();assert.equal((await request('/api/me',session)).status,401);
 });
@@ -110,7 +110,7 @@ test('disk persistence, repeatable migrations and consistent backup restore pres
   const backup=join(dir,'backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);
   const counts=Object.fromEntries(['customers','audit_events','service_cycles'].map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n]));
   await new Promise(resolve=>server.close(resolve));
-  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,6);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
+  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,7);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
 });
 test('production mode refuses unreviewed deployment; HTML and assets use security headers',async t=>{
   assert.throws(()=>createApp({mode:'production'}),/Production is blocked/);
@@ -395,7 +395,7 @@ test('operations is manager-only and its metrics and fault records stay within t
   const {request,login}=await fixture(t),manager=await login('manager'),other=await login('other'),front=await login('front'),parent=await login('parent');
   const a=await request('/api/customers/missing-a',manager),b=await request('/api/customers/missing-b',other);
   assert.equal((await request('/api/operations',front)).status,403);assert.equal((await request('/api/operations',parent)).status,403);
-  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,6);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
+  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,7);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
   const otherStatus=await request('/api/operations',other);assert.ok(otherStatus.body.errors.some(e=>e.request_id===b.body.request_id));assert.ok(!otherStatus.body.errors.some(e=>e.request_id===a.body.request_id));
   assert.equal(status.body.errors[0].store_id,undefined);assert.equal(status.body.errors[0].actor_id,undefined);
 });
@@ -493,7 +493,7 @@ test('V0.5 migration captures a truthful legacy baseline without attributing pas
     }
     db.exec("INSERT INTO stores VALUES ('a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('manager','manager','虚构负责人',hashPassword('fixture-only'),'manager','a');
     db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run('old','a','存量档案（虚构）',null,null,null,'2025-01-01T00:00:00.000Z','manager');db.close();db=openDatabase(path);
-    const v=db.prepare('SELECT * FROM customer_profile_versions').get();assert.equal(v.source,'legacy');assert.equal(v.created_by,null);assert.notEqual(v.created_at,'2025-01-01T00:00:00.000Z');assert.equal(v.name,'存量档案（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,6);
+    const v=db.prepare('SELECT * FROM customer_profile_versions').get();assert.equal(v.source,'legacy');assert.equal(v.created_by,null);assert.notEqual(v.created_at,'2025-01-01T00:00:00.000Z');assert.equal(v.name,'存量档案（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,7);
     db.close();db=openDatabase(path);assert.equal(db.prepare('SELECT count(*) n FROM customer_profile_versions').get().n,1);
   }finally{db?.close();rmSync(dir,{recursive:true,force:true});}
 });
@@ -641,4 +641,88 @@ test('synthetic cycle revisions demonstrate old/new visit references and preserv
   db.exec("INSERT INTO stores VALUES ('store-a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','虚构负责人',hashPassword('fixture-only'),'manager','store-a');seedDemoScenarios(db);assert.deepEqual(seedDemoCycleRevisions(db),{versions:2,cycles:1,visits:1});assert.deepEqual(seedDemoCycleRevisions(db),{versions:0,cycles:0,visits:0});assert.equal(db.prepare("SELECT version FROM visit_cycle_versions WHERE visit_id='demo-visit-followup' AND cycle_id='demo-cycle-followup'").get().version,1);assert.equal(db.prepare("SELECT version FROM visit_cycle_versions WHERE visit_id='demo-visit-followup-later' AND cycle_id='demo-cycle-followup'").get().version,2);
   const row=db.prepare("SELECT * FROM service_cycles WHERE id='demo-cycle-followup'").get();db.prepare('UPDATE service_cycles SET goal=? WHERE id=?').run('后续编辑（虚构）',row.id);db.prepare('INSERT INTO cycle_versions VALUES (?,?,?,?,?,?,?,?,?)').run(row.id,row.customer_id,3,row.type,'后续编辑（虚构）','employee','后续演示编辑',new Date().toISOString(),'demo-manager');assert.deepEqual(seedDemoCycleRevisions(db),{versions:0,cycles:0,visits:0});assert.equal(db.prepare('SELECT goal FROM service_cycles WHERE id=?').get(row.id).goal,'后续编辑（虚构）');
  }finally{db.close();}
+});
+
+async function assignedTask(request,session,{assignee_id='front',...extra}={}){
+ const r=await request('/api/customers/child-a/tasks',{...session,method:'POST',key:'task-create-'+crypto.randomUUID(),data:{title:'接待资料核对（虚构）',instructions:'核对资料来源，等待专业确认',reason:'虚构接待分派',assignee_id,...extra}});assert.equal(r.status,201,JSON.stringify(r.body));return r.body.task;
+}
+test('task staff queues and candidates are scoped; assignment permission, guardian and unavailable assignees rejected',async t=>{
+ const {request,login,db}=await fixture(t),m=await login('manager'),p=await login('professional'),g=await login('parent'),f=await login('front'),other=await login('other');
+ const task=await assignedTask(request,f);
+ assert.equal((await request('/api/tasks?scope=mine',f)).body.items[0].id,task.id);assert.equal((await request('/api/tasks',m)).body.items.length,0);assert.equal((await request('/api/tasks?scope=store',m)).body.items.length,1);assert.equal((await request('/api/tasks?scope=store',other)).body.items.length,0);
+ assert.deepEqual((await request('/api/tasks/assignees',p)).body.items.map(x=>x.id).sort(),['front','manager','professional']);
+ for(const path of ['/api/tasks','/api/tasks/assignees',`/api/tasks/${task.id}`,'/api/customers/child-a/tasks'])assert.equal((await request(path,g)).status,403);
+ assert.equal((await request(`/api/tasks/${task.id}`,other)).status,404);assert.equal((await request('/api/customers/child-b/tasks',m)).status,404);
+ const opts={...m,method:'POST',key:'task-scope-invalid',data:{title:'虚构',instructions:'交接',reason:'分派',assignee_id:'other'}};
+ assert.equal((await request('/api/customers/child-a/tasks',opts)).status,422);assert.equal((await request('/api/customers/child-a/tasks',{...opts,...p})).status,403);
+ for(const id of ['parent','front']){if(id==='front')db.prepare('UPDATE users SET active=0 WHERE id=?').run(id);assert.equal((await request('/api/customers/child-a/tasks',{...opts,data:{...opts.data,assignee_id:id}})).status,422);}
+ assert.equal((await request('/api/tasks?scope=outside',m)).status,422);assert.equal(db.prepare('SELECT count(*) n FROM work_tasks').get().n,1);
+});
+test('only assignee accepts; transfer requires owner or manager, reason and fresh revision; execution remains independent',async t=>{
+ const {request,login,db}=await fixture(t),m=await login('manager'),f=await login('front'),p=await login('professional'),task=await assignedTask(request,m),path=`/api/tasks/${task.id}`;
+ const post=(who,action,rev,extra={},key=crypto.randomUUID())=>request(path+'/'+action,{...who,method:'POST',key,data:{expected_revision:rev,reason:'虚构交接依据',...extra}});
+ assert.equal((await post(m,'accept',1)).status,403);assert.equal((await post(p,'transfer',1,{assignee_id:'manager'})).status,403);
+ const accepted=await post(f,'accept',1,{},'task-accept-repeat');assert.equal(accepted.status,200);assert.equal(accepted.body.task.assignment_status,'accepted');assert.equal(accepted.body.task.execution_status,'pending');assert.deepEqual((await post(f,'accept',1,{},'task-accept-repeat')).body,accepted.body);
+ assert.equal((await post(f,'accept',1)).status,409);assert.equal((await post(f,'accept',2)).status,409);
+ assert.equal((await post(f,'transfer',2,{assignee_id:'professional',reason:''})).status,422);
+ const handed=await post(f,'transfer',2,{assignee_id:'professional'});assert.equal(handed.status,200);assert.equal(handed.body.task.assignment_status,'awaiting');assert.equal(handed.body.task.revision,3);
+ assert.equal((await post(f,'accept',3)).status,403);assert.equal((await post(p,'accept',3)).status,200);assert.equal((await post(m,'transfer',4,{assignee_id:'front'})).status,200);
+ const history=(await request(path,m)).body.events;assert.equal(history.length,5);assert.deepEqual(history.map(e=>e.action),['transfer','accept','transfer','accept','assign']);assert.ok(history.every(e=>e.execution_status==='pending'));
+ assert.throws(()=>db.prepare("UPDATE task_events SET reason='overwrite' WHERE task_id=?").run(task.id),/immutable/);assert.throws(()=>db.prepare("UPDATE work_tasks SET instructions='overwrite' WHERE id=?").run(task.id),/immutable/);
+ const timeline=(await request('/api/customers/child-a/timeline?kind=task',p)).body.items;assert.equal(timeline.length,5);assert.ok(timeline.every(e=>e.entity_id===task.id));const overview=(await request('/api/customers/child-a/overview',p)).body;assert.equal(overview.tasks_awaiting,1);assert.equal(overview.tasks_accepted,0);
+});
+test('task contexts freeze exact visit requirement versions and reject stale current-cycle or unrelated links',async t=>{
+ const {request,login,db}=await fixture(t),m=await login('manager');
+ const c=(await request('/api/customers/child-a/cycles',{...m,method:'POST',key:'tasks-cycle-create',data:{type:'followup',goal:'原始需求（虚构）'}})).body.cycle;
+ const v=(await request('/api/customers/child-a/visits',{...m,method:'POST',key:'tasks-visit-create',data:{purpose:'旧需求到店（虚构）',cycle_ids:[c.id]}})).body.visit;
+ assert.equal((await request(`/api/cycles/${c.id}/versions`,{...m,method:'POST',key:'tasks-cycle-revise',data:{goal:'新需求（虚构）',source:'employee',revision_reason:'补充虚构',expected_version:1}})).status,201);
+ const a=await assignedTask(request,m,{cycle_id:c.id,cycle_version:1,visit_id:v.id});assert.equal(a.cycle_version,1);assert.equal(a.cycle_goal,'原始需求（虚构）');assert.equal(a.context_basis,'visit_cycle');
+ const b=await assignedTask(request,m,{cycle_id:c.id,cycle_version:2});assert.equal(b.cycle_version,2);
+ const base={title:'虚构',instructions:'交接',reason:'分派',assignee_id:'front'};
+ for(const [extra,status] of [[{cycle_id:c.id,cycle_version:1},409],[{cycle_id:c.id,cycle_version:2,visit_id:v.id},409],[{visit_id:'missing'},422],[{cycle_id:c.id,cycle_version:null},422],[{cycle_version:1},422],[{customer_id:'child-b'},422]])assert.equal((await request('/api/customers/child-a/tasks',{...m,method:'POST',key:crypto.randomUUID(),data:{...base,...extra}})).status,status);
+ assert.equal((await request('/api/customers/sibling-a/tasks',{...m,method:'POST',key:'tasks-sibling-invalid',data:{...base,cycle_id:c.id,cycle_version:2}})).status,422);
+
+ assert.equal((await request(`/api/visits/${v.id}/close`,{...m,method:'POST',key:'tasks-visit-close',data:{reason:'虚构到店结束'}})).status,200);assert.equal((await request(`/api/tasks/${a.id}`,m)).body.task.cycle_version,1);assert.equal(db.prepare('SELECT status FROM service_cycles WHERE id=?').get(c.id).status,'draft');
+});
+test('task idempotency, optimistic races and audit rollback preserve history atomically',async t=>{
+ const {request,login,db}=await fixture(t),m=await login('manager'),f=await login('front');const data={title:'虚构',instructions:'资料',reason:'分派',assignee_id:'front'},opts={...m,method:'POST',key:'task-create-duplicate',data};
+ const [a,b]=await Promise.all([request('/api/customers/child-a/tasks',opts),request('/api/customers/child-a/tasks',opts)]);assert.equal(a.status,201);assert.deepEqual(a.body,b.body);assert.equal((await request('/api/customers/child-a/tasks',{...opts,data:{...data,title:'不同内容'}})).status,409);
+ const id=a.body.task.id,post=action=>request(`/api/tasks/${id}/${action}`,{...f,method:'POST',key:crypto.randomUUID(),data:{expected_revision:1,reason:'并发接收',...(action==='transfer'?{assignee_id:'professional'}:{})}});
+ const race=await Promise.all([post('accept'),post('transfer')]);assert.deepEqual(race.map(x=>x.status).sort(),[200,409]);assert.equal(db.prepare('SELECT count(*) n FROM task_events WHERE task_id=?').get(id).n,2);
+ db.exec("CREATE TRIGGER reject_task_audit BEFORE INSERT ON audit_events WHEN NEW.action LIKE 'task.%' BEGIN SELECT RAISE(ABORT,'fault'); END;");
+ assert.equal((await request('/api/customers/child-a/tasks',{...opts,key:'task-create-fault'})).status,500);assert.equal(db.prepare('SELECT count(*) n FROM work_tasks').get().n,1);
+ const row=db.prepare('SELECT * FROM work_tasks WHERE id=?').get(id);assert.equal((await request(`/api/tasks/${id}/transfer`,{...m,method:'POST',key:'task-transfer-fault',data:{expected_revision:row.revision,reason:'虚构',assignee_id:row.assignee_id==='front'?'professional':'front'}})).status,500);
+ assert.deepEqual(db.prepare('SELECT * FROM work_tasks WHERE id=?').get(id),row);assert.equal(db.prepare('SELECT count(*) n FROM task_events WHERE task_id=?').get(id).n,2);assert.equal(db.prepare("SELECT count(*) n FROM idempotency WHERE request_key LIKE '%fault'").get().n,0);
+});
+test('manager can recover an unavailable recipient via explicit transfer; reset-password staff cannot be assigned',async t=>{
+ const {request,login,db}=await fixture(t),m=await login('manager'),task=await assignedTask(request,m);db.prepare("UPDATE users SET active=0 WHERE id='front'").run();assert.equal((await request(`/api/tasks/${task.id}`,m)).body.task.assignee_available,false);
+ const transfer=await request(`/api/tasks/${task.id}/transfer`,{...m,method:'POST',key:'task-unavailable-transfer',data:{expected_revision:1,reason:'虚构人员停用交接',assignee_id:'professional'}});assert.equal(transfer.status,200);assert.equal(transfer.body.task.assignee_available,true);
+ db.prepare('INSERT INTO user_security VALUES (?,1,1) ON CONFLICT(user_id) DO UPDATE SET must_change_password=1').run('professional');assert.equal((await request('/api/tasks/assignees',m)).body.items.some(x=>x.id==='professional'),false);
+ assert.equal((await request(`/api/tasks/${task.id}/transfer`,{...m,method:'POST',key:'task-password-reject',data:{expected_revision:2,reason:'虚构交接',assignee_id:'professional'}})).status,422);
+});
+test('tasks and frozen references survive independent recovery; inconsistent live task state blocks backup',async t=>{
+ const {request,login,db,path,dir}=await fixture(t,{persist:true}),m=await login('manager'),f=await login('front');
+ const cycle=(await request('/api/customers/child-a/cycles',{...m,method:'POST',key:'task-restore-cycle',data:{type:'retail',goal:'恢复时保留的需求（虚构）'}})).body.cycle;const visit=(await request('/api/customers/child-a/visits',{...m,method:'POST',key:'task-restore-visit',data:{purpose:'接待（虚构）',cycle_ids:[cycle.id]}})).body.visit;const task=await assignedTask(request,m,{cycle_id:cycle.id,cycle_version:1,visit_id:visit.id});
+ assert.equal((await request(`/api/tasks/${task.id}/accept`,{...f,method:'POST',key:'task-recovery-accept',data:{expected_revision:1,reason:'虚构接收'}})).status,200);
+ const before=(await request('/api/customers/child-a/timeline?kind=task',m)).body,backup=await createBackup(path,join(dir,'backups'));assert.equal(backup.checks.counts.work_tasks,1);assert.equal(backup.checks.counts.task_events,2);
+ const restore=await restoreBackup(backup.backup,join(dir,'restored')),app=createApp({databasePath:restore.database,mode:'test',logger:()=>{}});t.after(async()=>{if(app.server.listening)await new Promise(resolve=>app.server.close(resolve));else app.db.close();});assert.equal(app.db.prepare('SELECT assignment_status FROM work_tasks WHERE id=?').get(task.id).assignment_status,'accepted');assert.equal(app.db.prepare('SELECT count(*) n FROM task_events').get().n,2);
+ assert.equal(app.db.prepare('SELECT count(*) n FROM sessions').get().n,0);assert.equal(before.items.length,2);
+ app.server.listen(0,'127.0.0.1');await once(app.server,'listening');const origin=`http://127.0.0.1:${app.server.address().port}`,auth=await fetch(origin+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'manager',password:'test-password-only'})});assert.equal(auth.status,200);await auth.json();const cookie=auth.headers.get('set-cookie').split(';')[0];const restoredTask=await (await fetch(origin+`/api/tasks/${task.id}`,{headers:{Cookie:cookie}})).json();assert.equal(restoredTask.task.cycle_goal,'恢复时保留的需求（虚构）');assert.equal(restoredTask.task.visit_id,visit.id);const after=await (await fetch(origin+'/api/customers/child-a/timeline?kind=task',{headers:{Cookie:cookie}})).json();assert.deepEqual(after,before);
+ db.prepare("UPDATE work_tasks SET assignment_status='awaiting' WHERE id=?").run(task.id);await assert.rejects(createBackup(path,join(dir,'invalid')),/任务当前状态/);
+});
+test('unknown legacy visit requirements are rejected for task linkage without fabricating a version',async t=>{
+ const {request,login,db}=await fixture(t),m=await login('manager');db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('legacy-cycle','child-a','followup','升级基线','draft',new Date().toISOString(),'manager');db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run('legacy-visit','child-a','a','早期到店','registered',new Date().toISOString(),null,'manager');
+ db.exec('DROP TRIGGER visit_cycle_capture');db.exec("INSERT INTO visit_cycles VALUES ('legacy-visit','legacy-cycle','child-a');INSERT INTO visit_cycle_versions VALUES ('legacy-visit','legacy-cycle','child-a',NULL,'legacy_unknown')");
+ const opts={...m,method:'POST',key:'task-legacy-reject',data:{title:'虚构',instructions:'交接',reason:'分派',assignee_id:'front',visit_id:'legacy-visit',cycle_id:'legacy-cycle',cycle_version:1}};const r=await request('/api/customers/child-a/tasks',opts);assert.equal(r.status,422);assert.equal(r.body.error.code,'UNKNOWN_CONTEXT');const task=await assignedTask(request,m,{visit_id:'legacy-visit'});assert.equal(task.cycle_version,null);assert.equal(task.context_basis,'visit');
+});
+test('synthetic task stages preserve later reception and transfer history on repeat initialization',()=>{
+ const db=openDatabase(':memory:');try{db.exec("INSERT INTO stores VALUES ('store-a','虚构门店')");for(const [id,role] of [['demo-manager','manager'],['demo-front','reception']])db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run(id,id,id,hashPassword('fixture-only'),role,'store-a');seedDemoScenarios(db);seedDemoCycleRevisions(db);assert.deepEqual(seedDemoTasks(db),{added:6});const before=db.prepare('SELECT * FROM work_tasks ORDER BY id').all(),events=db.prepare('SELECT * FROM task_events ORDER BY task_id,revision').all();assert.ok(before.some(x=>x.assignment_status==='accepted'));assert.ok(events.some(x=>x.action==='transfer'));assert.deepEqual(seedDemoTasks(db),{added:0});assert.deepEqual(db.prepare('SELECT * FROM work_tasks ORDER BY id').all(),before);assert.deepEqual(db.prepare('SELECT * FROM task_events ORDER BY task_id,revision').all(),events);
+ const row=before[0],now=new Date().toISOString();db.prepare("UPDATE work_tasks SET revision=revision+1,assignment_status='awaiting',updated_at=? WHERE id=?").run(now,row.id);db.prepare('INSERT INTO task_events VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(row.id,row.customer_id,row.revision+1,'transfer',row.assignee_id,'demo-manager','awaiting','pending','后续虚构交接',now,'demo-manager');db.prepare('UPDATE work_tasks SET assignee_id=? WHERE id=?').run('demo-manager',row.id);assert.deepEqual(seedDemoTasks(db),{added:0});assert.equal(db.prepare('SELECT revision FROM work_tasks WHERE id=?').get(row.id).revision,row.revision+1);
+ }finally{db.close();}
+});
+
+test('V0.8 upgrade preserves customer, cycle and visit references and starts with no invented tasks',t=>{
+ const dir=mkdtempSync(join(tmpdir(),'optical-v08-upgrade-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));const path=join(dir,'old.sqlite');let db=new DatabaseSync(path);db.exec('PRAGMA foreign_keys=ON;CREATE TABLE schema_migrations(name TEXT PRIMARY KEY,applied_at TEXT NOT NULL)');
+ for(const migration of ['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql','005_customer_profiles.sql','006_cycle_versions.sql']){db.exec(readFileSync(new URL(`../migrations/${migration}`,import.meta.url),'utf8'));db.prepare('INSERT INTO schema_migrations VALUES (?,?)').run(migration,new Date().toISOString());}
+ db.exec("INSERT INTO stores VALUES ('a','A')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('manager','manager','manager',hashPassword('fixture-only'),'manager','a');const now=new Date().toISOString();db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run('child','a','虚构',null,null,null,now,'manager');db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('cycle','child','followup','虚构需求','draft',now,'manager');db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run('visit','child','a','虚构到店','registered',now,null,'manager');db.exec("INSERT INTO visit_cycles VALUES ('visit','cycle','child')");const ref=db.prepare('SELECT * FROM visit_cycle_versions').get();db.close();db=openDatabase(path);try{assert.deepEqual(db.prepare('SELECT * FROM visit_cycle_versions').get(),ref);assert.equal(db.prepare('SELECT count(*) n FROM work_tasks').get().n,0);assert.equal(db.prepare('SELECT count(*) n FROM task_events').get().n,0);assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,7);}finally{db.close();}
 });

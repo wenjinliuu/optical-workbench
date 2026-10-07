@@ -10,6 +10,7 @@ import { createRuntime } from './runtime.mjs';
 import { createProfilesHandler } from './profiles.mjs';
 import { createTimelineHandler } from './timeline.mjs';
 import { createCyclesHandler } from './cycles.mjs';
+import { createTasksHandler } from './tasks.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
 const roles = {manager:['customers:read','customers:create','cycles:create','audit:read','organization:read','guardians:manage','visits:create','visits:close','demo:read'],reception:['customers:read','customers:create','cycles:create','visits:create','visits:close','demo:read'],professional:['customers:read','cycles:create','demo:read'],guardian:['customers:read']};
@@ -18,6 +19,8 @@ roles.manager.push('organization:manage');
 roles.manager.push('operations:read');
 for(const role of ['manager','reception','professional'])roles[role].push('profiles:read','timeline:read','cycles:read','cycles:revise');
 for(const role of ['manager','reception'])roles[role].push('customers:update','contacts:manage');
+for(const role of ['manager','reception','professional'])roles[role].push('tasks:read','tasks:receive');
+for(const role of ['manager','reception'])roles[role].push('tasks:assign');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -77,6 +80,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const organization=createOrganizationHandler(db,{need,field,fail,body,mutation,audit});
   const profiles=createProfilesHandler(db,{need,customer,visible,field,date,fail,body,mutation,audit});
   const cycleRecords=createCyclesHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const tasks=createTasksHandler(db,{need,customer,field,fail,body,mutation,audit});
   const timeline=createTimelineHandler(db,{need,customer,fail});
   const server=createServer(async(req,res)=>{
     const request=runtime.begin(req,res);
@@ -87,7 +91,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -124,6 +128,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       if(await organization(req,res,path,user,json))return;
       if(await documents(req,res,path,user,json))return;
       if(await cycleRecords.handle(req,path,user,json))return;
+      if(await tasks(req,path,url,user,json))return;
       if(timeline(req,path,url,user,json))return;
       if(await profiles.handle(req,res,path,user,json))return;
       if(path==='/api/demo/scenarios' && req.method==='GET') {

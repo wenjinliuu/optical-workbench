@@ -128,3 +128,22 @@ export function seedDemoCycleRevisions(db){
   return {versions,cycles,visits};
  });
 }
+
+export function seedDemoTasks(db){
+ const manager=db.prepare("SELECT * FROM users WHERE id='demo-manager' AND username='demo-manager' AND role='manager' AND store_id='store-a' AND active=1").get();if(!manager)throw Error('任务样例仅用于独立示例数据库。');
+ const colleague=db.prepare("SELECT u.* FROM users u LEFT JOIN user_security s ON s.user_id=u.id WHERE u.id='demo-front' AND u.username='demo-front' AND u.role='reception' AND u.store_id='store-a' AND u.active=1 AND COALESCE(s.must_change_password,0)=0").get();
+ return transaction(db,()=>{let added=0;
+  for(const [i,s] of demoScenarios.entries()){
+   const c=db.prepare('SELECT * FROM customers WHERE id=?').get(s.customer_id);if(!c||!matchesDemoCustomer(db,c,s))continue;
+   const id=`demo-task-${s.id}`,existing=db.prepare('SELECT * FROM work_tasks WHERE id=?').get(id);if(existing){if(existing.customer_id!==c.id||existing.title!==`资料与接待衔接（虚构） · ${s.name}`)throw Error('任务样例编号冲突，已回滚；不会覆盖交接。');continue;}
+   const visit=db.prepare('SELECT * FROM visits WHERE id=? AND customer_id=?').get(`demo-visit-${s.id}`,c.id);if(!visit)continue;
+   const ref=db.prepare("SELECT * FROM visit_cycle_versions WHERE visit_id=? AND basis='captured' ORDER BY cycle_id LIMIT 1").get(visit.id),target=colleague||manager,now=new Date().toISOString();
+   db.prepare('INSERT INTO work_tasks VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)').run(id,c.id,c.store_id,`资料与接待衔接（虚构） · ${s.name}`,'虚构协作案例：核对接待资料、说明资料来源，将专业确认交由后续独立流程。',ref?.cycle_id||null,ref?.version||null,visit.id,ref?'visit_cycle':'visit',target.id,'awaiting','pending',1,now,now,manager.id);
+   function record(action,reason,actor,from=null){const t=db.prepare('SELECT * FROM work_tasks WHERE id=?').get(id);db.prepare('INSERT INTO task_events VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(id,c.id,t.revision,action,from,t.assignee_id,t.assignment_status,t.execution_status,reason,t.updated_at,actor.id);db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),c.store_id,actor.id,`task.${action}`,id,null,JSON.stringify({...t,reason,source:'synthetic'}),t.updated_at);}
+   record('assign','虚构演示：分派接待资料核对',manager);
+   if(i%3!==0){db.prepare("UPDATE work_tasks SET assignment_status='accepted',revision=2 WHERE id=?").run(id);record('accept','虚构演示：确认接收，尚未执行',target,target.id);}
+   if(i%3===2&&colleague){db.prepare("UPDATE work_tasks SET assignee_id=?,assignment_status='awaiting',revision=3 WHERE id=?").run(manager.id,id);record('transfer','虚构演示：岗位交接，等待新接收人确认',colleague,colleague.id);}
+   added++;
+  }return {added};
+ });
+}
