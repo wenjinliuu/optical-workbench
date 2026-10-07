@@ -17,8 +17,8 @@ export function seedDemoScenarios(db) {
   return transaction(db,()=>{
     let customers=0,cycles=0,visits=0,documents=0,attachments=0;const now=new Date().toISOString();
     for(const s of demoScenarios){
-      const existing=db.prepare('SELECT name,store_id FROM customers WHERE id=?').get(s.customer_id);
-      if(existing&&(existing.name!==s.name||existing.store_id!=='store-a'))throw Error('示例编号与现有资料冲突，已回滚；不会覆盖档案。');
+      const existing=db.prepare('SELECT * FROM customers WHERE id=?').get(s.customer_id);
+      if(existing&&!matchesDemoCustomer(db,existing,s))throw Error('示例编号与现有资料冲突，已回滚；不会覆盖档案。');
       if(!existing){db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(s.customer_id,'store-a',s.name,s.birth_date,s.contact,null,now,manager.id);customers++;}
       const cycle_id=`demo-cycle-${s.id}`,visit_id=`demo-visit-${s.id}`;
       if(!db.prepare('SELECT 1 FROM service_cycles WHERE id=?').get(cycle_id)){db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(cycle_id,s.customer_id,s.type,s.goal,'draft',now,manager.id);cycles++;}
@@ -66,5 +66,39 @@ export function seedDemoPeople(db) {
     }
     if(added)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.people','demo-people',null,JSON.stringify({source:'synthetic',added}),new Date().toISOString());
     return {added};
+  });
+}
+
+// An edited demo remains identifiable by its immutable initial snapshot.
+export function matchesDemoCustomer(db,row,scenario){
+  if(!row||row.store_id!=='store-a')return false;
+  if(row.name===scenario.name)return true;
+  const initial=db.prepare('SELECT name FROM customer_profile_versions WHERE customer_id=? AND version=1').get(row.id);
+  const latest=db.prepare('SELECT * FROM customer_profile_versions WHERE customer_id=? ORDER BY version DESC LIMIT 1').get(row.id);
+  return row.created_by==='demo-manager'&&initial?.name===scenario.name&&['name','birth_date','contact_name','phone'].every(key=>row[key]===latest?.[key]);
+}
+
+export function seedDemoProfiles(db){
+  const manager=db.prepare("SELECT id FROM users WHERE id='demo-manager' AND username='demo-manager' AND role='manager' AND store_id='store-a'").get();
+  if(!manager)throw Error('家庭资料样例仅用于独立示例数据库。');
+  return transaction(db,()=>{
+    let contacts=0,profiles=0;const now=new Date().toISOString();
+    const scenarios=[...demoScenarios,{id:'sibling',customer_id:'sample-child-b',name:'小林弟弟（虚构）',contact:'林家长（虚构）'}];
+    for(const s of scenarios){
+      const row=db.prepare('SELECT * FROM customers WHERE id=?').get(s.customer_id);if(!row)continue;
+      if(!matchesDemoCustomer(db,row,s))throw Error('家庭样例编号冲突，已回滚；不会覆盖档案。');
+      for(let i=0;i<2;i++){
+        const id=`demo-contact-${s.id}-${i+1}`,existing=db.prepare('SELECT customer_id FROM family_contacts WHERE id=?').get(id);
+        if(existing){if(existing.customer_id!==row.id)throw Error('联系人样例编号冲突，已回滚。');continue;}
+        db.prepare('INSERT INTO family_contacts VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?)').run(id,row.id,i===0?s.contact:'备用家长（虚构）',i===0?'主要家长（演示）':'备用家长（演示）',i===0?'000-00000':'000-00001','guardian_report','虚构号码与资料，仅用于演示。',Number(!(s.id==='retail'&&i===1)),now,manager.id,now,manager.id);contacts++;
+      }
+      const version=db.prepare('SELECT MAX(version) v FROM customer_profile_versions WHERE customer_id=?').get(row.id).v;
+      if(['plan','followup'].includes(s.id)&&version===1){
+        db.prepare('UPDATE customers SET phone=? WHERE id=?').run('000-00000',row.id);
+        db.prepare('INSERT INTO customer_profile_versions VALUES (?,?,?,?,?,?,?,?,?,?)').run(row.id,2,row.name,row.birth_date,row.contact_name,'000-00000','guardian_report','补充虚构联系电话，原建档资料保留',now,manager.id);profiles++;
+      }
+    }
+    if(contacts||profiles)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.profiles','demo-profiles',null,JSON.stringify({source:'synthetic',contacts,profiles}),now);
+    return {contacts,profiles};
   });
 }

@@ -5,7 +5,7 @@ const { chromium }=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE_PATH
 mkdirSync('data/browser-check',{recursive:true});
 import { createApp } from '../src/server.mjs';
 import { hashPassword } from '../src/db.mjs';
-import { seedDemoScenarios, seedDemoPeople } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles } from '../src/demo-data.mjs';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
 const {server,db}=createApp({databasePath:':memory:',mode:'test',logger:()=>{}});
@@ -13,7 +13,7 @@ db.prepare('INSERT INTO stores VALUES (?,?)').run('store-a','示例视光门店 
 db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','负责人样例',hashPassword('local-browser-test-only'),'manager','store-a');
 for(const [id,name,birth] of [['one','小林（虚构）','2017-06-12'],['two','小林弟弟（虚构）','2020-03-08']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,'store-a',name,birth,'林家长（虚构）',null,new Date().toISOString(),'demo-manager');
 db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-parent','demo-parent','家长样例',hashPassword('local-browser-test-only'),'guardian','store-a');
-seedDemoScenarios(db);seedDemoPeople(db);
+seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);
 server.listen(0,'127.0.0.1');await once(server,'listening');
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:1050}}),errors=[];
@@ -33,6 +33,35 @@ try{
  await page.locator('#customer-form input[name=contact_name]').fill('叶家长（虚构）');
  await page.locator('#customer-form button[type=submit]').click();
  await page.getByRole('heading',{name:'小叶（虚构）',exact:true}).waitFor();
+ await page.getByRole('button',{name:'编辑档案',exact:true}).click();
+ await page.locator('#profile-form input[name=birth_date]').fill('2020-02-03');
+ await page.locator('#profile-form input[name=contact_name]').fill('叶家长（补充，虚构）');
+ await page.locator('#profile-form input[name=phone]').fill('000-00000');
+ await page.locator('#profile-form select[name=source]').selectOption('guardian_report');
+ await page.locator('#profile-form textarea').fill('补充虚构基本资料');
+ await page.locator('#profile-form button[type=submit]').click();
+ await page.locator('.profile-actions .badge').filter({hasText:'V2'}).waitFor();
+ await page.getByRole('button',{name:'档案修改历史',exact:true}).click();
+ await page.locator('.profile-version-card').first().waitFor();assert.equal(await page.locator('.profile-version-card').count(),2);
+ assert.ok((await page.locator('.profile-version-card').last().textContent()).includes('2019-02-03'));
+ await page.screenshot({path:'data/browser-check/profile-history-desktop.png',fullPage:true});
+ await page.locator('#profile-history-dialog [data-close]').click();
+ await page.getByRole('button',{name:'＋ 新增联系人',exact:true}).click();
+ await page.locator('#contact-form input[name=name]').fill('备用家长（虚构）');
+ await page.locator('#contact-form input[name=relationship]').fill('备用家长（演示）');
+ await page.locator('#contact-form input[name=phone]').fill('000-00001');
+ await page.locator('#contact-form select[name=source]').selectOption('guardian_report');
+ await page.locator('#contact-form textarea[name=note]').fill('虚构资料，仅用于展示');
+ await page.locator('#contact-form textarea[name=reason]').fill('新增虚构联系人');
+ await page.locator('#contact-form button[type=submit]').click();
+ await page.locator('.family-contact-card').waitFor();
+ for(const active of ['false','true']){
+  await page.getByRole('button',{name:'编辑联系人',exact:true}).click();
+  await page.locator('#contact-form select[name=active]').selectOption(active);
+  await page.locator('#contact-form textarea[name=reason]').fill('演示联系人停用或恢复');
+  await page.locator('#contact-form button[type=submit]').click();
+  await page.locator('.family-contact-card .badge').filter({hasText:active==='true'?'有效':'已停用'}).waitFor();
+ }
  for(const [type,goal] of [['followup','建立长期复查档案，按约定日期继续跟进'],['training','训练服务需求登记，等待专业评估与计划确认']]){
   await page.locator('.cycle-heading button').click();
   await page.locator('#cycle-form select').selectOption(type);
@@ -79,10 +108,10 @@ try{
  await page.locator('#document-form button[type=submit]').click();
  await page.locator('.document-card .badge').filter({hasText:'V2'}).waitFor();
  await page.getByRole('button',{name:'查看历史版本',exact:true}).click();
- await page.locator('.version-card').first().waitFor();
- assert.equal(await page.locator('.version-card').count(),2);
+ await page.locator('#history-dialog .version-card').first().waitFor();
+ assert.equal(await page.locator('#history-dialog .version-card').count(),2);
  const downloadPromise=page.waitForEvent('download');
- await page.locator('.version-card').first().getByRole('button',{name:'资料清单（虚构）.txt',exact:true}).click();
+ await page.locator('#history-dialog .version-card').first().getByRole('button',{name:'资料清单（虚构）.txt',exact:true}).click();
  const download=await downloadPromise;assert.equal(download.suggestedFilename(),'资料清单（虚构）.txt');
  await page.screenshot({path:'data/browser-check/versions-desktop.png',fullPage:true});
  await page.locator('#history-dialog [data-close]').click();
@@ -173,6 +202,12 @@ try{
  await page.locator('[data-view=demo]').click();
  await page.locator('.scenario-card').first().getByRole('button',{name:'查看关联档案 →'}).click();
  await page.locator('.detail-top').waitFor();
+ await page.locator('.family-contact-card').first().waitFor();assert.equal(await page.locator('.family-contact-card').count(),2);
+ await page.getByRole('button',{name:'档案修改历史',exact:true}).click();await page.locator('#profile-history-dialog').waitFor({state:'visible'});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile profile history must not overflow');
+ await page.screenshot({path:'data/browser-check/profile-history-mobile.png',fullPage:true});await page.locator('#profile-history-dialog [data-close]').click();
+ await page.locator('.family-contact-card').first().getByRole('button',{name:'编辑联系人',exact:true}).click();await page.locator('#contact-dialog').waitFor({state:'visible'});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile contact editor must not overflow');await page.keyboard.press('Escape');
 
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile page must not overflow');
  await page.locator('#new-customer').click();
@@ -181,7 +216,7 @@ try{
  await page.screenshot({path:'data/browser-check/mobile.png',fullPage:true});
  await page.locator('#logout-mobile').click();
  await page.locator('#login-view').waitFor({state:'visible'});
- assert.equal(await page.locator('#customer-items').textContent(),'');assert.equal(await page.locator('#operations-errors').textContent(),'');
+ assert.equal(await page.locator('#profile-history-items').textContent(),'');assert.equal(await page.locator('#customer-items').textContent(),'');assert.equal(await page.locator('#operations-errors').textContent(),'');
  assert.deepEqual(errors,[]);
- console.log('Browser checks passed: correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
+ console.log('Browser checks passed: profile revisions/history, family contacts/deactivation, correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

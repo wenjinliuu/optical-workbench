@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.5基础验证：校验备份/独立恢复、请求编号/故障定位与本店运行状态；整体阶段未验收",
-  "currentTask": "T01.04",
-  "nextTask": "T02.01",
+  "productStatus": "V0.6基础验证：客户档案编辑/不可变历史、家庭联系人/停用/检索；整体阶段未验收",
+  "currentTask": "T02.01",
+  "nextTask": "T02.02",
   "stage": "P00",
   "blockers": [
     "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
@@ -45,6 +45,12 @@
       "version": "V0.5",
       "type": "工程推进",
       "summary": "新增备份清单与结构/关联/附件校验、独立目录恢复与回执/会话撤销，请求编号/脱敏故障日志、本店运行观察窗口；正式运行目标与原业务规则仍待确认。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.6",
+      "type": "工程推进",
+      "summary": "新增客户基本资料修订与历史、来源/依据/并发核对、家庭联系人管理和有效检索、虚构家庭与双版本、迁移/恢复匹配校验；完整家庭、证明、合并及跨店仍待完成。"
     }
   ],
   "tasks": [
@@ -258,10 +264,13 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "src/profiles.mjs",
+        "migrations/005_customer_profiles.sql",
+        "test/recovery.test.mjs"
       ],
       "updated": "2026-10-07",
-      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
+      "note": "V0.6部分实现：基本档案编辑/不可变历史、家庭联系人新增/编辑/停用/检索与家长查看授权独立、共用电话不合并。完整家庭成员、付款关系、证明核验、合并与跨店交接尚未完成。"
     },
     {
       "id": "T02.02",
@@ -2129,10 +2138,12 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "docs/handover.md",
-        "test/foundation.test.mjs"
+        "src/profiles.mjs",
+        "test/foundation.test.mjs",
+        "test/recovery.test.mjs",
+        "scripts/browser-check.mjs"
       ],
-      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+      "note": "V0.6新增基本资料历史、家庭联系人及有效检索；共享家庭实体/付款身份/证明/合并/跨店未完成。"
     },
     {
       "id": "U02",
@@ -2631,9 +2642,15 @@
     },
     {
       "id": "D1",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/profiles.mjs",
+        "test/foundation.test.mjs",
+        "test/recovery.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.6新增基本资料历史、家庭联系人及有效检索；共享家庭实体/付款身份/证明/合并/跨店未完成。"
     },
     {
       "id": "D2",

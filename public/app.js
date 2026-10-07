@@ -1,11 +1,12 @@
 import { createDocumentPanels } from './documents.js';
 import { createOrganizationPanel } from './organization.js';
 import { createOperationsPanel } from './operations.js';
+import { createProfilesPanel } from './profiles.js';
 const $=s=>document.querySelector(s);
 let me, selected, csrf, customers=[], searchVersion=0, toastTimer, sessionEpoch=0;
 const roleNames={manager:'门店负责人',reception:'前台 / 销售',professional:'专业人员',guardian:'家长 / 客户'};
 const cycleNames={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
-const actions={'session.login':'登录工作台','session.logout':'退出工作台','customer.create':'新建客户档案','cycle.create':'创建服务周期草稿','guardian.authorize':'授权家长关联','guardian.revoke':'撤销家长授权','visit.register':'登记到店','visit.close':'结束本次到店','demo.seed':'扩展虚构案例','attachment.upload':'上传附件','attachment.download':'下载附件','attachment.revoke':'撤销附件访问','document.create':'建立资料版本','document.revise':'修订资料版本','staff.create':'建立员工账号','staff.update':'调整员工资料','staff.password_reset':'重置员工密码','staff.sessions_revoke':'撤销员工会话','account.password':'修改本人密码'};
+const actions={'session.login':'登录工作台','session.logout':'退出工作台','customer.create':'新建客户档案','cycle.create':'创建服务周期草稿','guardian.authorize':'授权家长关联','guardian.revoke':'撤销家长授权','visit.register':'登记到店','visit.close':'结束本次到店','demo.seed':'扩展虚构案例','attachment.upload':'上传附件','attachment.download':'下载附件','attachment.revoke':'撤销附件访问','document.create':'建立资料版本','document.revise':'修订资料版本','staff.create':'建立员工账号','staff.update':'调整员工资料','staff.password_reset':'重置员工密码','staff.sessions_revoke':'撤销员工会话','account.password':'修改本人密码','customer.revise':'修订客户档案','contact.create':'建立家庭联系人','contact.update':'修改家庭联系人','demo.profiles':'补充虚构家庭资料'};
 function el(tag,text,className){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;}
 function toast(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,6000);}
 async function api(path,{method='GET',data,key}={}){
@@ -16,7 +17,8 @@ async function api(path,{method='GET',data,key}={}){
 const documentPanels=createDocumentPanels({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,reload:openCustomer,toast,showLogin});
 const organizationPanel=createOrganizationPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch,toast,boot,onLogout:logout});
 const operationsPanel=createOperationsPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch});
-function showLogin(){documentPanels.reset();organizationPanel.reset();operationsPanel.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
+const profilesPanel=createProfilesPanel({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,reload:openCustomer,toast});
+function showLogin(){profilesPanel.reset();documentPanels.reset();organizationPanel.reset();operationsPanel.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
 async function boot(){
   try{me=await api('/me');csrf=me.csrf;$('#login-view').hidden=true;$('#workspace').hidden=false;$('#loading').hidden=true;$('#user-name').textContent=me.name;$('#user-role').textContent=roleNames[me.role];$('#user-avatar').textContent=me.name.slice(0,1);$('#store-name').textContent=me.store?.name||'授权家庭范围';$('#demo-nav').hidden=!me.permissions.includes('demo:read');$('#organization-nav').hidden=!me.permissions.includes('organization:read');$('#audit-nav').hidden=!me.permissions.includes('audit:read');$('#operations-nav').hidden=!me.permissions.includes('operations:read');$('#new-customer').hidden=!me.permissions.includes('customers:create');$('#search').placeholder=me.role==='guardian'?'按客户姓名搜索':'姓名、联系人、电话或编号';switchView('customers');if(me.must_change_password){organizationPanel.openPassword();return;}await loadCustomers();}
   catch(e){if(me)$('#global-error').textContent=e.message;else showLogin();}
@@ -35,15 +37,16 @@ async function openCustomer(id){
     const detail=$('#detail');detail.replaceChildren();
     const top=el('div',undefined,'detail-top'),name=el('div');
     name.append(el('h2',c.name),el('p',`客户编号 ${c.id}`));
-    top.append(el('span',c.name.slice(0,1),'avatar'),name);detail.append(top);
+    top.append(el('span',c.name.slice(0,1),'avatar'),name);if(me.role!=='guardian')profilesPanel.renderActions(top,c);detail.append(top);
     const fields=el('dl',undefined,'detail-fields');
-    for(const [k,v] of [['出生日期',c.birth_date||'未填写'],...(me.role==='guardian'?[]:[['联系人',c.contact_name||'未填写'],['联系电话',c.phone||'未填写'],['建档日期',c.created_at?.slice(0,10)||'—']])]){
+    for(const [k,v] of [['出生日期',c.birth_date||'未填写'],...(me.role==='guardian'?[]:[['主要联系人',c.contact_name||'未填写'],['主要联系电话',c.phone||'未填写'],['建档日期',c.created_at?.slice(0,10)||'—']])]){
       const div=el('div');div.append(el('dt',k),el('dd',v));fields.append(div);
     }
     detail.append(fields);
     if(me.role==='guardian'){
       detail.append(el('p','当前仅展示授权基本资料；专业报告发布功能尚未实现。','muted'));
     }else{
+      const contactsTarget=el('div',undefined,'family-contacts-area');detail.append(contactsTarget);profilesPanel.renderContacts(contactsTarget,id);
       const documentsTarget=el('div',undefined,'documents-area');detail.append(documentsTarget);documentPanels.render(documentsTarget,id);
       const head=el('div',undefined,'cycle-heading');head.append(el('h2',`独立服务周期 · ${cycles.length}`));
       if(me.permissions.includes('cycles:create')){
@@ -90,16 +93,16 @@ function renderFamily(detail,guardians,id){
       action.disabled=true;
       try{
         const b=await api('/organization');if(selected!==id||!me)return;
-        const options=b.items.filter(u=>u.role==='guardian'&&u.active);
+        const options=b.items.filter(u=>u.role==='guardian'&&(u.active||guardians.some(g=>g.user_id===u.id)));
         if(!options.length){toast('本店暂无可关联的家长账号');return;}
         $('#guardian-form').reset();$('#guardian-error').textContent='';
         const select=$('#guardian-form select[name=user_id]');select.replaceChildren();
-        for(const u of options){const o=el('option',u.display_name);o.value=u.id;select.append(o);}
+        for(const u of options){const o=el('option',u.display_name+(u.active?'':'（账号停用，可撤销关联）'));o.value=u.id;select.append(o);}
         $('#guardian-dialog').showModal();
       }catch(e){$('#global-error').textContent=e.message;}finally{action.disabled=false;}
     };
   }
-  detail.append(sectionHeader('家庭关联与授权',action));
+  detail.append(sectionHeader('家长查看授权',action));
   if(!guardians.length)detail.append(el('p','尚无家长账号关联。联系人电话不等于查看授权。','small muted'));
   for(const g of guardians){
     const item=el('div',undefined,'family-row'),text=el('div');

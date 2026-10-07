@@ -8,7 +8,7 @@ import { once } from 'node:events';
 import { request as httpRequest } from 'node:http';
 import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
-import { seedDemoScenarios, seedDemoPeople, demoScenarios } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, demoScenarios } from '../src/demo-data.mjs';
 
 async function fixture(t,{persist=false,logger=()=>{}}={}) {
   const dir=mkdtempSync(join(tmpdir(),'optical-test-'));
@@ -99,7 +99,7 @@ test('audit is append-only, health checks database and disabling user revokes ac
   const {request,login,db}=await fixture(t),session=await login('manager');
   assert.throws(()=>db.exec("DELETE FROM audit_events"),/append-only/);
   assert.throws(()=>db.exec("UPDATE audit_events SET action='tamper'"),/append-only/);
-  assert.equal((await request('/api/health')).body.schema,4);
+  assert.equal((await request('/api/health')).body.schema,5);
   const audit=await request('/api/audit',session);assert.equal(audit.body.items[0].action,'session.login');assert.equal(audit.body.items[0].after_json,undefined);
   db.prepare("UPDATE users SET active=0 WHERE id='manager'").run();assert.equal((await request('/api/me',session)).status,401);
 });
@@ -109,7 +109,7 @@ test('disk persistence, repeatable migrations and consistent backup restore pres
   const backup=join(dir,'backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);
   const counts=Object.fromEntries(['customers','audit_events','service_cycles'].map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n]));
   await new Promise(resolve=>server.close(resolve));
-  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,4);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
+  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,5);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
 });
 test('production mode refuses unreviewed deployment; HTML and assets use security headers',async t=>{
   assert.throws(()=>createApp({mode:'production'}),/Production is blocked/);
@@ -394,7 +394,7 @@ test('operations is manager-only and its metrics and fault records stay within t
   const {request,login}=await fixture(t),manager=await login('manager'),other=await login('other'),front=await login('front'),parent=await login('parent');
   const a=await request('/api/customers/missing-a',manager),b=await request('/api/customers/missing-b',other);
   assert.equal((await request('/api/operations',front)).status,403);assert.equal((await request('/api/operations',parent)).status,403);
-  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,4);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
+  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,5);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
   const otherStatus=await request('/api/operations',other);assert.ok(otherStatus.body.errors.some(e=>e.request_id===b.body.request_id));assert.ok(!otherStatus.body.errors.some(e=>e.request_id===a.body.request_id));
   assert.equal(status.body.errors[0].store_id,undefined);assert.equal(status.body.errors[0].actor_id,undefined);
 });
@@ -410,4 +410,89 @@ test('interrupted upload is recorded once with its request ID and no business re
   pending.on('error',()=>{});pending.flushHeaders();await accepted;pending.write('{"name":"not-finished');pending.destroy();
   const event=await reported;assert.equal(event.code,'REQUEST_ABORTED');assert.equal(event.route,'/api/customers');
   const manager=await login('manager'),status=(await request('/api/operations',manager)).body;assert.equal(status.aborted,1);assert.equal(status.errors.filter(e=>e.request_id===event.request_id).length,1);assert.equal(db.prepare("SELECT count(*) n FROM customers WHERE created_by='front'").get().n,0);
+});
+
+const profileInput=(overrides={})=>({name:'更新姓名（虚构）',birth_date:null,contact_name:'补充家长（虚构）',phone:'10000000000',source:'guardian_report',revision_reason:'家长补充基本资料（虚构）',expected_version:1,...overrides});
+const contactInput=(overrides={})=>({name:'备用联系人（虚构）',relationship:'家长（演示）',phone:'000-00001',source:'guardian_report',note:'虚构资料',reason:'登记备用联系信息（虚构）',...overrides});
+
+test('profile history and contacts enforce staff role and store boundaries, including guardian field filtering',async t=>{
+  const {request,login}=await fixture(t),manager=await login('manager'),front=await login('front'),professional=await login('professional'),parent=await login('parent');
+  for(const endpoint of ['profile-history','contacts']){
+    for(const session of [manager,front,professional])assert.equal((await request(`/api/customers/child-a/${endpoint}`,session)).status,200);
+    assert.equal((await request(`/api/customers/child-a/${endpoint}`,parent)).status,403);
+    assert.equal((await request(`/api/customers/child-b/${endpoint}`,manager)).status,404);
+  }
+  for(const session of [professional,parent])for(const [endpoint,data] of [['profile',profileInput()],['contacts',contactInput()]])assert.equal((await request(`/api/customers/child-a/${endpoint}`,{...session,method:'POST',data,key:'profile-role-check'})).status,403);
+  assert.equal((await request('/api/customers/child-a',parent)).body.customer.revision,undefined);
+});
+test('profile revision keeps immutable snapshots, original identity and linked services while warning about shared phones',async t=>{
+  const {request,login,db,origin}=await fixture(t),front=await login('front');
+  await upload(origin,front);
+  await request('/api/customers/child-a/cycles',{...front,method:'POST',data:{type:'followup',goal:'existing cycle'},key:'profile-cycle-key'});
+  const options={...front,method:'POST',data:profileInput(),key:'profile-update-key'};
+  const a=await request('/api/customers/child-a/profile',options);assert.equal(a.status,200);assert.equal(a.body.customer.id,'child-a');assert.equal(a.body.customer.store_id,'a');assert.equal(a.body.customer.revision,2);assert.equal(a.body.customer.birth_date,null);assert.equal(a.body.duplicate_candidates[0].id,'sibling-a');
+  assert.deepEqual((await request('/api/customers/child-a/profile',options)).body,a.body);
+  const history=(await request('/api/customers/child-a/profile-history',front)).body.items;assert.equal(history.length,2);assert.equal(history[0].source,'guardian_report');assert.equal(history[1].name,'child-a');assert.equal(history[1].source,'initial');assert.equal(history[1].created_by,'manager');
+  assert.equal(db.prepare("SELECT count(*) n FROM service_cycles WHERE customer_id='child-a'").get().n,1);assert.equal(db.prepare("SELECT customer_id FROM attachments LIMIT 1").get().customer_id,'child-a');assert.equal(db.prepare("SELECT active FROM guardian_links WHERE user_id='parent'").get().active,1);
+  assert.equal(db.prepare("SELECT count(*) n FROM audit_events WHERE action='customer.revise'").get().n,1);
+  assert.throws(()=>db.exec("UPDATE customer_profile_versions SET name='tamper'"),/immutable/);assert.throws(()=>db.exec('DELETE FROM customer_profile_versions'),/immutable/);
+});
+test('profile validation, optimistic concurrency and audit failure preserve consistent current and historic data',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager');
+  const post=(data,key)=>request('/api/customers/child-a/profile',{...manager,method:'POST',data,key});
+  for(const data of [profileInput({source:''}),profileInput({revision_reason:''}),profileInput({phone:'invalid'}),profileInput({birth_date:'2099-01-01'}),profileInput({store_id:'b'}),profileInput({expected_version:null})])assert.equal((await post(data,'profile-invalid-key')).status,422);
+  const incomplete=profileInput();delete incomplete.contact_name;assert.equal((await post(incomplete,'profile-incomplete')).status,422);
+  const noChange=profileInput({name:'child-a',birth_date:'2017-01-01',contact_name:'shared-parent'});assert.equal((await post(noChange,'profile-no-change')).status,409);
+  db.exec("CREATE TRIGGER profile_fail BEFORE INSERT ON audit_events WHEN NEW.action='customer.revise' BEGIN SELECT RAISE(ABORT,'fail'); END;");
+  const failed=await post(profileInput(),'profile-retry-key');assert.equal(failed.status,500);assert.equal(db.prepare("SELECT name FROM customers WHERE id='child-a'").get().name,'child-a');assert.equal(db.prepare("SELECT count(*) n FROM customer_profile_versions WHERE customer_id='child-a'").get().n,1);assert.equal(db.prepare("SELECT count(*) n FROM idempotency WHERE request_key='profile-retry-key'").get().n,0);
+  db.exec('DROP TRIGGER profile_fail');assert.equal((await post(profileInput(),'profile-retry-key')).status,200);
+  const results=await Promise.all([post(profileInput({name:'并发甲（虚构）',expected_version:2}),'profile-concurrent-a'),post(profileInput({name:'并发乙（虚构）',expected_version:2}),'profile-concurrent-b')]);assert.deepEqual(results.map(r=>r.status).sort(),[200,409]);assert.equal(results.find(r=>r.status===409).body.error.code,'PROFILE_CONFLICT');assert.equal(db.prepare("SELECT count(*) n FROM customer_profile_versions WHERE customer_id='child-a'").get().n,3);
+});
+test('multiple family contacts stay separate from guardian access, and search includes only active contacts',async t=>{
+  const {request,login,db}=await fixture(t),front=await login('front'),parent=await login('parent');
+  const create=(customerId,key)=>request(`/api/customers/${customerId}/contacts`,{...front,method:'POST',data:contactInput(),key});
+  const a=await create('child-a','family-create-one'),b=await create('sibling-a','family-create-two');assert.equal(a.status,201);assert.equal(b.status,201);assert.notEqual(a.body.contact.id,b.body.contact.id);assert.equal(a.body.duplicate_candidates.length,0);
+  assert.equal((await request('/api/customers?q=000-00001',front)).body.items.length,2);assert.equal((await request('/api/customers?q=000-00001',parent)).body.items.length,0);
+  const duplicate=await create('child-a','family-create-third');assert.equal(duplicate.body.duplicate_candidates[0].id,a.body.contact.id);
+  const update=await request(`/api/contacts/${a.body.contact.id}`,{...front,method:'POST',data:contactInput({name:'已停用联系人（虚构）',active:false,expected_revision:1}),key:'family-deactivate'});assert.equal(update.status,200);assert.equal(update.body.contact.revision,2);
+  assert.equal((await request('/api/customers?q=已停用联系人',front)).body.items.length,0);
+  assert.equal((await request('/api/customers/child-a/contacts',front)).body.items.length,2);assert.equal(db.prepare("SELECT active FROM guardian_links WHERE user_id='parent'").get().active,1);assert.equal((await request('/api/customers',parent)).body.items.length,1);
+  const reactivated=await request(`/api/contacts/${a.body.contact.id}`,{...front,method:'POST',data:contactInput({active:true,expected_revision:2}),key:'family-reactivate'});assert.equal(reactivated.body.contact.revision,3);assert.equal(reactivated.body.contact.active,1);
+});
+test('contact edits reject reparenting, cross-store access and stale revisions; failed audit rolls back the edit',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager'),other=await login('other'),professional=await login('professional');
+  const created=await request('/api/customers/child-a/contacts',{...manager,method:'POST',data:contactInput(),key:'contact-edit-fixture'}),id=created.body.contact.id;
+  const post=(data,key,session=manager)=>request(`/api/contacts/${id}`,{...session,method:'POST',data,key});
+  const input=contactInput({note:'补充虚构资料',active:true,expected_revision:1});
+  assert.equal((await post(input,'contact-other',other)).status,404);assert.equal((await post(input,'contact-professional',professional)).status,403);
+  assert.equal((await post({...input,customer_id:'sibling-a'},'contact-reparent')).status,422);
+  assert.equal((await post({...input,active:1},'contact-invalid-active')).status,422);
+  db.exec("CREATE TRIGGER contact_fail BEFORE INSERT ON audit_events WHEN NEW.action='contact.update' BEGIN SELECT RAISE(ABORT,'fail'); END;");
+  assert.equal((await post(input,'contact-retry-key')).status,500);assert.equal(db.prepare('SELECT revision,note FROM family_contacts WHERE id=?').get(id).revision,1);
+  db.exec('DROP TRIGGER contact_fail');const success=await post(input,'contact-retry-key');assert.equal(success.status,200);assert.deepEqual((await post(input,'contact-retry-key')).body,success.body);
+  assert.equal((await post({...input,note:'过期修改'},'contact-stale-key')).body.error.code,'PROFILE_CONFLICT');assert.equal(db.prepare('SELECT customer_id,revision FROM family_contacts WHERE id=?').get(id).customer_id,'child-a');
+});
+test('synthetic profile seed is repeatable and retains legitimate edited snapshots and contact changes',()=>{
+  const db=openDatabase(':memory:');try{
+    db.exec("INSERT INTO stores VALUES ('store-a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','虚构负责人',hashPassword('fixture-only'),'manager','store-a');seedDemoScenarios(db);
+    assert.deepEqual(seedDemoProfiles(db),{contacts:12,profiles:2});assert.deepEqual(seedDemoProfiles(db),{contacts:0,profiles:0});
+    const id='sample-plan',row=db.prepare('SELECT * FROM customers WHERE id=?').get(id),now=new Date().toISOString();
+    db.prepare('UPDATE customers SET name=? WHERE id=?').run('修订的小唐（虚构）',id);db.prepare('INSERT INTO customer_profile_versions VALUES (?,?,?,?,?,?,?,?,?,?)').run(id,3,'修订的小唐（虚构）',row.birth_date,row.contact_name,row.phone,'employee','演示修订',now,'demo-manager');
+    db.prepare("UPDATE family_contacts SET note='edited',revision=2,active=0 WHERE id='demo-contact-plan-1'").run();
+    assert.deepEqual(seedDemoScenarios(db),{customers:0,cycles:0,visits:0,documents:0,attachments:0});assert.deepEqual(seedDemoProfiles(db),{contacts:0,profiles:0});assert.equal(db.prepare('SELECT name FROM customers WHERE id=?').get(id).name,'修订的小唐（虚构）');assert.equal(db.prepare("SELECT note FROM family_contacts WHERE id='demo-contact-plan-1'").get().note,'edited');
+  }finally{db.close();}
+});
+
+test('V0.5 migration captures a truthful legacy baseline without attributing past edits to the original creator',()=>{
+  const dir=mkdtempSync(join(tmpdir(),'optical-profile-upgrade-')),path=join(dir,'old.sqlite');let db;
+  try{
+    db=new DatabaseSync(path);db.exec('PRAGMA foreign_keys=ON;CREATE TABLE schema_migrations(name TEXT PRIMARY KEY,applied_at TEXT NOT NULL)');
+    for(const migration of ['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql']){
+      db.exec(readFileSync(new URL(`../migrations/${migration}`,import.meta.url),'utf8'));db.prepare('INSERT INTO schema_migrations VALUES (?,?)').run(migration,new Date().toISOString());
+    }
+    db.exec("INSERT INTO stores VALUES ('a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('manager','manager','虚构负责人',hashPassword('fixture-only'),'manager','a');
+    db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run('old','a','存量档案（虚构）',null,null,null,'2025-01-01T00:00:00.000Z','manager');db.close();db=openDatabase(path);
+    const v=db.prepare('SELECT * FROM customer_profile_versions').get();assert.equal(v.source,'legacy');assert.equal(v.created_by,null);assert.notEqual(v.created_at,'2025-01-01T00:00:00.000Z');assert.equal(v.name,'存量档案（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,5);
+    db.close();db=openDatabase(path);assert.equal(db.prepare('SELECT count(*) n FROM customer_profile_versions').get().n,1);
+  }finally{db?.close();rmSync(dir,{recursive:true,force:true});}
 });

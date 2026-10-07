@@ -7,7 +7,7 @@
 | stores | id PK、name 必填 | 一个门店对应多用户和客户 |
 | users | id PK、username 唯一、display_name、password_hash、role 枚举、store_id FK、active | 员工本轮单店；家长可无门店。哈希从不返回 API |
 | sessions | token_hash PK、user_id FK、csrf、expires_at 毫秒 | 会话令牌不明文存储；到期、退出、停用拒绝访问 |
-| customers | id PK、store_id FK、name 必填(80)、birth_date nullable、contact_name nullable(80)、phone nullable(32)、created_at、created_by FK | 联系人是临时基本字段；完整家庭关系尚未实现。查询限授权门店/有效监护 |
+| customers | id PK、store_id FK、name 必填(80)、birth_date nullable、contact_name nullable(80)、phone nullable(32)、created_at、created_by FK | contact_name/phone为主要联系人字段；多联系人单独登记，完整家庭成员/付款关系尚未实现。查询限授权门店/有效监护 |
 | guardian_links | user_id + customer_id 复合主键、active、relationship、updated_at、updated_by | 一个监护用户可关联多个客户；撤销即时生效；来源证明待确认 |
 | service_cycles | id PK、customer_id FK、type=followup/training/retail、goal 必填(300)、status=draft、created_at、created_by FK | 客户 1:N 周期，草稿只登记目标；计划、订单、专业确认尚未建立 |
 | audit_events | id PK、store_id、actor_id、action、entity_id、before_json/after_json、created_at | 新增动作 before=null；前后值留存于库，查询仅授权门店元信息，禁止修改删除 |
@@ -45,3 +45,9 @@ sessions新增user_id索引用于即时撤销与有效会话计数。人员资�
 不新增业务表或迁移。备份清单为同快照旁的JSON，含版本、创建时间、大小、文件/结构指纹、迁移和各基础表数量，不含逐条资料或凭据。恢复回执保存在新目录，补充恢复时间、指纹和撤销会话数；恢复时仅清除sessions，其他记录保持快照。
 
 运行故障窗口为每店200条内存请求元信息，负责人只读20条故障；request_id不作为客户或业务主键，也不改变审计和幂等表身份。字段和恢复边界见api.md / recovery.md。
+
+## V0.6 档案历史与联系人（005_customer_profiles.sql）
+
+customer_profile_versions：customer_id+version复合主键、name、birth_date、contact_name、phone、source、revision_reason、created_at/by；禁止更新/删除。source还包括initial（迁移后新建初版）及legacy（升级时存量基线，创建者未知null）。customers保留当前基本字段，必须与最新版本一致；备份校验同步核对，拒绝无历史匹配的当前档案。
+
+family_contacts：id、customer_id FK、name、relationship、phone nullable、source、note nullable、active、revision、created_at/by、updated_at/by；联系人1:N属于独立客户，共用电话不唯一。编辑不允许更换客户身份，停用保留资料及审计；当前资料和前后审计同事务。记录关系是录入描述，不自动赋予查看权限，也不构成监护证明核验。guardian_links继续单独控制家长账号访问。

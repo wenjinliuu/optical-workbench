@@ -1,4 +1,4 @@
-# API v0.5
+# API v0.6
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -16,12 +16,12 @@
 | POST /customers/:id/guardians | user_id、relationship、active(boolean)、reason | 基础授权/撤销，负责人；校验客户与已有家长账号均在本店范围 |
 | POST /customers/:id/visits | purpose、cycle_ids(string[]，最多20，可空) | 登记到店，负责人/前台；周期只能属于同一客户 |
 | POST /visits/:id/close | reason | 结束当前到店，负责人/前台；不改变周期状态 |
-| GET /demo/scenarios | 无 | 本店已存在且名称匹配的虚构场景，员工；snapshot_only=true，家长拒绝 |
+| GET /demo/scenarios | 无 | 本店已存在、初版可核对的虚构场景；合法修订后使用当前姓名，员工；snapshot_only=true，家长拒绝 |
 | GET /audit | 无 | 最近100条当前门店 id/actor_id/action/entity_id/created_at；负责人 |
 
 全部已登录写入使用 X-CSRF-Token；客户、周期、家长关联、到店登记与结束另需 Idempotency-Key（8–100 位字母数字下划线/连字符）。同一身份+动作+键的规范字段值相同，返回原响应；不同则409。浏览器在失败重试时保留键，成功后换键。写入+审计+防重复结果在同一事务。
 
-出生日期有效且不晚于当天；未填写为 null；电话可重复。重复提示仅提示核对，不自动合并。暂未提供档案更新/删除、跨店、导出、专业检查、收款或服务周期状态推进接口。
+出生日期有效且不晚于当天；未填写为 null；电话可重复。重复提示仅提示核对，不自动合并。暂未提供档案删除、跨店、导出、专业检查、收款或服务周期状态推进接口。
 
 家长关联需要已有本店家长身份（账号归属本店，或有本店客户的历史关联）。新增授权要求账号有效；已停用账号仍可撤销关系。变更保留前后值及操作依据，不将开发版记录视为正式监护证明核验。撤销后立即停止后续访问。
 
@@ -67,3 +67,19 @@ GET /operations：负责人限定当前门店，返回database=ok（执行真实
 响应均带X-Request-Id，错误JSON在原error旁增加request_id。编号由服务端生成，忽略调用方同名头；幂等业务响应不加入动态编号，重试仍返回原结果。故障对象包含request_id、created_at、method、route模板、status、code、duration_ms，无请求体/查询/凭据/客户编号。500统一INTERNAL，不返回内部异常信息。中断只记一次499。
 
 统计为本次服务启动后的内存观察值，P95基于本店最近200个已结束请求；成功/失败均计入，读取运行状态请求在结束后计数。原恢复工具通过本地CLI操作，不提供网页备份/恢复接口。工具步骤与边界见recovery.md。
+
+## V0.6 客户资料与家庭联系人
+
+| 方法 / 路径 | 输入 | 输出 / 权限 |
+| --- | --- | --- |
+| GET /customers/:id/profile-history | 无 | 最近100个不可变档案版本，含来源、依据、时间与操作人；本店员工，家长拒绝 |
+| POST /customers/:id/profile | name、birth_date、contact_name、phone、source、revision_reason、expected_version | customer(员工含revision)、duplicate_candidates；负责人/前台；四个基本字段必须齐全，未知可null |
+| GET /customers/:id/contacts | 无 | 最近100位联系人，包含已停用，items/limit；本店员工，家长拒绝 |
+| POST /customers/:id/contacts | name、relationship、phone?、source、note?、reason | contact、duplicate_candidates；负责人/前台，初始revision=1、active=1 |
+| POST /contacts/:id | name、relationship、phone、source、note、active(boolean)、reason、expected_revision | contact、duplicate_candidates；负责人/前台；编辑、停用和恢复都保留审计前后值 |
+
+写入需要CSRF和Idempotency-Key；资料修改、不可变版本、审计及重放结果同事务。陈旧版本409 PROFILE_CONFLICT，无变化409 NO_CHANGES，缺失/无效字段422。资料来源必须明确选employee/external/guardian_report；依据300字符，姓名80、关系40、电话32、备注300。禁止修改客户编号、门店、创建者及联系人所属客户。
+
+主要联系人与家庭联系人分别维护，不自动同步；登记或停用联系人不产生/撤销家长查看授权。电话可重复，只返回候选核对。员工检索增加有效家庭联系人姓名/电话匹配，家长仍只按授权客户姓名搜索。联系人当前资料可修订，历史前后值保存在不可变审计中；客户基本资料另有不可变快照和历史页面。
+
+迁移005将存量当前档案保存为V1，source=legacy、created_by=null、时间为升级时间，明确此前修改未追溯；迁移后新建客户自动保存source=initial的V1。不是监护身份核验、跨店转移或客户合并接口。

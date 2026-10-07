@@ -8,7 +8,7 @@ import { createHash } from 'node:crypto';
 import { once } from 'node:events';
 import { spawnSync } from 'node:child_process';
 import { openDatabase,hashPassword } from '../src/db.mjs';
-import { seedDemoScenarios,seedDemoPeople } from '../src/demo-data.mjs';
+import { seedDemoScenarios,seedDemoPeople,seedDemoProfiles } from '../src/demo-data.mjs';
 import { createBackup,verifyBackup,restoreBackup } from '../src/recovery.mjs';
 import { createApp } from '../src/server.mjs';
 
@@ -17,20 +17,21 @@ function fixture(t){
   const dir=mkdtempSync(join(tmpdir(),'optical-recovery-')),path=join(dir,'source.sqlite'),db=openDatabase(path);
   db.prepare('INSERT INTO stores VALUES (?,?)').run('store-a','虚构门店');
   db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','负责人（虚构）',hashPassword('recovery-password-only'),'manager','store-a');
-  seedDemoScenarios(db);seedDemoPeople(db);
+  seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);
   const token='a'.repeat(64);db.prepare('INSERT INTO sessions VALUES (?,?,?,?)').run(hash(token),'demo-manager','test-csrf',Date.now()+3600000);
   t.after(()=>{db.close();rmSync(dir,{recursive:true,force:true});});return {dir,path,db,token};
 }
 test('verified online snapshot restores file/history/personnel and rejects old sessions without changing source',async t=>{
   const {dir,path,db,token}=fixture(t),file=db.prepare("SELECT bytes FROM attachment_blobs LIMIT 1").get().bytes;
   const backup=await createBackup(path,join(dir,'backups')),verified=await verifyBackup(backup.backup),originalHash=hash(readFileSync(backup.backup));
-  assert.equal(verified.checks.counts.document_versions,8);assert.equal(verified.checks.counts.sessions,1);
+  assert.equal(verified.checks.counts.customer_profile_versions,8);assert.equal(verified.checks.counts.family_contacts,12);assert.equal(verified.checks.counts.document_versions,8);assert.equal(verified.checks.counts.sessions,1);
   assert.equal(statSync(backup.backup).mode&0o777,0o600);assert.equal(statSync(backup.manifest).mode&0o777,0o600);
   const manifest=readFileSync(backup.manifest,'utf8');assert.ok(!manifest.includes('recovery-password-only')&&!manifest.includes('负责人')&&!manifest.includes('token_hash'));
   const restored=await restoreBackup(backup.backup,join(dir,'restored'));assert.equal(restored.sessions_revoked,1);assert.equal(hash(readFileSync(backup.backup)),originalHash);assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,1);
   const app=createApp({databasePath:restored.database,mode:'test',logger:()=>{}});
   assert.deepEqual(Buffer.from(app.db.prepare('SELECT bytes FROM attachment_blobs LIMIT 1').get().bytes),Buffer.from(file));
   assert.equal(app.db.prepare("SELECT active FROM users WHERE id='demo-inactive'").get().active,0);
+  assert.equal(app.db.prepare("SELECT source FROM customer_profile_versions WHERE customer_id='sample-plan' AND version=2").get().source,'guardian_report');assert.equal(app.db.prepare("SELECT phone FROM customers WHERE id='sample-plan'").get().phone,'000-00000');assert.equal(app.db.prepare("SELECT active FROM family_contacts WHERE id='demo-contact-retail-2'").get().active,0);
   assert.equal(app.db.prepare("SELECT must_change_password FROM user_security WHERE user_id='demo-onboarding'").get().must_change_password,1);
   app.server.listen(0,'127.0.0.1');await once(app.server,'listening');t.after(()=>new Promise(resolve=>app.server.close(resolve)));
   const origin=`http://127.0.0.1:${app.server.address().port}`;
@@ -87,4 +88,9 @@ test('CLI backup, verify and independent restore succeed; invalid arguments and 
   assert.equal(spawnSync(process.execPath,['scripts/restore.mjs',result.backup,target],{env,encoding:'utf8'}).status,1);
   for(const script of ['backup','verify-backup','restore'])assert.equal(spawnSync(process.execPath,[`scripts/${script}.mjs`],{env:{...env,NODE_ENV:'production'},encoding:'utf8'}).status,1);
   assert.equal(spawnSync(process.execPath,['scripts/restore.mjs'],{env,encoding:'utf8'}).status,1);
+});
+
+test('current profile without a matching immutable snapshot is rejected before recovery artifacts are kept',async t=>{
+  const {dir,path,db}=fixture(t);db.prepare("UPDATE customers SET phone='000-12345' WHERE id='sample-plan'").run();
+  await assert.rejects(createBackup(path,join(dir,'backups')),/档案/);assert.deepEqual(readdirSync(join(dir,'backups')),[]);
 });
