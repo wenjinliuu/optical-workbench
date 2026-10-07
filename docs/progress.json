@@ -1,0 +1,2862 @@
+{
+  "baseline": "V1.1",
+  "updated": "2026-10-07",
+  "designStatus": "本轮设计文档已补充",
+  "productStatus": "第一阶段基础切片已实现；整体阶段未验收",
+  "currentTask": "T00.01",
+  "nextTask": "T00.01",
+  "stage": "P00",
+  "blockers": [
+    "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
+  ],
+  "changes": [
+    {
+      "date": "2026-10-07",
+      "version": "V1.1",
+      "type": "设计更新",
+      "summary": "增加协作与服务周期、任务完成条件、多端便捷性、8 组长期可视化及专项验收、分阶段开发及需求追踪；业务实现仍全部未开始"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.1",
+      "type": "工程启动",
+      "summary": "需求完整保留，建立本地基础验证切片；规则、正式架构、附件和版本服务未完成。"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T00.01",
+      "stage": "P00",
+      "name": "确认业务规则与未知项",
+      "work": "核实门店条件、专业职责、套餐扣次/退款、排课容量、报表口径、通知授权。",
+      "deliverable": "规则登记：状态、暂定假设、负责人、影响项、确认依据",
+      "roles": "业务负责人 + 产品",
+      "acceptance": "每个未知项可定位；依赖它的任务显式阻塞",
+      "depends": [],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T00.02",
+      "stage": "P00",
+      "name": "建立实体、字段和关联字典",
+      "work": "展开字段、类型、单位、眼别、必填条件、唯一键、关联基数、保留与权限。",
+      "deliverable": "数据字典、关系图、版本与快照规则",
+      "roles": "产品 + 数据设计",
+      "acceptance": "客户、周期、到店、计划、订单、权益与资金能独立关联",
+      "depends": [
+        "T00.01"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T00.03",
+      "stage": "P00",
+      "name": "定义页面、状态和验收案例",
+      "work": "列出岗位页面、移动布局、加载/空/错状态、迁移条件及分支场景。",
+      "deliverable": "页面清单、状态表、验收用例",
+      "roles": "产品 + 界面设计 + 验收",
+      "acceptance": "七条流程正常与异常都有案例；选中与业务状态分开",
+      "depends": [
+        "T00.01",
+        "T00.02"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T00.04",
+      "stage": "P00",
+      "name": "确定实现边界与阶段交接",
+      "work": "确定正式系统仓库、部署、数据存储、身份、环境与接口；给可选能力标记启用条件。",
+      "deliverable": "架构决定记录、接口契约、测试数据策略",
+      "roles": "开发负责人",
+      "acceptance": "无真实敏感数据测试；每项需求有任务及验收归属",
+      "depends": [
+        "T00.01",
+        "T00.02",
+        "T00.03"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T01.01",
+      "stage": "P01",
+      "name": "建立工程、环境和发布基础",
+      "work": "实现电脑/手机导航壳、环境隔离、配置、持续检查和可回退发布。",
+      "deliverable": "工程入口、环境说明、发布回退记录",
+      "roles": "前端 + 后端 + 运行",
+      "acceptance": "从干净环境可启动；无密钥进入源码",
+      "depends": [
+        "T00.01",
+        "T00.02",
+        "T00.03",
+        "T00.04"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T01.02",
+      "stage": "P01",
+      "name": "实现组织、登录和权限",
+      "work": "员工、门店、角色、动作范围、专业职责、家长身份与会话撤销。",
+      "deliverable": "身份与权限接口、拒绝状态页",
+      "roles": "后端 + 前端",
+      "acceptance": "家长越家庭、员工越店、越动作均失败",
+      "depends": [
+        "T00.01",
+        "T00.02",
+        "T00.03",
+        "T00.04",
+        "T01.01"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T01.03",
+      "stage": "P01",
+      "name": "实现版本、附件与审计基础",
+      "work": "数据库迁移、文件授权、版本快照、关键前后值与审批关联。",
+      "deliverable": "公共数据服务、文件接口、审计查询",
+      "roles": "后端 + 数据设计",
+      "acceptance": "附件不可越权；版本可引用且历史不改写",
+      "depends": [
+        "T00.01",
+        "T00.02",
+        "T00.03",
+        "T00.04",
+        "T01.01",
+        "T01.02"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T01.04",
+      "stage": "P01",
+      "name": "建立一致性和运行保障",
+      "work": "防重复、并发校验、事务、失败重试、备份、日志及健康检查。",
+      "deliverable": "公共请求规则、恢复流程、监控基础",
+      "roles": "后端 + 运行 + 验收",
+      "acceptance": "重复和并发样例唯一结果；可恢复并核对基础数据",
+      "depends": [
+        "T00.01",
+        "T00.02",
+        "T00.03",
+        "T00.04",
+        "T01.01",
+        "T01.02",
+        "T01.03"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T02.01",
+      "stage": "P02",
+      "name": "实现客户、家庭与统一检索",
+      "work": "个人建档、监护/联系/付款关系、重复提示、合并及跨店交接。",
+      "deliverable": "档案页面、查询与关系接口",
+      "roles": "前端 + 后端",
+      "acceptance": "同名、兄弟姐妹、共用电话及撤销监护关系可正确处理",
+      "depends": [
+        "T01.01",
+        "T01.02",
+        "T01.03",
+        "T01.04"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T02.02",
+      "stage": "P02",
+      "name": "实现服务周期与到店关系",
+      "work": "周期创建、暂停、恢复、结束；到店多周期关联；订单、计划独立链接。",
+      "deliverable": "周期模型、客户总览、历史时间轴",
+      "roles": "数据设计 + 前后端",
+      "acceptance": "退单不误结束计划；一次到店结束不结束长期周期",
+      "depends": [
+        "T01.01",
+        "T01.02",
+        "T01.03",
+        "T01.04",
+        "T02.01"
+      ],
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
+      "evidence": [
+        "docs/phase-one.md",
+        "docs/handover.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+    },
+    {
+      "id": "T02.03",
+      "stage": "P02",
+      "name": "实现检查、专项结果与版本",
+      "work": "草稿、模板、外院资料、单位眼别、缺测原因、确认修订及条件对比。",
+      "deliverable": "检查表单、版本与对比页面",
+      "roles": "专业业务 + 前后端",
+      "acceptance": "缺测不作零；不可比有提示；旧版本可追查",
+      "depends": [
+        "T01.01",
+        "T01.02",
+        "T01.03",
+        "T01.04",
+        "T02.01",
+        "T02.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T02.04",
+      "stage": "P02",
+      "name": "实现验配处方与报告基础",
+      "work": "专业确认、商品/加工参数、订单处方快照、对外报告确认撤回再发布。",
+      "deliverable": "处方及报告契约、发布记录",
+      "roles": "专业业务 + 后端",
+      "acceptance": "新处方不改旧订单；发布范围独立于内部档案权限",
+      "depends": [
+        "T01.01",
+        "T01.02",
+        "T01.03",
+        "T01.04",
+        "T02.01",
+        "T02.02",
+        "T02.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T02.05",
+      "stage": "P02",
+      "name": "建立长期跟踪数据与指标契约",
+      "work": "明确每项指标字段、单位、条件、来源、业务时间、确认状态、版本与事件关联，提供历史查询。",
+      "deliverable": "长期指标字典、查询接口与来源追溯",
+      "roles": "专业业务 + 数据设计 + 后端",
+      "acceptance": "稀疏记录、不同记法、缺测和旧版本能明确区分",
+      "depends": [
+        "T01.01",
+        "T01.02",
+        "T01.03",
+        "T01.04",
+        "T02.01",
+        "T02.02",
+        "T02.03",
+        "T02.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T03.01",
+      "stage": "P03",
+      "name": "实现任务分派与接收",
+      "work": "候选队列、负责人、认领、开始、暂停、退回、转派和代理交接。",
+      "deliverable": "任务接口、个人与岗位队列",
+      "roles": "后端 + 前端",
+      "acceptance": "已分配和执行状态独立；退回有理由；请假任务有接收人",
+      "depends": [
+        "T02.01",
+        "T02.02",
+        "T02.03",
+        "T02.04",
+        "T02.05"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T03.02",
+      "stage": "P03",
+      "name": "实现完成条件与异常恢复",
+      "work": "输入检查、授权推进、串并行汇合、循环、阻塞、取消、恢复、截止时间。",
+      "deliverable": "流转服务与模板、时限规则",
+      "roles": "后端 + 业务设计",
+      "acceptance": "失败不能推进；重复完成不重复生成下一任务",
+      "depends": [
+        "T02.01",
+        "T02.02",
+        "T02.03",
+        "T02.04",
+        "T02.05",
+        "T03.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T03.03",
+      "stage": "P03",
+      "name": "实现岗位工作台与三种视图",
+      "work": "角色今日任务、流程图、看板、档案时间轴及原单入口。",
+      "deliverable": "电脑/手机工作台",
+      "roles": "前端 + 界面设计",
+      "acceptance": "同一任务在三视图一致；手机点击节点可直接查看和处理",
+      "depends": [
+        "T02.01",
+        "T02.02",
+        "T02.03",
+        "T02.04",
+        "T02.05",
+        "T03.01",
+        "T03.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T03.04",
+      "stage": "P03",
+      "name": "实现审批与通知闭环",
+      "work": "审批同意/拒绝/撤回；通知回执、失败重试、人工接管和逾期升级。",
+      "deliverable": "审批历史、通知适配接口、异常名单",
+      "roles": "后端 + 运行",
+      "acceptance": "发出不当作到店；失败交人工；提醒不重复创建业务任务",
+      "depends": [
+        "T02.01",
+        "T02.02",
+        "T02.03",
+        "T02.04",
+        "T02.05",
+        "T03.01",
+        "T03.02",
+        "T03.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T04.01",
+      "stage": "P04",
+      "name": "实现商品、基础库存和订单",
+      "work": "商品规格、可售/预留/隔离、库存流水、优惠、组合购买、订金尾款。",
+      "deliverable": "商品与订单页面、库存预留契约",
+      "roles": "销售业务 + 前后端",
+      "acceptance": "金额计算可核对；并发预留不超卖",
+      "depends": [
+        "T03.01",
+        "T03.02",
+        "T03.03",
+        "T03.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T04.02",
+      "stage": "P04",
+      "name": "实现收款、退款与交班",
+      "work": "多渠道流水、分次收款、退款审批与状态、票据、应收和交班核对。",
+      "deliverable": "收银、退款、日结接口与页面",
+      "roles": "财务 + 后端",
+      "acceptance": "约定公式通过；渠道失败不显示成功；退款关联原款",
+      "depends": [
+        "T03.01",
+        "T03.02",
+        "T03.03",
+        "T03.04",
+        "T04.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T04.03",
+      "stage": "P04",
+      "name": "实现订货、加工与交期",
+      "work": "处方快照工单、内外加工、供货、分批到货、缺货延期及沟通。",
+      "deliverable": "加工看板、子工单与预计交期",
+      "roles": "加工业务 + 前后端",
+      "acceptance": "分批数量一致；参数变更有版本与影响确认",
+      "depends": [
+        "T03.01",
+        "T03.02",
+        "T03.03",
+        "T03.04",
+        "T04.01",
+        "T04.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T04.04",
+      "stage": "P04",
+      "name": "实现质检、返工与交付",
+      "work": "项目确认、退回、损耗、重新质检、取镜通知、调整、签收及分项交付。",
+      "deliverable": "质量记录与交付页面",
+      "roles": "质量 + 前后端",
+      "acceptance": "不合格不能交付；尾款规则独立；未交付项保留",
+      "depends": [
+        "T03.01",
+        "T03.02",
+        "T03.03",
+        "T03.04",
+        "T04.01",
+        "T04.02",
+        "T04.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T04.05",
+      "stage": "P04",
+      "name": "实现售后与质量追溯",
+      "work": "关联原单，维修重做、投诉、退货隔离、索赔、召回和回访改进。",
+      "deliverable": "售后任务链、批次查询",
+      "roles": "售后 + 质量 + 后端",
+      "acceptance": "可追溯客户和采购来源；退货不直接变可售",
+      "depends": [
+        "T03.01",
+        "T03.02",
+        "T03.03",
+        "T03.04",
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T05.01",
+      "stage": "P05",
+      "name": "实现个人计划与项目库",
+      "work": "评估、目标、项目模板、确认、调整、暂停、恢复、结束及复评节点。",
+      "deliverable": "计划版本与阶段记录",
+      "roles": "专业业务 + 前后端",
+      "acceptance": "执行引用当时版本；项目模板不自动成为确认计划",
+      "depends": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T05.02",
+      "stage": "P05",
+      "name": "实现套餐与权益流水",
+      "work": "购买赠送、次数/期间、效期、冻结延期、转套餐、扣次撤销与退款分摊。",
+      "deliverable": "权益账与规则快照",
+      "roles": "财务 + 后端",
+      "acceptance": "预约不扣次；付费赠送分开；冲销关联原流水",
+      "depends": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T05.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T05.03",
+      "stage": "P05",
+      "name": "实现资源排课与候补",
+      "work": "一对一/小组、员工房间设备、维护与缓冲、周期序列例外、请假调课补课。",
+      "deliverable": "课表、资源冲突和替代时段",
+      "roles": "前台业务 + 前后端",
+      "acceptance": "并发预约不冲突；单次更改不影响其他预约",
+      "depends": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T05.01",
+        "T05.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T05.04",
+      "stage": "P05",
+      "name": "实现签到、执行与权益联动",
+      "work": "当次实际项目、时长反馈、中止异常、确认、扣次及待补记录。",
+      "deliverable": "训练执行页面、确认联动",
+      "roles": "训练业务 + 前后端",
+      "acceptance": "记录/扣次部分失败可恢复；同一确认只扣一次",
+      "depends": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T05.01",
+        "T05.02",
+        "T05.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T05.05",
+      "stage": "P05",
+      "name": "实现家庭练习与阶段复评",
+      "work": "布置、提交来源、反馈、检查对比、复评、计划调整或结束和下一任务。",
+      "deliverable": "家庭练习接口、复评流程",
+      "roles": "专业业务 + 训练 + 前后端",
+      "acceptance": "未到复评仍可继续预约；结束专业计划不自动清零权益",
+      "depends": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T06.01",
+      "stage": "P06",
+      "name": "实现长期档案与复查计划",
+      "work": "检查时间轴、双眼条件筛选、负责人员、复查计划、逾期与结案。",
+      "deliverable": "长期管理页面、随访周期",
+      "roles": "专业业务 + 前后端",
+      "acceptance": "变化展示有条件来源；结案原因及后续安排完整",
+      "depends": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T06.02",
+      "stage": "P06",
+      "name": "实现联系、预约和失败接管",
+      "work": "复查/取镜/训练通知、回执、失联、再次联系、延期及到店关联。",
+      "deliverable": "联系工作台与人工闭环",
+      "roles": "前台 + 后端",
+      "acceptance": "通知目的与授权分别记录；发出不当作已读",
+      "depends": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T06.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T06.03",
+      "stage": "P06",
+      "name": "实现外院复查与转介跟踪",
+      "work": "外院来源、附件、专业确认、转介安排、联系结果和重新排期。",
+      "deliverable": "外院及转介任务记录",
+      "roles": "专业业务 + 前后端",
+      "acceptance": "无法测和外院记录不覆盖本店数据；结果由有职责人员确认",
+      "depends": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T06.01",
+        "T06.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T06.04",
+      "stage": "P06",
+      "name": "实现接触镜与 OK 镜专项链",
+      "work": "按条件启用评估授权、参数订片、验收批号、护理指导、复查、更换和停用。",
+      "deliverable": "专项表单、订片与随访链",
+      "roles": "专业业务 + 质量 + 前后端",
+      "acceptance": "职责、产品追溯、版本和长期档案规则可验证",
+      "depends": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T06.01",
+        "T06.02",
+        "T06.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T07.01",
+      "stage": "P07",
+      "name": "实现采购、供应商与验收",
+      "work": "供应商资料、需求审批、订货在途、分批验收、差异隔离和退供。",
+      "deliverable": "采购验收页面、供应商对账",
+      "roles": "采购 + 仓库 + 后端",
+      "acceptance": "验收数量与批次完整；重复入库无第二笔流水",
+      "depends": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T07.02",
+      "stage": "P07",
+      "name": "实现库存矩阵、调拨和盘点",
+      "work": "规格矩阵、扫码、两端调拨、盘点审批、报损、临期缺货滞销预警。",
+      "deliverable": "库存查询和质量追溯扩展",
+      "roles": "仓库 + 质量 + 前后端",
+      "acceptance": "账实差异有审批；调拨不计销售；取消释放预留",
+      "depends": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T07.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T07.03",
+      "stage": "P07",
+      "name": "实现员工、排班、资质和交接",
+      "work": "门店范围、休假代办、岗位培训、资质效期、离职任务移交。",
+      "deliverable": "员工与资源管理",
+      "roles": "负责人 + 后端",
+      "acceptance": "停用账号撤销访问；无人接收的任务进入管理队列",
+      "depends": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T07.01",
+        "T07.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T07.04",
+      "stage": "P07",
+      "name": "实现经营财务与提成核对",
+      "work": "应收应付、费用、预收余额、业绩口径、提成版本、审批与渠道对账。",
+      "deliverable": "财务明细、差异名单、规则算例",
+      "roles": "财务 + 后端",
+      "acceptance": "相同筛选明细与汇总一致；退款后提成调整有依据",
+      "depends": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T07.01",
+        "T07.02",
+        "T07.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T08.01",
+      "stage": "P08",
+      "name": "实现家庭授权与报告入口",
+      "work": "本人及监护身份核实、关系撤销、已发布报告历史、服务与权益进度。",
+      "deliverable": "家长手机/电脑入口",
+      "roles": "前后端 + 业务验收",
+      "acceptance": "内部备注不显示；撤销授权后访问失效",
+      "depends": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T08.02",
+      "stage": "P08",
+      "name": "实现家庭预约与练习交互",
+      "work": "预约请假、通知、家庭提交及反馈、同意信息查看与调整。",
+      "deliverable": "家长任务与提交页面",
+      "roles": "前后端 + 训练业务",
+      "acceptance": "提交可恢复；预约重复与资源冲突有解释",
+      "depends": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T08.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T08.03",
+      "stage": "P08",
+      "name": "实现筛查名单与现场记录",
+      "work": "项目授权、机构批次、导入匹配、重复处理、现场检查及复核。",
+      "deliverable": "筛查项目、导入与现场表单",
+      "roles": "筛查业务 + 前后端",
+      "acceptance": "错误明细可下载；身份不明不强行合并",
+      "depends": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T08.01",
+        "T08.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T08.04",
+      "stage": "P08",
+      "name": "实现筛查发布和复查跟进",
+      "work": "个人报告及授权汇总、通知、复查转介、批次统计与长期档案关联。",
+      "deliverable": "筛查后续流程",
+      "roles": "专业业务 + 随访 + 前后端",
+      "acceptance": "个人结果不进入未授权汇总；后续任务有接收人",
+      "depends": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T08.01",
+        "T08.02",
+        "T08.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T09.01",
+      "stage": "P09",
+      "name": "实现经营与服务分析",
+      "work": "八类统计主题及流程健康：漏接、逾期、返工、待补、失联和通知失败；定义分母和归属。",
+      "deliverable": "指标字典、图表、异常名单与下钻",
+      "roles": "数据分析 + 前后端",
+      "acceptance": "每图可进入相同条件明细；趋势不自动推断疗效",
+      "depends": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T09.02",
+      "stage": "P09",
+      "name": "实现字典模板与规则版本",
+      "work": "业务启用、表单项目、商品套餐规则、审批、权限、指标口径和配置生效迁移。",
+      "deliverable": "配置历史、影响预览和规则快照",
+      "roles": "系统管理 + 后端",
+      "acceptance": "修改不追溯改写在办记录；迁移需明确决定",
+      "depends": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T09.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T09.03",
+      "stage": "P09",
+      "name": "实现设备、消息、支付及周边接入",
+      "work": "按已确认型号和权限对接设备、短信微信、商户、供应商、扫码和打印；验证失败接管。",
+      "deliverable": "适配器、接口状态、重试和人工入口",
+      "roles": "后端 + 运行 + 业务",
+      "acceptance": "来源单位正确；支付回调防重复；不可用接口有明确状态",
+      "depends": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T09.01",
+        "T09.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T09.04",
+      "stage": "P09",
+      "name": "实现导入导出与旧档案迁移",
+      "work": "字段映射、预览、去重、单位校验、附件、错误批次、受控导出及导入撤销策略。",
+      "deliverable": "迁移工具、核对报告",
+      "roles": "数据设计 + 后端 + 业务",
+      "acceptance": "未知不补零；历史不自动制造待办；权限与数量核对",
+      "depends": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T09.01",
+        "T09.02",
+        "T09.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T09.05",
+      "stage": "P09",
+      "name": "实现客户长期跟踪可视化面板",
+      "work": "完成八组面板、筛选、基线对比、原记录下钻、事件标记、课程统计、家长简版与表格导出。",
+      "deliverable": "长期跟踪面板、图表口径与发布契约",
+      "roles": "前端 + 后端 + 专业业务",
+      "acceptance": "八组面板按已开展业务启用，全部遵守图表规则并通过专门案例",
+      "depends": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T10.01",
+      "stage": "P10",
+      "name": "执行全业务与异常场景验收",
+      "work": "逐场景验证七流程、跨模块关联、返工、缺席、部分退款、改期和移交。",
+      "deliverable": "场景证据、缺陷及回归记录",
+      "roles": "业务负责人 + 验收 + 开发",
+      "acceptance": "每个案例注明预期、实际、证据与影响需求",
+      "depends": [
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04",
+        "T09.05"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T10.06",
+      "stage": "P10",
+      "name": "执行长期统计与图表专项验收",
+      "work": "逐项核对缺测、单位条件、左右眼、时间间隔、修订版本、课程分母、权限、多端及下钻。",
+      "deliverable": "VS01—VS06 测试证据与问题记录",
+      "roles": "验收 + 专业业务 + 前后端",
+      "acceptance": "每组面板有样本及证据；不以画出曲线作为完成标准",
+      "depends": [
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04",
+        "T09.05",
+        "T10.01"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T10.02",
+      "stage": "P10",
+      "name": "执行多端、权限与一致性验收",
+      "work": "手机电脑、键盘放大、弱网、重复提交、并发、越权及规模性能检查。",
+      "deliverable": "设备与运行验收报告",
+      "roles": "验收 + 前后端",
+      "acceptance": "不是页面打开即通过；关键任务能操作完成并核对账",
+      "depends": [
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04",
+        "T09.05",
+        "T10.01",
+        "T10.06"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T10.03",
+      "stage": "P10",
+      "name": "演练备份、恢复、对账和故障接管",
+      "work": "按目标恢复并核对档案、权益、资金、库存；演练接口故障与部署回退。",
+      "deliverable": "演练报告、值守与恢复手册",
+      "roles": "运行 + 财务 + 验收",
+      "acceptance": "记录耗时与差异；恢复成功有一致性证据",
+      "depends": [
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04",
+        "T09.05",
+        "T10.01",
+        "T10.06",
+        "T10.02"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T10.04",
+      "stage": "P10",
+      "name": "完成门店初始化与受控试运行",
+      "work": "基础资料、历史迁移、员工培训与测试环境练习，小范围试跑并修复。",
+      "deliverable": "初始化核对、培训记录、问题账",
+      "roles": "门店负责人 + 运行 + 开发",
+      "acceptance": "员工可独立完成主链；未解决问题有负责人和期限",
+      "depends": [
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04",
+        "T09.05",
+        "T10.01",
+        "T10.06",
+        "T10.02",
+        "T10.03"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    },
+    {
+      "id": "T10.05",
+      "stage": "P10",
+      "name": "完成覆盖核对与交付记录",
+      "work": "核对每项功能、字段、状态、权限、统计、接口和非功能需求，保留维护入口与后续任务。",
+      "deliverable": "交付清单、版本记录、完整追踪矩阵",
+      "roles": "开发负责人 + 业务负责人",
+      "acceptance": "没有无归属需求；范围变更留原因；已验收均有证据",
+      "depends": [
+        "T09.01",
+        "T09.02",
+        "T09.03",
+        "T09.04",
+        "T09.05",
+        "T10.01",
+        "T10.06",
+        "T10.02",
+        "T10.03",
+        "T10.04"
+      ],
+      "status": "未开始",
+      "owner": "待分配",
+      "evidence": [],
+      "updated": "2026-10-07"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M01-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-D",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-R",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-L",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-A",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C07",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C08",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C09",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C10",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G07",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G08",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N07",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N08",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A7",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A8",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D6",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D7",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D8",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D9",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D10",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D11",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D12",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H1",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H2",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H3",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H4",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H5",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S07",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S08",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S09",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S10",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S11",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S12",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S13",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S14",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V07",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V08",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR07",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR08",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS01",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS02",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS03",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS04",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS05",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS06",
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    }
+  ],
+  "validation": {
+    "date": "2026-10-07",
+    "automated": {
+      "command": "npm run check && npm test",
+      "result": "passed",
+      "tests": 10,
+      "scope": "公共基础与档案/周期草稿切片，不代表完整阶段业务验收"
+    },
+    "browser": {
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
+      "result": "passed",
+      "viewports": [
+        "1440x1050",
+        "390x844"
+      ],
+      "evidence": [
+        "scripts/browser-check.mjs",
+        "docs/handover.md"
+      ]
+    },
+    "baseline": {
+      "tasks": 50,
+      "requirements": 287,
+      "all_task_links_resolve": true
+    },
+    "businessAcceptance": "待确认"
+  }
+}

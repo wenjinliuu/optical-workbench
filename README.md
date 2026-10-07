@@ -1,1 +1,41 @@
-# optical-workbench
+# Optical Workbench · 视光业务工作台
+
+根据[产品设计蓝图 V1.1](https://optical-workbench-blueprint.wenjinuu.chatgpt.site)启动的第一阶段基础开发版。当前可实际保存客户档案和独立服务周期草稿，提供本地登录、门店/岗位/有效家庭权限与审计。第一阶段仍未整体验收。
+
+## 运行
+
+需要 Node.js 24；运行依赖全部来自 Node 与浏览器原生能力。
+
+```sh
+npm ci
+npm run demo
+npm start
+```
+
+打开 http://127.0.0.1:3000。demo 只在空库初始化两个虚构门店、五个账号和三位虚构客户，并在本机终端一次性输出随机密码；请保存密码。重复执行不重置账号、不覆盖现有数据。默认数据库 data/workbench.sqlite，已被 Git 忽略。不要录入真实资料。
+
+账号为 demo-manager（负责人）、demo-front（前台）、demo-professional（专业人员）、demo-other（B 店负责人）、demo-parent（只授权小林）。家长不显示内部周期或联系人资料。
+
+开发自动重启：npm run dev。可用环境变量 HOST、PORT、DATABASE_PATH、NODE_ENV；`.env.example` 是参考，程序不会自动加载 `.env`，请由启动环境提供变量。默认只监听本机；生产模式被明确阻止，需先完成正式架构和身份接入。
+
+## 验证与备份
+
+```sh
+npm run check
+npm test
+npm run backup
+```
+
+10 个集成测试覆盖会话撤销、跨店/越动作/越家庭拒绝、关系撤销、重复写入、共享电话独立档案、原子回滚、持久化和基础数据恢复。CI 已配置，实际远程运行状态见 PR。
+
+电脑与手机浏览器验证脚本为 scripts/browser-check.mjs；可将 Playwright 安装到独立临时目录，设置 PLAYWRIGHT_MODULE_PATH 指向其 index.mjs（绝对路径），再运行 npm run test:browser。CHROMIUM_PATH 默认 /usr/bin/chromium。测试自建内存库，截图写入已忽略的 data/browser-check/，不会改现有档案。
+
+backup 在 backups/ 生成一致性 SQLite 快照，不含明文密码。恢复开发库时先停止服务，将当前数据库及其 WAL/SHM 文件移至独立归档目录，再把选定快照放到新的 DATABASE_PATH 并重新启动；先核对 integrity_check、客户/周期/审计数量和账号，不直接覆盖正在运行的数据库。正式备份/恢复目标和账目演练尚未完成。
+
+## 本轮边界与下一入口
+
+- [第一阶段范围](docs/phase-one.md)、[规则登记](docs/rules.md)、[架构决定](docs/architecture.md)
+- [数据字典](docs/data-dictionary.md)、[接口](docs/api.md)、[验收案例](docs/acceptance.md)
+- [实际进度](docs/progress.json)、[完整需求](docs/requirements.json)、[下次交接](docs/handover.md)
+
+保留蓝图的 50 个任务与 287 条需求。附件、完整组织管理、专业检查/报告、业务版本、正式部署以及后续 P03–P10 均未完成；扣次与退款等待规则。本轮没有改动蓝图站点，其公开进度快照仍是原版本。

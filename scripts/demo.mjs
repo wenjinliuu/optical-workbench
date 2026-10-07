@@ -1,0 +1,18 @@
+import { randomBytes } from 'node:crypto';
+import { openDatabase, transaction, hashPassword } from '../src/db.mjs';
+if(process.env.NODE_ENV==='production')throw Error('Demo data is forbidden in production.');
+const db=openDatabase(process.env.DATABASE_PATH||'data/workbench.sqlite');
+if(db.prepare('SELECT 1 FROM users LIMIT 1').get()){db.close();console.log('账号已存在；初始化已跳过。请使用原账号或在停止服务后设置新的 DATABASE_PATH。');process.exit(0);}
+const accounts=[['demo-manager','负责人样例','manager','store-a'],['demo-front','前台样例','reception','store-a'],['demo-professional','专业人员样例','professional','store-a'],['demo-other','另一门店样例','manager','store-b'],['demo-parent','家长样例','guardian',null]].map(([id,name,role,store])=>({id,name,role,store,password:randomBytes(15).toString('base64url')}));
+transaction(db,()=>{
+  db.prepare('INSERT INTO stores VALUES (?,?)').run('store-a','示例视光门店 · A');db.prepare('INSERT INTO stores VALUES (?,?)').run('store-b','示例视光门店 · B');
+  for(const a of accounts)db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run(a.id,a.id,a.name,hashPassword(a.password),a.role,a.store);
+  const create=db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)');
+  create.run('sample-child-a','store-a','小林（虚构）','2017-06-12','林家长（虚构）',null,new Date().toISOString(),'demo-manager');
+  create.run('sample-child-b','store-a','小林弟弟（虚构）','2020-03-08','林家长（虚构）',null,new Date().toISOString(),'demo-manager');
+  create.run('sample-child-c','store-b','小周（虚构）','2018-11-20','周家长（虚构）',null,new Date().toISOString(),'demo-other');
+  db.prepare('INSERT INTO guardian_links VALUES (?,?,1)').run('demo-parent','sample-child-a');
+  db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('sample-cycle-a','sample-child-a','followup','建立长期复查资料的演示周期','draft',new Date().toISOString(),'demo-manager');
+});db.close();
+console.log('仅限本地开发的虚构资料。请保存本次随机生成的账号；密码不会写入源码或明文文件。');
+for(const a of accounts)console.log(`${a.id} (${a.name}): ${a.password}`);

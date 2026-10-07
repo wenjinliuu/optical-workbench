@@ -1,0 +1,57 @@
+import { pathToFileURL } from 'node:url';
+import { mkdirSync } from 'node:fs';
+if(!process.env.PLAYWRIGHT_MODULE_PATH)throw Error('Set PLAYWRIGHT_MODULE_PATH to an installed Playwright index.mjs');
+const { chromium }=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE_PATH).href);
+mkdirSync('data/browser-check',{recursive:true});
+import { createApp } from '../src/server.mjs';
+import { hashPassword } from '../src/db.mjs';
+import assert from 'node:assert/strict';
+import { once } from 'node:events';
+const {server,db}=createApp({databasePath:':memory:',mode:'test'});
+db.prepare('INSERT INTO stores VALUES (?,?)').run('demo-store','示例视光门店 · A');
+db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('browser-test','browser-test','负责人样例',hashPassword('local-browser-test-only'),'manager','demo-store');
+for(const [id,name,birth] of [['one','小林（虚构）','2017-06-12'],['two','小林弟弟（虚构）','2020-03-08']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,'demo-store',name,birth,'林家长（虚构）',null,new Date().toISOString(),'browser-test');
+server.listen(0,'127.0.0.1');await once(server,'listening');
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
+const page=await browser.newPage({viewport:{width:1440,height:1050}}),errors=[];
+page.on('pageerror',e=>errors.push(e.message));
+try{
+ await page.goto(`http://127.0.0.1:${server.address().port}`);
+ await page.locator('#login-view').waitFor({state:'visible'});
+ await page.locator('#login-form input[name=username]').fill('browser-test');
+ await page.locator('#login-form input[name=password]').fill('local-browser-test-only');
+ await page.locator('#login-form button[type=submit]').click();
+ await page.locator('#customers-view').waitFor({state:'visible'});
+ await page.locator('.customer-row').first().click();
+ await page.locator('.detail-top').waitFor();
+ await page.locator('#new-customer').click();
+ await page.locator('#customer-form input[name=name]').fill('小叶（虚构）');
+ await page.locator('#customer-form input[name=birth_date]').fill('2019-02-03');
+ await page.locator('#customer-form input[name=contact_name]').fill('叶家长（虚构）');
+ await page.locator('#customer-form button[type=submit]').click();
+ await page.getByRole('heading',{name:'小叶（虚构）',exact:true}).waitFor();
+ for(const [type,goal] of [['followup','建立长期复查档案，按约定日期继续跟进'],['training','训练服务需求登记，等待专业评估与计划确认']]){
+  await page.locator('.cycle-heading button').click();
+  await page.locator('#cycle-form select').selectOption(type);
+  await page.locator('#cycle-form textarea').fill(goal);
+  await page.locator('#cycle-form button[type=submit]').click();
+  await page.getByText(goal,{exact:true}).waitFor();
+ }
+ assert.equal(await page.locator('.cycle-card').count(),2);
+ await page.screenshot({path:'data/browser-check/desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'操作审计',exact:false}).click();
+ await page.locator('#audit-items tr').filter({hasText:'创建服务周期草稿'}).first().waitFor();
+ assert.ok((await page.locator('#audit-items').textContent()).includes('browser-test'));
+ await page.locator('[data-view=customers]').click();
+ await page.setViewportSize({width:390,height:844});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile page must not overflow');
+ await page.locator('#new-customer').click();
+ await page.keyboard.press('Escape');
+ assert.equal(await page.locator('#customer-dialog').evaluate(d=>d.open),false);
+ await page.screenshot({path:'data/browser-check/mobile.png',fullPage:true});
+ await page.locator('#logout-mobile').click();
+ await page.locator('#login-view').waitFor({state:'visible'});
+ assert.equal(await page.locator('#customer-items').textContent(),'');
+ assert.deepEqual(errors,[]);
+ console.log('Browser checks passed: login, customer save, independent cycles, audit actor, mobile layout, Escape, logout and no runtime errors.');
+}finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

@@ -1,0 +1,4678 @@
+{
+  "baseline": "V1.1",
+  "source": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
+  "requirements": [
+    {
+      "id": "M01-F01",
+      "type": "功能",
+      "title": "今日工作台 · 今日预约与候诊",
+      "body": "今日预约与候诊",
+      "tasks": [
+        "T03.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F02",
+      "type": "功能",
+      "title": "今日工作台 · 待检查/训练/交付/回访",
+      "body": "待检查/训练/交付/回访",
+      "tasks": [
+        "T03.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F03",
+      "type": "功能",
+      "title": "今日工作台 · 逾期与阻塞",
+      "body": "逾期与阻塞",
+      "tasks": [
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F04",
+      "type": "功能",
+      "title": "今日工作台 · 进入原单处理",
+      "body": "进入原单处理",
+      "tasks": [
+        "T03.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-D",
+      "type": "字段",
+      "title": "今日工作台 · 字段",
+      "body": "任务编号、关联档案、当前步骤、负责人、截止时间、优先级、阻塞原因",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-R",
+      "type": "岗位与权限",
+      "title": "今日工作台 · 岗位与权限",
+      "body": "所有员工；按岗位和门店显示",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-L",
+      "type": "关联",
+      "title": "今日工作台 · 关联",
+      "body": "全部业务流程",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-A",
+      "type": "验收规则",
+      "title": "今日工作台 · 验收规则",
+      "body": "空状态明确；列表、流程和详情使用同一状态",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F01",
+      "type": "功能",
+      "title": "客户与家庭关系 · 成人儿童建档",
+      "body": "成人儿童建档",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F02",
+      "type": "功能",
+      "title": "客户与家庭关系 · 多监护人和兄弟姐妹",
+      "body": "多监护人和兄弟姐妹",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F03",
+      "type": "功能",
+      "title": "客户与家庭关系 · 重复检测与合并",
+      "body": "重复检测与合并",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-F04",
+      "type": "功能",
+      "title": "客户与家庭关系 · 跨店交接",
+      "body": "跨店交接",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-D",
+      "type": "字段",
+      "title": "客户与家庭关系 · 字段",
+      "body": "客户编号、出生日期、监护关系、授权范围、来源、负责员工",
+      "tasks": [
+        "T02.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-R",
+      "type": "岗位与权限",
+      "title": "客户与家庭关系 · 岗位与权限",
+      "body": "前台建档；授权员工查阅；家长查看授权成员",
+      "tasks": [
+        "T02.01",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-L",
+      "type": "关联",
+      "title": "客户与家庭关系 · 关联",
+      "body": "检查、订单、训练、随访",
+      "tasks": [
+        "T02.01",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-A",
+      "type": "验收规则",
+      "title": "客户与家庭关系 · 验收规则",
+      "body": "手机号不是唯一身份；合并保留原记录及来源",
+      "tasks": [
+        "T02.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F01",
+      "type": "功能",
+      "title": "检查与验光记录 · 模板与草稿",
+      "body": "模板与草稿",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F02",
+      "type": "功能",
+      "title": "检查与验光记录 · 外院附件",
+      "body": "外院附件",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F03",
+      "type": "功能",
+      "title": "检查与验光记录 · 历次对比",
+      "body": "历次对比",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F04",
+      "type": "功能",
+      "title": "检查与验光记录 · 确认、修订和版本",
+      "body": "确认、修订和版本",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-D",
+      "type": "字段",
+      "title": "检查与验光记录 · 字段",
+      "body": "日期、眼别、单位、方法、设备、裸眼/矫正视力、屈光、眼轴、专项结果",
+      "tasks": [
+        "T02.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-R",
+      "type": "岗位与权限",
+      "title": "检查与验光记录 · 岗位与权限",
+      "body": "检查人员录入；专业负责人按职责确认",
+      "tasks": [
+        "T02.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-L",
+      "type": "关联",
+      "title": "检查与验光记录 · 关联",
+      "body": "验配、随访、训练评估",
+      "tasks": [
+        "T02.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-A",
+      "type": "验收规则",
+      "title": "检查与验光记录 · 验收规则",
+      "body": "未测量不填零；不同条件不混合比较；录入与确认可分工",
+      "tasks": [
+        "T02.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F01",
+      "type": "功能",
+      "title": "配镜与验配档案 · 处方确认",
+      "body": "处方确认",
+      "tasks": [
+        "T02.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F02",
+      "type": "功能",
+      "title": "配镜与验配档案 · 客户自带镜架",
+      "body": "客户自带镜架",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F03",
+      "type": "功能",
+      "title": "配镜与验配档案 · 不同用途配镜",
+      "body": "不同用途配镜",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F04",
+      "type": "功能",
+      "title": "配镜与验配档案 · 佩戴适应追踪",
+      "body": "佩戴适应追踪",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-D",
+      "type": "字段",
+      "title": "配镜与验配档案 · 字段",
+      "body": "处方版本、球镜/柱镜/轴位、瞳距/瞳高、用途、商品、交付参数",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-R",
+      "type": "岗位与权限",
+      "title": "配镜与验配档案 · 岗位与权限",
+      "body": "专业、销售、加工和质检各司其职",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-L",
+      "type": "关联",
+      "title": "配镜与验配档案 · 关联",
+      "body": "订单、加工、交付、售后",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-A",
+      "type": "验收规则",
+      "title": "配镜与验配档案 · 验收规则",
+      "body": "订单留处方快照；修改档案不能改变历史订单",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F01",
+      "type": "功能",
+      "title": "儿童长期随访 · 检查时间轴",
+      "body": "检查时间轴",
+      "tasks": [
+        "T06.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F02",
+      "type": "功能",
+      "title": "儿童长期随访 · 左右眼趋势",
+      "body": "左右眼趋势",
+      "tasks": [
+        "T06.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F03",
+      "type": "功能",
+      "title": "儿童长期随访 · 复查计划",
+      "body": "复查计划",
+      "tasks": [
+        "T06.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F04",
+      "type": "功能",
+      "title": "儿童长期随访 · 逾期、转诊和结案",
+      "body": "逾期、转诊和结案",
+      "tasks": [
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-D",
+      "type": "字段",
+      "title": "儿童长期随访 · 字段",
+      "body": "基线、方案来源、下次日期、负责人员、外院结果、变化与意见",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-R",
+      "type": "岗位与权限",
+      "title": "儿童长期随访 · 岗位与权限",
+      "body": "专业人员确定计划；随访人员联系",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-L",
+      "type": "关联",
+      "title": "儿童长期随访 · 关联",
+      "body": "检查、验配、训练、客户入口",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-A",
+      "type": "验收规则",
+      "title": "儿童长期随访 · 验收规则",
+      "body": "图表展示变化；专业评价由授权人员记录",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F01",
+      "type": "功能",
+      "title": "个人训练计划 · 项目库和模板",
+      "body": "项目库和模板",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F02",
+      "type": "功能",
+      "title": "个人训练计划 · 个人参数",
+      "body": "个人参数",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F03",
+      "type": "功能",
+      "title": "个人训练计划 · 专业确认",
+      "body": "专业确认",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-F04",
+      "type": "功能",
+      "title": "个人训练计划 · 调整、暂停、恢复、结束",
+      "body": "调整、暂停、恢复、结束",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-D",
+      "type": "字段",
+      "title": "个人训练计划 · 字段",
+      "body": "评估、目标、项目、频率、时长、版本、负责人、复评节点",
+      "tasks": [
+        "T05.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-R",
+      "type": "岗位与权限",
+      "title": "个人训练计划 · 岗位与权限",
+      "body": "专业负责人制定或确认；训练人员执行",
+      "tasks": [
+        "T05.01",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-L",
+      "type": "关联",
+      "title": "个人训练计划 · 关联",
+      "body": "排课、执行、家庭练习、复评",
+      "tasks": [
+        "T05.01",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M06-A",
+      "type": "验收规则",
+      "title": "个人训练计划 · 验收规则",
+      "body": "计划与收费套餐独立；修改计划保留历史",
+      "tasks": [
+        "T05.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F01",
+      "type": "功能",
+      "title": "排课与资源预约 · 单次/周期排课",
+      "body": "单次/周期排课",
+      "tasks": [
+        "T05.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F02",
+      "type": "功能",
+      "title": "排课与资源预约 · 候补",
+      "body": "候补",
+      "tasks": [
+        "T05.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F03",
+      "type": "功能",
+      "title": "排课与资源预约 · 请假、调课、补课",
+      "body": "请假、调课、补课",
+      "tasks": [
+        "T05.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-F04",
+      "type": "功能",
+      "title": "排课与资源预约 · 签到和现场加号",
+      "body": "签到和现场加号",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-D",
+      "type": "字段",
+      "title": "排课与资源预约 · 字段",
+      "body": "时段、持续时间、资源、容量、重复规则、状态、候补顺序",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-R",
+      "type": "岗位与权限",
+      "title": "排课与资源预约 · 岗位与权限",
+      "body": "前台排课；员工查看安排；家长预约",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-L",
+      "type": "关联",
+      "title": "排课与资源预约 · 关联",
+      "body": "排班、设备、执行、服务预约",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-A",
+      "type": "验收规则",
+      "title": "排课与资源预约 · 验收规则",
+      "body": "校验资源冲突；周期更改区分本次与之后全部",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F01",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 开始/结束",
+      "body": "开始/结束",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F02",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 执行差异",
+      "body": "执行差异",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F03",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 异常与中止",
+      "body": "异常与中止",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-F04",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 家庭作业、提交及反馈",
+      "body": "家庭作业、提交及反馈",
+      "tasks": [
+        "T05.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-D",
+      "type": "字段",
+      "title": "训练执行与家庭练习 · 字段",
+      "body": "实际项目、时长、执行人、完成情况、不适、家庭练习、来源",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-R",
+      "type": "岗位与权限",
+      "title": "训练执行与家庭练习 · 岗位与权限",
+      "body": "训练人员录入；专业负责人评阅；家长提交",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-L",
+      "type": "关联",
+      "title": "训练执行与家庭练习 · 关联",
+      "body": "计划、预约、扣次、复评",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M08-A",
+      "type": "验收规则",
+      "title": "训练执行与家庭练习 · 验收规则",
+      "body": "家长自报与设备数据分开；异常保留跟踪任务",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F01",
+      "type": "功能",
+      "title": "套餐与课时权益 · 按次/按期套餐",
+      "body": "按次/按期套餐",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F02",
+      "type": "功能",
+      "title": "套餐与课时权益 · 扣次规则",
+      "body": "扣次规则",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F03",
+      "type": "功能",
+      "title": "套餐与课时权益 · 冻结延期",
+      "body": "冻结延期",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F04",
+      "type": "功能",
+      "title": "套餐与课时权益 · 转套餐、退款、调整",
+      "body": "转套餐、退款、调整",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-D",
+      "type": "字段",
+      "title": "套餐与课时权益 · 字段",
+      "body": "订单、付费/赠送权益、效期、扣次、撤销、调整流水",
+      "tasks": [
+        "T05.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-R",
+      "type": "岗位与权限",
+      "title": "套餐与课时权益 · 岗位与权限",
+      "body": "销售开单；训练确认；财务退款；负责人审批",
+      "tasks": [
+        "T05.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-L",
+      "type": "关联",
+      "title": "套餐与课时权益 · 关联",
+      "body": "销售、执行、资金对账",
+      "tasks": [
+        "T05.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-A",
+      "type": "验收规则",
+      "title": "套餐与课时权益 · 验收规则",
+      "body": "预约不等于扣次；同一服务只扣一次；纠正留反向流水",
+      "tasks": [
+        "T05.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F01",
+      "type": "功能",
+      "title": "复查与客户联系 · 复查/训练/取镜通知",
+      "body": "复查/训练/取镜通知",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F02",
+      "type": "功能",
+      "title": "复查与客户联系 · 人工联系",
+      "body": "人工联系",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F03",
+      "type": "功能",
+      "title": "复查与客户联系 · 失败重试",
+      "body": "失败重试",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-F04",
+      "type": "功能",
+      "title": "复查与客户联系 · 服务与营销授权区分",
+      "body": "服务与营销授权区分",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-D",
+      "type": "字段",
+      "title": "复查与客户联系 · 字段",
+      "body": "目的、日期、负责人、渠道、回执、联系结果、下一次动作",
+      "tasks": [
+        "T06.02",
+        "T00.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-R",
+      "type": "岗位与权限",
+      "title": "复查与客户联系 · 岗位与权限",
+      "body": "前台、随访和专业负责人",
+      "tasks": [
+        "T06.02",
+        "T01.02",
+        "T10.02",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-L",
+      "type": "关联",
+      "title": "复查与客户联系 · 关联",
+      "body": "全部长期服务与售后",
+      "tasks": [
+        "T06.02",
+        "T00.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M10-A",
+      "type": "验收规则",
+      "title": "复查与客户联系 · 验收规则",
+      "body": "发送成功不等于已读或到店；失败转人工跟进",
+      "tasks": [
+        "T06.02",
+        "T00.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F01",
+      "type": "功能",
+      "title": "销售、订单与收银 · 开单与优惠",
+      "body": "开单与优惠",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F02",
+      "type": "功能",
+      "title": "销售、订单与收银 · 定金尾款",
+      "body": "定金尾款",
+      "tasks": [
+        "T04.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F03",
+      "type": "功能",
+      "title": "销售、订单与收银 · 组合付款",
+      "body": "组合付款",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F04",
+      "type": "功能",
+      "title": "销售、订单与收银 · 退款、票据和交班",
+      "body": "退款、票据和交班",
+      "tasks": [
+        "T04.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-D",
+      "type": "字段",
+      "title": "销售、订单与收银 · 字段",
+      "body": "明细、价格、优惠、付款人、实收、欠款、退款、渠道流水",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-R",
+      "type": "岗位与权限",
+      "title": "销售、订单与收银 · 岗位与权限",
+      "body": "销售/收银；折扣、作废、退款按规则审批",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-L",
+      "type": "关联",
+      "title": "销售、订单与收银 · 关联",
+      "body": "验配、权益、库存、加工、财务",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-A",
+      "type": "验收规则",
+      "title": "销售、订单与收银 · 验收规则",
+      "body": "总额与实收分开；退款关联原付款",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F01",
+      "type": "功能",
+      "title": "加工、质检与交付 · 订货派单",
+      "body": "订货派单",
+      "tasks": [
+        "T04.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F02",
+      "type": "功能",
+      "title": "加工、质检与交付 · 分批到货",
+      "body": "分批到货",
+      "tasks": [
+        "T04.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F03",
+      "type": "功能",
+      "title": "加工、质检与交付 · 质检、返工",
+      "body": "质检、返工",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-F04",
+      "type": "功能",
+      "title": "加工、质检与交付 · 通知取镜、调整、签收",
+      "body": "通知取镜、调整、签收",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-D",
+      "type": "字段",
+      "title": "加工、质检与交付 · 字段",
+      "body": "工单、处方快照、供应商、预计日期、质检、返工、尾款",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-R",
+      "type": "岗位与权限",
+      "title": "加工、质检与交付 · 岗位与权限",
+      "body": "加工、采购、质检、销售交付",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-L",
+      "type": "关联",
+      "title": "加工、质检与交付 · 关联",
+      "body": "订单、库存、供应商、售后",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M12-A",
+      "type": "验收规则",
+      "title": "加工、质检与交付 · 验收规则",
+      "body": "未通过质检不可交付；重做关联原工单",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F01",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 采购验收",
+      "body": "采购验收",
+      "tasks": [
+        "T07.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F02",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 退供",
+      "body": "退供",
+      "tasks": [
+        "T07.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F03",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 调拨盘点",
+      "body": "调拨盘点",
+      "tasks": [
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F04",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 镜片二维库存",
+      "body": "镜片二维库存",
+      "tasks": [
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F05",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 缺货、临期、滞销提醒",
+      "body": "缺货、临期、滞销提醒",
+      "tasks": [
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-D",
+      "type": "字段",
+      "title": "采购、库存与供应商 · 字段",
+      "body": "品牌、规格、条码、成本、批次、效期、仓位、库存状态",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-R",
+      "type": "岗位与权限",
+      "title": "采购、库存与供应商 · 岗位与权限",
+      "body": "采购、仓库、门店和质量负责人",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-L",
+      "type": "关联",
+      "title": "采购、库存与供应商 · 关联",
+      "body": "销售、加工、售后、质量追溯",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-A",
+      "type": "验收规则",
+      "title": "采购、库存与供应商 · 验收规则",
+      "body": "变动留流水；退货验收后决定可售、隔离或报损",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F01",
+      "type": "功能",
+      "title": "售后与质量追溯 · 维修调整",
+      "body": "维修调整",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F02",
+      "type": "功能",
+      "title": "售后与质量追溯 · 佩戴问题转交",
+      "body": "佩戴问题转交",
+      "tasks": [
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F03",
+      "type": "功能",
+      "title": "售后与质量追溯 · 重做退款",
+      "body": "重做退款",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F04",
+      "type": "功能",
+      "title": "售后与质量追溯 · 供应商索赔、召回跟踪",
+      "body": "供应商索赔、召回跟踪",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-D",
+      "type": "字段",
+      "title": "售后与质量追溯 · 字段",
+      "body": "原单、原因、责任、费用、批号/序列号、影响范围、处理结果",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-R",
+      "type": "岗位与权限",
+      "title": "售后与质量追溯 · 岗位与权限",
+      "body": "售后、专业、质量、财务与负责人",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-L",
+      "type": "关联",
+      "title": "售后与质量追溯 · 关联",
+      "body": "客户、处方、工单、批次",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-A",
+      "type": "验收规则",
+      "title": "售后与质量追溯 · 验收规则",
+      "body": "能从批次找到采购来源、库存及已交付客户",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F01",
+      "type": "功能",
+      "title": "员工、门店与财务 · 多门店交接",
+      "body": "多门店交接",
+      "tasks": [
+        "T07.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F02",
+      "type": "功能",
+      "title": "员工、门店与财务 · 休假与培训",
+      "body": "休假与培训",
+      "tasks": [
+        "T07.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F03",
+      "type": "功能",
+      "title": "员工、门店与财务 · 收支和预收余额",
+      "body": "收支和预收余额",
+      "tasks": [
+        "T07.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F04",
+      "type": "功能",
+      "title": "员工、门店与财务 · 提成审批对账",
+      "body": "提成审批对账",
+      "tasks": [
+        "T07.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-D",
+      "type": "字段",
+      "title": "员工、门店与财务 · 字段",
+      "body": "岗位权限、资质有效期、排班、业绩、应收应付、提成规则",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-R",
+      "type": "岗位与权限",
+      "title": "员工、门店与财务 · 岗位与权限",
+      "body": "负责人、总部、人事、运营、财务",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-L",
+      "type": "关联",
+      "title": "员工、门店与财务 · 关联",
+      "body": "订单、任务、采购、权益",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-A",
+      "type": "验收规则",
+      "title": "员工、门店与财务 · 验收规则",
+      "body": "销售、实收、服务消耗分列；财务确认收入口径",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F01",
+      "type": "功能",
+      "title": "家长与客户入口 · 报告历史",
+      "body": "报告历史",
+      "tasks": [
+        "T08.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F02",
+      "type": "功能",
+      "title": "家长与客户入口 · 预约请假",
+      "body": "预约请假",
+      "tasks": [
+        "T08.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F03",
+      "type": "功能",
+      "title": "家长与客户入口 · 权益进度",
+      "body": "权益进度",
+      "tasks": [
+        "T08.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F04",
+      "type": "功能",
+      "title": "家长与客户入口 · 通知、家庭记录、同意信息",
+      "body": "通知、家庭记录、同意信息",
+      "tasks": [
+        "T08.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-D",
+      "type": "字段",
+      "title": "家长与客户入口 · 字段",
+      "body": "身份关联、授权范围、发布版本、预约、通知、提交",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-R",
+      "type": "岗位与权限",
+      "title": "家长与客户入口 · 岗位与权限",
+      "body": "本人或授权监护人；员工发布对外内容",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-L",
+      "type": "关联",
+      "title": "家长与客户入口 · 关联",
+      "body": "档案、预约、计划、随访、权益",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-A",
+      "type": "验收规则",
+      "title": "家长与客户入口 · 验收规则",
+      "body": "不能查其他客户；内部备注默认不对外",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F01",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 名单导入匹配",
+      "body": "名单导入匹配",
+      "tasks": [
+        "T08.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F02",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 现场登记",
+      "body": "现场登记",
+      "tasks": [
+        "T08.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F03",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 个人报告和汇总",
+      "body": "个人报告和汇总",
+      "tasks": [
+        "T08.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F04",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 复查、转诊跟进",
+      "body": "复查、转诊跟进",
+      "tasks": [
+        "T08.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-D",
+      "type": "字段",
+      "title": "团体筛查与跟进 · 字段",
+      "body": "机构、批次、授权、结果、报告状态、匹配、跟进结果",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-R",
+      "type": "岗位与权限",
+      "title": "团体筛查与跟进 · 岗位与权限",
+      "body": "筛查、专业负责人、随访人员",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-L",
+      "type": "关联",
+      "title": "团体筛查与跟进 · 关联",
+      "body": "儿童档案、检查、复查",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-A",
+      "type": "验收规则",
+      "title": "团体筛查与跟进 · 验收规则",
+      "body": "个人报告和汇总分开授权；导入不覆盖已有档案",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F01",
+      "type": "功能",
+      "title": "分析与系统管理 · 明细下钻",
+      "body": "明细下钻",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F02",
+      "type": "功能",
+      "title": "分析与系统管理 · 字典模板",
+      "body": "字典模板",
+      "tasks": [
+        "T09.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F03",
+      "type": "功能",
+      "title": "分析与系统管理 · 导入导出",
+      "body": "导入导出",
+      "tasks": [
+        "T09.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F04",
+      "type": "功能",
+      "title": "分析与系统管理 · 备份恢复",
+      "body": "备份恢复",
+      "tasks": [
+        "T01.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F05",
+      "type": "功能",
+      "title": "分析与系统管理 · 设备/消息/支付连接",
+      "body": "设备/消息/支付连接",
+      "tasks": [
+        "T09.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-D",
+      "type": "字段",
+      "title": "分析与系统管理 · 字段",
+      "body": "指标定义、配置版本、审批、导入批次、接口状态、日志",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-R",
+      "type": "岗位与权限",
+      "title": "分析与系统管理 · 岗位与权限",
+      "body": "分析、专业、系统管理；按范围授权",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-L",
+      "type": "关联",
+      "title": "分析与系统管理 · 关联",
+      "body": "全部模块",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-A",
+      "type": "验收规则",
+      "title": "分析与系统管理 · 验收规则",
+      "body": "配置有版本；导出受控；恢复需演练与一致性核对",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C01",
+      "type": "协作补充",
+      "title": "服务周期与关联关系",
+      "body": "客户下面建立独立服务周期：类型、目标、负责人、起止时间、状态和结束原因。一次到店可服务多个周期；计划、订单、权益通过关联表连接，支持一单多服务。到店结束不结束长期管理；订单退款不自动终止计划。",
+      "tasks": [
+        "T02.01",
+        "T06.01",
+        "T06.03",
+        "T05.01",
+        "T04.01",
+        "T04.02",
+        "T10.01",
+        "T00.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C02",
+      "type": "协作补充",
+      "title": "分支、循环与并行",
+      "body": "主流程保留六步概览，执行层展开条件分支、重复课程、阶段复评、返工和并行任务。聚合进度按必要子任务计算；等待款项、库存、专业确认分别显示，不能用单一百分比替代阻塞原因。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T05.04",
+        "T05.05",
+        "T04.03",
+        "T04.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C03",
+      "type": "协作补充",
+      "title": "节点完成与状态迁移",
+      "body": "每个动作定义前状态、操作人、输入、条件、事务影响、产出、下一任务和失败恢复。保存草稿、专业确认、业务完成分别处理。重复提交不得产生第二笔扣次、收款或库存变化。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T05.02",
+        "T04.01",
+        "T04.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C04",
+      "type": "协作补充",
+      "title": "人员交接与责任",
+      "body": "岗位队列和具体负责人分别记录。支持认领、开始、暂停、退回、转派、接收、完成；离职或请假移交未完任务。设置工作日历、截止时间、提醒与升级对象；已分配不等于已开始。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C05",
+      "type": "协作补充",
+      "title": "岗位今日工作台",
+      "body": "前台看接待签到与取镜；专业人员看待确认、复评和异常；训练人员看课程与待补记录；加工仓库看工单与交期；财务看退款与对账；店长看未认领、阻塞和逾期。入口直接打开原记录。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C06",
+      "type": "协作补充",
+      "title": "异常与恢复闭环",
+      "body": "缺课、失联、缺货、中止、无法检查、审批拒绝和退款失败均生成责任任务，记录联系、期限、处理结果和恢复节点。专业异常由有职责人员确认；消息失败转人工。结案须有原因，未解决不能静默完成。",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T06.02",
+        "T04.05",
+        "T06.03",
+        "T10.01",
+        "T00.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C07",
+      "type": "协作补充",
+      "title": "权益与退款计算依据",
+      "body": "保留购买时规则版本、付费及赠送权益、组合优惠分摊、已用明细、冻结区间、应退与实退。部分退款逐项列出公式及审批，反向流水关联原流水；实际公式实施前由门店确认。",
+      "tasks": [
+        "T05.02",
+        "T04.01",
+        "T04.02",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C08",
+      "type": "协作补充",
+      "title": "现实排课与资源容量",
+      "body": "区分一对一、小组容量和重复预约序列；同时校验员工、房间、设备、准备间隔及维护。改期明确本次/之后/全部，保留单次例外；候补转预约需重新校验并通知，冲突返回替代时段。",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C09",
+      "type": "协作补充",
+      "title": "数据质量与报告修订",
+      "body": "缺测状态细分未做、无法测、待补、不适用；单位、眼别、来源和测量条件校验。设备或识别导入待人工确认。修订创建新版本，发布、撤回、重新发布保留记录，旧订单快照不变。",
+      "tasks": [
+        "T02.03",
+        "T08.01",
+        "T08.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C10",
+      "type": "协作补充",
+      "title": "上线、配置与运营检查",
+      "body": "业务模板、商品、套餐、角色、资源、旧档案分步骤初始化。导入先预览，未知历史值不补造；旧资料不自动生成大量过期任务。规则有生效时间，在办业务迁移须明确决定。运营检查关注漏接任务、逾期和对账差异。",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.01",
+        "T00.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U01",
+      "type": "使用体验",
+      "title": "统一找人与身份确认",
+      "body": "姓名、监护人、电话、会员编号联合查询；同名结果显示家庭关系与必要辨识信息。",
+      "tasks": [
+        "T02.01",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U02",
+      "type": "使用体验",
+      "title": "固定客户与服务上下文",
+      "body": "跨检查、订单、训练页保留客户和当前周期；支持返回来源任务及历史位置。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U03",
+      "type": "使用体验",
+      "title": "一次录入与明确来源",
+      "body": "确认后的基本资料自动带入；本次检查结果独立记录，不复制为新的测量。模板区分默认值与实测值。",
+      "tasks": [
+        "T02.03",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U04",
+      "type": "使用体验",
+      "title": "一步完成后可继续",
+      "body": "显示记录确认结果、适用权益变化和下一项任务；有阻塞就显示原因与解决入口。",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U05",
+      "type": "使用体验",
+      "title": "电脑与手机分别适配",
+      "body": "电脑支持键盘录入、扫码和批量处理；手机就地展开节点或底部详情，主操作常驻且不遮挡焦点。选中卡片与业务进行中分别标识。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U06",
+      "type": "使用体验",
+      "title": "中断、错误与草稿恢复",
+      "body": "保存中、已保存、失败、待同步明确；恢复草稿，未授权、无数据、接口失败有可执行说明；切换账号防串档。",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G01",
+      "type": "流转条件",
+      "title": "接待 → 检查",
+      "body": "身份和授权范围确认；检查人员接收；前台交检查任务，保留到店编号与服务周期；重复档案待确认，不覆盖已有记录",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G02",
+      "type": "流转条件",
+      "title": "检查 → 专业确认",
+      "body": "必要结果及来源完整，缺测原因明确；确认人员核对，生成处方/计划/报告版本；待补继续保留草稿，不自动开具方案",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G03",
+      "type": "流转条件",
+      "title": "开单 → 加工",
+      "body": "处方快照、参数、供货安排及约定款项满足门店规则；销售交采购或加工任务，记录预计交期；缺货、变更或付款未达条件分别阻塞",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G04",
+      "type": "流转条件",
+      "title": "质检 → 交付",
+      "body": "必检项目通过，产品与原单匹配；质检交取镜任务；交付核实身份、款项及签收；失败返工；分批交付逐项确认，原单保留待交付项",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G05",
+      "type": "流转条件",
+      "title": "预约 → 执行",
+      "body": "资源可用、签到、有效计划及适用权益校验；训练人员记录当次内容及所用计划版本；缺席、中止按已确认规则处理，不因预约自动扣次",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G06",
+      "type": "流转条件",
+      "title": "执行确认 → 权益/后续",
+      "body": "实际记录完整且有权限确认，扣次条件成立；同一确认只产生一次权益流水与后续任务；复评到期交专业人员；保存与扣次失败不得显示全部成功；可重试与冲销",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G07",
+      "type": "流转条件",
+      "title": "退款审批 → 退款完成",
+      "body": "已履约、赠送、分摊、渠道和库存/权益影响核实；财务处理；渠道成功及流水核对后才标记实退；失败保留待处理；库存回收单独验收，计划是否结束单独确认",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G08",
+      "type": "流转条件",
+      "title": "报告确认 → 家长可见",
+      "body": "报告版本已确认，监护关联及发布范围有效；发布指定版本，家长查看已发布内容；撤回停止新访问；更正重新确认发布，内部备注不公开",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N01",
+      "type": "运行质量",
+      "title": "身份、家庭、门店范围与动作权限",
+      "body": "前后端均校验；家长、跨店、专业确认和导出单独验证",
+      "tasks": [
+        "T02.01",
+        "T07.03",
+        "T07.04",
+        "T01.04",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N02",
+      "type": "运行质量",
+      "title": "并发、防重复与业务一致性",
+      "body": "扣次、收款、退款、库存重复请求及多人操作保持唯一结果",
+      "tasks": [
+        "T05.02",
+        "T04.01",
+        "T04.02",
+        "T01.04",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N03",
+      "type": "运行质量",
+      "title": "版本、规则快照与审计",
+      "body": "历史引用不改写；配置迁移有决定；修改可追查",
+      "tasks": [
+        "T02.03",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N04",
+      "type": "运行质量",
+      "title": "电脑、手机、键盘与可访问性",
+      "body": "核心任务触控、键盘、放大、焦点及错误提示实测",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T08.01",
+        "T08.02",
+        "T01.04",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N05",
+      "type": "运行质量",
+      "title": "弱网、草稿与故障恢复",
+      "body": "记录状态明确；安全恢复，资金与库存不盲目离线写入",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N06",
+      "type": "运行质量",
+      "title": "备份恢复及对账",
+      "body": "确定恢复目标并演练；恢复后核对档案、权益、资金和库存",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N07",
+      "type": "运行质量",
+      "title": "运行监控与性能基线",
+      "body": "约定数据规模、查询时延和峰值并发；慢查询、失败任务可定位",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N08",
+      "type": "运行质量",
+      "title": "接口降级、导入和文件访问",
+      "body": "接口失败有人工路径；导入可核对；附件按权限访问",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N1",
+      "type": "流程节点",
+      "title": "配镜与交付 · 接待与检查",
+      "body": "接待与检查；前台 / 检查人员；客户身份、来店目的、历史档案；检查记录、需求；进入处方确认，或交专业负责人评估；身份重复、报告不全、检查未完成",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N2",
+      "type": "流程节点",
+      "title": "配镜与交付 · 处方确认与开单",
+      "body": "处方确认与开单；专业人员 / 销售；检查结果、最终处方、商品；处方版本、订单、交付约定；核实库存与约定款项，进入加工；自带镜架、改商品、折扣审批",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N3",
+      "type": "流程节点",
+      "title": "配镜与交付 · 订货与加工",
+      "body": "订货与加工；采购 / 加工人员；处方快照、加工参数、库存；工单、供应商、预计交付日期；加工完成后交质检；缺货、分批到货、供应商延期",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N4",
+      "type": "流程节点",
+      "title": "配镜与交付 · 质量检查",
+      "body": "质量检查；质检人员；眼镜、工单、处方快照；质检结果、人员及时间；通过后通知取镜；失败返回加工；参数错误、破损、返工、报损",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N5",
+      "type": "流程节点",
+      "title": "配镜与交付 · 交付与签收",
+      "body": "交付与签收；交付人员；合格产品、尾款、身份；实际交付、调整、签收；安排适应回访及复查；未结尾款、无人取镜、佩戴不适",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N6",
+      "type": "流程节点",
+      "title": "配镜与交付 · 回访与售后",
+      "body": "回访与售后；随访 / 售后；交付记录、回访日期；联系结果、反馈、后续任务；归档或进入售后/复查；失联、维修、重做、退款",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N1",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 评估与建档",
+      "body": "评估与建档；专业负责人；检查结果、历史资料、目的；评估、目标、方案来源；确认是否进入训练服务；需外院评估、缺资料、暂不适合",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N2",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 确认个人计划",
+      "body": "确认个人计划；专业 / 训练人员；评估、目标、项目库；计划版本、复评节点；建立课程安排；收费另行确认；计划修改、审核、授权未完成",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N3",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 排课与资源锁定",
+      "body": "排课与资源锁定；前台 / 排课人员；频率、员工、房间、设备；预约序列、容量、候补；通知并等待到店签到；冲突、请假、调课、设备维护",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N4",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 签到与训练执行",
+      "body": "签到与训练执行；训练人员；预约、计划、可用权益；实际项目、时长、表现、反馈；确认服务记录并按规则扣次；缺席、不适、中止、内容变更",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N5",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 记录与家庭练习",
+      "body": "记录与家庭练习；训练人员 / 家长；执行情况、专业要求；完成记录、家庭作业、来源；反馈跟进，准备下一次服务；未提交、反馈异常、扣次纠正",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W2-N6",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 阶段复评与调整",
+      "body": "阶段复评与调整；专业负责人；检查、训练历史、家庭记录；复评结论、新版本或结束原因；继续排课、暂停或完成；转诊、停止、退款和权益处理",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N1",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 确定随访安排",
+      "body": "确定随访安排；专业负责人；检查、方案、历史；下次日期、项目、负责人；生成随访任务；日期调整、暂停",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N2",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 提醒与联系",
+      "body": "提醒与联系；随访人员；到期任务、授权渠道；发送结果、联系记录；预约或再次联系；发送失败、无人接听、失效电话",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N3",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 预约与到店",
+      "body": "预约与到店；前台 / 客户；客户意向、可用时段；预约、签到、候诊；交检查人员执行；延期、取消、缺席、外院复查",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N4",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 复查与对比",
+      "body": "复查与对比；检查 / 专业人员；历次数据、本次检查；检查结果、变化、专业意见；确定是否调整方案；条件不可比、待审核、转诊",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N5",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 后续安排确认",
+      "body": "后续安排确认；专业负责人；复查意见、服务状态；确认方案、下次日期；建立下一轮任务；暂停、停止、外院跟踪",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W3-N6",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 完成与归档",
+      "body": "完成与归档；随访人员；结果和后续安排；完成原因、报告、日志；进入下一轮随访；拒绝或失联需记录结案原因",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N1",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 专业评估与授权",
+      "body": "专业评估与授权；专业负责人；检查、适用评估、同意；验配档案、确认意见；参数与订片确认；不适合、需进一步检查、缺授权",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N2",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 参数确认与订片",
+      "body": "参数确认与订片；专业 / 技术人员；验配参数、产品资料；确认处方、订单、追溯资料；供应商订货跟踪；参数变更、特殊订片、延期",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N3",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 验收与参数核对",
+      "body": "验收与参数核对；技术 / 质量人员；镜片、订片资料；结果、批号或序列号；合格后安排交付；不符、破损、资料不全",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N4",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 交付与护理指导",
+      "body": "交付与护理指导；专业 / 技术人员；合格产品、指导材料；交付、摘戴护理指导；安排专业复查；掌握不足、交付暂停",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N5",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 复查与异常跟踪",
+      "body": "复查与异常跟踪；专业负责人；佩戴反馈、复查；复查记录、处置意见；由专业人员确认继续、调整或停止；不适、损坏、遗失、异常、转诊",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W4-N6",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 更换与长期归档",
+      "body": "更换与长期归档；技术 / 随访人员；镜片状态、专业意见；更换、下一次安排；继续随访，保留历史；重订、停用、退货、质量追溯",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N1",
+      "type": "流程节点",
+      "title": "采购与库存 · 需求与采购审批",
+      "body": "需求与采购审批；采购 / 负责人；订单需求、缺货、补货建议；批准采购单、供应商；向供应商订货；预算、供应商资质待核实",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N2",
+      "type": "流程节点",
+      "title": "采购与库存 · 订货与在途",
+      "body": "订货与在途；采购人员；采购单、交期；在途数量、预计日期；收货验收；少发、延期、取消",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N3",
+      "type": "流程节点",
+      "title": "采购与库存 · 收货与验收",
+      "body": "收货与验收；仓库 / 质量人员；货物、单据、批次效期；合格数量、验收记录；合格入库；异常隔离/退供；差异、破损、临期、缺资料",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N4",
+      "type": "流程节点",
+      "title": "采购与库存 · 入库与可售库存",
+      "body": "入库与可售库存；仓库人员；验收、仓位；库存流水、成本、可售数量；订单预留或调拨；重复扫码、入库纠正",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N5",
+      "type": "流程节点",
+      "title": "采购与库存 · 预留、调拨与出库",
+      "body": "预留、调拨与出库；仓库 / 销售；订单或调拨单；预留、出库、交付流向；完成交付核实库存；取消释放、部分出库、调拨差异",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W5-N6",
+      "type": "流程节点",
+      "title": "采购与库存 · 盘点与质量处理",
+      "body": "盘点与质量处理；仓库 / 负责人；库存账、实物、效期；差异审批、报损、退供；更新库存与补货安排；盘亏、召回、滞销、过期",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N1",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 项目与授权准备",
+      "body": "项目与授权准备；筛查负责人；机构、范围、名单、授权；批次、人员、设备安排；名单校验；缺授权、名单不全",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N2",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 匹配与个人建档",
+      "body": "匹配与个人建档；前台 / 筛查人员；名单、已有档案；客户编号、匹配结果；现场检查；重复、身份不明",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N3",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 现场检查登记",
+      "body": "现场检查登记；检查人员；身份、项目、设备；结果、方法、时间、来源；校验与专业复核；缺测、设备异常、录入错误",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N4",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 报告与建议确认",
+      "body": "报告与建议确认；专业负责人；结果、原始报告；报告、复查/转诊建议；授权发布；复核、缺项",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N5",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 发布与联系",
+      "body": "发布与联系；授权员工；确认报告、可见范围；个人报告、汇总、联系记录；安排复查或到店；送达失败、监护关系待核实",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N6",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 复查跟进与归档",
+      "body": "复查跟进与归档；随访人员；建议、联系结果；复查、外院结果、批次统计；接入个人长期档案；延期、失联、拒绝复查",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N1",
+      "type": "流程节点",
+      "title": "售后与返工 · 受理与关联原单",
+      "body": "受理与关联原单；售后接待；反馈、原单、交付资料；售后单、原因、诉求；分派负责人；原单缺失、跨店售后",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N2",
+      "type": "流程节点",
+      "title": "售后与返工 · 检查与处理建议",
+      "body": "检查与处理建议；专业 / 质量人员；产品、处方、加工、反馈；结论、处理建议；维修、重做、退款或专业转交；需外院处理、信息不足",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N3",
+      "type": "流程节点",
+      "title": "售后与返工 · 方案与审批",
+      "body": "方案与审批；负责人 / 财务；建议、费用、服务规则；批准方案、客户确认；执行对应任务；拒绝、费用争议",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N4",
+      "type": "流程节点",
+      "title": "售后与返工 · 维修、返工或退货",
+      "body": "维修、返工或退货；加工 / 仓库人员；批准方案、原产品；执行、库存、供应商处理；重新质检或完成退款；再次失败、退货隔离",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N5",
+      "type": "流程节点",
+      "title": "售后与返工 · 交付与资金核对",
+      "body": "交付与资金核对；交付 / 财务人员；结果、原付款；签收、退款、对账；回访客户；退款失败、无人取件",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N6",
+      "type": "流程节点",
+      "title": "售后与返工 · 回访与质量改进",
+      "body": "回访与质量改进；售后 / 质量负责人；处理、反馈；结案、原因、改进任务；归档并跟踪改进；未解决、同批次问题",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A1",
+      "type": "统计",
+      "title": "客户与服务",
+      "body": "新增、复购、年龄、来源、服务、跨店；趋势、构成、客户筛选名单；客户、家庭、到店次数分别统计",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A2",
+      "type": "统计",
+      "title": "儿童随访",
+      "body": "个人左右眼结果、应复查、完成、逾期；双眼趋势、档案时间轴、任务名单；标明条件、间隔及专业评价",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A3",
+      "type": "统计",
+      "title": "训练与课程",
+      "body": "预约、到课、缺席、时长、复评、家庭练习；课表、完成趋势、阶段对比；分母明确；打卡和分数不是疗效",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A4",
+      "type": "统计",
+      "title": "经营与资金",
+      "body": "销售、实收、退款、折扣、毛利、预收余额；日周月趋势、构成、明细；订单额、资金流、服务消耗分列",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A5",
+      "type": "统计",
+      "title": "员工与资源",
+      "body": "服务量、负荷、资源使用、等待时间；时段热力图、日历、工作量；结合质量；不只按营业额评价专业服务",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A6",
+      "type": "统计",
+      "title": "库存与供应商",
+      "body": "可售、预留、在途、缺货、临期、周转；镜片矩阵、预警、周转分布；调拨不作销售；数量成本口径一致",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A7",
+      "type": "统计",
+      "title": "售后与质量",
+      "body": "售后、返工原因、时长、批次影响；原因分布、工单看板、追溯路径；分类原因，关联原订单",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A8",
+      "type": "统计",
+      "title": "团体筛查",
+      "body": "完成、缺测、复核、复查跟进、批次；完成图、授权汇总、跟进名单；个人结果不进入未授权公开汇总",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D1",
+      "type": "数据领域",
+      "title": "客户与家庭",
+      "body": "客户、家庭、监护关系、联系人、付款人；编号、出生日期、关系、授权；手机号可重复；服务与付款对象分开",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D2",
+      "type": "数据领域",
+      "title": "检查与专业记录",
+      "body": "到店、检查、单眼测量、报告、专业意见；眼别、单位、条件、设备、来源、版本；缺测留空；按条件比较；录入确认分开",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D3",
+      "type": "数据领域",
+      "title": "验配与商品参数",
+      "body": "处方、镜片、镜架、加工、交付；屈光参数、瞳距/瞳高、用途、版本；处方快照；实际交付关联",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D4",
+      "type": "数据领域",
+      "title": "专项检查与接触镜",
+      "body": "眼轴、角膜、视功能、接触镜验配；实测值、附件、基弧/直径等按需参数；按业务启用；不替代专业判断",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D5",
+      "type": "数据领域",
+      "title": "训练与复评",
+      "body": "评估、计划、版本、项目、复评；目标、频率、参数、时长、暂停原因；项目库不是自动处方；更新保留历史",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D6",
+      "type": "数据领域",
+      "title": "课程与执行",
+      "body": "预约、资源、签到、执行、家庭练习；时段、实际项目、反馈、提交来源；预约、完成、扣次分别记录",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D7",
+      "type": "数据领域",
+      "title": "订单与权益",
+      "body": "订单、明细、套餐、权益、扣次流水；付费/赠送、效期、冻结、调整；来源明确；撤销产生反向流水",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D8",
+      "type": "数据领域",
+      "title": "资金与经营",
+      "body": "收款、退款、应收应付、交班、提成；渠道流水、实收、费用、口径版本；支付与订单状态分开；对账留痕",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D9",
+      "type": "数据领域",
+      "title": "供应链与质量",
+      "body": "供应商、采购、验收、批次、库存；规格、效期、仓位、预留、隔离；每次流转留账；追溯到客户",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D10",
+      "type": "数据领域",
+      "title": "服务与沟通",
+      "body": "随访、通知、联系、售后、转诊；目的、授权、回执、结果、下一步；发送不等于到店；内外备注区分",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D11",
+      "type": "数据领域",
+      "title": "组织与运行",
+      "body": "门店、员工、岗位、资质、资源、审批；范围、动作权限、效期、日志；管理员不默认承担专业确认",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D12",
+      "type": "数据领域",
+      "title": "文件与配置",
+      "body": "附件、同意书、字典、模板、导入；版本、来源、权限、生效日期；文件授权；导入可核对和纠正",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P01",
+      "type": "权限矩阵",
+      "title": "档案与家庭关系",
+      "body": "负责人：管理；前台/销售：录入；专业人员：查阅；训练人员：授权查阅；仓库/加工：必要信息；财务：必要信息；家长/客户：授权家庭",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P02",
+      "type": "权限矩阵",
+      "title": "检查与方案确认",
+      "body": "负责人：按专业资质；前台/销售：资料/排队；专业人员：录入与确认；训练人员：执行所需；仓库/加工：加工参数；财务：收费所需；家长/客户：发布报告",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P03",
+      "type": "权限矩阵",
+      "title": "排课与训练执行",
+      "body": "负责人：管理；前台/销售：排课/签到；专业人员：计划与复评；训练人员：执行记录；仓库/加工：设备状态；财务：费用核对；家长/客户：预约/提交",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P04",
+      "type": "权限矩阵",
+      "title": "订单、权益、收款",
+      "body": "负责人：审批；前台/销售：开单/收款；专业人员：服务关联；训练人员：完成/扣次；仓库/加工：流转任务；财务：对账/退款；家长/客户：本人订单",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P05",
+      "type": "权限矩阵",
+      "title": "库存、加工、质检",
+      "body": "负责人：管理/审批；前台/销售：查询/交付；专业人员：处方核对；训练人员：必要查询；仓库/加工：执行记录；财务：成本/应付；家长/客户：交付进度",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P06",
+      "type": "权限矩阵",
+      "title": "导出、修改、作废",
+      "body": "负责人：按审批；前台/销售：受限；专业人员：本职授权；训练人员：本职授权；仓库/加工：本职授权；财务：财务授权；家长/客户：本人资料申请",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H1",
+      "type": "交接字段",
+      "title": "任务身份",
+      "body": "task_id、客户/周期/原单、节点、候选岗位、负责人、接收人",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H2",
+      "type": "交接字段",
+      "title": "执行与时限",
+      "body": "认领/开始/暂停/完成时间、截止日、工作日历、优先级",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H3",
+      "type": "交接字段",
+      "title": "资料与阻塞",
+      "body": "输入附件/版本、缺项、阻塞原因、补充人、恢复条件",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H4",
+      "type": "交接字段",
+      "title": "交接记录",
+      "body": "转出人、转入人、理由、接收时间、前后值、下一任务",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H5",
+      "type": "交接字段",
+      "title": "关闭与追溯",
+      "body": "产出、完成条件证据、取消或结案原因、审批与日志关联",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S01",
+      "type": "验收场景",
+      "title": "正常配镜到交付",
+      "body": "身份→检查→处方快照→开单预留→加工→质检→签收→回访",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S02",
+      "type": "验收场景",
+      "title": "缺货延期与分批交付",
+      "body": "不同商品分批到货/交付；交期沟通；未交付项与款项分别跟踪",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S03",
+      "type": "验收场景",
+      "title": "质检失败与再次返工",
+      "body": "退回加工、损耗、新质检、客户通知；不合格不可交付",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S04",
+      "type": "验收场景",
+      "title": "周期训练与复评调整",
+      "body": "多次训练循环；到期复评；新计划版本不改历史执行",
+      "tasks": [
+        "T05.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S05",
+      "type": "验收场景",
+      "title": "缺课、请假与补课",
+      "body": "只改当次；按规则处理权益；候补/补课重新校验资源",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S06",
+      "type": "验收场景",
+      "title": "中止、反馈与专业接管",
+      "body": "保留实际记录，生成异常任务，确认继续/暂停及后续安排",
+      "tasks": [
+        "T05.04",
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S07",
+      "type": "验收场景",
+      "title": "部分退款与赠送权益",
+      "body": "公式版本、已用/赠送/分摊逐项核对；失败重试；不误结束服务周期",
+      "tasks": [
+        "T04.02",
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S08",
+      "type": "验收场景",
+      "title": "多门店与请假交接",
+      "body": "授权范围、负责人转派、接收、逾期升级和停用账号",
+      "tasks": [
+        "T03.01",
+        "T07.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S09",
+      "type": "验收场景",
+      "title": "复查失联与外院结果",
+      "body": "发出、联系、到店分开；失联转人工；外院资料待确认",
+      "tasks": [
+        "T06.02",
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S10",
+      "type": "验收场景",
+      "title": "采购、调拨、盘点与退货",
+      "body": "分批差异、两端确认、隔离验收、报损及批次客户追溯",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S11",
+      "type": "验收场景",
+      "title": "家庭授权与报告更正",
+      "body": "授权撤销、越家庭、撤回再发布和内部备注可见范围",
+      "tasks": [
+        "T08.01",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S12",
+      "type": "验收场景",
+      "title": "筛查导入与重复匹配",
+      "body": "名单错误不覆盖旧档；个人报告与汇总授权不同，复查有负责人",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S13",
+      "type": "验收场景",
+      "title": "弱网、重复、并发与接口失败",
+      "body": "草稿恢复、同一确认只扣一次、不超售、不重复退款、人工接管",
+      "tasks": [
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S14",
+      "type": "验收场景",
+      "title": "旧资料、统计与恢复核对",
+      "body": "缺测不补零；口径下钻一致；备份恢复核对各账及版本",
+      "tasks": [
+        "T09.01",
+        "T09.04",
+        "T10.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V01",
+      "type": "长期可视化",
+      "title": "屈光变化",
+      "body": "球镜、柱镜、轴位、等效球镜（按确认公式派生），左右眼分别记录；D / °；检查值、最终处方分开；散瞳条件、方法、来源与柱镜记法保留；独立指标折线/点图 + 历次变化表；轴位以参数表或方向图展示；点击测量点打开原检查版本；同条件才给变化值",
+      "tasks": [
+        "T02.03",
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V02",
+      "type": "长期可视化",
+      "title": "视力变化",
+      "body": "裸眼、戴镜、最佳矫正、远近视力按实际项目采集；记录小数/五分/LogMAR等原始记法、视力表、距离、眼别、矫正条件；按条件拆分小图，不把不同记法直接放同一数轴；原始值保留；转换须有确认算法及版本，缺测有原因",
+      "tasks": [
+        "T02.03",
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V03",
+      "type": "长期可视化",
+      "title": "眼部生物测量",
+      "body": "眼轴长度、角膜曲率、角膜地形等实际已开展结果；mm / D 等按项目；设备、测量方法、时间、眼别、外院来源；眼轴与角膜指标独立面板；影像附报告对照；同日期多次测量有记录标识；更换设备或方法有提示",
+      "tasks": [
+        "T02.03",
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V04",
+      "type": "长期可视化",
+      "title": "双眼视与视功能",
+      "body": "眼位、立体视、融合、调节/聚散等实际评估项目；项目字典逐项定义单位、方法、测试条件、版本；单眼/双眼区别；可比数值独立趋势，分类结果用历次表和事件卡；不将不同单位拼成健康雷达总分；专业解释单独确认",
+      "tasks": [
+        "T02.03",
+        "T05.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V05",
+      "type": "长期可视化",
+      "title": "眼健康与专业意见",
+      "body": "实际检查的眼压、眼底/角膜报告、症状、不适反馈、外院意见及附件；数值按项目单位，文字、影像、来源、确认人员与日期保留；报告时间轴、附件对照、症状记录与专业事件标记；不用文本自动生成诊断；确认意见与客户自报分别展示",
+      "tasks": [
+        "T02.05",
+        "T06.03",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V06",
+      "type": "长期可视化",
+      "title": "课程与实际执行",
+      "body": "预约、到课、缺课、补课、实际时长、项目、计划版本、阶段复评；次数/分钟；预约、执行、权益扣次三种状态分开；完成率分母明示；课程日历、到课趋势、执行项目分布、阶段进度；点开次数进入执行明细；项目/量表改变时分段，不强行连分数",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V07",
+      "type": "长期可视化",
+      "title": "家庭练习与日常反馈",
+      "body": "布置、提交、实际反馈；自报户外/近距离用眼等按需要启用；来源标记家长自报/设备/员工；时长、提交日期、量表与版本；练习完成日历、提交趋势、反馈事件与阶段记录；未提交与提交零分钟不同；自报不当客观检查结果",
+      "tasks": [
+        "T05.05",
+        "T08.02",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V08",
+      "type": "长期可视化",
+      "title": "长期关系与服务跟进",
+      "body": "复查约定/完成/逾期、联系、提醒、计划变更、配镜交付与售后；业务时间、记录时间、负责人、结果、下一任务、服务周期；统一长期时间轴 + 待办面板；筛选业务类型、阶段和来源；检查图上叠加交付/计划调整/复评标记仅表示同时发生，不推断因果",
+      "tasks": [
+        "T02.05",
+        "T06.01",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR01",
+      "type": "图表规则",
+      "title": "横轴真实时间",
+      "body": "不等间隔检查按实际日期显示；业务发生日与补录日分开；同日多条记录可定位。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR02",
+      "type": "图表规则",
+      "title": "条件可比性",
+      "body": "眼别、单位、方法、矫正/散瞳条件与来源筛选。不可比不计算差值；更换设备提示，不静默合并。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR03",
+      "type": "图表规则",
+      "title": "缺测和可信状态",
+      "body": "未做、无法测、待补、不适用分别显示；默认只用已确认值，草稿另层标记；缺测不补零或平滑推断。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR04",
+      "type": "图表规则",
+      "title": "基线与历次变化",
+      "body": "可选有效基线和上次可比检查，显示原值、差值与间隔；需要速率时另行确认公式与适用条件，标注计算口径。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR05",
+      "type": "图表规则",
+      "title": "明细、版本和更正",
+      "body": "每个点关联检查/执行ID及版本；修订后面板重新计算，历史报告保留原发布快照；导出带筛选和截止时间。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR06",
+      "type": "图表规则",
+      "title": "权限与家长视图",
+      "body": "员工仅看授权客户与专业字段；家长只看已发布版本及授权孩子，报告撤回和监护撤销后限制访问。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR07",
+      "type": "图表规则",
+      "title": "呈现与解释",
+      "body": "指标分别使用明确单位与轴范围，不用截断坐标夸大变化；颜色表达眼别/状态；专业解释与数值、课程完成分开。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR08",
+      "type": "图表规则",
+      "title": "多端、更新与性能",
+      "body": "手机按指标卡片查看，图表有等价表格；显示数据截止、加载、无数据、失败；新增/确认/修订/冲销后刷新对应面板。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS01",
+      "type": "图表验收",
+      "title": "完整纵向记录",
+      "body": "多日期、左右眼、多指标、课程与复评事件；核对原记录、点位、表格与导出一致",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS02",
+      "type": "图表验收",
+      "title": "稀疏与缺测",
+      "body": "不等间隔、仅一个点、同日多记录、缺测原因；不补零、不造趋势，空状态可用",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS03",
+      "type": "图表验收",
+      "title": "条件与单位切换",
+      "body": "散瞳/非散瞳、裸眼/矫正、外院/本店、不同视力记法与设备；不可比不算差值",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS04",
+      "type": "图表验收",
+      "title": "课程及家庭统计",
+      "body": "请假、补课、中止、取消、未提交、赠送和冲销；次数、分钟、完成率分母与明细一致",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS05",
+      "type": "图表验收",
+      "title": "历史修订与权限",
+      "body": "确认/修订/撤回/重新发布、计划版本变化、监护撤销及越家庭；旧快照与当前图分别正确",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS06",
+      "type": "图表验收",
+      "title": "多端和长期规模",
+      "body": "手机、电脑、键盘、放大、图表等价表格、弱网和大量历史；筛选与更新截止正确",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    }
+  ]
+}
