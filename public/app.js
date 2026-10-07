@@ -2,6 +2,7 @@ import { createDocumentPanels } from './documents.js';
 import { createOrganizationPanel } from './organization.js';
 import { createOperationsPanel } from './operations.js';
 import { createProfilesPanel } from './profiles.js';
+import { createTimelinePanel } from './timeline.js';
 const $=s=>document.querySelector(s);
 let me, selected, csrf, customers=[], searchVersion=0, toastTimer, sessionEpoch=0;
 const roleNames={manager:'门店负责人',reception:'前台 / 销售',professional:'专业人员',guardian:'家长 / 客户'};
@@ -18,7 +19,8 @@ const documentPanels=createDocumentPanels({api,getMe:()=>me,getCustomer:()=>sele
 const organizationPanel=createOrganizationPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch,toast,boot,onLogout:logout});
 const operationsPanel=createOperationsPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch});
 const profilesPanel=createProfilesPanel({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,reload:openCustomer,toast});
-function showLogin(){profilesPanel.reset();documentPanels.reset();organizationPanel.reset();operationsPanel.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
+const timelinePanel=createTimelinePanel({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,toast});
+function showLogin(){timelinePanel.reset();profilesPanel.reset();documentPanels.reset();organizationPanel.reset();operationsPanel.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
 async function boot(){
   try{me=await api('/me');csrf=me.csrf;$('#login-view').hidden=true;$('#workspace').hidden=false;$('#loading').hidden=true;$('#user-name').textContent=me.name;$('#user-role').textContent=roleNames[me.role];$('#user-avatar').textContent=me.name.slice(0,1);$('#store-name').textContent=me.store?.name||'授权家庭范围';$('#demo-nav').hidden=!me.permissions.includes('demo:read');$('#organization-nav').hidden=!me.permissions.includes('organization:read');$('#audit-nav').hidden=!me.permissions.includes('audit:read');$('#operations-nav').hidden=!me.permissions.includes('operations:read');$('#new-customer').hidden=!me.permissions.includes('customers:create');$('#search').placeholder=me.role==='guardian'?'按客户姓名搜索':'姓名、联系人、电话或编号';switchView('customers');if(me.must_change_password){organizationPanel.openPassword();return;}await loadCustomers();}
   catch(e){if(me)$('#global-error').textContent=e.message;else showLogin();}
@@ -46,6 +48,7 @@ async function openCustomer(id){
     if(me.role==='guardian'){
       detail.append(el('p','当前仅展示授权基本资料；专业报告发布功能尚未实现。','muted'));
     }else{
+      const overviewTarget=el('div',undefined,'customer-overview-area');detail.append(overviewTarget);timelinePanel.render(overviewTarget,id);
       const contactsTarget=el('div',undefined,'family-contacts-area');detail.append(contactsTarget);profilesPanel.renderContacts(contactsTarget,id);
       const documentsTarget=el('div',undefined,'documents-area');detail.append(documentsTarget);documentPanels.render(documentsTarget,id);
       const head=el('div',undefined,'cycle-heading');head.append(el('h2',`独立服务周期 · ${cycles.length}`));
@@ -55,7 +58,7 @@ async function openCustomer(id){
       detail.append(head);
       if(!cycles.length)detail.append(el('p','尚无服务周期。可以从服务目标创建一个草稿。','small muted'));
       for(const cycle of cycles){
-        const card=el('article',undefined,'cycle-card'),h=el('h3',cycleNames[cycle.type]);card.dataset.type=cycle.type;
+        const card=el('article',undefined,'cycle-card'),h=el('h3',cycleNames[cycle.type]);card.dataset.type=cycle.type;card.dataset.cycleId=cycle.id;
         h.append(el('span','草稿','pill'));card.append(h,el('p',cycle.goal),el('small',`创建于 ${cycle.created_at.slice(0,10)} · 独立周期`));detail.append(card);
       }
       renderFamily(detail,guardians,id);
@@ -102,7 +105,7 @@ function renderFamily(detail,guardians,id){
       }catch(e){$('#global-error').textContent=e.message;}finally{action.disabled=false;}
     };
   }
-  detail.append(sectionHeader('家长查看授权',action));
+  const familyHead=sectionHeader('家长查看授权',action);familyHead.classList.add('family-access-area');detail.append(familyHead);
   if(!guardians.length)detail.append(el('p','尚无家长账号关联。联系人电话不等于查看授权。','small muted'));
   for(const g of guardians){
     const item=el('div',undefined,'family-row'),text=el('div');
@@ -123,7 +126,7 @@ function renderVisits(detail,visits,cycles,id){
   detail.append(sectionHeader(`到店记录 · ${visits.length}`,action));
   if(!visits.length)detail.append(el('p','尚无到店记录。到店与服务周期分别管理。','small muted'));
   for(const v of visits){
-    const item=el('article',undefined,'visit-card'),head=el('div',undefined,'visit-head');
+    const item=el('article',undefined,'visit-card');item.dataset.visitId=v.id;const head=el('div',undefined,'visit-head');
     head.append(el('strong',v.purpose),el('span',v.status==='closed'?'本次已结束':'已登记',v.status==='closed'?'badge neutral':'badge sky'));
     item.append(head,el('p',`关联 ${v.cycle_ids.length} 个周期 · ${v.cycle_ids.map(cid=>cycleNames[cycles.find(c=>c.id===cid)?.type]||'服务周期').join(' / ')||'仅登记到店目的'}`,'small muted'),el('small',new Date(v.created_at).toLocaleString('zh-CN',{hour12:false})));
     if(v.status==='registered'&&me.permissions.includes('visits:close')){

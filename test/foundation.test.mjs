@@ -8,6 +8,7 @@ import { once } from 'node:events';
 import { request as httpRequest } from 'node:http';
 import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
+import { createBackup,restoreBackup } from '../src/recovery.mjs';
 import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, demoScenarios } from '../src/demo-data.mjs';
 
 async function fixture(t,{persist=false,logger=()=>{}}={}) {
@@ -495,4 +496,75 @@ test('V0.5 migration captures a truthful legacy baseline without attributing pas
     const v=db.prepare('SELECT * FROM customer_profile_versions').get();assert.equal(v.source,'legacy');assert.equal(v.created_by,null);assert.notEqual(v.created_at,'2025-01-01T00:00:00.000Z');assert.equal(v.name,'存量档案（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,5);
     db.close();db=openDatabase(path);assert.equal(db.prepare('SELECT count(*) n FROM customer_profile_versions').get().n,1);
   }finally{db?.close();rmSync(dir,{recursive:true,force:true});}
+});
+
+test('customer overview and timeline are employee-only, store-scoped, read-only and exclude unrelated audit content',async t=>{
+ const {request,login,db}=await fixture(t),manager=await login('manager'),front=await login('front'),professional=await login('professional'),parent=await login('parent');
+ for(const endpoint of ['overview','timeline']){
+  for(const session of [manager,front,professional])assert.equal((await request(`/api/customers/child-a/${endpoint}`,session)).status,200);
+  assert.equal((await request(`/api/customers/child-a/${endpoint}`,parent)).status,403);assert.equal((await request(`/api/customers/child-b/${endpoint}`,manager)).status,404);
+  assert.equal((await request(`/api/customers/child-a/${endpoint}`,{...manager,method:'POST',data:{},key:'timeline-readonly'})).status,405);
+ }
+ db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run('irrelevant','a','manager','staff.password_reset','child-a',null,JSON.stringify({customer_id:'child-a',private:'SHOULD_NOT_APPEAR'}),new Date().toISOString());
+ const result=(await request('/api/customers/child-a/timeline',front)).body;assert.equal(result.items.length,1);assert.equal(result.items[0].kind,'profile');assert.ok(!JSON.stringify(result).includes('SHOULD_NOT_APPEAR'));assert.equal(result.items[0].details.name,'child-a');
+});
+test('overview and mixed timeline follow persisted customer actions without ending independent cycles',async t=>{
+ const {request,login,origin}=await fixture(t),session=await login('manager');
+ const post=(path,data,key)=>request(path,{...session,method:'POST',data,key});
+ await post('/api/customers/child-a/profile',profileInput(),'timeline-profile');
+ const cycle=(await post('/api/customers/child-a/cycles',{type:'followup',goal:'长期服务（虚构）'},'timeline-cycle')).body.cycle;
+ const visit=(await post('/api/customers/child-a/visits',{purpose:'实际登记目的（虚构）',cycle_ids:[cycle.id]},'timeline-visit')).body.visit;
+ await post(`/api/visits/${visit.id}/close`,{reason:'本次结束，长期周期继续'},'timeline-close');
+ const contact=(await post('/api/customers/child-a/contacts',contactInput(),'timeline-contact')).body.contact;
+ await post(`/api/contacts/${contact.id}`,contactInput({name:'修订备用家长（虚构）',active:false,expected_revision:1}),'timeline-contact-edit');
+ const f=(await upload(origin,session,'child-a',{key:'timeline-upload'})).body.attachment;
+ const document=(await post('/api/customers/child-a/documents',{title:'旧资料标题（虚构）',content:'初版',source:'guardian_report',attachment_ids:[f.id]},'timeline-document')).body.document;
+ await post(`/api/documents/${document.record_id}/versions`,{title:'新资料标题（虚构）',content:'补充',source:'employee',expected_version:1,revision_reason:'新增说明',attachment_ids:[f.id]},'timeline-document-revise');
+ await post(`/api/attachments/${f.id}/revoke`,{reason:'撤销访问，保留历史'},'timeline-revoke-file');
+ await post('/api/customers/child-a/guardians',{user_id:'parent',relationship:'监护人（演示）',active:false,reason:'演示撤销'},'timeline-guardian');
+ const overview=(await request('/api/customers/child-a/overview',session)).body;assert.equal(overview.cycle_drafts,1);assert.equal(overview.visits_registered,0);assert.equal(overview.visits_closed,1);assert.equal(overview.contacts_active,0);assert.equal(overview.documents,1);assert.equal(overview.attachments_active,0);assert.equal(overview.last_visit.id,visit.id);
+ const all=(await request('/api/customers/child-a/timeline?limit=50',session)).body.items;assert.equal(all.length,12);assert.deepEqual(new Set(all.map(e=>e.kind)),new Set(['profile','cycle','visit','contact','document','attachment','authorization']));
+ assert.equal(all.find(e=>e.kind==='visit'&&e.details.action==='close').details.reason,'本次结束，长期周期继续');assert.ok(all.find(e=>e.kind==='contact'&&e.details.action==='contact.create').details.name==='备用联系人（虚构）');assert.equal(all.find(e=>e.kind==='contact'&&e.details.action==='contact.update').details.active,0);
+ assert.ok(all.find(e=>e.kind==='document'&&e.details.version===1).details.title==='旧资料标题（虚构）');assert.equal(all.find(e=>e.kind==='profile'&&e.details.version===1).details.name,'child-a');assert.equal(new Set(all.map(e=>e.event_id)).size,all.length);
+});
+test('timeline keyset pagination preserves equal-time events, filters UTC dates, and excludes newly appended records from later pages',async t=>{
+ const {request,login,db}=await fixture(t),session=await login('manager');
+ for(let i=0;i<57;i++)db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(`timeline-cycle-${String(i).padStart(3,'0')}`,'child-a','followup','虚构周期','draft','2026-01-02T12:00:00.000Z','manager');
+ db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('outside-date','child-a','retail','较早虚构周期','draft','2026-01-01T23:59:59.999Z','manager');
+ const query='/api/customers/child-a/timeline?kind=cycle&from=2026-01-02&to=2026-01-02&limit=7';let response=await request(query,session),items=[...response.body.items];assert.equal(response.body.limit,7);assert.ok(response.body.next_cursor);
+ db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('later-cycle','child-a','training','后来虚构周期','draft','2026-01-02T13:00:00.000Z','manager');
+ while(response.body.next_cursor){response=await request(query+'&cursor='+response.body.next_cursor,session);assert.equal(response.status,200);items.push(...response.body.items);}
+ assert.equal(items.length,57);assert.equal(new Set(items.map(e=>e.event_id)).size,57);assert.ok(items.every(e=>e.at==='2026-01-02T12:00:00.000Z'));assert.deepEqual(items.map(e=>e.event_id),[...items.map(e=>e.event_id)].sort().reverse());
+ assert.equal((await request('/api/customers/child-a/timeline?kind=cycle&from=2026-01-01&to=2026-01-01',session)).body.items.length,1);
+});
+test('timeline rejects invalid filters and cursors reused across customer or query; empty ranges return an explicit end',async t=>{
+ const {request,login}=await fixture(t),session=await login('front');
+ for(const suffix of ['kind=security','from=2026-02-30','from=2026-10-07&to=2026-10-06','limit=0','limit=51','limit=1e1','cursor=','cursor=not-json'])assert.equal((await request('/api/customers/child-a/timeline?'+suffix,session)).status,422);
+ await request('/api/customers/child-a/cycles',{...session,method:'POST',data:{type:'followup',goal:'pagination'},key:'timeline-cursor-cycle'});
+ const cursor=(await request('/api/customers/child-a/timeline?limit=1',session)).body.next_cursor;assert.ok(cursor);
+ assert.equal((await request('/api/customers/sibling-a/timeline?limit=1&cursor='+cursor,session)).body.error.code,'INVALID_CURSOR');assert.equal((await request('/api/customers/child-a/timeline?kind=cycle&cursor='+cursor,session)).body.error.code,'INVALID_CURSOR');
+ const empty=(await request('/api/customers/child-a/timeline?from=1900-01-01&to=1900-01-01',session)).body;assert.deepEqual(empty.items,[]);assert.equal(empty.next_cursor,null);
+});
+test('overview counts are complete beyond UI list limits and early history does not invent actors or snapshots',async t=>{
+ const {request,login,db}=await fixture(t),session=await login('manager');
+ for(let i=0;i<105;i++)db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(`overview-${i}`,'child-a','followup','虚构周期','draft',new Date().toISOString(),'manager');
+ const now=new Date().toISOString();db.prepare('INSERT INTO family_contacts VALUES (?,?,?,?,?,?,?,1,1,?,?,?,?)').run('legacy-contact','child-a','当前名字，不能推断初版','录入关系',null,'employee',null,now,'manager',now,'manager');
+ db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run('legacy-closed','child-a','a','早期到店（虚构）','closed',now,now,'manager');
+ db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run('malformed-contact','a','manager','contact.update','legacy-contact',null,'not json',now);
+ const overview=(await request('/api/customers/child-a/overview',session)).body;assert.equal(overview.cycle_drafts,105);assert.equal(overview.contacts_active,1);
+ const baseline=(await request('/api/customers/child-a/timeline?kind=contact',session)).body.items;assert.equal(baseline.length,1);assert.equal(baseline[0].details.action,'baseline');assert.equal(baseline[0].details.name,undefined);
+ const close=(await request('/api/customers/child-a/timeline?kind=visit',session)).body.items.find(e=>e.details.action==='close');assert.equal(close.actor_name,null);assert.equal(close.actor_id,null);assert.match(close.details.reason,/未登记/);
+});
+
+test('customer overview and immutable timeline snapshots remain identical after verified independent recovery',async t=>{
+ const {request,login,path,dir}=await fixture(t,{persist:true}),session=await login('manager');
+ const created=(await request('/api/customers/child-a/contacts',{...session,method:'POST',data:contactInput(),key:'timeline-recovery-contact'})).body.contact;
+ await request(`/api/contacts/${created.id}`,{...session,method:'POST',data:contactInput({name:'修改后的家长（虚构）',active:false,expected_revision:1}),key:'timeline-recovery-edit'});
+ const beforeTimeline=(await request('/api/customers/child-a/timeline',session)).body,beforeOverview=(await request('/api/customers/child-a/overview',session)).body;
+ const backup=await createBackup(path,join(dir,'timeline-backup')),restored=await restoreBackup(backup.backup,join(dir,'timeline-restored'));
+ const app=createApp({databasePath:restored.database,mode:'test',logger:()=>{}});app.server.listen(0,'127.0.0.1');await once(app.server,'listening');
+ try{
+  const origin=`http://127.0.0.1:${app.server.address().port}`,response=await fetch(origin+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'manager',password:'test-password-only'})});assert.equal(response.status,200);const cookie=response.headers.get('set-cookie').split(';')[0];
+  assert.deepEqual(await (await fetch(origin+'/api/customers/child-a/timeline',{headers:{Cookie:cookie}})).json(),beforeTimeline);assert.deepEqual(await (await fetch(origin+'/api/customers/child-a/overview',{headers:{Cookie:cookie}})).json(),beforeOverview);
+ }finally{await new Promise(resolve=>app.server.close(resolve));}
 });

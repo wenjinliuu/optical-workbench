@@ -53,7 +53,7 @@ export function createDocumentPanels({api,getMe,getCustomer,getEpoch,reload,toas
       if(getMe().permissions.includes('documents:write')){const button=node('button','＋ 新建资料');button.onclick=()=>openDocument();head.append(button);}documentsBox.append(head,node('p','资料来源与修订历史分别保留，当前为内部资料记录。','small muted'));
       if(!documents.items.length)documentsBox.append(node('p','尚无资料记录，可以从本次需求或外部资料开始。','small muted'));
       for(const record of documents.items){
-        const card=node('article',undefined,'document-card'),title=node('div',undefined,'version-head');title.append(node('h3',record.title),node('span',`V${record.version}`,'badge violet'));
+        const card=node('article',undefined,'document-card');card.dataset.recordId=record.record_id;const title=node('div',undefined,'version-head');title.append(node('h3',record.title),node('span',`V${record.version}`,'badge violet'));
         card.append(title,node('p',sourceNames[record.source],'small muted'),node('pre',record.content,'document-content'));
         for(const f of record.attachments)card.append(link(f));
         const actions=node('div',undefined,'record-actions'),view=node('button','查看历史版本');view.onclick=()=>history(record.record_id);actions.append(view);
@@ -63,7 +63,7 @@ export function createDocumentPanels({api,getMe,getCustomer,getEpoch,reload,toas
       if(getMe().permissions.includes('attachments:upload')){const upload=node('button','＋ 上传附件');upload.onclick=()=>{$('#attachment-form').reset();$('#attachment-error').textContent='';uploadPending=undefined;$('#attachment-dialog').showModal();};fileHead.append(upload);}fileBox.append(fileHead);
       if(!files.length)fileBox.append(node('p','支持 PDF、PNG、JPEG 与 UTF-8 文本，单文件不超过 1 MB。','small muted'));
       for(const f of files){
-        const row=node('div',undefined,'attachment-row'),info=node('div');info.append(link(f),node('small',`${size(f.size)} · ${f.created_at.slice(0,10)}${f.revoked_at?' · 访问已撤销':''}`));row.append(node('span','▤','file-symbol'),info);
+        const row=node('div',undefined,'attachment-row');row.dataset.attachmentId=f.id;const info=node('div');info.append(link(f),node('small',`${size(f.size)} · ${f.created_at.slice(0,10)}${f.revoked_at?' · 访问已撤销':''}`));row.append(node('span','▤','file-symbol'),info);
         if(!f.revoked_at&&getMe().permissions.includes('attachments:revoke')&&(getMe().role==='manager'||f.created_by===getMe().id)){
           const revoke=node('button','撤销访问');revoke.onclick=()=>{revoking=f;revokePending=undefined;$('#revoke-file-form').reset();$('#revoke-file-error').textContent='';$('#revoke-file-name').textContent=f.filename;$('#revoke-file-dialog').showModal();};row.append(revoke);
         }

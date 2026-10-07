@@ -2,8 +2,8 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.6基础验证：客户档案编辑/不可变历史、家庭联系人/停用/检索；整体阶段未验收",
-  "currentTask": "T02.01",
+  "productStatus": "V0.7基础验证：客户总览、七类历史时间轴、UTC筛选/分页/记录定位；整体阶段未验收",
+  "currentTask": "T02.02",
   "nextTask": "T02.02",
   "stage": "P00",
   "blockers": [
@@ -51,6 +51,12 @@
       "version": "V0.6",
       "type": "工程推进",
       "summary": "新增客户基本资料修订与历史、来源/依据/并发核对、家庭联系人管理和有效检索、虚构家庭与双版本、迁移/恢复匹配校验；完整家庭、证明、合并及跨店仍待完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.7",
+      "type": "工程推进",
+      "summary": "新增员工客户总览、既有资料/业务七类时间轴、日期/类别/稳定分页/定位、早期未知历史标注与恢复一致性验证；不推进专业/周期业务状态。"
     }
   ],
   "tasks": [
@@ -292,10 +298,12 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "src/timeline.mjs",
+        "public/timeline.js"
       ],
       "updated": "2026-10-07",
-      "note": "V0.2部分实现：本店目录、家长授权/撤销和审计前后值、多周期到店及独立关闭。正式组织、关系证明、版本与完整周期状态仍待完成。"
+      "note": "V0.7部分实现：周期草稿、多周期到店与独立关闭、完整数量客户总览、七类历史时间轴/筛选/分页/定位。完整周期暂停/恢复/结束、专业计划/订单链接未实现。"
     },
     {
       "id": "T02.03",

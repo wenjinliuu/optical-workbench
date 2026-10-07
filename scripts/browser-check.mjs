@@ -119,6 +119,16 @@ try{
  await page.locator('#revoke-file-form textarea').fill('演示资料访问撤销，历史引用保留');
  await page.locator('#revoke-file-form button[type=submit]').click();
  await page.locator('.attachment-row .file-download:disabled').waitFor();
+ await page.locator('.customer-facts').getByText('2',{exact:true}).waitFor();
+ await page.locator('.customer-timeline summary').click();await page.locator('.timeline-event').first().waitFor();
+ assert.ok((await page.locator('.customer-facts').textContent()).includes('周期草稿'));
+ await page.locator('.timeline-filters select').selectOption('contact');await page.locator('.timeline-filters button').click();
+ await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),3);assert.ok((await page.locator('.timeline-list').textContent()).includes('恢复家庭联系人'));
+ await page.locator('.timeline-filters select').selectOption('visit');await page.locator('.timeline-filters button').click();await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),2);
+ await page.locator('.timeline-event').filter({hasText:'结束本次到店'}).getByRole('button',{name:'定位对应记录'}).click();await page.locator('.visit-card.timeline-focus').waitFor();
+ await page.locator('.timeline-filters input[name=from]').fill('1900-01-01');await page.locator('.timeline-filters input[name=to]').fill('1900-01-01');await page.locator('.timeline-filters button').click();await page.getByText('当前筛选下没有记录。',{exact:true}).waitFor();
+ await page.locator('.timeline-filters input[name=from]').fill('');await page.locator('.timeline-filters input[name=to]').fill('');await page.locator('.timeline-filters select').selectOption('all');await page.locator('.timeline-filters button').click();await page.locator('.timeline-event').first().waitFor();
+ await page.screenshot({path:'data/browser-check/timeline-desktop.png',fullPage:true});
  await page.screenshot({path:'data/browser-check/desktop.png',fullPage:true});
  await page.getByRole('button',{name:'操作审计',exact:false}).click();
  await page.locator('#audit-items tr').filter({hasText:'创建服务周期草稿'}).first().waitFor();
@@ -203,6 +213,15 @@ try{
  await page.locator('.scenario-card').first().getByRole('button',{name:'查看关联档案 →'}).click();
  await page.locator('.detail-top').waitFor();
  await page.locator('.family-contact-card').first().waitFor();assert.equal(await page.locator('.family-contact-card').count(),2);
+ const selectedId=await page.locator('#detail .detail-top p').textContent();assert.ok(selectedId.includes('sample-intake'));
+ for(let i=0;i<25;i++)db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(`browser-history-${i}`,'sample-intake','followup',`虚构历史周期 ${i}`,'draft','2026-01-01T00:00:00.000Z','demo-manager');
+ await page.getByRole('button',{name:'刷新总览',exact:true}).click();
+ await page.locator('.customer-timeline summary').click();await page.locator('.timeline-event').first().waitFor();
+ await page.locator('.timeline-filters select').selectOption('cycle');await page.locator('.timeline-filters button').click();await page.getByRole('button',{name:'加载更早记录',exact:true}).waitFor({state:'visible'});assert.equal(await page.locator('.timeline-event').count(),20);
+ await page.getByRole('button',{name:'加载更早记录',exact:true}).click();await page.locator('.customer-timeline [role=status]').filter({hasText:'已显示 26 条记录'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),26);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile timeline must not overflow');await page.screenshot({path:'data/browser-check/timeline-mobile.png',fullPage:true});
+ await page.locator('.customer-timeline summary').click();
+
  await page.getByRole('button',{name:'档案修改历史',exact:true}).click();await page.locator('#profile-history-dialog').waitFor({state:'visible'});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile profile history must not overflow');
  await page.screenshot({path:'data/browser-check/profile-history-mobile.png',fullPage:true});await page.locator('#profile-history-dialog [data-close]').click();
@@ -218,5 +237,5 @@ try{
  await page.locator('#login-view').waitFor({state:'visible'});
  assert.equal(await page.locator('#profile-history-items').textContent(),'');assert.equal(await page.locator('#customer-items').textContent(),'');assert.equal(await page.locator('#operations-errors').textContent(),'');
  assert.deepEqual(errors,[]);
- console.log('Browser checks passed: profile revisions/history, family contacts/deactivation, correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
+ console.log('Browser checks passed: overview, timeline categories/date/empty/jump/pagination/mobile, profile revisions/history, family contacts/deactivation, correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

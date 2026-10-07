@@ -1,4 +1,4 @@
-# API v0.6
+# API v0.7
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -83,3 +83,13 @@ GET /operations：负责人限定当前门店，返回database=ok（执行真实
 主要联系人与家庭联系人分别维护，不自动同步；登记或停用联系人不产生/撤销家长查看授权。电话可重复，只返回候选核对。员工检索增加有效家庭联系人姓名/电话匹配，家长仍只按授权客户姓名搜索。联系人当前资料可修订，历史前后值保存在不可变审计中；客户基本资料另有不可变快照和历史页面。
 
 迁移005将存量当前档案保存为V1，source=legacy、created_by=null、时间为升级时间，明确此前修改未追溯；迁移后新建客户自动保存source=initial的V1。不是监护身份核验、跨店转移或客户合并接口。
+
+## V0.7 客户总览与历史时间轴
+
+GET /customers/:id/overview：本店员工，家长403、跨店404。返回customer_id、profile_version、cycle_drafts、visits_registered/visits_closed、contacts_active、documents、attachments_active及last_visit(id/purpose/created_at/status或null)。数量按完整客户范围计算，不受现有列表100条上限影响；最近到店按登记时间，不将结束到店视为结束周期。
+
+GET /customers/:id/timeline?kind=all&from=YYYY-MM-DD&to=YYYY-MM-DD&limit=20&cursor=...：同范围/动作限制，只读。kind为all或profile/cycle/visit/contact/document/attachment/authorization；日期为UTC、首尾日期均包含，可省略；limit为1–50。响应items、next_cursor(null代表末页)、limit、timezone=UTC、order=newest_first。每项event_id、at、kind、entity_id、actor_id/name、details；details仅包含该类记录允许的摘要字段，不返回任意审计JSON或账号/密码/登录事件。
+
+倒序按时间及稳定事件编号排序；同刻独立事件只保证稳定顺序，不表示完整因果排序。分页标识绑定客户、类别和日期，使用上一页末项位置；后来新增的更新记录不插入已加载分页，刷新后再显示。无效/不同筛选标识422 INVALID_CURSOR，错误类别/日期/区间/数量422；写入405。
+
+档案/资料读取不可变版本，联系人读取建立/修改的审计快照；早期联系人无建立快照时仅展示“初版未留存”，不套用当前姓名。到店结束无审计时操作人为null、依据明确未登记；初始监护关联没有时间依据时不补造授权事件。只筛选本店本客户且动作明确的联系人/查看授权审计，不提供全量审计阅读权限。所有读取仍受有效会话及强制改密门禁限制。

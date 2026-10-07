@@ -51,3 +51,9 @@ sessions新增user_id索引用于即时撤销与有效会话计数。人员资�
 customer_profile_versions：customer_id+version复合主键、name、birth_date、contact_name、phone、source、revision_reason、created_at/by；禁止更新/删除。source还包括initial（迁移后新建初版）及legacy（升级时存量基线，创建者未知null）。customers保留当前基本字段，必须与最新版本一致；备份校验同步核对，拒绝无历史匹配的当前档案。
 
 family_contacts：id、customer_id FK、name、relationship、phone nullable、source、note nullable、active、revision、created_at/by、updated_at/by；联系人1:N属于独立客户，共用电话不唯一。编辑不允许更换客户身份，停用保留资料及审计；当前资料和前后审计同事务。记录关系是录入描述，不自动赋予查看权限，也不构成监护证明核验。guardian_links继续单独控制家长账号访问。
+
+## V0.7 总览与事件投影
+
+没有新增业务表或迁移（schema仍为5）。src/timeline.mjs从客户范围内的档案/资料版本、周期、到店、附件和明确的联系人/查看授权审计读取事件。事件编号由原主键及动作/版本组成，是查询排序键，不是新业务身份；分页标识绑定同一客户和筛选。联系方式和安全事件不会直接展开为任意审计JSON。actor_name是操作人账号的当前显示名，actor_id保留原身份；未登记操作人不推断。
+
+总览数量与状态按现存数据计算；周期仍为draft，不宣称专业计划已确认。恢复后由原记录重新查询，无单独需恢复的时间轴缓存或事件副本。原有未知关系、依据与历史仍保持未知。

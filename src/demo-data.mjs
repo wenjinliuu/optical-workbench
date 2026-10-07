@@ -90,7 +90,9 @@ export function seedDemoProfiles(db){
       for(let i=0;i<2;i++){
         const id=`demo-contact-${s.id}-${i+1}`,existing=db.prepare('SELECT customer_id FROM family_contacts WHERE id=?').get(id);
         if(existing){if(existing.customer_id!==row.id)throw Error('联系人样例编号冲突，已回滚。');continue;}
-        db.prepare('INSERT INTO family_contacts VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?)').run(id,row.id,i===0?s.contact:'备用家长（虚构）',i===0?'主要家长（演示）':'备用家长（演示）',i===0?'000-00000':'000-00001','guardian_report','虚构号码与资料，仅用于演示。',Number(!(s.id==='retail'&&i===1)),now,manager.id,now,manager.id);contacts++;
+        db.prepare('INSERT INTO family_contacts VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?)').run(id,row.id,i===0?s.contact:'备用家长（虚构）',i===0?'主要家长（演示）':'备用家长（演示）',i===0?'000-00000':'000-00001','guardian_report','虚构号码与资料，仅用于演示。',Number(!(s.id==='retail'&&i===1)),now,manager.id,now,manager.id);
+        const created=db.prepare('SELECT * FROM family_contacts WHERE id=?').get(id);
+        db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'contact.create',id,null,JSON.stringify({...created,reason:'虚构演示：登记家庭联系人'}),now);contacts++;
       }
       const version=db.prepare('SELECT MAX(version) v FROM customer_profile_versions WHERE customer_id=?').get(row.id).v;
       if(['plan','followup'].includes(s.id)&&version===1){
