@@ -5,7 +5,7 @@ const { chromium }=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE_PATH
 mkdirSync('data/browser-check',{recursive:true});
 import { createApp } from '../src/server.mjs';
 import { hashPassword } from '../src/db.mjs';
-import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, seedDemoTasks, seedDemoTaskExecution, seedDemoTaskExceptions, seedDemoTaskEvidence, seedDemoTaskCompletions, seedDemoTaskAmendments, seedDemoTaskChains } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, seedDemoTasks, seedDemoTaskExecution, seedDemoTaskExceptions, seedDemoTaskEvidence, seedDemoTaskCompletions, seedDemoTaskAmendments, seedDemoTaskChains, seedDemoRetail } from '../src/demo-data.mjs';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
 const {server,db}=createApp({databasePath:':memory:',mode:'test',logger:()=>{}});
@@ -14,7 +14,7 @@ db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-
 for(const [id,name,birth] of [['one','小林（虚构）','2017-06-12'],['two','小林弟弟（虚构）','2020-03-08']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,'store-a',name,birth,'林家长（虚构）',null,new Date().toISOString(),'demo-manager');
 db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-parent','demo-parent','家长样例',hashPassword('local-browser-test-only'),'guardian','store-a');
 for(const [id,role] of [['demo-front','reception'],['demo-professional','professional']])db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run(id,id,id,hashPassword('local-browser-test-only'),role,'store-a');
-seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);seedDemoCycleRevisions(db);seedDemoTasks(db);seedDemoTaskExecution(db);seedDemoTaskExceptions(db);seedDemoTaskEvidence(db);seedDemoTaskCompletions(db);seedDemoTaskAmendments(db);seedDemoTaskChains(db);
+seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);seedDemoCycleRevisions(db);seedDemoTasks(db);seedDemoTaskExecution(db);seedDemoTaskExceptions(db);seedDemoTaskEvidence(db);seedDemoTaskCompletions(db);seedDemoTaskAmendments(db);seedDemoTaskChains(db);seedDemoRetail(db);
 server.listen(0,'127.0.0.1');await once(server,'listening');
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:1050}}),errors=[];

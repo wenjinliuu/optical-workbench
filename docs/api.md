@@ -1,4 +1,4 @@
-# API v0.12
+# API v0.16
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -206,3 +206,25 @@ GET /api/tasks/:id/chain 需要tasks:read及本店客户范围；家长拒绝、
 role=all/manager/reception/professional按当前接收人岗位筛选，无接收人时按候选岗位；lane=all/queued/awaiting/pending/running/paused/blocked/cancelled/completed。完成优先，再异常，再接收和执行；scope与旧队列一致，既有终态前running不当作执行中。limit默认50、范围1–100；浏览器每页30。cursor为有界base64url JSON，绑定根任务、客户、筛选、limit及链状态指纹，按(depth,created_at,id)升序续读；错误游标422 INVALID_CURSOR，分页间责任/显示名/有效性/状态/节点变化409 CHAIN_CHANGED并要求重新读取。游标不提供额外读取权限。
 
 返回root_task、始终保留的selected{task,depth,lane,responsibility_role}、items同结构、limit/next_cursor/has_more、matching_total、filters、read_at，以及summary{total,links,max_depth,completed,open,lanes八状态完整量,roles完整岗位量}。总量不受页数/100条旧列表影响；无匹配时仍提供起始/所选任务上下文。task投影复用原visible，包括固定需求、不可变origin及实时接收人可用性。仅投影已保存来源，读取不创建任务/审计/版本或幂等数据，不定义自动业务流转。
+
+
+## V0.16 配镜商品与订单
+
+详情与字段限制见[配镜订单说明](retail-orders.md)。
+
+| 方法 / 路径（/api前缀） | 输入 | 输出 / 权限 |
+| --- | --- | --- |
+| GET /retail/products | q、category、status、limit=1–100默认50、offset | 本店最新商品版本、完整total/next_offset；员工三岗 |
+| POST /retail/products | sku、商品版本字段 | product；负责人，新建商品与V1 |
+| GET /retail/products/:id 或 /versions | 商品编号 | 当前product与最近100版history及truncated；本店员工 |
+| POST /retail/products/:id/versions | expected_version、商品版本字段 | product新版本；负责人 |
+| GET /retail/customers/:id/options | 客户编号 | 配镜周期/到店各最近100、资料/有效附件各200，截断标志；本店员工 |
+| GET /retail/orders | q、status=all/draft/cancelled、limit/offset | 最新订单摘要、筛选完整counts/total/next_offset；员工 |
+| GET /customers/:id/retail-orders | 同上 | 限定客户订单；员工 |
+| POST /customers/:id/retail-orders | title、notes?、items、document_version_ids?、attachment_ids?、reason、cycle_id/version?、visit_id? | order完整V1；负责人/前台 |
+| GET /retail/orders/:id | 订单编号 | 当前完整order与最近100版history；员工 |
+| GET /retail/orders/:id/versions/:n | 订单编号/版本 | 指定完整order与历史；员工 |
+| POST /retail/orders/:id/versions | expected_version、完整订单字段（不含来源身份） | order新草稿版本；负责人/前台 |
+| POST /retail/orders/:id/cancel | expected_version、reason | order取消新版本，内容复制原单；负责人/前台 |
+
+写入均需CSRF/Idempotency-Key，实时会话/动作/门店事务复核。金额API为整数分；目录list_price_cents与订单unit_price_cents独立。新商品引用须当前启用版本，已保存的原单商品版本允许保留。409冲突类型PRODUCT_CONFLICT/PRODUCT_CHANGED/ORDER_CONFLICT/CONTEXT_CONFLICT/ORDER_CANCELLED/NO_CHANGE/IDEMPOTENCY_CONFLICT/SKU_EXISTS；越店404，未知字段422。订单不接受优惠/收款/退款/库存/专业确认状态。时间轴新增kind=retail；总览增加订单草稿与已取消完整数量。

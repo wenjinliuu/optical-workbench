@@ -9,7 +9,7 @@
 | sessions | token_hash PK、user_id FK、csrf、expires_at 毫秒 | 会话令牌不明文存储；到期、退出、停用拒绝访问 |
 | customers | id PK、store_id FK、name 必填(80)、birth_date nullable、contact_name nullable(80)、phone nullable(32)、created_at、created_by FK | contact_name/phone为主要联系人字段；多联系人单独登记，完整家庭成员/付款关系尚未实现。查询限授权门店/有效监护 |
 | guardian_links | user_id + customer_id 复合主键、active、relationship、updated_at、updated_by | 一个监护用户可关联多个客户；撤销即时生效；来源证明待确认 |
-| service_cycles | id PK、customer_id FK、type=followup/training/retail、goal 必填(300)、status=draft、created_at、created_by FK | 客户 1:N 周期，草稿只登记目标；计划、订单、专业确认尚未建立 |
+| service_cycles | id PK、customer_id FK、type=followup/training/retail、goal 必填(300)、status=draft、created_at、created_by FK | 客户 1:N 周期，草稿只登记目标；计划、专业确认尚未建立；配镜草稿订单另表关联 |
 | audit_events | id PK、store_id、actor_id、action、entity_id、before_json/after_json、created_at | 新增动作 before=null；前后值留存于库，查询仅授权门店元信息，禁止修改删除 |
 | idempotency | actor_id + operation + request_key 主键、request_hash、response_json | 同动作/身份/标识重放；内容不同 409；周期动作包含客户编号 |
 | schema_migrations | name PK、applied_at | 工程版本与业务规则版本分开 |
@@ -124,3 +124,18 @@ completion_status=open/completed、effective_execution_status=pending/running/pa
 ## V0.15 任务链派生字段
 
 没有新增持久表，schema仍12。root_task/selected/items由work_tasks+task_followups原来源投影；depth是起始0的已保存关联层数，origin继续固定分派时来源，不读取后来的更正代替。lane完成优先，其次异常、接收、执行；responsibility_role是当前接收人的岗位，无接收人时候选岗位。summary统计整链、matching_total统计当前筛选，均不受页面限制。分页状态指纹/游标只用于界面一致性，不是业务版本或授权凭据；read_at为读取时间，不补造操作时间。
+
+
+## V0.16 商品目录与配镜订单（013_retail_orders.sql）
+
+| 表 | 关键字段 | 约束与历史 |
+| --- | --- | --- |
+| retail_products | id、store_id、sku、created_at/by | 编码门店内唯一，建立后不改；本店负责人 |
+| retail_product_versions | product_id/version、store_id、name/category/brand/specification/unit、list_price_cents/status、reason/time/by | 镜架/镜片/配件/服务；价格非负整数分，启用/停用；连续不可变版本 |
+| retail_orders | id、store_id/customer_id、serial/order_number、cycle_id/version/visit_id、context_basis、created_at/by | 同店同客户；来源customer/cycle/visit/visit_cycle；配镜周期，独立关联当前版本或原到店捕获版本；来源建立后不改 |
+| retail_order_versions | order_id/version、customer_id/store_id、title/notes/status、subtotal_cents/currency、manifest_json、reason/time/by | draft/cancelled；合计整数分、CNY；连续版本，每版完整草稿；取消复制上一版并终止修改 |
+| retail_order_items | order_id/version/position、customer_id/store_id、product_id/version、quantity/unit_price_cents/line_total_cents/note | 1–30行，数量1–999，单价0–1000000000分；行总额等于数量乘单价，目录调价不改旧版本 |
+| retail_order_documents | order_id/version、customer_id/store_id、document_version_id | 每版最多10，同客户固定资料版本；原资料不成为专业确认 |
+| retail_order_attachments | order_id/version、customer_id/store_id、attachment_id | 每版最多10，同客户；新引用须可访问，原单已引用撤销项可保留历史 |
+
+全部七表禁止更新/删除；版本、商品行和引用清单匹配由触发器保护，保存事务写入明细/引用/审计/幂等，恢复核对总额、连续历史及固定关联。商品启用不代表库存可售；无资金、税、折扣、预留或专业字段。当前一单可固定一个配镜需求与一个到店，完整多周期订单关联仍后续实现。

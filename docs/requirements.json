@@ -1207,9 +1207,13 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "M11-F02",
@@ -1265,9 +1269,13 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "M11-R",
@@ -1281,9 +1289,13 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "M11-L",
@@ -1298,9 +1310,13 @@
         "T02.02",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "M11-A",
@@ -2215,9 +2231,13 @@
         "T02.02",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "C02",
@@ -2671,9 +2691,13 @@
         "T01.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "N03",
@@ -2849,9 +2873,13 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs"
+      ]
     },
     {
       "id": "W1-N3",

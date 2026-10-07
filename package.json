@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,6 +14,7 @@
     "check": "node scripts/check.mjs",
     "backup": "node scripts/backup.mjs",
     "test:browser": "node scripts/browser-check.mjs",
+    "test:retail-browser": "node scripts/retail-browser-check.mjs",
     "backup:verify": "node scripts/verify-backup.mjs",
     "restore": "node scripts/restore.mjs"
   }
