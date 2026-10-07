@@ -90,3 +90,14 @@ work_tasks及task_events增加四个同名字段：lifecycle_status非空默认a
 block将active变blocked；unblock明确解决后变active。cancel保存取消前active/blocked及原因再变cancelled；restore回到保存的状态与原因并清空恢复字段。原接收和执行维度不被替代，running先paused，pending/paused原样保留。阻塞仍可更换责任人，取消必须先恢复。当前状态、四个异常字段、连续revision、事件数量和updated_at与最后不可变事件一致，由恢复工具核对。
 
 009增加work_tasks列、重建task_events而不重写旧事件业务字段；旧事件和任务默认active，旧原因仍为对应操作依据，不推测历史阻塞。tasks_lifecycle支持本店异常筛选；新看板lanes由当前状态计算，不额外存储任务副本或不存在的依赖。
+
+## V0.12 通用核对条件与依据（迁移010）
+
+| 表 | 版本与字段 | 约束 |
+| --- | --- | --- |
+| task_conditions | task_id/version，customer_id、task_revision、scope=generic_record_review、description、require_document/attachment、reason、created_at/by | 任务/客户及任务历史修订复合外键；条件要求明确保存，旧任务不自动生成 |
+| task_evidence | task_id/version，customer_id、task_revision、condition_version、notes可空、source、reason、references_json、created_at/by | 同任务/客户/条件版本及任务历史修订外键；来源employee/external/guardian_report均由内部员工记录 |
+| task_evidence_documents | task_id/evidence_version/document_version_id、customer_id | 同草稿/客户/原document_versions.id复合外键，固定版本不跟随当前资料修订 |
+| task_evidence_attachments | task_id/evidence_version/attachment_id、customer_id | 同草稿/客户/附件复合外键，撤销后保留历史引用 |
+
+四表禁止更新/删除。conditions/evidence从V1连续追加，保存不改变任务revision，task_revision记录所见历史。references_json为按编号排序的document_version_ids/attachment_ids清单，与实际关系逐项一致、每类最多10项，恢复工具检查，不能通过追加关联改变旧草稿。条件、依据与task_events为不同记录，时间轴用各自实际保存时间及当时任务历史状态。旧库升级不生成虚构条件或依据。

@@ -187,3 +187,16 @@ export function seedDemoTaskExceptions(db){
   }return {added};
  });
 }
+
+export function seedDemoTaskEvidence(db){
+ const manager=db.prepare("SELECT * FROM users WHERE id='demo-manager' AND username='demo-manager' AND role='manager' AND store_id='store-a' AND active=1").get();if(!manager)throw Error('核对依据样例仅用于独立示例数据库。');
+ return transaction(db,()=>{let conditions=0,evidence=0;
+  for(const [id,scenario,revision,drafts] of [['demo-task-execution-running','plan',3,2],['demo-task-execution-paused','training',4,1],['demo-task-exception-blocked','examination',4,1],['demo-task-execution-queued','examination',1,0]]){
+   const t=db.prepare('SELECT * FROM work_tasks WHERE id=?').get(id),s=demoScenarios.find(s=>s.id===scenario),c=db.prepare('SELECT * FROM customers WHERE id=?').get(s.customer_id);if(!t||!c||!matchesDemoCustomer(db,c,s)||t.customer_id!==c.id||t.store_id!=='store-a'||t.revision!==revision||db.prepare('SELECT 1 FROM task_conditions WHERE task_id=?').get(id))continue;
+   const actor=t.assignee_id?db.prepare("SELECT u.* FROM users u LEFT JOIN user_security sec ON sec.user_id=u.id WHERE u.id=? AND u.username IN('demo-manager','demo-professional') AND u.store_id='store-a' AND u.active=1 AND COALESCE(sec.must_change_password,0)=0").get(t.assignee_id):null;if(drafts&&(!actor||t.assignment_status!=='accepted'||t.lifecycle_status==='cancelled'))continue;
+   const doc=db.prepare('SELECT * FROM document_versions WHERE id=? AND customer_id=?').get(`demo-version-${s.id}-1`,c.id),attachment=db.prepare('SELECT * FROM attachments WHERE id=? AND customer_id=? AND revoked_at IS NULL').get(`demo-attachment-${s.id}`,c.id);if(!doc||!attachment)continue;const now=new Date().toISOString();
+   db.prepare("INSERT INTO task_conditions VALUES (?,?,1,?,'generic_record_review',?,1,1,?,?,?)").run(id,c.id,t.revision,'虚构通用资料核对：说明来源，并引用资料版本和附件；专业确认另行处理。','虚构演示：明确资料核对范围',now,manager.id);const condition=db.prepare('SELECT * FROM task_conditions WHERE task_id=?').get(id);db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'task.conditions',id,null,JSON.stringify({...condition,source:'synthetic'}),now);conditions++;
+   for(let v=1;v<=drafts;v++){const incomplete=id==='demo-task-exception-blocked'||drafts===2&&v===1,documents=incomplete?[]:[doc.id],attachments=incomplete?[]:[attachment.id],refs=JSON.stringify({document_version_ids:documents,attachment_ids:attachments});db.prepare('INSERT INTO task_evidence VALUES (?,?,?,?,?,?,?,?,?,?,?)').run(id,c.id,v,t.revision,1,incomplete?null:'虚构核对说明：已记录来源并选定原资料 V1；草稿不代表专业确认。','employee',incomplete?'虚构演示：先存待补草稿':'虚构演示：补齐通用资料引用',refs,now,actor.id);for(const documentId of documents)db.prepare('INSERT INTO task_evidence_documents VALUES (?,?,?,?)').run(id,v,c.id,documentId);for(const attachmentId of attachments)db.prepare('INSERT INTO task_evidence_attachments VALUES (?,?,?,?)').run(id,v,c.id,attachmentId);const row=db.prepare('SELECT * FROM task_evidence WHERE task_id=? AND version=?').get(id,v);db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',actor.id,'task.evidence',id,null,JSON.stringify({...row,source:'synthetic'}),now);evidence++;}
+  }return {conditions,evidence};
+ });
+}

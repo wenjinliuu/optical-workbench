@@ -1,4 +1,4 @@
-# API v0.11
+# API v0.12
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -156,3 +156,21 @@ queued无人负责由manager处理异常；manager不代替员工接收/执行�
 GET /tasks增加lifecycle=all（默认）/active/blocked/cancelled；返回counts.blocked/cancelled及lanes对象。lanes使用异常优先（blocked/cancelled），否则queued/awaiting，已接收才按pending/running/paused分列；每个匹配任务恰一列，完整列计数不受100条列表截断影响。counts其余字段仍按各维度统计，可能与异常重叠；counts和lanes均限定当前同一组合筛选。客户总览增加tasks_blocked/tasks_cancelled，时间轴task.details新增全部异常字段。
 
 浏览器列表/看板/状态流程使用同一items和lanes，切换不另取数据；刷新/操作成功再读取。状态流程表达当前责任、接收、执行和异常，不代表跨任务依赖或专业完成。本轮仍无complete接口，完成依据与条件校验方案见task-completion.md（草案）。
+
+## V0.12 通用核对条件与依据
+
+| 方法 / 路径 | 输入 | 输出 / 权限 |
+| --- | --- | --- |
+| GET /tasks/:id/completion | 无 | task、condition/draft（无记录为null）、conditions/evidence最近100版本及截断标记、validation；本店员工 |
+| GET /tasks/:id/completion/references | 无 | 本任务客户资料版本/附件，documents/attachments最多200条及截断标记；本店员工 |
+| POST /tasks/:id/completion/conditions | expected_task_revision、expected_condition_version（初次0）、description<=300、require_document/require_attachment布尔、reason<=300 | condition新版本，201；负责人/前台，任务未取消 |
+| POST /tasks/:id/completion/evidence | expected_task_revision、expected_evidence_version（初次0）、condition_version、notes<=3000可空、source、document_version_ids/attachment_ids数组每类<=10、reason<=300必填 | draft新版本及validation，201；当前本人且岗位可用/已接收/未取消 |
+| POST /tasks/:id/completion/check | 上行相同，去掉reason | validation及persisted=false，200；员工只读检查，CSRF必需，不写幂等/审计或版本 |
+
+条件固定通用scope=generic_record_review；说明必填，资料/附件是否必需由负责人/前台显式设置，不推测专业条件。条件/草稿版本均独立于任务revision，保存不改变执行；当当前任务/条件/草稿版本不符分别409 TASK_CONFLICT/CONDITION_CONFLICT/EVIDENCE_CONFLICT。首次存草稿没有条件409 CONDITIONS_REQUIRED。非当前本人403 NOT_ASSIGNEE，未接收409 NOT_ACCEPTED，岗位不符409 ROLE_CHANGED，取消409 TASK_CANCELLED。条件及草稿写入同库事务、幂等与审计；旧版本不可覆盖。
+
+source=employee/external/guardian_report代表内部录入来源，不是专业确认。草稿notes可空、必需资料可缺，允许pending/paused/blocked时补充；所选引用必须存在且属于当前任务客户，重复/超限/不存在/跨客户422。撤销附件不能再保存422 ATTACHMENT_UNAVAILABLE，但历史保留关联，并返回当前revoked_at。document_version_id使用资料版本id而非记录id；旧V1可以明确引用，后来V2不替换旧引用。读取draft/history返回原版本标题/来源、record_id/version，附件filename及当前撤销标记。
+
+validation包含record_ready、completion_enabled=false、checks(code/label/passed)。检查当前查看人是否本人/岗位匹配、本人接收、running、active、条件已设/当前条件版本、依据所见任务修订、说明、必需资料/附件及访问是否撤销。POST check核对未保存输入，版本冲突拒绝，不会保存草稿；等待body时重新检查有效会话。通用项目齐备不代表专业条件已授权，也不完成或生成任务。界面重读保留填写和选择，已选引用即使超过200条新选择范围仍可查看。
+
+task时间轴新增conditions/evidence动作，含条件/依据版本、task_revision、原因/说明、固定引用id清单；责任/执行取当时不可变task_events快照。完整方案见task-completion.md。本轮仍没有complete接口。
