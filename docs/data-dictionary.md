@@ -82,3 +82,11 @@ context_basis为customer/cycle/visit/visit_cycle，与所选关联一致。周�
 两表新增candidate_role（manager/reception/professional，可空），assignee_id可空；assignment_status扩展queued/awaiting/accepted，execution_status扩展pending/running/paused。queued要求接收人为空且候选岗位非空；awaiting/accepted要求接收人非空；running只能配accepted。task_events.action扩展claim/start/pause/resume/return，保存每次结果的候选岗位、责任人及执行状态。
 
 claim从岗位队列给本人，仍需accept；start仅未开始、pause仅运行中、resume仅已暂停。运行中return或transfer先暂停；后续接收不会替代主动恢复。return明确退回岗位及原因，不恢复原用户或自动派代理。历史事件时间作为认领/开始/暂停/恢复时间的依据，不添加未知旧时间；姓名显示当前账号名称，旧candidate_role=null保留。新索引tasks_role_queue支持门店/岗位/接收状态查询。
+
+## V0.11 任务异常快照（迁移009）
+
+work_tasks及task_events增加四个同名字段：lifecycle_status非空默认active（active/blocked/cancelled），exception_reason可空，restore_status可空（active/blocked），restore_reason可空。active时其余三字段必须空；blocked有原因、无恢复字段；cancelled有取消原因及取消前状态，取消前blocked必须保存其原阻塞原因，取消前active的恢复原因为空。blocked/cancelled不允许running。表约束及任务插入/修改触发器确保这些组合，事件只能插入且保留独立快照。
+
+block将active变blocked；unblock明确解决后变active。cancel保存取消前active/blocked及原因再变cancelled；restore回到保存的状态与原因并清空恢复字段。原接收和执行维度不被替代，running先paused，pending/paused原样保留。阻塞仍可更换责任人，取消必须先恢复。当前状态、四个异常字段、连续revision、事件数量和updated_at与最后不可变事件一致，由恢复工具核对。
+
+009增加work_tasks列、重建task_events而不重写旧事件业务字段；旧事件和任务默认active，旧原因仍为对应操作依据，不推测历史阻塞。tasks_lifecycle支持本店异常筛选；新看板lanes由当前状态计算，不额外存储任务副本或不存在的依赖。

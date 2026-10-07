@@ -1,4 +1,4 @@
-# API v0.10
+# API v0.11
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -139,3 +139,20 @@ POST /customers/:id/tasks和POST /tasks/:id/transfer扩展candidate_role（manag
 GET /tasks的scope增加role（本人岗位尚未认领任务），assignment增加queued，execution=all/pending/running/paused，role=all/manager/reception/professional。所有筛选仍限定本店；默认个人队列、显示最近100条，counts.total/queued/running/paused统计完整匹配范围，不受列表上限影响。role筛选使用当前任务candidate_role，直接指定员工且没有岗位队列时为null。客户总览API增加tasks_queued/tasks_running/tasks_paused；时间轴和历史包括全部执行与退回事件，接收人与候选岗位可为空/有值，旧版本明确保留null岗位，不补造旧角色。
 
 任务关联客户/周期/到店/需求版本及原说明保持不可变。认领/开始/暂停/恢复时间取对应不可变事件的UTC时间，没有开始事件就不推测开始时间。候选使用当前本地岗位，不代表专业资质授权；本轮不提供complete、专业确认、自动下游任务、资金/权益变化、截止日/工作日历/提醒或自动代理。
+
+## V0.11 通用任务异常
+
+| 方法 / 路径 | 输入 | 权限 / 状态结果 |
+| --- | --- | --- |
+| POST /tasks/:id/block | expected_revision、reason（最多300字，必填） | 当前有效负责人或本店manager；active→blocked，running先paused |
+| POST /tasks/:id/unblock | 同上 | 当前有效负责人或本店manager；blocked→active，保留pending/paused，需要明确再执行 |
+| POST /tasks/:id/cancel | 同上 | 当前有效负责人或本店manager；保存取消前状态/原因，再变cancelled，running先paused |
+| POST /tasks/:id/restore | 同上 | 当前有效负责人或本店manager；cancelled→原active/blocked及原原因，永不自动running |
+
+queued无人负责由manager处理异常；manager不代替员工接收/执行。阻塞期间claim/accept/transfer/return仍按原权限执行并保留阻塞；start/pause/resume拒绝409 TASK_BLOCKED。取消期间原七种交接/执行动作拒绝409 TASK_CANCELLED；异常动作状态不符409 INVALID_TASK_STATE。非当前负责人/manager 403 NOT_OWNER，陈旧409 TASK_CONFLICT，原会话/门店、CSRF、幂等及事务保护仍适用；不修改客户、需求、到店、专业资料或资金权益状态。
+
+读取task及events增加lifecycle_status(active/blocked/cancelled)、exception_reason、restore_status(active/blocked/null)、restore_reason。取消前已有阻塞时保存原原因，恢复后依然blocked，必须另行unblock且给出解决依据。每次事件同时保存独立异常快照及reason操作依据，旧历史默认active，不推测早期异常。
+
+GET /tasks增加lifecycle=all（默认）/active/blocked/cancelled；返回counts.blocked/cancelled及lanes对象。lanes使用异常优先（blocked/cancelled），否则queued/awaiting，已接收才按pending/running/paused分列；每个匹配任务恰一列，完整列计数不受100条列表截断影响。counts其余字段仍按各维度统计，可能与异常重叠；counts和lanes均限定当前同一组合筛选。客户总览增加tasks_blocked/tasks_cancelled，时间轴task.details新增全部异常字段。
+
+浏览器列表/看板/状态流程使用同一items和lanes，切换不另取数据；刷新/操作成功再读取。状态流程表达当前责任、接收、执行和异常，不代表跨任务依赖或专业完成。本轮仍无complete接口，完成依据与条件校验方案见task-completion.md（草案）。

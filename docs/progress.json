@@ -2,8 +2,8 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.10基础验证：岗位候选/认领、独立接收、开始/暂停/恢复/退回、执行中交接暂停和固定需求上下文；整体阶段未验收",
-  "currentTask": "T03.01",
+  "productStatus": "V0.11基础验证：任务阻塞/解除、取消/恢复及异常快照，列表/看板/状态流程共用队列；整体阶段未验收",
+  "currentTask": "T03.02",
   "nextTask": "T03.02",
   "stage": "P00",
   "blockers": [
@@ -75,6 +75,12 @@
       "version": "V0.10",
       "type": "工程推进",
       "summary": "岗位候选及本人认领、接收与执行分开、开始/暂停/恢复/退回、执行中交接先暂停，完整匹配统计、旧历史及幂等升级、暂停退回恢复与虚构执行案例；专业完成/自动推进/时限规则未完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.11",
+      "type": "工程推进",
+      "summary": "通用任务阻塞/解除与取消/恢复，保留原因和取消前未解决阻塞，恢复不自动执行；列表/看板/状态流程共用筛选与数据、完整分列数量；5个异常虚构样例、schema9升级和恢复校验；完成依据/条件校验仍为草案，业务验收待完成。"
     }
   ],
   "tasks": [
@@ -417,10 +423,14 @@
         "scripts/browser-check.mjs",
         "docs/capability-map.md",
         "migrations/008_task_execution.sql",
-        "src/recovery.mjs"
+        "src/recovery.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "docs/task-completion.md"
       ],
       "updated": "2026-10-07",
-      "note": "V0.10部分实现：岗位候选/本人认领/独立接收、开始/暂停/恢复/带依据退回，运行中交接先暂停，新负责人主动恢复；个人/岗位/本店队列和固定需求时间轴。正式代理职责、完整三视图、时限/通知和专业完成条件仍待完成，原阶段依赖及业务验收未通过。"
+      "note": "V0.11部分实现：原岗位认领/本人接收/开始暂停恢复/退回转交共用责任历史，接入异常状态与三视图。正式代理职责、专业完成条件、时限/通知和原阶段依赖及业务验收仍待完成。"
     },
     {
       "id": "T03.02",
@@ -438,10 +448,22 @@
         "T02.05",
         "T03.01"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（后期验收，待指定）",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/timeline.mjs",
+        "src/recovery.mjs",
+        "src/demo-data.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/capability-map.md",
+        "docs/task-completion.md"
+      ],
+      "updated": "2026-10-07",
+      "note": "V0.11部分实现：当前负责人或门店负责人记录阻塞/解除、取消/恢复；停止执行，取消前未解决阻塞恢复后继续保留，恢复不自动运行。事务、并发、幂等、不可变事件/审计/时间轴/恢复核对已接通。完成依据与条件校验仅有草案；专业输入检查、授权推进、串并行汇合、循环、截止时间和自动下游任务仍未实现，整体验收未通过。"
     },
     {
       "id": "T03.03",
@@ -470,10 +492,14 @@
         "scripts/browser-check.mjs",
         "docs/capability-map.md",
         "migrations/008_task_execution.sql",
-        "src/recovery.mjs"
+        "src/recovery.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "docs/task-completion.md"
       ],
       "updated": "2026-10-07",
-      "note": "V0.10部分实现：岗位候选/本人认领/独立接收、开始/暂停/恢复/带依据退回，运行中交接先暂停，新负责人主动恢复；个人/岗位/本店队列和固定需求时间轴。正式代理职责、完整三视图、时限/通知和专业完成条件仍待完成，原阶段依赖及业务验收未通过。"
+      "note": "V0.11部分实现：个人/本人岗位/本店共用列表、七列看板和当前责任/接收/执行/异常状态流程；同一筛选同一数据，切换不重复请求，完整分列数量和100条展示截断明确，历史与档案入口共用。未实现业务依赖流程图、角色今日任务/时限提醒、专业原单和完整阶段验收。"
     },
     {
       "id": "T03.04",
@@ -1219,9 +1245,17 @@
     },
     {
       "id": "M01-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：通用任务阻塞原因和工作台筛选已实现；逾期、截止时间和角色今日任务尚未实现。"
     },
     {
       "id": "M01-F04",
@@ -1238,9 +1272,11 @@
         "public/tasks.js",
         "migrations/008_task_execution.sql",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
       ],
-      "note": "V0.10岗位认领/独立接收、开始/暂停/恢复/退回和操作事件时间、岗位及执行筛选/统计、固定上下文；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及三视图未完成。"
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
     },
     {
       "id": "M01-R",
@@ -1256,9 +1292,17 @@
     },
     {
       "id": "M01-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：列表/看板/当前状态流程复用同一任务数据，空态/截断/历史和档案入口明确；正式业务依赖图及专项工作台未实现。"
     },
     {
       "id": "M02-F01",
@@ -2138,9 +2182,17 @@
     },
     {
       "id": "C03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：通用阻塞/解除、取消/恢复有前状态、操作人、原因、并发/事务/幂等及失败恢复；完成条件、授权完成和下一任务、扣次/资金/库存事务仍未实现。"
     },
     {
       "id": "C04",
@@ -2151,9 +2203,11 @@
         "public/tasks.js",
         "migrations/008_task_execution.sql",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
       ],
-      "note": "V0.10岗位认领/独立接收、开始/暂停/恢复/退回和操作事件时间、岗位及执行筛选/统计、固定上下文；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及三视图未完成。"
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
     },
     {
       "id": "C05",
@@ -2164,9 +2218,11 @@
         "public/tasks.js",
         "migrations/008_task_execution.sql",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
       ],
-      "note": "V0.10岗位认领/独立接收、开始/暂停/恢复/退回和操作事件时间、岗位及执行筛选/统计、固定上下文；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及三视图未完成。"
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
     },
     {
       "id": "C06",
@@ -2839,15 +2895,25 @@
         "public/tasks.js",
         "migrations/008_task_execution.sql",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
       ],
-      "note": "V0.10岗位认领/独立接收、开始/暂停/恢复/退回和操作事件时间、岗位及执行筛选/统计、固定上下文；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及三视图未完成。"
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
     },
     {
       "id": "H3",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：手动阻塞及解除原因、历史和固定需求版本已接通；正式输入附件缺项校验、条件规则及补充人链仍待实现。"
     },
     {
       "id": "H4",
@@ -2857,9 +2923,17 @@
     },
     {
       "id": "H5",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：取消/恢复原因、取消前未解决阻塞、不可变事件/审计/时间轴及恢复核对已接通；产出/完成证据/审批/结案仍待实现。"
     },
     {
       "id": "S01",
@@ -3083,8 +3157,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 84,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务交接、恢复与运行诊断；不代表整阶段业务验收"
+      "tests": 93,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位交接/执行/异常/三视图数量、恢复与运行诊断；不代表整阶段业务验收"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
@@ -3114,7 +3188,10 @@
         "task queue customer navigation and logout cleanup",
         "role candidates claim then separate acceptance",
         "task start pause resume return with paused handoff",
-        "role/execution filters and mobile event history"
+        "role/execution filters and mobile event history",
+        "task block/cancel/restore/unblock preserves unresolved cause and paused execution",
+        "stale exception refresh retains draft input",
+        "cached list/board/state-flow views preserve filters and mobile board scroll"
       ]
     },
     "baseline": {
@@ -3123,7 +3200,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "八个迁移保留客户/周期/到店及非空旧任务/历史/幂等响应，旧候选岗位为空、不补造历史时间，迁移后外键及不可变保护通过",
-    "recovery": "在线一致快照核对、独立目录恢复/回执、原库不覆盖、旧会话撤销及重新登录通过；正式RPO/RTO和完整账未确认"
+    "migration": "九个迁移保留非空旧任务/角色队列/执行历史/固定版本/幂等响应；旧异常默认active不补造原因，外键及不可变保护通过",
+    "recovery": "在线一致快照与异常四字段/最后事件核对、16任务/49事件CLI备份校验/独立恢复通过；原库不覆盖、旧会话撤销；正式RPO/RTO及完整账待确认"
   }
 }
