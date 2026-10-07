@@ -1,4 +1,4 @@
-# API v0.7
+# API v0.8
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -93,3 +93,13 @@ GET /customers/:id/timeline?kind=all&from=YYYY-MM-DD&to=YYYY-MM-DD&limit=20&curs
 倒序按时间及稳定事件编号排序；同刻独立事件只保证稳定顺序，不表示完整因果排序。分页标识绑定客户、类别和日期，使用上一页末项位置；后来新增的更新记录不插入已加载分页，刷新后再显示。无效/不同筛选标识422 INVALID_CURSOR，错误类别/日期/区间/数量422；写入405。
 
 档案/资料读取不可变版本，联系人读取建立/修改的审计快照；早期联系人无建立快照时仅展示“初版未留存”，不套用当前姓名。到店结束无审计时操作人为null、依据明确未登记；初始监护关联没有时间依据时不补造授权事件。只筛选本店本客户且动作明确的联系人/查看授权审计，不提供全量审计阅读权限。所有读取仍受有效会话及强制改密门禁限制。
+
+## V0.8 周期需求版本与到店引用
+
+GET /cycles/:id：本店员工，返回cycle（包含version/source）和最近100份versions（来源/需求/依据/时间/操作人）；家长403、其他门店404。POST /cycles/:id/versions：本店负责人/前台/专业人员，goal(300)、source(employee/external/guardian_report)、revision_reason(300)、expected_version正整数；需要CSRF和Idempotency-Key。成功201，版本陈旧409 CYCLE_CONFLICT，无变更409 NO_CHANGES；禁止更改身份、客户、类型、状态和创建元信息。原周期编号/关联保持，当前goal与新版本、审计及重试结果同事务。
+
+客户详情cycles增加version/source；visits增加cycle_refs（cycle_id/version/basis/type/goal/source）。新登记引用cycle_versions的固定版本；以后需求修订不改变旧引用。POST /customers/:id/visits可另传cycle_versions:[{cycle_id,version}]，必须与cycle_ids完整对应，服务端在保存事务内检查最新版本，陈旧409；未传则记录保存时最新版本。浏览器始终传所见版本。关联、快照、审计及幂等结果同事务，重试返回初次固定引用。
+
+basis=captured代表已经保存的引用；legacy_unknown代表迁移前没有保存需求版本，version/goal/source为null（类型为周期原类型）。不把升级时当前需求补成旧到店实际需求。周期仍为draft，需求修订不是专业计划确认或业务状态推进；结束到店不修改周期。
+
+时间轴cycle条目按需求版本呈现；存量周期另外保留原创建时间的早期条目，初始需求明确未留存。到店登记条目的cycle_refs也使用固定版本。修改后原客户总览数量、资料/附件和查看授权保持各自状态。

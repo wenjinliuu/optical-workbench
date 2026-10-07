@@ -4,10 +4,10 @@ import { createReadStream, constants, copyFileSync, chmodSync, lstatSync, mkdirS
 import { basename, join, resolve } from 'node:path';
 import { openDatabase } from './db.mjs';
 
-const tables=['stores','users','user_security','customers','customer_profile_versions','family_contacts','guardian_links','service_cycles','visits','visit_cycles','attachment_blobs','attachments','document_records','document_versions','version_attachments','audit_events','idempotency','sessions'];
+const tables=['stores','users','user_security','customers','customer_profile_versions','family_contacts','guardian_links','service_cycles','cycle_versions','visits','visit_cycles','visit_cycle_versions','attachment_blobs','attachments','document_records','document_versions','version_attachments','audit_events','idempotency','sessions'];
 const digest=value=>createHash('sha256').update(value).digest('hex');
 const version=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
-const migrations=['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql','005_customer_profiles.sql'];
+const migrations=['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql','005_customer_profiles.sql','006_cycle_versions.sql'];
 let expectedSchema;
 const schema=db=>digest(JSON.stringify(db.prepare("SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE sql IS NOT NULL AND name NOT LIKE 'sqlite_%' ORDER BY type,name").all()));
 function canonicalSchema(){if(!expectedSchema){const db=openDatabase(':memory:');try{expectedSchema=schema(db);}finally{db.close();}}return expectedSchema;}
@@ -21,6 +21,8 @@ export function inspectDatabase(path){
     const applied=db.prepare('SELECT name FROM schema_migrations ORDER BY name').all().map(row=>row.name);
     if(JSON.stringify(applied)!==JSON.stringify(migrations)||schema(db)!==canonicalSchema())throw Error('数据库结构与当前版本不匹配，请使用对应版本的恢复工具');
     if(db.prepare('SELECT 1 FROM customers c LEFT JOIN customer_profile_versions v ON v.customer_id=c.id AND v.version=(SELECT max(version) FROM customer_profile_versions WHERE customer_id=c.id) WHERE v.version IS NULL OR c.name IS NOT v.name OR c.birth_date IS NOT v.birth_date OR c.contact_name IS NOT v.contact_name OR c.phone IS NOT v.phone LIMIT 1').get())throw Error('当前档案与历史版本核对失败');
+    if(db.prepare('SELECT 1 FROM service_cycles c LEFT JOIN cycle_versions v ON v.cycle_id=c.id AND v.version=(SELECT max(version) FROM cycle_versions WHERE cycle_id=c.id) WHERE v.version IS NULL OR c.goal IS NOT v.goal OR c.type IS NOT v.type LIMIT 1').get())throw Error('当前周期需求与历史版本核对失败');
+    if(db.prepare('SELECT 1 FROM visit_cycles c LEFT JOIN visit_cycle_versions v ON v.visit_id=c.visit_id AND v.cycle_id=c.cycle_id WHERE v.visit_id IS NULL LIMIT 1').get())throw Error('到店周期引用快照缺失');
     for(const blob of db.prepare('SELECT * FROM attachment_blobs').iterate())if(blob.size!==blob.bytes.length||digest(blob.bytes)!==blob.sha256)throw Error('附件内容校验失败');
     if(db.prepare('SELECT 1 FROM attachments a JOIN attachment_blobs b ON b.sha256=a.blob_sha256 WHERE a.size<>b.size LIMIT 1').get())throw Error('附件元信息校验失败');
     return {schema_sha256:schema(db),migrations:applied,counts:Object.fromEntries(tables.map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n])),integrity:'ok',foreign_keys:'ok',attachments:'ok'};

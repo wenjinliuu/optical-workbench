@@ -9,7 +9,7 @@ import { request as httpRequest } from 'node:http';
 import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
 import { createBackup,restoreBackup } from '../src/recovery.mjs';
-import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, demoScenarios } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, demoScenarios } from '../src/demo-data.mjs';
 
 async function fixture(t,{persist=false,logger=()=>{}}={}) {
   const dir=mkdtempSync(join(tmpdir(),'optical-test-'));
@@ -100,7 +100,7 @@ test('audit is append-only, health checks database and disabling user revokes ac
   const {request,login,db}=await fixture(t),session=await login('manager');
   assert.throws(()=>db.exec("DELETE FROM audit_events"),/append-only/);
   assert.throws(()=>db.exec("UPDATE audit_events SET action='tamper'"),/append-only/);
-  assert.equal((await request('/api/health')).body.schema,5);
+  assert.equal((await request('/api/health')).body.schema,6);
   const audit=await request('/api/audit',session);assert.equal(audit.body.items[0].action,'session.login');assert.equal(audit.body.items[0].after_json,undefined);
   db.prepare("UPDATE users SET active=0 WHERE id='manager'").run();assert.equal((await request('/api/me',session)).status,401);
 });
@@ -110,7 +110,7 @@ test('disk persistence, repeatable migrations and consistent backup restore pres
   const backup=join(dir,'backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);
   const counts=Object.fromEntries(['customers','audit_events','service_cycles'].map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n]));
   await new Promise(resolve=>server.close(resolve));
-  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,5);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
+  for(const target of [path,backup]){const restored=openDatabase(target);assert.equal(restored.prepare('SELECT count(*) n FROM schema_migrations').get().n,6);for(const [table,count] of Object.entries(counts))assert.equal(restored.prepare(`SELECT count(*) n FROM ${table}`).get().n,count);assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');restored.close();}
 });
 test('production mode refuses unreviewed deployment; HTML and assets use security headers',async t=>{
   assert.throws(()=>createApp({mode:'production'}),/Production is blocked/);
@@ -395,7 +395,7 @@ test('operations is manager-only and its metrics and fault records stay within t
   const {request,login}=await fixture(t),manager=await login('manager'),other=await login('other'),front=await login('front'),parent=await login('parent');
   const a=await request('/api/customers/missing-a',manager),b=await request('/api/customers/missing-b',other);
   assert.equal((await request('/api/operations',front)).status,403);assert.equal((await request('/api/operations',parent)).status,403);
-  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,5);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
+  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,6);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
   const otherStatus=await request('/api/operations',other);assert.ok(otherStatus.body.errors.some(e=>e.request_id===b.body.request_id));assert.ok(!otherStatus.body.errors.some(e=>e.request_id===a.body.request_id));
   assert.equal(status.body.errors[0].store_id,undefined);assert.equal(status.body.errors[0].actor_id,undefined);
 });
@@ -493,7 +493,7 @@ test('V0.5 migration captures a truthful legacy baseline without attributing pas
     }
     db.exec("INSERT INTO stores VALUES ('a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('manager','manager','虚构负责人',hashPassword('fixture-only'),'manager','a');
     db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run('old','a','存量档案（虚构）',null,null,null,'2025-01-01T00:00:00.000Z','manager');db.close();db=openDatabase(path);
-    const v=db.prepare('SELECT * FROM customer_profile_versions').get();assert.equal(v.source,'legacy');assert.equal(v.created_by,null);assert.notEqual(v.created_at,'2025-01-01T00:00:00.000Z');assert.equal(v.name,'存量档案（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,5);
+    const v=db.prepare('SELECT * FROM customer_profile_versions').get();assert.equal(v.source,'legacy');assert.equal(v.created_by,null);assert.notEqual(v.created_at,'2025-01-01T00:00:00.000Z');assert.equal(v.name,'存量档案（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,6);
     db.close();db=openDatabase(path);assert.equal(db.prepare('SELECT count(*) n FROM customer_profile_versions').get().n,1);
   }finally{db?.close();rmSync(dir,{recursive:true,force:true});}
 });
@@ -567,4 +567,78 @@ test('customer overview and immutable timeline snapshots remain identical after 
   const origin=`http://127.0.0.1:${app.server.address().port}`,response=await fetch(origin+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'manager',password:'test-password-only'})});assert.equal(response.status,200);const cookie=response.headers.get('set-cookie').split(';')[0];
   assert.deepEqual(await (await fetch(origin+'/api/customers/child-a/timeline',{headers:{Cookie:cookie}})).json(),beforeTimeline);assert.deepEqual(await (await fetch(origin+'/api/customers/child-a/overview',{headers:{Cookie:cookie}})).json(),beforeOverview);
  }finally{await new Promise(resolve=>app.server.close(resolve));}
+});
+
+const cycleRevision=(overrides={})=>({goal:'补充后的周期需求（虚构）',source:'guardian_report',revision_reason:'家长补充需求（虚构）',expected_version:1,...overrides});
+async function createTestCycle(request,session,customerId='child-a',key='cycle-revision-fixture'){
+ const r=await request(`/api/customers/${customerId}/cycles`,{...session,method:'POST',data:{type:'followup',goal:'原始周期需求（虚构）'},key});assert.equal(r.status,201);return r.body.cycle;
+}
+test('cycle versions respect employee and store scope and reject changes to identity, type or status',async t=>{
+ const {request,login}=await fixture(t),manager=await login('manager'),front=await login('front'),professional=await login('professional'),parent=await login('parent'),other=await login('other'),cycle=await createTestCycle(request,manager);
+ for(const session of [manager,front,professional])assert.equal((await request(`/api/cycles/${cycle.id}`,session)).status,200);
+ assert.equal((await request(`/api/cycles/${cycle.id}`,parent)).status,403);assert.equal((await request(`/api/cycles/${cycle.id}`,other)).status,404);
+ const post=(data,session=front)=>request(`/api/cycles/${cycle.id}/versions`,{...session,method:'POST',data,key:'cycle-validation-key'});
+ for(const data of [cycleRevision({type:'training'}),cycleRevision({customer_id:'sibling-a'}),cycleRevision({status:'active'}),cycleRevision({goal:''}),cycleRevision({source:''}),cycleRevision({revision_reason:''}),cycleRevision({expected_version:0})])assert.equal((await post(data)).status,422);
+ assert.equal((await post(cycleRevision(),parent)).status,403);assert.equal((await post(cycleRevision(),other)).status,404);assert.equal((await post(cycleRevision(),professional)).status,201);
+});
+test('cycle revisions are immutable, idempotent and optimistic, and timeline retains original goals',async t=>{
+ const {request,login,db}=await fixture(t),session=await login('professional'),cycle=await createTestCycle(request,session);
+ const post=(data,key)=>request(`/api/cycles/${cycle.id}/versions`,{...session,method:'POST',data,key});const first=await post(cycleRevision(),'cycle-revise-once');assert.equal(first.status,201);assert.equal(first.body.cycle.id,cycle.id);assert.equal(first.body.cycle.version,2);assert.equal(first.body.cycle.status,'draft');assert.deepEqual((await post(cycleRevision(),'cycle-revise-once')).body,first.body);
+ const [a,b]=await Promise.all([post(cycleRevision({goal:'并发甲（虚构）',expected_version:2}),'cycle-race-a'),post(cycleRevision({goal:'并发乙（虚构）',expected_version:2}),'cycle-race-b')]);assert.deepEqual([a.status,b.status].sort(),[201,409]);assert.equal([a,b].find(r=>r.status===409).body.error.code,'CYCLE_CONFLICT');
+ const history=(await request(`/api/cycles/${cycle.id}`,session)).body.versions;assert.equal(history.length,3);assert.equal(history[2].goal,'原始周期需求（虚构）');assert.equal(history[2].source,'initial');assert.equal(history[0].created_by,'professional');
+ const timeline=(await request('/api/customers/child-a/timeline?kind=cycle',session)).body.items;assert.equal(timeline.length,3);assert.equal(timeline.find(e=>e.details.version===1).details.goal,'原始周期需求（虚构）');assert.ok(timeline.every(e=>e.entity_id===cycle.id));
+ assert.throws(()=>db.exec('UPDATE cycle_versions SET goal=goal'),/immutable/);assert.throws(()=>db.exec('DELETE FROM cycle_versions'),/immutable/);
+});
+test('visits retain the selected cycle version across later revisions and closing a visit leaves other business records independent',async t=>{
+ const {request,login,db}=await fixture(t),session=await login('manager'),cycle=await createTestCycle(request,session);
+ const postVisit=(version,key)=>request('/api/customers/child-a/visits',{...session,method:'POST',data:{purpose:'版本衔接（虚构）',cycle_ids:[cycle.id],cycle_versions:[{cycle_id:cycle.id,version}]},key});
+ const first=await postVisit(1,'cycle-visit-v1');assert.equal(first.status,201);assert.equal(first.body.visit.cycle_refs[0].goal,'原始周期需求（虚构）');
+ await request(`/api/cycles/${cycle.id}/versions`,{...session,method:'POST',data:cycleRevision(),key:'cycle-after-visit'});
+ const second=await postVisit(2,'cycle-visit-v2');assert.equal(second.body.visit.cycle_refs[0].version,2);assert.deepEqual((await postVisit(1,'cycle-visit-v1')).body,first.body);
+ await request(`/api/visits/${first.body.visit.id}/close`,{...session,method:'POST',data:{reason:'本次结束，后续独立'},key:'cycle-visit-close'});
+ const detail=(await request('/api/customers/child-a',session)).body;assert.equal(detail.cycles[0].version,2);assert.equal(detail.cycles[0].status,'draft');assert.equal(detail.visits.find(v=>v.id===first.body.visit.id).cycle_refs[0].version,1);assert.equal(detail.visits.find(v=>v.id===second.body.visit.id).status,'registered');
+ const timeline=(await request('/api/customers/child-a/timeline?kind=visit',session)).body.items;assert.equal(timeline.find(e=>e.entity_id===first.body.visit.id&&e.details.action==='register').details.cycle_refs[0].goal,'原始周期需求（虚构）');
+ assert.throws(()=>db.exec('UPDATE visit_cycle_versions SET version=2'),/immutable/);assert.throws(()=>db.exec('DELETE FROM visit_cycle_versions'),/immutable/);
+});
+test('visit expected versions reject stale selections and mismatched or cross-customer references before saving',async t=>{
+ const {request,login,db}=await fixture(t),session=await login('front'),cycle=await createTestCycle(request,session),sibling=await createTestCycle(request,session,'sibling-a','sibling-cycle-version');
+ await request(`/api/cycles/${cycle.id}/versions`,{...session,method:'POST',data:cycleRevision(),key:'stale-visit-cycle'});
+ const input={purpose:'核对当前需求（虚构）',cycle_ids:[cycle.id],cycle_versions:[{cycle_id:cycle.id,version:1}]};
+ const post=data=>request('/api/customers/child-a/visits',{...session,method:'POST',data,key:'visit-version-retry'});
+ assert.equal((await post(input)).body.error.code,'CYCLE_CONFLICT');assert.equal(db.prepare('SELECT count(*) n FROM visits').get().n,0);
+ for(const cycle_versions of [[],[{cycle_id:sibling.id,version:1}],[{cycle_id:cycle.id,version:null}],[{cycle_id:cycle.id,version:2},{cycle_id:cycle.id,version:2}]])assert.equal((await post({...input,cycle_versions})).status,422);
+ assert.equal((await post({...input,cycle_ids:[sibling.id],cycle_versions:[{cycle_id:sibling.id,version:1}]})).status,422);
+ assert.equal((await post({...input,cycle_versions:[{cycle_id:cycle.id,version:2}]})).status,201);
+ assert.equal(db.prepare('SELECT count(*) n FROM visit_cycle_versions').get().n,1);
+});
+test('audit failures roll back cycle revisions and visit version snapshots, allowing the same retry to save once',async t=>{
+ const {request,login,db}=await fixture(t),session=await login('manager'),cycle=await createTestCycle(request,session);
+ db.exec("CREATE TRIGGER cycle_fail BEFORE INSERT ON audit_events WHEN NEW.action='cycle.revise' BEGIN SELECT RAISE(ABORT,'fail'); END;");
+ const revision={...session,method:'POST',data:cycleRevision(),key:'cycle-audit-retry'};assert.equal((await request(`/api/cycles/${cycle.id}/versions`,revision)).status,500);assert.equal(db.prepare('SELECT goal FROM service_cycles WHERE id=?').get(cycle.id).goal,'原始周期需求（虚构）');assert.equal(db.prepare('SELECT count(*) n FROM cycle_versions').get().n,1);db.exec('DROP TRIGGER cycle_fail');assert.equal((await request(`/api/cycles/${cycle.id}/versions`,revision)).status,201);
+ db.exec("CREATE TRIGGER snapshot_fail BEFORE INSERT ON audit_events WHEN NEW.action='visit.register' BEGIN SELECT RAISE(ABORT,'fail'); END;");
+ const visit={...session,method:'POST',data:{purpose:'失败回滚（虚构）',cycle_ids:[cycle.id]},key:'visit-snapshot-retry'};assert.equal((await request('/api/customers/child-a/visits',visit)).status,500);for(const table of ['visits','visit_cycles','visit_cycle_versions'])assert.equal(db.prepare(`SELECT count(*) n FROM ${table}`).get().n,0);
+ db.exec('DROP TRIGGER snapshot_fail');assert.equal((await request('/api/customers/child-a/visits',visit)).status,201);assert.equal(db.prepare('SELECT version FROM visit_cycle_versions').get().version,2);
+});
+test('V0.7 migration preserves original cycle identity and explicitly leaves historic visit versions unknown',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'optical-cycle-upgrade-')),path=join(dir,'old.sqlite');let db;
+ try{
+  db=new DatabaseSync(path);db.exec('PRAGMA foreign_keys=ON;CREATE TABLE schema_migrations(name TEXT PRIMARY KEY,applied_at TEXT NOT NULL)');
+  for(const m of ['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql','005_customer_profiles.sql']){db.exec(readFileSync(new URL(`../migrations/${m}`,import.meta.url),'utf8'));db.prepare('INSERT INTO schema_migrations VALUES (?,?)').run(m,new Date().toISOString());}
+  db.exec("INSERT INTO stores VALUES ('a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('manager','manager','虚构负责人',hashPassword('fixture-only'),'manager','a');const old='2025-01-01T00:00:00.000Z';db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run('child','a','虚构客户',null,null,null,old,'manager');db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('cycle','child','followup','升级前当前需求','draft',old,'manager');db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run('visit','child','a','升级前到店','registered',old,null,'manager');db.exec("INSERT INTO visit_cycles VALUES ('visit','cycle','child')");db.close();db=openDatabase(path);
+  const version=db.prepare('SELECT * FROM cycle_versions').get();assert.equal(version.source,'legacy');assert.equal(version.created_by,null);assert.notEqual(version.created_at,old);assert.equal(db.prepare('SELECT * FROM visit_cycle_versions').get().version,null);assert.equal(db.prepare('SELECT * FROM visit_cycle_versions').get().basis,'legacy_unknown');
+  db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run('new-visit','child','a','升级后到店','registered',new Date().toISOString(),null,'manager');db.exec("INSERT INTO visit_cycles VALUES ('new-visit','cycle','child')");assert.equal(db.prepare("SELECT version FROM visit_cycle_versions WHERE visit_id='new-visit'").get().version,1);
+ }finally{db?.close();rmSync(dir,{recursive:true,force:true});}
+});
+test('cycle revision and both historic visit snapshots survive verified recovery; mismatched current goals fail backup',async t=>{
+ const {request,login,db,path,dir}=await fixture(t,{persist:true}),session=await login('manager'),cycle=await createTestCycle(request,session);
+ await request('/api/customers/child-a/visits',{...session,method:'POST',data:{purpose:'旧版到店（虚构）',cycle_ids:[cycle.id]},key:'recover-visit-v1'});await request(`/api/cycles/${cycle.id}/versions`,{...session,method:'POST',data:cycleRevision(),key:'recover-cycle-v2'});await request('/api/customers/child-a/visits',{...session,method:'POST',data:{purpose:'新版到店（虚构）',cycle_ids:[cycle.id]},key:'recover-visit-v2'});
+ const backup=await createBackup(path,join(dir,'cycle-backup')),restored=await restoreBackup(backup.backup,join(dir,'cycle-restored')),copy=openDatabase(restored.database);
+ try{assert.deepEqual(copy.prepare('SELECT cycle_id,version,goal,source FROM cycle_versions ORDER BY version').all(),db.prepare('SELECT cycle_id,version,goal,source FROM cycle_versions ORDER BY version').all());assert.deepEqual(copy.prepare('SELECT * FROM visit_cycle_versions ORDER BY version').all(),db.prepare('SELECT * FROM visit_cycle_versions ORDER BY version').all());assert.equal(copy.prepare('SELECT count(*) n FROM sessions').get().n,0);}finally{copy.close();}
+ db.prepare('UPDATE service_cycles SET goal=? WHERE id=?').run('未留版本的变化',cycle.id);await assert.rejects(createBackup(path,join(dir,'cycle-invalid')),/周期需求/);
+});
+test('synthetic cycle revisions demonstrate old/new visit references and preserve later edits on repeat initialization',()=>{
+ const db=openDatabase(':memory:');try{
+  db.exec("INSERT INTO stores VALUES ('store-a','虚构门店')");db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','虚构负责人',hashPassword('fixture-only'),'manager','store-a');seedDemoScenarios(db);assert.deepEqual(seedDemoCycleRevisions(db),{versions:2,cycles:1,visits:1});assert.deepEqual(seedDemoCycleRevisions(db),{versions:0,cycles:0,visits:0});assert.equal(db.prepare("SELECT version FROM visit_cycle_versions WHERE visit_id='demo-visit-followup' AND cycle_id='demo-cycle-followup'").get().version,1);assert.equal(db.prepare("SELECT version FROM visit_cycle_versions WHERE visit_id='demo-visit-followup-later' AND cycle_id='demo-cycle-followup'").get().version,2);
+  const row=db.prepare("SELECT * FROM service_cycles WHERE id='demo-cycle-followup'").get();db.prepare('UPDATE service_cycles SET goal=? WHERE id=?').run('后续编辑（虚构）',row.id);db.prepare('INSERT INTO cycle_versions VALUES (?,?,?,?,?,?,?,?,?)').run(row.id,row.customer_id,3,row.type,'后续编辑（虚构）','employee','后续演示编辑',new Date().toISOString(),'demo-manager');assert.deepEqual(seedDemoCycleRevisions(db),{versions:0,cycles:0,visits:0});assert.equal(db.prepare('SELECT goal FROM service_cycles WHERE id=?').get(row.id).goal,'后续编辑（虚构）');
+ }finally{db.close();}
 });

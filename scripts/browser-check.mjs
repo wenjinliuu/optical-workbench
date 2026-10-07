@@ -5,7 +5,7 @@ const { chromium }=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE_PATH
 mkdirSync('data/browser-check',{recursive:true});
 import { createApp } from '../src/server.mjs';
 import { hashPassword } from '../src/db.mjs';
-import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions } from '../src/demo-data.mjs';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
 const {server,db}=createApp({databasePath:':memory:',mode:'test',logger:()=>{}});
@@ -13,7 +13,7 @@ db.prepare('INSERT INTO stores VALUES (?,?)').run('store-a','示例视光门店 
 db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','负责人样例',hashPassword('local-browser-test-only'),'manager','store-a');
 for(const [id,name,birth] of [['one','小林（虚构）','2017-06-12'],['two','小林弟弟（虚构）','2020-03-08']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,'store-a',name,birth,'林家长（虚构）',null,new Date().toISOString(),'demo-manager');
 db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-parent','demo-parent','家长样例',hashPassword('local-browser-test-only'),'guardian','store-a');
-seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);
+seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);seedDemoCycleRevisions(db);
 server.listen(0,'127.0.0.1');await once(server,'listening');
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
 const page=await browser.newPage({viewport:{width:1440,height:1050}}),errors=[];
@@ -76,11 +76,25 @@ try{
  await page.locator('#visit-form button[type=submit]').click();
  await page.locator('.visit-card').waitFor();
  assert.ok((await page.locator('.visit-card').textContent()).includes('关联 2 个周期'));
+ const firstCycle=page.locator('.cycle-card').first(),revisingCycleId=await firstCycle.getAttribute('data-cycle-id');
+ const oldCycleGoal=await firstCycle.locator('p').first().textContent();
+ await firstCycle.getByRole('button',{name:'修订周期需求',exact:true}).click();
+ await page.locator('#cycle-revision-form textarea[name=goal]').fill('补充接待需求，等待专业核对（虚构）');
+ await page.locator('#cycle-revision-form select[name=source]').selectOption('guardian_report');await page.locator('#cycle-revision-form textarea[name=revision_reason]').fill('补充家长描述（虚构）');
+ const meForRevision=await (await page.request.get(`http://127.0.0.1:${server.address().port}/api/me`)).json();
+ const competing=await page.request.post(`http://127.0.0.1:${server.address().port}/api/cycles/${revisingCycleId}/versions`,{headers:{'X-CSRF-Token':meForRevision.csrf,'Idempotency-Key':'browser-cycle-competing'},data:{goal:'另一位员工补充的需求（虚构）',source:'employee',revision_reason:'并发演示',expected_version:1}});assert.equal(competing.status(),201);
+ await page.locator('#cycle-revision-form button[type=submit]').click();await page.locator('#cycle-revision-error').filter({hasText:'已被修改'}).waitFor();
+ await page.locator('#reload-cycle-revision').click();await page.locator('#cycle-revision-label').filter({hasText:'V2'}).waitFor();assert.equal(await page.locator('#cycle-revision-form textarea[name=goal]').inputValue(),'补充接待需求，等待专业核对（虚构）');
+ await page.locator('#cycle-revision-form button[type=submit]').click();await page.locator(`.cycle-card[data-cycle-id="${revisingCycleId}"] .pill`).filter({hasText:'V3'}).waitFor();
+ assert.ok((await page.locator('.visit-cycle-snapshot').allTextContents()).some(t=>t.includes('V1：'+oldCycleGoal)));
+ await page.locator(`.cycle-card[data-cycle-id="${revisingCycleId}"]`).getByRole('button',{name:'周期需求历史',exact:true}).click();await page.locator('.cycle-version-card').first().waitFor();assert.equal(await page.locator('.cycle-version-card').count(),3);assert.ok((await page.locator('.cycle-version-card').last().textContent()).includes(oldCycleGoal));
+ await page.screenshot({path:'data/browser-check/cycle-history-desktop.png',fullPage:true});await page.locator('#cycle-history-dialog [data-close]').click();
  await page.getByRole('button',{name:'结束本次到店',exact:true}).click();
  await page.locator('#close-visit-form textarea').fill('本次到店结束，长期周期继续（虚构）');
  await page.locator('#close-visit-form button[type=submit]').click();
  await page.getByText('本次已结束',{exact:true}).waitFor();
  assert.equal(await page.locator('.cycle-card').count(),2);
+ await page.getByRole('button',{name:'＋ 登记到店',exact:true}).click();await page.locator('#visit-form textarea').fill('修订后的再次到店（虚构）');for(const checkbox of await page.locator('#visit-form input[type=checkbox]').all())await checkbox.check();await page.locator('#visit-form button[type=submit]').click();await page.locator('.visit-card').filter({hasText:'修订后的再次到店（虚构）'}).waitFor();assert.ok((await page.locator('.visit-card').filter({hasText:'修订后的再次到店（虚构）'}).textContent()).includes('V3'));
  for(const active of ['true','false']){
   await page.getByRole('button',{name:'管理关联',exact:true}).click();
   await page.locator('#guardian-form input[name=relationship]').fill('监护人（演示）');
@@ -124,7 +138,7 @@ try{
  assert.ok((await page.locator('.customer-facts').textContent()).includes('周期草稿'));
  await page.locator('.timeline-filters select').selectOption('contact');await page.locator('.timeline-filters button').click();
  await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),3);assert.ok((await page.locator('.timeline-list').textContent()).includes('恢复家庭联系人'));
- await page.locator('.timeline-filters select').selectOption('visit');await page.locator('.timeline-filters button').click();await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),2);
+ await page.locator('.timeline-filters select').selectOption('visit');await page.locator('.timeline-filters button').click();await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),3);
  await page.locator('.timeline-event').filter({hasText:'结束本次到店'}).getByRole('button',{name:'定位对应记录'}).click();await page.locator('.visit-card.timeline-focus').waitFor();
  await page.locator('.timeline-filters input[name=from]').fill('1900-01-01');await page.locator('.timeline-filters input[name=to]').fill('1900-01-01');await page.locator('.timeline-filters button').click();await page.getByText('当前筛选下没有记录。',{exact:true}).waitFor();
  await page.locator('.timeline-filters input[name=from]').fill('');await page.locator('.timeline-filters input[name=to]').fill('');await page.locator('.timeline-filters select').selectOption('all');await page.locator('.timeline-filters button').click();await page.locator('.timeline-event').first().waitFor();
@@ -225,6 +239,7 @@ try{
  await page.getByRole('button',{name:'档案修改历史',exact:true}).click();await page.locator('#profile-history-dialog').waitFor({state:'visible'});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile profile history must not overflow');
  await page.screenshot({path:'data/browser-check/profile-history-mobile.png',fullPage:true});await page.locator('#profile-history-dialog [data-close]').click();
+ await page.locator('.cycle-card').first().getByRole('button',{name:'周期需求历史',exact:true}).click();await page.locator('#cycle-history-dialog').waitFor({state:'visible'});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile cycle history must not overflow');await page.screenshot({path:'data/browser-check/cycle-history-mobile.png',fullPage:true});await page.locator('#cycle-history-dialog [data-close]').click();
  await page.locator('.family-contact-card').first().getByRole('button',{name:'编辑联系人',exact:true}).click();await page.locator('#contact-dialog').waitFor({state:'visible'});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile contact editor must not overflow');await page.keyboard.press('Escape');
 
@@ -235,7 +250,7 @@ try{
  await page.screenshot({path:'data/browser-check/mobile.png',fullPage:true});
  await page.locator('#logout-mobile').click();
  await page.locator('#login-view').waitFor({state:'visible'});
- assert.equal(await page.locator('#profile-history-items').textContent(),'');assert.equal(await page.locator('#customer-items').textContent(),'');assert.equal(await page.locator('#operations-errors').textContent(),'');
+ assert.equal(await page.locator('#cycle-history-items').textContent(),'');assert.equal(await page.locator('#profile-history-items').textContent(),'');assert.equal(await page.locator('#customer-items').textContent(),'');assert.equal(await page.locator('#operations-errors').textContent(),'');
  assert.deepEqual(errors,[]);
- console.log('Browser checks passed: overview, timeline categories/date/empty/jump/pagination/mobile, profile revisions/history, family contacts/deactivation, correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
+ console.log('Browser checks passed: cycle revision/concurrent refresh/history, retained V1 and new V3 visit snapshots, overview, timeline categories/date/empty/jump/pagination/mobile, profile revisions/history, family contacts/deactivation, correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

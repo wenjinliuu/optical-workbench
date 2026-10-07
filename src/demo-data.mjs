@@ -104,3 +104,27 @@ export function seedDemoProfiles(db){
     return {contacts,profiles};
   });
 }
+
+export function seedDemoCycleRevisions(db){
+ const manager=db.prepare("SELECT id FROM users WHERE id='demo-manager' AND username='demo-manager' AND role='manager' AND store_id='store-a'").get();if(!manager)throw Error('周期样例仅用于独立示例数据库。');
+ return transaction(db,()=>{
+  let versions=0,cycles=0,visits=0;const now=new Date().toISOString();
+  for(const s of demoScenarios.filter(s=>['plan','followup'].includes(s.id))){
+   const row=db.prepare('SELECT * FROM service_cycles WHERE id=?').get(`demo-cycle-${s.id}`);if(!row)continue;
+   if(row.customer_id!==s.customer_id||row.type!==s.type)throw Error('周期样例编号冲突，已回滚；不会覆盖记录。');
+   const v=db.prepare('SELECT * FROM cycle_versions WHERE cycle_id=? ORDER BY version DESC LIMIT 1').get(row.id);if(v.version!==1||row.goal!==s.goal)continue;
+   const goal=row.goal+'；补充虚构需求，资料继续等待专业核对',reason='虚构演示：补充周期需求';
+   db.prepare('UPDATE service_cycles SET goal=? WHERE id=?').run(goal,row.id);db.prepare('INSERT INTO cycle_versions VALUES (?,?,?,?,?,?,?,?,?)').run(row.id,row.customer_id,2,row.type,goal,'guardian_report',reason,now,manager.id);versions++;
+   db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'cycle.revise',row.id,JSON.stringify({...row,version:1}),JSON.stringify({...row,goal,version:2,source:'guardian_report',revision_reason:reason}),now);
+   if(s.id==='followup'){
+    const cycleId='demo-cycle-followup-secondary',visitId='demo-visit-followup-later';
+    const existingCycle=db.prepare('SELECT customer_id FROM service_cycles WHERE id=?').get(cycleId);if(existingCycle&&existingCycle.customer_id!==row.customer_id)throw Error('衔接样例编号冲突，已回滚。');
+    if(!existingCycle){db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(cycleId,row.customer_id,'training','虚构训练需求登记，等待专业评估','draft',now,manager.id);cycles++;}
+    const existingVisit=db.prepare('SELECT customer_id FROM visits WHERE id=?').get(visitId);if(existingVisit&&existingVisit.customer_id!==row.customer_id)throw Error('衔接样例编号冲突，已回滚。');
+    if(!existingVisit){db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run(visitId,row.customer_id,'store-a','修订后复访，同时登记训练需求（虚构）','registered',now,null,manager.id);for(const id of [row.id,cycleId])db.prepare('INSERT INTO visit_cycles VALUES (?,?,?)').run(visitId,id,row.customer_id);visits++;}
+   }
+  }
+  if(versions||cycles||visits)db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',manager.id,'demo.cycles','demo-cycles',null,JSON.stringify({source:'synthetic',versions,cycles,visits}),now);
+  return {versions,cycles,visits};
+ });
+}

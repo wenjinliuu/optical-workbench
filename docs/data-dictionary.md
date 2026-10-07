@@ -57,3 +57,11 @@ family_contacts：id、customer_id FK、name、relationship、phone nullable、s
 没有新增业务表或迁移（schema仍为5）。src/timeline.mjs从客户范围内的档案/资料版本、周期、到店、附件和明确的联系人/查看授权审计读取事件。事件编号由原主键及动作/版本组成，是查询排序键，不是新业务身份；分页标识绑定同一客户和筛选。联系方式和安全事件不会直接展开为任意审计JSON。actor_name是操作人账号的当前显示名，actor_id保留原身份；未登记操作人不推断。
 
 总览数量与状态按现存数据计算；周期仍为draft，不宣称专业计划已确认。恢复后由原记录重新查询，无单独需恢复的时间轴缓存或事件副本。原有未知关系、依据与历史仍保持未知。
+
+## V0.8 周期需求与到店快照（006_cycle_versions.sql）
+
+cycle_versions：cycle_id+version复合主键，customer_id、type、goal、source、revision_reason、created_at/by；复合外键限定原周期客户，禁止更新/删除。存量V1为legacy、升级时间、未知操作人null；新周期通过触发器建立initial V1，后续需求修订使用明确来源。service_cycles保留当前goal，恢复校验要求与最新版本type/goal一致。
+
+visit_cycle_versions：visit_id+cycle_id主键，customer_id、version(nullable)、basis(captured/legacy_unknown)；复合外键同时限定原到店关联与需求版本的客户。新visit_cycles关联由触发器捕获最新版本，引用禁止更新/删除；迁移前已有关联建立legacy_unknown记录，不推测当时版本。每个到店关联必须有引用记录，恢复工具核对新表、外键和完整性。
+
+需求、专业计划、订单、权益和任务保留独立身份与状态；本轮只实施需求和到店衔接。后续共用能力及待确认条件见capability-map.md。

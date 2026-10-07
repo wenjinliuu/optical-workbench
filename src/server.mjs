@@ -9,13 +9,14 @@ import { createOrganizationHandler } from './organization.mjs';
 import { createRuntime } from './runtime.mjs';
 import { createProfilesHandler } from './profiles.mjs';
 import { createTimelineHandler } from './timeline.mjs';
+import { createCyclesHandler } from './cycles.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
 const roles = {manager:['customers:read','customers:create','cycles:create','audit:read','organization:read','guardians:manage','visits:create','visits:close','demo:read'],reception:['customers:read','customers:create','cycles:create','visits:create','visits:close','demo:read'],professional:['customers:read','cycles:create','demo:read'],guardian:['customers:read']};
 for(const role of ['manager','reception','professional'])roles[role].push('attachments:read','attachments:upload','attachments:revoke','documents:read','documents:write');
 roles.manager.push('organization:manage');
 roles.manager.push('operations:read');
-for(const role of ['manager','reception','professional'])roles[role].push('profiles:read','timeline:read');
+for(const role of ['manager','reception','professional'])roles[role].push('profiles:read','timeline:read','cycles:read','cycles:revise');
 for(const role of ['manager','reception'])roles[role].push('customers:update','contacts:manage');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
@@ -55,7 +56,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
     db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),user.store_id,user.id,action,id,before===null?null:JSON.stringify(before),JSON.stringify(after),new Date().toISOString());
   }
   function visitsFor(id) {
-    return db.prepare('SELECT id,purpose,status,created_at,closed_at FROM visits WHERE customer_id=? ORDER BY created_at DESC,id LIMIT 100').all(id).map(v=>({...v,cycle_ids:db.prepare('SELECT cycle_id FROM visit_cycles WHERE visit_id=? ORDER BY cycle_id').all(v.id).map(x=>x.cycle_id)}));
+    return db.prepare('SELECT id,purpose,status,created_at,closed_at FROM visits WHERE customer_id=? ORDER BY created_at DESC,id LIMIT 100').all(id).map(v=>({...v,cycle_ids:db.prepare('SELECT cycle_id FROM visit_cycles WHERE visit_id=? ORDER BY cycle_id').all(v.id).map(x=>x.cycle_id),cycle_refs:cycleRecords.refs(v.id)}));
   }
   function localGuardian(user,id) {
     return db.prepare("SELECT id,display_name,active FROM users u WHERE u.id=? AND u.role='guardian' AND (u.store_id=? OR EXISTS(SELECT 1 FROM guardian_links g JOIN customers c ON c.id=g.customer_id WHERE g.user_id=u.id AND c.store_id=?))").get(id,user.store_id,user.store_id);
@@ -75,6 +76,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const documents=createDocumentsHandler(db,{need,customer,field,fail,body,mutation,audit});
   const organization=createOrganizationHandler(db,{need,field,fail,body,mutation,audit});
   const profiles=createProfilesHandler(db,{need,customer,visible,field,date,fail,body,mutation,audit});
+  const cycleRecords=createCyclesHandler(db,{need,customer,field,fail,body,mutation,audit});
   const timeline=createTimelineHandler(db,{need,customer,fail});
   const server=createServer(async(req,res)=>{
     const request=runtime.begin(req,res);
@@ -85,7 +87,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -121,6 +123,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       }
       if(await organization(req,res,path,user,json))return;
       if(await documents(req,res,path,user,json))return;
+      if(await cycleRecords.handle(req,path,user,json))return;
       if(timeline(req,path,url,user,json))return;
       if(await profiles.handle(req,res,path,user,json))return;
       if(path==='/api/demo/scenarios' && req.method==='GET') {
@@ -150,13 +153,13 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const match=/^\/api\/customers\/([\w-]+)(\/(?:cycles|guardians|visits))?$/.exec(path);
       if(match) {
         const row=customer(user,match[1]);
-        if(req.method==='GET' && !match[2]) return json(200,{customer:visible(user,row),cycles:user.role==='guardian'?[]:db.prepare('SELECT id,type,goal,status,created_at FROM service_cycles WHERE customer_id=? ORDER BY created_at DESC').all(row.id),visits:user.role==='guardian'?[]:visitsFor(row.id),guardians:user.role==='guardian'?[]:db.prepare('SELECT g.user_id,u.display_name,g.relationship,g.active FROM guardian_links g JOIN users u ON u.id=g.user_id WHERE customer_id=? ORDER BY g.active DESC,u.display_name').all(row.id)});
+        if(req.method==='GET' && !match[2]) return json(200,{customer:visible(user,row),cycles:user.role==='guardian'?[]:db.prepare('SELECT id,type,goal,status,created_at FROM service_cycles WHERE customer_id=? ORDER BY created_at DESC').all(row.id).map(cycleRecords.visible),visits:user.role==='guardian'?[]:visitsFor(row.id),guardians:user.role==='guardian'?[]:db.prepare('SELECT g.user_id,u.display_name,g.relationship,g.active FROM guardian_links g JOIN users u ON u.id=g.user_id WHERE customer_id=? ORDER BY g.active DESC,u.display_name').all(row.id)});
         if(req.method==='POST' && match[2]==='/cycles') {
           need(user,'cycles:create');const b=await body(req), input={type:field(b.type,'周期类型',20,true),goal:field(b.goal,'服务目标',300,true)};
           if(!['followup','training','retail'].includes(input.type)) fail(422,'VALIDATION','周期类型不正确');
           return json(201,mutation(req,user,`cycles.create:${row.id}`,input,()=>{
             const cycle={id:randomUUID(),customer_id:row.id,...input,status:'draft',created_at:new Date().toISOString(),created_by:user.id};
-            db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(...Object.values(cycle));audit(user,'cycle.create',cycle.id,cycle);return {cycle};
+            db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(...Object.values(cycle));audit(user,'cycle.create',cycle.id,cycle);return {cycle:cycleRecords.visible(cycle)};
           }));
         }
         if(req.method==='POST' && match[2]==='/guardians') {
@@ -174,15 +177,19 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
           }));
         }
         if(req.method==='POST' && match[2]==='/visits') {
-          need(user,'visits:create');const b=await body(req),input={purpose:field(b.purpose,'到店目的',300,true),cycle_ids:b.cycle_ids??[]};
+          need(user,'visits:create');const b=await body(req),input={purpose:field(b.purpose,'到店目的',300,true),cycle_ids:b.cycle_ids??[],cycle_versions:b.cycle_versions??null};
           if(!Array.isArray(input.cycle_ids)||input.cycle_ids.length>20||input.cycle_ids.some(id=>typeof id!=='string')||new Set(input.cycle_ids).size!==input.cycle_ids.length)fail(422,'VALIDATION','服务周期列表不正确');
+          if(input.cycle_versions!==null&&(!Array.isArray(input.cycle_versions)||input.cycle_versions.length!==input.cycle_ids.length||new Set(input.cycle_versions.map(v=>v?.cycle_id)).size!==input.cycle_ids.length||input.cycle_versions.some(v=>!v||!input.cycle_ids.includes(v.cycle_id)||!Number.isSafeInteger(v.version)||v.version<1)))fail(422,'VALIDATION','周期版本必须与所选周期对应');
+          if(input.cycle_versions)input.cycle_versions=input.cycle_versions.map(({cycle_id,version})=>({cycle_id,version}));
+          if(input.cycle_versions)input.cycle_versions.sort((a,b)=>a.cycle_id.localeCompare(b.cycle_id));
           input.cycle_ids.sort();
           return json(201,mutation(req,user,`visits.create:${row.id}`,input,()=>{
             for(const id of input.cycle_ids)if(!db.prepare('SELECT 1 FROM service_cycles WHERE id=? AND customer_id=?').get(id,row.id))fail(422,'INVALID_CYCLE','只能关联当前客户的服务周期');
+            for(const expected of input.cycle_versions||[])if(cycleRecords.latest(expected.cycle_id).version!==expected.version)fail(409,'CYCLE_CONFLICT','所选周期需求已修订，请刷新档案后重新登记');
             const visit={id:randomUUID(),customer_id:row.id,store_id:row.store_id,purpose:input.purpose,status:'registered',created_at:new Date().toISOString(),closed_at:null,created_by:user.id};
             db.prepare('INSERT INTO visits VALUES (?,?,?,?,?,?,?,?)').run(...Object.values(visit));
             for(const id of input.cycle_ids)db.prepare('INSERT INTO visit_cycles VALUES (?,?,?)').run(visit.id,id,row.id);
-            audit(user,'visit.register',visit.id,{...visit,cycle_ids:input.cycle_ids});return {visit:{...visit,cycle_ids:input.cycle_ids}};
+            audit(user,'visit.register',visit.id,{...visit,cycle_ids:input.cycle_ids});return {visit:{...visit,cycle_ids:input.cycle_ids,cycle_refs:cycleRecords.refs(visit.id)}};
           }));
         }
       }
