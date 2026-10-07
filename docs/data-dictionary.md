@@ -150,3 +150,8 @@ completion_status=open/completed、effective_execution_status=pending/running/pa
 | inventory_order_lines | event_id、原order_id/version/position/customer/store、product_id/version/quantity、stock_event_id | 固定原实物行，服务排除；与库存事件延迟双向外键且唯一关联，规范清单一致 |
 
 数量来自最后流水，未建账明确未知，不跨商品单位汇总数量。重复SKU需求聚合且全部实物行一事务预留；任何商品不足不部分占用。全部三表禁止覆盖/删除，数量、原行/版本、连续历史、单位及释放来源进入恢复。当前未实现采购/批次/加工出库/盘点调整或完整库存成本。
+
+
+## V0.18 payment_events
+
+新增不可变资金登记表：id/order_id/order_version/customer_id/store_id/revision/action(receive或void)/source_id/amount_cents/basis_total_cents/currency/method/reference/received_at/reason/created_at/created_by。revision连续；同单唯一、原单四字段复合外键、void唯一来源及精确复制、有效外部编号防重复；原单资金保护。金额为整数分，basis仅原明细合计。恢复语义核对见payments.md。

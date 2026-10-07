@@ -1,9 +1,10 @@
-const kinds={inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
+ if(event.kind==='payment')return {title:`${d.action==='receive'?'登记收款':'追加误录作废'} · 记录 ${d.revision}`,text:`${d.order_number} · 固定订单 V${d.order_version} · ¥${(d.amount_cents/100).toFixed(2)}`,reason:d.reason};
  if(event.kind==='inventory')return {title:`${d.action==='reserve'?'预留订单商品':'释放订单预留'} · 记录 ${d.revision}`,text:`${d.order_number} · 固定订单 V${d.order_version}`,reason:d.reason};
  if(event.kind==='retail')return {title:`${d.status==='cancelled'?'取消':d.version===1?'建立':'修订'}配镜订单草稿 · V${d.version}`,text:`${d.order_number} · ${d.title} · 商品明细合计 ¥${(d.subtotal_cents/100).toFixed(2)}`,reason:d.reason};
  if(event.kind==='profile')return {title:`${d.source==='legacy'?'保存存量档案基线':d.version===1?'建立客户档案':'修订客户档案'} · V${d.version}`,text:d.name,reason:d.reason};
@@ -22,7 +23,7 @@ export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
   if(event.kind==='profile'){document.querySelector('.profile-actions button:last-child')?.click();return;}
-  const key={inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
+  const key={payment:'orderId',inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
   const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===event.entity_id):document.querySelector('#detail .family-access-area');
   if(!target){toast('对应记录未显示在当前列表中，可刷新档案后再查看。');return;}target.scrollIntoView({behavior:'smooth',block:'center'});target.classList.remove('timeline-focus');void target.offsetWidth;target.classList.add('timeline-focus');
  }
@@ -32,7 +33,7 @@ export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
   const refresh=el('button','刷新总览');refresh.type='button';heading.append(refresh);summary.append(heading);
   const facts=el('div',undefined,'customer-facts'),recent=el('p','正在读取服务记录…','small muted');summary.append(facts,recent);
   const history=el('details',undefined,'customer-timeline'),toggle=el('summary');toggle.append(el('strong','客户历史时间轴'),el('span','查看已保存的服务与修改记录','small muted'));history.append(toggle);
-  const form=el('form',undefined,'timeline-filters'),category=el('select');category.name='kind';category.setAttribute('aria-label','记录类别');category.append(new Option('全部记录','all'));for(const [key,name] of Object.entries(kinds))category.append(new Option(name,key));
+  const form=el('form',undefined,'timeline-filters'),category=el('select');category.name='kind';category.setAttribute('aria-label','记录类别');category.append(new Option('全部记录','all'));for(const [key,name] of Object.entries(kinds))if(key!=='payment'||getMe().permissions.includes('payments:read'))category.append(new Option(name,key));
   const from=el('input'),to=el('input');from.type=to.type='date';from.name='from';to.name='to';
   function label(text,input){const l=el('label',text);l.append(input);return l;}
   form.append(label('记录类别',category),label('开始日期（UTC）',from),label('结束日期（UTC）',to));const apply=el('button','筛选记录');apply.type='submit';form.append(apply);

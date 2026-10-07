@@ -235,3 +235,8 @@ role=all/manager/reception/professional按当前接收人岗位筛选，无接�
 接口完整契约见[inventory.md](inventory.md)。新增GET inventory/products、GET inventory/products/:id（limit/offset历史）、POST inventory/products/:id/events（负责人，receive/isolate/unquarantine、expected_sequence/expected_product_version、quantity/reason）；订单新增GET retail/orders/:id/inventory及POST /inventory/reserve、/inventory/release（负责人/前台、expected_order_version/expected_revision/reason，reserve另带完整stock_versions）。员工读，家长拒绝；实时会话与门店、CSRF、幂等沿用。
 
 当前订单需求由原明细计算，服务排除、重复SKU聚合；新预留要求启用商品/匹配单位及足够可用，全部原行一事务写入，释放原明细后才能修订/取消。错误包括STOCK_CONFLICT、INSUFFICIENT_STOCK、RESERVATION_CONFLICT、STOCK_PRODUCT_CHANGED、ALREADY_RESERVED/NOT_RESERVED、NO_STOCK_ITEMS/SERVICE_NOT_STOCKED；原订单写入ORDER_RESERVED，目录单位/品类更改STOCK_UNIT_LOCKED。客户时间轴新增kind=inventory。
+
+
+## V0.18 基础收款API
+
+负责人/前台GET /api/payments（q/action/limit/offset）及GET /api/retail/orders/:id/payments（limit/offset）；POST /payments/receive字段expected_order_version/expected_revision/amount_cents/method/reference/received_at/reason。负责人POST /payments/void字段expected_order_version/expected_revision/source_id/reason。路径前缀同原单。权限、CSRF、实时会话、版本与幂等共同事务；响应event/payments。专业人员/家长资金读取403，跨店原单404；PAYMENT_CONFLICT、ORDER_HAS_RECEIPTS、DUPLICATE_REFERENCE、RECEIPT_VOIDED等409。固定原单、时间轴角色范围、分页及金额意义见payments.md。

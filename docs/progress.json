@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.17配镜业务切片：基础库存、可用/预留/隔离、原单全量预留与明确释放已接通；收款、加工质检交付继续推进，整体未验收",
-  "currentTask": "T04.01",
-  "nextTask": "T04.02",
+  "productStatus": "V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 整体未验收",
+  "currentTask": "T04.02",
+  "nextTask": "T04.03",
   "stage": "P00",
   "blockers": [
     "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
@@ -117,6 +117,12 @@
       "version": "V0.17",
       "type": "配镜库存开发",
       "summary": "新增基础实物库存连续流水、可用/预留/隔离数量、原订单逐行预留和释放历史；重复商品聚合、服务排除、并发不超卖，修订/取消前先释放，建账单位锁定。schema14旧订单升级保持，时间轴/恢复/电脑手机贯通，追加14流水/3预留释放虚构阶段；下一基础收款，整体业务验收待完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.18",
+      "type": "配镜收款开发",
+      "summary": "V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 下一订货加工，整体业务验收待完成。"
     }
   ],
   "tasks": [
@@ -616,7 +622,7 @@
         "docs/inventory.md"
       ],
       "updated": "2026-10-07",
-      "implementationNote": "商品/订单草稿及基础库存入库/隔离/解除、原单全量预留/释放已落地；并发不超卖、连续历史/时间轴/恢复接通。库存出库/调拨/批次/盘点、优惠组合、订金尾款和整项业务验收未完成；原依赖链保留。"
+      "implementationNote": "商品/订单草稿及基础库存入库/隔离/解除、原单全量预留/释放已落地；并发不超卖、连续历史/时间轴/恢复接通。库存出库/调拨/批次/盘点、优惠组合、正式订金尾款状态和整项业务验收未完成；原依赖链保留。 V0.18已接基础分次手工实收与原单保护。"
     },
     {
       "id": "T04.02",
@@ -633,10 +639,22 @@
         "T03.04",
         "T04.01"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 销售财务负责人（后期验收，待指定）",
+      "evidence": [
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/retail.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "updated": "2026-10-07",
+      "implementationNote": "V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 实际退款/审批、票据、应收/交班、渠道核验和整项验收未实现；原依赖链不变。"
     },
     {
       "id": "T04.03",
@@ -1850,9 +1868,21 @@
     },
     {
       "id": "M11-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/retail.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "M11-F03",
@@ -1869,41 +1899,71 @@
     {
       "id": "M11-D",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
         "test/retail.test.mjs",
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
-      ]
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "M11-R",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
         "test/retail.test.mjs",
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
-      ]
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "M11-L",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
         "test/retail.test.mjs",
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
-      ]
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "M11-A",
@@ -2282,15 +2342,24 @@
     {
       "id": "C01",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
         "src/retail.mjs",
         "docs/retail-orders.md",
-        "test/retail.test.mjs"
+        "test/retail.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
       ],
-      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "C02",
@@ -2512,7 +2581,7 @@
     {
       "id": "N02",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
@@ -2524,9 +2593,18 @@
         "test/retail.test.mjs",
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
       ],
-      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "N03",
@@ -2612,15 +2690,25 @@
     {
       "id": "W1-N2",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/retail.mjs",
         "docs/retail-orders.md",
         "test/retail.test.mjs",
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
-      ]
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
     },
     {
       "id": "W1-N3",
@@ -3335,11 +3423,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 186,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例"
+      "tests": 205,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -3349,7 +3437,8 @@
         "scripts/browser-check.mjs",
         "docs/handover.md",
         "scripts/retail-browser-check.mjs",
-        "scripts/inventory-browser-check.mjs"
+        "scripts/inventory-browser-check.mjs",
+        "scripts/payments-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -3394,7 +3483,11 @@
         "stock quantities/history and conflicted stock reread preserves quantity/action/reason",
         "original-row reserve/release and stale stock reread preserves reason; occupied-order edit/cancel guard",
         "missing stock stays visible and cannot partially reserve; reception mobile release/re-reserve and readonly roles",
-        "authorized stock response held until logout cannot rebuild cards"
+        "authorized stock response held until logout cannot rebuild cards",
+        "manual installments and fixed original payment basis, active-reference uniqueness and original order navigation",
+        "payment conflict reread preserves amount/method/reference/time/reason; manager append-only misentry void",
+        "readonly historic order with current collection state; reception mobile receipt and restricted roles",
+        "held authorized payment list after logout cannot rebuild data"
       ]
     },
     "baseline": {
@@ -3403,7 +3496,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十四迁移；V0.16非空商品/订单及所有原表逐项保持，新库存三表为空，不补造数量或预留；此前旧库升级检查保留",
-    "recovery": "schema14三库存表及数量算术/连续版本/计量单位/原单明细/双向事件/当前预留/释放来源核对；CLI初始14库存流水/3预留释放/8明细、新建与重复及独立恢复逐表一致，会话0；原商品、订单、26任务/74事件保持；正式目标和完整账待确认"
+    "migration": "十五迁移；V0.17非空所有原表逐项保持，payment_events为空，不补造收款；此前旧库升级检查保留",
+    "recovery": "schema15收款记录连续序号/原单金额身份/时间/误录作废复制来源/当前原单保护/有效外部编号核对；CLI新建及重复5资金记录、14库存流水、4订单、26任务74事件保持；备份校验/独立恢复逐表一致，会话0；正式目标和完整业务账待确认"
   }
 }
