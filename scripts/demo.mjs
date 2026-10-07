@@ -1,10 +1,10 @@
 import { randomBytes } from 'node:crypto';
 import { openDatabase, transaction, hashPassword } from '../src/db.mjs';
-import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, seedDemoTasks, seedDemoTaskExecution, seedDemoTaskExceptions, seedDemoTaskEvidence, seedDemoTaskCompletions, seedDemoTaskAmendments } from '../src/demo-data.mjs';
+import { seedDemoScenarios, seedDemoPeople, seedDemoProfiles, seedDemoCycleRevisions, seedDemoTasks, seedDemoTaskExecution, seedDemoTaskExceptions, seedDemoTaskEvidence, seedDemoTaskCompletions, seedDemoTaskAmendments, seedDemoTaskChains } from '../src/demo-data.mjs';
 if(process.env.NODE_ENV==='production')throw Error('Demo data is forbidden in production.');
 const db=openDatabase(process.env.DATABASE_PATH||'data/workbench.sqlite');
 if(db.prepare('SELECT 1 FROM users LIMIT 1').get()){
-  try { const added=seedDemoScenarios(db),people=seedDemoPeople(db),profiles=seedDemoProfiles(db),cycleRevisions=seedDemoCycleRevisions(db),tasks=seedDemoTasks(db),execution=seedDemoTaskExecution(db),exceptions=seedDemoTaskExceptions(db),evidence=seedDemoTaskEvidence(db),completion=seedDemoTaskCompletions(db),amendments=seedDemoTaskAmendments(db);console.log('保留原账号与密码；仅追加缺少的虚构案例、人员和家庭资料。',added,people,profiles,cycleRevisions,tasks,execution,exceptions,evidence,completion,amendments); }
+  try { const added=seedDemoScenarios(db),people=seedDemoPeople(db),profiles=seedDemoProfiles(db),cycleRevisions=seedDemoCycleRevisions(db),tasks=seedDemoTasks(db),execution=seedDemoTaskExecution(db),exceptions=seedDemoTaskExceptions(db),evidence=seedDemoTaskEvidence(db),completion=seedDemoTaskCompletions(db),amendments=seedDemoTaskAmendments(db),chains=seedDemoTaskChains(db);console.log('保留原账号与密码；仅追加缺少的虚构案例、人员和家庭资料。',added,people,profiles,cycleRevisions,tasks,execution,exceptions,evidence,completion,amendments,chains); }
   finally { db.close(); }
   process.exit(0);
 }
@@ -18,6 +18,6 @@ transaction(db,()=>{
   create.run('sample-child-c','store-b','小周（虚构）','2018-11-20','周家长（虚构）',null,new Date().toISOString(),'demo-other');
   db.prepare('INSERT INTO guardian_links (user_id,customer_id,active,relationship) VALUES (?,?,1,?)').run('demo-parent','sample-child-a','监护人（演示）');
   db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run('sample-cycle-a','sample-child-a','followup','建立长期复查资料的演示周期','draft',new Date().toISOString(),'demo-manager');
-});seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);seedDemoCycleRevisions(db);seedDemoTasks(db);seedDemoTaskExecution(db);seedDemoTaskExceptions(db);seedDemoTaskEvidence(db);seedDemoTaskCompletions(db);seedDemoTaskAmendments(db);db.close();
+});seedDemoScenarios(db);seedDemoPeople(db);seedDemoProfiles(db);seedDemoCycleRevisions(db);seedDemoTasks(db);seedDemoTaskExecution(db);seedDemoTaskExceptions(db);seedDemoTaskEvidence(db);seedDemoTaskCompletions(db);seedDemoTaskAmendments(db);seedDemoTaskChains(db);db.close();
 console.log('仅限本地开发的虚构资料。请保存本次随机生成的账号；密码不会写入源码或明文文件。');
 for(const a of accounts)console.log(`${a.id} (${a.name}): ${a.password}`);

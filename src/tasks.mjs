@@ -1,3 +1,4 @@
+import { taskChain } from './task-chains.mjs';
 import { sourceInput, completionSource, taskOrigin, taskFollowups } from './task-amendments.mjs';
 import { completionRecord } from './task-completions.mjs';
 import { randomUUID } from 'node:crypto';
@@ -25,8 +26,9 @@ export function createTasksHandler(db,{need,customer,field,fail,body,mutation,au
   }return basis;
  }
  return async(req,path,url,user,json)=>{
-  const followupMatch=/^\/api\/tasks\/([\w-]+)\/followups$/.exec(path),staffPath=path==='/api/tasks/assignees',queuePath=path==='/api/tasks',customerMatch=/^\/api\/customers\/([\w-]+)\/tasks$/.exec(path),match=/^\/api\/tasks\/([\w-]+)(\/(claim|accept|start|pause|resume|return|transfer|block|unblock|cancel|restore))?$/.exec(path);
-  if(!followupMatch&&!staffPath&&!queuePath&&!customerMatch&&!match)return false;need(user,'tasks:read');
+  const chainMatch=/^\/api\/tasks\/([\w-]+)\/chain$/.exec(path),followupMatch=/^\/api\/tasks\/([\w-]+)\/followups$/.exec(path),staffPath=path==='/api/tasks/assignees',queuePath=path==='/api/tasks',customerMatch=/^\/api\/customers\/([\w-]+)\/tasks$/.exec(path),match=/^\/api\/tasks\/([\w-]+)(\/(claim|accept|start|pause|resume|return|transfer|block|unblock|cancel|restore))?$/.exec(path);
+  if(!chainMatch&&!followupMatch&&!staffPath&&!queuePath&&!customerMatch&&!match)return false;need(user,'tasks:read');
+  if(chainMatch){const selected=task(user,chainMatch[1]);if(req.method!=='GET')fail(405,'METHOD','任务链仅支持读取');json(200,taskChain(db,selected,url,visible,fail));return true;}
   if(followupMatch){
    const parent=task(user,followupMatch[1]);if(req.method==='GET'){json(200,taskFollowups(db,parent.id));return true;}
    if(req.method!=='POST')fail(405,'METHOD','不支持此请求');need(user,'tasks:assign');const b=await body(req);

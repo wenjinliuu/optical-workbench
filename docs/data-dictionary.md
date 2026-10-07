@@ -120,3 +120,7 @@ completion_status=open/completed、effective_execution_status=pending/running/pa
 | task_followups | task_id（子任务PK）、customer_id、parent_task_id、source_correction_version可空、source_completion_sha256、source_output_summary、reason、created_at/by | 子任务/同客户完成来源/可选更正版本复合外键；不可自指或改删，子任务初始状态/上下文/原来源/分派人一致 |
 
 原产出来源版本存null（API所见expected_version为0），更正来源为具体>=1版本；固定分派时说明，后来更正不追写。completion的correction_version/effective_output_summary与任务origin/后续列表为查询投影，不修改原receipt。子任务仍独立revision和接收/执行/异常/完成状态，无继承的核对条件或依据。原操作人/分派人id固定、姓名为当前账号显示名。
+
+## V0.15 任务链派生字段
+
+没有新增持久表，schema仍12。root_task/selected/items由work_tasks+task_followups原来源投影；depth是起始0的已保存关联层数，origin继续固定分派时来源，不读取后来的更正代替。lane完成优先，其次异常、接收、执行；responsibility_role是当前接收人的岗位，无接收人时候选岗位。summary统计整链、matching_total统计当前筛选，均不受页面限制。分页状态指纹/游标只用于界面一致性，不是业务版本或授权凭据；read_at为读取时间，不补造操作时间。

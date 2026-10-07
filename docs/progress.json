@@ -2,8 +2,8 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.14基础验证：追加完成说明更正、显式关联后续任务、原版本来源追溯及历史/恢复；整体阶段未验收",
-  "currentTask": "T03.02",
+  "productStatus": "V0.15基础验证：已保存多层关联任务链、完整协作进度、岗位/状态筛选与来源/原任务定位；整体阶段未验收",
+  "currentTask": "T03.03",
   "nextTask": "T03.03",
   "stage": "P00",
   "blockers": [
@@ -99,6 +99,12 @@
       "version": "V0.14",
       "type": "工程推进",
       "summary": "原提交人/负责人追加通用完成说明更正，原产出/依据/终态不改；负责人/前台明确分派继承原客户/到店/需求版本的后续任务，固定分派时的原产出或更正版本，后来的更正不覆盖已分派来源。手机冲突重读保留填写、来源/时间轴/恢复接通；新增虚构更正/衔接案例，schema12非空升级不补造记录，业务验收待完成。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.15",
+      "type": "工程推进",
+      "summary": "从任意任务只读追溯起始/同级/多层后续，完整进度统计、当前责任/状态筛选、有界分页与变更拒绝、定位原任务及共用操作。保持固定原客户/到店/需求/产出来源；新增五个三层虚构案例，schema12不变，用户后期集中体验，业务验收待完成。"
     }
   ],
   "tasks": [
@@ -533,10 +539,12 @@
         "migrations/011_task_completions.sql",
         "src/task-amendments.mjs",
         "public/task-links.js",
-        "migrations/012_task_amendments.sql"
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js"
       ],
       "updated": "2026-10-07",
-      "note": "V0.14部分实现：共用完成产出、更正历史/当前说明、后续任务清单及子任务固定来源入口；手机更正/分派冲突重读保留填写，岗位候选独立认领/接收，任务/历史/时间轴/恢复一致。角色今日任务、关联任务链/真实业务依赖图、时限提醒/专业原单与整体验收仍待完成。"
+      "note": "V0.15部分实现：任意任务追溯起始/同级/多层后续，完整协作进度、当前责任岗位/八状态筛选及有界分页、固定原说明/更正来源、上游/客户/完成产出/交接历史定位与共用操作；手机独立认领/接收/执行及迟到响应/退出清理。角色任务检索、专业原单/业务依赖图、时限与整体验收仍待完成。"
     },
     {
       "id": "T03.04",
@@ -2238,9 +2246,11 @@
         "migrations/011_task_completions.sql",
         "src/task-amendments.mjs",
         "public/task-links.js",
-        "migrations/012_task_amendments.sql"
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js"
       ],
-      "note": "V0.14部分实现：通用完成及异常处理保留；追加说明更正与显式后续分派实时复核权限和所见原产出/更正版本，失败不留部分任务，同键重放，不会重复分派。专业授权、自动下游/模板/串并行/循环与扣次/资金/库存仍未实现。"
+      "note": "V0.14部分实现：通用完成及异常处理保留；追加说明更正与显式后续分派实时复核权限和所见原产出/更正版本，失败不留部分任务，同键重放，不会重复分派。专业授权、自动下游/模板/串并行/循环与扣次/资金/库存仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
     },
     {
       "id": "C04",
@@ -2970,9 +2980,11 @@
         "migrations/011_task_completions.sql",
         "src/task-amendments.mjs",
         "public/task-links.js",
-        "migrations/012_task_amendments.sql"
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js"
       ],
-      "note": "V0.14部分实现：原条件/依据/资料/附件仍固定；更正仅通用产出说明，后续任务继承原客户/到店/需求版本和当时产出版本，后来更正不改旧来源，历史/时间轴/恢复核对一致。专业输入规则/补充人链/专业完成条件仍未实现。"
+      "note": "V0.14部分实现：原条件/依据/资料/附件仍固定；更正仅通用产出说明，后续任务继承原客户/到店/需求版本和当时产出版本，后来更正不改旧来源，历史/时间轴/恢复核对一致。专业输入规则/补充人链/专业完成条件仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
     },
     {
       "id": "H4",
@@ -3001,9 +3013,11 @@
         "migrations/011_task_completions.sql",
         "src/task-amendments.mjs",
         "public/task-links.js",
-        "migrations/012_task_amendments.sql"
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js"
       ],
-      "note": "V0.14部分实现：原完成产出不覆盖，原提交人或负责人追加说明更正版本/原因/员工/时间；显式后续任务来源固定并可追溯，完成终态继续锁定。专业确认/审批/结案、专业更正与整体验收仍未实现。"
+      "note": "V0.14部分实现：原完成产出不覆盖，原提交人或负责人追加说明更正版本/原因/员工/时间；显式后续任务来源固定并可追溯，完成终态继续锁定。专业确认/审批/结案、专业更正与整体验收仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
     },
     {
       "id": "S01",
@@ -3227,8 +3241,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 132,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收"
+      "tests": 141,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
@@ -3272,7 +3286,11 @@
         "append correction keeps original receipt; conflicting correction refresh preserves edited text",
         "explicit followup stale-source refresh preserves title/instructions/recipient/reason",
         "fixed source correction and historic visit V1; candidate claim and independent acceptance",
-        "mobile origin navigation, original-source preservation and new dialog logout cleanup"
+        "mobile origin navigation, original-source preservation and new dialog logout cleanup",
+        "saved multi-level task chain and complete progress, role/state filter and persistent focus, upstream receipt navigation",
+        "36-node keyset paging, changed state rejects old cursor then explicit reread",
+        "mobile chain origin and frozen V1, independent claim/accept/start, history and logout cleanup",
+        "chain card customer navigation closes modal; held authorized chain response arriving after logout cannot restore data"
       ]
     },
     "baseline": {
@@ -3282,6 +3300,6 @@
     },
     "businessAcceptance": "待确认",
     "migration": "十二迁移保持非空旧任务/执行/异常/条件/依据/完成产出及幂等；V0.13升级不补造更正或后续关联，外键/原完成保护保留",
-    "recovery": "追加更正连续版本/原完成指纹、后续任务固定来源说明/版本及原客户/到店/需求、分派身份/时间和无循环核对；21任务/60事件/7条件/7依据/2完成/2更正/2关联的新建/重复CLI、备份及独立恢复一致，会话0；正式目标及完整账待确认"
+    "recovery": "无新迁移，schema12及原固定来源核对保持；26任务/74事件/9条件/9依据/4完成/4更正/6关联新建/重复CLI、备份及独立恢复一致，会话0；多层链恢复前后层级/状态/统计一致，正式目标及完整账待确认"
   }
 }

@@ -198,3 +198,11 @@ GET /tasks/:id/followups：items最近100、limit、truncated、total完整量�
 completionRecord增加correction_version、effective_output_summary、corrections最近100及corrections_truncated/history_limit、followups清单。原output_summary/snapshot_json/snapshot_sha256保持；更正history包含author_name（当前账号名），操作人id固定。任务items/task增加origin（非后续为null），包含不可变分派时来源及原任务标题。GET task增加followups。旧幂等原响应重放不更新为当前查询投影。
 
 时间轴新增task/correct（更正version/说明/原因/原指纹）和task/followup（子任务、原任务、来源版本/说明/固定需求版本/原因），overview增加tasks_followups。界面更正/分派遇冲突重读保留填写，子任务“查看来源产出”读取当前原任务历史，卡片另明确显示分派时的旧版说明。完成仍锁定，当前关联不自动充当正式流程规则。
+
+## V0.15 只读关联任务链
+
+GET /api/tasks/:id/chain 需要tasks:read及本店客户范围；家长拒绝、跨店/不存在404，其他方法405。从所选任务追溯起始任务，读取该起始的整个保存来源组件，逐跳限定同一customer/store；独立任务返回一个节点，数据异常循环409 TASK_CHAIN_INVALID。
+
+role=all/manager/reception/professional按当前接收人岗位筛选，无接收人时按候选岗位；lane=all/queued/awaiting/pending/running/paused/blocked/cancelled/completed。完成优先，再异常，再接收和执行；scope与旧队列一致，既有终态前running不当作执行中。limit默认50、范围1–100；浏览器每页30。cursor为有界base64url JSON，绑定根任务、客户、筛选、limit及链状态指纹，按(depth,created_at,id)升序续读；错误游标422 INVALID_CURSOR，分页间责任/显示名/有效性/状态/节点变化409 CHAIN_CHANGED并要求重新读取。游标不提供额外读取权限。
+
+返回root_task、始终保留的selected{task,depth,lane,responsibility_role}、items同结构、limit/next_cursor/has_more、matching_total、filters、read_at，以及summary{total,links,max_depth,completed,open,lanes八状态完整量,roles完整岗位量}。总量不受页数/100条旧列表影响；无匹配时仍提供起始/所选任务上下文。task投影复用原visible，包括固定需求、不可变origin及实时接收人可用性。仅投影已保存来源，读取不创建任务/审计/版本或幂等数据，不定义自动业务流转。
