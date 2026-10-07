@@ -10,10 +10,10 @@ import { createApp } from '../src/server.mjs';
 import { openDatabase, hashPassword, transaction } from '../src/db.mjs';
 import { seedDemoScenarios, seedDemoPeople, demoScenarios } from '../src/demo-data.mjs';
 
-async function fixture(t,{persist=false}={}) {
+async function fixture(t,{persist=false,logger=()=>{}}={}) {
   const dir=mkdtempSync(join(tmpdir(),'optical-test-'));
   const path=persist?join(dir,'test.sqlite'):':memory:';
-  const app=createApp({databasePath:path,mode:'test'}),{db,server}=app;
+  const app=createApp({databasePath:path,mode:'test',logger}),{db,server}=app;
   transaction(db,()=>{
     db.exec("INSERT INTO stores VALUES ('a','A'),('b','B')");
     for(const [id,role,store] of [['manager','manager','a'],['front','reception','a'],['professional','professional','a'],['other','manager','b'],['parent','guardian',null]])db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run(id,id,id,hashPassword('test-password-only'),role,store);
@@ -376,4 +376,38 @@ test('backup preserves personnel roles, disabled state and required-password-cha
   const backup=join(dir,'personnel-backup.sqlite');db.prepare('VACUUM INTO ?').run(backup);const restored=openDatabase(backup);
   try{const row=restored.prepare('SELECT u.role,u.active,s.revision,s.must_change_password FROM users u JOIN user_security s ON s.user_id=u.id WHERE u.id=?').get(id);assert.deepEqual({...row},{role:'reception',active:0,revision:2,must_change_password:1});assert.equal(restored.prepare('PRAGMA integrity_check').get().integrity_check,'ok');}
   finally{restored.close();}
+});
+
+test('request IDs correlate sanitized structured failures and cannot be supplied by the caller',async t=>{
+  const events=[],{request,login,db}=await fixture(t,{logger:event=>{events.push(event);throw Error('logger unavailable');}}),session=await login('manager');
+  const r=await request('/api/customers/PRIVATE_CUSTOMER_ID?q=PRIVATE_QUERY',{...session,headers:{'X-Request-Id':'caller-private-id'}});assert.equal(r.status,404);
+  assert.match(r.body.request_id,/^[a-f0-9-]{36}$/);assert.equal(r.headers.get('x-request-id'),r.body.request_id);assert.notEqual(r.body.request_id,'caller-private-id');
+  const logged=events.find(e=>e.request_id===r.body.request_id);assert.equal(logged.route,'/api/customers/:id');assert.equal(logged.status,404);assert.equal(logged.code,'NOT_FOUND');
+  await request('/api/auth/login',{method:'POST',data:{username:'PRIVATE_LOGIN',password:'PRIVATE_PASSWORD'}});
+  db.exec("CREATE TRIGGER sensitive_failure BEFORE INSERT ON audit_events WHEN NEW.action='customer.create' BEGIN SELECT RAISE(ABORT,'PRIVATE_INTERNAL_DETAIL'); END;");
+  const failed=await request('/api/customers',{...session,method:'POST',data:{name:'PRIVATE_BODY_NAME'},key:'private-body-fail'});assert.equal(failed.status,500);assert.equal(failed.body.error.code,'INTERNAL');
+  assert.ok(events.some(e=>e.request_id===failed.body.request_id&&e.code==='INTERNAL'));
+  const text=JSON.stringify(events)+JSON.stringify(failed.body);
+  for(const secret of ['PRIVATE_CUSTOMER_ID','PRIVATE_QUERY','PRIVATE_LOGIN','PRIVATE_PASSWORD','PRIVATE_BODY_NAME','PRIVATE_INTERNAL_DETAIL',session.cookie,session.csrf])assert.ok(!text.includes(secret));
+});
+test('operations is manager-only and its metrics and fault records stay within the current store',async t=>{
+  const {request,login}=await fixture(t),manager=await login('manager'),other=await login('other'),front=await login('front'),parent=await login('parent');
+  const a=await request('/api/customers/missing-a',manager),b=await request('/api/customers/missing-b',other);
+  assert.equal((await request('/api/operations',front)).status,403);assert.equal((await request('/api/operations',parent)).status,403);
+  const status=await request('/api/operations',manager);assert.equal(status.status,200);assert.equal(status.body.database,'ok');assert.equal(status.body.schema,4);assert.ok(status.body.errors.some(e=>e.request_id===a.body.request_id));assert.ok(!status.body.errors.some(e=>e.request_id===b.body.request_id));
+  const otherStatus=await request('/api/operations',other);assert.ok(otherStatus.body.errors.some(e=>e.request_id===b.body.request_id));assert.ok(!otherStatus.body.errors.some(e=>e.request_id===a.body.request_id));
+  assert.equal(status.body.errors[0].store_id,undefined);assert.equal(status.body.errors[0].actor_id,undefined);
+});
+test('runtime request window and fault list stay bounded while cumulative counters keep accurate totals',async t=>{
+  const {request,login}=await fixture(t),session=await login('manager');
+  for(let i=0;i<205;i++)assert.equal((await request(`/api/customers/missing-${i}`,session)).status,404);
+  const status=(await request('/api/operations',session)).body;assert.equal(status.client_errors,205);assert.equal(status.server_errors,0);assert.equal(status.errors.length,20);assert.equal(status.window_size,200);assert.equal(status.window_limit,200);assert.ok(status.requests>=206);assert.equal(typeof status.p95_ms,'number');assert.ok(status.p95_ms>=0);
+});
+test('interrupted upload is recorded once with its request ID and no business record', {timeout:5000},async t=>{
+  let report;const reported=new Promise(resolve=>{report=resolve;});
+  const {request,login,server,origin,db}=await fixture(t,{logger:event=>{if(event.status===499)report(event);}}),session=await login('front');
+  const accepted=once(server,'request'),pending=httpRequest(origin+'/api/customers',{method:'POST',headers:{Cookie:session.cookie,'X-CSRF-Token':session.csrf,'Idempotency-Key':'aborted-customer','Content-Type':'application/json'}});
+  pending.on('error',()=>{});pending.flushHeaders();await accepted;pending.write('{"name":"not-finished');pending.destroy();
+  const event=await reported;assert.equal(event.code,'REQUEST_ABORTED');assert.equal(event.route,'/api/customers');
+  const manager=await login('manager'),status=(await request('/api/operations',manager)).body;assert.equal(status.aborted,1);assert.equal(status.errors.filter(e=>e.request_id===event.request_id).length,1);assert.equal(db.prepare("SELECT count(*) n FROM customers WHERE created_by='front'").get().n,0);
 });

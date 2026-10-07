@@ -1,5 +1,6 @@
 import { createDocumentPanels } from './documents.js';
 import { createOrganizationPanel } from './organization.js';
+import { createOperationsPanel } from './operations.js';
 const $=s=>document.querySelector(s);
 let me, selected, csrf, customers=[], searchVersion=0, toastTimer, sessionEpoch=0;
 const roleNames={manager:'门店负责人',reception:'前台 / 销售',professional:'专业人员',guardian:'家长 / 客户'};
@@ -10,16 +11,17 @@ function toast(text){$('#toast').textContent=text;$('#toast').hidden=false;clear
 async function api(path,{method='GET',data,key}={}){
   const epoch=sessionEpoch;const headers={};if(data)headers['Content-Type']='application/json';if(method!=='GET')headers['X-CSRF-Token']=csrf||'';if(key)headers['Idempotency-Key']=key;
   const r=await fetch(`/api${path}`,{method,headers,body:data?JSON.stringify(data):undefined});const b=await r.json();if(epoch!==sessionEpoch)throw Error('会话已切换，请重新操作');
-  if(!r.ok){if(r.status===401&&path!=='/auth/login')showLogin();throw Error(b.error?.message||'操作失败，请重试');}return b;
+  if(!r.ok){if(r.status===401&&path!=='/auth/login')showLogin();throw Error((b.error?.message||'操作失败，请重试')+(b.request_id?`（故障编号：${b.request_id}）`:''));}return b;
 }
 const documentPanels=createDocumentPanels({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,reload:openCustomer,toast,showLogin});
 const organizationPanel=createOrganizationPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch,toast,boot,onLogout:logout});
-function showLogin(){documentPanels.reset();organizationPanel.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
+const operationsPanel=createOperationsPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch});
+function showLogin(){documentPanels.reset();organizationPanel.reset();operationsPanel.reset();sessionEpoch++;searchVersion++;$('#search').value='';me=undefined;csrf=undefined;selected=undefined;customers=[];$('#workspace').hidden=true;$('#login-view').hidden=false;$('#customer-items').replaceChildren();$('#detail').replaceChildren();$('#audit-items').replaceChildren();$('#organization-items').replaceChildren();$('#demo-scenarios').replaceChildren();$('#demo-summary').replaceChildren();for(const d of document.querySelectorAll('dialog[open]'))d.close();$('#login-form').elements.password.value='';}
 async function boot(){
-  try{me=await api('/me');csrf=me.csrf;$('#login-view').hidden=true;$('#workspace').hidden=false;$('#loading').hidden=true;$('#user-name').textContent=me.name;$('#user-role').textContent=roleNames[me.role];$('#user-avatar').textContent=me.name.slice(0,1);$('#store-name').textContent=me.store?.name||'授权家庭范围';$('#demo-nav').hidden=!me.permissions.includes('demo:read');$('#organization-nav').hidden=!me.permissions.includes('organization:read');$('#audit-nav').hidden=!me.permissions.includes('audit:read');$('#new-customer').hidden=!me.permissions.includes('customers:create');$('#search').placeholder=me.role==='guardian'?'按客户姓名搜索':'姓名、联系人、电话或编号';switchView('customers');if(me.must_change_password){organizationPanel.openPassword();return;}await loadCustomers();}
+  try{me=await api('/me');csrf=me.csrf;$('#login-view').hidden=true;$('#workspace').hidden=false;$('#loading').hidden=true;$('#user-name').textContent=me.name;$('#user-role').textContent=roleNames[me.role];$('#user-avatar').textContent=me.name.slice(0,1);$('#store-name').textContent=me.store?.name||'授权家庭范围';$('#demo-nav').hidden=!me.permissions.includes('demo:read');$('#organization-nav').hidden=!me.permissions.includes('organization:read');$('#audit-nav').hidden=!me.permissions.includes('audit:read');$('#operations-nav').hidden=!me.permissions.includes('operations:read');$('#new-customer').hidden=!me.permissions.includes('customers:create');$('#search').placeholder=me.role==='guardian'?'按客户姓名搜索':'姓名、联系人、电话或编号';switchView('customers');if(me.must_change_password){organizationPanel.openPassword();return;}await loadCustomers();}
   catch(e){if(me)$('#global-error').textContent=e.message;else showLogin();}
 }
-function switchView(view){for(const name of ['customers','audit','phase','demo','organization'])$(`#${name}-view`).hidden=name!==view;for(const b of document.querySelectorAll('[data-view]'))b.classList.toggle('active',b.dataset.view===view);$('#global-error').textContent='';}
+function switchView(view){for(const name of ['customers','audit','phase','demo','organization','operations'])$(`#${name}-view`).hidden=name!==view;for(const b of document.querySelectorAll('[data-view]'))b.classList.toggle('active',b.dataset.view===view);$('#global-error').textContent='';}
 async function loadCustomers(){
   const version=++searchVersion;$('#list-error').textContent='';
   try{const b=await api(`/customers?q=${encodeURIComponent($('#search').value)}`);if(version!==searchVersion||!me)return;customers=b.items;$('#customer-count').textContent=customers.length;const box=$('#customer-items');box.replaceChildren();if(!customers.length){const empty=el('div',undefined,'empty');empty.append(el('h2','暂无匹配档案'),el('p','调整搜索条件，或新建客户开始服务。'));box.append(empty);}for(const c of customers){const button=el('button',undefined,'customer-row');button.type='button';button.classList.toggle('active',c.id===selected);button.setAttribute('aria-pressed',String(c.id===selected));const info=el('span');info.append(el('strong',c.name),el('small',c.contact_name?`${c.contact_name} · ${c.phone||'未留电话'}`:'客户编号 '+c.id.slice(0,8)));button.append(el('span',c.name.slice(0,1),'avatar'),info,el('span','›'));button.onclick=()=>openCustomer(c.id);box.append(button);}}
@@ -63,7 +65,7 @@ async function loadAudit(){try{const b=await api('/audit');if(!me)return;$('#aud
 $('#login-form').onsubmit=async event=>{event.preventDefault();const form=event.currentTarget,button=form.querySelector('[type=submit]');button.disabled=true;$('#login-error').textContent='';try{await api('/auth/login',{method:'POST',data:Object.fromEntries(new FormData(form))});form.elements.password.value='';await boot();}catch(e){$('#login-error').textContent=e.message;}finally{button.disabled=false;}};
 async function logout(){try{await api('/auth/logout',{method:'POST'});showLogin();}catch(e){$('#global-error').textContent=e.message;}}
 $('#logout-mobile').onclick=$('#logout').onclick=logout;
-for(const button of document.querySelectorAll('[data-view]'))button.onclick=()=>{switchView(button.dataset.view);if(button.dataset.view==='audit')loadAudit();if(button.dataset.view==='demo')loadDemo();if(button.dataset.view==='organization')loadOrganization();};
+for(const button of document.querySelectorAll('[data-view]'))button.onclick=()=>{switchView(button.dataset.view);if(button.dataset.view==='audit')loadAudit();if(button.dataset.view==='demo')loadDemo();if(button.dataset.view==='organization')loadOrganization();if(button.dataset.view==='operations')operationsPanel.load();};
 $('#refresh-audit').onclick=loadAudit;
 let searchTimer;$('#search').oninput=()=>{clearTimeout(searchTimer);searchTimer=setTimeout(loadCustomers,200);};
 $('#new-customer').onclick=()=>{$('#customer-form').reset();$('#customer-error').textContent='';$('#customer-dialog').showModal();};

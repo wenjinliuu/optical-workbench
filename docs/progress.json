@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-07",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.4基础验证：本店人员管理、密码与会话控制；明亮浅色和虚构场景保留；整体阶段未验收",
-  "currentTask": "T01.02",
-  "nextTask": "T01.04",
+  "productStatus": "V0.5基础验证：校验备份/独立恢复、请求编号/故障定位与本店运行状态；整体阶段未验收",
+  "currentTask": "T01.04",
+  "nextTask": "T02.01",
   "stage": "P00",
   "blockers": [
     "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
@@ -39,6 +39,12 @@
       "version": "V0.4",
       "type": "工程推进",
       "summary": "新增本店员工建立/岗位停用管理/并发修订、重置与本人改密、首次改密门禁、即时撤销与处理中会话校验、两个人员状态虚构样例；正式身份和资质职责仍待确认。"
+    },
+    {
+      "date": "2026-10-07",
+      "version": "V0.5",
+      "type": "工程推进",
+      "summary": "新增备份清单与结构/关联/附件校验、独立目录恢复与回执/会话撤销，请求编号/脱敏故障日志、本店运行观察窗口；正式运行目标与原业务规则仍待确认。"
     }
   ],
   "tasks": [
@@ -223,10 +229,15 @@
       "owner": "开发负责人（实现）/ 业务负责人（规则与验收，待指定）",
       "evidence": [
         "docs/phase-one.md",
-        "docs/handover.md"
+        "docs/handover.md",
+        "src/recovery.mjs",
+        "src/runtime.mjs",
+        "test/recovery.test.mjs",
+        "docs/recovery.md",
+        "scripts/browser-check.mjs"
       ],
       "updated": "2026-10-07",
-      "note": "部分实现或文档草案；依赖的业务规则与阶段出口未确认，不能视为完整任务通过。"
+      "note": "V0.5部分实现：一致备份/核对清单、独立恢复/会话撤销/回执，请求编号/脱敏日志、本店运行状态与有限窗口；正式容量/监控/恢复目标及完整业务账待完成。"
     },
     {
       "id": "T02.01",
@@ -2163,7 +2174,9 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2222,7 +2235,9 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2233,7 +2248,9 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2245,7 +2262,9 @@
         "src/documents.mjs",
         "test/foundation.test.mjs",
         "docs/handover.md",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
       ],
       "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
     },
@@ -2256,15 +2275,22 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
     {
       "id": "N05",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
     },
     {
       "id": "N06",
@@ -2273,23 +2299,33 @@
       "evidence": [
         "docs/handover.md",
         "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
       ]
     },
     {
       "id": "N07",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
     },
     {
       "id": "N08",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "src/documents.mjs",
         "test/foundation.test.mjs",
-        "docs/handover.md"
+        "docs/handover.md",
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "scripts/browser-check.mjs"
       ],
       "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
     },
@@ -2953,8 +2989,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 31,
-      "scope": "公共基础、档案/周期草稿与本店人员/密码会话控制切片，不代表完整阶段业务验收"
+      "tests": 44,
+      "scope": "公共基础、档案/人员、校验备份/独立恢复与诊断切片，不代表完整阶段业务验收"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser",
@@ -2976,7 +3012,9 @@
         "document revisions and history",
         "staff create/edit/reset/revoke/disable",
         "forced initial/reset password change",
-        "own password change"
+        "own password change",
+        "correlated request errors and successful retry",
+        "store operations desktop/mobile"
       ]
     },
     "baseline": {
@@ -2985,6 +3023,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "V0.1升级至四个迁移保留账号与资料；包含二进制附件、版本引用、人员安全状态/修订号的备份恢复通过"
+    "migration": "V0.1升级至四个迁移保留账号与资料；包含二进制附件、版本引用、人员安全状态/修订号的备份恢复通过",
+    "recovery": "在线一致快照核对、独立目录恢复/回执、原库不覆盖、旧会话撤销及重新登录通过；正式RPO/RTO和完整账未确认"
   }
 }

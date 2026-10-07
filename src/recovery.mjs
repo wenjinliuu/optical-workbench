@@ -1,0 +1,64 @@
+import { DatabaseSync } from 'node:sqlite';
+import { createHash, randomUUID } from 'node:crypto';
+import { createReadStream, constants, copyFileSync, chmodSync, lstatSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { basename, join, resolve } from 'node:path';
+import { openDatabase } from './db.mjs';
+
+const tables=['stores','users','user_security','customers','guardian_links','service_cycles','visits','visit_cycles','attachment_blobs','attachments','document_records','document_versions','version_attachments','audit_events','idempotency','sessions'];
+const digest=value=>createHash('sha256').update(value).digest('hex');
+const version=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
+const migrations=['001_foundation.sql','002_family_visits.sql','003_documents_attachments.sql','004_account_security.sql'];
+let expectedSchema;
+const schema=db=>digest(JSON.stringify(db.prepare("SELECT type,name,tbl_name,sql FROM sqlite_schema WHERE sql IS NOT NULL AND name NOT LIKE 'sqlite_%' ORDER BY type,name").all()));
+function canonicalSchema(){if(!expectedSchema){const db=openDatabase(':memory:');try{expectedSchema=schema(db);}finally{db.close();}}return expectedSchema;}
+function regular(path){const stat=lstatSync(path);if(!stat.isFile()||stat.isSymbolicLink())throw Error('需要普通数据库或清单文件，不能使用目录或符号链接');return stat;}
+async function hashFile(path){const hash=createHash('sha256');for await(const chunk of createReadStream(path))hash.update(chunk);return hash.digest('hex');}
+export function inspectDatabase(path){
+  regular(path);const db=new DatabaseSync(path,{readOnly:true});
+  try{
+    if(db.prepare('PRAGMA integrity_check').all().some(row=>row.integrity_check!=='ok'))throw Error('数据库完整性校验失败');
+    if(db.prepare('PRAGMA foreign_key_check').all().length)throw Error('数据库关联校验失败');
+    const applied=db.prepare('SELECT name FROM schema_migrations ORDER BY name').all().map(row=>row.name);
+    if(JSON.stringify(applied)!==JSON.stringify(migrations)||schema(db)!==canonicalSchema())throw Error('数据库结构与当前版本不匹配，请使用对应版本的恢复工具');
+    for(const blob of db.prepare('SELECT * FROM attachment_blobs').iterate())if(blob.size!==blob.bytes.length||digest(blob.bytes)!==blob.sha256)throw Error('附件内容校验失败');
+    if(db.prepare('SELECT 1 FROM attachments a JOIN attachment_blobs b ON b.sha256=a.blob_sha256 WHERE a.size<>b.size LIMIT 1').get())throw Error('附件元信息校验失败');
+    return {schema_sha256:schema(db),migrations:applied,counts:Object.fromEntries(tables.map(table=>[table,db.prepare(`SELECT count(*) n FROM ${table}`).get().n])),integrity:'ok',foreign_keys:'ok',attachments:'ok'};
+  }finally{db.close();}
+}
+export async function createBackup(source,directory='backups'){
+  source=resolve(source);regular(source);directory=resolve(directory);mkdirSync(directory,{recursive:true,mode:0o700});
+  const target=join(directory,`workbench-${Date.now()}-${randomUUID()}.sqlite`),manifestPath=`${target}.json`;
+  try{
+    // Read-only source: backup never creates a database or migrates the live one.
+    const db=new DatabaseSync(source,{readOnly:true});try{db.prepare('VACUUM INTO ?').run(target);}finally{db.close();}
+    chmodSync(target,0o600);const checks=inspectDatabase(target);
+    const manifest={format:'optical-workbench-backup-v1',created_at:new Date().toISOString(),app_version:version,database:basename(target),bytes:regular(target).size,sha256:await hashFile(target),...checks};
+    writeFileSync(manifestPath,JSON.stringify(manifest,null,2)+'\n',{flag:'wx',mode:0o600});
+    return {backup:target,manifest:manifestPath,checks};
+  }catch(error){rmSync(target,{force:true});rmSync(manifestPath,{force:true});throw error;}
+}
+export async function verifyBackup(path){
+  path=resolve(path);const file=regular(path),manifestPath=`${path}.json`;regular(manifestPath);
+  const manifest=JSON.parse(readFileSync(manifestPath,'utf8'));
+  if(manifest.format!=='optical-workbench-backup-v1'||manifest.database!==basename(path)||!Number.isSafeInteger(manifest.bytes)||!/^\d+\.\d+\.\d+$/.test(manifest.app_version||'')||Number.isNaN(Date.parse(manifest.created_at))||!(/^[a-f0-9]{64}$/).test(manifest.sha256||''))throw Error('备份清单格式不正确');
+  if(file.size!==manifest.bytes||await hashFile(path)!==manifest.sha256)throw Error('备份文件指纹不匹配');
+  const checks=inspectDatabase(path);
+  for(const key of ['schema_sha256','migrations','counts','integrity','foreign_keys','attachments'])if(JSON.stringify(checks[key])!==JSON.stringify(manifest[key]))throw Error('备份清单与数据核对不一致');
+  return {backup:path,manifest:manifestPath,sha256:manifest.sha256,created_at:manifest.created_at,checks};
+}
+export async function restoreBackup(path,targetDirectory){
+  const verified=await verifyBackup(path),target=resolve(targetDirectory);
+  // A dedicated directory must be new. Never replace a live DB, WAL or existing file.
+  mkdirSync(target,{mode:0o700});const database=join(target,'workbench.sqlite');
+  try{
+    copyFileSync(verified.backup,database,constants.COPYFILE_EXCL);chmodSync(database,0o600);
+    if(await hashFile(database)!==verified.sha256)throw Error('恢复副本指纹不匹配');
+    const db=new DatabaseSync(database);let revoked;
+    try{db.exec('PRAGMA foreign_keys=ON; BEGIN IMMEDIATE');revoked=db.prepare('DELETE FROM sessions').run().changes;db.exec('COMMIT');}finally{db.close();}
+    const checks=inspectDatabase(database);
+    for(const table of tables)if(checks.counts[table]!== (table==='sessions'?0:verified.checks.counts[table]))throw Error('恢复后记录数量核对失败');
+    const receipt={format:'optical-workbench-restore-v1',restored_at:new Date().toISOString(),app_version:version,backup_sha256:verified.sha256,restored_sha256:await hashFile(database),sessions_revoked:revoked,checks};
+    writeFileSync(join(target,'restore-receipt.json'),JSON.stringify(receipt,null,2)+'\n',{flag:'wx',mode:0o600});
+    return {database,receipt:join(target,'restore-receipt.json'),sessions_revoked:revoked,checks};
+  }catch(error){rmSync(target,{recursive:true,force:true});throw error;}
+}

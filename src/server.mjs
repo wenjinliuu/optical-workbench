@@ -6,11 +6,13 @@ import { openDatabase, transaction, hashPassword, verifyPassword } from './db.mj
 import { demoScenarios } from './demo-data.mjs';
 import { createDocumentsHandler } from './documents.mjs';
 import { createOrganizationHandler } from './organization.mjs';
+import { createRuntime } from './runtime.mjs';
 
 const sha = value => createHash('sha256').update(value).digest('hex');
 const roles = {manager:['customers:read','customers:create','cycles:create','audit:read','organization:read','guardians:manage','visits:create','visits:close','demo:read'],reception:['customers:read','customers:create','cycles:create','visits:create','visits:close','demo:read'],professional:['customers:read','cycles:create','demo:read'],guardian:['customers:read']};
 for(const role of ['manager','reception','professional'])roles[role].push('attachments:read','attachments:upload','attachments:revoke','documents:read','documents:write');
 roles.manager.push('organization:manage');
+roles.manager.push('operations:read');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -30,9 +32,10 @@ async function body(req,limit=16384) {
   let data=''; for await(const chunk of req) { data+=chunk; if(Buffer.byteLength(data)>limit) fail(413,'TOO_LARGE','请求内容过大'); }
   try { const value=JSON.parse(data); if(!value || Array.isArray(value) || typeof value!=='object') throw Error(); return value; } catch { fail(400,'BAD_JSON','请求格式不正确'); }
 }
-export function createApp({databasePath='data/workbench.sqlite', mode='development'}={}) {
+export function createApp({databasePath='data/workbench.sqlite', mode='development',logger=event=>console.error(JSON.stringify(event))}={}) {
   if(mode !== 'development' && mode !== 'test') throw new Error('Production is blocked pending architecture and identity review.');
   const db=openDatabase(databasePath), attempts=new Map();
+  const runtime=createRuntime({logger});
   function customer(user,id) {
     need(user,'customers:read');
     const row=db.prepare('SELECT * FROM customers WHERE id=?').get(id);
@@ -68,6 +71,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const documents=createDocumentsHandler(db,{need,customer,field,fail,body,mutation,audit});
   const organization=createOrganizationHandler(db,{need,field,fail,body,mutation,audit});
   const server=createServer(async(req,res)=>{
+    const request=runtime.begin(req,res);
     res.setHeader('Cache-Control','no-store'); res.setHeader('X-Content-Type-Options','nosniff'); res.setHeader('Referrer-Policy','same-origin');
     res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
     const json=(status,value)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(value));};
@@ -75,7 +79,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -100,10 +104,15 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const session=token && db.prepare('SELECT s.token_hash,s.csrf,s.expires_at,u.*,COALESCE(sec.must_change_password,0) AS must_change_password FROM sessions s JOIN users u ON s.user_id=u.id LEFT JOIN user_security sec ON sec.user_id=u.id WHERE token_hash=? AND expires_at>? AND u.active=1').get(sha(token),Date.now());
       if(!session) fail(401,'UNAUTHENTICATED','请登录后继续');
       const user=session;
+      request.setStore(user.store_id);
       if(req.method!=='GET' && req.headers['x-csrf-token']!==session.csrf) fail(403,'CSRF','会话校验失败，请重新加载');
       if(path==='/api/me' && req.method==='GET') return json(200,{id:user.id,name:user.display_name,role:user.role,store:user.store_id?db.prepare('SELECT * FROM stores WHERE id=?').get(user.store_id):null,permissions:roles[user.role],csrf:session.csrf,must_change_password:Boolean(user.must_change_password)});
       if(path==='/api/auth/logout' && req.method==='POST') { transaction(db,()=>{db.prepare('DELETE FROM sessions WHERE token_hash=?').run(sha(token));audit(user,'session.logout',user.id,{});});res.setHeader('Set-Cookie','ow_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return json(200,{ok:true}); }
       if(user.must_change_password&&path!=='/api/auth/password')fail(403,'PASSWORD_CHANGE_REQUIRED','请先修改初始或重置密码');
+      if(path==='/api/operations'&&req.method==='GET'){
+        need(user,'operations:read');if(!user.store_id)fail(403,'FORBIDDEN','账号未分配门店');db.prepare('SELECT 1').get();
+        return json(200,{database:'ok',mode,schema:db.prepare('SELECT count(*) n FROM schema_migrations').get().n,...runtime.snapshot(user.store_id)});
+      }
       if(await organization(req,res,path,user,json))return;
       if(await documents(req,res,path,user,json))return;
       if(path==='/api/demo/scenarios' && req.method==='GET') {
@@ -180,7 +189,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       }
       if(path==='/api/audit' && req.method==='GET') {need(user,'audit:read');return json(200,{items:db.prepare('SELECT id,actor_id,action,entity_id,created_at FROM audit_events WHERE store_id=? ORDER BY rowid DESC LIMIT 100').all(user.store_id)});}
       fail(404,'NOT_FOUND','接口不存在');
-    } catch(error) { if(!error.status) console.error('Request failed:',error.name);json(error.status||500,{error:{code:error.code||'INTERNAL',message:error.status?error.message:'保存失败，请稍后重试'}}); }
+    } catch(error) { const code=error.status?error.code:'INTERNAL';request.setError(code);json(error.status||500,{error:{code,message:error.status?error.message:'保存失败，请稍后重试'},request_id:request.request_id}); }
   });
   server.on('close',()=>db.close());
   return {server,db};

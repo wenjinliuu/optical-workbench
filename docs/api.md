@@ -1,4 +1,4 @@
-# API v0.4
+# API v0.5
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -59,3 +59,11 @@ source枚举employee / external / guardian_report，对应员工记录 / 外部�
 人员管理仅允许本店员工；其他门店及家长目标404，前台/专业人员/家长403。不可通过编辑更改登录账号或门店，也不可管理本人角色/状态或重置本人密码，返回409 SELF_MANAGEMENT；本人从账号安全修改密码。有效负责人保留约束防止移除最后一位负责人。expected_revision缺失/非法422，陈旧409 STALE_ACCOUNT；同键重试返回原结果。
 
 需要改密的账号登录后可读取/me、退出或改密，其余API403 PASSWORD_CHANGE_REQUIRED。启用已停用账号不会复活旧会话。每个业务变更事务在保存前重新核对有效会话、当前岗位和门店；请求读取正文期间已被撤销，也不能继续写入。权限变更、账号状态、密码、会话撤销、版本、审计和幂等结果同事务。
+
+## V0.5 运行诊断
+
+GET /operations：负责人限定当前门店，返回database=ok（执行真实查询）、mode、schema、started_at、uptime_seconds、requests、client_errors（4xx，不含中断）、server_errors（5xx）、aborted（499）、window_size/window_limit=200、p95_ms、errors（该窗口最近20条）。仅统计当前门店的已登录请求，未登录/其他门店拒绝记录不分发；需要改密的账号仍被原门禁拒绝。
+
+响应均带X-Request-Id，错误JSON在原error旁增加request_id。编号由服务端生成，忽略调用方同名头；幂等业务响应不加入动态编号，重试仍返回原结果。故障对象包含request_id、created_at、method、route模板、status、code、duration_ms，无请求体/查询/凭据/客户编号。500统一INTERNAL，不返回内部异常信息。中断只记一次499。
+
+统计为本次服务启动后的内存观察值，P95基于本店最近200个已结束请求；成功/失败均计入，读取运行状态请求在结束后计数。原恢复工具通过本地CLI操作，不提供网页备份/恢复接口。工具步骤与边界见recovery.md。

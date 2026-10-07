@@ -14,7 +14,7 @@ export function createDocumentPanels({api,getMe,getCustomer,getEpoch,reload,toas
       const epoch=getEpoch();button.disabled=true;
       try{
         const response=await fetch(`/api/attachments/${f.id}/download`);
-        if(!response.ok){const b=await response.json();if(response.status===401)showLogin();throw Error(b.error?.message||'附件下载失败');}
+        if(!response.ok){const b=await response.json();if(response.status===401)showLogin();throw Error((b.error?.message||'附件下载失败')+(b.request_id?`（故障编号：${b.request_id}）`:''));}
         const blob=await response.blob();if(epoch!==getEpoch())return;
         const url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download=f.filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);
       }catch(e){toast(e.message);}finally{button.disabled=Boolean(f.revoked_at);}
@@ -81,7 +81,7 @@ export function createDocumentPanels({api,getMe,getCustomer,getEpoch,reload,toas
     button.disabled=true;
     try{
       const r=await fetch(`/api/customers/${id}/attachments`,{method:'POST',headers:{'Content-Type':type,'X-File-Name':encodeURIComponent(file.name),'X-CSRF-Token':getMe().csrf,'Idempotency-Key':uploadPending.key},body:file});
-      const b=await r.json();if(!same(id,epoch))return;if(!r.ok){if(r.status===401)showLogin();throw Error(b.error?.message||'上传失败');}
+      const b=await r.json();if(!same(id,epoch))return;if(!r.ok){if(r.status===401)showLogin();throw Error((b.error?.message||'上传失败')+(b.request_id?`（故障编号：${b.request_id}）`:''));}
       uploadPending=undefined;$('#attachment-dialog').close();form.reset();toast('附件已保存');await reload(id);
     }catch(e){if(same(id,epoch))$('#attachment-error').textContent=e.message;}finally{button.disabled=false;}
   };

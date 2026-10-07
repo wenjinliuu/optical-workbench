@@ -8,7 +8,7 @@ import { hashPassword } from '../src/db.mjs';
 import { seedDemoScenarios, seedDemoPeople } from '../src/demo-data.mjs';
 import assert from 'node:assert/strict';
 import { once } from 'node:events';
-const {server,db}=createApp({databasePath:':memory:',mode:'test'});
+const {server,db}=createApp({databasePath:':memory:',mode:'test',logger:()=>{}});
 db.prepare('INSERT INTO stores VALUES (?,?)').run('store-a','示例视光门店 · A');
 db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run('demo-manager','demo-manager','负责人样例',hashPassword('local-browser-test-only'),'manager','store-a');
 for(const [id,name,birth] of [['one','小林（虚构）','2017-06-12'],['two','小林弟弟（虚构）','2020-03-08']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,'store-a',name,birth,'林家长（虚构）',null,new Date().toISOString(),'demo-manager');
@@ -130,7 +130,7 @@ try{
  for(const name of ['new_password','confirm_password'])await employeePage.locator(`#password-form input[name=${name}]`).fill('employee-personal-password');
  await employeePage.locator('#password-form button[type=submit]').click();
  await employeePage.locator('#password-dialog').waitFor({state:'hidden'});
- await employeePage.locator('.customer-row').first().waitFor();assert.equal(await employeePage.locator('#organization-nav').isVisible(),false);
+ await employeePage.locator('.customer-row').first().waitFor();assert.equal(await employeePage.locator('#organization-nav').isVisible(),false);assert.equal(await employeePage.locator('#operations-nav').isVisible(),false);
  await page.locator('#refresh-organization').click();
  await page.locator('.staff-card[data-revision="5"]').filter({hasText:'新同事（虚构）'}).waitFor();
  await newStaff.getByRole('button',{name:'编辑人员',exact:true}).click();
@@ -143,6 +143,18 @@ try{
  await page.locator('#password-form input[name=current_password]').fill('local-browser-test-only');
  for(const name of ['new_password','confirm_password'])await page.locator(`#password-form input[name=${name}]`).fill('manager-personal-password');
  await page.locator('#password-form button[type=submit]').click();await page.locator('#password-dialog').waitFor({state:'hidden'});
+ db.exec("CREATE TRIGGER browser_fault BEFORE INSERT ON audit_events WHEN NEW.action='customer.create' BEGIN SELECT RAISE(ABORT,'synthetic internal failure'); END;");
+ await page.locator('#new-customer').click();await page.locator('#customer-form input[name=name]').fill('故障重试样例（虚构）');
+ await page.locator('#customer-form button[type=submit]').click();
+ await page.locator('#customer-error').filter({hasText:'故障编号'}).waitFor();
+ const faultId=(await page.locator('#customer-error').textContent()).match(/[a-f0-9-]{36}/)?.[0];assert.ok(faultId);
+ db.exec('DROP TRIGGER browser_fault');await page.locator('#customer-form button[type=submit]').click();
+ await page.getByRole('heading',{name:'故障重试样例（虚构）',exact:true}).waitFor();
+ assert.equal(db.prepare("SELECT count(*) n FROM customers WHERE name='故障重试样例（虚构）'").get().n,1);
+ await page.locator('[data-view=operations]').click();await page.locator('#operations-errors code').filter({hasText:faultId}).waitFor();
+ assert.ok((await page.locator('#operations-summary').textContent()).includes('服务错误1'));
+ await page.locator('#refresh-operations').click();await page.locator('#operations-errors code').filter({hasText:faultId}).waitFor();
+ await page.screenshot({path:'data/browser-check/operations-desktop.png',fullPage:true});
  await page.locator('[data-view=demo]').click();
  await page.locator('.scenario-card').first().waitFor();
  assert.equal(await page.locator('.scenario-card').count(),6);
@@ -150,6 +162,10 @@ try{
  await page.setViewportSize({width:390,height:844});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile demo page must not overflow');
  await page.screenshot({path:'data/browser-check/demo-mobile.png',fullPage:true});
+ await page.locator('[data-view=operations]').click();
+ await page.locator('#operations-errors code').filter({hasText:faultId}).waitFor();
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile operations page must not overflow');
+ await page.screenshot({path:'data/browser-check/operations-mobile.png',fullPage:true});
  await page.locator('[data-view=organization]').click();
  await page.locator('.staff-card').first().waitFor();
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile organization page must not overflow');
@@ -165,7 +181,7 @@ try{
  await page.screenshot({path:'data/browser-check/mobile.png',fullPage:true});
  await page.locator('#logout-mobile').click();
  await page.locator('#login-view').waitFor({state:'visible'});
- assert.equal(await page.locator('#customer-items').textContent(),'');
+ assert.equal(await page.locator('#customer-items').textContent(),'');assert.equal(await page.locator('#operations-errors').textContent(),'');
  assert.deepEqual(errors,[]);
- console.log('Browser checks passed: staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
+ console.log('Browser checks passed: correlated failures/retry, store operations/status, staff onboarding/edit/reset/revoke/disable, forced and personal password changes, attachments upload/download/revoke, immutable revisions/history, six scenarios, family/visits, desktop/mobile, Escape and session logout.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
