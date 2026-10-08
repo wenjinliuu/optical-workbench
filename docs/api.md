@@ -246,3 +246,7 @@ role=all/manager/reception/professional按当前接收人岗位筛选，无接�
 完整字段/角色见[processing.md](processing.md)。GET /api/processing/jobs提供q、state、mine与有界分页/完整匹配统计；GET /api/processing/assignees列出本店有效责任人；GET/POST /api/retail/orders/:id/processing读取/建立固定原单工单；GET /api/processing/jobs/:id支持revision及历史分页；POST /api/processing/jobs/:id/events保存逐行plan/receive/start/complete/delay/clear_delay或负责人cancel。
 
 建立需expected_order_version/expected_job_count、原实物行position及六个安排字段、reason；后续需expected_revision/action/reason及对应position/quantity/plan/due_date。创建和动作严格字段、门店/岗位/实时会话/改密/CSRF/幂等/审计同事务。PROCESSING_CONFLICT需重读核对，活动工单令原单修订/取消返回ORDER_IN_PROCESSING；stock备料未预留返回PROCESSING_STOCK_REQUIRED，备料后释放返回STOCK_IN_PROCESSING。只读工单包含固定原商品版本/单位、选定与当前revision、分项进度/交期和历史，不改变财务或专业状态。
+
+## V0.20 质检交付推进记录
+
+完整契约见[fulfillment.md](fulfillment.md)。GET /api/fulfillment/jobs搜索/状态及有界分页/完整量；GET /api/processing/jobs/:id/fulfillment读取逐行七类数量、可处理固定批次及历史分页；POST同路径/events保存check_pass/check_fail/rework_assign/rework_start/rework_complete/deliver。写入需expected_revision/expected_processing_revision、原position/quantity/source_id/reason及对应项目/安排/签收字段，实时权限/会话/改密/CSRF/幂等/审计同事务；陈旧返回FULFILLMENT_CONFLICT，来源或容量错误FULFILLMENT_STATE。不合格不可签收，返工只限固定责任人/负责人；家长拒绝、跨店404。签收不自动库存出库或款项结算。

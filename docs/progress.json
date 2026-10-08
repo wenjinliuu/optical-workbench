@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 整体未验收",
-  "currentTask": "T04.03",
-  "nextTask": "T04.04",
+  "productStatus": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 整体未验收",
+  "currentTask": "T04.04",
+  "nextTask": "T04.05",
   "stage": "P00",
   "blockers": [
     "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
@@ -129,6 +129,12 @@
       "version": "V0.19",
       "type": "工程推进",
       "summary": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 五个实际保存的虚构工单覆盖主要加工阶段，下一主线质检/返工/交付；原50任务/287需求与依赖不变。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.20",
+      "type": "工程推进",
+      "summary": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 五阶段虚构案例实际保存，库存出库/损耗、正式专业标准/通知/签收凭证及尾款规则未补造。"
     }
   ],
   "tasks": [
@@ -713,10 +719,22 @@
         "T04.02",
         "T04.03"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 质量与交付业务负责人（后期验收，待指定）",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "updated": "2026-10-08",
+      "implementationNote": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 正式质检清单/资质/参数影响、损耗/库存出库、通知/凭证/尾款及整项验收待完成；原依赖链保持。"
     },
     {
       "id": "T04.05",
@@ -2030,15 +2048,39 @@
     },
     {
       "id": "M12-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 明确项目、结论及原加工版本，不合格→返工分派/开始/完成→复检可循环；正式专业模板、参数变更/损耗及整项验收待完成。"
     },
     {
       "id": "M12-F04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 已保存分项签收、实际领取人/时间和调整说明；外部取镜通知、证明核验/电子签名及专业调整规则未实现。"
     },
     {
       "id": "M12-D",
@@ -2055,9 +2097,15 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 已保存固定原行、供应来源文本、预计日期和进度/延期历史；专业处方、质检、返工和尾款规则未实现。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 已保存固定原行、供应来源文本、预计日期和进度/延期历史；专业处方、质检、返工和尾款规则未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 增加项目/结论与返工来源及签收字段；专业处方、真实尾款、正式供应商与损耗继续待落实。"
     },
     {
       "id": "M12-R",
@@ -2074,9 +2122,15 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本店读取、负责人/前台安排到货、当前责任人或负责人执行及取消权限已接通；正式采购/加工/质检资质职责与交付权限仍待落实。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本店读取、负责人/前台安排到货、当前责任人或负责人执行及取消权限已接通；正式采购/加工/质检资质职责与交付权限仍待落实。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本店质检/返工分派、固定责任人执行和前台签收动作权限已接；正式资质及职责规则未确认。"
     },
     {
       "id": "M12-L",
@@ -2093,15 +2147,33 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 原订单固定版本、stock预留/备料锁与时间轴/恢复已联动；供应商主档、采购接口和售后尚未实现。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 原订单固定版本、stock预留/备料锁与时间轴/恢复已联动；供应商主档、采购接口和售后尚未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 加工/原订单固定版本、库存预留保持、时间轴与恢复贯通；本版签收不自动库存出库，正式供应商/售后尚待衔接。"
     },
     {
       "id": "M12-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本地数量/来源门禁保证只有合格批次可记录签收，返工固定原不合格和工单；正式专业标准、参数影响及整项验收仍待完成。"
     },
     {
       "id": "M13-F01",
@@ -2460,9 +2532,15 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工各原行进度并行、延期/逾期与实际状态独立；不合并计量单位或用百分比替代原因；完整专业分支、课程循环和返工未实现。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工各原行进度并行、延期/逾期与实际状态独立；不合并计量单位或用百分比替代原因；完整专业分支、课程循环和返工未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 返工循环、分项并行及七类数量保存；签收、未完成加工和失败项分别保留；完整专业/训练依赖仍待落实。"
     },
     {
       "id": "C03",
@@ -2705,9 +2783,15 @@
         "migrations/016_processing.sql",
         "test/processing.test.mjs",
         "scripts/processing-browser-check.mjs",
-        "docs/processing.md"
+        "docs/processing.md",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
       ],
-      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 新增加工安排/进度、原单保护/stock预留释放竞争、重试唯一/版本与审计回滚验证；其余原业务一致性和整项验收待完成。"
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 新增加工安排/进度、原单保护/stock预留释放竞争、重试唯一/版本与审计回滚验证；其余原业务一致性和整项验收待完成。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 新增质检/返工/签收同源容量、多人版本/重试/审计回滚与处理中会话撤销验证；原完整一致性和验收保持待完成。"
     },
     {
       "id": "N03",
@@ -2834,15 +2918,39 @@
     },
     {
       "id": "W1-N4",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 已保存明确项目/结果/人员时间，失败经固定来源返工并复检；正式处方/专业阈值、通知与报损未实现。"
     },
     {
       "id": "W1-N5",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 分项签收保存原合格来源、实际领取人/时间/调整说明；正式通知、领取凭证、专业调整与尾款规则待确认。"
     },
     {
       "id": "W1-N6",
@@ -3338,9 +3446,15 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工缺货延期原因/新交期与分批到货已落库；未完成分项及原收款分别显示；实际交付、通知和签收尚未实现。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工缺货延期原因/新交期与分批到货已落库；未完成分项及原收款分别显示；实际交付、通知和签收尚未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 可逐行/批次签收，未签收、返工及原资金分开追踪；库存出库/损耗与外部通知后续接续。"
     },
     {
       "id": "S03",
@@ -3552,11 +3666,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 228,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例"
+      "tests": 247,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser / test:fulfillment-browser",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -3568,7 +3682,8 @@
         "scripts/retail-browser-check.mjs",
         "scripts/inventory-browser-check.mjs",
         "scripts/payments-browser-check.mjs",
-        "scripts/processing-browser-check.mjs"
+        "scripts/processing-browser-check.mjs",
+        "scripts/fulfillment-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -3622,7 +3737,11 @@
         "create plan from original-order conflict reread preserves fields and captures new source version",
         "per-line arrangement and receive conflicts preserve quantity/reason, fixed historic snapshots and current revision",
         "processing protects original order and stock-prepared release; assigned mobile/professional execution to awaiting quality review",
-        "processing desktop/mobile containment, role boundaries and held authorized response after logout cannot restore data"
+        "processing desktop/mobile containment, role boundaries and held authorized response after logout cannot restore data",
+        "five-stage quality/handover list and board, complete filtered counts",
+        "competing check, handover and rework arrangement reread preserves checklist/result/quantity/source/receiver/time/instructions/reason",
+        "assigned professional mobile rework start/finish and explicit reinspection, reception partial then complete signed handover",
+        "fixed original-order navigation, readonly receipt history and role boundaries, mobile containment and delayed authorized queue after logout"
       ]
     },
     "baseline": {
@@ -3631,7 +3750,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十六迁移；V0.18非空所有原表逐项保持，processing_jobs/processing_events为空，不补造加工历史；此前旧库升级检查保留",
-    "recovery": "schema16加工工单连续/单活动、原行与规范快照、纯转换/数量守恒、执行后安排锁、取消限制及stock预留核对；CLI新建及重复5工单21事件、7订单9版本16明细、17库存流水、5收款记录、26任务74事件保持；备份校验/独立恢复逐表一致，会话0；正式目标和完整业务账待确认"
+    "migration": "十七迁移；V0.19非空原表逐项保持，fulfillment_events为空，不补造质检/交付历史；此前旧版迁移检查保留",
+    "recovery": "schema17质检/返工/签收连续记录、原加工版本/源链与初检/复检/子批容量、项目结论、安排/签收字段及七类数量守恒；CLI新建/重复10订单12版本22明细、8加工工单42事件、13质检交付事件、17库存流水、5收款记录、26任务74事件逐表保持；校验备份/独立恢复一致，会话清零；正式恢复和完整账目验收待完成"
   }
 }

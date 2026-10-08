@@ -161,3 +161,7 @@ completion_status=open/completed、effective_execution_status=pending/running/pa
 processing_jobs（8列）：id、order_id、order_version、customer_id、store_id、serial、created_at、created_by；复合外键固定原单身份，serial按原单连续，一单仅一个未取消工单。processing_events（10列）：id、job_id、revision、action、position、quantity、snapshot_json、reason、created_at、created_by；连续不可变完整快照。
 
 快照原实物行保留position/product_id/product_version/quantity以及供货/加工/供应来源/责任人/日期/说明、received/started/completed/delay_reason共14字段，服务排除、重复商品保留位置。三种进度按原行单位记录，0≤completed≤started≤received≤quantity。安排锁、原单保护及stock备料预留释放门禁由API与SQL共同执行；事件转换/原行/当前约束进入备份恢复，时间轴按原客户和工单事件投影。详见processing.md；未新增专业处方/质检/交付/财务实体。
+
+## V0.20 质检交付推进记录
+
+migration017新增fulfillment_events（17列）：id/job_id/revision/processing_revision/position/action/quantity/source_id/assignee_id/instructions/checks_json/receiver_name/receipt_note/handed_at/reason/created_at/created_by。加工复合版本、同工单同原行父事件、连续数量/角色和不可变触发器共同保护。七类数量为未初检/合格待签收/失败待安排/返工待开始/返工中/待复检/已签收，和等于原行加工完成；source_id固定失败→安排→开始→完成→复检及合格→签收，可分批和循环。明确checks项目/结论及签收人/时间保留，不定义正式专业阈值或库存出库实体。
