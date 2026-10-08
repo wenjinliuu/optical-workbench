@@ -184,3 +184,8 @@ parameter_versions固定order_id/order_version/customer_id/store_id、每单连�
 024_training.sql为字段/原生约束依据。training_projects根及training_project_versions模板版本；training_plans固定客户、门店、训练周期及需求版本、可选原到店；training_plan_versions保存评估/目标/人工安排/负责人/来源及manifest；training_plan_items固定项目模板版本与逐行说明；training_plan_documents、training_plan_attachments固定资料/附件；training_plan_events保存连续修订、当前计划版本、状态/依据和当时课程全序列。training_sessions固定当时计划版本/实际到店和它捕获的需求版本、创建时计划修订及原客户；training_session_events保存课程连续修订/计划内全序列、当时计划修订、固定执行人、实际开始、实际记录manifest、状态/依据。十表均不可修改删除，两个current视图只投影最新事件。
 
 实际项目分钟数null=未知、0=明确未用时；完成情况completed/partial/not_done/unknown人工填写，实际结束UTC不得早于开始或晚于记录。频率/时长/复评文字说明不推定排课容量、医疗结论或权益规则。详见training.md；所有新表进入恢复回放与客户时间轴，不改原周期draft或旧业务账。
+
+
+## V0.28 权益四表
+
+025_entitlements.sql为原生字段/不可变约束依据。entitlement_packages根与entitlement_package_versions按次/按期、服务范围/规则来源与七项可空规则说明、account_sequence建账快照；entitlement_accounts固定客户/门店、package_id/version、训练需求、可选plan_id/version、创建时客户流水序列和本店连续serial；entitlement_events连续账revision及客户sequence、grant/reverse、paid/gift、次数或明确期间、source_event_id、原来源条目/说明、固定资料附件、原发生UTC及登记时间/人/依据。反向流水复制原来源，次数正整数/剩余上限、期间次数null/整条冲销，客户来源条目未冲销完不得重复登记。四表均不可修改删除，恢复回放核对固定来源和同刻先后；技术暂留量不等于实际可用权益或财务余额。

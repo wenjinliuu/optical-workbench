@@ -1,4 +1,4 @@
-# API v0.27
+# API v0.28
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -271,3 +271,8 @@ GET/POST /api/processing/jobs/:id/parameter-reviews 读取/登记明确变更影
 ## V0.27 训练业务
 
 训练接口契约和角色/固定版本/实际记录形状见[训练说明](training.md)。GET /training/projects、/training/plans、/training/sessions：本店员工查询及匹配数量、分页；GET /training/customers/:id/options：有界来源候选；GET/POST /customers/:id/training-plans：客户计划。GET /training/projects/:id、/training/plans/:id（可指定version）、/training/sessions/:id：详情与历史。POST /training/projects 新模板，POST /training/projects/:id/versions 修订；POST /training/plans/:id/versions 调整计划，POST /training/plans/:id/events 明确状态动作；GET/POST /training/plans/:id/sessions 关联或创建当次课程，POST /training/sessions/:id/events 执行/实际记录/核对。统一CSRF/幂等及实时权限，拒绝陈旧模板版本、计划修订与课程序列。
+
+
+## V0.28 套餐与权益
+
+详见[权益契约](entitlements.md)。GET/POST /entitlements/packages及GET /entitlements/packages/:id（可指定version），POST /entitlements/packages/:id/versions管理本店目录版本。GET /entitlements/accounts与GET/POST /customers/:id/entitlements查询或创建固定原来源的权益账。GET /entitlements/customers/:id/options提供有界候选、account_count与customer_sequence；GET /entitlements/accounts/:id返回固定规则、购买/赠送余额及分页历史，POST /entitlements/accounts/:id/events仅grant或reverse；GET /entitlements/events/:id定位原来源。GET /customers/:id/entitlement-summary供本店员工读取无购买凭据/完整流水的数量摘要。统一CSRF/幂等及实时权限，严格字段、当前账revision与客户expected_customer_sequence并发核对；不提供自动扣次/效期或退款接口。

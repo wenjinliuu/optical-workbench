@@ -1,9 +1,10 @@
-const kinds={training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={entitlement:'套餐与权益',training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
+ if(event.kind==='entitlement')return {title:`权益${d.action==='grant'?'登记':'冲销'} · ${d.origin==='paid'?'购买':'赠送'}`,text:`${d.account_number} · ${d.quantity===null?'期间记录':d.quantity+' 次'} · 固定规则 V${d.package_version}`,reason:d.reason};
  if(event.kind==='training_plan')return {title:`训练计划 · ${d.title} · V${d.plan_version}`,text:d.plan_number+' · '+({create:'草稿',revise:'调整草稿',confirm:'启用',pause:'暂停',resume:'恢复',end:'结束'}[d.action]),reason:d.reason};
  if(event.kind==='training_session')return {title:`当次课程 · 固定计划 V${d.plan_version}`,text:d.plan_number+' · '+({create:'登记当次课程',assign:'调整执行人',start:'开始',pause:'暂停',resume:'恢复',record:'实际记录',correct:'更正记录',confirm:'记录核对',abort:'中止',note:'说明'}[d.action]),reason:d.reason};
  if(event.kind==='dispatch')return {title:`实际出库 · 记录 ${d.outbound_revision}`,text:`${d.order_number} · 原单 V${d.order_version} · 行 ${d.position} · 数量 ${d.quantity}`,reason:d.reason};
@@ -30,9 +31,10 @@ function describe(event){
  if(event.kind==='authorization')return {title:d.action==='guardian.authorize'?'授权家长查看':'撤销家长查看授权',text:d.relationship,reason:d.reason};
  return {title:d.action==='baseline'?'登记早期联系人':d.action==='contact.create'?'登记家庭联系人':d.active?(d.previous_active===0?'恢复家庭联系人':'修订家庭联系人'):(d.previous_active===1?'停用家庭联系人':'修订停用联系人'),text:d.name?`${d.name} · ${d.relationship} · V${d.revision}`:'初版明细未留存',reason:d.reason};
 }
-export function createTimelinePanel({openTraining,api,getMe,getCustomer,getEpoch,toast}){
+export function createTimelinePanel({openEntitlements,openTraining,api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
+  if(event.kind==='entitlement'){openEntitlements(event.entity_id);return;}
   if(event.kind==='training_plan'){openTraining('plans',event.entity_id,event.details.plan_version);return;}
   if(event.kind==='training_session'){openTraining('sessions',event.entity_id);return;}
   if(event.kind==='profile'){document.querySelector('.profile-actions button:last-child')?.click();return;}
@@ -46,7 +48,7 @@ export function createTimelinePanel({openTraining,api,getMe,getCustomer,getEpoch
   const refresh=el('button','刷新总览');refresh.type='button';heading.append(refresh);summary.append(heading);
   const facts=el('div',undefined,'customer-facts'),recent=el('p','正在读取服务记录…','small muted');summary.append(facts,recent);
   const history=el('details',undefined,'customer-timeline'),toggle=el('summary');toggle.append(el('strong','客户历史时间轴'),el('span','查看已保存的服务与修改记录','small muted'));history.append(toggle);
-  const form=el('form',undefined,'timeline-filters'),category=el('select');category.name='kind';category.setAttribute('aria-label','记录类别');category.append(new Option('全部记录','all'));for(const [key,name] of Object.entries(kinds))if(!['payment','refund'].includes(key)||getMe().permissions.includes('payments:read'))category.append(new Option(name,key));
+  const form=el('form',undefined,'timeline-filters'),category=el('select');category.name='kind';category.setAttribute('aria-label','记录类别');category.append(new Option('全部记录','all'));for(const [key,name] of Object.entries(kinds))if(!['payment','refund','entitlement'].includes(key)||getMe().permissions.includes('payments:read'))category.append(new Option(name,key));
   const from=el('input'),to=el('input');from.type=to.type='date';from.name='from';to.name='to';
   function label(text,input){const l=el('label',text);l.append(input);return l;}
   form.append(label('记录类别',category),label('开始日期（UTC）',from),label('结束日期（UTC）',to));const apply=el('button','筛选记录');apply.type='submit';form.append(apply);

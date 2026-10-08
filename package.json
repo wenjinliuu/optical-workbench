@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -27,6 +27,7 @@
     "test:dispositions-browser": "node scripts/aftercare-dispositions-browser-check.mjs",
     "test:refunds-browser": "node scripts/refunds-browser-check.mjs",
     "test:parameters-browser": "node scripts/parameters-browser-check.mjs",
-    "test:training-browser": "node scripts/training-browser-check.mjs"
+    "test:training-browser": "node scripts/training-browser-check.mjs",
+    "test:entitlements-browser": "node scripts/entitlements-browser-check.mjs"
   }
 }

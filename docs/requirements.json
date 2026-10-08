@@ -1181,9 +1181,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：目录规则记录按次/按明确期间，权益账固定登记采用的原版；已知来源明确登记购买/赠送，次数与期间不混合，正式业务规则仍待R03。"
     },
     {
       "id": "M09-F02",
@@ -1195,9 +1206,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：扣次规则说明可按版本保存或未知留空，未执行扣次算法；训练核对不扣次，预约未接入，实际扣次待明确规则与课程联动。"
     },
     {
       "id": "M09-F03",
@@ -1223,9 +1245,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：负责人反向流水纠正原购买/赠送登记，次数可部分或全量、期间整条冲销，原来源不覆盖；转套餐、规则调整执行及资金退款/分摊尚未完成。"
     },
     {
       "id": "M09-D",
@@ -1238,9 +1271,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：权益、付费/赠送、人工明确起止日期、固定原规则/需求/可选计划、来源资料/附件与反向误录流水已保存；销售订单、扣次、冻结/延期及资金账联动未完成。"
     },
     {
       "id": "M09-R",
@@ -1253,9 +1297,20 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：开发角色负责人维护目录及误录冲销，负责人/前台登记原购买/赠送来源；专业员工仅看无凭据的数量摘要，家长拒绝内部读写；真实业务审批/财务与训练扣次职责待明确。"
     },
     {
       "id": "M09-L",
@@ -1268,9 +1323,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：客户/训练周期/可选原计划固定来源、员工客户摘要及资金权限时间轴接通；套餐销售、课程权益消费和财务对账尚未实现。"
     },
     {
       "id": "M09-A",
@@ -1283,9 +1349,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：本轮不创建预约或扣次；购买/赠送独立、误录反向流水引用原登记，幂等和并发原子验证；同一服务只扣一次仍待扣次联动。"
     },
     {
       "id": "M10-F01",
@@ -3246,9 +3323,20 @@
         "T00.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充固定登记采用的规则记录、购买/赠送来源、人工期间与反向误录；未知原购买条款不重建，组合优惠/已用/冻结/应退实退及套餐退款公式尚未完成。"
     },
     {
       "id": "C08",
@@ -5117,9 +5205,20 @@
         "T02.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充独立权益账、购买/赠送和反向误录来源、固定规则及资料版本；套餐订单、扣次、冻结与规则调整后续接续。"
     },
     {
       "id": "D8",
@@ -5264,9 +5363,20 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充前台登记权益、负责人误录冲销与目录版本、专业员工数量摘要；正式财务对账/套餐退款、权益消费与业务审批未完成。"
     },
     {
       "id": "P05",

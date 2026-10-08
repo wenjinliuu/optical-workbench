@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.27训练项目模板、个人计划不可变版本及现场课程执行：计划调整/暂停/恢复/结束与当次开始/暂停/恢复/实际记录/更正/核对/中止分别保存；固定原客户、训练需求、实际到店及当时计划/项目/资料版本，新计划不覆盖旧课程。schema24新增十表、同刻交叉引用恢复/时间轴/实时权限/审计幂等与电脑手机贯通；27项具体开发交付勾选，原50任务/287要求与整体验收保留。下一套餐权益流水及资源排课。 整体未验收",
-  "currentTask": "T05.01",
-  "nextTask": "T05.02",
+  "productStatus": "V0.28套餐规则记录不可变版本与独立权益账：购买/赠送、按次数/明确期间分别保存；固定客户/训练需求/可选原计划及登记采用的规则版本，次数部分或全量误录冲销、期间整条冲销关联原流水，不生成扣次、失效或资金退款。schema25四表、客户连续序列与套餐建账交叉引用、时间轴/审计幂等/恢复及电脑手机贯通；28项具体开发交付勾选，原50任务287要求与整体验收保留。下一资源排课与候补基础。 整体未验收",
+  "currentTask": "T05.02",
+  "nextTask": "T05.03",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -177,6 +177,12 @@
       "version": "V0.27",
       "type": "训练业务主线开发与方案进度同步",
       "summary": "V0.27训练项目模板、个人计划不可变版本及现场课程执行：计划调整/暂停/恢复/结束与当次开始/暂停/恢复/实际记录/更正/核对/中止分别保存；固定原客户、训练需求、实际到店及当时计划/项目/资料版本，新计划不覆盖旧课程。schema24新增十表、同刻交叉引用恢复/时间轴/实时权限/审计幂等与电脑手机贯通；27项具体开发交付勾选，原50任务/287要求与整体验收保留。下一套餐权益流水及资源排课。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.28",
+      "type": "套餐与权益主线开发和方案进度同步",
+      "summary": "V0.28套餐规则记录不可变版本与独立权益账：购买/赠送、按次数/明确期间分别保存；固定客户/训练需求/可选原计划及登记采用的规则版本，次数部分或全量误录冲销、期间整条冲销关联原流水，不生成扣次、失效或资金退款。schema25四表、客户连续序列与套餐建账交叉引用、时间轴/审计幂等/恢复及电脑手机贯通；28项具体开发交付勾选，原50任务287要求与整体验收保留。下一资源排课与候补基础。"
     }
   ],
   "tasks": [
@@ -953,10 +959,21 @@
         "T04.05",
         "T05.01"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人与财务（规则及验收，待指定）",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "updated": "2026-10-08",
+      "note": "V0.28独立技术部分：购买/赠送来源、按次/人工明确期间、规则记录版本和固定原需求/计划、原流水误录反向冲销；未知规则留空，技术暂留量不等于实际可用。效期执行、冻结延期、转套餐、课程扣次及撤销、套餐销售/资金和退款分摊尚未完成；原依赖及整体验收保留。"
     },
     {
       "id": "T05.03",
@@ -2130,15 +2147,37 @@
     },
     {
       "id": "M09-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：目录规则记录按次/按明确期间，权益账固定登记采用的原版；已知来源明确登记购买/赠送，次数与期间不混合，正式业务规则仍待R03。"
     },
     {
       "id": "M09-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：扣次规则说明可按版本保存或未知留空，未执行扣次算法；训练核对不扣次，预约未接入，实际扣次待明确规则与课程联动。"
     },
     {
       "id": "M09-F03",
@@ -2148,33 +2187,88 @@
     },
     {
       "id": "M09-F04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：负责人反向流水纠正原购买/赠送登记，次数可部分或全量、期间整条冲销，原来源不覆盖；转套餐、规则调整执行及资金退款/分摊尚未完成。"
     },
     {
       "id": "M09-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：权益、付费/赠送、人工明确起止日期、固定原规则/需求/可选计划、来源资料/附件与反向误录流水已保存；销售订单、扣次、冻结/延期及资金账联动未完成。"
     },
     {
       "id": "M09-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：开发角色负责人维护目录及误录冲销，负责人/前台登记原购买/赠送来源；专业员工仅看无凭据的数量摘要，家长拒绝内部读写；真实业务审批/财务与训练扣次职责待明确。"
     },
     {
       "id": "M09-L",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：客户/训练周期/可选原计划固定来源、员工客户摘要及资金权限时间轴接通；套餐销售、课程权益消费和财务对账尚未实现。"
     },
     {
       "id": "M09-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：本轮不创建预约或扣次；购买/赠送独立、误录反向流水引用原登记，幂等和并发原子验证；同一服务只扣一次仍待扣次联动。"
     },
     {
       "id": "M10-F01",
@@ -3355,9 +3449,20 @@
     },
     {
       "id": "C07",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充固定登记采用的规则记录、购买/赠送来源、人工期间与反向误录；未知原购买条款不重建，组合优惠/已用/冻结/应退实退及套餐退款公式尚未完成。"
     },
     {
       "id": "C08",
@@ -4192,9 +4297,20 @@
     },
     {
       "id": "D7",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充独立权益账、购买/赠送和反向误录来源、固定规则及资料版本；套餐订单、扣次、冻结与规则调整后续接续。"
     },
     {
       "id": "D8",
@@ -4257,9 +4373,20 @@
     },
     {
       "id": "P04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充前台登记权益、负责人误录冲销与目录版本、专业员工数量摘要；正式财务对账/套餐退款、权益消费与业务审批未完成。"
     },
     {
       "id": "P05",
@@ -4617,11 +4744,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 397,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝"
+      "tests": 421,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的13组浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的14组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -4641,7 +4768,8 @@
         "scripts/aftercare-dispositions-browser-check.mjs",
         "scripts/refunds-browser-check.mjs",
         "scripts/parameters-browser-check.mjs",
-        "scripts/training-browser-check.mjs"
+        "scripts/training-browser-check.mjs",
+        "scripts/entitlements-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -4706,7 +4834,8 @@
         "desktop scrollable navigation, mobile containment, internal role boundaries and held authorized dispatch/aftercare responses after logout",
         "refund source/case/manual amount conflicts preserve fields; independent manager approval; mobile actual proof; receipt/goods/custody unchanged; financial privacy and logout late-response isolation",
         "immutable manual parameter source, preserved conflicts, professional handover, mobile hold/continuation, frozen original execution and late-response isolation",
-        "training catalog / fixed personal plan and project versions / actual visit and executor / plan and actual record conflicts preserve fields / unknown vs zero / review / mobile historical plan navigation / internal role boundaries and logout late-response isolation"
+        "training catalog / fixed personal plan and project versions / actual visit and executor / plan and actual record conflicts preserve fields / unknown vs zero / review / mobile historical plan navigation / internal role boundaries and logout late-response isolation",
+        "entitlement catalog and fixed rule/acquisition versions; count/period and paid/gift independence; conflict reread preserves quantity/proof/UTC/document; partial correction; mobile period; professional source-free summary; financial privacy and logout late-response isolation"
       ]
     },
     "baseline": {
@@ -4715,8 +4844,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema23非空升级至24逐表保持，新十训练表为空，不补造计划/课程或更改客户、周期、到店、资金库存",
-    "recovery": "schema24回放十训练表、固定原计划/模板/需求/实际到店与状态，双向计划修订/课程序列保护同刻执行；CLI新建/重复/全表备份核验/独立恢复，会话清零"
+    "migration": "schema24非空升级至25逐表保持，新四权益表为空，不补造购买/赠送/扣次或改变客户、周期、计划课程、资金库存",
+    "recovery": "schema25回放四权益表、固定规则/客户需求/计划/资料及原反向流水，客户连续序列和套餐建账交叉引用核对同刻操作；CLI新建/重复/75表备份核验/独立恢复，会话清零"
   },
   "releaseChecklist": [
     {
@@ -4950,32 +5079,40 @@
         "T05.04"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.28",
+      "title": "套餐规则版本与购买、赠送、原流水冲销权益账",
+      "task_ids": [
+        "T05.02"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "套餐与权益独立流水、购买/赠送来源和人工规则快照，真实扣次/效期/冻结/退款分摊待R03；随后资源排课与候补",
-    "训练专业复评与家庭练习、正式专业表单和资质；计划/课程基础已接，收费权益与预约独立",
-    "配镜正式处方/专业重做批准、旧件转可售标准、供应商赔付、采购批号与召回追溯",
-    "真实费用和优惠分摊、到账核验、票据、应收和交班",
-    "长期随访、家长已发布资料与家庭授权",
-    "经营分析、外部接口、历史迁移和整阶段验收"
+    "资源排课与候补基础：独立员工/房间/设备与明确时段、单次资源争用和历史，容量/缓冲按R05真实依据配置",
+    "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
+    "训练专业复评与家庭练习、正式专业表单和资质",
+    "配镜正式处方/专业重做批准、旧件转可售、供应商赔付、采购批号与召回追溯",
+    "真实费用/优惠分摊、到账核验、票据、应收和交班",
+    "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.27",
-    "automatedTests": 397,
-    "schema": 24,
-    "browserSuites": 13,
+    "version": "V0.28",
+    "automatedTests": 421,
+    "schema": 25,
+    "browserSuites": 14,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/training.mjs",
-      "src/training-api.mjs",
-      "src/training-recovery.mjs",
-      "migrations/024_training.sql",
-      "public/training.js",
-      "test/training.test.mjs",
-      "scripts/training-browser-check.mjs",
-      "src/demo-training.mjs",
-      "docs/training.md",
+      "src/entitlements.mjs",
+      "src/entitlements-api.mjs",
+      "src/entitlements-recovery.mjs",
+      "migrations/025_entitlements.sql",
+      "public/entitlements.js",
+      "src/demo-entitlements.mjs",
+      "test/entitlements.test.mjs",
+      "scripts/entitlements-browser-check.mjs",
+      "docs/entitlements.md",
       "docs/handover.md"
     ]
   }
