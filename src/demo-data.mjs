@@ -1,3 +1,4 @@
+export {seedDemoReplacements} from './demo-replacements.mjs';
 import {insertWorkEvent,workRecord} from './aftercare-work.mjs';
 import {insertDispatch,dispatchRecord} from './dispatch.mjs';
 import {insertAftercareCase,insertAftercareEvent,aftercareRecord} from './aftercare.mjs';
