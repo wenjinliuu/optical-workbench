@@ -2,12 +2,12 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 整体未验收",
-  "currentTask": "T04.05",
+  "productStatus": "V0.25原实收退款申请、负责人审核与已发生退款登记：固定有效原收款、人工填写金额和决定依据，可关联对应原售后或固定新单案例；批准保留申请占用，登记实际接收人、批准后的UTC时间、方式及唯一凭据后才计入实际退款。原实收不改写，待处理和已退金额共用每笔原款上限，保护误录作废；版本、审计幂等、资金受限时间轴及schema22恢复贯通。25项具体开发交付勾选，原50任务/287要求与业务验收保持。 整体未验收",
+  "currentTask": "T04.02",
   "nextTask": "T04.05",
   "stage": "P00",
   "blockers": [
-    "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
+    "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
   ],
   "changes": [
     {
@@ -159,6 +159,12 @@
       "version": "V0.24",
       "type": "旧件处置主线与方案进度同步",
       "summary": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 后续继续专业方案/参数、费用退款、转可售规则与批号索赔召回，再推进训练随访。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.25",
+      "type": "工程推进",
+      "summary": "V0.25原实收退款申请、负责人审核与已发生退款登记：固定有效原收款、人工填写金额和决定依据，可关联对应原售后或固定新单案例；批准保留申请占用，登记实际接收人、批准后的UTC时间、方式及唯一凭据后才计入实际退款。原实收不改写，待处理和已退金额共用每笔原款上限，保护误录作废；版本、审计幂等、资金受限时间轴及schema22恢复贯通。25项具体开发交付勾选，原50任务/287要求与业务验收保持。"
     }
   ],
   "tasks": [
@@ -696,10 +702,18 @@
         "src/retail.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs"
       ],
-      "updated": "2026-10-07",
-      "implementationNote": "V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 实际退款/审批、票据、应收/交班、渠道核验和整项验收未实现；原依赖链不变。"
+      "updated": "2026-10-08",
+      "implementationNote": "V0.25原实收退款申请、负责人审核与已发生退款登记：固定有效原收款、人工填写金额和决定依据，可关联对应原售后或固定新单案例；批准保留申请占用，登记实际接收人、批准后的UTC时间、方式及唯一凭据后才计入实际退款。原实收不改写，待处理和已退金额共用每笔原款上限，保护误录作废；版本、审计幂等、资金受限时间轴及schema22恢复贯通。25项具体开发交付勾选，原50任务/287要求与业务验收保持。 优惠/费用公式、到账/正式票据、应收/交班和整项验收继续待完成；原依赖不变。"
     },
     {
       "id": "T04.03",
@@ -834,10 +848,18 @@
         "test/aftercare-dispositions.test.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
         "docs/aftercare-dispositions.md",
-        "src/demo-dispositions.mjs"
+        "src/demo-dispositions.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 专业批准、费用退款、转可售标准、批号/索赔召回/回访及整项验收待完成。"
+      "implementationNote": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 专业批准、费用退款、转可售标准、批号/索赔召回/回访及整项验收待完成。 V0.25可从原单/售后核对有效实收与独立退款记录；人工金额和批准不改变专业意见、原单履约或旧件保管，费用公式仍待落实。"
     },
     {
       "id": "T05.01",
@@ -2009,9 +2031,20 @@
     },
     {
       "id": "M11-F04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "M11-D",
@@ -2032,9 +2065,18 @@
         "docs/payments.md",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "M11-R",
@@ -2055,9 +2097,18 @@
         "docs/payments.md",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "M11-L",
@@ -2078,15 +2129,35 @@
         "docs/payments.md",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "M11-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "M12-F01",
@@ -2408,7 +2479,7 @@
     {
       "id": "M14-F03",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/dispatch.mjs",
         "src/aftercare.mjs",
@@ -2444,8 +2515,18 @@
         "test/aftercare-dispositions.test.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
         "docs/aftercare-dispositions.md",
-        "src/demo-dispositions.mjs"
-      ]
+        "src/demo-dispositions.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "M14-F04",
@@ -3587,7 +3668,7 @@
     {
       "id": "W7-N4",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/dispatch.mjs",
         "src/aftercare.mjs",
@@ -3616,14 +3697,35 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
-      ]
+        "src/demo-replacements.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "W7-N5",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "W7-N6",
@@ -3729,9 +3831,20 @@
     },
     {
       "id": "D8",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
     },
     {
       "id": "D9",
@@ -4115,11 +4228,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 328,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本"
+      "tests": 350,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser / test:fulfillment-browser / test:aftercare-browser",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser 与10组业务浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -4133,7 +4246,11 @@
         "scripts/payments-browser-check.mjs",
         "scripts/processing-browser-check.mjs",
         "scripts/fulfillment-browser-check.mjs",
-        "scripts/aftercare-browser-check.mjs"
+        "scripts/aftercare-browser-check.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "scripts/refunds-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -4195,7 +4312,8 @@
         "actual partial outbound with stale-stock reread preserving quantity/reason and original order navigation",
         "source case-count and assignment conflicts preserve kind/title/notes/owner/date",
         "assigned professional mobile start/pause/resume; reception original-outbound isolated return, cancellation retains custody and stock detail shows separate hold",
-        "desktop scrollable navigation, mobile containment, internal role boundaries and held authorized dispatch/aftercare responses after logout"
+        "desktop scrollable navigation, mobile containment, internal role boundaries and held authorized dispatch/aftercare responses after logout",
+        "refund source/case/manual amount conflicts preserve fields; independent manager approval; mobile actual proof; receipt/goods/custody unchanged; financial privacy and logout late-response isolation"
       ]
     },
     "baseline": {
@@ -4204,8 +4322,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "二十一迁移；schema20非空原表逐行保持，不补处置事件；已有维修引用明确捕获处置序列0，恢复校验每条覆盖与先后顺序。",
-    "recovery": "schema21回放固定原件来源、审核/执行转换、维修与处置交叉版本和保管数量，CLI新建/重复/全表备份核验/独立恢复；会话清零。"
+    "migration": "schema21非空升级至22逐表保持，不补退款；旧收款新增退款序列0引用",
+    "recovery": "schema22回放原实收、申请审核/实际退款、金额占用与跨收退款版本，CLI新建/重复/全表备份核验/独立恢复；会话清零。"
   },
   "releaseChecklist": [
     {
@@ -4411,30 +4529,40 @@
         "T04.01"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.25",
+      "title": "原实收退款申请、审核与实际退款登记",
+      "task_ids": [
+        "T04.02",
+        "T04.05"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
     "售后重做/换货已接独立新单与新商品交付；继续专业参数/方案批准、变更影响与正式凭证",
     "旧件报损/退供转出已接申请、审核和实际转出；继续转可售标准、供应商赔付、采购批号与召回追溯",
-    "退款审批、费用与原款核对、票据和交班（按门店真实规则）",
+    "原款退款申请/审核/实际登记已接；继续真实费用与优惠分摊、到账核验、正式票据、应收和交班口径",
     "训练计划、课程执行、排课资源与权益流水",
     "长期随访、家长已发布资料与家庭练习",
     "经营分析、外部接口、历史迁移与整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.24",
-    "automatedTests": 328,
-    "schema": 21,
-    "browserSuites": 10,
+    "version": "V0.25",
+    "automatedTests": 350,
+    "schema": 22,
+    "browserSuites": 11,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/aftercare-dispositions.mjs",
-      "migrations/021_aftercare_dispositions.sql",
-      "public/aftercare-dispositions.js",
-      "test/aftercare-dispositions.test.mjs",
-      "scripts/aftercare-dispositions-browser-check.mjs",
-      "docs/aftercare-dispositions.md",
-      "src/demo-dispositions.mjs",
+      "src/refunds.mjs",
+      "src/refund-ledger.mjs",
+      "migrations/022_refunds.sql",
+      "public/refunds.js",
+      "test/refunds.test.mjs",
+      "scripts/refunds-browser-check.mjs",
+      "docs/refunds.md",
+      "src/demo-refunds.mjs",
       "docs/handover.md"
     ]
   }
