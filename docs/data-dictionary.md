@@ -189,3 +189,6 @@ parameter_versions固定order_id/order_version/customer_id/store_id、每单连�
 ## V0.28 权益四表
 
 025_entitlements.sql为原生字段/不可变约束依据。entitlement_packages根与entitlement_package_versions按次/按期、服务范围/规则来源与七项可空规则说明、account_sequence建账快照；entitlement_accounts固定客户/门店、package_id/version、训练需求、可选plan_id/version、创建时客户流水序列和本店连续serial；entitlement_events连续账revision及客户sequence、grant/reverse、paid/gift、次数或明确期间、source_event_id、原来源条目/说明、固定资料附件、原发生UTC及登记时间/人/依据。反向流水复制原来源，次数正整数/剩余上限、期间次数null/整条冲销，客户来源条目未冲销完不得重复登记。四表均不可修改删除，恢复回放核对固定来源和同刻先后；技术暂留量不等于实际可用权益或财务余额。
+
+
+schema26：schedule_resources/versions固定资源种类、员工、容量/准备收尾及来源；schedule_slots/slot_events固定独立时段、原资源版本和全历史；schedule_bookings/booking_events固定原客户/训练需求/个人计划，时段版本、预约/候补/取消状态与原事件。schedule_journal/current_*为派生视图，不增业务表。所有事件以本店sequence回放同刻资源/时段/预约先后。

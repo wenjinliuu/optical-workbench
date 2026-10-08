@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.28套餐规则记录不可变版本与独立权益账：购买/赠送、按次数/明确期间分别保存；固定客户/训练需求/可选原计划及登记采用的规则版本，次数部分或全量误录冲销、期间整条冲销关联原流水，不生成扣次、失效或资金退款。schema25四表、客户连续序列与套餐建账交叉引用、时间轴/审计幂等/恢复及电脑手机贯通；28项具体开发交付勾选，原50任务287要求与整体验收保留。下一资源排课与候补基础。 整体未验收",
-  "currentTask": "T05.02",
-  "nextTask": "T05.03",
+  "productStatus": "V0.29训练资源与单次/小组排期：员工、房间、设备明确容量与准备/收尾间隔按版本保存，训练或维护时段独立占用资源；客户预约/候补固定原个人计划，转预约重新核对容量、资源与客户冲突，单次调课/取消/请假不覆盖同组其他客户。schema26六表及本店全序列、时间轴/实时权限/审计幂等/恢复与电脑手机贯通；29项具体开发交付勾选，原50任务287要求及整体验收保留。下一专业复评与家庭练习，真实扣次/效期及周期排课按规则接续。 整体未验收",
+  "currentTask": "T05.03",
+  "nextTask": "T05.05",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -183,6 +183,12 @@
       "version": "V0.28",
       "type": "套餐与权益主线开发和方案进度同步",
       "summary": "V0.28套餐规则记录不可变版本与独立权益账：购买/赠送、按次数/明确期间分别保存；固定客户/训练需求/可选原计划及登记采用的规则版本，次数部分或全量误录冲销、期间整条冲销关联原流水，不生成扣次、失效或资金退款。schema25四表、客户连续序列与套餐建账交叉引用、时间轴/审计幂等/恢复及电脑手机贯通；28项具体开发交付勾选，原50任务287要求与整体验收保留。下一资源排课与候补基础。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.29",
+      "type": "开发交付",
+      "summary": "V0.29训练资源与单次/小组排期：员工、房间、设备明确容量与准备/收尾间隔按版本保存，训练或维护时段独立占用资源；客户预约/候补固定原个人计划，转预约重新核对容量、资源与客户冲突，单次调课/取消/请假不覆盖同组其他客户。schema26六表及本店全序列、时间轴/实时权限/审计幂等/恢复与电脑手机贯通；29项具体开发交付勾选，原50任务287要求及整体验收保留。下一专业复评与家庭练习，真实扣次/效期及周期排课按规则接续。"
     }
   ],
   "tasks": [
@@ -992,10 +998,21 @@
         "T05.01",
         "T05.02"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 前台负责人（实际资源规则与验收，待指定）",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "updated": "2026-10-08",
+      "note": "独立技术部分：明确资源/容量/准备收尾版本、单次/小组/维护时段、客户预约/候补转正、单次调课/取消/请假及冲突检查。原依赖及整体验收保留；周期序列/之后全部修改、替代时间生成、员工排班日历、实际补课/缺席处理、通知、家长预约与签到扣次仍待实现。"
     },
     {
       "id": "T05.04",
@@ -1974,21 +1991,54 @@
     },
     {
       "id": "M07-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：已保存单次和明确小组时段及资源占用；周期重复序列与例外尚未实现。"
     },
     {
       "id": "M07-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：候补独立排队，不占名额，不自动转正；前台明确转预约时重新核对资源版本、原计划和容量。通知及自动队列政策待确认。"
     },
     {
       "id": "M07-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次调课移动一个客户，取消/当次请假保留原历史，其他组员不受影响；补课来源与权益、真实缺席处理尚未完成。"
     },
     {
       "id": "M07-F04",
@@ -1998,27 +2048,71 @@
     },
     {
       "id": "M07-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：明确UTC时段、容量、固定资源版本及准备收尾、客户原计划、状态与候补顺序已保存；重复规则及系列例外待实现。"
     },
     {
       "id": "M07-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：负责人维护资源与维护占用，负责人/前台排期，专业员工仅查看；正式资质、家长自助预约及通知待完成。"
     },
     {
       "id": "M07-L",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：客户、原计划/需求、资源与时间轴贯通，实际到店/现场课程/权益独立；排班/签到及设备维护业务工单后续接入。"
     },
     {
       "id": "M07-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：资源含人工准备收尾、小组容量与客户重叠冲突，版本/全序列校验避免并发最后席位重复；单次调课不改组员；周期之后全部待实现。"
     },
     {
       "id": "M08-F01",
@@ -3466,9 +3560,20 @@
     },
     {
       "id": "C08",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：员工/房间/设备明确容量、准备收尾与维护占用、候补手工转正及单次修改已接；周期重复例外、真实排班规则、自动替代生成与通知仍待完成。"
     },
     {
       "id": "C09",
@@ -3885,9 +3990,20 @@
     },
     {
       "id": "W2-N3",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次/小组时段、资源锁定与预约候补可保存，前台明确转正及单次请假调课；周期序列和通知未接。"
     },
     {
       "id": "W2-N4",
@@ -4537,9 +4653,20 @@
     },
     {
       "id": "S05",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次请假/调课/候补重新校验资源与容量已检查；实际缺席、补课来源与权益联动未实现，整体验收保留。"
     },
     {
       "id": "S06",
@@ -4744,11 +4871,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 421,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝"
+      "tests": 446,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的14组浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的15组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -4769,7 +4896,8 @@
         "scripts/refunds-browser-check.mjs",
         "scripts/parameters-browser-check.mjs",
         "scripts/training-browser-check.mjs",
-        "scripts/entitlements-browser-check.mjs"
+        "scripts/entitlements-browser-check.mjs",
+        "scripts/scheduling-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -4844,8 +4972,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema24非空升级至25逐表保持，新四权益表为空，不补造购买/赠送/扣次或改变客户、周期、计划课程、资金库存",
-    "recovery": "schema25回放四权益表、固定规则/客户需求/计划/资料及原反向流水，客户连续序列和套餐建账交叉引用核对同刻操作；CLI新建/重复/75表备份核验/独立恢复，会话清零"
+    "migration": "schema26；schema25非空升级保留原记录，新六表为空，不补造资源、排期、签到或权益",
+    "recovery": "81表新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；资源/时段/预约按本店全序列回放，固定版本/容量/维护/客户冲突/候补状态与原流水共同核对；旧业务记录保持"
   },
   "releaseChecklist": [
     {
@@ -5087,10 +5215,19 @@
         "T05.02"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.29",
+      "title": "训练资源版本、单次/小组时段与客户预约候补调课",
+      "task_ids": [
+        "T05.03"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "资源排课与候补基础：独立员工/房间/设备与明确时段、单次资源争用和历史，容量/缓冲按R05真实依据配置",
+    "T05.05专业复评与家庭练习：衔接原训练计划、现场课程、实际资料和家长授权；真实专业表单与发布规则待依据",
+    "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
     "配镜正式处方/专业重做批准、旧件转可售、供应商赔付、采购批号与召回追溯",
@@ -5098,21 +5235,21 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.28",
-    "automatedTests": 421,
-    "schema": 25,
-    "browserSuites": 14,
+    "version": "V0.29",
+    "automatedTests": 446,
+    "schema": 26,
+    "browserSuites": 15,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/entitlements.mjs",
-      "src/entitlements-api.mjs",
-      "src/entitlements-recovery.mjs",
-      "migrations/025_entitlements.sql",
-      "public/entitlements.js",
-      "src/demo-entitlements.mjs",
-      "test/entitlements.test.mjs",
-      "scripts/entitlements-browser-check.mjs",
-      "docs/entitlements.md",
+      "src/scheduling.mjs",
+      "src/scheduling-api.mjs",
+      "src/scheduling-recovery.mjs",
+      "migrations/026_scheduling.sql",
+      "public/scheduling.js",
+      "src/demo-scheduling.mjs",
+      "test/scheduling.test.mjs",
+      "scripts/scheduling-browser-check.mjs",
+      "docs/scheduling.md",
       "docs/handover.md"
     ]
   }

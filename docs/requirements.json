@@ -1,6 +1,6 @@
 {
   "baseline": "V1.1",
-  "source": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
+  "updated": "2026-10-08",
   "requirements": [
     {
       "id": "M01-F01",
@@ -864,9 +864,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：已保存单次和明确小组时段及资源占用；周期重复序列与例外尚未实现。"
     },
     {
       "id": "M07-F02",
@@ -878,9 +889,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：候补独立排队，不占名额，不自动转正；前台明确转预约时重新核对资源版本、原计划和容量。通知及自动队列政策待确认。"
     },
     {
       "id": "M07-F03",
@@ -892,9 +914,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次调课移动一个客户，取消/当次请假保留原历史，其他组员不受影响；补课来源与权益、真实缺席处理尚未完成。"
     },
     {
       "id": "M07-F04",
@@ -922,9 +955,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：明确UTC时段、容量、固定资源版本及准备收尾、客户原计划、状态与候补顺序已保存；重复规则及系列例外待实现。"
     },
     {
       "id": "M07-R",
@@ -938,9 +982,20 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：负责人维护资源与维护占用，负责人/前台排期，专业员工仅查看；正式资质、家长自助预约及通知待完成。"
     },
     {
       "id": "M07-L",
@@ -954,9 +1009,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：客户、原计划/需求、资源与时间轴贯通，实际到店/现场课程/权益独立；排班/签到及设备维护业务工单后续接入。"
     },
     {
       "id": "M07-A",
@@ -970,9 +1036,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：资源含人工准备收尾、小组容量与客户重叠冲突，版本/全序列校验避免并发最后席位重复；单次调课不改组员；周期之后全部待实现。"
     },
     {
       "id": "M08-F01",
@@ -3352,9 +3429,20 @@
         "T00.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：员工/房间/设备明确容量、准备收尾与维护占用、候补手工转正及单次修改已接；周期重复例外、真实排班规则、自动替代生成与通知仍待完成。"
     },
     {
       "id": "C09",
@@ -4209,9 +4297,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次/小组时段、资源锁定与预约候补可保存，前台明确转正及单次请假调课；周期序列和通知未接。"
     },
     {
       "id": "W2-N4",
@@ -5630,9 +5729,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次请假/调课/候补重新校验资源与容量已检查；实际缺席、补课来源与权益联动未实现，整体验收保留。"
     },
     {
       "id": "S06",

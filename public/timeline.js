@@ -1,9 +1,10 @@
-const kinds={entitlement:'套餐与权益',training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={scheduling:'训练预约',entitlement:'套餐与权益',training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
+ if(event.kind==='scheduling')return {title:'训练'+({create:'登记',promote:'候补转预约',move:'单次调课',cancel:'取消',leave:'请假'}[d.action]||d.action),text:`${d.booking_number} · ${d.starts_at} → ${d.ends_at} · ${d.status==='waiting'?'候补':d.status==='booked'?'预约':'取消'} · 原计划 V${d.plan_version}`,reason:d.reason};
  if(event.kind==='entitlement')return {title:`权益${d.action==='grant'?'登记':'冲销'} · ${d.origin==='paid'?'购买':'赠送'}`,text:`${d.account_number} · ${d.quantity===null?'期间记录':d.quantity+' 次'} · 固定规则 V${d.package_version}`,reason:d.reason};
  if(event.kind==='training_plan')return {title:`训练计划 · ${d.title} · V${d.plan_version}`,text:d.plan_number+' · '+({create:'草稿',revise:'调整草稿',confirm:'启用',pause:'暂停',resume:'恢复',end:'结束'}[d.action]),reason:d.reason};
  if(event.kind==='training_session')return {title:`当次课程 · 固定计划 V${d.plan_version}`,text:d.plan_number+' · '+({create:'登记当次课程',assign:'调整执行人',start:'开始',pause:'暂停',resume:'恢复',record:'实际记录',correct:'更正记录',confirm:'记录核对',abort:'中止',note:'说明'}[d.action]),reason:d.reason};
@@ -31,9 +32,10 @@ function describe(event){
  if(event.kind==='authorization')return {title:d.action==='guardian.authorize'?'授权家长查看':'撤销家长查看授权',text:d.relationship,reason:d.reason};
  return {title:d.action==='baseline'?'登记早期联系人':d.action==='contact.create'?'登记家庭联系人':d.active?(d.previous_active===0?'恢复家庭联系人':'修订家庭联系人'):(d.previous_active===1?'停用家庭联系人':'修订停用联系人'),text:d.name?`${d.name} · ${d.relationship} · V${d.revision}`:'初版明细未留存',reason:d.reason};
 }
-export function createTimelinePanel({openEntitlements,openTraining,api,getMe,getCustomer,getEpoch,toast}){
+export function createTimelinePanel({openScheduling,openEntitlements,openTraining,api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
+  if(event.kind==='scheduling'){openScheduling(event.entity_id);return;}
   if(event.kind==='entitlement'){openEntitlements(event.entity_id);return;}
   if(event.kind==='training_plan'){openTraining('plans',event.entity_id,event.details.plan_version);return;}
   if(event.kind==='training_session'){openTraining('sessions',event.entity_id);return;}
