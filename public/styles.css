@@ -79,3 +79,5 @@
 #disposition-actions button.primary,#disposition-form button.primary{color:#fff}
 
 #refund-actions button.primary,#refund-form button.primary,.refund-card .record-actions button.primary{color:#fff}
+
+.parameter-row{display:grid;gap:10px;padding:16px;margin:14px 0;border:1px solid var(--line);border-radius:14px;background:#f7f8ff}.parameter-value{overflow-wrap:anywhere}.parameter-row select{width:100%}#parameter-actions .primary,#parameter-submit,#parameters-items .primary{color:#fff}

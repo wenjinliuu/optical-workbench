@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.25原实收退款申请、负责人审核与已发生退款登记：固定有效原收款、人工填写金额和决定依据，可关联对应原售后或固定新单案例；批准保留申请占用，登记实际接收人、批准后的UTC时间、方式及唯一凭据后才计入实际退款。原实收不改写，待处理和已退金额共用每笔原款上限，保护误录作废；版本、审计幂等、资金受限时间轴及schema22恢复贯通。25项具体开发交付勾选，原50任务/287要求与业务验收保持。 整体未验收",
-  "currentTask": "T04.02",
-  "nextTask": "T04.05",
+  "productStatus": "V0.26配镜参数版本、提交/交接核对/退回及加工变更影响：固定原单实物行、明确值/单位未知/条件和资料附件版本，首次开工捕获原参数；新参数阻止继续加工及质检签收，明确按原版继续或暂缓，旧批次不覆盖。schema23保留早期未知来源，恢复/时间轴/审计幂等及电脑手机贯通；26项开发交付勾选，原50任务/287要求与整体验收保留。下一训练计划和课程执行。 整体未验收",
+  "currentTask": "T04.03",
+  "nextTask": "T05.01",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -165,6 +165,12 @@
       "version": "V0.25",
       "type": "工程推进",
       "summary": "V0.25原实收退款申请、负责人审核与已发生退款登记：固定有效原收款、人工填写金额和决定依据，可关联对应原售后或固定新单案例；批准保留申请占用，登记实际接收人、批准后的UTC时间、方式及唯一凭据后才计入实际退款。原实收不改写，待处理和已退金额共用每笔原款上限，保护误录作废；版本、审计幂等、资金受限时间轴及schema22恢复贯通。25项具体开发交付勾选，原50任务/287要求与业务验收保持。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.26",
+      "type": "配镜交接与加工保护推进",
+      "summary": "V0.26配镜参数版本、提交/交接核对/退回及加工变更影响：固定原单实物行、明确值/单位未知/条件和资料附件版本，首次开工捕获原参数；新参数阻止继续加工及质检签收，明确按原版继续或暂缓，旧批次不覆盖。schema23保留早期未知来源，恢复/时间轴/审计幂等及电脑手机贯通；26项开发交付勾选，原50任务/287要求与整体验收保留。下一训练计划和课程执行。"
     }
   ],
   "tasks": [
@@ -744,10 +750,21 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 处方确认/专业参数变更影响确认、正式采购/供应商与外部沟通、整项业务验收未完成；原依赖链不变。"
+      "implementationNote": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 处方确认/专业参数变更影响确认、正式采购/供应商与外部沟通、整项业务验收未完成；原依赖链不变。",
+      "note": " V0.26已接固定原参数、交接及明确变更影响保护，正式专业批准和资质仍待R02/R10，完整任务未验收。"
     },
     {
       "id": "T04.04",
@@ -788,10 +805,21 @@
         "test/aftercare.test.mjs",
         "scripts/aftercare-browser-check.mjs",
         "docs/dispatch-aftercare.md",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 正式质检清单/资质/参数影响、损耗/库存出库、通知/凭证/尾款及整项验收待完成；原依赖链保持。 V0.21已接原签收实际出库、当前实物投影/剩余量及原单售后隔离；原预留历史保持，完整库存调拨/盘点、损耗/批准处置和业务验收仍待完成。"
+      "implementationNote": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 正式质检清单/资质/参数影响、损耗/库存出库、通知/凭证/尾款及整项验收待完成；原依赖链保持。 V0.21已接原签收实际出库、当前实物投影/剩余量及原单售后隔离；原预留历史保持，完整库存调拨/盘点、损耗/批准处置和业务验收仍待完成。",
+      "note": " V0.26已接固定原参数、交接及明确变更影响保护，正式专业批准和资质仍待R02/R10，完整任务未验收。"
     },
     {
       "id": "T04.05",
@@ -856,10 +884,21 @@
         "test/refunds.test.mjs",
         "scripts/refunds-browser-check.mjs",
         "docs/refunds.md",
-        "src/demo-refunds.mjs"
+        "src/demo-refunds.mjs",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 专业批准、费用退款、转可售标准、批号/索赔召回/回访及整项验收待完成。 V0.25可从原单/售后核对有效实收与独立退款记录；人工金额和批准不改变专业意见、原单履约或旧件保管，费用公式仍待落实。"
+      "implementationNote": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 专业批准、费用退款、转可售标准、批号/索赔召回/回访及整项验收待完成。 V0.25可从原单/售后核对有效实收与独立退款记录；人工金额和批准不改变专业意见、原单履约或旧件保管，费用公式仍待落实。",
+      "note": " V0.26已接固定原参数、交接及明确变更影响保护，正式专业批准和资质仍待R02/R10，完整任务未验收。"
     },
     {
       "id": "T05.01",
@@ -2174,9 +2213,19 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本地原单逐行供货/内外加工安排与明确责任人已接通；专业处方/参数确认、正式采购供应商和外部派单未实现。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本地原单逐行供货/内外加工安排与明确责任人已接通；专业处方/参数确认、正式采购供应商和外部派单未实现。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-F02",
@@ -2193,9 +2242,19 @@
         "src/inventory.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 逐行分批到货/备料并约束开工/完成数量；库存入库独立，正式采购验收及后续分项交付未实现。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 逐行分批到货/备料并约束开工/完成数量；库存入库独立，正式采购验收及后续分项交付未实现。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-F03",
@@ -2211,9 +2270,19 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "public/processing.js"
+        "public/processing.js",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 明确项目、结论及原加工版本，不合格→返工分派/开始/完成→复检可循环；正式专业模板、参数变更/损耗及整项验收待完成。"
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 明确项目、结论及原加工版本，不合格→返工分派/开始/完成→复检可循环；正式专业模板、参数变更/损耗及整项验收待完成。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-F04",
@@ -2229,9 +2298,19 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "public/processing.js"
+        "public/processing.js",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 已保存分项签收、实际领取人/时间和调整说明；外部取镜通知、证明核验/电子签名及专业调整规则未实现。"
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 已保存分项签收、实际领取人/时间和调整说明；外部取镜通知、证明核验/电子签名及专业调整规则未实现。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-D",
@@ -2254,9 +2333,19 @@
         "migrations/017_fulfillment.sql",
         "test/fulfillment.test.mjs",
         "scripts/fulfillment-browser-check.mjs",
-        "docs/fulfillment.md"
+        "docs/fulfillment.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 已保存固定原行、供应来源文本、预计日期和进度/延期历史；专业处方、质检、返工和尾款规则未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 增加项目/结论与返工来源及签收字段；专业处方、真实尾款、正式供应商与损耗继续待落实。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 已保存固定原行、供应来源文本、预计日期和进度/延期历史；专业处方、质检、返工和尾款规则未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 增加项目/结论与返工来源及签收字段；专业处方、真实尾款、正式供应商与损耗继续待落实。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-R",
@@ -2279,9 +2368,19 @@
         "migrations/017_fulfillment.sql",
         "test/fulfillment.test.mjs",
         "scripts/fulfillment-browser-check.mjs",
-        "docs/fulfillment.md"
+        "docs/fulfillment.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本店读取、负责人/前台安排到货、当前责任人或负责人执行及取消权限已接通；正式采购/加工/质检资质职责与交付权限仍待落实。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本店质检/返工分派、固定责任人执行和前台签收动作权限已接；正式资质及职责规则未确认。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本店读取、负责人/前台安排到货、当前责任人或负责人执行及取消权限已接通；正式采购/加工/质检资质职责与交付权限仍待落实。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本店质检/返工分派、固定责任人执行和前台签收动作权限已接；正式资质及职责规则未确认。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-L",
@@ -2304,9 +2403,19 @@
         "migrations/017_fulfillment.sql",
         "test/fulfillment.test.mjs",
         "scripts/fulfillment-browser-check.mjs",
-        "docs/fulfillment.md"
+        "docs/fulfillment.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 原订单固定版本、stock预留/备料锁与时间轴/恢复已联动；供应商主档、采购接口和售后尚未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 加工/原订单固定版本、库存预留保持、时间轴与恢复贯通；本版签收不自动库存出库，正式供应商/售后尚待衔接。"
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 原订单固定版本、stock预留/备料锁与时间轴/恢复已联动；供应商主档、采购接口和售后尚未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 加工/原订单固定版本、库存预留保持、时间轴与恢复贯通；本版签收不自动库存出库，正式供应商/售后尚待衔接。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M12-A",
@@ -2322,9 +2431,19 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "public/processing.js"
+        "public/processing.js",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
       ],
-      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本地数量/来源门禁保证只有合格批次可记录签收，返工固定原不合格和工单；正式专业标准、参数影响及整项验收仍待完成。"
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本地数量/来源门禁保证只有合格批次可记录签收，返工固定原不合格和工单；正式专业标准、参数影响及整项验收仍待完成。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
     },
     {
       "id": "M13-F01",
@@ -4228,11 +4347,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 350,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示"
+      "tests": 372,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser 与10组业务浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser 与11组业务浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -4250,7 +4369,8 @@
         "scripts/aftercare-work-browser-check.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
-        "scripts/refunds-browser-check.mjs"
+        "scripts/refunds-browser-check.mjs",
+        "scripts/parameters-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -4313,7 +4433,8 @@
         "source case-count and assignment conflicts preserve kind/title/notes/owner/date",
         "assigned professional mobile start/pause/resume; reception original-outbound isolated return, cancellation retains custody and stock detail shows separate hold",
         "desktop scrollable navigation, mobile containment, internal role boundaries and held authorized dispatch/aftercare responses after logout",
-        "refund source/case/manual amount conflicts preserve fields; independent manager approval; mobile actual proof; receipt/goods/custody unchanged; financial privacy and logout late-response isolation"
+        "refund source/case/manual amount conflicts preserve fields; independent manager approval; mobile actual proof; receipt/goods/custody unchanged; financial privacy and logout late-response isolation",
+        "immutable manual parameter source, preserved conflicts, professional handover, mobile hold/continuation, frozen original execution and late-response isolation"
       ]
     },
     "baseline": {
@@ -4322,8 +4443,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema21非空升级至22逐表保持，不补退款；旧收款新增退款序列0引用",
-    "recovery": "schema22回放原实收、申请审核/实际退款、金额占用与跨收退款版本，CLI新建/重复/全表备份核验/独立恢复；会话清零。"
+    "migration": "schema22非空升级至23逐表保持，旧加工/质检只添加legacy未知参数引用，不补造参数/核对",
+    "recovery": "schema23回放参数版本/状态、执行固定来源与最新变更核对和同刻交叉修订；CLI新建/重复/全表备份核验/独立恢复，会话清零"
   },
   "releaseChecklist": [
     {
@@ -4538,31 +4659,42 @@
         "T04.05"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.26",
+      "title": "配镜参数版本、交接核对与加工变更保护",
+      "task_ids": [
+        "T04.03",
+        "T04.04",
+        "T04.05"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "售后重做/换货已接独立新单与新商品交付；继续专业参数/方案批准、变更影响与正式凭证",
-    "旧件报损/退供转出已接申请、审核和实际转出；继续转可售标准、供应商赔付、采购批号与召回追溯",
-    "原款退款申请/审核/实际登记已接；继续真实费用与优惠分摊、到账核验、正式票据、应收和交班口径",
-    "训练计划、课程执行、排课资源与权益流水",
+    "训练个人计划与项目库、课程执行基础，复用客户/周期/到店及固定版本；随后权益流水和资源排课",
+    "配镜参数交接与变更影响已接；正式处方/重做专业批准、真实资质和正式凭证等待实际规则",
+    "旧件转可售标准、供应商赔付、采购批号与召回追溯",
+    "真实费用和优惠分摊、到账核验、票据、应收和交班",
     "长期随访、家长已发布资料与家庭练习",
-    "经营分析、外部接口、历史迁移与整阶段验收"
+    "经营分析、外部接口、历史迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.25",
-    "automatedTests": 350,
-    "schema": 22,
-    "browserSuites": 11,
+    "version": "V0.26",
+    "automatedTests": 372,
+    "schema": 23,
+    "browserSuites": 12,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/refunds.mjs",
-      "src/refund-ledger.mjs",
-      "migrations/022_refunds.sql",
-      "public/refunds.js",
-      "test/refunds.test.mjs",
-      "scripts/refunds-browser-check.mjs",
-      "docs/refunds.md",
-      "src/demo-refunds.mjs",
+      "src/parameters.mjs",
+      "src/parameter-ledger.mjs",
+      "src/parameter-recovery.mjs",
+      "migrations/023_parameters.sql",
+      "public/parameters.js",
+      "test/parameters.test.mjs",
+      "scripts/parameters-browser-check.mjs",
+      "docs/parameters.md",
+      "src/demo-parameters.mjs",
       "docs/handover.md"
     ]
   }

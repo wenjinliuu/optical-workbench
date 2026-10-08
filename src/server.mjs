@@ -1,3 +1,4 @@
+import {createParametersHandler} from './parameters.mjs';
 import {createRefundsHandler} from './refunds.mjs';
 import {createDispositionsHandler} from './aftercare-dispositions.mjs';
 import {guardReplacementMutation} from './replacement-gates.mjs';
@@ -44,6 +45,8 @@ roles.manager.push('payments:void','refunds:approve');
 for(const role of ['manager','reception','professional'])roles[role].push('processing:read','processing:execute');
 for(const role of ['manager','reception'])roles[role].push('processing:manage');
 roles.manager.push('processing:cancel');
+for(const role of ['manager','reception','professional'])roles[role].push('parameters:read','parameters:write');
+roles.professional.push('parameters:check');
 for(const role of ['manager','reception','professional'])roles[role].push('dispatch:read','aftercare:read','aftercare:execute');
 for(const role of ['manager','reception'])roles[role].push('dispatch:write','aftercare:manage');
 for(const role of ['manager','reception','professional'])roles[role].push('fulfillment:read','fulfillment:execute');
@@ -111,6 +114,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const tasks=createTasksHandler(db,{need,customer,field,fail,body,mutation,audit});
   const taskEvidence=createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit});
   const dispatch=createDispatchHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const parameters=createParametersHandler(db,{need,customer,field,fail,body,mutation,audit});
   const refunds=createRefundsHandler(db,{need,customer,field,fail,body,mutation,audit});
   const dispositions=createDispositionsHandler(db,{need,customer,field,fail,body,mutation,audit});
   const replacements=createReplacementsHandler(db,{need,customer,field,fail,body,mutation,audit});
@@ -131,7 +135,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/refunds.js':['refunds.js','text/javascript'],'/aftercare-dispositions.js':['aftercare-dispositions.js','text/javascript'],'/aftercare-replacements.js':['aftercare-replacements.js','text/javascript'],'/aftercare-work.js':['aftercare-work.js','text/javascript'],'/progress.js':['progress.js','text/javascript'],'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/parameters.js':['parameters.js','text/javascript'],'/refunds.js':['refunds.js','text/javascript'],'/aftercare-dispositions.js':['aftercare-dispositions.js','text/javascript'],'/aftercare-replacements.js':['aftercare-replacements.js','text/javascript'],'/aftercare-work.js':['aftercare-work.js','text/javascript'],'/progress.js':['progress.js','text/javascript'],'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -168,6 +172,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       }
       if(await organization(req,res,path,user,json))return;
       if(await dispatch(req,path,url,user,json))return;
+      if(await parameters(req,path,url,user,json))return;
       if(await refunds(req,path,url,user,json))return;
       if(await dispositions(req,path,url,user,json))return;
       if(await replacements(req,path,url,user,json))return;

@@ -173,3 +173,7 @@ migration017新增fulfillment_events（17列）：id/job_id/revision/processing_
 ## V0.25 退款记录
 
 schema22新增refund_events不可变申请/审核/实际退款流水，固定原有效收款和原订单版本、人工金额/决定依据、可选对应案例；payment_refund_refs固定每次原收款所见退款序列。同毫秒跨资金顺序可回放，历史关联按当时原订单版本核对，取消旧安排并独立修订新单仍保留旧退款来源。原款占用/已退上限、资金权限/时间轴、实际唯一凭据及接口见[退款契约](refunds.md)。
+
+## V0.26 参数版本和执行来源（schema23）
+
+parameter_versions固定order_id/order_version/customer_id/store_id、每单连续version、来源及规范manifest_json；parameter_documents/attachments固定同客户原资料版本与附件。parameter_events为每单连续sequence和每版本revision，保存create/submit/check/return状态及当时加工/质检修订execution_basis_json。parameter_reviews固定首次开工来源、当前参数、参数流水、加工/质检修订、明确continue_original/hold。parameter_execution_refs逐个覆盖加工start/complete及全部fulfillment事件，固定当时current/fixed version与review_id；basis=captured/not_recorded/legacy，未知不补造。六表不可变，时间规范UTC及交叉版本校验，恢复回放见parameters.md。

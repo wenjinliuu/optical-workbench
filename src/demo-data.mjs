@@ -360,3 +360,5 @@ export function seedDemoAftercareWork(db){
 }
 export {seedDemoDispositions} from './demo-dispositions.mjs';
 export {seedDemoRefunds} from './demo-refunds.mjs';
+
+export {seedDemoParameters} from './demo-parameters.mjs';

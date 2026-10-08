@@ -258,3 +258,11 @@ role=all/manager/reception/professional按当前接收人岗位筛选，无接�
 ## V0.25 退款记录
 
 schema22新增refund_events不可变申请/审核/实际退款流水，固定原有效收款和原订单版本、人工金额/决定依据、可选对应案例；payment_refund_refs固定每次原收款所见退款序列。同毫秒跨资金顺序可回放，历史关联按当时原订单版本核对，取消旧安排并独立修订新单仍保留旧退款来源。原款占用/已退上限、资金权限/时间轴、实际唯一凭据及接口见[退款契约](refunds.md)。
+
+## V0.26 参数交接
+
+GET /api/parameters?q=&status=all|draft|submitted|checked|returned&limit=&offset= 返回最新参数原单列表及完整总数。
+GET/POST /api/retail/orders/:id/parameters 读取/另存交接版本；POST明确expected_order_version、expected_sequence、source、source_note、values[{position,label,value,unit,condition}]、document_version_ids、attachment_ids、note、reason。
+GET /api/parameters/versions/:id 返回固定版本及有界历史；POST同路径/events 明确expected_revision、原单/流水版本、action=submit|check|return、note、reason。
+GET/POST /api/processing/jobs/:id/parameter-reviews 读取/登记明确变更影响；POST包含原单/参数流水、expected_processing_revision、expected_fulfillment_revision、expected_review_revision、fixed_version_id（未知null）、current_version_id、outcome=continue_original|hold、note、reason。
+受保护加工和全部质检交付POST增加expected_parameter_sequence及expected_parameter_review_revision。跨店404、越动作403、陈旧来源409、字段不合法422；核对角色是开发角色，正式资质待确认。见parameters.md。
