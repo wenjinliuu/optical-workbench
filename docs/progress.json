@@ -2,8 +2,8 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 整体未验收",
-  "currentTask": "T04.04",
+  "productStatus": "V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 整体未验收",
+  "currentTask": "T04.05",
   "nextTask": "T04.05",
   "stage": "P00",
   "blockers": [
@@ -135,6 +135,12 @@
       "version": "V0.20",
       "type": "工程推进",
       "summary": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 五阶段虚构案例实际保存，库存出库/损耗、正式专业标准/通知/签收凭证及尾款规则未补造。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.21",
+      "type": "工程推进",
+      "summary": "V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 正式维修/重做确认、退款、隔离处置及采购批号/索赔召回未补造，下一V0.22继续售后执行与重新交付衔接。"
     }
   ],
   "tasks": [
@@ -631,10 +637,19 @@
         "migrations/014_inventory.sql",
         "test/inventory.test.mjs",
         "scripts/inventory-browser-check.mjs",
-        "docs/inventory.md"
+        "docs/inventory.md",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md"
       ],
-      "updated": "2026-10-07",
-      "implementationNote": "商品/订单草稿及基础库存入库/隔离/解除、原单全量预留/释放已落地；并发不超卖、连续历史/时间轴/恢复接通。库存出库/调拨/批次/盘点、优惠组合、正式订金尾款状态和整项业务验收未完成；原依赖链保留。 V0.18已接基础分次手工实收与原单保护。"
+      "updated": "2026-10-08",
+      "implementationNote": "商品/订单草稿及基础库存入库/隔离/解除、原单全量预留/释放已落地；并发不超卖、连续历史/时间轴/恢复接通。库存出库/调拨/批次/盘点、优惠组合、正式订金尾款状态和整项业务验收未完成；原依赖链保留。 V0.18已接基础分次手工实收与原单保护。 V0.21已接原签收实际出库、当前实物投影/剩余量及原单售后隔离；原预留历史保持，完整库存调拨/盘点、损耗/批准处置和业务验收仍待完成。"
     },
     {
       "id": "T04.02",
@@ -731,10 +746,20 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "public/processing.js"
+        "public/processing.js",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "docs/capability-map.md"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 正式质检清单/资质/参数影响、损耗/库存出库、通知/凭证/尾款及整项验收待完成；原依赖链保持。"
+      "implementationNote": "V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 正式质检清单/资质/参数影响、损耗/库存出库、通知/凭证/尾款及整项验收待完成；原依赖链保持。 V0.21已接原签收实际出库、当前实物投影/剩余量及原单售后隔离；原预留历史保持，完整库存调拨/盘点、损耗/批准处置和业务验收仍待完成。"
     },
     {
       "id": "T04.05",
@@ -754,10 +779,25 @@
         "T04.03",
         "T04.04"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 售后与质量负责人（后期验收，待指定）",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ],
+      "updated": "2026-10-08",
+      "implementationNote": "V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 已接原单需求与执行留痕、固定原出库退回隔离；正式维修重做方案/审批及重新交付、退款/费用、采购批号/序列号与索赔召回/回访未完成；原依赖和整项业务验收保留。"
     },
     {
       "id": "T05.01",
@@ -2243,21 +2283,63 @@
     },
     {
       "id": "M14-F01",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-F02",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-F03",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-F04",
@@ -2267,27 +2349,83 @@
     },
     {
       "id": "M14-D",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-R",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-L",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-A",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M15-F01",
@@ -2937,7 +3075,7 @@
     {
       "id": "W1-N5",
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "src/fulfillment.mjs",
         "public/fulfillment.js",
@@ -2948,15 +3086,39 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "public/processing.js"
+        "public/processing.js",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "docs/capability-map.md"
       ],
       "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 分项签收保存原合格来源、实际领取人/时间/调整说明；正式通知、领取凭证、专业调整与尾款规则待确认。"
     },
     {
       "id": "W1-N6",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "W2-N1",
@@ -3101,7 +3263,20 @@
       "evidence": [
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
+        "test/inventory.test.mjs",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
       ]
     },
     {
@@ -3148,9 +3323,23 @@
     },
     {
       "id": "W7-N1",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "W7-N2",
@@ -3166,9 +3355,23 @@
     },
     {
       "id": "W7-N4",
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "W7-N5",
@@ -3666,11 +3869,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 247,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例"
+      "tests": 273,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser / test:fulfillment-browser",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser / test:fulfillment-browser / test:aftercare-browser",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -3683,7 +3886,8 @@
         "scripts/inventory-browser-check.mjs",
         "scripts/payments-browser-check.mjs",
         "scripts/processing-browser-check.mjs",
-        "scripts/fulfillment-browser-check.mjs"
+        "scripts/fulfillment-browser-check.mjs",
+        "scripts/aftercare-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -3741,7 +3945,11 @@
         "five-stage quality/handover list and board, complete filtered counts",
         "competing check, handover and rework arrangement reread preserves checklist/result/quantity/source/receiver/time/instructions/reason",
         "assigned professional mobile rework start/finish and explicit reinspection, reception partial then complete signed handover",
-        "fixed original-order navigation, readonly receipt history and role boundaries, mobile containment and delayed authorized queue after logout"
+        "fixed original-order navigation, readonly receipt history and role boundaries, mobile containment and delayed authorized queue after logout",
+        "actual partial outbound with stale-stock reread preserving quantity/reason and original order navigation",
+        "source case-count and assignment conflicts preserve kind/title/notes/owner/date",
+        "assigned professional mobile start/pause/resume; reception original-outbound isolated return, cancellation retains custody and stock detail shows separate hold",
+        "desktop scrollable navigation, mobile containment, internal role boundaries and held authorized dispatch/aftercare responses after logout"
       ]
     },
     "baseline": {
@@ -3750,7 +3958,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十七迁移；V0.19非空原表逐项保持，fulfillment_events为空，不补造质检/交付历史；此前旧版迁移检查保留",
-    "recovery": "schema17质检/返工/签收连续记录、原加工版本/源链与初检/复检/子批容量、项目结论、安排/签收字段及七类数量守恒；CLI新建/重复10订单12版本22明细、8加工工单42事件、13质检交付事件、17库存流水、5收款记录、26任务74事件逐表保持；校验备份/独立恢复一致，会话清零；正式恢复和完整账目验收待完成"
+    "migration": "十八迁移；V0.20非空原表逐项保持，新增3表为空，不补造出库/售后历史；此前旧版迁移检查保留",
+    "recovery": "schema18实际出库连续版本/原签收/原预留/余额投影、售后固定来源/纯状态转换/单活动案例与退回原出库容量共同核对；CLI新建/重复3出库、4案例14事件、10订单12版本22明细、8加工工单42事件、15质检交付事件、17原库存流水、5收款记录、26任务74事件逐表保持；校验备份/独立恢复一致，会话清零；正式恢复和完整账目验收待完成"
   }
 }

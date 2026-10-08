@@ -1,3 +1,5 @@
+import {createDispatchHandler} from './dispatch.mjs';
+import {createAftercareHandler} from './aftercare.mjs';
 import {createFulfillmentHandler} from './fulfillment.mjs';
 import {createProcessingHandler} from './processing.mjs';
 import { createPaymentsHandler } from './payments.mjs';
@@ -37,6 +39,8 @@ roles.manager.push('payments:void');
 for(const role of ['manager','reception','professional'])roles[role].push('processing:read','processing:execute');
 for(const role of ['manager','reception'])roles[role].push('processing:manage');
 roles.manager.push('processing:cancel');
+for(const role of ['manager','reception','professional'])roles[role].push('dispatch:read','aftercare:read','aftercare:execute');
+for(const role of ['manager','reception'])roles[role].push('dispatch:write','aftercare:manage');
 for(const role of ['manager','reception','professional'])roles[role].push('fulfillment:read','fulfillment:execute');
 for(const role of ['manager','professional'])roles[role].push('fulfillment:check');
 for(const role of ['manager','reception'])roles[role].push('fulfillment:assign','fulfillment:deliver');
@@ -101,6 +105,8 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const cycleRecords=createCyclesHandler(db,{need,customer,field,fail,body,mutation,audit});
   const tasks=createTasksHandler(db,{need,customer,field,fail,body,mutation,audit});
   const taskEvidence=createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const dispatch=createDispatchHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const aftercare=createAftercareHandler(db,{need,customer,field,fail,body,mutation,audit});
   const fulfillment=createFulfillmentHandler(db,{need,customer,field,fail,body,mutation,audit});
   const processing=createProcessingHandler(db,{need,customer,field,fail,body,mutation,audit});
   const payments=createPaymentsHandler(db,{need,customer,field,fail,body,mutation,audit});
@@ -116,7 +122,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -151,6 +157,8 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
         return json(200,{database:'ok',mode,schema:db.prepare('SELECT count(*) n FROM schema_migrations').get().n,...runtime.snapshot(user.store_id)});
       }
       if(await organization(req,res,path,user,json))return;
+      if(await dispatch(req,path,url,user,json))return;
+      if(await aftercare(req,path,url,user,json))return;
       if(await fulfillment(req,path,url,user,json))return;
       if(await processing(req,path,url,user,json))return;
       if(await payments(req,path,url,user,json))return;

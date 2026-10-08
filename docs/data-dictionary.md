@@ -165,3 +165,7 @@ processing_jobs（8列）：id、order_id、order_version、customer_id、store_
 ## V0.20 质检交付推进记录
 
 migration017新增fulfillment_events（17列）：id/job_id/revision/processing_revision/position/action/quantity/source_id/assignee_id/instructions/checks_json/receiver_name/receipt_note/handed_at/reason/created_at/created_by。加工复合版本、同工单同原行父事件、连续数量/角色和不可变触发器共同保护。七类数量为未初检/合格待签收/失败待安排/返工待开始/返工中/待复检/已签收，和等于原行加工完成；source_id固定失败→安排→开始→完成→复检及合格→签收，可分批和循环。明确checks项目/结论及签收人/时间保留，不定义正式专业阈值或库存出库实体。
+
+## V0.21 出库与售后补充
+
+迁移018新增实际出库、固定原签收的售后案例及连续处理/退回隔离事件，原分配库存历史保持；当前实物以独立出库投影，库存与出库版本共同核对，售后退回保管量独立于正常库存。完整接口/数量/来源/岗位及恢复契约见[出库与售后](dispatch-aftercare.md)。正式维修重做/批准处置、采购批号、索赔召回及退款规则仍待落实。

@@ -1783,9 +1783,23 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-F02",
@@ -1797,9 +1811,23 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-F03",
@@ -1811,9 +1839,23 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-F04",
@@ -1841,9 +1883,23 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-R",
@@ -1857,9 +1913,23 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-L",
@@ -1873,9 +1943,23 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M14-A",
@@ -1889,9 +1973,23 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "M15-F01",
@@ -3215,7 +3313,7 @@
         "T10.05"
       ],
       "implementation": "部分实现",
-      "verification": "未整体验收",
+      "verification": "未验收",
       "evidence": [
         "src/fulfillment.mjs",
         "public/fulfillment.js",
@@ -3226,7 +3324,17 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "public/processing.js"
+        "public/processing.js",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "docs/capability-map.md"
       ],
       "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 分项签收保存原合格来源、实际领取人/时间/调整说明；正式通知、领取凭证、专业调整与尾款规则待确认。"
     },
@@ -3246,9 +3354,23 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "W2-N1",
@@ -3698,7 +3820,20 @@
       "evidence": [
         "src/inventory.mjs",
         "docs/inventory.md",
-        "test/inventory.test.mjs"
+        "test/inventory.test.mjs",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
       ]
     },
     {
@@ -3850,9 +3985,23 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "W7-N2",
@@ -3910,9 +4059,23 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
+      "implementation": "部分实现",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
     },
     {
       "id": "W7-N5",

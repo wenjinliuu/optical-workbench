@@ -250,3 +250,7 @@ role=all/manager/reception/professional按当前接收人岗位筛选，无接�
 ## V0.20 质检交付推进记录
 
 完整契约见[fulfillment.md](fulfillment.md)。GET /api/fulfillment/jobs搜索/状态及有界分页/完整量；GET /api/processing/jobs/:id/fulfillment读取逐行七类数量、可处理固定批次及历史分页；POST同路径/events保存check_pass/check_fail/rework_assign/rework_start/rework_complete/deliver。写入需expected_revision/expected_processing_revision、原position/quantity/source_id/reason及对应项目/安排/签收字段，实时权限/会话/改密/CSRF/幂等/审计同事务；陈旧返回FULFILLMENT_CONFLICT，来源或容量错误FULFILLMENT_STATE。不合格不可签收，返工只限固定责任人/负责人；家长拒绝、跨店404。签收不自动库存出库或款项结算。
+
+## V0.21 出库与售后补充
+
+迁移018新增实际出库、固定原签收的售后案例及连续处理/退回隔离事件，原分配库存历史保持；当前实物以独立出库投影，库存与出库版本共同核对，售后退回保管量独立于正常库存。完整接口/数量/来源/岗位及恢复契约见[出库与售后](dispatch-aftercare.md)。正式维修重做/批准处置、采购批号、索赔召回及退款规则仍待落实。
