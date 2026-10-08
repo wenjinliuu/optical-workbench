@@ -240,3 +240,9 @@ role=all/manager/reception/professional按当前接收人岗位筛选，无接�
 ## V0.18 基础收款API
 
 负责人/前台GET /api/payments（q/action/limit/offset）及GET /api/retail/orders/:id/payments（limit/offset）；POST /payments/receive字段expected_order_version/expected_revision/amount_cents/method/reference/received_at/reason。负责人POST /payments/void字段expected_order_version/expected_revision/source_id/reason。路径前缀同原单。权限、CSRF、实时会话、版本与幂等共同事务；响应event/payments。专业人员/家长资金读取403，跨店原单404；PAYMENT_CONFLICT、ORDER_HAS_RECEIPTS、DUPLICATE_REFERENCE、RECEIPT_VOIDED等409。固定原单、时间轴角色范围、分页及金额意义见payments.md。
+
+## V0.19 订货与加工接口
+
+完整字段/角色见[processing.md](processing.md)。GET /api/processing/jobs提供q、state、mine与有界分页/完整匹配统计；GET /api/processing/assignees列出本店有效责任人；GET/POST /api/retail/orders/:id/processing读取/建立固定原单工单；GET /api/processing/jobs/:id支持revision及历史分页；POST /api/processing/jobs/:id/events保存逐行plan/receive/start/complete/delay/clear_delay或负责人cancel。
+
+建立需expected_order_version/expected_job_count、原实物行position及六个安排字段、reason；后续需expected_revision/action/reason及对应position/quantity/plan/due_date。创建和动作严格字段、门店/岗位/实时会话/改密/CSRF/幂等/审计同事务。PROCESSING_CONFLICT需重读核对，活动工单令原单修订/取消返回ORDER_IN_PROCESSING；stock备料未预留返回PROCESSING_STOCK_REQUIRED，备料后释放返回STOCK_IN_PROCESSING。只读工单包含固定原商品版本/单位、选定与当前revision、分项进度/交期和历史，不改变财务或专业状态。

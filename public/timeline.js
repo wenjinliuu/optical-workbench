@@ -1,9 +1,10 @@
-const kinds={payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
+ if(event.kind==='processing')return {title:`${{create:'建立加工安排',plan:'调整分项安排',receive:'登记到货/备料',start:'登记加工开工',complete:'登记加工完成',delay:'记录交期延期',clear_delay:'解除延期说明',cancel:'取消未执行加工计划'}[d.action]} · 记录 ${d.revision}`,text:`${d.order_number}-J${String(d.job_serial).padStart(2,'0')} · 固定订单 V${d.order_version}${d.position?' · 原单行 '+d.position:''}${d.quantity?' · 本次数量 '+d.quantity:''}`,reason:d.reason};
  if(event.kind==='payment')return {title:`${d.action==='receive'?'登记收款':'追加误录作废'} · 记录 ${d.revision}`,text:`${d.order_number} · 固定订单 V${d.order_version} · ¥${(d.amount_cents/100).toFixed(2)}`,reason:d.reason};
  if(event.kind==='inventory')return {title:`${d.action==='reserve'?'预留订单商品':'释放订单预留'} · 记录 ${d.revision}`,text:`${d.order_number} · 固定订单 V${d.order_version}`,reason:d.reason};
  if(event.kind==='retail')return {title:`${d.status==='cancelled'?'取消':d.version===1?'建立':'修订'}配镜订单草稿 · V${d.version}`,text:`${d.order_number} · ${d.title} · 商品明细合计 ¥${(d.subtotal_cents/100).toFixed(2)}`,reason:d.reason};
@@ -23,8 +24,8 @@ export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
   if(event.kind==='profile'){document.querySelector('.profile-actions button:last-child')?.click();return;}
-  const key={payment:'orderId',inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
-  const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===event.entity_id):document.querySelector('#detail .family-access-area');
+  const key={processing:'orderId',payment:'orderId',inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
+  const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===(event.kind==='processing'?event.details.order_id:event.entity_id)):document.querySelector('#detail .family-access-area');
   if(!target){toast('对应记录未显示在当前列表中，可刷新档案后再查看。');return;}target.scrollIntoView({behavior:'smooth',block:'center'});target.classList.remove('timeline-focus');void target.offsetWidth;target.classList.add('timeline-focus');
  }
  async function render(target,id){

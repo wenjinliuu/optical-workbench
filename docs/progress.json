@@ -1,10 +1,10 @@
 {
   "baseline": "V1.1",
-  "updated": "2026-10-07",
+  "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 整体未验收",
-  "currentTask": "T04.02",
-  "nextTask": "T04.03",
+  "productStatus": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 整体未验收",
+  "currentTask": "T04.03",
+  "nextTask": "T04.04",
   "stage": "P00",
   "blockers": [
     "套餐扣次、部分退款、专业表单、财务口径和外部接口等待实际规则确认"
@@ -123,6 +123,12 @@
       "version": "V0.18",
       "type": "配镜收款开发",
       "summary": "V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 下一订货加工，整体业务验收待完成。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.19",
+      "type": "工程推进",
+      "summary": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 五个实际保存的虚构工单覆盖主要加工阶段，下一主线质检/返工/交付；原50任务/287需求与依赖不变。"
     }
   ],
   "tasks": [
@@ -672,10 +678,23 @@
         "T04.01",
         "T04.02"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 加工业务负责人（后期验收，待指定）",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "updated": "2026-10-08",
+      "implementationNote": "V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 处方确认/专业参数变更影响确认、正式采购/供应商与外部沟通、整项业务验收未完成；原依赖链不变。"
     },
     {
       "id": "T04.04",
@@ -1973,15 +1992,41 @@
     },
     {
       "id": "M12-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本地原单逐行供货/内外加工安排与明确责任人已接通；专业处方/参数确认、正式采购供应商和外部派单未实现。"
     },
     {
       "id": "M12-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 逐行分批到货/备料并约束开工/完成数量；库存入库独立，正式采购验收及后续分项交付未实现。"
     },
     {
       "id": "M12-F03",
@@ -1997,21 +2042,60 @@
     },
     {
       "id": "M12-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 已保存固定原行、供应来源文本、预计日期和进度/延期历史；专业处方、质检、返工和尾款规则未实现。"
     },
     {
       "id": "M12-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本店读取、负责人/前台安排到货、当前责任人或负责人执行及取消权限已接通；正式采购/加工/质检资质职责与交付权限仍待落实。"
     },
     {
       "id": "M12-L",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 原订单固定版本、stock预留/备料锁与时间轴/恢复已联动；供应商主档、采购接口和售后尚未实现。"
     },
     {
       "id": "M12-A",
@@ -2363,9 +2447,22 @@
     },
     {
       "id": "C02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工各原行进度并行、延期/逾期与实际状态独立；不合并计量单位或用百分比替代原因；完整专业分支、课程循环和返工未实现。"
     },
     {
       "id": "C03",
@@ -2602,9 +2699,15 @@
         "docs/payments.md",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "src/demo-data.mjs"
+        "src/demo-data.mjs",
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md"
       ],
-      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 新增加工安排/进度、原单保护/stock预留释放竞争、重试唯一/版本与审计回滚验证；其余原业务一致性和整项验收待完成。"
     },
     {
       "id": "N03",
@@ -2712,9 +2815,22 @@
     },
     {
       "id": "W1-N3",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 订货/加工看板、逐行供货和交期、分批到货、延期与全项完成待质检已保存；专业处方/参数变更影响确认、外部采购沟通和质检流转未实现。"
     },
     {
       "id": "W1-N4",
@@ -3209,9 +3325,22 @@
     },
     {
       "id": "S02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工缺货延期原因/新交期与分批到货已落库；未完成分项及原收款分别显示；实际交付、通知和签收尚未实现。"
     },
     {
       "id": "S03",
@@ -3419,15 +3548,15 @@
     }
   ],
   "validation": {
-    "date": "2026-10-07",
+    "date": "2026-10-08",
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 205,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例"
+      "tests": 228,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -3438,7 +3567,8 @@
         "docs/handover.md",
         "scripts/retail-browser-check.mjs",
         "scripts/inventory-browser-check.mjs",
-        "scripts/payments-browser-check.mjs"
+        "scripts/payments-browser-check.mjs",
+        "scripts/processing-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -3487,7 +3617,12 @@
         "manual installments and fixed original payment basis, active-reference uniqueness and original order navigation",
         "payment conflict reread preserves amount/method/reference/time/reason; manager append-only misentry void",
         "readonly historic order with current collection state; reception mobile receipt and restricted roles",
-        "held authorized payment list after logout cannot rebuild data"
+        "held authorized payment list after logout cannot rebuild data",
+        "five-stage processing list/board with complete counts, search and assigned unfinished items",
+        "create plan from original-order conflict reread preserves fields and captures new source version",
+        "per-line arrangement and receive conflicts preserve quantity/reason, fixed historic snapshots and current revision",
+        "processing protects original order and stock-prepared release; assigned mobile/professional execution to awaiting quality review",
+        "processing desktop/mobile containment, role boundaries and held authorized response after logout cannot restore data"
       ]
     },
     "baseline": {
@@ -3496,7 +3631,7 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十五迁移；V0.17非空所有原表逐项保持，payment_events为空，不补造收款；此前旧库升级检查保留",
-    "recovery": "schema15收款记录连续序号/原单金额身份/时间/误录作废复制来源/当前原单保护/有效外部编号核对；CLI新建及重复5资金记录、14库存流水、4订单、26任务74事件保持；备份校验/独立恢复逐表一致，会话0；正式目标和完整业务账待确认"
+    "migration": "十六迁移；V0.18非空所有原表逐项保持，processing_jobs/processing_events为空，不补造加工历史；此前旧库升级检查保留",
+    "recovery": "schema16加工工单连续/单活动、原行与规范快照、纯转换/数量守恒、执行后安排锁、取消限制及stock预留核对；CLI新建及重复5工单21事件、7订单9版本16明细、17库存流水、5收款记录、26任务74事件保持；备份校验/独立恢复逐表一致，会话0；正式目标和完整业务账待确认"
   }
 }

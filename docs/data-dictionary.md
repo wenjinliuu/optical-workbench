@@ -155,3 +155,9 @@ completion_status=open/completed、effective_execution_status=pending/running/pa
 ## V0.18 payment_events
 
 新增不可变资金登记表：id/order_id/order_version/customer_id/store_id/revision/action(receive或void)/source_id/amount_cents/basis_total_cents/currency/method/reference/received_at/reason/created_at/created_by。revision连续；同单唯一、原单四字段复合外键、void唯一来源及精确复制、有效外部编号防重复；原单资金保护。金额为整数分，basis仅原明细合计。恢复语义核对见payments.md。
+
+## V0.19 订货与加工（migration016）
+
+processing_jobs（8列）：id、order_id、order_version、customer_id、store_id、serial、created_at、created_by；复合外键固定原单身份，serial按原单连续，一单仅一个未取消工单。processing_events（10列）：id、job_id、revision、action、position、quantity、snapshot_json、reason、created_at、created_by；连续不可变完整快照。
+
+快照原实物行保留position/product_id/product_version/quantity以及供货/加工/供应来源/责任人/日期/说明、received/started/completed/delay_reason共14字段，服务排除、重复商品保留位置。三种进度按原行单位记录，0≤completed≤started≤received≤quantity。安排锁、原单保护及stock备料预留释放门禁由API与SQL共同执行；事件转换/原行/当前约束进入备份恢复，时间轴按原客户和工单事件投影。详见processing.md；未新增专业处方/质检/交付/财务实体。
