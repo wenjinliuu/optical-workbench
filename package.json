@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -23,6 +23,7 @@
     "backup:verify": "node scripts/verify-backup.mjs",
     "restore": "node scripts/restore.mjs",
     "test:aftercare-work-browser": "node scripts/aftercare-work-browser-check.mjs",
-    "test:aftercare-replacements-browser": "node scripts/aftercare-replacements-browser-check.mjs"
+    "test:aftercare-replacements-browser": "node scripts/aftercare-replacements-browser-check.mjs",
+    "test:dispositions-browser": "node scripts/aftercare-dispositions-browser-check.mjs"
   }
 }

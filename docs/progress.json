@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.23售后重做/换货明确关联独立新订单与固定版本，负责人确认业务安排后复用原库存预留、收款、加工、质检、签收和新商品实际出库；每个新实物行出库齐全才可明确登记交付完成。原件保管、退款和新单实收分别保留，不自动生成专业批准或费用算法。案例/安排双版本和全案例连续序列、共享操作固定批准引用、schema20恢复及客户时间轴贯通；23项具体开发交付勾选，50任务/287需求和整体验收保留。 整体未验收",
+  "productStatus": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 整体未验收",
   "currentTask": "T04.05",
   "nextTask": "T04.05",
   "stage": "P00",
@@ -153,6 +153,12 @@
       "version": "V0.23",
       "type": "售后主线推进与方案进度同步",
       "summary": "V0.23售后重做/换货明确关联独立新订单与固定版本，负责人确认业务安排后复用原库存预留、收款、加工、质检、签收和新商品实际出库；每个新实物行出库齐全才可明确登记交付完成。原件保管、退款和新单实收分别保留，不自动生成专业批准或费用算法。案例/安排双版本和全案例连续序列、共享操作固定批准引用、schema20恢复及客户时间轴贯通；23项具体开发交付勾选，50任务/287需求和整体验收保留。 下一继续专业重做批准/参数变更影响、旧件明确处置及退款费用，再推进训练与随访。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.24",
+      "type": "旧件处置主线与方案进度同步",
+      "summary": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 后续继续专业方案/参数、费用退款、转可售规则与批号索赔召回，再推进训练随访。"
     }
   ],
   "tasks": [
@@ -821,10 +827,17 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.23售后重做/换货明确关联独立新订单与固定版本，负责人确认业务安排后复用原库存预留、收款、加工、质检、签收和新商品实际出库；每个新实物行出库齐全才可明确登记交付完成。原件保管、退款和新单实收分别保留，不自动生成专业批准或费用算法。案例/安排双版本和全案例连续序列、共享操作固定批准引用、schema20恢复及客户时间轴贯通；23项具体开发交付勾选，50任务/287需求和整体验收保留。 专业方案批准/参数、费用退款、旧件处置、批号/索赔召回/回访与整项验收继续待完成。"
+      "implementationNote": "V0.24旧件处置申请、负责人审核与实际报损/退供转出：固定原退回接收或维修复检批次、检查依据和明确去向；批准仍在售后保管，记录实际接收人、批准后的转出时间与凭据才扣减旧件保管。维修/归还/处置共用来源余额，案例、维修和处置版本保护；不可变记录、交叉执行版本、schema21恢复与客户时间轴贯通。正常商品库存、原订单和资金独立，24项具体开发交付勾选，原50任务/287要求与待业务验收保持。 专业批准、费用退款、转可售标准、批号/索赔召回/回访及整项验收待完成。"
     },
     {
       "id": "T05.01",
@@ -2340,7 +2353,14 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
@@ -2375,7 +2395,14 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
@@ -2410,14 +2437,29 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
       "id": "M14-F04",
       "implementation": "未开始",
       "verification": "未验收",
-      "evidence": []
+      "evidence": [
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
+      ]
     },
     {
       "id": "M14-D",
@@ -2451,7 +2493,14 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
@@ -2486,7 +2535,14 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
@@ -2521,7 +2577,14 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
@@ -2556,7 +2619,14 @@
         "test/aftercare-replacements.test.mjs",
         "scripts/aftercare-replacements-browser-check.mjs",
         "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs"
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
       ]
     },
     {
@@ -4045,8 +4115,8 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 273,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例"
+      "tests": 328,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本"
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser / test:retail-browser / test:inventory-browser / test:payments-browser / test:processing-browser / test:fulfillment-browser / test:aftercare-browser",
@@ -4134,8 +4204,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "十八迁移；V0.20非空原表逐项保持，新增3表为空，不补造出库/售后历史；此前旧版迁移检查保留",
-    "recovery": "schema18实际出库连续版本/原签收/原预留/余额投影、售后固定来源/纯状态转换/单活动案例与退回原出库容量共同核对；CLI新建/重复3出库、4案例14事件、10订单12版本22明细、8加工工单42事件、15质检交付事件、17原库存流水、5收款记录、26任务74事件逐表保持；校验备份/独立恢复一致，会话清零；正式恢复和完整账目验收待完成"
+    "migration": "二十一迁移；schema20非空原表逐行保持，不补处置事件；已有维修引用明确捕获处置序列0，恢复校验每条覆盖与先后顺序。",
+    "recovery": "schema21回放固定原件来源、审核/执行转换、维修与处置交叉版本和保管数量，CLI新建/重复/全表备份核验/独立恢复；会话清零。"
   },
   "releaseChecklist": [
     {
@@ -4332,26 +4402,39 @@
         "T04.04"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.24",
+      "title": "旧件处置审核与实际报损退供转出",
+      "task_ids": [
+        "T04.05",
+        "T04.01"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
     "售后重做/换货已接独立新单与新商品交付；继续专业参数/方案批准、变更影响与正式凭证",
-    "隔离件检查、批准处置、转可售/退供/报损及召回追溯",
+    "旧件报损/退供转出已接申请、审核和实际转出；继续转可售标准、供应商赔付、采购批号与召回追溯",
     "退款审批、费用与原款核对、票据和交班（按门店真实规则）",
     "训练计划、课程执行、排课资源与权益流水",
     "长期随访、家长已发布资料与家庭练习",
     "经营分析、外部接口、历史迁移与整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.23",
-    "automatedTests": 308,
-    "schema": 20,
-    "browserSuites": 9,
+    "version": "V0.24",
+    "automatedTests": 328,
+    "schema": 21,
+    "browserSuites": 10,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "test/aftercare-replacements.test.mjs",
-      "scripts/aftercare-replacements-browser-check.mjs",
-      "docs/aftercare-replacements.md",
+      "src/aftercare-dispositions.mjs",
+      "migrations/021_aftercare_dispositions.sql",
+      "public/aftercare-dispositions.js",
+      "test/aftercare-dispositions.test.mjs",
+      "scripts/aftercare-dispositions-browser-check.mjs",
+      "docs/aftercare-dispositions.md",
+      "src/demo-dispositions.mjs",
       "docs/handover.md"
     ]
   }

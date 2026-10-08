@@ -75,3 +75,5 @@
 .project-progress-item input[type=checkbox]{appearance:none;border:1px solid #b9c8e5;border-radius:4px;height:20px;position:relative;background:#fff}.project-progress-item input[type=checkbox]:checked{background:#4168f5;border-color:#4168f5}.project-progress-item input[type=checkbox]:checked::after{content:"✓";position:absolute;inset:0;color:#fff;text-align:center;line-height:18px;font-size:16px;font-weight:700}
 
 #replacement-actions button.primary{color:#fff}
+
+#disposition-actions button.primary,#disposition-form button.primary{color:#fff}

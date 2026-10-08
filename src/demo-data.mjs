@@ -358,3 +358,4 @@ export function seedDemoAftercareWork(db){
  const r=step(id,'receive_return',{dispatch_id:dispatchRecord(db,c.delivery_id).history[0].id,return_quantity:1,returner_name:'示例返还人（虚构）'}).event;step(id,'assign');step(id,'start');e=work(id,'plan',null,{return_id:r.id});e=work(id,'start',e.id);e=work(id,'complete',e.id);e=work(id,'check_pass',e.id);work(id,'return',e.id);step(id,'resolve');return {cases:1,case_events,work_events};
  });
 }
+export {seedDemoDispositions} from './demo-dispositions.mjs';
