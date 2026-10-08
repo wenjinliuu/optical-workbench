@@ -1,4 +1,4 @@
-# API v0.17
+# API v0.27
 
 同源 /api；JSON。统一错误 `{ "error": { "code": "FORBIDDEN", "message": "…" } }`。401 未登录、403 越动作/CSRF、404 不存在或不在授权范围、409 幂等内容冲突、422 字段校验、429 登录限速。健康检查无需登录，其余接口需会话（登录除外）。
 
@@ -21,7 +21,7 @@
 
 全部已登录写入使用 X-CSRF-Token；客户、周期、家长关联、到店登记与结束另需 Idempotency-Key（8–100 位字母数字下划线/连字符）。同一身份+动作+键的规范字段值相同，返回原响应；不同则409。浏览器在失败重试时保留键，成功后换键。写入+审计+防重复结果在同一事务。
 
-出生日期有效且不晚于当天；未填写为 null；电话可重复。重复提示仅提示核对，不自动合并。暂未提供档案删除、跨店、导出、专业检查、收款或服务周期状态推进接口。
+出生日期有效且不晚于当天；未填写为 null；电话可重复。重复提示仅提示核对，不自动合并。档案删除、跨店、导出、正式专业检查和服务周期状态推进未提供；独立收款/退款、配镜参数和训练计划/课程接口见后续当前契约。
 
 家长关联需要已有本店家长身份（账号归属本店，或有本店客户的历史关联）。新增授权要求账号有效；已停用账号仍可撤销关系。变更保留前后值及操作依据，不将开发版记录视为正式监护证明核验。撤销后立即停止后续访问。
 
@@ -266,3 +266,8 @@ GET/POST /api/retail/orders/:id/parameters 读取/另存交接版本；POST明�
 GET /api/parameters/versions/:id 返回固定版本及有界历史；POST同路径/events 明确expected_revision、原单/流水版本、action=submit|check|return、note、reason。
 GET/POST /api/processing/jobs/:id/parameter-reviews 读取/登记明确变更影响；POST包含原单/参数流水、expected_processing_revision、expected_fulfillment_revision、expected_review_revision、fixed_version_id（未知null）、current_version_id、outcome=continue_original|hold、note、reason。
 受保护加工和全部质检交付POST增加expected_parameter_sequence及expected_parameter_review_revision。跨店404、越动作403、陈旧来源409、字段不合法422；核对角色是开发角色，正式资质待确认。见parameters.md。
+
+
+## V0.27 训练业务
+
+训练接口契约和角色/固定版本/实际记录形状见[训练说明](training.md)。GET /training/projects、/training/plans、/training/sessions：本店员工查询及匹配数量、分页；GET /training/customers/:id/options：有界来源候选；GET/POST /customers/:id/training-plans：客户计划。GET /training/projects/:id、/training/plans/:id（可指定version）、/training/sessions/:id：详情与历史。POST /training/projects 新模板，POST /training/projects/:id/versions 修订；POST /training/plans/:id/versions 调整计划，POST /training/plans/:id/events 明确状态动作；GET/POST /training/plans/:id/sessions 关联或创建当次课程，POST /training/sessions/:id/events 执行/实际记录/核对。统一CSRF/幂等及实时权限，拒绝陈旧模板版本、计划修订与课程序列。

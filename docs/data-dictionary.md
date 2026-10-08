@@ -9,7 +9,7 @@
 | sessions | token_hash PK、user_id FK、csrf、expires_at 毫秒 | 会话令牌不明文存储；到期、退出、停用拒绝访问 |
 | customers | id PK、store_id FK、name 必填(80)、birth_date nullable、contact_name nullable(80)、phone nullable(32)、created_at、created_by FK | contact_name/phone为主要联系人字段；多联系人单独登记，完整家庭成员/付款关系尚未实现。查询限授权门店/有效监护 |
 | guardian_links | user_id + customer_id 复合主键、active、relationship、updated_at、updated_by | 一个监护用户可关联多个客户；撤销即时生效；来源证明待确认 |
-| service_cycles | id PK、customer_id FK、type=followup/training/retail、goal 必填(300)、status=draft、created_at、created_by FK | 客户 1:N 周期，草稿只登记目标；计划、专业确认尚未建立；配镜草稿订单另表关联 |
+| service_cycles | id PK、customer_id FK、type=followup/training/retail、goal 必填(300)、status=draft、created_at、created_by FK | 客户 1:N 周期，周期自身只登记草稿目标；训练计划另表固定需求版本，开发角色明确确认不改变周期状态；配镜订单另表关联 |
 | audit_events | id PK、store_id、actor_id、action、entity_id、before_json/after_json、created_at | 新增动作 before=null；前后值留存于库，查询仅授权门店元信息，禁止修改删除 |
 | idempotency | actor_id + operation + request_key 主键、request_hash、response_json | 同动作/身份/标识重放；内容不同 409；周期动作包含客户编号 |
 | schema_migrations | name PK、applied_at | 工程版本与业务规则版本分开 |
@@ -177,3 +177,10 @@ schema22新增refund_events不可变申请/审核/实际退款流水，固定原
 ## V0.26 参数版本和执行来源（schema23）
 
 parameter_versions固定order_id/order_version/customer_id/store_id、每单连续version、来源及规范manifest_json；parameter_documents/attachments固定同客户原资料版本与附件。parameter_events为每单连续sequence和每版本revision，保存create/submit/check/return状态及当时加工/质检修订execution_basis_json。parameter_reviews固定首次开工来源、当前参数、参数流水、加工/质检修订、明确continue_original/hold。parameter_execution_refs逐个覆盖加工start/complete及全部fulfillment事件，固定当时current/fixed version与review_id；basis=captured/not_recorded/legacy，未知不补造。六表不可变，时间规范UTC及交叉版本校验，恢复回放见parameters.md。
+
+
+## V0.27 训练十表
+
+024_training.sql为字段/原生约束依据。training_projects根及training_project_versions模板版本；training_plans固定客户、门店、训练周期及需求版本、可选原到店；training_plan_versions保存评估/目标/人工安排/负责人/来源及manifest；training_plan_items固定项目模板版本与逐行说明；training_plan_documents、training_plan_attachments固定资料/附件；training_plan_events保存连续修订、当前计划版本、状态/依据和当时课程全序列。training_sessions固定当时计划版本/实际到店和它捕获的需求版本、创建时计划修订及原客户；training_session_events保存课程连续修订/计划内全序列、当时计划修订、固定执行人、实际开始、实际记录manifest、状态/依据。十表均不可修改删除，两个current视图只投影最新事件。
+
+实际项目分钟数null=未知、0=明确未用时；完成情况completed/partial/not_done/unknown人工填写，实际结束UTC不得早于开始或晚于记录。频率/时长/复评文字说明不推定排课容量、医疗结论或权益规则。详见training.md；所有新表进入恢复回放与客户时间轴，不改原周期draft或旧业务账。

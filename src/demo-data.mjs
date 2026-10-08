@@ -362,3 +362,5 @@ export {seedDemoDispositions} from './demo-dispositions.mjs';
 export {seedDemoRefunds} from './demo-refunds.mjs';
 
 export {seedDemoParameters} from './demo-parameters.mjs';
+
+export {seedDemoTraining} from './demo-training.mjs';

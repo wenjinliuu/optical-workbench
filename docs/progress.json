@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.26配镜参数版本、提交/交接核对/退回及加工变更影响：固定原单实物行、明确值/单位未知/条件和资料附件版本，首次开工捕获原参数；新参数阻止继续加工及质检签收，明确按原版继续或暂缓，旧批次不覆盖。schema23保留早期未知来源，恢复/时间轴/审计幂等及电脑手机贯通；26项开发交付勾选，原50任务/287要求与整体验收保留。下一训练计划和课程执行。 整体未验收",
-  "currentTask": "T04.03",
-  "nextTask": "T05.01",
+  "productStatus": "V0.27训练项目模板、个人计划不可变版本及现场课程执行：计划调整/暂停/恢复/结束与当次开始/暂停/恢复/实际记录/更正/核对/中止分别保存；固定原客户、训练需求、实际到店及当时计划/项目/资料版本，新计划不覆盖旧课程。schema24新增十表、同刻交叉引用恢复/时间轴/实时权限/审计幂等与电脑手机贯通；27项具体开发交付勾选，原50任务/287要求与整体验收保留。下一套餐权益流水及资源排课。 整体未验收",
+  "currentTask": "T05.01",
+  "nextTask": "T05.02",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -171,6 +171,12 @@
       "version": "V0.26",
       "type": "配镜交接与加工保护推进",
       "summary": "V0.26配镜参数版本、提交/交接核对/退回及加工变更影响：固定原单实物行、明确值/单位未知/条件和资料附件版本，首次开工捕获原参数；新参数阻止继续加工及质检签收，明确按原版继续或暂缓，旧批次不覆盖。schema23保留早期未知来源，恢复/时间轴/审计幂等及电脑手机贯通；26项开发交付勾选，原50任务/287要求与整体验收保留。下一训练计划和课程执行。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.27",
+      "type": "训练业务主线开发与方案进度同步",
+      "summary": "V0.27训练项目模板、个人计划不可变版本及现场课程执行：计划调整/暂停/恢复/结束与当次开始/暂停/恢复/实际记录/更正/核对/中止分别保存；固定原客户、训练需求、实际到店及当时计划/项目/资料版本，新计划不覆盖旧课程。schema24新增十表、同刻交叉引用恢复/时间轴/实时权限/审计幂等与电脑手机贯通；27项具体开发交付勾选，原50任务/287要求与整体验收保留。下一套餐权益流水及资源排课。"
     }
   ],
   "tasks": [
@@ -915,10 +921,21 @@
         "T04.04",
         "T04.05"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（专业规则与验收，待指定）",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "updated": "2026-10-08",
+      "note": "V0.27独立技术切片：项目模板、评估/目标人工来源、频率/时长/复评说明、个人计划不可变版本及责任人明确确认、调整/暂停/恢复/结束。正式专业表单/资质和完整复评、预约签到/排课、权益扣次联动尚未完成。原T04依赖与整体验收未通过，保留原依赖，未领取整项任务完成。"
     },
     {
       "id": "T05.02",
@@ -981,10 +998,21 @@
         "T05.02",
         "T05.03"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 业务负责人（专业规则与验收，待指定）",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "updated": "2026-10-08",
+      "note": "V0.27独立技术切片：已登记到店的现场课程，固定当时计划/项目版本和实际到店需求版本；开始/暂停/恢复、实际项目/分钟数/反馈、追加更正、原版本责任人明确核对和中止。正式专业表单/资质和完整复评、预约签到/排课、权益扣次联动尚未完成。原T04依赖与整体验收未通过，保留原依赖，未领取整项任务完成。"
     },
     {
       "id": "T05.05",
@@ -1793,51 +1821,139 @@
     },
     {
       "id": "M06-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：项目模板不可变版本、启停、历史；个人计划明确选择当时模板版本，模板不自动生成或确认计划。"
     },
     {
       "id": "M06-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：个人项目说明、人工评估来源/目标及频率/时长/复评说明按计划版本固定；正式专业参数表单与单位规则未完成。"
     },
     {
       "id": "M06-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：开发版专业岗位当前计划责任人明确确认；真实资质、正式临床确认及审批规则待R01/R02。"
     },
     {
       "id": "M06-F04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：调整生成新草稿版本，原执行保留；暂停/恢复明确记录，结束前拒绝未结束现场课程；不改变收费、权益或预约。"
     },
     {
       "id": "M06-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：人工评估、目标、1–30项目、频率/时长、来源、负责人、复评文字说明及固定资料/附件版本；正式复评记录未完成。"
     },
     {
       "id": "M06-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：服务端岗位/本店和实时会话门禁，当前计划责任人制定/确认与固定课程执行人分开，旧版课程由旧版责任人核对；正式岗位资质待确认。"
     },
     {
       "id": "M06-L",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：个人计划与实际到店课程、固定需求/资料/模板版本衔接；预约、家庭练习、权益和专业复评尚未接通。"
     },
     {
       "id": "M06-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：计划/现场课程/收费独立，不可变调整与历史课程原版来源已验证；收费套餐尚未实现，整项未验收。"
     },
     {
       "id": "M07-F01",
@@ -1889,21 +2005,54 @@
     },
     {
       "id": "M08-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：现场课程明确实际开始UTC和记录结束UTC，执行/记录/核对分开；预约签到和扣次待完成。"
     },
     {
       "id": "M08-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：逐项实际完成情况/反馈/分钟数及额外活动或差异说明人工保存，未知null与明确0分开；计划原文与当次实际分开。"
     },
     {
       "id": "M08-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：课程暂停/恢复/中止及原因连续保存；专业接管、异常自动任务与跟踪闭环未完成。"
     },
     {
       "id": "M08-F04",
@@ -1913,27 +2062,71 @@
     },
     {
       "id": "M08-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：固定项目、执行人、原计划责任人、实际开始/结束、分钟数/完成情况/反馈与来源保存；家庭练习/设备数据及正式不适字段未完成。"
     },
     {
       "id": "M08-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：固定专业岗位执行人实际录入、固定计划版本责任人核对；家长提交和真实资质待完成。"
     },
     {
       "id": "M08-L",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：课程固定当时计划/模板、实际到店及独立需求版本；预约、权益扣次和复评尚未接通。"
     },
     {
       "id": "M08-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：员工记录/外部转录/家长自报转录来源分开，家长不读取内部训练；设备采集及异常后续任务未实现。"
     },
     {
       "id": "M09-F01",
@@ -3553,15 +3746,37 @@
     },
     {
       "id": "W2-N1",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：固定训练需求/资料/附件和人工评估来源说明；正式检查、专业评估结论与适合性规则尚未完成。"
     },
     {
       "id": "W2-N2",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：明确确认个人计划版本及人工复评节点说明，调整/暂停/恢复/结束独立记录；排课、正式专业审批与资质待完成。"
     },
     {
       "id": "W2-N3",
@@ -3571,21 +3786,54 @@
     },
     {
       "id": "W2-N4",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：已登记到店现场课程固定当时计划，独立开始/暂停/恢复/实际记录/更正/核对/中止；预约签到、权益扣次、正式异常接管未实现。"
     },
     {
       "id": "W2-N5",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：实际记录/逐项反馈/差异及固定责任人核对已接；家庭作业/家长提交与反馈跟进、扣次纠正未完成。"
     },
     {
       "id": "W2-N6",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：人工复评节点说明和新计划版本/暂停/结束原因可保存；专业复评结论、检查对比、家庭记录和退款权益处理未完成。"
     },
     {
       "id": "W3-N1",
@@ -4145,9 +4393,20 @@
     },
     {
       "id": "S04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：多次现场课程引用当时计划版本；新计划不改旧执行，原版本责任人核对。真实到期复评及循环预约尚未完成。"
     },
     {
       "id": "S05",
@@ -4157,9 +4416,20 @@
     },
     {
       "id": "S06",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：现场暂停/中止保留原因与实际已保存历史；明确计划暂停/恢复，但异常任务、专业接管与后续安排闭环尚未完成。"
     },
     {
       "id": "S07",
@@ -4347,11 +4617,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 372,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝"
+      "tests": 397,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs npm run test:browser 与11组业务浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的13组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -4370,7 +4640,8 @@
         "scripts/aftercare-replacements-browser-check.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
         "scripts/refunds-browser-check.mjs",
-        "scripts/parameters-browser-check.mjs"
+        "scripts/parameters-browser-check.mjs",
+        "scripts/training-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -4434,7 +4705,8 @@
         "assigned professional mobile start/pause/resume; reception original-outbound isolated return, cancellation retains custody and stock detail shows separate hold",
         "desktop scrollable navigation, mobile containment, internal role boundaries and held authorized dispatch/aftercare responses after logout",
         "refund source/case/manual amount conflicts preserve fields; independent manager approval; mobile actual proof; receipt/goods/custody unchanged; financial privacy and logout late-response isolation",
-        "immutable manual parameter source, preserved conflicts, professional handover, mobile hold/continuation, frozen original execution and late-response isolation"
+        "immutable manual parameter source, preserved conflicts, professional handover, mobile hold/continuation, frozen original execution and late-response isolation",
+        "training catalog / fixed personal plan and project versions / actual visit and executor / plan and actual record conflicts preserve fields / unknown vs zero / review / mobile historical plan navigation / internal role boundaries and logout late-response isolation"
       ]
     },
     "baseline": {
@@ -4443,8 +4715,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema22非空升级至23逐表保持，旧加工/质检只添加legacy未知参数引用，不补造参数/核对",
-    "recovery": "schema23回放参数版本/状态、执行固定来源与最新变更核对和同刻交叉修订；CLI新建/重复/全表备份核验/独立恢复，会话清零"
+    "migration": "schema23非空升级至24逐表保持，新十训练表为空，不补造计划/课程或更改客户、周期、到店、资金库存",
+    "recovery": "schema24回放十训练表、固定原计划/模板/需求/实际到店与状态，双向计划修订/课程序列保护同刻执行；CLI新建/重复/全表备份核验/独立恢复，会话清零"
   },
   "releaseChecklist": [
     {
@@ -4669,32 +4941,41 @@
         "T04.05"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.27",
+      "title": "训练项目库、个人计划版本与现场课程执行核对",
+      "task_ids": [
+        "T05.01",
+        "T05.04"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "训练个人计划与项目库、课程执行基础，复用客户/周期/到店及固定版本；随后权益流水和资源排课",
-    "配镜参数交接与变更影响已接；正式处方/重做专业批准、真实资质和正式凭证等待实际规则",
-    "旧件转可售标准、供应商赔付、采购批号与召回追溯",
+    "套餐与权益独立流水、购买/赠送来源和人工规则快照，真实扣次/效期/冻结/退款分摊待R03；随后资源排课与候补",
+    "训练专业复评与家庭练习、正式专业表单和资质；计划/课程基础已接，收费权益与预约独立",
+    "配镜正式处方/专业重做批准、旧件转可售标准、供应商赔付、采购批号与召回追溯",
     "真实费用和优惠分摊、到账核验、票据、应收和交班",
-    "长期随访、家长已发布资料与家庭练习",
+    "长期随访、家长已发布资料与家庭授权",
     "经营分析、外部接口、历史迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.26",
-    "automatedTests": 372,
-    "schema": 23,
-    "browserSuites": 12,
+    "version": "V0.27",
+    "automatedTests": 397,
+    "schema": 24,
+    "browserSuites": 13,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/parameters.mjs",
-      "src/parameter-ledger.mjs",
-      "src/parameter-recovery.mjs",
-      "migrations/023_parameters.sql",
-      "public/parameters.js",
-      "test/parameters.test.mjs",
-      "scripts/parameters-browser-check.mjs",
-      "docs/parameters.md",
-      "src/demo-parameters.mjs",
+      "src/training.mjs",
+      "src/training-api.mjs",
+      "src/training-recovery.mjs",
+      "migrations/024_training.sql",
+      "public/training.js",
+      "test/training.test.mjs",
+      "scripts/training-browser-check.mjs",
+      "src/demo-training.mjs",
+      "docs/training.md",
       "docs/handover.md"
     ]
   }

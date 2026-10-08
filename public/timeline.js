@@ -1,9 +1,11 @@
-const kinds={parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
+ if(event.kind==='training_plan')return {title:`训练计划 · ${d.title} · V${d.plan_version}`,text:d.plan_number+' · '+({create:'草稿',revise:'调整草稿',confirm:'启用',pause:'暂停',resume:'恢复',end:'结束'}[d.action]),reason:d.reason};
+ if(event.kind==='training_session')return {title:`当次课程 · 固定计划 V${d.plan_version}`,text:d.plan_number+' · '+({create:'登记当次课程',assign:'调整执行人',start:'开始',pause:'暂停',resume:'恢复',record:'实际记录',correct:'更正记录',confirm:'记录核对',abort:'中止',note:'说明'}[d.action]),reason:d.reason};
  if(event.kind==='dispatch')return {title:`实际出库 · 记录 ${d.outbound_revision}`,text:`${d.order_number} · 原单 V${d.order_version} · 行 ${d.position} · 数量 ${d.quantity}`,reason:d.reason};
  if(event.kind==='aftercare_replacement')return {title:'售后新商品 · '+({create:'关联新订单',approve:'业务安排确认',cancel:'取消安排',complete:'登记交付完成'}[d.action]),text:d.order_number+' · 新单 V'+d.order_version+' · 原案例涉及 '+d.quantity,reason:d.reason};
  if(event.kind==='aftercare_disposition')return {title:'旧件处置 · '+({create:'申请',approve:'批准',reject:'驳回',cancel:'撤销',execute:'实际转出'}[d.action]),text:d.order_number+' · 原单 V'+d.order_version+' / 行 '+d.position+' · 数量 '+d.quantity+' · '+d.destination,reason:d.reason};
@@ -28,9 +30,11 @@ function describe(event){
  if(event.kind==='authorization')return {title:d.action==='guardian.authorize'?'授权家长查看':'撤销家长查看授权',text:d.relationship,reason:d.reason};
  return {title:d.action==='baseline'?'登记早期联系人':d.action==='contact.create'?'登记家庭联系人':d.active?(d.previous_active===0?'恢复家庭联系人':'修订家庭联系人'):(d.previous_active===1?'停用家庭联系人':'修订停用联系人'),text:d.name?`${d.name} · ${d.relationship} · V${d.revision}`:'初版明细未留存',reason:d.reason};
 }
-export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
+export function createTimelinePanel({openTraining,api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
+  if(event.kind==='training_plan'){openTraining('plans',event.entity_id,event.details.plan_version);return;}
+  if(event.kind==='training_session'){openTraining('sessions',event.entity_id);return;}
   if(event.kind==='profile'){document.querySelector('.profile-actions button:last-child')?.click();return;}
   const key={parameter:'orderId',refund:'orderId',aftercare_disposition:'orderId',aftercare_replacement:'orderId',aftercare_work:'orderId',dispatch:'orderId',aftercare:'orderId',fulfillment:'orderId',processing:'orderId',payment:'orderId',inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
   const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===(['processing','fulfillment','dispatch','aftercare','aftercare_work','aftercare_replacement','aftercare_disposition'].includes(event.kind)?event.details.order_id:event.entity_id)):document.querySelector('#detail .family-access-area');

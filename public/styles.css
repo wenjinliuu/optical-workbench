@@ -81,3 +81,6 @@
 #refund-actions button.primary,#refund-form button.primary,.refund-card .record-actions button.primary{color:#fff}
 
 .parameter-row{display:grid;gap:10px;padding:16px;margin:14px 0;border:1px solid var(--line);border-radius:14px;background:#f7f8ff}.parameter-value{overflow-wrap:anywhere}.parameter-row select{width:100%}#parameter-actions .primary,#parameter-submit,#parameters-items .primary{color:#fff}
+
+.training-item-row,.training-actual-row{padding:16px;border:1px solid #dce1ff;border-radius:12px;background:#f8f7ff;margin:12px 0;display:grid;gap:10px;min-width:0}.training-actual{padding:14px;background:#f3f1ff;border-radius:12px;margin:12px 0}.training-actual p,.training-card p,#training-detail-body p{overflow-wrap:anywhere}#training-view>.record-grid{margin-bottom:24px}#training-edit-form{display:grid;gap:12px}#training-view .primary,#training-detail-dialog .primary,#training-edit-dialog .primary{color:#fff}
+@media(max-width:650px){#training-view .page-head{flex-direction:column;align-items:stretch}#training-view .page-head>.record-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}#training-view .page-head>.record-actions button{white-space:normal;min-width:0;line-height:1.6}#training-new-plan{grid-column:1/-1}}
