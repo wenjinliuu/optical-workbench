@@ -1,3 +1,4 @@
+import {insertWorkEvent,workRecord} from './aftercare-work.mjs';
 import {insertDispatch,dispatchRecord} from './dispatch.mjs';
 import {insertAftercareCase,insertAftercareEvent,aftercareRecord} from './aftercare.mjs';
 import {insertFulfillmentEvent,fulfillmentRecord} from './fulfillment.mjs';
@@ -339,4 +340,20 @@ export function seedDemoAftercare(db){
  function make(id,key,kind,title){const c=insertAftercareCase(db,id,{kind,quantity:1,title,note:'虚构售后问题与需求，真实退款/专业重做规则另行确认',reason:'虚构展示：从原签收建立售后'},actor,now,'demo-aftercare-'+key);audit('aftercare.create',c.id,c);events++;return c;}
  function step(c,action,extra={}){const value=insertAftercareEvent(db,c.id,{action,note:'虚构展示：'+({assign:'明确责任人与预计日期',start:'本次责任人开始处理',pause:'等待进一步核对，保留原单',resolve:'结束本次处理记录，不自动退款或改变商品',receive_return:'原出库商品退回隔离，不能直接可售'}[action]),reason:'虚构演示处理依据',...(action==='assign'?{assignee_id:'demo-professional',due_date:new Date(Date.now()+3*86400000).toISOString().slice(0,10)}:{}),...extra},actor,now);audit('aftercare.'+action,value.event.id,value);events++;return value.aftercare;}
  let c=make(parallel,'repair','repair','镜架维修处理中（虚构）');step(c,'assign');step(c,'start');c=make(lens,'return','return','退回镜片已隔离待检（虚构）');step(c,'receive_return',{dispatch_id:lensOut.id,return_quantity:1,returner_name:'演示返还人（虚构）'});step(c,'assign',{assignee_id:'demo-front'});c=make(frame,'complaint','complaint','原单投诉处理记录已结束（虚构）');step(c,'assign',{assignee_id:'demo-front'});step(c,'start');step(c,'resolve');c=make(signed.event.id,'remake','remake','重做需求等待确认（虚构）');step(c,'assign');step(c,'start');step(c,'pause');return {outbounds,cases:4,events};});
+}
+
+export function seedDemoAftercareWork(db){
+ const empty={cases:0,case_events:0,work_events:0};if(db.prepare('SELECT 1 FROM aftercare_work_events LIMIT 1').get())return empty;
+ const repair=aftercareRecord(db,'demo-aftercare-repair'),returned=aftercareRecord(db,'demo-aftercare-return'),complaint=aftercareRecord(db,'demo-aftercare-complaint');
+ if(!repair||repair.status!=='running'||repair.revision!==3||repair.return_received_quantity!==0||!returned||returned.revision!==3||returned.status!=='assigned'||returned.return_received_quantity!==1||complaint?.status!=='resolved'||complaint.revision!==4)return empty;
+ if(['demo-manager','demo-front','demo-professional'].some(id=>!db.prepare("SELECT 1 FROM users u LEFT JOIN user_security s ON s.user_id=u.id WHERE u.id=? AND u.active=1 AND u.store_id='store-a' AND COALESCE(s.must_change_password,0)=0").get(id)))return empty;
+ return transaction(db,()=>{const actor='demo-manager',now=new Date().toISOString();let case_events=0,work_events=0;const audit=(action,id,value)=>db.prepare('INSERT INTO audit_events VALUES (?,?,?,?,?,?,?,?)').run(randomUUID(),'store-a',actor,action,id,null,JSON.stringify({source:'synthetic',...value}),now);
+ function step(id,action,extra={}){const v=insertAftercareEvent(db,id,{action,note:'虚构演示：实际退回维修与归还接续',reason:'虚构原件维修流程展示',...(action==='assign'?{assignee_id:'demo-professional',due_date:null}:{}),...extra},actor,now);audit('aftercare.'+action,v.event.id,v);case_events++;return v;}
+ function work(id,action,source_id=null,extra={}){const v=insertWorkEvent(db,id,{action,source_id,quantity:1,note:'虚构演示：原件维修批次与复检记录',reason:'虚构原件维修流程依据',...(['plan','rework_plan'].includes(action)?{assignee_id:'demo-professional',instructions:'虚构原件维修说明，具体专业标准由机构确认'}:{}),...(action.startsWith('check_')?{checks:[{label:'虚构外观复检项目（非专业标准）',result:action==='check_pass'?'pass':'fail',notes:'本次项目与明确结论仅为虚构展示'}]}:{}),...(action==='return'?{receiver_name:'示例原件领取人（虚构）',returned_at:now,receipt_note:'虚构原件实际归还签收说明'}:{}),...extra},actor,now);audit('aftercare.work.'+action,v.event.id,v);work_events++;return v.event;}
+ const out=dispatchRecord(db,repair.delivery_id).history[0];if(!out)throw Error('原维修案例缺少实际出库，不覆盖原记录');const intake=step(repair.id,'receive_return',{dispatch_id:out.id,return_quantity:1,returner_name:'示例维修返还人（虚构）'}).event;
+ let e=work(repair.id,'plan',null,{return_id:intake.id});e=work(repair.id,'start',e.id);e=work(repair.id,'complete',e.id);e=work(repair.id,'check_fail',e.id);e=work(repair.id,'rework_plan',e.id);e=work(repair.id,'rework_start',e.id);e=work(repair.id,'rework_complete',e.id);work(repair.id,'check_pass',e.id);
+ work(returned.id,'plan',null,{return_id:workRecord(db,returned.id).returns[0].id});
+ const id='demo-aftercare-repair-returned';if(aftercareRecord(db,id))throw Error('维修展示编号冲突，不覆盖原记录');const c=insertAftercareCase(db,complaint.delivery_id,{kind:'repair',quantity:1,title:'维修复检后原件已归还（虚构）',note:'虚构原件维修并归还，非退款或换货',reason:'虚构流程展示'},actor,now,id);audit('aftercare.create',id,c);case_events++;
+ const r=step(id,'receive_return',{dispatch_id:dispatchRecord(db,c.delivery_id).history[0].id,return_quantity:1,returner_name:'示例返还人（虚构）'}).event;step(id,'assign');step(id,'start');e=work(id,'plan',null,{return_id:r.id});e=work(id,'start',e.id);e=work(id,'complete',e.id);e=work(id,'check_pass',e.id);work(id,'return',e.id);step(id,'resolve');return {cases:1,case_events,work_events};
+ });
 }

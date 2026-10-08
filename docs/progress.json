@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-08",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 整体未验收",
+  "productStatus": "V0.22原件维修执行、明确复检/返工与实际归还签收：固定原退回接收来源及每次维修父批次、本批次责任人；维修和售后案例双版本保护。十类数量守恒，原件归还只减少售后保管，后续新案例可再次接收同一原出库商品，不重复扣减正常库存或改资金。schema19恢复、客户时间轴、虚构各阶段数据贯通；项目进度入口前置，22个开发交付勾选，原50任务/287要求与业务验收独立保留。 整体未验收",
   "currentTask": "T04.05",
   "nextTask": "T04.05",
   "stage": "P00",
@@ -141,6 +141,12 @@
       "version": "V0.21",
       "type": "工程推进",
       "summary": "V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 正式维修/重做确认、退款、隔离处置及采购批号/索赔召回未补造，下一V0.22继续售后执行与重新交付衔接。"
+    },
+    {
+      "date": "2026-10-08",
+      "version": "V0.22",
+      "type": "工程推进与方案进度同步",
+      "summary": "V0.22原件维修执行、明确复检/返工与实际归还签收：固定原退回接收来源及每次维修父批次、本批次责任人；维修和售后案例双版本保护。十类数量守恒，原件归还只减少售后保管，后续新案例可再次接收同一原出库商品，不重复扣减正常库存或改资金。schema19恢复、客户时间轴、虚构各阶段数据贯通；项目进度入口前置，22个开发交付勾选，原50任务/287要求与业务验收独立保留。 正式重做换货、隔离处置批准、退款与费用、采购批号/索赔召回等继续按原范围推进。"
     }
   ],
   "tasks": [
@@ -794,10 +800,17 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ],
       "updated": "2026-10-08",
-      "implementationNote": "V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 已接原单需求与执行留痕、固定原出库退回隔离；正式维修重做方案/审批及重新交付、退款/费用、采购批号/序列号与索赔召回/回访未完成；原依赖和整项业务验收保留。"
+      "implementationNote": "V0.22原件维修执行、明确复检/返工与实际归还签收：固定原退回接收来源及每次维修父批次、本批次责任人；维修和售后案例双版本保护。十类数量守恒，原件归还只减少售后保管，后续新案例可再次接收同一原出库商品，不重复扣减正常库存或改资金。schema19恢复、客户时间轴、虚构各阶段数据贯通；项目进度入口前置，22个开发交付勾选，原50任务/287要求与业务验收独立保留。 正式重做/换货方案与专业批准、退款/费用、隔离处置、采购批号与索赔召回/回访仍未完成；原依赖和整项验收保留。"
     },
     {
       "id": "T05.01",
@@ -2298,7 +2311,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2318,7 +2338,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2338,7 +2365,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2364,7 +2398,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2384,7 +2425,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2404,7 +2452,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2424,7 +2479,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -2703,7 +2765,14 @@
         "public/task-links.js",
         "migrations/012_task_amendments.sql",
         "src/task-chains.mjs",
-        "public/task-chains.js"
+        "public/task-chains.js",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ],
       "note": "V0.14部分实现：通用完成及异常处理保留；追加说明更正与显式后续分派实时复核权限和所见原产出/更正版本，失败不留部分任务，同键重放，不会重复分派。专业授权、自动下游/模板/串并行/循环与扣次/资金/库存仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
     },
@@ -2887,7 +2956,14 @@
         "test/foundation.test.mjs",
         "scripts/browser-check.mjs",
         "docs/recovery.md",
-        "test/recovery.test.mjs"
+        "test/recovery.test.mjs",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ],
       "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
     },
@@ -2941,7 +3017,14 @@
         "docs/handover.md",
         "scripts/browser-check.mjs",
         "docs/recovery.md",
-        "test/recovery.test.mjs"
+        "test/recovery.test.mjs",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ],
       "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
     },
@@ -3370,7 +3453,14 @@
         "src/demo-data.mjs",
         "src/recovery.mjs",
         "src/timeline.mjs",
-        "docs/capability-map.md"
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
       ]
     },
     {
@@ -3960,5 +4050,213 @@
     "businessAcceptance": "待确认",
     "migration": "十八迁移；V0.20非空原表逐项保持，新增3表为空，不补造出库/售后历史；此前旧版迁移检查保留",
     "recovery": "schema18实际出库连续版本/原签收/原预留/余额投影、售后固定来源/纯状态转换/单活动案例与退回原出库容量共同核对；CLI新建/重复3出库、4案例14事件、10订单12版本22明细、8加工工单42事件、15质检交付事件、17原库存流水、5收款记录、26任务74事件逐表保持；校验备份/独立恢复一致，会话清零；正式恢复和完整账目验收待完成"
+  },
+  "releaseChecklist": [
+    {
+      "version": "V0.1",
+      "title": "本地基础、权限与审计",
+      "task_ids": [
+        "T01.01",
+        "T01.02",
+        "T01.03",
+        "T01.04"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.2",
+      "title": "浅色鲜明配色、家庭授权与到店",
+      "task_ids": [
+        "T01.02",
+        "T02.01",
+        "T02.02"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.3",
+      "title": "客户附件与资料版本",
+      "task_ids": [
+        "T01.03"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.4",
+      "title": "人员管理与账号安全",
+      "task_ids": [
+        "T01.02"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.5",
+      "title": "备份恢复与运行诊断",
+      "task_ids": [
+        "T01.04"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.6",
+      "title": "档案修订与家庭联系人",
+      "task_ids": [
+        "T02.01"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.7",
+      "title": "客户总览与历史时间轴",
+      "task_ids": [
+        "T02.02"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.8",
+      "title": "周期需求版本与固定到店引用",
+      "task_ids": [
+        "T02.02"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.9",
+      "title": "任务分派、接收与交接",
+      "task_ids": [
+        "T03.01"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.10",
+      "title": "岗位认领与独立执行",
+      "task_ids": [
+        "T03.01"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.11",
+      "title": "任务异常与三种协作视图",
+      "task_ids": [
+        "T03.01",
+        "T03.03"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.12",
+      "title": "通用条件与完成依据",
+      "task_ids": [
+        "T03.02"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.13",
+      "title": "明确提交与固定完成记录",
+      "task_ids": [
+        "T03.02",
+        "T03.03"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.14",
+      "title": "完成说明更正与关联后续",
+      "task_ids": [
+        "T03.02",
+        "T03.03"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.15",
+      "title": "关联任务链与协作进度",
+      "task_ids": [
+        "T03.03"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.16",
+      "title": "配镜商品与订单草稿",
+      "task_ids": [
+        "T04.01"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.17",
+      "title": "实物库存与原单预留",
+      "task_ids": [
+        "T04.01"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.18",
+      "title": "分次实收与误录纠正",
+      "task_ids": [
+        "T04.02"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.19",
+      "title": "订货加工与分批进度",
+      "task_ids": [
+        "T04.03"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.20",
+      "title": "质检返工与分项签收",
+      "task_ids": [
+        "T04.04"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.21",
+      "title": "签收批次出库与原单售后",
+      "task_ids": [
+        "T04.01",
+        "T04.05"
+      ],
+      "status": "completed"
+    },
+    {
+      "version": "V0.22",
+      "title": "维修件执行、复检与原件归还",
+      "task_ids": [
+        "T04.05"
+      ],
+      "status": "completed"
+    }
+  ],
+  "nextDeliveries": [
+    "售后重做/更换新商品的专业确认、执行与库存衔接",
+    "隔离件检查、批准处置、转可售/退供/报损及召回追溯",
+    "退款审批、费用与原款核对、票据和交班（按门店真实规则）",
+    "训练计划、课程执行、排课资源与权益流水",
+    "长期随访、家长已发布资料与家庭练习",
+    "经营分析、外部接口、历史迁移与整阶段验收"
+  ],
+  "developmentVerification": {
+    "version": "V0.22",
+    "automatedTests": 290,
+    "schema": 19,
+    "browserSuites": 8,
+    "businessAcceptance": "待用户后期集中验收",
+    "evidence": [
+      "test/aftercare-work.test.mjs",
+      "scripts/aftercare-work-browser-check.mjs",
+      "docs/aftercare-work.md",
+      "docs/handover.md"
+    ]
   }
 }

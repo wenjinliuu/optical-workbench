@@ -1,10 +1,11 @@
-const kinds={dispatch:'批次出库',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
  if(event.kind==='dispatch')return {title:`实际出库 · 记录 ${d.outbound_revision}`,text:`${d.order_number} · 原单 V${d.order_version} · 行 ${d.position} · 数量 ${d.quantity}`,reason:d.reason};
+ if(event.kind==='aftercare_work')return {title:'售后维修 · '+({plan:'安排',start:'开工',complete:'完成',check_pass:'复检合格',check_fail:'复检不合格',rework_plan:'安排返工',rework_start:'返工开工',rework_complete:'返工完成',return:'原件归还签收',cancel_plan:'撤销安排'}[d.action])+' · 记录 '+d.revision,text:d.order_number+' · 原单 V'+d.order_version+' / 行 '+d.position+' · 数量 '+d.quantity,reason:d.reason};
  if(event.kind==='aftercare')return {title:`原单售后 · ${d.title} · 记录 ${d.revision}`,text:`${d.order_number} · ${d.action==='receive_return'?'退回隔离数量 '+d.return_quantity:'保存处理历史'}`,reason:d.reason};
  if(event.kind==='fulfillment')return {title:`${{check_pass:'质检合格',check_fail:'质检不合格',rework_assign:'安排返工',rework_start:'开始返工',rework_complete:'完成返工',deliver:'记录分项签收'}[d.action]} · 记录 ${d.revision}`,text:`${d.order_number}-J${String(d.job_serial).padStart(2,'0')} · 固定订单 V${d.order_version} · 加工记录 ${d.processing_revision} · 原单行 ${d.position} · 数量 ${d.quantity}`,reason:d.reason};
  if(event.kind==='processing')return {title:`${{create:'建立加工安排',plan:'调整分项安排',receive:'登记到货/备料',start:'登记加工开工',complete:'登记加工完成',delay:'记录交期延期',clear_delay:'解除延期说明',cancel:'取消未执行加工计划'}[d.action]} · 记录 ${d.revision}`,text:`${d.order_number}-J${String(d.job_serial).padStart(2,'0')} · 固定订单 V${d.order_version}${d.position?' · 原单行 '+d.position:''}${d.quantity?' · 本次数量 '+d.quantity:''}`,reason:d.reason};
@@ -27,8 +28,8 @@ export function createTimelinePanel({api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
   if(event.kind==='profile'){document.querySelector('.profile-actions button:last-child')?.click();return;}
-  const key={dispatch:'orderId',aftercare:'orderId',fulfillment:'orderId',processing:'orderId',payment:'orderId',inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
-  const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===(['processing','fulfillment','dispatch','aftercare'].includes(event.kind)?event.details.order_id:event.entity_id)):document.querySelector('#detail .family-access-area');
+  const key={aftercare_work:'orderId',dispatch:'orderId',aftercare:'orderId',fulfillment:'orderId',processing:'orderId',payment:'orderId',inventory:'orderId',retail:'orderId',task:'taskId',cycle:'cycleId',visit:'visitId',contact:'contactId',document:'recordId',attachment:'attachmentId'}[event.kind];
+  const target=key?[...document.querySelectorAll('#detail [data-'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+']')].find(n=>n.dataset[key]===(['processing','fulfillment','dispatch','aftercare','aftercare_work'].includes(event.kind)?event.details.order_id:event.entity_id)):document.querySelector('#detail .family-access-area');
   if(!target){toast('对应记录未显示在当前列表中，可刷新档案后再查看。');return;}target.scrollIntoView({behavior:'smooth',block:'center'});target.classList.remove('timeline-focus');void target.offsetWidth;target.classList.add('timeline-focus');
  }
  async function render(target,id){
