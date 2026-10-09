@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-09",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.32联系、预约和失败接管：服务/营销授权与通知目的分开，人工实际联系、回执更正、失联责任接管、再次联系/延期保留历史；明确预约/改期/取消/未到与原到店关联独立，发出不当作已读或到店。固定复查/订单/训练来源版本，撤回授权即时阻止新联系及幂等重放，schema29八表/恢复/时间轴/电脑手机贯通；32项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.03外院复查与转介；真实通知渠道/专业规则继续待依据。 整体未验收",
-  "currentTask": "T06.02",
-  "nextTask": "T06.03",
+  "productStatus": "V0.33外院复查与转介跟踪：原报告/自报/无法测、附件与固定资料、专业责任确认及修订分别保存；原版本意见保留，新资料重新待确认，不覆盖本店数据。转介固定长期/检查/售后/实际课程/已确认外院来源，专业与联系责任分开，明确安排/改期/延期、已有实际联系回执预约关联及结果/后续。schema30六表、恢复/时间轴/电脑手机贯通；33项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.04接触镜/OK镜专项技术基础；正式表单/指标/资质仍待依据。 整体未验收",
+  "currentTask": "T06.03",
+  "nextTask": "T06.04",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -207,6 +207,12 @@
       "version": "V0.32",
       "type": "联系与预约开发",
       "summary": "V0.32联系、预约和失败接管：服务/营销授权与通知目的分开，人工实际联系、回执更正、失联责任接管、再次联系/延期保留历史；明确预约/改期/取消/未到与原到店关联独立，发出不当作已读或到店。固定复查/订单/训练来源版本，撤回授权即时阻止新联系及幂等重放，schema29八表/恢复/时间轴/电脑手机贯通；32项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.03外院复查与转介；真实通知渠道/专业规则继续待依据。 整体未验收"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V0.33",
+      "type": "外院与转介开发",
+      "summary": "V0.33外院复查与转介跟踪：原报告/自报/无法测、附件与固定资料、专业责任确认及修订分别保存；原版本意见保留，新资料重新待确认，不覆盖本店数据。转介固定长期/检查/售后/实际课程/已确认外院来源，专业与联系责任分开，明确安排/改期/延期、已有实际联系回执预约关联及结果/后续。schema30六表、恢复/时间轴/电脑手机贯通；33项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.04接触镜/OK镜专项技术基础；正式表单/指标/资质仍待依据。 整体未验收"
     }
   ],
   "tasks": [
@@ -1181,10 +1187,21 @@
         "T06.01",
         "T06.02"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 专业业务负责人（表单、资质与验收，待指定）",
+      "evidence": [
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "updated": "2026-10-09",
+      "note": "外院来源/附件/无法测、专业责任确认和原版本意见、转介固定来源/安排、实际联系回执预约关联、重新排期及明确结果/后续已接。不覆盖本店数据；正式临床表单/指标、资质职责、外院接口和自动异常任务仍待依据，原依赖和整项验收保留。"
     },
     {
       "id": "T06.04",
@@ -1920,9 +1937,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：逾期只派生提示、未结束复查阻断结案、结案原因/后续必填；正式转介和外院结果确认在后续任务。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M05-D",
@@ -1937,9 +1963,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：基线缺失/人工目标/固定方案来源、下次日期与负责人、条件/来源/更正及结果后续已保存；外院转录不视为专业确认。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M05-R",
@@ -1954,9 +1989,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：当前档案/复查专业负责人分别管理，负责人可行政处理，前台读取；正式专业资质另行核验，家长无内部资料入口。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M05-L",
@@ -1971,9 +2015,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：同客户/明确随访周期、不可变检查资料、已核对训练复评及既有下一任务显式衔接；原计划/周期/到店/订单/权益各自办理。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M05-A",
@@ -1988,9 +2041,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：可查看来源条件与版本变化；临床数值趋势与正式专业判断/资质待依据，未整体验收。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M06-F01",
@@ -3211,7 +3273,7 @@
     {
       "id": "M14-F02",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/dispatch.mjs",
         "src/aftercare.mjs",
@@ -3247,8 +3309,18 @@
         "test/aftercare-dispositions.test.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
         "docs/aftercare-dispositions.md",
-        "src/demo-dispositions.mjs"
-      ]
+        "src/demo-dispositions.mjs",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M14-F03",
@@ -3319,7 +3391,7 @@
     {
       "id": "M14-D",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/dispatch.mjs",
         "src/aftercare.mjs",
@@ -3355,13 +3427,23 @@
         "test/aftercare-dispositions.test.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
         "docs/aftercare-dispositions.md",
-        "src/demo-dispositions.mjs"
-      ]
+        "src/demo-dispositions.mjs",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M14-R",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
         "src/dispatch.mjs",
         "src/aftercare.mjs",
@@ -3397,8 +3479,18 @@
         "test/aftercare-dispositions.test.mjs",
         "scripts/aftercare-dispositions-browser-check.mjs",
         "docs/aftercare-dispositions.md",
-        "src/demo-dispositions.mjs"
-      ]
+        "src/demo-dispositions.mjs",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "M14-L",
@@ -4424,9 +4516,18 @@
         "src/demo-contact.mjs",
         "test/contact.test.mjs",
         "scripts/contact-browser-check.mjs",
-        "docs/contact.md"
+        "docs/contact.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "W3-N4",
@@ -4441,9 +4542,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：实际检查时间、眼别/条件/来源及更正分别保存，未生成默认趋势值。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "W3-N5",
@@ -4458,9 +4568,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.31：显式复查修订、原资料版本和既有后续任务来源保留；临床调整规则待依据。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "W3-N6",
@@ -4484,9 +4603,18 @@
         "src/demo-contact.mjs",
         "test/contact.test.mjs",
         "scripts/contact-browser-check.mjs",
-        "docs/contact.md"
+        "docs/contact.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "W4-N1",
@@ -5086,9 +5214,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.27：现场暂停/中止保留原因与实际已保存历史；明确计划暂停/恢复，但异常任务、专业接管与后续安排闭环尚未完成。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "S07",
@@ -5115,9 +5252,18 @@
         "src/demo-contact.mjs",
         "test/contact.test.mjs",
         "scripts/contact-browser-check.mjs",
-        "docs/contact.md"
+        "docs/contact.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
       ],
-      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "S10",
@@ -5175,9 +5321,20 @@
     },
     {
       "id": "V05",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
     },
     {
       "id": "V06",
@@ -5309,11 +5466,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 533,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。；28项长期档案/复查专项：固定来源/已核对复评、状态与责任移交、真实时间/眼别条件筛选、逾期派生、实际完成/未结束结案保护、更正及同刻序列、实时会话/请求体等待/幂等审计回滚、分页/时间轴、非空升级/七表恢复与重复虚构案例。；29项联系专项：独立授权/目的、撤回即时门禁、人工发出与回执、失败责任接管/延期/终态、预约历史/未到时间/原到店和周期版本、严格字段/跨店家长/实时撤销、分页/时间轴、审计幂等回滚、非空升级/八表恢复/重复虚构样例。"
+      "tests": 563,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。；28项长期档案/复查专项：固定来源/已核对复评、状态与责任移交、真实时间/眼别条件筛选、逾期派生、实际完成/未结束结案保护、更正及同刻序列、实时会话/请求体等待/幂等审计回滚、分页/时间轴、非空升级/七表恢复与重复虚构案例。；29项联系专项：独立授权/目的、撤回即时门禁、人工发出与回执、失败责任接管/延期/终态、预约历史/未到时间/原到店和周期版本、严格字段/跨店家长/实时撤销、分页/时间轴、审计幂等回滚、非空升级/八表恢复/重复虚构样例。；30项外院/转介专项：原报告/自报/无法测不覆盖、专业确认/责任移交、修订待确认/旧意见、固定跨模块来源、实际联系回执预约关联/授权撤回后历史、安排改期延期/未知结果、严格权限/实时移交含缓存重放、并发审计幂等回滚、分页/时间轴、非空升级/六表恢复及重复虚构阶段。"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的18组浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的19组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -5338,7 +5495,8 @@
         "scripts/scheduling-browser-check.mjs",
         "scripts/family-training-browser-check.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "scripts/contact-browser-check.mjs"
+        "scripts/contact-browser-check.mjs",
+        "scripts/referrals-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -5413,8 +5571,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema29；schema28非空升级保留原记录，新八表为空，不补造联系授权、通知或预约",
-    "recovery": "104张表CLI新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；联系全店序列/授权撤回/配对失败接管/回执和预约固定来源核对；其他原业务继续核对"
+    "migration": "schema30；schema29非空升级保留原记录，新六表为空，不补造外院结果、专业确认或转介",
+    "recovery": "110张表CLI新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；外院/转介连续序列、专业原版本/附件来源、实际联系及改期/结果来源核对，其他原业务继续核对"
   },
   "releaseChecklist": [
     {
@@ -5688,10 +5846,18 @@
         "T06.02"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.33",
+      "title": "外院原资料、专业版本确认与转介安排、联系改期跟踪",
+      "task_ids": [
+        "T06.03"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "T06.03外院复查与转介跟踪：外院来源/附件、专业确认、转介安排、联系结果与重新排期；不覆盖本店数据",
+    "T06.04接触镜/OK镜专项技术基础：明确机构/人员职责依据、评估/同意资料、参数版本与订片追溯、交付护理指导、复查/异常/更换停用；不补造适用结论或专业字段",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -5700,21 +5866,21 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.32",
-    "automatedTests": 533,
-    "schema": 29,
-    "browserSuites": 18,
+    "version": "V0.33",
+    "automatedTests": 563,
+    "schema": 30,
+    "browserSuites": 19,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/contact.mjs",
-      "src/contact-api.mjs",
-      "src/contact-recovery.mjs",
-      "migrations/029_contact.sql",
-      "public/contact.js",
-      "src/demo-contact.mjs",
-      "test/contact.test.mjs",
-      "scripts/contact-browser-check.mjs",
-      "docs/contact.md",
+      "src/referrals.mjs",
+      "src/referral-api.mjs",
+      "src/referral-recovery.mjs",
+      "migrations/030_referrals.sql",
+      "public/referrals.js",
+      "src/demo-referrals.mjs",
+      "test/referrals.test.mjs",
+      "scripts/referrals-browser-check.mjs",
+      "docs/referrals.md",
       "docs/handover.md"
     ]
   }

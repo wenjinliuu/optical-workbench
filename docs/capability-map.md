@@ -2,7 +2,7 @@
 
 用户要求按计划逐项执行、统筹各业务能力，暂缓本人体验测试。开发继续进行自动检查和电脑/手机验证；业务方验收保持待完成。本清单用于后续实施衔接，原任务编号和范围仍以progress.json / requirements.json为准。
 
-## 已落地的共同入口（V0.32）
+## 已落地的共同入口（V0.33）
 
 | 能力 | 共用身份 / 历史 | 本轮跨模块约束 |
 | --- | --- | --- |
@@ -25,6 +25,7 @@
 | 原单售后与退回隔离 | aftercare_cases原delivery_id、aftercare_events.revision及退回dispatch_id | 一个活动案例、固定原客户/行/版本，分派与本人执行状态独立；退回原出库全局容量及案例量核对，隔离独立保管，结束/取消不转可售或退款 |
 | 训练模板与个人计划 | training_projects原模板版本；training_plans固定客户/需求；training_plan_versions/events | 人工评估/目标/项目说明与引用分别保存，责任人明确确认/调整/暂停/恢复/结束；不产生收费权益或预约 |
 | 当次现场课程 | training_sessions固定plan_version、actual visit_cycle_version；training_session_events与plan revision双向引用 | 当时项目/执行人与原责任人核对，实际未知/0、开始/暂停/记录/更正/核对/中止独立；新计划不改旧课程，时间轴与schema24恢复同刻顺序贯通 |
+| 外院资料与转介 | external_records/versions/events、referral_cases/events/contact_links | 原报告/自报/无法测与专业确认分开，修订待确认、原意见保留；固定客户/业务来源，专业和联系责任、实际联系回执预约与改期/结果分开；不改本店检查/钱款权益 |
 | 联系与人工预约 | contact_consents/events、contact_cases/events、attempts/receipts、customer_appointments/events | 授权/目的/发出/回执/到店分别保存；固定复查/订单/训练版本，失败责任接管、撤回即时停止新联系，预约不改训练容量或实际业务状态 |
 | 长期档案与复查 | longitudinal_cases/versions/events、observations/versions、review_plans/events，固定客户/随访需求及资料/复评/实际版本 | 来源条件时间轴、明确复查日期、逾期/负责人交接、实际处理/取消和未处理结案保护；临床趋势待依据 |
 | 家庭练习与阶段复评 | practice_assignments/versions/events/reports/reviews、training_reassessments/versions/events，固定客户/需求/计划及家长、资料/任务版本 | 明确家长发布/本人来源/专业共享反馈、人工复评；计划调整与权益分别办理 |

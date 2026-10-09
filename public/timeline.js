@@ -1,9 +1,10 @@
-const kinds={contact_case:"客户联系",contact_attempt:"实际联系",contact_receipt:"实际回执",customer_appointment:"客户预约",longitudinal:"长期档案",observation:"实际检查记录",review_plan:"复查安排",practice:"家庭练习",reassessment:"阶段复评",scheduling:'训练预约',entitlement:'套餐与权益',training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
+const kinds={external_record:"外院原资料",referral:"转介安排",referral_contact:"转介联系关联",contact_case:"客户联系",contact_attempt:"实际联系",contact_receipt:"实际回执",customer_appointment:"客户预约",longitudinal:"长期档案",observation:"实际检查记录",review_plan:"复查安排",practice:"家庭练习",reassessment:"阶段复评",scheduling:'训练预约',entitlement:'套餐与权益',training_plan:'训练计划',training_session:'当次课程',parameter:'配镜参数与变更核对',refund:'退款记录',aftercare_disposition:'旧件处置',aftercare_replacement:'售后新商品',dispatch:'批次出库',aftercare_work:'维修与归还',aftercare:'原单售后',fulfillment:'质检与交付',processing:'订货与加工',payment:'收款登记',inventory:'订单库存',retail:'配镜订单',profile:'档案',cycle:'周期',visit:'到店',contact:'联系人',document:'资料',attachment:'附件',authorization:'查看授权',task:'任务交接'};
 const sources={initial:'初始建档',legacy:'升级基线 · 此前修改未追溯',employee:'员工记录',external:'外部资料转录',guardian_report:'家长自报转录'};
 const types={followup:'长期随访',training:'训练服务',retail:'配镜服务'};
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
+ if(["external_record","referral","referral_contact"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:d.action+(d.version?" · V"+d.version:"")+(d.revision?" · R"+d.revision:"")+(d.status?" · "+d.status:"")+(d.destination?" · "+d.destination:"")};
  if(["contact_case","contact_attempt","contact_receipt","customer_appointment"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:d.action+(d.revision?" · R"+d.revision:"")+(d.result?" · "+d.result:"")+(d.starts_at?" · "+d.starts_at:""),reason:d.reason};
  if(["longitudinal","observation","review_plan"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:(d.action||"记录 / 更正")+" · "+(d.version?"V"+d.version:"R"+d.revision)+(d.measured_at?" · 实际检查 "+d.measured_at:d.due_date?" · 复查日期 "+d.due_date:""),reason:d.reason};
  if(["practice","reassessment"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:"V"+d.version+" · "+({submit:"实际情况提交",feedback:"专业反馈",create:"建立草稿",revise:"修订草稿",publish:"发布",withdraw:"撤回",close:"结束",check:"核对"}[d.action]||d.action),reason:d.reason};
@@ -37,11 +38,12 @@ function describe(event){
  if(event.kind==='authorization')return {title:d.action==='guardian.authorize'?'授权家长查看':'撤销家长查看授权',text:d.relationship,reason:d.reason};
  return {title:d.action==='baseline'?'登记早期联系人':d.action==='contact.create'?'登记家庭联系人':d.active?(d.previous_active===0?'恢复家庭联系人':'修订家庭联系人'):(d.previous_active===1?'停用家庭联系人':'修订停用联系人'),text:d.name?`${d.name} · ${d.relationship} · V${d.revision}`:'初版明细未留存',reason:d.reason};
 }
-export function createTimelinePanel({openContact,openLongitudinal,openFamily,openScheduling,openEntitlements,openTraining,api,getMe,getCustomer,getEpoch,toast}){
+export function createTimelinePanel({openReferral,openContact,openLongitudinal,openFamily,openScheduling,openEntitlements,openTraining,api,getMe,getCustomer,getEpoch,toast}){
  let resetCurrent=()=>{};
  function locate(event){
   if(['practice','reassessment'].includes(event.kind)){openFamily(event.kind==='practice'?'practices':'reassessments',event.entity_id);return;}
-  if(['contact_case','contact_attempt','contact_receipt','customer_appointment'].includes(event.kind)){openContact(event.kind==='customer_appointment'?'appointments':'cases',event.entity_id);return;}
+  if(['external_record','referral','referral_contact'].includes(event.kind)){openReferral(event.kind==='external_record'?'records':'cases',event.entity_id);return;}
+ if(['contact_case','contact_attempt','contact_receipt','customer_appointment'].includes(event.kind)){openContact(event.kind==='customer_appointment'?'appointments':'cases',event.entity_id);return;}
   if(['longitudinal','observation','review_plan'].includes(event.kind)){openLongitudinal({longitudinal:'cases',observation:'observations',review_plan:'plans'}[event.kind],event.entity_id);return;}
   if(event.kind==='scheduling'){openScheduling(event.entity_id);return;}
   if(event.kind==='entitlement'){openEntitlements(event.entity_id);return;}
