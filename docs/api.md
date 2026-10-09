@@ -279,3 +279,6 @@ GET/POST /api/processing/jobs/:id/parameter-reviews 读取/登记明确变更影
 
 
 V0.29：/scheduling/options；GET/POST /scheduling/resources，GET /resources/:id及POST /resources/:id/versions；GET/POST /scheduling/slots，GET /slots/:id及POST /slots/:id/events；GET /scheduling/bookings及/bookings/:id，POST /bookings/:id/events；GET/POST /customers/:id/scheduling；GET /scheduling/customers/:id/options。写入均expected_sequence，修订另需expected_version/revision，预约接纳需expected_plan_revision及目标slot_revision。完整字段、权限与未知规则见scheduling.md。
+
+
+V0.30：家庭练习/复评API及最小家长响应、expected_sequence/revision/本人提交数等完整字段见family-training.md。

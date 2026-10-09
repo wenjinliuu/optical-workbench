@@ -1,6 +1,6 @@
 {
   "baseline": "V1.1",
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "requirements": [
     {
       "id": "M01-F01",
@@ -1136,9 +1136,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.30：家庭练习布置/明确发布、自报/转录、专业共享反馈和人工阶段复评已保存；临床指标、效果图和正式表单未完成。"
     },
     {
       "id": "M08-D",
@@ -1163,9 +1174,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：固定项目、执行人、原计划责任人、实际开始/结束、分钟数/完成情况/反馈与来源保存；家庭练习/设备数据及正式不适字段未完成。"
+      "note": "V0.27：固定项目、执行人、原计划责任人、实际开始/结束、分钟数/完成情况/反馈与来源保存；家庭练习/设备数据及正式不适字段未完成。 V0.30：家庭练习/实际分钟/完成情况/来源/反馈、内部复评/检查对比、固定原计划/课程/资料/后续任务版本已保存；正式指标字典待依据。"
     },
     {
       "id": "M08-R",
@@ -1190,9 +1210,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：固定专业岗位执行人实际录入、固定计划版本责任人核对；家长提交和真实资质待完成。"
+      "note": "V0.27：固定专业岗位执行人实际录入、固定计划版本责任人核对；家长提交和真实资质待完成。 V0.30：原专业责任人布置/反馈/复评，明确有效家长仅见本人发布与共享反馈，负责人撤回/结束，前台仅转录；正式专业资质另核验。"
     },
     {
       "id": "M08-L",
@@ -1217,9 +1246,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：课程固定当时计划/模板、实际到店及独立需求版本；预约、权益扣次和复评尚未接通。"
+      "note": "V0.27：课程固定当时计划/模板、实际到店及独立需求版本；预约、权益扣次和复评尚未接通。 V0.30：家庭练习衔接原个人计划和可选实际课程，复评固定课程/自报/资料版本及既有下一任务；计划调整结束分别办理，不改变预约/权益。"
     },
     {
       "id": "M08-A",
@@ -1244,9 +1282,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：员工记录/外部转录/家长自报转录来源分开，家长不读取内部训练；设备采集及异常后续任务未实现。"
+      "note": "V0.27：员工记录/外部转录/家长自报转录来源分开，家长不读取内部训练；设备采集及异常后续任务未实现。 V0.30：家长自报与员工/设备人工转录分别来源，撤销授权阻断重放，未到复评不增预约门禁、结束记录不清零权益；正式业务验收待进行。"
     },
     {
       "id": "M09-F01",
@@ -4370,9 +4417,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：实际记录/逐项反馈/差异及固定责任人核对已接；家庭作业/家长提交与反馈跟进、扣次纠正未完成。"
+      "note": "V0.27：实际记录/逐项反馈/差异及固定责任人核对已接；家庭作业/家长提交与反馈跟进、扣次纠正未完成。 V0.30：阶段复评、检查对比/固定来源、下一任务引用和计划入口已接；正式指标/到期和专业执行闭环待依据。"
     },
     {
       "id": "W2-N6",
@@ -4401,9 +4457,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：人工复评节点说明和新计划版本/暂停/结束原因可保存；专业复评结论、检查对比、家庭记录和退款权益处理未完成。"
+      "note": "V0.27：人工复评节点说明和新计划版本/暂停/结束原因可保存；专业复评结论、检查对比、家庭记录和退款权益处理未完成。 V0.30：指定家长练习、本人提交和明确共享反馈已接，不公开内部专业资料；正式通知与家长专业报告发布待实现。"
     },
     {
       "id": "W3-N1",
@@ -5714,9 +5779,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：多次现场课程引用当时计划版本；新计划不改旧执行，原版本责任人核对。真实到期复评及循环预约尚未完成。"
+      "note": "V0.27：多次现场课程引用当时计划版本；新计划不改旧执行，原版本责任人核对。真实到期复评及循环预约尚未完成。 V0.30：家庭练习/阶段复评的版本、权限、来源、并发与恢复已开发验证；真实专业表单/资质及业务方验收保留。"
     },
     {
       "id": "S05",
@@ -6011,9 +6085,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.30：家庭练习发布、实际反馈和复评版本可查看；正式长期效果曲线/统一指标尚未实现。"
     },
     {
       "id": "V08",

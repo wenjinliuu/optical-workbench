@@ -192,3 +192,6 @@ parameter_versions固定order_id/order_version/customer_id/store_id、每单连�
 
 
 schema26：schedule_resources/versions固定资源种类、员工、容量/准备收尾及来源；schedule_slots/slot_events固定独立时段、原资源版本和全历史；schedule_bookings/booking_events固定原客户/训练需求/个人计划，时段版本、预约/候补/取消状态与原事件。schedule_journal/current_*为派生视图，不增业务表。所有事件以本店sequence回放同刻资源/时段/预约先后。
+
+
+V0.30：schema27：practice_assignments固定原计划/需求/课程/指定家长；practice_versions保存明确说明；practice_events保存发布/撤回/结束；practice_reports保存来源/实际情况；practice_reviews保存内部与独立共享反馈/后续任务版本；training_reassessments/versions/events保存内部阶段复评及固定来源。family_journal/current为派生视图。

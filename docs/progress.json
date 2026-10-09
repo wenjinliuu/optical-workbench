@@ -1,10 +1,10 @@
 {
   "baseline": "V1.1",
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.29训练资源与单次/小组排期：员工、房间、设备明确容量与准备/收尾间隔按版本保存，训练或维护时段独立占用资源；客户预约/候补固定原个人计划，转预约重新核对容量、资源与客户冲突，单次调课/取消/请假不覆盖同组其他客户。schema26六表及本店全序列、时间轴/实时权限/审计幂等/恢复与电脑手机贯通；29项具体开发交付勾选，原50任务287要求及整体验收保留。下一专业复评与家庭练习，真实扣次/效期及周期排课按规则接续。 整体未验收",
-  "currentTask": "T05.03",
-  "nextTask": "T05.05",
+  "productStatus": "V0.30家庭练习与阶段复评：练习固定原计划/需求、明确家长与可选课程，草稿和已发布说明分离；家长仅见本人有效授权下的明确发布、自报与共享反馈，内部与设备人工转录分别记录来源。人工复评固定课程/反馈/检查资料/后续任务版本，来源变化重新核对，不自动改计划、取消预约或清零权益。schema27八表、全店家庭序列/时间轴/权限审计幂等/恢复与电脑手机贯通；30项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.01长期档案与复查计划基础；正式表单/资质、真实扣次效期、周期排期及通知继续待依据。 整体未验收",
+  "currentTask": "T05.05",
+  "nextTask": "T06.01",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -189,6 +189,12 @@
       "version": "V0.29",
       "type": "开发交付",
       "summary": "V0.29训练资源与单次/小组排期：员工、房间、设备明确容量与准备/收尾间隔按版本保存，训练或维护时段独立占用资源；客户预约/候补固定原个人计划，转预约重新核对容量、资源与客户冲突，单次调课/取消/请假不覆盖同组其他客户。schema26六表及本店全序列、时间轴/实时权限/审计幂等/恢复与电脑手机贯通；29项具体开发交付勾选，原50任务287要求及整体验收保留。下一专业复评与家庭练习，真实扣次/效期及周期排课按规则接续。"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V0.30",
+      "type": "开发交付",
+      "summary": "V0.30家庭练习与阶段复评：练习固定原计划/需求、明确家长与可选课程，草稿和已发布说明分离；家长仅见本人有效授权下的明确发布、自报与共享反馈，内部与设备人工转录分别记录来源。人工复评固定课程/反馈/检查资料/后续任务版本，来源变化重新核对，不自动改计划、取消预约或清零权益。schema27八表、全店家庭序列/时间轴/权限审计幂等/恢复与电脑手机贯通；30项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.01长期档案与复查计划基础；正式表单/资质、真实扣次效期、周期排期及通知继续待依据。"
     }
   ],
   "tasks": [
@@ -1067,10 +1073,21 @@
         "T05.03",
         "T05.04"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 专业业务负责人（正式表单、规则与验收，待指定）",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "updated": "2026-10-09",
+      "note": "独立技术部分：明确家长练习发布/撤回/结束、实际提交来源、专业内部与共享反馈、关联既有后续任务；人工检查对比/阶段复评及固定资料版本、建议调整/结束方向和原计划入口。正式临床表单/指标/资质、复评到期规则、专业调整闭环与真实家长通知仍待依据，原前置和整体验收保留。"
     },
     {
       "id": "T06.01",
@@ -2167,9 +2184,20 @@
     },
     {
       "id": "M08-F04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.30：家庭练习布置/明确发布、自报/转录、专业共享反馈和人工阶段复评已保存；临床指标、效果图和正式表单未完成。"
     },
     {
       "id": "M08-D",
@@ -2184,9 +2212,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：固定项目、执行人、原计划责任人、实际开始/结束、分钟数/完成情况/反馈与来源保存；家庭练习/设备数据及正式不适字段未完成。"
+      "note": "V0.27：固定项目、执行人、原计划责任人、实际开始/结束、分钟数/完成情况/反馈与来源保存；家庭练习/设备数据及正式不适字段未完成。 V0.30：家庭练习/实际分钟/完成情况/来源/反馈、内部复评/检查对比、固定原计划/课程/资料/后续任务版本已保存；正式指标字典待依据。"
     },
     {
       "id": "M08-R",
@@ -2201,9 +2238,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：固定专业岗位执行人实际录入、固定计划版本责任人核对；家长提交和真实资质待完成。"
+      "note": "V0.27：固定专业岗位执行人实际录入、固定计划版本责任人核对；家长提交和真实资质待完成。 V0.30：原专业责任人布置/反馈/复评，明确有效家长仅见本人发布与共享反馈，负责人撤回/结束，前台仅转录；正式专业资质另核验。"
     },
     {
       "id": "M08-L",
@@ -2218,9 +2264,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：课程固定当时计划/模板、实际到店及独立需求版本；预约、权益扣次和复评尚未接通。"
+      "note": "V0.27：课程固定当时计划/模板、实际到店及独立需求版本；预约、权益扣次和复评尚未接通。 V0.30：家庭练习衔接原个人计划和可选实际课程，复评固定课程/自报/资料版本及既有下一任务；计划调整结束分别办理，不改变预约/权益。"
     },
     {
       "id": "M08-A",
@@ -2235,9 +2290,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：员工记录/外部转录/家长自报转录来源分开，家长不读取内部训练；设备采集及异常后续任务未实现。"
+      "note": "V0.27：员工记录/外部转录/家长自报转录来源分开，家长不读取内部训练；设备采集及异常后续任务未实现。 V0.30：家长自报与员工/设备人工转录分别来源，撤销授权阻断重放，未到复评不增预约门禁、结束记录不清零权益；正式业务验收待进行。"
     },
     {
       "id": "M09-F01",
@@ -4035,9 +4099,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：实际记录/逐项反馈/差异及固定责任人核对已接；家庭作业/家长提交与反馈跟进、扣次纠正未完成。"
+      "note": "V0.27：实际记录/逐项反馈/差异及固定责任人核对已接；家庭作业/家长提交与反馈跟进、扣次纠正未完成。 V0.30：阶段复评、检查对比/固定来源、下一任务引用和计划入口已接；正式指标/到期和专业执行闭环待依据。"
     },
     {
       "id": "W2-N6",
@@ -4052,9 +4125,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：人工复评节点说明和新计划版本/暂停/结束原因可保存；专业复评结论、检查对比、家庭记录和退款权益处理未完成。"
+      "note": "V0.27：人工复评节点说明和新计划版本/暂停/结束原因可保存；专业复评结论、检查对比、家庭记录和退款权益处理未完成。 V0.30：指定家长练习、本人提交和明确共享反馈已接，不公开内部专业资料；正式通知与家长专业报告发布待实现。"
     },
     {
       "id": "W3-N1",
@@ -4647,9 +4729,18 @@
         "test/training.test.mjs",
         "scripts/training-browser-check.mjs",
         "src/demo-training.mjs",
-        "docs/training.md"
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
       ],
-      "note": "V0.27：多次现场课程引用当时计划版本；新计划不改旧执行，原版本责任人核对。真实到期复评及循环预约尚未完成。"
+      "note": "V0.27：多次现场课程引用当时计划版本；新计划不改旧执行，原版本责任人核对。真实到期复评及循环预约尚未完成。 V0.30：家庭练习/阶段复评的版本、权限、来源、并发与恢复已开发验证；真实专业表单/资质及业务方验收保留。"
     },
     {
       "id": "S05",
@@ -4771,9 +4862,20 @@
     },
     {
       "id": "V07",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.30：家庭练习发布、实际反馈和复评版本可查看；正式长期效果曲线/统一指标尚未实现。"
     },
     {
       "id": "V08",
@@ -4867,15 +4969,15 @@
     }
   ],
   "validation": {
-    "date": "2026-10-08",
+    "date": "2026-10-09",
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 446,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。"
+      "tests": 476,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的15组浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的16组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -4897,7 +4999,8 @@
         "scripts/parameters-browser-check.mjs",
         "scripts/training-browser-check.mjs",
         "scripts/entitlements-browser-check.mjs",
-        "scripts/scheduling-browser-check.mjs"
+        "scripts/scheduling-browser-check.mjs",
+        "scripts/family-training-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -4972,8 +5075,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema26；schema25非空升级保留原记录，新六表为空，不补造资源、排期、签到或权益",
-    "recovery": "81表新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；资源/时段/预约按本店全序列回放，固定版本/容量/维护/客户冲突/候补状态与原流水共同核对；旧业务记录保持"
+    "migration": "schema27；schema26非空升级保留原记录，新八表为空，不补造家长授权、练习、复评或权益",
+    "recovery": "89表新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；家庭练习/实际提交/专业反馈/阶段复评按本店家庭全序列回放，检查固定来源与公开状态，同毫秒后来的反馈不能替换旧复评依据；其他原业务继续核对"
   },
   "releaseChecklist": [
     {
@@ -5223,10 +5326,18 @@
         "T05.03"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.30",
+      "title": "家庭练习明确发布、本人实际反馈与阶段复评固定来源",
+      "task_ids": [
+        "T05.05"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "T05.05专业复评与家庭练习：衔接原训练计划、现场课程、实际资料和家长授权；真实专业表单与发布规则待依据",
+    "T06.01长期档案与复查计划基础：衔接现有检查资料、复评/周期、责任人员、明确复查日期及逾期/结案；真实双眼条件指标和临床判断按依据接入",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -5235,21 +5346,21 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.29",
-    "automatedTests": 446,
-    "schema": 26,
-    "browserSuites": 15,
+    "version": "V0.30",
+    "automatedTests": 476,
+    "schema": 27,
+    "browserSuites": 16,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/scheduling.mjs",
-      "src/scheduling-api.mjs",
-      "src/scheduling-recovery.mjs",
-      "migrations/026_scheduling.sql",
-      "public/scheduling.js",
-      "src/demo-scheduling.mjs",
-      "test/scheduling.test.mjs",
-      "scripts/scheduling-browser-check.mjs",
-      "docs/scheduling.md",
+      "src/family-training.mjs",
+      "src/family-training-api.mjs",
+      "src/family-training-recovery.mjs",
+      "migrations/027_family_training.sql",
+      "public/family-training.js",
+      "src/demo-family-training.mjs",
+      "test/family-training.test.mjs",
+      "scripts/family-training-browser-check.mjs",
+      "docs/family-training.md",
       "docs/handover.md"
     ]
   }
