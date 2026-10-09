@@ -195,3 +195,6 @@ schema26：schedule_resources/versions固定资源种类、员工、容量/准�
 
 
 V0.30：schema27：practice_assignments固定原计划/需求/课程/指定家长；practice_versions保存明确说明；practice_events保存发布/撤回/结束；practice_reports保存来源/实际情况；practice_reviews保存内部与独立共享反馈/后续任务版本；training_reassessments/versions/events保存内部阶段复评及固定来源。family_journal/current为派生视图。
+
+
+V0.31：schema28：longitudinal_cases固定客户和随访周期版本，case_versions保存描述/资料来源，case_events保存责任人与状态/结案；longitudinal_observations与observation_versions保存实际时间/眼别/条件/来源及更正；review_plans与review_plan_events保存明确复查及处理后续。longitudinal_journal/current为派生视图。

@@ -1,3 +1,4 @@
+import {createLongitudinalHandler} from './longitudinal-api.mjs';
 import {createFamilyHandler} from './family-training-api.mjs';
 import {createSchedulingHandler} from './scheduling-api.mjs';
 import {createEntitlementsHandler} from './entitlements-api.mjs';
@@ -69,6 +70,9 @@ roles.guardian.push('family:report');
 for(const role of ['manager','reception','professional'])roles[role].push('family:transcribe');
 for(const role of ['manager','professional'])roles[role].push('family:manage');
 roles.professional.push('family:review');
+for(const role of ['manager','reception','professional'])roles[role].push('longitudinal:read');
+roles.professional.push('longitudinal:professional','longitudinal:manage');
+roles.manager.push('longitudinal:manage');
 const dummyHash = hashPassword(randomBytes(24).toString('hex'));
 class HttpError extends Error { constructor(status, code, message) { super(message); this.status=status; this.code=code; } }
 const fail = (status, code, message) => { throw new HttpError(status, code, message); };
@@ -131,6 +135,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const tasks=createTasksHandler(db,{need,customer,field,fail,body,mutation,audit});
   const taskEvidence=createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit});
   const dispatch=createDispatchHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const longitudinal=createLongitudinalHandler(db,{need,customer,field,fail,body,mutation,audit});
   const familyTraining=createFamilyHandler(db,{need,customer,field,fail,body,mutation,audit});
   const scheduling=createSchedulingHandler(db,{need,customer,field,fail,body,mutation,audit});
   const entitlements=createEntitlementsHandler(db,{need,customer,field,fail,body,mutation,audit});
@@ -156,7 +161,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/family-training.js':['family-training.js','text/javascript'],'/scheduling.js':['scheduling.js','text/javascript'],'/entitlements.js':['entitlements.js','text/javascript'],'/training.js':['training.js','text/javascript'],'/parameters.js':['parameters.js','text/javascript'],'/refunds.js':['refunds.js','text/javascript'],'/aftercare-dispositions.js':['aftercare-dispositions.js','text/javascript'],'/aftercare-replacements.js':['aftercare-replacements.js','text/javascript'],'/aftercare-work.js':['aftercare-work.js','text/javascript'],'/progress.js':['progress.js','text/javascript'],'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/longitudinal.js':['longitudinal.js','text/javascript'],'/family-training.js':['family-training.js','text/javascript'],'/scheduling.js':['scheduling.js','text/javascript'],'/entitlements.js':['entitlements.js','text/javascript'],'/training.js':['training.js','text/javascript'],'/parameters.js':['parameters.js','text/javascript'],'/refunds.js':['refunds.js','text/javascript'],'/aftercare-dispositions.js':['aftercare-dispositions.js','text/javascript'],'/aftercare-replacements.js':['aftercare-replacements.js','text/javascript'],'/aftercare-work.js':['aftercare-work.js','text/javascript'],'/progress.js':['progress.js','text/javascript'],'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -193,6 +198,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       }
       if(await organization(req,res,path,user,json))return;
       if(await dispatch(req,path,url,user,json))return;
+      if(await longitudinal(req,path,url,user,json))return;
       if(await familyTraining(req,path,url,user,json))return;
       if(await scheduling(req,path,url,user,json))return;
       if(await entitlements(req,path,url,user,json))return;

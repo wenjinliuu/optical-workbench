@@ -282,3 +282,6 @@ V0.29：/scheduling/options；GET/POST /scheduling/resources，GET /resources/:i
 
 
 V0.30：家庭练习/复评API及最小家长响应、expected_sequence/revision/本人提交数等完整字段见family-training.md。
+
+
+V0.31：长期档案/实际资料/复查API、固定来源及expected_sequence/revision/case_revision等字段见longitudinal.md。

@@ -2,9 +2,9 @@
   "baseline": "V1.1",
   "updated": "2026-10-09",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.30家庭练习与阶段复评：练习固定原计划/需求、明确家长与可选课程，草稿和已发布说明分离；家长仅见本人有效授权下的明确发布、自报与共享反馈，内部与设备人工转录分别记录来源。人工复评固定课程/反馈/检查资料/后续任务版本，来源变化重新核对，不自动改计划、取消预约或清零权益。schema27八表、全店家庭序列/时间轴/权限审计幂等/恢复与电脑手机贯通；30项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.01长期档案与复查计划基础；正式表单/资质、真实扣次效期、周期排期及通知继续待依据。 整体未验收",
-  "currentTask": "T05.05",
-  "nextTask": "T06.01",
+  "productStatus": "V0.31长期档案与复查计划：固定客户/随访需求及资料/已核对复评版本，明确档案与单条复查负责人。实际检查时间轴、左右眼/双眼条件与来源筛选、更正历史分别保留；明确复查日期、逾期派生、暂停/修订/移交、实际完成依据和取消后续。结案原因及后续必填，未结束安排逐条处理，不自动改服务周期、训练/订单/资金权益或发通知。schema28七表、全店长期序列/时间轴/权限审计幂等/恢复与电脑手机贯通；31项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.02联系、预约和失败接管；真实双眼指标/临床趋势、专业表单/资质及通知规则仍待依据。 整体未验收",
+  "currentTask": "T06.01",
+  "nextTask": "T06.02",
   "stage": "P00",
   "blockers": [
     "套餐扣次、组合优惠/费用退款公式、专业表单、财务口径和外部接口等待实际规则确认"
@@ -195,6 +195,12 @@
       "version": "V0.30",
       "type": "开发交付",
       "summary": "V0.30家庭练习与阶段复评：练习固定原计划/需求、明确家长与可选课程，草稿和已发布说明分离；家长仅见本人有效授权下的明确发布、自报与共享反馈，内部与设备人工转录分别记录来源。人工复评固定课程/反馈/检查资料/后续任务版本，来源变化重新核对，不自动改计划、取消预约或清零权益。schema27八表、全店家庭序列/时间轴/权限审计幂等/恢复与电脑手机贯通；30项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.01长期档案与复查计划基础；正式表单/资质、真实扣次效期、周期排期及通知继续待依据。"
+    },
+    {
+      "date": "2026-10-09",
+      "version": "V0.31",
+      "type": "开发交付",
+      "summary": "V0.31长期档案与复查计划：固定客户/随访需求及资料/已核对复评版本，明确档案与单条复查负责人。实际检查时间轴、左右眼/双眼条件与来源筛选、更正历史分别保留；明确复查日期、逾期派生、暂停/修订/移交、实际完成依据和取消后续。结案原因及后续必填，未结束安排逐条处理，不自动改服务周期、训练/订单/资金权益或发通知。schema28七表、全店长期序列/时间轴/权限审计幂等/恢复与电脑手机贯通；31项具体开发交付勾选，原50任务287要求及整体验收保留。下一T06.02联系、预约和失败接管；真实双眼指标/临床趋势、专业表单/资质及通知规则仍待依据。"
     }
   ],
   "tasks": [
@@ -1104,10 +1110,21 @@
         "T05.04",
         "T05.05"
       ],
-      "status": "未开始",
-      "owner": "待分配",
-      "evidence": [],
-      "updated": "2026-10-07"
+      "status": "进行中",
+      "owner": "开发负责人（实现）/ 专业业务负责人（临床指标、资质与验收，待指定）",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "updated": "2026-10-09",
+      "note": "长期档案/固定检查及复评来源、责任人、实际检查时间轴、双眼条件筛选、更正留痕、明确复查/逾期/暂停/改期/负责人调整、实际完成及取消后续/结案已接。变化来源保留，但正式左右眼数值趋势、临床指标/单位/表单及专业资格尚待依据；外院结果确认/转介在T06.03，联系回执/预约/失败接管在T06.02。原前置和整体验收保留。"
     },
     {
       "id": "T06.02",
@@ -1824,51 +1841,139 @@
     },
     {
       "id": "M05-F01",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：实际检查时间轴、录入/更正时间及固定来源版本可读；统一临床项目字典待依据。"
     },
     {
       "id": "M05-F02",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：左右眼/原始双眼合并记录、条件状态和来源可筛选；未确认指标及单位，不生成数值趋势或疗效结论。"
     },
     {
       "id": "M05-F03",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：明确日期/目的/项目/负责人及固定资料版本、暂停/修订/移交和人工完成已接；无默认频率和循环生成。"
     },
     {
       "id": "M05-F04",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：逾期只派生提示、未结束复查阻断结案、结案原因/后续必填；正式转介和外院结果确认在后续任务。"
     },
     {
       "id": "M05-D",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：基线缺失/人工目标/固定方案来源、下次日期与负责人、条件/来源/更正及结果后续已保存；外院转录不视为专业确认。"
     },
     {
       "id": "M05-R",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：当前档案/复查专业负责人分别管理，负责人可行政处理，前台读取；正式专业资质另行核验，家长无内部资料入口。"
     },
     {
       "id": "M05-L",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：同客户/明确随访周期、不可变检查资料、已核对训练复评及既有下一任务显式衔接；原计划/周期/到店/订单/权益各自办理。"
     },
     {
       "id": "M05-A",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：可查看来源条件与版本变化；临床数值趋势与正式专业判断/资质待依据，未整体验收。"
     },
     {
       "id": "M06-F01",
@@ -4140,39 +4245,105 @@
     },
     {
       "id": "W3-N1",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：现有检查资料及已核对复评版本衔接长期档案，明确基线缺失；统一指标待依据。"
     },
     {
       "id": "W3-N2",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：人工目标和来源版本保存；正式专业方案批准待依据。"
     },
     {
       "id": "W3-N3",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：明确复查日期/负责人及暂停/修订已接；通知和到店在T06.02继续。"
     },
     {
       "id": "W3-N4",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：实际检查时间、眼别/条件/来源及更正分别保存，未生成默认趋势值。"
     },
     {
       "id": "W3-N5",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：显式复查修订、原资料版本和既有后续任务来源保留；临床调整规则待依据。"
     },
     {
       "id": "W3-N6",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：未处理复查逐条解决后明确原因/后续结案；转介另行实现。"
     },
     {
       "id": "W4-N1",
@@ -4879,9 +5050,20 @@
     },
     {
       "id": "V08",
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：长期档案、检查条件来源和复查/逾期/结案可查看；临床趋势、转介及联系回执待后续。"
     },
     {
       "id": "VR01",
@@ -4973,11 +5155,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 476,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。"
+      "tests": 504,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。；28项长期档案/复查专项：固定来源/已核对复评、状态与责任移交、真实时间/眼别条件筛选、逾期派生、实际完成/未结束结案保护、更正及同刻序列、实时会话/请求体等待/幂等审计回滚、分页/时间轴、非空升级/七表恢复与重复虚构案例。"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的16组浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的17组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -5000,7 +5182,8 @@
         "scripts/training-browser-check.mjs",
         "scripts/entitlements-browser-check.mjs",
         "scripts/scheduling-browser-check.mjs",
-        "scripts/family-training-browser-check.mjs"
+        "scripts/family-training-browser-check.mjs",
+        "scripts/longitudinal-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -5075,8 +5258,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema27；schema26非空升级保留原记录，新八表为空，不补造家长授权、练习、复评或权益",
-    "recovery": "89表新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；家庭练习/实际提交/专业反馈/阶段复评按本店家庭全序列回放，检查固定来源与公开状态，同毫秒后来的反馈不能替换旧复评依据；其他原业务继续核对"
+    "migration": "schema28；schema27非空升级保留原记录，新七表为空，不补造检查、复查、专业指标或规则",
+    "recovery": "96张表CLI新建/重复初始化、备份核验/独立恢复逐表一致，会话清零；长期档案/实际检查/复查按本店全序列核对当时状态、不可变来源、实际时间及结案前待处理安排，同毫秒后来的更正不能替换旧依据；其他原业务继续核对"
   },
   "releaseChecklist": [
     {
@@ -5334,10 +5517,18 @@
         "T05.05"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.31",
+      "title": "长期档案、来源条件时间轴、明确复查与逾期结案",
+      "task_ids": [
+        "T06.01"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "T06.01长期档案与复查计划基础：衔接现有检查资料、复评/周期、责任人员、明确复查日期及逾期/结案；真实双眼条件指标和临床判断按依据接入",
+    "T06.02联系、预约和失败接管：复查/取镜/训练通知目的、联系授权与回执、失联/再次联系/延期/到店关联；发出不视为已读或已到店",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -5346,21 +5537,21 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.30",
-    "automatedTests": 476,
-    "schema": 27,
-    "browserSuites": 16,
+    "version": "V0.31",
+    "automatedTests": 504,
+    "schema": 28,
+    "browserSuites": 17,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/family-training.mjs",
-      "src/family-training-api.mjs",
-      "src/family-training-recovery.mjs",
-      "migrations/027_family_training.sql",
-      "public/family-training.js",
-      "src/demo-family-training.mjs",
-      "test/family-training.test.mjs",
-      "scripts/family-training-browser-check.mjs",
-      "docs/family-training.md",
+      "src/longitudinal.mjs",
+      "src/longitudinal-api.mjs",
+      "src/longitudinal-recovery.mjs",
+      "migrations/028_longitudinal.sql",
+      "public/longitudinal.js",
+      "src/demo-longitudinal.mjs",
+      "test/longitudinal.test.mjs",
+      "scripts/longitudinal-browser-check.mjs",
+      "docs/longitudinal.md",
       "docs/handover.md"
     ]
   }

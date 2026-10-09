@@ -538,9 +538,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：实际检查时间轴、录入/更正时间及固定来源版本可读；统一临床项目字典待依据。"
     },
     {
       "id": "M05-F02",
@@ -552,9 +563,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：左右眼/原始双眼合并记录、条件状态和来源可筛选；未确认指标及单位，不生成数值趋势或疗效结论。"
     },
     {
       "id": "M05-F03",
@@ -566,9 +588,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：明确日期/目的/项目/负责人及固定资料版本、暂停/修订/移交和人工完成已接；无默认频率和循环生成。"
     },
     {
       "id": "M05-F04",
@@ -580,9 +613,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：逾期只派生提示、未结束复查阻断结案、结案原因/后续必填；正式转介和外院结果确认在后续任务。"
     },
     {
       "id": "M05-D",
@@ -596,9 +640,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：基线缺失/人工目标/固定方案来源、下次日期与负责人、条件/来源/更正及结果后续已保存；外院转录不视为专业确认。"
     },
     {
       "id": "M05-R",
@@ -612,9 +667,20 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：当前档案/复查专业负责人分别管理，负责人可行政处理，前台读取；正式专业资质另行核验，家长无内部资料入口。"
     },
     {
       "id": "M05-L",
@@ -629,9 +695,20 @@
         "T02.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：同客户/明确随访周期、不可变检查资料、已核对训练复评及既有下一任务显式衔接；原计划/周期/到店/订单/权益各自办理。"
     },
     {
       "id": "M05-A",
@@ -645,9 +722,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：可查看来源条件与版本变化；临床数值趋势与正式专业判断/资质待依据，未整体验收。"
     },
     {
       "id": "M06-F01",
@@ -4485,9 +4573,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：现有检查资料及已核对复评版本衔接长期档案，明确基线缺失；统一指标待依据。"
     },
     {
       "id": "W3-N2",
@@ -4504,9 +4603,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：人工目标和来源版本保存；正式专业方案批准待依据。"
     },
     {
       "id": "W3-N3",
@@ -4523,9 +4633,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：明确复查日期/负责人及暂停/修订已接；通知和到店在T06.02继续。"
     },
     {
       "id": "W3-N4",
@@ -4542,9 +4663,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：实际检查时间、眼别/条件/来源及更正分别保存，未生成默认趋势值。"
     },
     {
       "id": "W3-N5",
@@ -4561,9 +4693,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：显式复查修订、原资料版本和既有后续任务来源保留；临床调整规则待依据。"
     },
     {
       "id": "W3-N6",
@@ -4580,9 +4723,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：未处理复查逐条解决后明确原因/后续结案；转介另行实现。"
     },
     {
       "id": "W4-N1",
@@ -6114,9 +6268,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：长期档案、检查条件来源和复查/逾期/结案可查看；临床趋势、转介及联系回执待后续。"
     },
     {
       "id": "VR01",

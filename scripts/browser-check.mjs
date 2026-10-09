@@ -180,12 +180,12 @@ try{
  await page.locator('.customer-facts').getByText('2',{exact:true}).waitFor();
  await page.locator('.customer-timeline summary').click();await page.locator('.timeline-event').first().waitFor();
  assert.ok((await page.locator('.customer-facts').textContent()).includes('周期草稿'));
- await page.locator('.timeline-filters select').selectOption('contact');await page.locator('.timeline-filters button').click();
+ await page.locator('.customer-timeline .timeline-filters select').selectOption('contact');await page.locator('.customer-timeline .timeline-filters button').click();
  await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),3);assert.ok((await page.locator('.timeline-list').textContent()).includes('恢复家庭联系人'));
- await page.locator('.timeline-filters select').selectOption('visit');await page.locator('.timeline-filters button').click();await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),3);
+ await page.locator('.customer-timeline .timeline-filters select').selectOption('visit');await page.locator('.customer-timeline .timeline-filters button').click();await page.locator('.customer-timeline [role=status]').filter({hasText:'当前筛选已显示完毕'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),3);
  await page.locator('.timeline-event').filter({hasText:'结束本次到店'}).getByRole('button',{name:'定位对应记录'}).click();await page.locator('.visit-card.timeline-focus').waitFor();
- await page.locator('.timeline-filters input[name=from]').fill('1900-01-01');await page.locator('.timeline-filters input[name=to]').fill('1900-01-01');await page.locator('.timeline-filters button').click();await page.getByText('当前筛选下没有记录。',{exact:true}).waitFor();
- await page.locator('.timeline-filters input[name=from]').fill('');await page.locator('.timeline-filters input[name=to]').fill('');await page.locator('.timeline-filters select').selectOption('all');await page.locator('.timeline-filters button').click();await page.locator('.timeline-event').first().waitFor();
+ await page.locator('.customer-timeline .timeline-filters input[name=from]').fill('1900-01-01');await page.locator('.customer-timeline .timeline-filters input[name=to]').fill('1900-01-01');await page.locator('.customer-timeline .timeline-filters button').click();await page.getByText('当前筛选下没有记录。',{exact:true}).waitFor();
+ await page.locator('.customer-timeline .timeline-filters input[name=from]').fill('');await page.locator('.customer-timeline .timeline-filters input[name=to]').fill('');await page.locator('.customer-timeline .timeline-filters select').selectOption('all');await page.locator('.customer-timeline .timeline-filters button').click();await page.locator('.timeline-event').first().waitFor();
  await page.screenshot({path:'data/browser-check/timeline-desktop.png',fullPage:true});
  await page.screenshot({path:'data/browser-check/desktop.png',fullPage:true});
  await page.getByRole('button',{name:'操作审计',exact:false}).click();
@@ -275,7 +275,7 @@ try{
  for(let i=0;i<25;i++)db.prepare('INSERT INTO service_cycles VALUES (?,?,?,?,?,?,?)').run(`browser-history-${i}`,'sample-intake','followup',`虚构历史周期 ${i}`,'draft','2026-01-01T00:00:00.000Z','demo-manager');
  await page.getByRole('button',{name:'刷新总览',exact:true}).click();
  await page.locator('.customer-timeline summary').click();await page.locator('.timeline-event').first().waitFor();
- await page.locator('.timeline-filters select').selectOption('cycle');await page.locator('.timeline-filters button').click();await page.getByRole('button',{name:'加载更早记录',exact:true}).waitFor({state:'visible'});assert.equal(await page.locator('.timeline-event').count(),20);
+ await page.locator('.customer-timeline .timeline-filters select').selectOption('cycle');await page.locator('.customer-timeline .timeline-filters button').click();await page.getByRole('button',{name:'加载更早记录',exact:true}).waitFor({state:'visible'});assert.equal(await page.locator('.timeline-event').count(),20);
  await page.getByRole('button',{name:'加载更早记录',exact:true}).click();await page.locator('.customer-timeline [role=status]').filter({hasText:'已显示 26 条记录'}).waitFor();assert.equal(await page.locator('.timeline-event').count(),26);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,'mobile timeline must not overflow');await page.screenshot({path:'data/browser-check/timeline-mobile.png',fullPage:true});
  await page.locator('.customer-timeline summary').click();
