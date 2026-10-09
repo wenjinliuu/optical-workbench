@@ -5020,9 +5020,21 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-trace.mjs",
+        "src/specialty-trace-api.mjs",
+        "src/specialty-order-ledger.mjs",
+        "src/specialty-trace-recovery.mjs",
+        "migrations/032_specialty_trace.sql",
+        "public/specialty-trace.js",
+        "src/demo-specialty-trace.mjs",
+        "test/specialty-trace.test.mjs",
+        "scripts/specialty-trace-browser-check.mjs",
+        "docs/specialty-trace.md"
+      ],
+      "note": "V0.35专业固定当前评估/有效同意与原参数交接、未执行原订单；原到货批号/序列来源与未知更正，原合格质检/签收出库需完整可访问追溯；逐动作专业来源和批号原版本固定。真实处方/质量标准、特殊订片/数量纠错/临床变更及完整护理复查继续办理。"
     },
     {
       "id": "W4-N3",
@@ -5039,9 +5051,21 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-trace.mjs",
+        "src/specialty-trace-api.mjs",
+        "src/specialty-order-ledger.mjs",
+        "src/specialty-trace-recovery.mjs",
+        "migrations/032_specialty_trace.sql",
+        "public/specialty-trace.js",
+        "src/demo-specialty-trace.mjs",
+        "test/specialty-trace.test.mjs",
+        "scripts/specialty-trace-browser-check.mjs",
+        "docs/specialty-trace.md"
+      ],
+      "note": "V0.35专业固定当前评估/有效同意与原参数交接、未执行原订单；原到货批号/序列来源与未知更正，原合格质检/签收出库需完整可访问追溯；逐动作专业来源和批号原版本固定。真实处方/质量标准、特殊订片/数量纠错/临床变更及完整护理复查继续办理。"
     },
     {
       "id": "W4-N4",
