@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -33,6 +33,7 @@
     "test:family-training-browser": "node scripts/family-training-browser-check.mjs",
     "test:longitudinal-browser": "node scripts/longitudinal-browser-check.mjs",
     "test:contact-browser": "node scripts/contact-browser-check.mjs",
-    "test:referrals-browser": "node scripts/referrals-browser-check.mjs"
+    "test:referrals-browser": "node scripts/referrals-browser-check.mjs",
+    "test:specialty-browser": "node scripts/specialty-browser-check.mjs"
   }
 }

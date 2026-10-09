@@ -4990,9 +4990,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty.mjs",
+        "src/specialty-api.mjs",
+        "src/specialty-recovery.mjs",
+        "migrations/031_specialty.sql",
+        "public/specialty.js",
+        "src/demo-specialty.mjs",
+        "test/specialty.test.mjs",
+        "scripts/specialty-browser-check.mjs",
+        "docs/specialty.md"
+      ],
+      "note": "V0.34：机构范围/职责/专业资料要求的来源版本、客户评估/待补与本版同意、专业明确采用和撤回保护已接。真实适用表单/临床指标/资质核验仍待依据；参数订片/质量批号/护理复查后续接通。"
     },
     {
       "id": "W4-N2",
