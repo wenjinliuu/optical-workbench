@@ -1587,9 +1587,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-F02",
@@ -1602,9 +1613,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-F03",
@@ -1617,9 +1639,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-F04",
@@ -1632,9 +1665,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-D",
@@ -1648,9 +1692,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-R",
@@ -1664,9 +1719,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-L",
@@ -1680,9 +1746,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M10-A",
@@ -1696,9 +1773,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "M11-F01",
@@ -3516,9 +3604,20 @@
         "T03.04",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "C07",
@@ -4614,9 +4713,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
       ],
-      "note": "V0.31：人工目标和来源版本保存；正式专业方案批准待依据。"
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "W3-N3",
@@ -4644,9 +4752,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
       ],
-      "note": "V0.31：明确复查日期/负责人及暂停/修订已接；通知和到店在T06.02继续。"
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "W3-N4",
@@ -4734,9 +4851,18 @@
         "src/demo-longitudinal.mjs",
         "test/longitudinal.test.mjs",
         "scripts/longitudinal-browser-check.mjs",
-        "docs/longitudinal.md"
+        "docs/longitudinal.md",
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
       ],
-      "note": "V0.31：未处理复查逐条解决后明确原因/后续结案；转介另行实现。"
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "W4-N1",
@@ -6039,9 +6165,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
     },
     {
       "id": "S10",
