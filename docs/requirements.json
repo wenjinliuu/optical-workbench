@@ -2970,9 +2970,18 @@
         "src/demo-staff-records.mjs",
         "test/staff-records.test.mjs",
         "scripts/staff-records-browser-check.mjs",
-        "docs/staff-records.md"
+        "docs/staff-records.md",
+        "migrations/046_staff_cover.sql",
+        "src/staff-cover.mjs",
+        "src/staff-cover-api.mjs",
+        "src/staff-cover-recovery.mjs",
+        "public/staff-cover.js",
+        "src/demo-staff-cover.mjs",
+        "test/staff-cover.test.mjs",
+        "scripts/staff-cover-browser-check.mjs",
+        "docs/staff-cover.md"
       ],
-      "note": "本店员工四类型原来源/未知/固定版本与撤回，以及当前账号与业务责任入口；休假/班次仅明确人工安排、培训仅实际记录，资质来源仍未核验。专业许可/政策审批/容量/多店与财务等原范围及整体验收保留。"
+      "note": "本店人工休假与固定员工/任务修订/拟接收人逐项交接安排，原来源与历史快照/版本/撤回保留；当前源变化逐项阻止旧办理。专业资质未核验，审批/容量/多店与财务及正式规则和整体验收保留。"
     },
     {
       "id": "M15-F03",
@@ -3032,9 +3041,18 @@
         "src/demo-staff-records.mjs",
         "test/staff-records.test.mjs",
         "scripts/staff-records-browser-check.mjs",
-        "docs/staff-records.md"
+        "docs/staff-records.md",
+        "migrations/046_staff_cover.sql",
+        "src/staff-cover.mjs",
+        "src/staff-cover-api.mjs",
+        "src/staff-cover-recovery.mjs",
+        "public/staff-cover.js",
+        "src/demo-staff-cover.mjs",
+        "test/staff-cover.test.mjs",
+        "scripts/staff-cover-browser-check.mjs",
+        "docs/staff-cover.md"
       ],
-      "note": "本店员工四类型原来源/未知/固定版本与撤回，以及当前账号与业务责任入口；休假/班次仅明确人工安排、培训仅实际记录，资质来源仍未核验。专业许可/政策审批/容量/多店与财务等原范围及整体验收保留。"
+      "note": "本店人工休假与固定员工/任务修订/拟接收人逐项交接安排，原来源与历史快照/版本/撤回保留；当前源变化逐项阻止旧办理。专业资质未核验，审批/容量/多店与财务及正式规则和整体验收保留。"
     },
     {
       "id": "M15-R",
@@ -3066,9 +3084,18 @@
         "src/demo-staff-records.mjs",
         "test/staff-records.test.mjs",
         "scripts/staff-records-browser-check.mjs",
-        "docs/staff-records.md"
+        "docs/staff-records.md",
+        "migrations/046_staff_cover.sql",
+        "src/staff-cover.mjs",
+        "src/staff-cover-api.mjs",
+        "src/staff-cover-recovery.mjs",
+        "public/staff-cover.js",
+        "src/demo-staff-cover.mjs",
+        "test/staff-cover.test.mjs",
+        "scripts/staff-cover-browser-check.mjs",
+        "docs/staff-cover.md"
       ],
-      "note": "本店员工四类型原来源/未知/固定版本与撤回，以及当前账号与业务责任入口；休假/班次仅明确人工安排、培训仅实际记录，资质来源仍未核验。专业许可/政策审批/容量/多店与财务等原范围及整体验收保留。"
+      "note": "本店人工休假与固定员工/任务修订/拟接收人逐项交接安排，原来源与历史快照/版本/撤回保留；当前源变化逐项阻止旧办理。专业资质未核验，审批/容量/多店与财务及正式规则和整体验收保留。"
     },
     {
       "id": "M15-L",
