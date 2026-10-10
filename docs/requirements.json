@@ -3004,12 +3004,17 @@
         "T10.05"
       ],
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
-        "docs/handover.md",
-        "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
-      ]
+        "src/staff-handover.mjs",
+        "public/staff-handover.js",
+        "public/tasks.js",
+        "src/demo-staff-handover.mjs",
+        "test/staff-handover.test.mjs",
+        "scripts/staff-handover-browser-check.mjs",
+        "docs/staff-handover.md"
+      ],
+      "note": "本店员工业务责任/原修订与账号岗位状态分别核对，通用任务交接沿原流程；完整多店交接/休假培训/资质效期/财务及正式规则与整体验收保留。"
     },
     {
       "id": "M15-R",
@@ -3024,12 +3029,17 @@
         "T10.05"
       ],
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
-        "docs/handover.md",
-        "test/foundation.test.mjs",
-        "scripts/browser-check.mjs"
-      ]
+        "src/staff-handover.mjs",
+        "public/staff-handover.js",
+        "public/tasks.js",
+        "src/demo-staff-handover.mjs",
+        "test/staff-handover.test.mjs",
+        "scripts/staff-handover-browser-check.mjs",
+        "docs/staff-handover.md"
+      ],
+      "note": "本店员工业务责任/原修订与账号岗位状态分别核对，通用任务交接沿原流程；完整多店交接/休假培训/资质效期/财务及正式规则与整体验收保留。"
     },
     {
       "id": "M15-L",

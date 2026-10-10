@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.48.0",
+  "version": "0.49.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -48,6 +48,7 @@
     "test:inventory-custody-browser": "node scripts/inventory-custody-browser-check.mjs",
     "test:inventory-batches-browser": "node scripts/inventory-batches-browser-check.mjs",
     "test:inventory-reserved-browser": "node scripts/inventory-reserved-browser-check.mjs",
-    "test:inventory-reserved-batches-browser": "node scripts/inventory-reserved-batches-browser-check.mjs"
+    "test:inventory-reserved-batches-browser": "node scripts/inventory-reserved-batches-browser-check.mjs",
+    "test:staff-handover-browser": "node scripts/staff-handover-browser-check.mjs"
   }
 }
