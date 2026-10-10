@@ -1,3 +1,5 @@
+import {createSpecialtyContinuityHandler} from './specialty-continuity-api.mjs';
+import {guardSpecialtyReplacementMutation} from './specialty-continuity-ledger.mjs';
 import {createSpecialtyReviewHandler} from './specialty-review-api.mjs';
 import {createSpecialtyCareHandler} from './specialty-care-api.mjs';
 import {createSpecialtyTraceHandler} from './specialty-trace-api.mjs';
@@ -129,6 +131,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
     return transaction(db,()=>{
       const live=db.prepare('SELECT u.role,u.store_id FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.token_hash=? AND s.user_id=? AND s.expires_at>? AND u.active=1').get(user.token_hash,user.id,Date.now());
       if(!live||live.role!==user.role||live.store_id!==user.store_id)fail(401,'UNAUTHENTICATED','账号权限或登录会话已变更，请重新登录');
+      guardSpecialtyReplacementMutation(db,operation,input,fail);
       const fingerprint=sha(JSON.stringify(input));
       const prior=db.prepare('SELECT * FROM idempotency WHERE actor_id=? AND operation=? AND request_key=?').get(user.id,operation,key);
       if(prior) { if(prior.request_hash!==fingerprint) fail(409,'IDEMPOTENCY_CONFLICT','同一提交标识不能用于不同内容'); return JSON.parse(prior.response_json); }
@@ -142,6 +145,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const tasks=createTasksHandler(db,{need,customer,field,fail,body,mutation,audit});
   const taskEvidence=createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit});
   const dispatch=createDispatchHandler(db,{need,customer,field,fail,body,mutation,audit});
+  const specialtyContinuity=createSpecialtyContinuityHandler(db,{need,customer,field,fail,body,mutation,audit});
   const specialtyReview=createSpecialtyReviewHandler(db,{need,customer,field,fail,body,mutation,audit});
   const specialtyCare=createSpecialtyCareHandler(db,{need,customer,field,fail,body,mutation,audit});
   const specialtyTrace=createSpecialtyTraceHandler(db,{need,customer,field,fail,body,mutation,audit});
@@ -174,7 +178,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       const url=new URL(req.url,'http://localhost'), path=url.pathname;
       if(!path.startsWith('/api/')) {
         if(req.method!=='GET') fail(405,'METHOD','不支持此请求');
-        const assets={'/specialty-review.js':['specialty-review.js','text/javascript'],'/specialty-care.js':['specialty-care.js','text/javascript'],'/specialty-trace.js':['specialty-trace.js','text/javascript'],'/specialty.js':['specialty.js','text/javascript'],'/referrals.js':['referrals.js','text/javascript'],'/contact.js':['contact.js','text/javascript'],'/longitudinal.js':['longitudinal.js','text/javascript'],'/family-training.js':['family-training.js','text/javascript'],'/scheduling.js':['scheduling.js','text/javascript'],'/entitlements.js':['entitlements.js','text/javascript'],'/training.js':['training.js','text/javascript'],'/parameters.js':['parameters.js','text/javascript'],'/refunds.js':['refunds.js','text/javascript'],'/aftercare-dispositions.js':['aftercare-dispositions.js','text/javascript'],'/aftercare-replacements.js':['aftercare-replacements.js','text/javascript'],'/aftercare-work.js':['aftercare-work.js','text/javascript'],'/progress.js':['progress.js','text/javascript'],'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
+        const assets={'/specialty-continuity.js':['specialty-continuity.js','text/javascript'],'/specialty-review.js':['specialty-review.js','text/javascript'],'/specialty-care.js':['specialty-care.js','text/javascript'],'/specialty-trace.js':['specialty-trace.js','text/javascript'],'/specialty.js':['specialty.js','text/javascript'],'/referrals.js':['referrals.js','text/javascript'],'/contact.js':['contact.js','text/javascript'],'/longitudinal.js':['longitudinal.js','text/javascript'],'/family-training.js':['family-training.js','text/javascript'],'/scheduling.js':['scheduling.js','text/javascript'],'/entitlements.js':['entitlements.js','text/javascript'],'/training.js':['training.js','text/javascript'],'/parameters.js':['parameters.js','text/javascript'],'/refunds.js':['refunds.js','text/javascript'],'/aftercare-dispositions.js':['aftercare-dispositions.js','text/javascript'],'/aftercare-replacements.js':['aftercare-replacements.js','text/javascript'],'/aftercare-work.js':['aftercare-work.js','text/javascript'],'/progress.js':['progress.js','text/javascript'],'/aftercare.js':['aftercare.js','text/javascript'],'/dispatch.js':['dispatch.js','text/javascript'],'/fulfillment.js':['fulfillment.js','text/javascript'],'/processing.js':['processing.js','text/javascript'],'/payments.js':['payments.js','text/javascript'],'/inventory.js':['inventory.js','text/javascript'],'/retail.js':['retail.js','text/javascript'],'/':['index.html','text/html'],'/app.js':['app.js','text/javascript'],'/documents.js':['documents.js','text/javascript'],'/organization.js':['organization.js','text/javascript'],'/operations.js':['operations.js','text/javascript'],'/profiles.js':['profiles.js','text/javascript'],'/timeline.js':['timeline.js','text/javascript'],'/cycles.js':['cycles.js','text/javascript'],'/tasks.js':['tasks.js','text/javascript'],'/task-evidence.js':['task-evidence.js','text/javascript'],'/task-links.js':['task-links.js','text/javascript'],'/task-chains.js':['task-chains.js','text/javascript'],'/styles.css':['styles.css','text/css'],'/favicon.svg':['favicon.svg','image/svg+xml']};
         if(!assets[path]) fail(404,'NOT_FOUND','页面不存在');
         const [file,type]=assets[path];res.writeHead(200,{'Content-Type':`${type}; charset=utf-8`});res.end(readFileSync(new URL(`../public/${file}`,import.meta.url)));return;
       }
@@ -211,7 +215,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       }
       if(await organization(req,res,path,user,json))return;
       if(await dispatch(req,path,url,user,json))return;
-      if(await specialtyReview(req,path,url,user,json))return;
+      if(await specialtyContinuity(req,path,url,user,json)||await specialtyReview(req,path,url,user,json))return;
       if(await specialtyCare(req,path,url,user,json))return;
       if(await specialtyTrace(req,path,url,user,json))return;
       if(await specialty(req,path,url,user,json))return;

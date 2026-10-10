@@ -5143,9 +5143,21 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-continuity.mjs",
+        "src/specialty-continuity-api.mjs",
+        "src/specialty-continuity-ledger.mjs",
+        "src/specialty-continuity-recovery.mjs",
+        "migrations/035_specialty_continuity.sql",
+        "public/specialty-continuity.js",
+        "src/demo-specialty-continuity.mjs",
+        "test/specialty-continuity.test.mjs",
+        "scripts/specialty-continuity-browser-check.mjs",
+        "docs/specialty-continuity.md"
+      ],
+      "note": "原实际产品/售后固定，独立新单与专业原意见、新专项/同意/参数分离确认，操作逐次固定批准；停用原状态不恢复。不可变来源索引、完整原批号/护理/复查/售后/下一安排与同毫秒前缀恢复核对。真实质量责任、保留政策、专业及费用规则和整体验收继续待实际来源。"
     },
     {
       "id": "W5-N1",
