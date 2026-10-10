@@ -2,7 +2,7 @@
 
 用户要求按计划逐项执行、统筹各业务能力，暂缓本人体验测试。开发继续进行自动检查和电脑/手机验证；业务方验收保持待完成。本清单用于后续实施衔接，原任务编号和范围仍以progress.json / requirements.json为准。
 
-## 已落地的共同入口（V0.35）
+## 已落地的共同入口（V0.36）
 
 | 能力 | 共用身份 / 历史 | 本轮跨模块约束 |
 | --- | --- | --- |
@@ -27,6 +27,7 @@
 | 当次现场课程 | training_sessions固定plan_version、actual visit_cycle_version；training_session_events与plan revision双向引用 | 当时项目/执行人与原责任人核对，实际未知/0、开始/暂停/记录/更正/核对/中止独立；新计划不改旧课程，时间轴与schema24恢复同刻顺序贯通 |
 | 接触镜条件/评估/同意 | specialty_protocols/versions/events、specialty_cases/versions/events、specialty_consents/events | 明确条件及依据要求、固定客户/需求到店版本；评估、专业采用与本版同意独立，来源变更/撤回即刻阻止新采用恢复，原历史保留；不自动订片、专业许可或诊断 |
 | 专项订片与产品追溯 | specialty_order_links/approvals、specialty_product_lots/versions、specialty_execution_refs | 原评估同意、核对参数和未执行镜片原单由专业明确关联；来源改变阻止新执行，实际到货/批号未知更正分别保留，合格质检签收出库须追溯齐全，逐动作固定原批号/临床版本；后续护理复查继续 |
+| 原产品护理指导 | specialty_care_records/versions/events/execution_refs | 原合格/实际签收产品与材料版本固定；实际掌握与专业核对/放行分离，明示原要求、补练/暂停阻止新签收出库，恢复/材料改版待核对，旧交付护理来源保留；专业复查异常继续 |
 | 外院资料与转介 | external_records/versions/events、referral_cases/events/contact_links | 原报告/自报/无法测与专业确认分开，修订待确认、原意见保留；固定客户/业务来源，专业和联系责任、实际联系回执预约与改期/结果分开；不改本店检查/钱款权益 |
 | 联系与人工预约 | contact_consents/events、contact_cases/events、attempts/receipts、customer_appointments/events | 授权/目的/发出/回执/到店分别保存；固定复查/订单/训练版本，失败责任接管、撤回即时停止新联系，预约不改训练容量或实际业务状态 |
 | 长期档案与复查 | longitudinal_cases/versions/events、observations/versions、review_plans/events，固定客户/随访需求及资料/复评/实际版本 | 来源条件时间轴、明确复查日期、逾期/负责人交接、实际处理/取消和未处理结案保护；临床趋势待依据 |

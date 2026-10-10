@@ -1,6 +1,6 @@
 {
   "baseline": "V1.1",
-  "updated": "2026-10-09",
+  "updated": "2026-10-10",
   "requirements": [
     {
       "id": "M01-F01",
@@ -5082,9 +5082,21 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-care.mjs",
+        "src/specialty-care-api.mjs",
+        "src/specialty-care-ledger.mjs",
+        "src/specialty-care-recovery.mjs",
+        "migrations/033_specialty_care.sql",
+        "public/specialty-care.js",
+        "src/demo-specialty-care.mjs",
+        "test/specialty-care.test.mjs",
+        "scripts/specialty-care-browser-check.mjs",
+        "docs/specialty-care.md"
+      ],
+      "note": "V0.36原产品指导材料与实际摘戴/护理来源、当事人/时间/掌握情况、专业核对及明确放行独立；明示原要求、需补练/未知阻止放行，资料改版/暂停恢复待核对，旧签收护理来源保留。真实指导内容/专业规则和完整复查异常流程继续办理。"
     },
     {
       "id": "W4-N5",
