@@ -285,3 +285,8 @@ V0.30：家庭练习/复评API及最小家长响应、expected_sequence/revision
 
 
 V0.31：长期档案/实际资料/复查API、固定来源及expected_sequence/revision/case_revision等字段见longitudinal.md。
+
+
+## V0.40 收货 API
+
+V0.40贯通原采购分批收货、实际验收与原库存：固定实际订货原行/数量单位，匹配与超收分别留痕，未知批号效期仓位保留；明确检查项目/要求与合格不合格结果，负责人选择一次可用或隔离入库。资料更正保留旧验收/原库存，不自动放行或付款；schema37四表/145表恢复、四独立虚构收货阶段与电脑手机贯通。40项具体开发交付勾选，原50任务287要求/依赖及业务验收保留。下一V0.41实际退供与库存纠错/质量处理，继续接加工原来源。 完整契约见[purchase-receiving.md](purchase-receiving.md)。

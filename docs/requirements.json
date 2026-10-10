@@ -5234,9 +5234,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/purchase-receiving.mjs",
+        "src/purchase-receiving-api.mjs",
+        "src/purchase-receiving-recovery.mjs",
+        "migrations/037_purchase_receiving.sql",
+        "public/purchase-receiving.js",
+        "src/demo-purchase-receiving.mjs",
+        "test/purchase-receiving.test.mjs",
+        "scripts/purchase-receiving-browser-check.mjs",
+        "docs/purchase-receiving.md"
+      ],
+      "note": "分批到货实际数量和原采购匹配/超收分别保存，固定原订货行；批号效期仓位未知保留，明确要求/逐项实际验收与一次可用/隔离入库接原库存；资料更正不改旧验收/库存，未补造统一质量标准、正式岗位资质或真实退供/付款结果。"
     },
     {
       "id": "W5-N4",
@@ -5254,12 +5265,19 @@
         "T10.05"
       ],
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
-        "src/inventory.mjs",
-        "docs/inventory.md",
-        "test/inventory.test.mjs"
-      ]
+        "src/purchase-receiving.mjs",
+        "src/purchase-receiving-api.mjs",
+        "src/purchase-receiving-recovery.mjs",
+        "migrations/037_purchase_receiving.sql",
+        "public/purchase-receiving.js",
+        "src/demo-purchase-receiving.mjs",
+        "test/purchase-receiving.test.mjs",
+        "scripts/purchase-receiving-browser-check.mjs",
+        "docs/purchase-receiving.md"
+      ],
+      "note": "分批到货实际数量和原采购匹配/超收分别保存，固定原订货行；批号效期仓位未知保留，明确要求/逐项实际验收与一次可用/隔离入库接原库存；资料更正不改旧验收/库存，未补造统一质量标准、正式岗位资质或真实退供/付款结果。"
     },
     {
       "id": "W5-N5",
