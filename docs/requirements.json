@@ -5237,18 +5237,15 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/supplier-returns.mjs",
-        "src/supplier-returns-api.mjs",
-        "src/supplier-return-ledger.mjs",
-        "src/supplier-return-recovery.mjs",
-        "migrations/039_supplier_returns.sql",
-        "public/supplier-returns.js",
-        "src/demo-supplier-returns.mjs",
-        "test/supplier-returns.test.mjs",
-        "scripts/supplier-returns-browser-check.mjs",
-        "docs/supplier-returns.md"
+        "src/inventory-sources.mjs",
+        "public/inventory-sources.js",
+        "public/inventory.js",
+        "public/app.js",
+        "test/inventory-sources.test.mjs",
+        "scripts/inventory-sources-browser-check.mjs",
+        "docs/inventory-sources.md"
       ],
-      "note": "原隔离批次商业安排、分批实际交出与供应方收件，实际库存只扣交出，剩余复检重新采用实物前缀；停止安排保留旧事实。完整成本/扫码矩阵/盘点审批/报损召回与正式政策未完成，不推定费用责任、退款或外部通讯结果。"
+      "note": "同SKU采购收货/原批质量/退供/配镜预留/销售出库/原库存六类查询，当前实物核对、原批资料和未分配数量明确区分，原业务入口和稳定来源分页。完整仓位批次矩阵、成本、扫码、调拨/盘点和正式政策及验收未完成。"
     },
     {
       "id": "W5-N4",
@@ -5268,18 +5265,15 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/supplier-returns.mjs",
-        "src/supplier-returns-api.mjs",
-        "src/supplier-return-ledger.mjs",
-        "src/supplier-return-recovery.mjs",
-        "migrations/039_supplier_returns.sql",
-        "public/supplier-returns.js",
-        "src/demo-supplier-returns.mjs",
-        "test/supplier-returns.test.mjs",
-        "scripts/supplier-returns-browser-check.mjs",
-        "docs/supplier-returns.md"
+        "src/inventory-sources.mjs",
+        "public/inventory-sources.js",
+        "public/inventory.js",
+        "public/app.js",
+        "test/inventory-sources.test.mjs",
+        "scripts/inventory-sources-browser-check.mjs",
+        "docs/inventory-sources.md"
       ],
-      "note": "原隔离批次商业安排、分批实际交出与供应方收件，实际库存只扣交出，剩余复检重新采用实物前缀；停止安排保留旧事实。完整成本/扫码矩阵/盘点审批/报损召回与正式政策未完成，不推定费用责任、退款或外部通讯结果。"
+      "note": "同SKU采购收货/原批质量/退供/配镜预留/销售出库/原库存六类查询，当前实物核对、原批资料和未分配数量明确区分，原业务入口和稳定来源分页。完整仓位批次矩阵、成本、扫码、调拨/盘点和正式政策及验收未完成。"
     },
     {
       "id": "W5-N5",
@@ -5297,25 +5291,17 @@
         "T10.05"
       ],
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
-        "src/inventory.mjs",
-        "docs/inventory.md",
-        "test/inventory.test.mjs",
-        "src/dispatch.mjs",
-        "src/aftercare.mjs",
-        "src/stock-ledger.mjs",
-        "migrations/018_dispatch_aftercare.sql",
-        "public/dispatch.js",
-        "public/aftercare.js",
-        "test/aftercare.test.mjs",
-        "scripts/aftercare-browser-check.mjs",
-        "docs/dispatch-aftercare.md",
-        "src/demo-data.mjs",
-        "src/recovery.mjs",
-        "src/timeline.mjs",
-        "docs/capability-map.md"
-      ]
+        "src/inventory-sources.mjs",
+        "public/inventory-sources.js",
+        "public/inventory.js",
+        "public/app.js",
+        "test/inventory-sources.test.mjs",
+        "scripts/inventory-sources-browser-check.mjs",
+        "docs/inventory-sources.md"
+      ],
+      "note": "同SKU采购收货/原批质量/退供/配镜预留/销售出库/原库存六类查询，当前实物核对、原批资料和未分配数量明确区分，原业务入口和稳定来源分页。完整仓位批次矩阵、成本、扫码、调拨/盘点和正式政策及验收未完成。"
     },
     {
       "id": "W5-N6",
@@ -5335,18 +5321,15 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/supplier-returns.mjs",
-        "src/supplier-returns-api.mjs",
-        "src/supplier-return-ledger.mjs",
-        "src/supplier-return-recovery.mjs",
-        "migrations/039_supplier_returns.sql",
-        "public/supplier-returns.js",
-        "src/demo-supplier-returns.mjs",
-        "test/supplier-returns.test.mjs",
-        "scripts/supplier-returns-browser-check.mjs",
-        "docs/supplier-returns.md"
+        "src/inventory-sources.mjs",
+        "public/inventory-sources.js",
+        "public/inventory.js",
+        "public/app.js",
+        "test/inventory-sources.test.mjs",
+        "scripts/inventory-sources-browser-check.mjs",
+        "docs/inventory-sources.md"
       ],
-      "note": "原隔离批次商业安排、分批实际交出与供应方收件，实际库存只扣交出，剩余复检重新采用实物前缀；停止安排保留旧事实。完整成本/扫码矩阵/盘点审批/报损召回与正式政策未完成，不推定费用责任、退款或外部通讯结果。"
+      "note": "同SKU采购收货/原批质量/退供/配镜预留/销售出库/原库存六类查询，当前实物核对、原批资料和未分配数量明确区分，原业务入口和稳定来源分页。完整仓位批次矩阵、成本、扫码、调拨/盘点和正式政策及验收未完成。"
     },
     {
       "id": "W6-N1",
