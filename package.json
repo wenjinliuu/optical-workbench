@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.36.0",
+  "version": "0.37.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -36,6 +36,7 @@
     "test:referrals-browser": "node scripts/referrals-browser-check.mjs",
     "test:specialty-browser": "node scripts/specialty-browser-check.mjs",
     "test:specialty-trace-browser": "node scripts/specialty-trace-browser-check.mjs",
-    "test:specialty-care-browser": "node scripts/specialty-care-browser-check.mjs"
+    "test:specialty-care-browser": "node scripts/specialty-care-browser-check.mjs",
+    "test:specialty-review-browser": "node scripts/specialty-review-browser-check.mjs"
   }
 }

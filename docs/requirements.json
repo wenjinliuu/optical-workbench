@@ -5113,9 +5113,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-review.mjs",
+        "src/specialty-review-api.mjs",
+        "src/specialty-review-recovery.mjs",
+        "migrations/034_specialty_review.sql",
+        "public/specialty-review.js",
+        "src/demo-specialty-review.mjs",
+        "test/specialty-review.test.mjs",
+        "scripts/specialty-review-browser-check.mjs",
+        "docs/specialty-review.md"
+      ],
+      "note": "V0.37原实际签收镜片/批号/护理固定，复查、不适、损坏、遗失和异常原反馈与专业继续/调整/暂停/停用/转介意见分离；暂停停用同事务更新原专项，引用实际检查与已确认外院版本，关联既有复查/转介/实际联系，旧意见保留。真实检查表单/专业资质/处置方法与完整更换及长期质量责任继续办理。"
     },
     {
       "id": "W4-N6",
