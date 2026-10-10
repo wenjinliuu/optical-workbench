@@ -2921,18 +2921,17 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/042_inventory_batches.sql",
-        "src/inventory-batch-ledger.mjs",
-        "src/inventory-batches.mjs",
-        "src/inventory-batch-recovery.mjs",
-        "public/dispatch.js",
-        "public/inventory-batches.js",
-        "src/demo-inventory-batches.mjs",
-        "test/inventory-batches.test.mjs",
-        "scripts/inventory-batches-browser-check.mjs",
-        "docs/inventory-batches.md"
+        "migrations/043_inventory_reserved.sql",
+        "src/inventory-reserved.mjs",
+        "src/inventory-reserved-api.mjs",
+        "src/inventory-reserved-recovery.mjs",
+        "public/inventory-reserved.js",
+        "src/demo-inventory-reserved.mjs",
+        "test/inventory-reserved.test.mjs",
+        "scripts/inventory-reserved-browser-check.mjs",
+        "docs/inventory-reserved.md"
       ],
-      "note": "原批明确实际销售出库与原客户/固定原单追溯，不生成第二实物/资金扣减；旧来源和今日余量仍未知，完整预留批次分配与仓库矩阵及业务验收待后续。"
+      "note": "原单预留原件/仓位实际来源、固定原采购与原单历史、后续更正/释放和原实际出库/已售保护相互核对；实际预留出库批次选取和完整独占仓库分配及整体验收待后续。"
     },
     {
       "id": "M15-F01",
@@ -5273,18 +5272,17 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/042_inventory_batches.sql",
-        "src/inventory-batch-ledger.mjs",
-        "src/inventory-batches.mjs",
-        "src/inventory-batch-recovery.mjs",
-        "public/dispatch.js",
-        "public/inventory-batches.js",
-        "src/demo-inventory-batches.mjs",
-        "test/inventory-batches.test.mjs",
-        "scripts/inventory-batches-browser-check.mjs",
-        "docs/inventory-batches.md"
+        "migrations/043_inventory_reserved.sql",
+        "src/inventory-reserved.mjs",
+        "src/inventory-reserved-api.mjs",
+        "src/inventory-reserved-recovery.mjs",
+        "public/inventory-reserved.js",
+        "src/demo-inventory-reserved.mjs",
+        "test/inventory-reserved.test.mjs",
+        "scripts/inventory-reserved-browser-check.mjs",
+        "docs/inventory-reserved.md"
       ],
-      "note": "原批明确实际销售出库与原客户/固定原单追溯，不生成第二实物/资金扣减；旧来源和今日余量仍未知，完整预留批次分配与仓库矩阵及业务验收待后续。"
+      "note": "原单预留原件/仓位实际来源、固定原采购与原单历史、后续更正/释放和原实际出库/已售保护相互核对；实际预留出库批次选取和完整独占仓库分配及整体验收待后续。"
     },
     {
       "id": "W5-N6",
@@ -5304,18 +5302,17 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/042_inventory_batches.sql",
-        "src/inventory-batch-ledger.mjs",
-        "src/inventory-batches.mjs",
-        "src/inventory-batch-recovery.mjs",
-        "public/dispatch.js",
-        "public/inventory-batches.js",
-        "src/demo-inventory-batches.mjs",
-        "test/inventory-batches.test.mjs",
-        "scripts/inventory-batches-browser-check.mjs",
-        "docs/inventory-batches.md"
+        "migrations/043_inventory_reserved.sql",
+        "src/inventory-reserved.mjs",
+        "src/inventory-reserved-api.mjs",
+        "src/inventory-reserved-recovery.mjs",
+        "public/inventory-reserved.js",
+        "src/demo-inventory-reserved.mjs",
+        "test/inventory-reserved.test.mjs",
+        "scripts/inventory-reserved-browser-check.mjs",
+        "docs/inventory-reserved.md"
       ],
-      "note": "原批明确实际销售出库与原客户/固定原单追溯，不生成第二实物/资金扣减；旧来源和今日余量仍未知，完整预留批次分配与仓库矩阵及业务验收待后续。"
+      "note": "原单预留原件/仓位实际来源、固定原采购与原单历史、后续更正/释放和原实际出库/已售保护相互核对；实际预留出库批次选取和完整独占仓库分配及整体验收待后续。"
     },
     {
       "id": "W6-N1",

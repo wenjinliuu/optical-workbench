@@ -68,6 +68,6 @@ test('schema21 nonempty upgrade captures zero refund basis without altering orig
   names.forEach((n,i)=>assert.deepEqual(db.prepare('SELECT * FROM '+n).all(),old[i],n));
   assert.equal(db.prepare('SELECT count(*) n FROM refund_events').get().n,0);
   assert.equal(db.prepare('SELECT count(*) n FROM payment_refund_refs WHERE sequence=0').get().n,receiptCount);
-  assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,42);verifyRefunds(db);verifyPayments(db);
+  assert.equal(db.prepare('SELECT count(*) n FROM schema_migrations').get().n,43);verifyRefunds(db);verifyPayments(db);
  }finally{db.close();rmSync(dir,{recursive:true,force:true});}
 });
