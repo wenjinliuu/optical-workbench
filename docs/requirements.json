@@ -2993,9 +2993,18 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/money-review.mjs",
+        "public/money-review.js",
+        "src/demo-money-review.mjs",
+        "test/money-review.test.mjs",
+        "scripts/money-review-browser-check.mjs",
+        "docs/money-review.md",
+        "public/refunds.js"
+      ],
+      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
     },
     {
       "id": "M15-F04",
@@ -3050,9 +3059,16 @@
         "src/demo-staff-cover.mjs",
         "test/staff-cover.test.mjs",
         "scripts/staff-cover-browser-check.mjs",
-        "docs/staff-cover.md"
+        "docs/staff-cover.md",
+        "src/money-review.mjs",
+        "public/money-review.js",
+        "src/demo-money-review.mjs",
+        "test/money-review.test.mjs",
+        "scripts/money-review-browser-check.mjs",
+        "docs/money-review.md",
+        "public/refunds.js"
       ],
-      "note": "本店人工休假与固定员工/任务修订/拟接收人逐项交接安排，原来源与历史快照/版本/撤回保留；当前源变化逐项阻止旧办理。专业资质未核验，审批/容量/多店与财务及正式规则和整体验收保留。"
+      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
     },
     {
       "id": "M15-R",
@@ -3093,9 +3109,16 @@
         "src/demo-staff-cover.mjs",
         "test/staff-cover.test.mjs",
         "scripts/staff-cover-browser-check.mjs",
-        "docs/staff-cover.md"
+        "docs/staff-cover.md",
+        "src/money-review.mjs",
+        "public/money-review.js",
+        "src/demo-money-review.mjs",
+        "test/money-review.test.mjs",
+        "scripts/money-review-browser-check.mjs",
+        "docs/money-review.md",
+        "public/refunds.js"
       ],
-      "note": "本店人工休假与固定员工/任务修订/拟接收人逐项交接安排，原来源与历史快照/版本/撤回保留；当前源变化逐项阻止旧办理。专业资质未核验，审批/容量/多店与财务及正式规则和整体验收保留。"
+      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
     },
     {
       "id": "M15-L",
