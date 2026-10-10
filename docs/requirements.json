@@ -5237,18 +5237,18 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/purchase-quality.mjs",
-        "src/purchase-quality-api.mjs",
-        "src/purchase-quality-ledger.mjs",
-        "src/purchase-quality-recovery.mjs",
-        "migrations/038_purchase_quality.sql",
-        "public/purchase-quality.js",
-        "src/demo-purchase-quality.mjs",
-        "test/purchase-quality.test.mjs",
-        "scripts/purchase-quality-browser-check.mjs",
-        "docs/purchase-quality.md"
+        "src/supplier-returns.mjs",
+        "src/supplier-returns-api.mjs",
+        "src/supplier-return-ledger.mjs",
+        "src/supplier-return-recovery.mjs",
+        "migrations/039_supplier_returns.sql",
+        "public/supplier-returns.js",
+        "src/demo-supplier-returns.mjs",
+        "test/supplier-returns.test.mjs",
+        "scripts/supplier-returns-browser-check.mjs",
+        "docs/supplier-returns.md"
       ],
-      "note": "原入库批次实际在库身份数量、观察资料不可变版本、人工逐项要求复检与明确隔离解除，待检/不合格原数量受保护；原资料更正须再采用复检。成本/扫码矩阵/盘点差异审批、报损及真实退供结果和通用质量政策未完成，不推定库存或资金退回。"
+      "note": "原隔离批次商业安排、分批实际交出与供应方收件，实际库存只扣交出，剩余复检重新采用实物前缀；停止安排保留旧事实。完整成本/扫码矩阵/盘点审批/报损召回与正式政策未完成，不推定费用责任、退款或外部通讯结果。"
     },
     {
       "id": "W5-N4",
@@ -5268,18 +5268,18 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/purchase-quality.mjs",
-        "src/purchase-quality-api.mjs",
-        "src/purchase-quality-ledger.mjs",
-        "src/purchase-quality-recovery.mjs",
-        "migrations/038_purchase_quality.sql",
-        "public/purchase-quality.js",
-        "src/demo-purchase-quality.mjs",
-        "test/purchase-quality.test.mjs",
-        "scripts/purchase-quality-browser-check.mjs",
-        "docs/purchase-quality.md"
+        "src/supplier-returns.mjs",
+        "src/supplier-returns-api.mjs",
+        "src/supplier-return-ledger.mjs",
+        "src/supplier-return-recovery.mjs",
+        "migrations/039_supplier_returns.sql",
+        "public/supplier-returns.js",
+        "src/demo-supplier-returns.mjs",
+        "test/supplier-returns.test.mjs",
+        "scripts/supplier-returns-browser-check.mjs",
+        "docs/supplier-returns.md"
       ],
-      "note": "原入库批次实际在库身份数量、观察资料不可变版本、人工逐项要求复检与明确隔离解除，待检/不合格原数量受保护；原资料更正须再采用复检。成本/扫码矩阵/盘点差异审批、报损及真实退供结果和通用质量政策未完成，不推定库存或资金退回。"
+      "note": "原隔离批次商业安排、分批实际交出与供应方收件，实际库存只扣交出，剩余复检重新采用实物前缀；停止安排保留旧事实。完整成本/扫码矩阵/盘点审批/报损召回与正式政策未完成，不推定费用责任、退款或外部通讯结果。"
     },
     {
       "id": "W5-N5",
@@ -5335,18 +5335,18 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/purchase-quality.mjs",
-        "src/purchase-quality-api.mjs",
-        "src/purchase-quality-ledger.mjs",
-        "src/purchase-quality-recovery.mjs",
-        "migrations/038_purchase_quality.sql",
-        "public/purchase-quality.js",
-        "src/demo-purchase-quality.mjs",
-        "test/purchase-quality.test.mjs",
-        "scripts/purchase-quality-browser-check.mjs",
-        "docs/purchase-quality.md"
+        "src/supplier-returns.mjs",
+        "src/supplier-returns-api.mjs",
+        "src/supplier-return-ledger.mjs",
+        "src/supplier-return-recovery.mjs",
+        "migrations/039_supplier_returns.sql",
+        "public/supplier-returns.js",
+        "src/demo-supplier-returns.mjs",
+        "test/supplier-returns.test.mjs",
+        "scripts/supplier-returns-browser-check.mjs",
+        "docs/supplier-returns.md"
       ],
-      "note": "原入库批次实际在库身份数量、观察资料不可变版本、人工逐项要求复检与明确隔离解除，待检/不合格原数量受保护；原资料更正须再采用复检。成本/扫码矩阵/盘点差异审批、报损及真实退供结果和通用质量政策未完成，不推定库存或资金退回。"
+      "note": "原隔离批次商业安排、分批实际交出与供应方收件，实际库存只扣交出，剩余复检重新采用实物前缀；停止安排保留旧事实。完整成本/扫码矩阵/盘点审批/报损召回与正式政策未完成，不推定费用责任、退款或外部通讯结果。"
     },
     {
       "id": "W6-N1",
