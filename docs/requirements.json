@@ -5267,17 +5267,17 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/040_purchase_extra_returns.sql",
-        "src/purchase-extra-returns.mjs",
-        "src/purchase-extra-returns-api.mjs",
-        "src/purchase-extra-return-recovery.mjs",
-        "public/purchase-extra-returns.js",
-        "src/demo-purchase-extra-returns.mjs",
-        "test/purchase-extra-returns.test.mjs",
-        "scripts/purchase-extra-returns-browser-check.mjs",
-        "docs/purchase-extra-returns.md"
+        "migrations/041_inventory_custody.sql",
+        "src/inventory-custody.mjs",
+        "src/inventory-custody-api.mjs",
+        "src/inventory-custody-recovery.mjs",
+        "public/inventory-custody.js",
+        "src/demo-inventory-custody.mjs",
+        "test/inventory-custody.test.mjs",
+        "scripts/inventory-custody-browser-check.mjs",
+        "docs/inventory-custody.md"
       ],
-      "note": "超收未匹配原件独立安排/分批实际交出/供应方收件与原收货保护，不重复扣商品库存；今天保管量不从原数量推定。完整采购仓位批次矩阵/成本/扫码盘点调拨/正式政策及整体验收未完成。"
+      "note": "原匹配入库原批实际身份数量仓位核对、新观察/撤回解释、历史来源及原保护上限；不自动分配/释放/出库或推定今天原批余量。完整仓位矩阵、扫码、盘点调拨、成本和正式政策及整体验收未完成。"
     },
     {
       "id": "W5-N5",
@@ -5297,15 +5297,17 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "src/inventory-sources.mjs",
-        "public/inventory-sources.js",
-        "public/inventory.js",
-        "public/app.js",
-        "test/inventory-sources.test.mjs",
-        "scripts/inventory-sources-browser-check.mjs",
-        "docs/inventory-sources.md"
+        "migrations/041_inventory_custody.sql",
+        "src/inventory-custody.mjs",
+        "src/inventory-custody-api.mjs",
+        "src/inventory-custody-recovery.mjs",
+        "public/inventory-custody.js",
+        "src/demo-inventory-custody.mjs",
+        "test/inventory-custody.test.mjs",
+        "scripts/inventory-custody-browser-check.mjs",
+        "docs/inventory-custody.md"
       ],
-      "note": "同SKU采购收货/原批质量/退供/配镜预留/销售出库/原库存六类查询，当前实物核对、原批资料和未分配数量明确区分，原业务入口和稳定来源分页。完整仓位批次矩阵、成本、扫码、调拨/盘点和正式政策及验收未完成。"
+      "note": "原匹配入库原批实际身份数量仓位核对、新观察/撤回解释、历史来源及原保护上限；不自动分配/释放/出库或推定今天原批余量。完整仓位矩阵、扫码、盘点调拨、成本和正式政策及整体验收未完成。"
     },
     {
       "id": "W5-N6",
@@ -5325,17 +5327,17 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/040_purchase_extra_returns.sql",
-        "src/purchase-extra-returns.mjs",
-        "src/purchase-extra-returns-api.mjs",
-        "src/purchase-extra-return-recovery.mjs",
-        "public/purchase-extra-returns.js",
-        "src/demo-purchase-extra-returns.mjs",
-        "test/purchase-extra-returns.test.mjs",
-        "scripts/purchase-extra-returns-browser-check.mjs",
-        "docs/purchase-extra-returns.md"
+        "migrations/041_inventory_custody.sql",
+        "src/inventory-custody.mjs",
+        "src/inventory-custody-api.mjs",
+        "src/inventory-custody-recovery.mjs",
+        "public/inventory-custody.js",
+        "src/demo-inventory-custody.mjs",
+        "test/inventory-custody.test.mjs",
+        "scripts/inventory-custody-browser-check.mjs",
+        "docs/inventory-custody.md"
       ],
-      "note": "超收未匹配原件独立安排/分批实际交出/供应方收件与原收货保护，不重复扣商品库存；今天保管量不从原数量推定。完整采购仓位批次矩阵/成本/扫码盘点调拨/正式政策及整体验收未完成。"
+      "note": "原匹配入库原批实际身份数量仓位核对、新观察/撤回解释、历史来源及原保护上限；不自动分配/释放/出库或推定今天原批余量。完整仓位矩阵、扫码、盘点调拨、成本和正式政策及整体验收未完成。"
     },
     {
       "id": "W6-N1",
