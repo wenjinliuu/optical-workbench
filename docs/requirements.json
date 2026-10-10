@@ -2959,9 +2959,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/045_staff_records.sql",
+        "src/staff-records.mjs",
+        "src/staff-records-api.mjs",
+        "src/staff-records-recovery.mjs",
+        "public/staff-records.js",
+        "src/demo-staff-records.mjs",
+        "test/staff-records.test.mjs",
+        "scripts/staff-records-browser-check.mjs",
+        "docs/staff-records.md"
+      ],
+      "note": "本店员工四类型原来源/未知/固定版本与撤回，以及当前账号与业务责任入口；休假/班次仅明确人工安排、培训仅实际记录，资质来源仍未核验。专业许可/政策审批/容量/多店与财务等原范围及整体验收保留。"
     },
     {
       "id": "M15-F03",
@@ -3012,9 +3023,18 @@
         "src/demo-staff-handover.mjs",
         "test/staff-handover.test.mjs",
         "scripts/staff-handover-browser-check.mjs",
-        "docs/staff-handover.md"
+        "docs/staff-handover.md",
+        "migrations/045_staff_records.sql",
+        "src/staff-records.mjs",
+        "src/staff-records-api.mjs",
+        "src/staff-records-recovery.mjs",
+        "public/staff-records.js",
+        "src/demo-staff-records.mjs",
+        "test/staff-records.test.mjs",
+        "scripts/staff-records-browser-check.mjs",
+        "docs/staff-records.md"
       ],
-      "note": "本店员工业务责任/原修订与账号岗位状态分别核对，通用任务交接沿原流程；完整多店交接/休假培训/资质效期/财务及正式规则与整体验收保留。"
+      "note": "本店员工四类型原来源/未知/固定版本与撤回，以及当前账号与业务责任入口；休假/班次仅明确人工安排、培训仅实际记录，资质来源仍未核验。专业许可/政策审批/容量/多店与财务等原范围及整体验收保留。"
     },
     {
       "id": "M15-R",
@@ -3037,9 +3057,18 @@
         "src/demo-staff-handover.mjs",
         "test/staff-handover.test.mjs",
         "scripts/staff-handover-browser-check.mjs",
-        "docs/staff-handover.md"
+        "docs/staff-handover.md",
+        "migrations/045_staff_records.sql",
+        "src/staff-records.mjs",
+        "src/staff-records-api.mjs",
+        "src/staff-records-recovery.mjs",
+        "public/staff-records.js",
+        "src/demo-staff-records.mjs",
+        "test/staff-records.test.mjs",
+        "scripts/staff-records-browser-check.mjs",
+        "docs/staff-records.md"
       ],
-      "note": "本店员工业务责任/原修订与账号岗位状态分别核对，通用任务交接沿原流程；完整多店交接/休假培训/资质效期/财务及正式规则与整体验收保留。"
+      "note": "本店员工四类型原来源/未知/固定版本与撤回，以及当前账号与业务责任入口；休假/班次仅明确人工安排、培训仅实际记录，资质来源仍未核验。专业许可/政策审批/容量/多店与财务等原范围及整体验收保留。"
     },
     {
       "id": "M15-L",
