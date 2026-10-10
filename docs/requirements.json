@@ -3002,9 +3002,20 @@
         "test/money-review.test.mjs",
         "scripts/money-review-browser-check.mjs",
         "docs/money-review.md",
-        "public/refunds.js"
+        "public/refunds.js",
+        "migrations/047_channel_review.sql",
+        "src/channel-review.mjs",
+        "src/channel-review-api.mjs",
+        "src/channel-review-recovery.mjs",
+        "public/channel-review.js",
+        "src/demo-channel-review.mjs",
+        "test/channel-review.test.mjs",
+        "scripts/channel-review-browser-check.mjs",
+        "src/timeline.mjs",
+        "public/timeline.js",
+        "docs/channel-review.md"
       ],
-      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
+      "note": "本店原收退款同筛选完整精确核对，固定原业务来源的手工渠道材料/未知及零/一致差异结论、旧版撤回/来源变化手工重读、负责人客户历史/独立恢复；外部核验、正式财务岗位/科目/费用分摊/提成与整体验收保留。"
     },
     {
       "id": "M15-F04",
@@ -3066,9 +3077,20 @@
         "test/money-review.test.mjs",
         "scripts/money-review-browser-check.mjs",
         "docs/money-review.md",
-        "public/refunds.js"
+        "public/refunds.js",
+        "migrations/047_channel_review.sql",
+        "src/channel-review.mjs",
+        "src/channel-review-api.mjs",
+        "src/channel-review-recovery.mjs",
+        "public/channel-review.js",
+        "src/demo-channel-review.mjs",
+        "test/channel-review.test.mjs",
+        "scripts/channel-review-browser-check.mjs",
+        "src/timeline.mjs",
+        "public/timeline.js",
+        "docs/channel-review.md"
       ],
-      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
+      "note": "本店原收退款同筛选完整精确核对，固定原业务来源的手工渠道材料/未知及零/一致差异结论、旧版撤回/来源变化手工重读、负责人客户历史/独立恢复；外部核验、正式财务岗位/科目/费用分摊/提成与整体验收保留。"
     },
     {
       "id": "M15-R",
@@ -3116,9 +3138,20 @@
         "test/money-review.test.mjs",
         "scripts/money-review-browser-check.mjs",
         "docs/money-review.md",
-        "public/refunds.js"
+        "public/refunds.js",
+        "migrations/047_channel_review.sql",
+        "src/channel-review.mjs",
+        "src/channel-review-api.mjs",
+        "src/channel-review-recovery.mjs",
+        "public/channel-review.js",
+        "src/demo-channel-review.mjs",
+        "test/channel-review.test.mjs",
+        "scripts/channel-review-browser-check.mjs",
+        "src/timeline.mjs",
+        "public/timeline.js",
+        "docs/channel-review.md"
       ],
-      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
+      "note": "本店原收退款同筛选完整精确核对，固定原业务来源的手工渠道材料/未知及零/一致差异结论、旧版撤回/来源变化手工重读、负责人客户历史/独立恢复；外部核验、正式财务岗位/科目/费用分摊/提成与整体验收保留。"
     },
     {
       "id": "M15-L",
