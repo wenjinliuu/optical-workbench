@@ -1,3 +1,4 @@
+import {outboundBatches} from './inventory-batch-ledger.mjs';
 import { Buffer } from 'node:buffer';
 
 export const timelineKinds=['specialty_continuity','specialty_archive','specialty_review','specialty_care','specialty_order','specialty_lot','specialty_case','specialty_consent','external_record','referral','referral_contact','contact_case','contact_attempt','contact_receipt','customer_appointment','longitudinal','observation','review_plan','practice','reassessment','profile','cycle','visit','contact','document','attachment','authorization','task','retail','inventory','payment','processing','fulfillment','dispatch','aftercare','aftercare_work','aftercare_replacement','aftercare_disposition','refund','parameter','training_plan','training_session','entitlement','scheduling'];
@@ -95,7 +96,7 @@ export function createTimelineHandler(db,{need,customer,fail}){
     }
     const params={payment_allowed:['manager','reception'].includes(user.role)?1:0,customer:c.id,store:c.store_id,kind,from,to,at:cursor?.at||'',id:cursor?.id||'',limit:limit+1};
     const rows=db.prepare(eventsSQL+` SELECT e.*,u.display_name AS actor_name FROM events e LEFT JOIN users u ON u.id=e.actor_id WHERE (:kind='all' OR e.kind=:kind) AND (:from='' OR substr(e.at,1,10)>=:from) AND (:to='' OR substr(e.at,1,10)<=:to) AND (:at='' OR e.at<:at OR (e.at=:at AND e.event_id<:id)) ORDER BY e.at DESC,e.event_id DESC LIMIT :limit`).all(params);
-    const more=rows.length>limit,items=rows.slice(0,limit).map(({details,...row})=>({...row,details:JSON.parse(details)})),last=items.at(-1);
+    const more=rows.length>limit,items=rows.slice(0,limit).map(({details,...row})=>({...row,details:{...JSON.parse(details),...(row.kind==='dispatch'?{batch_source:outboundBatches(db,row.event_id.slice('dispatch:'.length))}:{})}})),last=items.at(-1);
     const next_cursor=more?Buffer.from(JSON.stringify({customer:c.id,kind,from,to,at:last.at,id:last.event_id})).toString('base64url'):null;
     json(200,{items,next_cursor,limit,timezone:'UTC',order:'newest_first'});return true;
   };

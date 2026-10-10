@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-10",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.45接通原匹配入库批次的人工实际身份、数量与仓位核对，原收货/固定商品单位、当时库存/销售/退供/质量来源保留；新观察与明确撤回解释追加留痕，不累计观察为今天批次余量或独占库存分配。被保护原批不能借用另一箱可用库存，原销售和退供快照不变。schema41八表/173表恢复、六独立虚构阶段与电脑手机贯通；45项具体交付勾选，原50任务287要求/依赖及整体验收保留。下一明确批次仓位分配和销售实际出库选取原批，不自动推定原件仍在库或仓库政策。",
+  "productStatus": "V0.46接通配镜实际可用库存出库的明确原批来源选取，固定原收货/原件与仓位观察、数量单位、当时质量及实际交出依据；原采购批次可查已交付客户与原订单。一次原实物扣减，原批已明确售出数量约束后续在库核对和质量保管；旧未记录或原单预留来源继续未知，不补造批次、不推定今天批次余量或完整独占分配。schema42七表/180表恢复、七独立虚构阶段，46项具体交付勾选；原50任务287要求/依赖及业务验收保持。下一原单预留的实际原批核对与固定分配依据。",
   "currentTask": "T07.02",
   "nextTask": "T07.02",
   "stage": "P00",
@@ -285,6 +285,12 @@
       "version": "V0.45",
       "type": "原批实际保管与仓位核对基础",
       "summary": "V0.45接通原匹配入库批次的人工实际身份、数量与仓位核对，原收货/固定商品单位、当时库存/销售/退供/质量来源保留；新观察与明确撤回解释追加留痕，不累计观察为今天批次余量或独占库存分配。被保护原批不能借用另一箱可用库存，原销售和退供快照不变。schema41八表/173表恢复、六独立虚构阶段与电脑手机贯通；45项具体交付勾选，原50任务287要求/依赖及整体验收保留。下一明确批次仓位分配和销售实际出库选取原批，不自动推定原件仍在库或仓库政策。"
+    },
+    {
+      "date": "2026-10-10",
+      "version": "V0.46",
+      "type": "实际出库原批来源与交付客户追溯",
+      "summary": "V0.46接通配镜实际可用库存出库的明确原批来源选取，固定原收货/原件与仓位观察、数量单位、当时质量及实际交出依据；原采购批次可查已交付客户与原订单。一次原实物扣减，原批已明确售出数量约束后续在库核对和质量保管；旧未记录或原单预留来源继续未知，不补造批次、不推定今天批次余量或完整独占分配。schema42七表/180表恢复、七独立虚构阶段，46项具体交付勾选；原50任务287要求/依赖及业务验收保持。下一原单预留的实际原批核对与固定分配依据。"
     }
   ],
   "tasks": [
@@ -1396,18 +1402,19 @@
       "status": "进行中",
       "owner": "待分配",
       "evidence": [
-        "migrations/041_inventory_custody.sql",
-        "src/inventory-custody.mjs",
-        "src/inventory-custody-api.mjs",
-        "src/inventory-custody-recovery.mjs",
-        "public/inventory-custody.js",
-        "src/demo-inventory-custody.mjs",
-        "test/inventory-custody.test.mjs",
-        "scripts/inventory-custody-browser-check.mjs",
-        "docs/inventory-custody.md"
+        "migrations/042_inventory_batches.sql",
+        "src/inventory-batch-ledger.mjs",
+        "src/inventory-batches.mjs",
+        "src/inventory-batch-recovery.mjs",
+        "public/dispatch.js",
+        "public/inventory-batches.js",
+        "src/demo-inventory-batches.mjs",
+        "test/inventory-batches.test.mjs",
+        "scripts/inventory-batches-browser-check.mjs",
+        "docs/inventory-batches.md"
       ],
       "updated": "2026-10-10",
-      "note": "已匹配入库原批人工实际身份数量仓位、固定当时资料/库存/出库/退供/质量前缀；新观察及撤回解释保留旧事实，不推定今天余量或完整独占分配，原质量受保护数量不能借另一批可用库存。完整批次仓位分配/扫码盘点调拨成本及整体验收未完成。"
+      "note": "原匹配入库原件仓位核对→实际可用出库明确选批→原采购与已交付客户；数量共用原收货容量、已售原件不能被另一箱库存重建。旧未记录/原单预留批次未知，完整独占分配/扫码盘点调拨成本和整体验收待后续。"
     },
     {
       "id": "T07.03",
@@ -3681,44 +3688,20 @@
     {
       "id": "M14-A",
       "implementation": "部分实现",
-      "verification": "未验收",
+      "verification": "未整体验收",
       "evidence": [
-        "src/dispatch.mjs",
-        "src/aftercare.mjs",
-        "src/stock-ledger.mjs",
-        "migrations/018_dispatch_aftercare.sql",
+        "migrations/042_inventory_batches.sql",
+        "src/inventory-batch-ledger.mjs",
+        "src/inventory-batches.mjs",
+        "src/inventory-batch-recovery.mjs",
         "public/dispatch.js",
-        "public/aftercare.js",
-        "test/aftercare.test.mjs",
-        "scripts/aftercare-browser-check.mjs",
-        "docs/dispatch-aftercare.md",
-        "src/demo-data.mjs",
-        "src/recovery.mjs",
-        "src/timeline.mjs",
-        "docs/capability-map.md",
-        "src/aftercare-work.mjs",
-        "src/return-custody.mjs",
-        "migrations/019_aftercare_work.sql",
-        "public/aftercare-work.js",
-        "test/aftercare-work.test.mjs",
-        "scripts/aftercare-work-browser-check.mjs",
-        "docs/aftercare-work.md",
-        "src/aftercare-replacements.mjs",
-        "src/replacement-gates.mjs",
-        "migrations/020_aftercare_replacements.sql",
-        "public/aftercare-replacements.js",
-        "test/aftercare-replacements.test.mjs",
-        "scripts/aftercare-replacements-browser-check.mjs",
-        "docs/aftercare-replacements.md",
-        "src/demo-replacements.mjs",
-        "src/aftercare-dispositions.mjs",
-        "migrations/021_aftercare_dispositions.sql",
-        "public/aftercare-dispositions.js",
-        "test/aftercare-dispositions.test.mjs",
-        "scripts/aftercare-dispositions-browser-check.mjs",
-        "docs/aftercare-dispositions.md",
-        "src/demo-dispositions.mjs"
-      ]
+        "public/inventory-batches.js",
+        "src/demo-inventory-batches.mjs",
+        "test/inventory-batches.test.mjs",
+        "scripts/inventory-batches-browser-check.mjs",
+        "docs/inventory-batches.md"
+      ],
+      "note": "原批明确实际销售出库与原客户/固定原单追溯，不生成第二实物/资金扣减；旧来源和今日余量仍未知，完整预留批次分配与仓库矩阵及业务验收待后续。"
     },
     {
       "id": "M15-F01",
@@ -4939,34 +4922,36 @@
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/041_inventory_custody.sql",
-        "src/inventory-custody.mjs",
-        "src/inventory-custody-api.mjs",
-        "src/inventory-custody-recovery.mjs",
-        "public/inventory-custody.js",
-        "src/demo-inventory-custody.mjs",
-        "test/inventory-custody.test.mjs",
-        "scripts/inventory-custody-browser-check.mjs",
-        "docs/inventory-custody.md"
+        "migrations/042_inventory_batches.sql",
+        "src/inventory-batch-ledger.mjs",
+        "src/inventory-batches.mjs",
+        "src/inventory-batch-recovery.mjs",
+        "public/dispatch.js",
+        "public/inventory-batches.js",
+        "src/demo-inventory-batches.mjs",
+        "test/inventory-batches.test.mjs",
+        "scripts/inventory-batches-browser-check.mjs",
+        "docs/inventory-batches.md"
       ],
-      "note": "原匹配入库原批实际身份数量仓位核对、新观察/撤回解释、历史来源及原保护上限；不自动分配/释放/出库或推定今天原批余量。完整仓位矩阵、扫码、盘点调拨、成本和正式政策及整体验收未完成。"
+      "note": "原批明确实际销售出库与原客户/固定原单追溯，不生成第二实物/资金扣减；旧来源和今日余量仍未知，完整预留批次分配与仓库矩阵及业务验收待后续。"
     },
     {
       "id": "W5-N6",
       "implementation": "部分实现",
       "verification": "未整体验收",
       "evidence": [
-        "migrations/041_inventory_custody.sql",
-        "src/inventory-custody.mjs",
-        "src/inventory-custody-api.mjs",
-        "src/inventory-custody-recovery.mjs",
-        "public/inventory-custody.js",
-        "src/demo-inventory-custody.mjs",
-        "test/inventory-custody.test.mjs",
-        "scripts/inventory-custody-browser-check.mjs",
-        "docs/inventory-custody.md"
+        "migrations/042_inventory_batches.sql",
+        "src/inventory-batch-ledger.mjs",
+        "src/inventory-batches.mjs",
+        "src/inventory-batch-recovery.mjs",
+        "public/dispatch.js",
+        "public/inventory-batches.js",
+        "src/demo-inventory-batches.mjs",
+        "test/inventory-batches.test.mjs",
+        "scripts/inventory-batches-browser-check.mjs",
+        "docs/inventory-batches.md"
       ],
-      "note": "原匹配入库原批实际身份数量仓位核对、新观察/撤回解释、历史来源及原保护上限；不自动分配/释放/出库或推定今天原批余量。完整仓位矩阵、扫码、盘点调拨、成本和正式政策及整体验收未完成。"
+      "note": "原批明确实际销售出库与原客户/固定原单追溯，不生成第二实物/资金扣减；旧来源和今日余量仍未知，完整预留批次分配与仓库矩阵及业务验收待后续。"
     },
     {
       "id": "W6-N1",
@@ -5725,11 +5710,11 @@
     "automated": {
       "command": "npm run check && npm test",
       "result": "passed",
-      "tests": 806,
-      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。；28项长期档案/复查专项：固定来源/已核对复评、状态与责任移交、真实时间/眼别条件筛选、逾期派生、实际完成/未结束结案保护、更正及同刻序列、实时会话/请求体等待/幂等审计回滚、分页/时间轴、非空升级/七表恢复与重复虚构案例。；29项联系专项：独立授权/目的、撤回即时门禁、人工发出与回执、失败责任接管/延期/终态、预约历史/未到时间/原到店和周期版本、严格字段/跨店家长/实时撤销、分页/时间轴、审计幂等回滚、非空升级/八表恢复/重复虚构样例。；30项外院/转介专项：原报告/自报/无法测不覆盖、专业确认/责任移交、修订待确认/旧意见、固定跨模块来源、实际联系回执预约关联/授权撤回后历史、安排改期延期/未知结果、严格权限/实时移交含缓存重放、并发审计幂等回滚、分页/时间轴、非空升级/六表恢复及重复虚构阶段。；26项接触镜专项：明确条件要求/版本、专业评估与采用分开、本版同意/来源改版、撤回即刻阻止含等待请求缓存重放、条件停用/暂停恢复结束、责任移交/权限门店/严格字段、来源依据和历史到店、并发审计幂等回滚、分页/时间轴、非空升级/八表恢复与重复虚构阶段。；19项专项订片追溯：原评估同意/核对参数与原单、事后授权拒绝、撤回缓存及原生执行保护、到货事实/批号未知更正与数量容量、参数及责任变化重核、开工后评估不替换、附件撤销/历史、审计幂等回滚、各业务动作原批号快照、非空升级与恢复及重复虚构阶段。；20项原产品护理：掌握与核对/放行分离、明示要求及需补练、原签收来源/材料版本/暂停恢复、即时原生门禁及缓存、权限与审计回滚、同毫秒原护理来源、非空schema32升级、四表恢复与重复虚构阶段。；25项专项复查：原产品/批号/护理来源、实际反馈与专业意见分离、继续来源/暂停停用同事务效果、材料和原实际检查/外院版本变化、已有复查转介实际联系、审计及直接写回滚、责任移交和待请求体重核、同毫秒来源替换、非空schema33升级、四表恢复与重复虚构阶段。；19项专项更换/归档：未关联新单原生门禁、商业与专业独立、原停用/新专项、反馈/材料/责任变化、幂等前重核、实际到货/误录允许、审计/直接写回滚、五表恢复、同毫秒前缀/摘要篡改、非空schema34升级和三阶段/三归档重复保留。；21项供应商/采购：未知资料、权限/外店/家长、整数价格/无自动账、独立商业批准与实际订货、来源变化显式重开版本、幂等前重核、编号防重、单位锁、审计/直接回滚、完整分页、请求体待定重核、五表恢复、同毫秒来源替换拒绝、非空schema35升级和两目录五阶段重复。；20项采购收货：分批/超收未知、明确验收与一次入库、资料更正原历史、隔离/误录取消、原单位、外店家长岗位、实际时间严格字段、审计回滚、原生门禁、四表恢复、请求体后缓存门禁、同毫秒来源、非空schema36及虚构重复。；20项原批质量：实际在库/容量与隔离占用、专业复检和负责人独立放行、普通库存及原生绕行拒绝、实际旧新原资料、并发/缓存请求体后重核、失败事实/效期、审计双回滚、五表恢复/同刻原前缀、全量历史分页、非空schema37及五虚构阶段重复。；21项供应退货：商业安排/批准与实际交出/收件分离、多安排余量、部分停止/剩余再观察复检放行、全交出不复活、来源变化后重开、原批准实际负向事实、身份/时间/容量/幂等/审计、九表恢复/同刻前缀、旧新销售隔离快照、非空schema38及七虚构阶段重复。；10项库存来源：六类原记录/实际与未知区分、完整稳定分页同刻去重、原资料/实物/目录变化来源冲突、当前身份与跨店、只读门禁/非法参数、恢复相同投影和原库存引用、配镜预留与销售原来源。；20项超收退回：未入账与匹配原商品分开、商业/实际/收件容量、原收货保护、旧版本/同刻前缀、未知来源与重复审计回滚、当前身份与正文等待、非空schema39升级、165表恢复、七虚构阶段旧账不变。；22项原批仓位：已匹配实物与超收分离、人工身份数量位置/原质量保护上限、新观察及撤回解释、旧库存销售退供原来源、同刻上下文、正文身份/来源变化、原生与审计重试、非空schema40升级、六独立虚构案例旧账不变及173表恢复。"
+      "tests": 827,
+      "scope": "公共基础、客户/家庭/周期/到店、资料、人员安全、任务岗位/交接/执行/异常/通用完成/追加更正/显式后续分派与来源、恢复与诊断；不代表整阶段业务验收；多层来源组件、岗位/状态筛选、完整数量、游标绑定与变更拒绝、旧来源保持和恢复投影；21项配镜专项：商品/订单门店权限、精确分金额、版本与资料固定、并发/幂等/审计回滚、取消历史、旧库升级、恢复及虚构重复初始化；23项库存专项：数量守恒/隔离/服务排除、原行固定、重复商品与多商品原子预留、并发最后一件/释放/原单修订互斥、单位锁定、审计与幂等、完整分页、时间轴、撤销门禁、旧库/恢复和重复样例；19项基础收款专项覆盖角色/门店、精确分次金额与原单锁、误录源复制、有效外部编号及跨单并发、库存联动、幂等/审计回滚、实时会话门禁、完整分页、受限时间轴、旧库升级/篡改拒绝恢复和重复样例；23项加工专项覆盖逐行原单/版本、严格字段与单位、分批数量、执行后安排锁、当前责任人/门店/改密与会话、原单及stock预留保护和并发竞争、连续历史/完整分页/时间轴、审计幂等回滚、非空升级/篡改恢复拒绝、重复虚构样例；19项质检交付专项覆盖加工来源/逐行分批守恒、明确项目结论、返工分派/独立开始/完成/多次失败复检、签收源/超量/角色门店/固定责任人、幂等/竞争/审计回滚、加工版本与旧回执、改密/等待请求撤销、分页/时间轴、非空升级/篡改拒绝恢复与重复示例；26项实际出库/售后专项：配对库存/出库版本、原预留余量、实际数量与后续库存操作、最后实物竞争、原签收容量、固定来源与原单、单活动案例与历史超过50、当前责任人与合法状态/日期、退回原出库跨案例容量/独立隔离、审计幂等回滚/等体请求撤销、完整分页/时间轴、非空升级/篡改拒绝恢复与重复示例；旧件处置与维修/归还共用余额、负责人审核与实际转出、交叉执行版本；22项退款专项：原有效实收/人工金额、待处理和已退占用、独立审核/实际凭据、误录作废互斥、并发版本/实时会话/审计回滚/幂等、金融权限/稳定分页、闭合售后追溯、非空升级/恢复及重复演示；22项参数专项：原行/来源/未知单位、版本核对与变更门禁、固定执行、权限/会话/审计幂等和并发、旧库升级/同刻顺序/篡改恢复拒绝；25项训练专项：模板/计划/课程状态与固定原版、实际未知和0、角色/门店/撤销、争用与双向版本、幂等/审计回滚、超过100历史与时间轴、非空升级/十表恢复及同刻篡改拒绝；24项权益专项：按次/期间与购买赠送独立、原来源反向冲销/容量/重复与客户序列争用、规则与计划历史固定、严格日期字段和隐私权限、实时撤销/原生约束/幂等审计回滚、超过100历史、非空升级/四表恢复与同刻篡改拒绝；25项排期专项：明确资源/容量/准备间隔/维护、单次与小组容量、候补转正和客户重叠、单人调课与原历史、角色/实时门禁/审计幂等与争用、完整分页、非空升级/六表恢复、同刻资源未来版本拒绝和重复虚构案例。；30项家庭练习/复评专项：最小家长投影、草稿与发布版本、撤回/结束、本人来源/分钟缺失、私有与共享反馈、授权撤销含请求体等待/幂等重放、跨家庭/门店、复评来源/核对/后续任务、全序列/审计回滚、历史检查资料、升级恢复与虚构重复初始化。；28项长期档案/复查专项：固定来源/已核对复评、状态与责任移交、真实时间/眼别条件筛选、逾期派生、实际完成/未结束结案保护、更正及同刻序列、实时会话/请求体等待/幂等审计回滚、分页/时间轴、非空升级/七表恢复与重复虚构案例。；29项联系专项：独立授权/目的、撤回即时门禁、人工发出与回执、失败责任接管/延期/终态、预约历史/未到时间/原到店和周期版本、严格字段/跨店家长/实时撤销、分页/时间轴、审计幂等回滚、非空升级/八表恢复/重复虚构样例。；30项外院/转介专项：原报告/自报/无法测不覆盖、专业确认/责任移交、修订待确认/旧意见、固定跨模块来源、实际联系回执预约关联/授权撤回后历史、安排改期延期/未知结果、严格权限/实时移交含缓存重放、并发审计幂等回滚、分页/时间轴、非空升级/六表恢复及重复虚构阶段。；26项接触镜专项：明确条件要求/版本、专业评估与采用分开、本版同意/来源改版、撤回即刻阻止含等待请求缓存重放、条件停用/暂停恢复结束、责任移交/权限门店/严格字段、来源依据和历史到店、并发审计幂等回滚、分页/时间轴、非空升级/八表恢复与重复虚构阶段。；19项专项订片追溯：原评估同意/核对参数与原单、事后授权拒绝、撤回缓存及原生执行保护、到货事实/批号未知更正与数量容量、参数及责任变化重核、开工后评估不替换、附件撤销/历史、审计幂等回滚、各业务动作原批号快照、非空升级与恢复及重复虚构阶段。；20项原产品护理：掌握与核对/放行分离、明示要求及需补练、原签收来源/材料版本/暂停恢复、即时原生门禁及缓存、权限与审计回滚、同毫秒原护理来源、非空schema32升级、四表恢复与重复虚构阶段。；25项专项复查：原产品/批号/护理来源、实际反馈与专业意见分离、继续来源/暂停停用同事务效果、材料和原实际检查/外院版本变化、已有复查转介实际联系、审计及直接写回滚、责任移交和待请求体重核、同毫秒来源替换、非空schema33升级、四表恢复与重复虚构阶段。；19项专项更换/归档：未关联新单原生门禁、商业与专业独立、原停用/新专项、反馈/材料/责任变化、幂等前重核、实际到货/误录允许、审计/直接写回滚、五表恢复、同毫秒前缀/摘要篡改、非空schema34升级和三阶段/三归档重复保留。；21项供应商/采购：未知资料、权限/外店/家长、整数价格/无自动账、独立商业批准与实际订货、来源变化显式重开版本、幂等前重核、编号防重、单位锁、审计/直接回滚、完整分页、请求体待定重核、五表恢复、同毫秒来源替换拒绝、非空schema35升级和两目录五阶段重复。；20项采购收货：分批/超收未知、明确验收与一次入库、资料更正原历史、隔离/误录取消、原单位、外店家长岗位、实际时间严格字段、审计回滚、原生门禁、四表恢复、请求体后缓存门禁、同毫秒来源、非空schema36及虚构重复。；20项原批质量：实际在库/容量与隔离占用、专业复检和负责人独立放行、普通库存及原生绕行拒绝、实际旧新原资料、并发/缓存请求体后重核、失败事实/效期、审计双回滚、五表恢复/同刻原前缀、全量历史分页、非空schema37及五虚构阶段重复。；21项供应退货：商业安排/批准与实际交出/收件分离、多安排余量、部分停止/剩余再观察复检放行、全交出不复活、来源变化后重开、原批准实际负向事实、身份/时间/容量/幂等/审计、九表恢复/同刻前缀、旧新销售隔离快照、非空schema38及七虚构阶段重复。；10项库存来源：六类原记录/实际与未知区分、完整稳定分页同刻去重、原资料/实物/目录变化来源冲突、当前身份与跨店、只读门禁/非法参数、恢复相同投影和原库存引用、配镜预留与销售原来源。；20项超收退回：未入账与匹配原商品分开、商业/实际/收件容量、原收货保护、旧版本/同刻前缀、未知来源与重复审计回滚、当前身份与正文等待、非空schema39升级、165表恢复、七虚构阶段旧账不变。；22项原批仓位：已匹配实物与超收分离、人工身份数量位置/原质量保护上限、新观察及撤回解释、旧库存销售退供原来源、同刻上下文、正文身份/来源变化、原生与审计重试、非空schema40升级、六独立虚构案例旧账不变及173表恢复。；21项实际选批：单次实物扣减/原客户追溯、同原收货多仓位共用上限、售出原件不能重建在库/质量、完整数量/固定单位/未知与预留、负事实重试/审计回滚、正文身份和来源变化、同刻来源、非空schema41升级、七独立演示旧账保持及180表恢复。"
     },
     "browser": {
-      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的31组浏览器脚本",
+      "command": "PLAYWRIGHT_MODULE_PATH=/tmp/optical-browser-check/node_modules/playwright/index.mjs 的32组浏览器脚本",
       "result": "passed",
       "viewports": [
         "1440x1050",
@@ -5767,7 +5752,8 @@
         "scripts/supplier-returns-browser-check.mjs",
         "scripts/inventory-sources-browser-check.mjs",
         "scripts/purchase-extra-returns-browser-check.mjs",
-        "scripts/inventory-custody-browser-check.mjs"
+        "scripts/inventory-custody-browser-check.mjs",
+        "scripts/inventory-batches-browser-check.mjs"
       ],
       "scenarios": [
         "six synthetic snapshots",
@@ -5842,8 +5828,8 @@
       "all_task_links_resolve": true
     },
     "businessAcceptance": "待确认",
-    "migration": "schema41八表；旧schema40原库存/销售/收货/退供/质量仅捕获空新核对账技术零前缀，不补过去现场身份/位置或今天余量",
-    "recovery": "173表CLI重复/备份核验/独立恢复和会话清零；原批人工事实和五类互相来源前缀/旧销售退供快照/当时原质量保护上限核对"
+    "migration": "schema42七表；旧schema41实际出库保留原批未记录边界，原观察捕获空新账技术零前缀，旧质量退供前缀保留未知NULL，不补造历史批次/分配",
+    "recovery": "180表CLI重复/备份核验/独立恢复会话清零；原实际出库/完整原批引用与原观察、质量、收货的当时前缀及同刻先后核对"
   },
   "releaseChecklist": [
     {
@@ -6224,10 +6210,18 @@
         "T07.02"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.46",
+      "title": "实际出库明确原批来源、原采购与已交付客户追溯",
+      "task_ids": [
+        "T07.02"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "V0.46继续明确批次仓位分配及配镜实际出库选取原批，须人工核对来源与当时有效数量，不把观察自动转为独占分配或由原入库量推定今天原件余量",
+    "V0.47继续原单预留的实际原批身份核对与固定分配依据，贯通配镜原单预留与实际出库；不把可用观察套为原单预留实物，不推定仓库通用分配政策",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -6236,21 +6230,22 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.45",
-    "automatedTests": 806,
-    "schema": 41,
-    "browserSuites": 31,
+    "version": "V0.46",
+    "automatedTests": 827,
+    "schema": 42,
+    "browserSuites": 32,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "migrations/041_inventory_custody.sql",
-      "src/inventory-custody.mjs",
-      "src/inventory-custody-api.mjs",
-      "src/inventory-custody-recovery.mjs",
-      "public/inventory-custody.js",
-      "src/demo-inventory-custody.mjs",
-      "test/inventory-custody.test.mjs",
-      "scripts/inventory-custody-browser-check.mjs",
-      "docs/inventory-custody.md",
+      "migrations/042_inventory_batches.sql",
+      "src/inventory-batch-ledger.mjs",
+      "src/inventory-batches.mjs",
+      "src/inventory-batch-recovery.mjs",
+      "public/dispatch.js",
+      "public/inventory-batches.js",
+      "src/demo-inventory-batches.mjs",
+      "test/inventory-batches.test.mjs",
+      "scripts/inventory-batches-browser-check.mjs",
+      "docs/inventory-batches.md",
       "docs/handover.md"
     ]
   }
