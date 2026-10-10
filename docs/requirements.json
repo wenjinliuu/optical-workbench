@@ -5174,9 +5174,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/procurement.mjs",
+        "src/procurement-api.mjs",
+        "src/procurement-recovery.mjs",
+        "migrations/036_procurement.sql",
+        "public/procurement.js",
+        "src/demo-procurement.mjs",
+        "test/procurement.test.mjs",
+        "scripts/procurement-browser-check.mjs",
+        "docs/procurement.md"
+      ],
+      "note": "供应商原版本、实际采购需求与原实物/人工价、商业提交/批准驳回和已发生实际订货/明确日期编号已接；变更显式重读追加，原意见与在途数量单位保留。未自动发送消息、入库或付款，预算/真实供应商资质和完整分批验收/延期取消仍待真实来源。"
     },
     {
       "id": "W5-N2",
@@ -5193,9 +5204,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/procurement.mjs",
+        "src/procurement-api.mjs",
+        "src/procurement-recovery.mjs",
+        "migrations/036_procurement.sql",
+        "public/procurement.js",
+        "src/demo-procurement.mjs",
+        "test/procurement.test.mjs",
+        "scripts/procurement-browser-check.mjs",
+        "docs/procurement.md"
+      ],
+      "note": "供应商原版本、实际采购需求与原实物/人工价、商业提交/批准驳回和已发生实际订货/明确日期编号已接；变更显式重读追加，原意见与在途数量单位保留。未自动发送消息、入库或付款，预算/真实供应商资质和完整分批验收/延期取消仍待真实来源。"
     },
     {
       "id": "W5-N3",
