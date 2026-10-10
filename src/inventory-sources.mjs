@@ -1,4 +1,5 @@
 import {custodySequence as reservedSequence} from './inventory-reserved.mjs';
+import {reservedBatchSequence} from './inventory-reserved-batch-ledger.mjs';
 import {batchSequence,receiptBatchSold} from './inventory-batch-ledger.mjs';
 import {custodySequence} from './inventory-custody.mjs';
 import {extraReceiptBalance,extraReturnSequence} from './purchase-extra-return-ledger.mjs';
@@ -16,7 +17,7 @@ const sourceRows=`
  UNION ALL SELECT 'stock',e.id,e.product_id,e.store_id,e.created_at FROM inventory_events e`;
 const max=(db,table,where,params,column='sequence')=>db.prepare('SELECT coalesce(max('+column+'),0) n FROM '+table+' WHERE '+where).get(...params).n;
 export function inventorySourceSnapshot(db,product){
- const stock=physicalStock(db,product.id),prefix={reserved_custody:reservedSequence(db,product.store_id),batches:batchSequence(db,product.store_id),custody:custodySequence(db,product.store_id),product_version:product.version,stock:stock.sequence,outbound:stock.outbound_revision,returns:stock.return_revision,procurement:max(db,'procurement_journal','store_id=?',[product.store_id]),receiving:max(db,'purchase_receiving_journal','store_id=?',[product.store_id]),quality:max(db,'purchase_quality_journal','store_id=?',[product.store_id]),extra_returns:extraReturnSequence(db,product.store_id),supplier_returns:max(db,'supplier_return_journal','store_id=?',[product.store_id]),reservations:max(db,'inventory_order_events','store_id=?',[product.store_id],'rowid')};return {stock,prefix,source_token:createHash('sha256').update(JSON.stringify({product_id:product.id,store_id:product.store_id,...prefix})).digest('hex')};
+ const stock=physicalStock(db,product.id),prefix={reserved_batches:reservedBatchSequence(db,product.store_id),reserved_custody:reservedSequence(db,product.store_id),batches:batchSequence(db,product.store_id),custody:custodySequence(db,product.store_id),product_version:product.version,stock:stock.sequence,outbound:stock.outbound_revision,returns:stock.return_revision,procurement:max(db,'procurement_journal','store_id=?',[product.store_id]),receiving:max(db,'purchase_receiving_journal','store_id=?',[product.store_id]),quality:max(db,'purchase_quality_journal','store_id=?',[product.store_id]),extra_returns:extraReturnSequence(db,product.store_id),supplier_returns:max(db,'supplier_return_journal','store_id=?',[product.store_id]),reservations:max(db,'inventory_order_events','store_id=?',[product.store_id],'rowid')};return {stock,prefix,source_token:createHash('sha256').update(JSON.stringify({product_id:product.id,store_id:product.store_id,...prefix})).digest('hex')};
 }
 function sourceDetail(db,x){
  const r={kind:x.kind,id:x.id,created_at:x.created_at};

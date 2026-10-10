@@ -1,3 +1,4 @@
+import {reservedBatchReadHandler} from './inventory-reserved-batches.mjs';
 import {createReservedHandler} from './inventory-reserved-api.mjs';
 import {batchReadHandler} from './inventory-batches.mjs';
 import {createCustodyHandler} from './inventory-custody-api.mjs';
@@ -161,6 +162,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
   const taskEvidence=createTaskEvidenceHandler(db,{need,customer,field,fail,body,mutation,audit});
   const dispatch=createDispatchHandler(db,{need,customer,field,fail,body,mutation,audit});
   const batches=batchReadHandler(db,{need,fail});
+  const reservedBatches=reservedBatchReadHandler(db,{need,fail});
   const reserved=createReservedHandler(db,{need,field,fail,body,mutation,audit});
   const custody=createCustodyHandler(db,{need,field,fail,body,mutation,audit});
   const extraReturns=createExtraReturnHandler(db,{need,field,fail,body,mutation,audit});
@@ -242,6 +244,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       if(await inventorySources(req,path,url,user,json))return;
       if(await supplierReturns(req,path,url,user,json))return;
       if(await batches(req,path,url,user,json))return;
+      if(await reservedBatches(req,path,url,user,json))return;
       if(await reserved(req,path,url,user,json))return;
       if(await custody(req,path,url,user,json))return;
       if(await extraReturns(req,path,url,user,json))return;
