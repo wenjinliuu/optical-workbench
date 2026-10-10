@@ -1,0 +1,6969 @@
+{
+  "baseline": "V1.1",
+  "updated": "2026-10-10",
+  "requirements": [
+    {
+      "id": "M01-F01",
+      "type": "功能",
+      "title": "今日工作台 · 今日预约与候诊",
+      "body": "今日预约与候诊",
+      "tasks": [
+        "T03.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F02",
+      "type": "功能",
+      "title": "今日工作台 · 待检查/训练/交付/回访",
+      "body": "待检查/训练/交付/回访",
+      "tasks": [
+        "T03.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-F03",
+      "type": "功能",
+      "title": "今日工作台 · 逾期与阻塞",
+      "body": "逾期与阻塞",
+      "tasks": [
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：通用任务阻塞原因和工作台筛选已实现；逾期、截止时间和角色今日任务尚未实现。"
+    },
+    {
+      "id": "M01-F04",
+      "type": "功能",
+      "title": "今日工作台 · 进入原单处理",
+      "body": "进入原单处理",
+      "tasks": [
+        "T03.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-D",
+      "type": "字段",
+      "title": "今日工作台 · 字段",
+      "body": "任务编号、关联档案、当前步骤、负责人、截止时间、优先级、阻塞原因",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/008_task_execution.sql",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
+      ],
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
+    },
+    {
+      "id": "M01-R",
+      "type": "岗位与权限",
+      "title": "今日工作台 · 岗位与权限",
+      "body": "所有员工；按岗位和门店显示",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-L",
+      "type": "关联",
+      "title": "今日工作台 · 关联",
+      "body": "全部业务流程",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M01-A",
+      "type": "验收规则",
+      "title": "今日工作台 · 验收规则",
+      "body": "空状态明确；列表、流程和详情使用同一状态",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.11部分实现：列表/看板/当前状态流程复用同一任务数据，空态/截断/历史和档案入口明确；正式业务依赖图及专项工作台未实现。"
+    },
+    {
+      "id": "M02-F01",
+      "type": "功能",
+      "title": "客户与家庭关系 · 成人儿童建档",
+      "body": "成人儿童建档",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "M02-F02",
+      "type": "功能",
+      "title": "客户与家庭关系 · 多监护人和兄弟姐妹",
+      "body": "多监护人和兄弟姐妹",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "M02-F03",
+      "type": "功能",
+      "title": "客户与家庭关系 · 重复检测与合并",
+      "body": "重复检测与合并",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "M02-F04",
+      "type": "功能",
+      "title": "客户与家庭关系 · 跨店交接",
+      "body": "跨店交接",
+      "tasks": [
+        "T02.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-D",
+      "type": "字段",
+      "title": "客户与家庭关系 · 字段",
+      "body": "客户编号、出生日期、监护关系、授权范围、来源、负责员工",
+      "tasks": [
+        "T02.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "M02-R",
+      "type": "岗位与权限",
+      "title": "客户与家庭关系 · 岗位与权限",
+      "body": "前台建档；授权员工查阅；家长查看授权成员",
+      "tasks": [
+        "T02.01",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "M02-L",
+      "type": "关联",
+      "title": "客户与家庭关系 · 关联",
+      "body": "检查、订单、训练、随访",
+      "tasks": [
+        "T02.01",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M02-A",
+      "type": "验收规则",
+      "title": "客户与家庭关系 · 验收规则",
+      "body": "手机号不是唯一身份；合并保留原记录及来源",
+      "tasks": [
+        "T02.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "M03-F01",
+      "type": "功能",
+      "title": "检查与验光记录 · 模板与草稿",
+      "body": "模板与草稿",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F02",
+      "type": "功能",
+      "title": "检查与验光记录 · 外院附件",
+      "body": "外院附件",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F03",
+      "type": "功能",
+      "title": "检查与验光记录 · 历次对比",
+      "body": "历次对比",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-F04",
+      "type": "功能",
+      "title": "检查与验光记录 · 确认、修订和版本",
+      "body": "确认、修订和版本",
+      "tasks": [
+        "T02.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-D",
+      "type": "字段",
+      "title": "检查与验光记录 · 字段",
+      "body": "日期、眼别、单位、方法、设备、裸眼/矫正视力、屈光、眼轴、专项结果",
+      "tasks": [
+        "T02.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-R",
+      "type": "岗位与权限",
+      "title": "检查与验光记录 · 岗位与权限",
+      "body": "检查人员录入；专业负责人按职责确认",
+      "tasks": [
+        "T02.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-L",
+      "type": "关联",
+      "title": "检查与验光记录 · 关联",
+      "body": "验配、随访、训练评估",
+      "tasks": [
+        "T02.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M03-A",
+      "type": "验收规则",
+      "title": "检查与验光记录 · 验收规则",
+      "body": "未测量不填零；不同条件不混合比较；录入与确认可分工",
+      "tasks": [
+        "T02.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F01",
+      "type": "功能",
+      "title": "配镜与验配档案 · 处方确认",
+      "body": "处方确认",
+      "tasks": [
+        "T02.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F02",
+      "type": "功能",
+      "title": "配镜与验配档案 · 客户自带镜架",
+      "body": "客户自带镜架",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F03",
+      "type": "功能",
+      "title": "配镜与验配档案 · 不同用途配镜",
+      "body": "不同用途配镜",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-F04",
+      "type": "功能",
+      "title": "配镜与验配档案 · 佩戴适应追踪",
+      "body": "佩戴适应追踪",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-D",
+      "type": "字段",
+      "title": "配镜与验配档案 · 字段",
+      "body": "处方版本、球镜/柱镜/轴位、瞳距/瞳高、用途、商品、交付参数",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-R",
+      "type": "岗位与权限",
+      "title": "配镜与验配档案 · 岗位与权限",
+      "body": "专业、销售、加工和质检各司其职",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-L",
+      "type": "关联",
+      "title": "配镜与验配档案 · 关联",
+      "body": "订单、加工、交付、售后",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M04-A",
+      "type": "验收规则",
+      "title": "配镜与验配档案 · 验收规则",
+      "body": "订单留处方快照；修改档案不能改变历史订单",
+      "tasks": [
+        "T02.04",
+        "T04.01",
+        "T04.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M05-F01",
+      "type": "功能",
+      "title": "儿童长期随访 · 检查时间轴",
+      "body": "检查时间轴",
+      "tasks": [
+        "T06.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：实际检查时间轴、录入/更正时间及固定来源版本可读；统一临床项目字典待依据。"
+    },
+    {
+      "id": "M05-F02",
+      "type": "功能",
+      "title": "儿童长期随访 · 左右眼趋势",
+      "body": "左右眼趋势",
+      "tasks": [
+        "T06.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：左右眼/原始双眼合并记录、条件状态和来源可筛选；未确认指标及单位，不生成数值趋势或疗效结论。"
+    },
+    {
+      "id": "M05-F03",
+      "type": "功能",
+      "title": "儿童长期随访 · 复查计划",
+      "body": "复查计划",
+      "tasks": [
+        "T06.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：明确日期/目的/项目/负责人及固定资料版本、暂停/修订/移交和人工完成已接；无默认频率和循环生成。"
+    },
+    {
+      "id": "M05-F04",
+      "type": "功能",
+      "title": "儿童长期随访 · 逾期、转诊和结案",
+      "body": "逾期、转诊和结案",
+      "tasks": [
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M05-D",
+      "type": "字段",
+      "title": "儿童长期随访 · 字段",
+      "body": "基线、方案来源、下次日期、负责人员、外院结果、变化与意见",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M05-R",
+      "type": "岗位与权限",
+      "title": "儿童长期随访 · 岗位与权限",
+      "body": "专业人员确定计划；随访人员联系",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M05-L",
+      "type": "关联",
+      "title": "儿童长期随访 · 关联",
+      "body": "检查、验配、训练、客户入口",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M05-A",
+      "type": "验收规则",
+      "title": "儿童长期随访 · 验收规则",
+      "body": "图表展示变化；专业评价由授权人员记录",
+      "tasks": [
+        "T06.01",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M06-F01",
+      "type": "功能",
+      "title": "个人训练计划 · 项目库和模板",
+      "body": "项目库和模板",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：项目模板不可变版本、启停、历史；个人计划明确选择当时模板版本，模板不自动生成或确认计划。"
+    },
+    {
+      "id": "M06-F02",
+      "type": "功能",
+      "title": "个人训练计划 · 个人参数",
+      "body": "个人参数",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：个人项目说明、人工评估来源/目标及频率/时长/复评说明按计划版本固定；正式专业参数表单与单位规则未完成。"
+    },
+    {
+      "id": "M06-F03",
+      "type": "功能",
+      "title": "个人训练计划 · 专业确认",
+      "body": "专业确认",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：开发版专业岗位当前计划责任人明确确认；真实资质、正式临床确认及审批规则待R01/R02。"
+    },
+    {
+      "id": "M06-F04",
+      "type": "功能",
+      "title": "个人训练计划 · 调整、暂停、恢复、结束",
+      "body": "调整、暂停、恢复、结束",
+      "tasks": [
+        "T05.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：调整生成新草稿版本，原执行保留；暂停/恢复明确记录，结束前拒绝未结束现场课程；不改变收费、权益或预约。"
+    },
+    {
+      "id": "M06-D",
+      "type": "字段",
+      "title": "个人训练计划 · 字段",
+      "body": "评估、目标、项目、频率、时长、版本、负责人、复评节点",
+      "tasks": [
+        "T05.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：人工评估、目标、1–30项目、频率/时长、来源、负责人、复评文字说明及固定资料/附件版本；正式复评记录未完成。"
+    },
+    {
+      "id": "M06-R",
+      "type": "岗位与权限",
+      "title": "个人训练计划 · 岗位与权限",
+      "body": "专业负责人制定或确认；训练人员执行",
+      "tasks": [
+        "T05.01",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：服务端岗位/本店和实时会话门禁，当前计划责任人制定/确认与固定课程执行人分开，旧版课程由旧版责任人核对；正式岗位资质待确认。"
+    },
+    {
+      "id": "M06-L",
+      "type": "关联",
+      "title": "个人训练计划 · 关联",
+      "body": "排课、执行、家庭练习、复评",
+      "tasks": [
+        "T05.01",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：个人计划与实际到店课程、固定需求/资料/模板版本衔接；预约、家庭练习、权益和专业复评尚未接通。"
+    },
+    {
+      "id": "M06-A",
+      "type": "验收规则",
+      "title": "个人训练计划 · 验收规则",
+      "body": "计划与收费套餐独立；修改计划保留历史",
+      "tasks": [
+        "T05.01",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：计划/现场课程/收费独立，不可变调整与历史课程原版来源已验证；收费套餐尚未实现，整项未验收。"
+    },
+    {
+      "id": "M07-F01",
+      "type": "功能",
+      "title": "排课与资源预约 · 单次/周期排课",
+      "body": "单次/周期排课",
+      "tasks": [
+        "T05.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：已保存单次和明确小组时段及资源占用；周期重复序列与例外尚未实现。"
+    },
+    {
+      "id": "M07-F02",
+      "type": "功能",
+      "title": "排课与资源预约 · 候补",
+      "body": "候补",
+      "tasks": [
+        "T05.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：候补独立排队，不占名额，不自动转正；前台明确转预约时重新核对资源版本、原计划和容量。通知及自动队列政策待确认。"
+    },
+    {
+      "id": "M07-F03",
+      "type": "功能",
+      "title": "排课与资源预约 · 请假、调课、补课",
+      "body": "请假、调课、补课",
+      "tasks": [
+        "T05.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次调课移动一个客户，取消/当次请假保留原历史，其他组员不受影响；补课来源与权益、真实缺席处理尚未完成。"
+    },
+    {
+      "id": "M07-F04",
+      "type": "功能",
+      "title": "排课与资源预约 · 签到和现场加号",
+      "body": "签到和现场加号",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M07-D",
+      "type": "字段",
+      "title": "排课与资源预约 · 字段",
+      "body": "时段、持续时间、资源、容量、重复规则、状态、候补顺序",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：明确UTC时段、容量、固定资源版本及准备收尾、客户原计划、状态与候补顺序已保存；重复规则及系列例外待实现。"
+    },
+    {
+      "id": "M07-R",
+      "type": "岗位与权限",
+      "title": "排课与资源预约 · 岗位与权限",
+      "body": "前台排课；员工查看安排；家长预约",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：负责人维护资源与维护占用，负责人/前台排期，专业员工仅查看；正式资质、家长自助预约及通知待完成。"
+    },
+    {
+      "id": "M07-L",
+      "type": "关联",
+      "title": "排课与资源预约 · 关联",
+      "body": "排班、设备、执行、服务预约",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：客户、原计划/需求、资源与时间轴贯通，实际到店/现场课程/权益独立；排班/签到及设备维护业务工单后续接入。"
+    },
+    {
+      "id": "M07-A",
+      "type": "验收规则",
+      "title": "排课与资源预约 · 验收规则",
+      "body": "校验资源冲突；周期更改区分本次与之后全部",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：资源含人工准备收尾、小组容量与客户重叠冲突，版本/全序列校验避免并发最后席位重复；单次调课不改组员；周期之后全部待实现。"
+    },
+    {
+      "id": "M08-F01",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 开始/结束",
+      "body": "开始/结束",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：现场课程明确实际开始UTC和记录结束UTC，执行/记录/核对分开；预约签到和扣次待完成。"
+    },
+    {
+      "id": "M08-F02",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 执行差异",
+      "body": "执行差异",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：逐项实际完成情况/反馈/分钟数及额外活动或差异说明人工保存，未知null与明确0分开；计划原文与当次实际分开。"
+    },
+    {
+      "id": "M08-F03",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 异常与中止",
+      "body": "异常与中止",
+      "tasks": [
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：课程暂停/恢复/中止及原因连续保存；专业接管、异常自动任务与跟踪闭环未完成。"
+    },
+    {
+      "id": "M08-F04",
+      "type": "功能",
+      "title": "训练执行与家庭练习 · 家庭作业、提交及反馈",
+      "body": "家庭作业、提交及反馈",
+      "tasks": [
+        "T05.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.30：家庭练习布置/明确发布、自报/转录、专业共享反馈和人工阶段复评已保存；临床指标、效果图和正式表单未完成。"
+    },
+    {
+      "id": "M08-D",
+      "type": "字段",
+      "title": "训练执行与家庭练习 · 字段",
+      "body": "实际项目、时长、执行人、完成情况、不适、家庭练习、来源",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：固定项目、执行人、原计划责任人、实际开始/结束、分钟数/完成情况/反馈与来源保存；家庭练习/设备数据及正式不适字段未完成。 V0.30：家庭练习/实际分钟/完成情况/来源/反馈、内部复评/检查对比、固定原计划/课程/资料/后续任务版本已保存；正式指标字典待依据。"
+    },
+    {
+      "id": "M08-R",
+      "type": "岗位与权限",
+      "title": "训练执行与家庭练习 · 岗位与权限",
+      "body": "训练人员录入；专业负责人评阅；家长提交",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：固定专业岗位执行人实际录入、固定计划版本责任人核对；家长提交和真实资质待完成。 V0.30：原专业责任人布置/反馈/复评，明确有效家长仅见本人发布与共享反馈，负责人撤回/结束，前台仅转录；正式专业资质另核验。"
+    },
+    {
+      "id": "M08-L",
+      "type": "关联",
+      "title": "训练执行与家庭练习 · 关联",
+      "body": "计划、预约、扣次、复评",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：课程固定当时计划/模板、实际到店及独立需求版本；预约、权益扣次和复评尚未接通。 V0.30：家庭练习衔接原个人计划和可选实际课程，复评固定课程/自报/资料版本及既有下一任务；计划调整结束分别办理，不改变预约/权益。"
+    },
+    {
+      "id": "M08-A",
+      "type": "验收规则",
+      "title": "训练执行与家庭练习 · 验收规则",
+      "body": "家长自报与设备数据分开；异常保留跟踪任务",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：员工记录/外部转录/家长自报转录来源分开，家长不读取内部训练；设备采集及异常后续任务未实现。 V0.30：家长自报与员工/设备人工转录分别来源，撤销授权阻断重放，未到复评不增预约门禁、结束记录不清零权益；正式业务验收待进行。"
+    },
+    {
+      "id": "M09-F01",
+      "type": "功能",
+      "title": "套餐与课时权益 · 按次/按期套餐",
+      "body": "按次/按期套餐",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：目录规则记录按次/按明确期间，权益账固定登记采用的原版；已知来源明确登记购买/赠送，次数与期间不混合，正式业务规则仍待R03。"
+    },
+    {
+      "id": "M09-F02",
+      "type": "功能",
+      "title": "套餐与课时权益 · 扣次规则",
+      "body": "扣次规则",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：扣次规则说明可按版本保存或未知留空，未执行扣次算法；训练核对不扣次，预约未接入，实际扣次待明确规则与课程联动。"
+    },
+    {
+      "id": "M09-F03",
+      "type": "功能",
+      "title": "套餐与课时权益 · 冻结延期",
+      "body": "冻结延期",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M09-F04",
+      "type": "功能",
+      "title": "套餐与课时权益 · 转套餐、退款、调整",
+      "body": "转套餐、退款、调整",
+      "tasks": [
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：负责人反向流水纠正原购买/赠送登记，次数可部分或全量、期间整条冲销，原来源不覆盖；转套餐、规则调整执行及资金退款/分摊尚未完成。"
+    },
+    {
+      "id": "M09-D",
+      "type": "字段",
+      "title": "套餐与课时权益 · 字段",
+      "body": "订单、付费/赠送权益、效期、扣次、撤销、调整流水",
+      "tasks": [
+        "T05.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：权益、付费/赠送、人工明确起止日期、固定原规则/需求/可选计划、来源资料/附件与反向误录流水已保存；销售订单、扣次、冻结/延期及资金账联动未完成。"
+    },
+    {
+      "id": "M09-R",
+      "type": "岗位与权限",
+      "title": "套餐与课时权益 · 岗位与权限",
+      "body": "销售开单；训练确认；财务退款；负责人审批",
+      "tasks": [
+        "T05.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：开发角色负责人维护目录及误录冲销，负责人/前台登记原购买/赠送来源；专业员工仅看无凭据的数量摘要，家长拒绝内部读写；真实业务审批/财务与训练扣次职责待明确。"
+    },
+    {
+      "id": "M09-L",
+      "type": "关联",
+      "title": "套餐与课时权益 · 关联",
+      "body": "销售、执行、资金对账",
+      "tasks": [
+        "T05.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：客户/训练周期/可选原计划固定来源、员工客户摘要及资金权限时间轴接通；套餐销售、课程权益消费和财务对账尚未实现。"
+    },
+    {
+      "id": "M09-A",
+      "type": "验收规则",
+      "title": "套餐与课时权益 · 验收规则",
+      "body": "预约不等于扣次；同一服务只扣一次；纠正留反向流水",
+      "tasks": [
+        "T05.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：本轮不创建预约或扣次；购买/赠送独立、误录反向流水引用原登记，幂等和并发原子验证；同一服务只扣一次仍待扣次联动。"
+    },
+    {
+      "id": "M10-F01",
+      "type": "功能",
+      "title": "复查与客户联系 · 复查/训练/取镜通知",
+      "body": "复查/训练/取镜通知",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-F02",
+      "type": "功能",
+      "title": "复查与客户联系 · 人工联系",
+      "body": "人工联系",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-F03",
+      "type": "功能",
+      "title": "复查与客户联系 · 失败重试",
+      "body": "失败重试",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-F04",
+      "type": "功能",
+      "title": "复查与客户联系 · 服务与营销授权区分",
+      "body": "服务与营销授权区分",
+      "tasks": [
+        "T06.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-D",
+      "type": "字段",
+      "title": "复查与客户联系 · 字段",
+      "body": "目的、日期、负责人、渠道、回执、联系结果、下一次动作",
+      "tasks": [
+        "T06.02",
+        "T00.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-R",
+      "type": "岗位与权限",
+      "title": "复查与客户联系 · 岗位与权限",
+      "body": "前台、随访和专业负责人",
+      "tasks": [
+        "T06.02",
+        "T01.02",
+        "T10.02",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-L",
+      "type": "关联",
+      "title": "复查与客户联系 · 关联",
+      "body": "全部长期服务与售后",
+      "tasks": [
+        "T06.02",
+        "T00.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M10-A",
+      "type": "验收规则",
+      "title": "复查与客户联系 · 验收规则",
+      "body": "发送成功不等于已读或到店；失败转人工跟进",
+      "tasks": [
+        "T06.02",
+        "T00.02",
+        "T10.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "M11-F01",
+      "type": "功能",
+      "title": "销售、订单与收银 · 开单与优惠",
+      "body": "开单与优惠",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
+    },
+    {
+      "id": "M11-F02",
+      "type": "功能",
+      "title": "销售、订单与收银 · 定金尾款",
+      "body": "定金尾款",
+      "tasks": [
+        "T04.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/retail.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+    },
+    {
+      "id": "M11-F03",
+      "type": "功能",
+      "title": "销售、订单与收银 · 组合付款",
+      "body": "组合付款",
+      "tasks": [
+        "T04.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M11-F04",
+      "type": "功能",
+      "title": "销售、订单与收银 · 退款、票据和交班",
+      "body": "退款、票据和交班",
+      "tasks": [
+        "T04.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "M11-D",
+      "type": "字段",
+      "title": "销售、订单与收银 · 字段",
+      "body": "明细、价格、优惠、付款人、实收、欠款、退款、渠道流水",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "M11-R",
+      "type": "岗位与权限",
+      "title": "销售、订单与收银 · 岗位与权限",
+      "body": "销售/收银；折扣、作废、退款按规则审批",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "M11-L",
+      "type": "关联",
+      "title": "销售、订单与收银 · 关联",
+      "body": "验配、权益、库存、加工、财务",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T00.02",
+        "T10.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "M11-A",
+      "type": "验收规则",
+      "title": "销售、订单与收银 · 验收规则",
+      "body": "总额与实收分开；退款关联原付款",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "M12-F01",
+      "type": "功能",
+      "title": "加工、质检与交付 · 订货派单",
+      "body": "订货派单",
+      "tasks": [
+        "T04.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本地原单逐行供货/内外加工安排与明确责任人已接通；专业处方/参数确认、正式采购供应商和外部派单未实现。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-F02",
+      "type": "功能",
+      "title": "加工、质检与交付 · 分批到货",
+      "body": "分批到货",
+      "tasks": [
+        "T04.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 逐行分批到货/备料并约束开工/完成数量；库存入库独立，正式采购验收及后续分项交付未实现。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-F03",
+      "type": "功能",
+      "title": "加工、质检与交付 · 质检、返工",
+      "body": "质检、返工",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 明确项目、结论及原加工版本，不合格→返工分派/开始/完成→复检可循环；正式专业模板、参数变更/损耗及整项验收待完成。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-F04",
+      "type": "功能",
+      "title": "加工、质检与交付 · 通知取镜、调整、签收",
+      "body": "通知取镜、调整、签收",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 已保存分项签收、实际领取人/时间和调整说明；外部取镜通知、证明核验/电子签名及专业调整规则未实现。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-D",
+      "type": "字段",
+      "title": "加工、质检与交付 · 字段",
+      "body": "工单、处方快照、供应商、预计日期、质检、返工、尾款",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 已保存固定原行、供应来源文本、预计日期和进度/延期历史；专业处方、质检、返工和尾款规则未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 增加项目/结论与返工来源及签收字段；专业处方、真实尾款、正式供应商与损耗继续待落实。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-R",
+      "type": "岗位与权限",
+      "title": "加工、质检与交付 · 岗位与权限",
+      "body": "加工、采购、质检、销售交付",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 本店读取、负责人/前台安排到货、当前责任人或负责人执行及取消权限已接通；正式采购/加工/质检资质职责与交付权限仍待落实。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本店质检/返工分派、固定责任人执行和前台签收动作权限已接；正式资质及职责规则未确认。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-L",
+      "type": "关联",
+      "title": "加工、质检与交付 · 关联",
+      "body": "订单、库存、供应商、售后",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 原订单固定版本、stock预留/备料锁与时间轴/恢复已联动；供应商主档、采购接口和售后尚未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 加工/原订单固定版本、库存预留保持、时间轴与恢复贯通；本版签收不自动库存出库，正式供应商/售后尚待衔接。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M12-A",
+      "type": "验收规则",
+      "title": "加工、质检与交付 · 验收规则",
+      "body": "未通过质检不可交付；重做关联原工单",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js",
+        "src/parameters.mjs",
+        "src/parameter-ledger.mjs",
+        "src/parameter-recovery.mjs",
+        "migrations/023_parameters.sql",
+        "public/parameters.js",
+        "test/parameters.test.mjs",
+        "scripts/parameters-browser-check.mjs",
+        "docs/parameters.md",
+        "src/demo-parameters.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 本地数量/来源门禁保证只有合格批次可记录签收，返工固定原不合格和工单；正式专业标准、参数影响及整项验收仍待完成。 V0.26仅追加参数交接版本与执行来源保护，正式专业确认及全部追溯范围未验收。"
+    },
+    {
+      "id": "M13-F01",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 采购验收",
+      "body": "采购验收",
+      "tasks": [
+        "T07.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F02",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 退供",
+      "body": "退供",
+      "tasks": [
+        "T07.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F03",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 调拨盘点",
+      "body": "调拨盘点",
+      "tasks": [
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F04",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 镜片二维库存",
+      "body": "镜片二维库存",
+      "tasks": [
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-F05",
+      "type": "功能",
+      "title": "采购、库存与供应商 · 缺货、临期、滞销提醒",
+      "body": "缺货、临期、滞销提醒",
+      "tasks": [
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M13-D",
+      "type": "字段",
+      "title": "采购、库存与供应商 · 字段",
+      "body": "品牌、规格、条码、成本、批次、效期、仓位、库存状态",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
+    },
+    {
+      "id": "M13-R",
+      "type": "岗位与权限",
+      "title": "采购、库存与供应商 · 岗位与权限",
+      "body": "采购、仓库、门店和质量负责人",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
+    },
+    {
+      "id": "M13-L",
+      "type": "关联",
+      "title": "采购、库存与供应商 · 关联",
+      "body": "销售、加工、售后、质量追溯",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs"
+      ]
+    },
+    {
+      "id": "M13-A",
+      "type": "验收规则",
+      "title": "采购、库存与供应商 · 验收规则",
+      "body": "变动留流水；退货验收后决定可售、隔离或报损",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M14-F01",
+      "type": "功能",
+      "title": "售后与质量追溯 · 维修调整",
+      "body": "维修调整",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
+      ]
+    },
+    {
+      "id": "M14-F02",
+      "type": "功能",
+      "title": "售后与质量追溯 · 佩戴问题转交",
+      "body": "佩戴问题转交",
+      "tasks": [
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M14-F03",
+      "type": "功能",
+      "title": "售后与质量追溯 · 重做退款",
+      "body": "重做退款",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "M14-F04",
+      "type": "功能",
+      "title": "售后与质量追溯 · 供应商索赔、召回跟踪",
+      "body": "供应商索赔、召回跟踪",
+      "tasks": [
+        "T04.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": [
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
+      ]
+    },
+    {
+      "id": "M14-D",
+      "type": "字段",
+      "title": "售后与质量追溯 · 字段",
+      "body": "原单、原因、责任、费用、批号/序列号、影响范围、处理结果",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M14-R",
+      "type": "岗位与权限",
+      "title": "售后与质量追溯 · 岗位与权限",
+      "body": "售后、专业、质量、财务与负责人",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "M14-L",
+      "type": "关联",
+      "title": "售后与质量追溯 · 关联",
+      "body": "客户、处方、工单、批次",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/aftercare-dispositions.mjs",
+        "migrations/021_aftercare_dispositions.sql",
+        "public/aftercare-dispositions.js",
+        "test/aftercare-dispositions.test.mjs",
+        "scripts/aftercare-dispositions-browser-check.mjs",
+        "docs/aftercare-dispositions.md",
+        "src/demo-dispositions.mjs"
+      ]
+    },
+    {
+      "id": "M14-A",
+      "type": "验收规则",
+      "title": "售后与质量追溯 · 验收规则",
+      "body": "能从批次找到采购来源、库存及已交付客户",
+      "tasks": [
+        "T04.05",
+        "T06.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/044_inventory_reserved_batches.sql",
+        "src/inventory-reserved-batches.mjs",
+        "src/inventory-reserved-batch-ledger.mjs",
+        "src/inventory-reserved-batch-recovery.mjs",
+        "src/dispatch.mjs",
+        "public/dispatch.js",
+        "public/inventory-batches.js",
+        "src/demo-inventory-reserved-batches.mjs",
+        "test/inventory-reserved-batches.test.mjs",
+        "scripts/inventory-reserved-batches-browser-check.mjs",
+        "docs/inventory-reserved-batches.md"
+      ],
+      "note": "固定原单预留实际出库原观察/收货/单位/数量及交付客户已接；与可用出库共用已售原件保护，旧事实不补造，完整独占矩阵/正式仓库规则及整体验收保留。"
+    },
+    {
+      "id": "M15-F01",
+      "type": "功能",
+      "title": "员工、门店与财务 · 多门店交接",
+      "body": "多门店交接",
+      "tasks": [
+        "T07.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-F02",
+      "type": "功能",
+      "title": "员工、门店与财务 · 休假与培训",
+      "body": "休假与培训",
+      "tasks": [
+        "T07.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/045_staff_records.sql",
+        "src/staff-records.mjs",
+        "src/staff-records-api.mjs",
+        "src/staff-records-recovery.mjs",
+        "public/staff-records.js",
+        "src/demo-staff-records.mjs",
+        "test/staff-records.test.mjs",
+        "scripts/staff-records-browser-check.mjs",
+        "docs/staff-records.md",
+        "migrations/046_staff_cover.sql",
+        "src/staff-cover.mjs",
+        "src/staff-cover-api.mjs",
+        "src/staff-cover-recovery.mjs",
+        "public/staff-cover.js",
+        "src/demo-staff-cover.mjs",
+        "test/staff-cover.test.mjs",
+        "scripts/staff-cover-browser-check.mjs",
+        "docs/staff-cover.md"
+      ],
+      "note": "本店人工休假与固定员工/任务修订/拟接收人逐项交接安排，原来源与历史快照/版本/撤回保留；当前源变化逐项阻止旧办理。专业资质未核验，审批/容量/多店与财务及正式规则和整体验收保留。"
+    },
+    {
+      "id": "M15-F03",
+      "type": "功能",
+      "title": "员工、门店与财务 · 收支和预收余额",
+      "body": "收支和预收余额",
+      "tasks": [
+        "T07.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/money-review.mjs",
+        "public/money-review.js",
+        "src/demo-money-review.mjs",
+        "test/money-review.test.mjs",
+        "scripts/money-review-browser-check.mjs",
+        "docs/money-review.md",
+        "public/refunds.js"
+      ],
+      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
+    },
+    {
+      "id": "M15-F04",
+      "type": "功能",
+      "title": "员工、门店与财务 · 提成审批对账",
+      "body": "提成审批对账",
+      "tasks": [
+        "T07.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-D",
+      "type": "字段",
+      "title": "员工、门店与财务 · 字段",
+      "body": "岗位权限、资质有效期、排班、业绩、应收应付、提成规则",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/staff-handover.mjs",
+        "public/staff-handover.js",
+        "public/tasks.js",
+        "src/demo-staff-handover.mjs",
+        "test/staff-handover.test.mjs",
+        "scripts/staff-handover-browser-check.mjs",
+        "docs/staff-handover.md",
+        "migrations/045_staff_records.sql",
+        "src/staff-records.mjs",
+        "src/staff-records-api.mjs",
+        "src/staff-records-recovery.mjs",
+        "public/staff-records.js",
+        "src/demo-staff-records.mjs",
+        "test/staff-records.test.mjs",
+        "scripts/staff-records-browser-check.mjs",
+        "docs/staff-records.md",
+        "migrations/046_staff_cover.sql",
+        "src/staff-cover.mjs",
+        "src/staff-cover-api.mjs",
+        "src/staff-cover-recovery.mjs",
+        "public/staff-cover.js",
+        "src/demo-staff-cover.mjs",
+        "test/staff-cover.test.mjs",
+        "scripts/staff-cover-browser-check.mjs",
+        "docs/staff-cover.md",
+        "src/money-review.mjs",
+        "public/money-review.js",
+        "src/demo-money-review.mjs",
+        "test/money-review.test.mjs",
+        "scripts/money-review-browser-check.mjs",
+        "docs/money-review.md",
+        "public/refunds.js"
+      ],
+      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
+    },
+    {
+      "id": "M15-R",
+      "type": "岗位与权限",
+      "title": "员工、门店与财务 · 岗位与权限",
+      "body": "负责人、总部、人事、运营、财务",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/staff-handover.mjs",
+        "public/staff-handover.js",
+        "public/tasks.js",
+        "src/demo-staff-handover.mjs",
+        "test/staff-handover.test.mjs",
+        "scripts/staff-handover-browser-check.mjs",
+        "docs/staff-handover.md",
+        "migrations/045_staff_records.sql",
+        "src/staff-records.mjs",
+        "src/staff-records-api.mjs",
+        "src/staff-records-recovery.mjs",
+        "public/staff-records.js",
+        "src/demo-staff-records.mjs",
+        "test/staff-records.test.mjs",
+        "scripts/staff-records-browser-check.mjs",
+        "docs/staff-records.md",
+        "migrations/046_staff_cover.sql",
+        "src/staff-cover.mjs",
+        "src/staff-cover-api.mjs",
+        "src/staff-cover-recovery.mjs",
+        "public/staff-cover.js",
+        "src/demo-staff-cover.mjs",
+        "test/staff-cover.test.mjs",
+        "scripts/staff-cover-browser-check.mjs",
+        "docs/staff-cover.md",
+        "src/money-review.mjs",
+        "public/money-review.js",
+        "src/demo-money-review.mjs",
+        "test/money-review.test.mjs",
+        "scripts/money-review-browser-check.mjs",
+        "docs/money-review.md",
+        "public/refunds.js"
+      ],
+      "note": "已保存本店有效收款/误录作废/实际退款原事实的同筛选明细与精确汇总、原单固定版本/实收/退款来源、负责人权限和完整来源分页；渠道外部凭据未核验，收入/预收/提成/财务与正式规则及整体验收保留。"
+    },
+    {
+      "id": "M15-L",
+      "type": "关联",
+      "title": "员工、门店与财务 · 关联",
+      "body": "订单、任务、采购、权益",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M15-A",
+      "type": "验收规则",
+      "title": "员工、门店与财务 · 验收规则",
+      "body": "销售、实收、服务消耗分列；财务确认收入口径",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F01",
+      "type": "功能",
+      "title": "家长与客户入口 · 报告历史",
+      "body": "报告历史",
+      "tasks": [
+        "T08.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F02",
+      "type": "功能",
+      "title": "家长与客户入口 · 预约请假",
+      "body": "预约请假",
+      "tasks": [
+        "T08.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F03",
+      "type": "功能",
+      "title": "家长与客户入口 · 权益进度",
+      "body": "权益进度",
+      "tasks": [
+        "T08.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-F04",
+      "type": "功能",
+      "title": "家长与客户入口 · 通知、家庭记录、同意信息",
+      "body": "通知、家庭记录、同意信息",
+      "tasks": [
+        "T08.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-D",
+      "type": "字段",
+      "title": "家长与客户入口 · 字段",
+      "body": "身份关联、授权范围、发布版本、预约、通知、提交",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-R",
+      "type": "岗位与权限",
+      "title": "家长与客户入口 · 岗位与权限",
+      "body": "本人或授权监护人；员工发布对外内容",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-L",
+      "type": "关联",
+      "title": "家长与客户入口 · 关联",
+      "body": "档案、预约、计划、随访、权益",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M16-A",
+      "type": "验收规则",
+      "title": "家长与客户入口 · 验收规则",
+      "body": "不能查其他客户；内部备注默认不对外",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F01",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 名单导入匹配",
+      "body": "名单导入匹配",
+      "tasks": [
+        "T08.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F02",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 现场登记",
+      "body": "现场登记",
+      "tasks": [
+        "T08.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F03",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 个人报告和汇总",
+      "body": "个人报告和汇总",
+      "tasks": [
+        "T08.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-F04",
+      "type": "功能",
+      "title": "团体筛查与跟进 · 复查、转诊跟进",
+      "body": "复查、转诊跟进",
+      "tasks": [
+        "T08.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-D",
+      "type": "字段",
+      "title": "团体筛查与跟进 · 字段",
+      "body": "机构、批次、授权、结果、报告状态、匹配、跟进结果",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-R",
+      "type": "岗位与权限",
+      "title": "团体筛查与跟进 · 岗位与权限",
+      "body": "筛查、专业负责人、随访人员",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-L",
+      "type": "关联",
+      "title": "团体筛查与跟进 · 关联",
+      "body": "儿童档案、检查、复查",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M17-A",
+      "type": "验收规则",
+      "title": "团体筛查与跟进 · 验收规则",
+      "body": "个人报告和汇总分开授权；导入不覆盖已有档案",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F01",
+      "type": "功能",
+      "title": "分析与系统管理 · 明细下钻",
+      "body": "明细下钻",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F02",
+      "type": "功能",
+      "title": "分析与系统管理 · 字典模板",
+      "body": "字典模板",
+      "tasks": [
+        "T09.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F03",
+      "type": "功能",
+      "title": "分析与系统管理 · 导入导出",
+      "body": "导入导出",
+      "tasks": [
+        "T09.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F04",
+      "type": "功能",
+      "title": "分析与系统管理 · 备份恢复",
+      "body": "备份恢复",
+      "tasks": [
+        "T01.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-F05",
+      "type": "功能",
+      "title": "分析与系统管理 · 设备/消息/支付连接",
+      "body": "设备/消息/支付连接",
+      "tasks": [
+        "T09.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-D",
+      "type": "字段",
+      "title": "分析与系统管理 · 字段",
+      "body": "指标定义、配置版本、审批、导入批次、接口状态、日志",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-R",
+      "type": "岗位与权限",
+      "title": "分析与系统管理 · 岗位与权限",
+      "body": "分析、专业、系统管理；按范围授权",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-L",
+      "type": "关联",
+      "title": "分析与系统管理 · 关联",
+      "body": "全部模块",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "M18-A",
+      "type": "验收规则",
+      "title": "分析与系统管理 · 验收规则",
+      "body": "配置有版本；导出受控；恢复需演练与一致性核对",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "C01",
+      "type": "协作补充",
+      "title": "服务周期与关联关系",
+      "body": "客户下面建立独立服务周期：类型、目标、负责人、起止时间、状态和结束原因。一次到店可服务多个周期；计划、订单、权益通过关联表连接，支持一单多服务。到店结束不结束长期管理；订单退款不自动终止计划。",
+      "tasks": [
+        "T02.01",
+        "T06.01",
+        "T06.03",
+        "T05.01",
+        "T04.01",
+        "T04.02",
+        "T10.01",
+        "T00.01",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+    },
+    {
+      "id": "C02",
+      "type": "协作补充",
+      "title": "分支、循环与并行",
+      "body": "主流程保留六步概览，执行层展开条件分支、重复课程、阶段复评、返工和并行任务。聚合进度按必要子任务计算；等待款项、库存、专业确认分别显示，不能用单一百分比替代阻塞原因。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T05.04",
+        "T05.05",
+        "T04.03",
+        "T04.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工各原行进度并行、延期/逾期与实际状态独立；不合并计量单位或用百分比替代原因；完整专业分支、课程循环和返工未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 返工循环、分项并行及七类数量保存；签收、未完成加工和失败项分别保留；完整专业/训练依赖仍待落实。"
+    },
+    {
+      "id": "C03",
+      "type": "协作补充",
+      "title": "节点完成与状态迁移",
+      "body": "每个动作定义前状态、操作人、输入、条件、事务影响、产出、下一任务和失败恢复。保存草稿、专业确认、业务完成分别处理。重复提交不得产生第二笔扣次、收款或库存变化。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T05.02",
+        "T04.01",
+        "T04.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "src/task-evidence.mjs",
+        "public/task-evidence.js",
+        "migrations/010_task_evidence.sql",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "docs/task-completion.md",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql",
+        "src/task-amendments.mjs",
+        "public/task-links.js",
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs"
+      ],
+      "note": "V0.14部分实现：通用完成及异常处理保留；追加说明更正与显式后续分派实时复核权限和所见原产出/更正版本，失败不留部分任务，同键重放，不会重复分派。专业授权、自动下游/模板/串并行/循环与扣次/资金/库存仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
+    },
+    {
+      "id": "C04",
+      "type": "协作补充",
+      "title": "人员交接与责任",
+      "body": "岗位队列和具体负责人分别记录。支持认领、开始、暂停、退回、转派、接收、完成；离职或请假移交未完任务。设置工作日历、截止时间、提醒与升级对象；已分配不等于已开始。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/008_task_execution.sql",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
+      ],
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
+    },
+    {
+      "id": "C05",
+      "type": "协作补充",
+      "title": "岗位今日工作台",
+      "body": "前台看接待签到与取镜；专业人员看待确认、复评和异常；训练人员看课程与待补记录；加工仓库看工单与交期；财务看退款与对账；店长看未认领、阻塞和逾期。入口直接打开原记录。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/008_task_execution.sql",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
+      ],
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
+    },
+    {
+      "id": "C06",
+      "type": "协作补充",
+      "title": "异常与恢复闭环",
+      "body": "缺课、失联、缺货、中止、无法检查、审批拒绝和退款失败均生成责任任务，记录联系、期限、处理结果和恢复节点。专业异常由有职责人员确认；消息失败转人工。结案须有原因，未解决不能静默完成。",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T06.02",
+        "T04.05",
+        "T06.03",
+        "T10.01",
+        "T00.01",
+        "T03.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "C07",
+      "type": "协作补充",
+      "title": "权益与退款计算依据",
+      "body": "保留购买时规则版本、付费及赠送权益、组合优惠分摊、已用明细、冻结区间、应退与实退。部分退款逐项列出公式及审批，反向流水关联原流水；实际公式实施前由门店确认。",
+      "tasks": [
+        "T05.02",
+        "T04.01",
+        "T04.02",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充固定登记采用的规则记录、购买/赠送来源、人工期间与反向误录；未知原购买条款不重建，组合优惠/已用/冻结/应退实退及套餐退款公式尚未完成。"
+    },
+    {
+      "id": "C08",
+      "type": "协作补充",
+      "title": "现实排课与资源容量",
+      "body": "区分一对一、小组容量和重复预约序列；同时校验员工、房间、设备、准备间隔及维护。改期明确本次/之后/全部，保留单次例外；候补转预约需重新校验并通知，冲突返回替代时段。",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T07.03",
+        "T07.04",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：员工/房间/设备明确容量、准备收尾与维护占用、候补手工转正及单次修改已接；周期重复例外、真实排班规则、自动替代生成与通知仍待完成。"
+    },
+    {
+      "id": "C09",
+      "type": "协作补充",
+      "title": "数据质量与报告修订",
+      "body": "缺测状态细分未做、无法测、待补、不适用；单位、眼别、来源和测量条件校验。设备或识别导入待人工确认。修订创建新版本，发布、撤回、重新发布保留记录，旧订单快照不变。",
+      "tasks": [
+        "T02.03",
+        "T08.01",
+        "T08.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/documents.mjs",
+        "test/foundation.test.mjs",
+        "docs/handover.md"
+      ],
+      "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
+    },
+    {
+      "id": "C10",
+      "type": "协作补充",
+      "title": "上线、配置与运营检查",
+      "body": "业务模板、商品、套餐、角色、资源、旧档案分步骤初始化。导入先预览，未知历史值不补造；旧资料不自动生成大量过期任务。规则有生效时间，在办业务迁移须明确决定。运营检查关注漏接任务、逾期和对账差异。",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.01",
+        "T00.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U01",
+      "type": "使用体验",
+      "title": "统一找人与身份确认",
+      "body": "姓名、监护人、电话、会员编号联合查询；同名结果显示家庭关系与必要辨识信息。",
+      "tasks": [
+        "T02.01",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/profiles.mjs",
+        "test/foundation.test.mjs",
+        "test/recovery.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.6新增基本资料历史、家庭联系人及有效检索；共享家庭实体/付款身份/证明/合并/跨店未完成。"
+    },
+    {
+      "id": "U02",
+      "type": "使用体验",
+      "title": "固定客户与服务上下文",
+      "body": "跨检查、订单、训练页保留客户和当前周期；支持返回来源任务及历史位置。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U03",
+      "type": "使用体验",
+      "title": "一次录入与明确来源",
+      "body": "确认后的基本资料自动带入；本次检查结果独立记录，不复制为新的测量。模板区分默认值与实测值。",
+      "tasks": [
+        "T02.03",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/documents.mjs",
+        "test/foundation.test.mjs",
+        "docs/handover.md"
+      ],
+      "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
+    },
+    {
+      "id": "U04",
+      "type": "使用体验",
+      "title": "一步完成后可继续",
+      "body": "显示记录确认结果、适用权益变化和下一项任务；有阻塞就显示原因与解决入口。",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "U05",
+      "type": "使用体验",
+      "title": "电脑与手机分别适配",
+      "body": "电脑支持键盘录入、扫码和批量处理；手机就地展开节点或底部详情，主操作常驻且不遮挡焦点。选中卡片与业务进行中分别标识。",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "U06",
+      "type": "使用体验",
+      "title": "中断、错误与草稿恢复",
+      "body": "保存中、已保存、失败、待同步明确；恢复草稿，未授权、无数据、接口失败有可执行说明；切换账号防串档。",
+      "tasks": [
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T00.03",
+        "T10.02",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "G01",
+      "type": "流转条件",
+      "title": "接待 → 检查",
+      "body": "身份和授权范围确认；检查人员接收；前台交检查任务，保留到店编号与服务周期；重复档案待确认，不覆盖已有记录",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G02",
+      "type": "流转条件",
+      "title": "检查 → 专业确认",
+      "body": "必要结果及来源完整，缺测原因明确；确认人员核对，生成处方/计划/报告版本；待补继续保留草稿，不自动开具方案",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G03",
+      "type": "流转条件",
+      "title": "开单 → 加工",
+      "body": "处方快照、参数、供货安排及约定款项满足门店规则；销售交采购或加工任务，记录预计交期；缺货、变更或付款未达条件分别阻塞",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G04",
+      "type": "流转条件",
+      "title": "质检 → 交付",
+      "body": "必检项目通过，产品与原单匹配；质检交取镜任务；交付核实身份、款项及签收；失败返工；分批交付逐项确认，原单保留待交付项",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G05",
+      "type": "流转条件",
+      "title": "预约 → 执行",
+      "body": "资源可用、签到、有效计划及适用权益校验；训练人员记录当次内容及所用计划版本；缺席、中止按已确认规则处理，不因预约自动扣次",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G06",
+      "type": "流转条件",
+      "title": "执行确认 → 权益/后续",
+      "body": "实际记录完整且有权限确认，扣次条件成立；同一确认只产生一次权益流水与后续任务；复评到期交专业人员；保存与扣次失败不得显示全部成功；可重试与冲销",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G07",
+      "type": "流转条件",
+      "title": "退款审批 → 退款完成",
+      "body": "已履约、赠送、分摊、渠道和库存/权益影响核实；财务处理；渠道成功及流水核对后才标记实退；失败保留待处理；库存回收单独验收，计划是否结束单独确认",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "G08",
+      "type": "流转条件",
+      "title": "报告确认 → 家长可见",
+      "body": "报告版本已确认，监护关联及发布范围有效；发布指定版本，家长查看已发布内容；撤回停止新访问；更正重新确认发布，内部备注不公开",
+      "tasks": [
+        "T00.03",
+        "T03.02",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "N01",
+      "type": "运行质量",
+      "title": "身份、家庭、门店范围与动作权限",
+      "body": "前后端均校验；家长、跨店、专业确认和导出单独验证",
+      "tasks": [
+        "T02.01",
+        "T07.03",
+        "T07.04",
+        "T01.04",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "N02",
+      "type": "运行质量",
+      "title": "并发、防重复与业务一致性",
+      "body": "扣次、收款、退款、库存重复请求及多人操作保持唯一结果",
+      "tasks": [
+        "T05.02",
+        "T04.01",
+        "T04.02",
+        "T01.04",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。 V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。 V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 新增加工安排/进度、原单保护/stock预留释放竞争、重试唯一/版本与审计回滚验证；其余原业务一致性和整项验收待完成。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 新增质检/返工/签收同源容量、多人版本/重试/审计回滚与处理中会话撤销验证；原完整一致性和验收保持待完成。"
+    },
+    {
+      "id": "N03",
+      "type": "运行质量",
+      "title": "版本、规则快照与审计",
+      "body": "历史引用不改写；配置迁移有决定；修改可追查",
+      "tasks": [
+        "T02.03",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/documents.mjs",
+        "test/foundation.test.mjs",
+        "docs/handover.md",
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md"
+      ],
+      "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
+    },
+    {
+      "id": "N04",
+      "type": "运行质量",
+      "title": "电脑、手机、键盘与可访问性",
+      "body": "核心任务触控、键盘、放大、焦点及错误提示实测",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T08.01",
+        "T08.02",
+        "T01.04",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
+      ],
+      "note": "当前基础切片已有证据，其余原需求仍保留，不代表整项通过。"
+    },
+    {
+      "id": "N05",
+      "type": "运行质量",
+      "title": "弱网、草稿与故障恢复",
+      "body": "记录状态明确；安全恢复，资金与库存不盲目离线写入",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
+    },
+    {
+      "id": "N06",
+      "type": "运行质量",
+      "title": "备份恢复及对账",
+      "body": "确定恢复目标并演练；恢复后核对档案、权益、资金和库存",
+      "tasks": [
+        "T07.03",
+        "T07.04",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "docs/handover.md",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "docs/recovery.md",
+        "test/recovery.test.mjs"
+      ]
+    },
+    {
+      "id": "N07",
+      "type": "运行质量",
+      "title": "运行监控与性能基线",
+      "body": "约定数据规模、查询时延和峰值并发；慢查询、失败任务可定位",
+      "tasks": [
+        "T03.03",
+        "T03.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs"
+      ]
+    },
+    {
+      "id": "N08",
+      "type": "运行质量",
+      "title": "接口降级、导入和文件访问",
+      "body": "接口失败有人工路径；导入可核对；附件按权限访问",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T09.01",
+        "T09.02",
+        "T09.04",
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.03",
+        "T00.04",
+        "T01.01",
+        "T10.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/documents.mjs",
+        "test/foundation.test.mjs",
+        "docs/handover.md",
+        "docs/recovery.md",
+        "test/recovery.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "当前通用资料/文件基础已有证据；其余专业、导入或外部接口需求保留。"
+    },
+    {
+      "id": "W1-N1",
+      "type": "流程节点",
+      "title": "配镜与交付 · 接待与检查",
+      "body": "接待与检查；前台 / 检查人员；客户身份、来店目的、历史档案；检查记录、需求；进入处方确认，或交专业负责人评估；身份重复、报告不全、检查未完成",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W1-N2",
+      "type": "流程节点",
+      "title": "配镜与交付 · 处方确认与开单",
+      "body": "处方确认与开单；专业人员 / 销售；检查结果、最终处方、商品；处方版本、订单、交付约定；核实库存与约定款项，进入加工；自带镜架、改商品、折扣审批",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/retail.mjs",
+        "docs/retail-orders.md",
+        "test/retail.test.mjs",
+        "src/inventory.mjs",
+        "docs/inventory.md",
+        "test/inventory.test.mjs",
+        "src/payments.mjs",
+        "public/payments.js",
+        "migrations/015_payments.sql",
+        "test/payments.test.mjs",
+        "scripts/payments-browser-check.mjs",
+        "docs/payments.md",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 正式退款/应收和整项验收继续待完成。"
+    },
+    {
+      "id": "W1-N3",
+      "type": "流程节点",
+      "title": "配镜与交付 · 订货与加工",
+      "body": "订货与加工；采购 / 加工人员；处方快照、加工参数、库存；工单、供应商、预计交付日期；加工完成后交质检；缺货、分批到货、供应商延期",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 订货/加工看板、逐行供货和交期、分批到货、延期与全项完成待质检已保存；专业处方/参数变更影响确认、外部采购沟通和质检流转未实现。"
+    },
+    {
+      "id": "W1-N4",
+      "type": "流程节点",
+      "title": "配镜与交付 · 质量检查",
+      "body": "质量检查；质检人员；眼镜、工单、处方快照；质检结果、人员及时间；通过后通知取镜；失败返回加工；参数错误、破损、返工、报损",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 已保存明确项目/结果/人员时间，失败经固定来源返工并复检；正式处方/专业阈值、通知与报损未实现。"
+    },
+    {
+      "id": "W1-N5",
+      "type": "流程节点",
+      "title": "配镜与交付 · 交付与签收",
+      "body": "交付与签收；交付人员；合格产品、尾款、身份；实际交付、调整、签收；安排适应回访及复查；未结尾款、无人取镜、佩戴不适",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "public/processing.js",
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "docs/capability-map.md"
+      ],
+      "note": " V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 分项签收保存原合格来源、实际领取人/时间/调整说明；正式通知、领取凭证、专业调整与尾款规则待确认。"
+    },
+    {
+      "id": "W1-N6",
+      "type": "流程节点",
+      "title": "配镜与交付 · 回访与售后",
+      "body": "回访与售后；随访 / 售后；交付记录、回访日期；联系结果、反馈、后续任务；归档或进入售后/复查；失联、维修、重做、退款",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
+    },
+    {
+      "id": "W2-N1",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 评估与建档",
+      "body": "评估与建档；专业负责人；检查结果、历史资料、目的；评估、目标、方案来源；确认是否进入训练服务；需外院评估、缺资料、暂不适合",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：固定训练需求/资料/附件和人工评估来源说明；正式检查、专业评估结论与适合性规则尚未完成。"
+    },
+    {
+      "id": "W2-N2",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 确认个人计划",
+      "body": "确认个人计划；专业 / 训练人员；评估、目标、项目库；计划版本、复评节点；建立课程安排；收费另行确认；计划修改、审核、授权未完成",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：明确确认个人计划版本及人工复评节点说明，调整/暂停/恢复/结束独立记录；排课、正式专业审批与资质待完成。"
+    },
+    {
+      "id": "W2-N3",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 排课与资源锁定",
+      "body": "排课与资源锁定；前台 / 排课人员；频率、员工、房间、设备；预约序列、容量、候补；通知并等待到店签到；冲突、请假、调课、设备维护",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次/小组时段、资源锁定与预约候补可保存，前台明确转正及单次请假调课；周期序列和通知未接。"
+    },
+    {
+      "id": "W2-N4",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 签到与训练执行",
+      "body": "签到与训练执行；训练人员；预约、计划、可用权益；实际项目、时长、表现、反馈；确认服务记录并按规则扣次；缺席、不适、中止、内容变更",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md"
+      ],
+      "note": "V0.27：已登记到店现场课程固定当时计划，独立开始/暂停/恢复/实际记录/更正/核对/中止；预约签到、权益扣次、正式异常接管未实现。"
+    },
+    {
+      "id": "W2-N5",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 记录与家庭练习",
+      "body": "记录与家庭练习；训练人员 / 家长；执行情况、专业要求；完成记录、家庭作业、来源；反馈跟进，准备下一次服务；未提交、反馈异常、扣次纠正",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：实际记录/逐项反馈/差异及固定责任人核对已接；家庭作业/家长提交与反馈跟进、扣次纠正未完成。 V0.30：阶段复评、检查对比/固定来源、下一任务引用和计划入口已接；正式指标/到期和专业执行闭环待依据。"
+    },
+    {
+      "id": "W2-N6",
+      "type": "流程节点",
+      "title": "儿童训练与课程 · 阶段复评与调整",
+      "body": "阶段复评与调整；专业负责人；检查、训练历史、家庭记录；复评结论、新版本或结束原因；继续排课、暂停或完成；转诊、停止、退款和权益处理",
+      "tasks": [
+        "T05.01",
+        "T05.02",
+        "T05.03",
+        "T05.04",
+        "T05.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：人工复评节点说明和新计划版本/暂停/结束原因可保存；专业复评结论、检查对比、家庭记录和退款权益处理未完成。 V0.30：指定家长练习、本人提交和明确共享反馈已接，不公开内部专业资料；正式通知与家长专业报告发布待实现。"
+    },
+    {
+      "id": "W3-N1",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 确定随访安排",
+      "body": "确定随访安排；专业负责人；检查、方案、历史；下次日期、项目、负责人；生成随访任务；日期调整、暂停",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：现有检查资料及已核对复评版本衔接长期档案，明确基线缺失；统一指标待依据。"
+    },
+    {
+      "id": "W3-N2",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 提醒与联系",
+      "body": "提醒与联系；随访人员；到期任务、授权渠道；发送结果、联系记录；预约或再次联系；发送失败、无人接听、失效电话",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md"
+      ],
+      "note": "V0.32：授权与联系目的独立；人工联系/回执/失败责任接管/延期及预约到店关联已接。发出不视为已读或已到店。真实渠道、自动任务/提醒及外院确认仍待完成。"
+    },
+    {
+      "id": "W3-N3",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 预约与到店",
+      "body": "预约与到店；前台 / 客户；客户意向、可用时段；预约、签到、候诊；交检查人员执行；延期、取消、缺席、外院复查",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "W3-N4",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 复查与对比",
+      "body": "复查与对比；检查 / 专业人员；历次数据、本次检查；检查结果、变化、专业意见；确定是否调整方案；条件不可比、待审核、转诊",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "W3-N5",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 后续安排确认",
+      "body": "后续安排确认；专业负责人；复查意见、服务状态；确认方案、下次日期；建立下一轮任务；暂停、停止、外院跟踪",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "W3-N6",
+      "type": "流程节点",
+      "title": "视力复查与随访 · 完成与归档",
+      "body": "完成与归档；随访人员；结果和后续安排；完成原因、报告、日志；进入下一轮随访；拒绝或失联需记录结案原因",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md",
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "W4-N1",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 专业评估与授权",
+      "body": "专业评估与授权；专业负责人；检查、适用评估、同意；验配档案、确认意见；参数与订片确认；不适合、需进一步检查、缺授权",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty.mjs",
+        "src/specialty-api.mjs",
+        "src/specialty-recovery.mjs",
+        "migrations/031_specialty.sql",
+        "public/specialty.js",
+        "src/demo-specialty.mjs",
+        "test/specialty.test.mjs",
+        "scripts/specialty-browser-check.mjs",
+        "docs/specialty.md"
+      ],
+      "note": "V0.34：机构范围/职责/专业资料要求的来源版本、客户评估/待补与本版同意、专业明确采用和撤回保护已接。真实适用表单/临床指标/资质核验仍待依据；参数订片/质量批号/护理复查后续接通。"
+    },
+    {
+      "id": "W4-N2",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 参数确认与订片",
+      "body": "参数确认与订片；专业 / 技术人员；验配参数、产品资料；确认处方、订单、追溯资料；供应商订货跟踪；参数变更、特殊订片、延期",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-trace.mjs",
+        "src/specialty-trace-api.mjs",
+        "src/specialty-order-ledger.mjs",
+        "src/specialty-trace-recovery.mjs",
+        "migrations/032_specialty_trace.sql",
+        "public/specialty-trace.js",
+        "src/demo-specialty-trace.mjs",
+        "test/specialty-trace.test.mjs",
+        "scripts/specialty-trace-browser-check.mjs",
+        "docs/specialty-trace.md"
+      ],
+      "note": "V0.35专业固定当前评估/有效同意与原参数交接、未执行原订单；原到货批号/序列来源与未知更正，原合格质检/签收出库需完整可访问追溯；逐动作专业来源和批号原版本固定。真实处方/质量标准、特殊订片/数量纠错/临床变更及完整护理复查继续办理。"
+    },
+    {
+      "id": "W4-N3",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 验收与参数核对",
+      "body": "验收与参数核对；技术 / 质量人员；镜片、订片资料；结果、批号或序列号；合格后安排交付；不符、破损、资料不全",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-trace.mjs",
+        "src/specialty-trace-api.mjs",
+        "src/specialty-order-ledger.mjs",
+        "src/specialty-trace-recovery.mjs",
+        "migrations/032_specialty_trace.sql",
+        "public/specialty-trace.js",
+        "src/demo-specialty-trace.mjs",
+        "test/specialty-trace.test.mjs",
+        "scripts/specialty-trace-browser-check.mjs",
+        "docs/specialty-trace.md"
+      ],
+      "note": "V0.35专业固定当前评估/有效同意与原参数交接、未执行原订单；原到货批号/序列来源与未知更正，原合格质检/签收出库需完整可访问追溯；逐动作专业来源和批号原版本固定。真实处方/质量标准、特殊订片/数量纠错/临床变更及完整护理复查继续办理。"
+    },
+    {
+      "id": "W4-N4",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 交付与护理指导",
+      "body": "交付与护理指导；专业 / 技术人员；合格产品、指导材料；交付、摘戴护理指导；安排专业复查；掌握不足、交付暂停",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-care.mjs",
+        "src/specialty-care-api.mjs",
+        "src/specialty-care-ledger.mjs",
+        "src/specialty-care-recovery.mjs",
+        "migrations/033_specialty_care.sql",
+        "public/specialty-care.js",
+        "src/demo-specialty-care.mjs",
+        "test/specialty-care.test.mjs",
+        "scripts/specialty-care-browser-check.mjs",
+        "docs/specialty-care.md"
+      ],
+      "note": "V0.36原产品指导材料与实际摘戴/护理来源、当事人/时间/掌握情况、专业核对及明确放行独立；明示原要求、需补练/未知阻止放行，资料改版/暂停恢复待核对，旧签收护理来源保留。真实指导内容/专业规则和完整复查异常流程继续办理。"
+    },
+    {
+      "id": "W4-N5",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 复查与异常跟踪",
+      "body": "复查与异常跟踪；专业负责人；佩戴反馈、复查；复查记录、处置意见；由专业人员确认继续、调整或停止；不适、损坏、遗失、异常、转诊",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-review.mjs",
+        "src/specialty-review-api.mjs",
+        "src/specialty-review-recovery.mjs",
+        "migrations/034_specialty_review.sql",
+        "public/specialty-review.js",
+        "src/demo-specialty-review.mjs",
+        "test/specialty-review.test.mjs",
+        "scripts/specialty-review-browser-check.mjs",
+        "docs/specialty-review.md"
+      ],
+      "note": "V0.37原实际签收镜片/批号/护理固定，复查、不适、损坏、遗失和异常原反馈与专业继续/调整/暂停/停用/转介意见分离；暂停停用同事务更新原专项，引用实际检查与已确认外院版本，关联既有复查/转介/实际联系，旧意见保留。真实检查表单/专业资质/处置方法与完整更换及长期质量责任继续办理。"
+    },
+    {
+      "id": "W4-N6",
+      "type": "流程节点",
+      "title": "接触镜与 OK 镜 · 更换与长期归档",
+      "body": "更换与长期归档；技术 / 随访人员；镜片状态、专业意见；更换、下一次安排；继续随访，保留历史；重订、停用、退货、质量追溯",
+      "tasks": [
+        "T06.01",
+        "T06.02",
+        "T06.03",
+        "T06.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/specialty-continuity.mjs",
+        "src/specialty-continuity-api.mjs",
+        "src/specialty-continuity-ledger.mjs",
+        "src/specialty-continuity-recovery.mjs",
+        "migrations/035_specialty_continuity.sql",
+        "public/specialty-continuity.js",
+        "src/demo-specialty-continuity.mjs",
+        "test/specialty-continuity.test.mjs",
+        "scripts/specialty-continuity-browser-check.mjs",
+        "docs/specialty-continuity.md"
+      ],
+      "note": "原实际产品/售后固定，独立新单与专业原意见、新专项/同意/参数分离确认，操作逐次固定批准；停用原状态不恢复。不可变来源索引、完整原批号/护理/复查/售后/下一安排与同毫秒前缀恢复核对。真实质量责任、保留政策、专业及费用规则和整体验收继续待实际来源。"
+    },
+    {
+      "id": "W5-N1",
+      "type": "流程节点",
+      "title": "采购与库存 · 需求与采购审批",
+      "body": "需求与采购审批；采购 / 负责人；订单需求、缺货、补货建议；批准采购单、供应商；向供应商订货；预算、供应商资质待核实",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/procurement.mjs",
+        "src/procurement-api.mjs",
+        "src/procurement-recovery.mjs",
+        "migrations/036_procurement.sql",
+        "public/procurement.js",
+        "src/demo-procurement.mjs",
+        "test/procurement.test.mjs",
+        "scripts/procurement-browser-check.mjs",
+        "docs/procurement.md"
+      ],
+      "note": "供应商原版本、实际采购需求与原实物/人工价、商业提交/批准驳回和已发生实际订货/明确日期编号已接；变更显式重读追加，原意见与在途数量单位保留。未自动发送消息、入库或付款，预算/真实供应商资质和完整分批验收/延期取消仍待真实来源。"
+    },
+    {
+      "id": "W5-N2",
+      "type": "流程节点",
+      "title": "采购与库存 · 订货与在途",
+      "body": "订货与在途；采购人员；采购单、交期；在途数量、预计日期；收货验收；少发、延期、取消",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/procurement.mjs",
+        "src/procurement-api.mjs",
+        "src/procurement-recovery.mjs",
+        "migrations/036_procurement.sql",
+        "public/procurement.js",
+        "src/demo-procurement.mjs",
+        "test/procurement.test.mjs",
+        "scripts/procurement-browser-check.mjs",
+        "docs/procurement.md"
+      ],
+      "note": "供应商原版本、实际采购需求与原实物/人工价、商业提交/批准驳回和已发生实际订货/明确日期编号已接；变更显式重读追加，原意见与在途数量单位保留。未自动发送消息、入库或付款，预算/真实供应商资质和完整分批验收/延期取消仍待真实来源。"
+    },
+    {
+      "id": "W5-N3",
+      "type": "流程节点",
+      "title": "采购与库存 · 收货与验收",
+      "body": "收货与验收；仓库 / 质量人员；货物、单据、批次效期；合格数量、验收记录；合格入库；异常隔离/退供；差异、破损、临期、缺资料",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/040_purchase_extra_returns.sql",
+        "src/purchase-extra-returns.mjs",
+        "src/purchase-extra-returns-api.mjs",
+        "src/purchase-extra-return-recovery.mjs",
+        "public/purchase-extra-returns.js",
+        "src/demo-purchase-extra-returns.mjs",
+        "test/purchase-extra-returns.test.mjs",
+        "scripts/purchase-extra-returns-browser-check.mjs",
+        "docs/purchase-extra-returns.md"
+      ],
+      "note": "超收未匹配原件独立安排/分批实际交出/供应方收件与原收货保护，不重复扣商品库存；今天保管量不从原数量推定。完整采购仓位批次矩阵/成本/扫码盘点调拨/正式政策及整体验收未完成。"
+    },
+    {
+      "id": "W5-N4",
+      "type": "流程节点",
+      "title": "采购与库存 · 入库与可售库存",
+      "body": "入库与可售库存；仓库人员；验收、仓位；库存流水、成本、可售数量；订单预留或调拨；重复扫码、入库纠正",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/041_inventory_custody.sql",
+        "src/inventory-custody.mjs",
+        "src/inventory-custody-api.mjs",
+        "src/inventory-custody-recovery.mjs",
+        "public/inventory-custody.js",
+        "src/demo-inventory-custody.mjs",
+        "test/inventory-custody.test.mjs",
+        "scripts/inventory-custody-browser-check.mjs",
+        "docs/inventory-custody.md"
+      ],
+      "note": "原匹配入库原批实际身份数量仓位核对、新观察/撤回解释、历史来源及原保护上限；不自动分配/释放/出库或推定今天原批余量。完整仓位矩阵、扫码、盘点调拨、成本和正式政策及整体验收未完成。"
+    },
+    {
+      "id": "W5-N5",
+      "type": "流程节点",
+      "title": "采购与库存 · 预留、调拨与出库",
+      "body": "预留、调拨与出库；仓库 / 销售；订单或调拨单；预留、出库、交付流向；完成交付核实库存；取消释放、部分出库、调拨差异",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/044_inventory_reserved_batches.sql",
+        "src/inventory-reserved-batches.mjs",
+        "src/inventory-reserved-batch-ledger.mjs",
+        "src/inventory-reserved-batch-recovery.mjs",
+        "src/dispatch.mjs",
+        "public/dispatch.js",
+        "public/inventory-batches.js",
+        "src/demo-inventory-reserved-batches.mjs",
+        "test/inventory-reserved-batches.test.mjs",
+        "scripts/inventory-reserved-batches-browser-check.mjs",
+        "docs/inventory-reserved-batches.md"
+      ],
+      "note": "固定原单预留实际出库原观察/收货/单位/数量及交付客户已接；与可用出库共用已售原件保护，旧事实不补造，完整独占矩阵/正式仓库规则及整体验收保留。"
+    },
+    {
+      "id": "W5-N6",
+      "type": "流程节点",
+      "title": "采购与库存 · 盘点与质量处理",
+      "body": "盘点与质量处理；仓库 / 负责人；库存账、实物、效期；差异审批、报损、退供；更新库存与补货安排；盘亏、召回、滞销、过期",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T07.03",
+        "T07.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "migrations/044_inventory_reserved_batches.sql",
+        "src/inventory-reserved-batches.mjs",
+        "src/inventory-reserved-batch-ledger.mjs",
+        "src/inventory-reserved-batch-recovery.mjs",
+        "src/dispatch.mjs",
+        "public/dispatch.js",
+        "public/inventory-batches.js",
+        "src/demo-inventory-reserved-batches.mjs",
+        "test/inventory-reserved-batches.test.mjs",
+        "scripts/inventory-reserved-batches-browser-check.mjs",
+        "docs/inventory-reserved-batches.md"
+      ],
+      "note": "固定原单预留实际出库原观察/收货/单位/数量及交付客户已接；与可用出库共用已售原件保护，旧事实不补造，完整独占矩阵/正式仓库规则及整体验收保留。"
+    },
+    {
+      "id": "W6-N1",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 项目与授权准备",
+      "body": "项目与授权准备；筛查负责人；机构、范围、名单、授权；批次、人员、设备安排；名单校验；缺授权、名单不全",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N2",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 匹配与个人建档",
+      "body": "匹配与个人建档；前台 / 筛查人员；名单、已有档案；客户编号、匹配结果；现场检查；重复、身份不明",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N3",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 现场检查登记",
+      "body": "现场检查登记；检查人员；身份、项目、设备；结果、方法、时间、来源；校验与专业复核；缺测、设备异常、录入错误",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N4",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 报告与建议确认",
+      "body": "报告与建议确认；专业负责人；结果、原始报告；报告、复查/转诊建议；授权发布；复核、缺项",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N5",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 发布与联系",
+      "body": "发布与联系；授权员工；确认报告、可见范围；个人报告、汇总、联系记录；安排复查或到店；送达失败、监护关系待核实",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W6-N6",
+      "type": "流程节点",
+      "title": "团体筛查与跟进 · 复查跟进与归档",
+      "body": "复查跟进与归档；随访人员；建议、联系结果；复查、外院结果、批次统计；接入个人长期档案；延期、失联、拒绝复查",
+      "tasks": [
+        "T08.01",
+        "T08.02",
+        "T08.03",
+        "T08.04",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N1",
+      "type": "流程节点",
+      "title": "售后与返工 · 受理与关联原单",
+      "body": "受理与关联原单；售后接待；反馈、原单、交付资料；售后单、原因、诉求；分派负责人；原单缺失、跨店售后",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md"
+      ]
+    },
+    {
+      "id": "W7-N2",
+      "type": "流程节点",
+      "title": "售后与返工 · 检查与处理建议",
+      "body": "检查与处理建议；专业 / 质量人员；产品、处方、加工、反馈；结论、处理建议；维修、重做、退款或专业转交；需外院处理、信息不足",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N3",
+      "type": "流程节点",
+      "title": "售后与返工 · 方案与审批",
+      "body": "方案与审批；负责人 / 财务；建议、费用、服务规则；批准方案、客户确认；执行对应任务；拒绝、费用争议",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "W7-N4",
+      "type": "流程节点",
+      "title": "售后与返工 · 维修、返工或退货",
+      "body": "维修、返工或退货；加工 / 仓库人员；批准方案、原产品；执行、库存、供应商处理；重新质检或完成退款；再次失败、退货隔离",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/dispatch.mjs",
+        "src/aftercare.mjs",
+        "src/stock-ledger.mjs",
+        "migrations/018_dispatch_aftercare.sql",
+        "public/dispatch.js",
+        "public/aftercare.js",
+        "test/aftercare.test.mjs",
+        "scripts/aftercare-browser-check.mjs",
+        "docs/dispatch-aftercare.md",
+        "src/demo-data.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "docs/capability-map.md",
+        "src/aftercare-work.mjs",
+        "src/return-custody.mjs",
+        "migrations/019_aftercare_work.sql",
+        "public/aftercare-work.js",
+        "test/aftercare-work.test.mjs",
+        "scripts/aftercare-work-browser-check.mjs",
+        "docs/aftercare-work.md",
+        "src/aftercare-replacements.mjs",
+        "src/replacement-gates.mjs",
+        "migrations/020_aftercare_replacements.sql",
+        "public/aftercare-replacements.js",
+        "test/aftercare-replacements.test.mjs",
+        "scripts/aftercare-replacements-browser-check.mjs",
+        "docs/aftercare-replacements.md",
+        "src/demo-replacements.mjs",
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "W7-N5",
+      "type": "流程节点",
+      "title": "售后与返工 · 交付与资金核对",
+      "body": "交付与资金核对；交付 / 财务人员；结果、原付款；签收、退款、对账；回访客户；退款失败、无人取件",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "W7-N6",
+      "type": "流程节点",
+      "title": "售后与返工 · 回访与质量改进",
+      "body": "回访与质量改进；售后 / 质量负责人；处理、反馈；结案、原因、改进任务；归档并跟踪改进；未解决、同批次问题",
+      "tasks": [
+        "T04.01",
+        "T04.02",
+        "T04.03",
+        "T04.04",
+        "T04.05",
+        "T03.02",
+        "T10.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A1",
+      "type": "统计",
+      "title": "客户与服务",
+      "body": "新增、复购、年龄、来源、服务、跨店；趋势、构成、客户筛选名单；客户、家庭、到店次数分别统计",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A2",
+      "type": "统计",
+      "title": "儿童随访",
+      "body": "个人左右眼结果、应复查、完成、逾期；双眼趋势、档案时间轴、任务名单；标明条件、间隔及专业评价",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A3",
+      "type": "统计",
+      "title": "训练与课程",
+      "body": "预约、到课、缺席、时长、复评、家庭练习；课表、完成趋势、阶段对比；分母明确；打卡和分数不是疗效",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A4",
+      "type": "统计",
+      "title": "经营与资金",
+      "body": "销售、实收、退款、折扣、毛利、预收余额；日周月趋势、构成、明细；订单额、资金流、服务消耗分列",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A5",
+      "type": "统计",
+      "title": "员工与资源",
+      "body": "服务量、负荷、资源使用、等待时间；时段热力图、日历、工作量；结合质量；不只按营业额评价专业服务",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A6",
+      "type": "统计",
+      "title": "库存与供应商",
+      "body": "可售、预留、在途、缺货、临期、周转；镜片矩阵、预警、周转分布；调拨不作销售；数量成本口径一致",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A7",
+      "type": "统计",
+      "title": "售后与质量",
+      "body": "售后、返工原因、时长、批次影响；原因分布、工单看板、追溯路径；分类原因，关联原订单",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "A8",
+      "type": "统计",
+      "title": "团体筛查",
+      "body": "完成、缺测、复核、复查跟进、批次；完成图、授权汇总、跟进名单；个人结果不进入未授权公开汇总",
+      "tasks": [
+        "T09.01",
+        "T10.01",
+        "T00.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D1",
+      "type": "数据领域",
+      "title": "客户与家庭",
+      "body": "客户、家庭、监护关系、联系人、付款人；编号、出生日期、关系、授权；手机号可重复；服务与付款对象分开",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/profiles.mjs",
+        "test/foundation.test.mjs",
+        "test/recovery.test.mjs",
+        "scripts/browser-check.mjs"
+      ],
+      "note": "V0.6新增基本资料历史、家庭联系人及有效检索；共享家庭实体/付款身份/证明/合并/跨店未完成。"
+    },
+    {
+      "id": "D2",
+      "type": "数据领域",
+      "title": "检查与专业记录",
+      "body": "到店、检查、单眼测量、报告、专业意见；眼别、单位、条件、设备、来源、版本；缺测留空；按条件比较；录入确认分开",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D3",
+      "type": "数据领域",
+      "title": "验配与商品参数",
+      "body": "处方、镜片、镜架、加工、交付；屈光参数、瞳距/瞳高、用途、版本；处方快照；实际交付关联",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D4",
+      "type": "数据领域",
+      "title": "专项检查与接触镜",
+      "body": "眼轴、角膜、视功能、接触镜验配；实测值、附件、基弧/直径等按需参数；按业务启用；不替代专业判断",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D5",
+      "type": "数据领域",
+      "title": "训练与复评",
+      "body": "评估、计划、版本、项目、复评；目标、频率、参数、时长、暂停原因；项目库不是自动处方；更新保留历史",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D6",
+      "type": "数据领域",
+      "title": "课程与执行",
+      "body": "预约、资源、签到、执行、家庭练习；时段、实际项目、反馈、提交来源；预约、完成、扣次分别记录",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D7",
+      "type": "数据领域",
+      "title": "订单与权益",
+      "body": "订单、明细、套餐、权益、扣次流水；付费/赠送、效期、冻结、调整；来源明确；撤销产生反向流水",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T02.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充独立权益账、购买/赠送和反向误录来源、固定规则及资料版本；套餐订单、扣次、冻结与规则调整后续接续。"
+    },
+    {
+      "id": "D8",
+      "type": "数据领域",
+      "title": "资金与经营",
+      "body": "收款、退款、应收应付、交班、提成；渠道流水、实收、费用、口径版本；支付与订单状态分开；对账留痕",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/refunds.mjs",
+        "src/refund-ledger.mjs",
+        "migrations/022_refunds.sql",
+        "public/refunds.js",
+        "test/refunds.test.mjs",
+        "scripts/refunds-browser-check.mjs",
+        "docs/refunds.md",
+        "src/demo-refunds.mjs",
+        "docs/handover.md"
+      ],
+      "note": " V0.25有效原实收人工退款申请/负责人审核/实际凭据登记，固定原付款与可选原售后，保护金额上限、重复退款和原历史。批准不代表已退，库存/保管/周期独立；优惠/费用公式、正式渠道/票据、应收/交班与整项验收待完成。"
+    },
+    {
+      "id": "D9",
+      "type": "数据领域",
+      "title": "供应链与质量",
+      "body": "供应商、采购、验收、批次、库存；规格、效期、仓位、预留、隔离；每次流转留账；追溯到客户",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D10",
+      "type": "数据领域",
+      "title": "服务与沟通",
+      "body": "随访、通知、联系、售后、转诊；目的、授权、回执、结果、下一步；发送不等于到店；内外备注区分",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D11",
+      "type": "数据领域",
+      "title": "组织与运行",
+      "body": "门店、员工、岗位、资质、资源、审批；范围、动作权限、效期、日志；管理员不默认承担专业确认",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "D12",
+      "type": "数据领域",
+      "title": "文件与配置",
+      "body": "附件、同意书、字典、模板、导入；版本、来源、权限、生效日期；文件授权；导入可核对和纠正",
+      "tasks": [
+        "T00.02",
+        "T01.03",
+        "T10.01",
+        "T00.04",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P01",
+      "type": "权限矩阵",
+      "title": "档案与家庭关系",
+      "body": "负责人：管理；前台/销售：录入；专业人员：查阅；训练人员：授权查阅；仓库/加工：必要信息；财务：必要信息；家长/客户：授权家庭",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P02",
+      "type": "权限矩阵",
+      "title": "检查与方案确认",
+      "body": "负责人：按专业资质；前台/销售：资料/排队；专业人员：录入与确认；训练人员：执行所需；仓库/加工：加工参数；财务：收费所需；家长/客户：发布报告",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P03",
+      "type": "权限矩阵",
+      "title": "排课与训练执行",
+      "body": "负责人：管理；前台/销售：排课/签到；专业人员：计划与复评；训练人员：执行记录；仓库/加工：设备状态；财务：费用核对；家长/客户：预约/提交",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P04",
+      "type": "权限矩阵",
+      "title": "订单、权益、收款",
+      "body": "负责人：审批；前台/销售：开单/收款；专业人员：服务关联；训练人员：完成/扣次；仓库/加工：流转任务；财务：对账/退款；家长/客户：本人订单",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/entitlements.mjs",
+        "src/entitlements-api.mjs",
+        "src/entitlements-recovery.mjs",
+        "migrations/025_entitlements.sql",
+        "public/entitlements.js",
+        "src/demo-entitlements.mjs",
+        "test/entitlements.test.mjs",
+        "scripts/entitlements-browser-check.mjs",
+        "docs/entitlements.md"
+      ],
+      "note": "V0.28：补充前台登记权益、负责人误录冲销与目录版本、专业员工数量摘要；正式财务对账/套餐退款、权益消费与业务审批未完成。"
+    },
+    {
+      "id": "P05",
+      "type": "权限矩阵",
+      "title": "库存、加工、质检",
+      "body": "负责人：管理/审批；前台/销售：查询/交付；专业人员：处方核对；训练人员：必要查询；仓库/加工：执行记录；财务：成本/应付；家长/客户：交付进度",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "P06",
+      "type": "权限矩阵",
+      "title": "导出、修改、作废",
+      "body": "负责人：按审批；前台/销售：受限；专业人员：本职授权；训练人员：本职授权；仓库/加工：本职授权；财务：财务授权；家长/客户：本人资料申请",
+      "tasks": [
+        "T01.02",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H1",
+      "type": "交接字段",
+      "title": "任务身份",
+      "body": "task_id、客户/周期/原单、节点、候选岗位、负责人、接收人",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H2",
+      "type": "交接字段",
+      "title": "执行与时限",
+      "body": "认领/开始/暂停/完成时间、截止日、工作日历、优先级",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/008_task_execution.sql",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs"
+      ],
+      "note": "V0.11岗位协作/交接执行保留，异常阻塞/解除、取消/恢复及原因快照、列表/七列看板/当前状态流程共用同一队列；专业完成、正式岗位专项职责、代理/时限/优先级/日历/通知及业务依赖流程图仍未完成。"
+    },
+    {
+      "id": "H3",
+      "type": "交接字段",
+      "title": "资料与阻塞",
+      "body": "输入附件/版本、缺项、阻塞原因、补充人、恢复条件",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "src/task-evidence.mjs",
+        "public/task-evidence.js",
+        "migrations/010_task_evidence.sql",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "docs/task-completion.md",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql",
+        "src/task-amendments.mjs",
+        "public/task-links.js",
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js"
+      ],
+      "note": "V0.14部分实现：原条件/依据/资料/附件仍固定；更正仅通用产出说明，后续任务继承原客户/到店/需求版本和当时产出版本，后来更正不改旧来源，历史/时间轴/恢复核对一致。专业输入规则/补充人链/专业完成条件仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
+    },
+    {
+      "id": "H4",
+      "type": "交接字段",
+      "title": "交接记录",
+      "body": "转出人、转入人、理由、接收时间、前后值、下一任务",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "H5",
+      "type": "交接字段",
+      "title": "关闭与追溯",
+      "body": "产出、完成条件证据、取消或结案原因、审批与日志关联",
+      "tasks": [
+        "T03.01",
+        "T03.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/tasks.mjs",
+        "public/tasks.js",
+        "migrations/009_task_exceptions.sql",
+        "src/recovery.mjs",
+        "test/foundation.test.mjs",
+        "scripts/browser-check.mjs",
+        "src/task-evidence.mjs",
+        "public/task-evidence.js",
+        "migrations/010_task_evidence.sql",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "docs/task-completion.md",
+        "src/task-completions.mjs",
+        "migrations/011_task_completions.sql",
+        "src/task-amendments.mjs",
+        "public/task-links.js",
+        "migrations/012_task_amendments.sql",
+        "src/task-chains.mjs",
+        "public/task-chains.js"
+      ],
+      "note": "V0.14部分实现：原完成产出不覆盖，原提交人或负责人追加说明更正版本/原因/员工/时间；显式后续任务来源固定并可追溯，完成终态继续锁定。专业确认/审批/结案、专业更正与整体验收仍未实现。 V0.15已保存来源组成只读任务链，固定版本与当前责任/状态分别呈现，完整统计/筛选/分页和原任务定位接通。"
+    },
+    {
+      "id": "S01",
+      "type": "验收场景",
+      "title": "正常配镜到交付",
+      "body": "身份→检查→处方快照→开单预留→加工→质检→签收→回访",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S02",
+      "type": "验收场景",
+      "title": "缺货延期与分批交付",
+      "body": "不同商品分批到货/交付；交期沟通；未交付项与款项分别跟踪",
+      "tasks": [
+        "T04.03",
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/processing.mjs",
+        "public/processing.js",
+        "migrations/016_processing.sql",
+        "test/processing.test.mjs",
+        "scripts/processing-browser-check.mjs",
+        "docs/processing.md",
+        "src/retail.mjs",
+        "src/inventory.mjs",
+        "src/recovery.mjs",
+        "src/timeline.mjs",
+        "src/demo-data.mjs",
+        "src/fulfillment.mjs",
+        "public/fulfillment.js",
+        "migrations/017_fulfillment.sql",
+        "test/fulfillment.test.mjs",
+        "scripts/fulfillment-browser-check.mjs",
+        "docs/fulfillment.md"
+      ],
+      "note": " V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。 加工缺货延期原因/新交期与分批到货已落库；未完成分项及原收款分别显示；实际交付、通知和签收尚未实现。 V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 可逐行/批次签收，未签收、返工及原资金分开追踪；库存出库/损耗与外部通知后续接续。"
+    },
+    {
+      "id": "S03",
+      "type": "验收场景",
+      "title": "质检失败与再次返工",
+      "body": "退回加工、损耗、新质检、客户通知；不合格不可交付",
+      "tasks": [
+        "T04.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S04",
+      "type": "验收场景",
+      "title": "周期训练与复评调整",
+      "body": "多次训练循环；到期复评；新计划版本不改历史执行",
+      "tasks": [
+        "T05.05",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.27：多次现场课程引用当时计划版本；新计划不改旧执行，原版本责任人核对。真实到期复评及循环预约尚未完成。 V0.30：家庭练习/阶段复评的版本、权限、来源、并发与恢复已开发验证；真实专业表单/资质及业务方验收保留。"
+    },
+    {
+      "id": "S05",
+      "type": "验收场景",
+      "title": "缺课、请假与补课",
+      "body": "只改当次；按规则处理权益；候补/补课重新校验资源",
+      "tasks": [
+        "T05.03",
+        "T05.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/scheduling.mjs",
+        "src/scheduling-api.mjs",
+        "src/scheduling-recovery.mjs",
+        "migrations/026_scheduling.sql",
+        "public/scheduling.js",
+        "src/demo-scheduling.mjs",
+        "test/scheduling.test.mjs",
+        "scripts/scheduling-browser-check.mjs",
+        "docs/scheduling.md"
+      ],
+      "note": "V0.29：单次请假/调课/候补重新校验资源与容量已检查；实际缺席、补课来源与权益联动未实现，整体验收保留。"
+    },
+    {
+      "id": "S06",
+      "type": "验收场景",
+      "title": "中止、反馈与专业接管",
+      "body": "保留实际记录，生成异常任务，确认继续/暂停及后续安排",
+      "tasks": [
+        "T05.04",
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/training.mjs",
+        "src/training-api.mjs",
+        "src/training-recovery.mjs",
+        "migrations/024_training.sql",
+        "public/training.js",
+        "test/training.test.mjs",
+        "scripts/training-browser-check.mjs",
+        "src/demo-training.mjs",
+        "docs/training.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "S07",
+      "type": "验收场景",
+      "title": "部分退款与赠送权益",
+      "body": "公式版本、已用/赠送/分摊逐项核对；失败重试；不误结束服务周期",
+      "tasks": [
+        "T04.02",
+        "T05.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S08",
+      "type": "验收场景",
+      "title": "多门店与请假交接",
+      "body": "授权范围、负责人转派、接收、逾期升级和停用账号",
+      "tasks": [
+        "T03.01",
+        "T07.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S09",
+      "type": "验收场景",
+      "title": "复查失联与外院结果",
+      "body": "发出、联系、到店分开；失联转人工；外院资料待确认",
+      "tasks": [
+        "T06.02",
+        "T06.03",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/contact.mjs",
+        "src/contact-api.mjs",
+        "src/contact-recovery.mjs",
+        "migrations/029_contact.sql",
+        "public/contact.js",
+        "src/demo-contact.mjs",
+        "test/contact.test.mjs",
+        "scripts/contact-browser-check.mjs",
+        "docs/contact.md",
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "S10",
+      "type": "验收场景",
+      "title": "采购、调拨、盘点与退货",
+      "body": "分批差异、两端确认、隔离验收、报损及批次客户追溯",
+      "tasks": [
+        "T07.01",
+        "T07.02",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S11",
+      "type": "验收场景",
+      "title": "家庭授权与报告更正",
+      "body": "授权撤销、越家庭、撤回再发布和内部备注可见范围",
+      "tasks": [
+        "T08.01",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S12",
+      "type": "验收场景",
+      "title": "筛查导入与重复匹配",
+      "body": "名单错误不覆盖旧档；个人报告与汇总授权不同，复查有负责人",
+      "tasks": [
+        "T08.03",
+        "T08.04",
+        "T10.01",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S13",
+      "type": "验收场景",
+      "title": "弱网、重复、并发与接口失败",
+      "body": "草稿恢复、同一确认只扣一次、不超售、不重复退款、人工接管",
+      "tasks": [
+        "T01.04",
+        "T09.03",
+        "T10.02",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "S14",
+      "type": "验收场景",
+      "title": "旧资料、统计与恢复核对",
+      "body": "缺测不补零；口径下钻一致；备份恢复核对各账及版本",
+      "tasks": [
+        "T09.01",
+        "T09.04",
+        "T10.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V01",
+      "type": "长期可视化",
+      "title": "屈光变化",
+      "body": "球镜、柱镜、轴位、等效球镜（按确认公式派生），左右眼分别记录；D / °；检查值、最终处方分开；散瞳条件、方法、来源与柱镜记法保留；独立指标折线/点图 + 历次变化表；轴位以参数表或方向图展示；点击测量点打开原检查版本；同条件才给变化值",
+      "tasks": [
+        "T02.03",
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V02",
+      "type": "长期可视化",
+      "title": "视力变化",
+      "body": "裸眼、戴镜、最佳矫正、远近视力按实际项目采集；记录小数/五分/LogMAR等原始记法、视力表、距离、眼别、矫正条件；按条件拆分小图，不把不同记法直接放同一数轴；原始值保留；转换须有确认算法及版本，缺测有原因",
+      "tasks": [
+        "T02.03",
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V03",
+      "type": "长期可视化",
+      "title": "眼部生物测量",
+      "body": "眼轴长度、角膜曲率、角膜地形等实际已开展结果；mm / D 等按项目；设备、测量方法、时间、眼别、外院来源；眼轴与角膜指标独立面板；影像附报告对照；同日期多次测量有记录标识；更换设备或方法有提示",
+      "tasks": [
+        "T02.03",
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V04",
+      "type": "长期可视化",
+      "title": "双眼视与视功能",
+      "body": "眼位、立体视、融合、调节/聚散等实际评估项目；项目字典逐项定义单位、方法、测试条件、版本；单眼/双眼区别；可比数值独立趋势，分类结果用历次表和事件卡；不将不同单位拼成健康雷达总分；专业解释单独确认",
+      "tasks": [
+        "T02.03",
+        "T05.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V05",
+      "type": "长期可视化",
+      "title": "眼健康与专业意见",
+      "body": "实际检查的眼压、眼底/角膜报告、症状、不适反馈、外院意见及附件；数值按项目单位，文字、影像、来源、确认人员与日期保留；报告时间轴、附件对照、症状记录与专业事件标记；不用文本自动生成诊断；确认意见与客户自报分别展示",
+      "tasks": [
+        "T02.05",
+        "T06.03",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/referrals.mjs",
+        "src/referral-api.mjs",
+        "src/referral-recovery.mjs",
+        "migrations/030_referrals.sql",
+        "public/referrals.js",
+        "src/demo-referrals.mjs",
+        "test/referrals.test.mjs",
+        "scripts/referrals-browser-check.mjs",
+        "docs/referrals.md"
+      ],
+      "note": "V0.33：外院原报告、自报和无法测独立，确认绑定原版本、修订重新待确认，不覆盖本店数据；转介专业/联系责任分开，原长期/检查/售后/实际课程来源、联系回执预约、改期/延期及结果后续留痕。正式指标/表单/资质、外部渠道和自动异常任务仍待依据。"
+    },
+    {
+      "id": "V06",
+      "type": "长期可视化",
+      "title": "课程与实际执行",
+      "body": "预约、到课、缺课、补课、实际时长、项目、计划版本、阶段复评；次数/分钟；预约、执行、权益扣次三种状态分开；完成率分母明示；课程日历、到课趋势、执行项目分布、阶段进度；点开次数进入执行明细；项目/量表改变时分段，不强行连分数",
+      "tasks": [
+        "T05.04",
+        "T05.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "V07",
+      "type": "长期可视化",
+      "title": "家庭练习与日常反馈",
+      "body": "布置、提交、实际反馈；自报户外/近距离用眼等按需要启用；来源标记家长自报/设备/员工；时长、提交日期、量表与版本；练习完成日历、提交趋势、反馈事件与阶段记录；未提交与提交零分钟不同；自报不当客观检查结果",
+      "tasks": [
+        "T05.05",
+        "T08.02",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/family-training.mjs",
+        "src/family-training-api.mjs",
+        "src/family-training-recovery.mjs",
+        "migrations/027_family_training.sql",
+        "public/family-training.js",
+        "src/demo-family-training.mjs",
+        "test/family-training.test.mjs",
+        "scripts/family-training-browser-check.mjs",
+        "docs/family-training.md"
+      ],
+      "note": "V0.30：家庭练习发布、实际反馈和复评版本可查看；正式长期效果曲线/统一指标尚未实现。"
+    },
+    {
+      "id": "V08",
+      "type": "长期可视化",
+      "title": "长期关系与服务跟进",
+      "body": "复查约定/完成/逾期、联系、提醒、计划变更、配镜交付与售后；业务时间、记录时间、负责人、结果、下一任务、服务周期；统一长期时间轴 + 待办面板；筛选业务类型、阶段和来源；检查图上叠加交付/计划调整/复评标记仅表示同时发生，不推断因果",
+      "tasks": [
+        "T02.05",
+        "T06.01",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/longitudinal.mjs",
+        "src/longitudinal-api.mjs",
+        "src/longitudinal-recovery.mjs",
+        "migrations/028_longitudinal.sql",
+        "public/longitudinal.js",
+        "src/demo-longitudinal.mjs",
+        "test/longitudinal.test.mjs",
+        "scripts/longitudinal-browser-check.mjs",
+        "docs/longitudinal.md"
+      ],
+      "note": "V0.31：长期档案、检查条件来源和复查/逾期/结案可查看；临床趋势、转介及联系回执待后续。"
+    },
+    {
+      "id": "VR01",
+      "type": "图表规则",
+      "title": "横轴真实时间",
+      "body": "不等间隔检查按实际日期显示；业务发生日与补录日分开；同日多条记录可定位。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR02",
+      "type": "图表规则",
+      "title": "条件可比性",
+      "body": "眼别、单位、方法、矫正/散瞳条件与来源筛选。不可比不计算差值；更换设备提示，不静默合并。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR03",
+      "type": "图表规则",
+      "title": "缺测和可信状态",
+      "body": "未做、无法测、待补、不适用分别显示；默认只用已确认值，草稿另层标记；缺测不补零或平滑推断。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR04",
+      "type": "图表规则",
+      "title": "基线与历次变化",
+      "body": "可选有效基线和上次可比检查，显示原值、差值与间隔；需要速率时另行确认公式与适用条件，标注计算口径。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR05",
+      "type": "图表规则",
+      "title": "明细、版本和更正",
+      "body": "每个点关联检查/执行ID及版本；修订后面板重新计算，历史报告保留原发布快照；导出带筛选和截止时间。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR06",
+      "type": "图表规则",
+      "title": "权限与家长视图",
+      "body": "员工仅看授权客户与专业字段；家长只看已发布版本及授权孩子，报告撤回和监护撤销后限制访问。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR07",
+      "type": "图表规则",
+      "title": "呈现与解释",
+      "body": "指标分别使用明确单位与轴范围，不用截断坐标夸大变化；颜色表达眼别/状态；专业解释与数值、课程完成分开。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VR08",
+      "type": "图表规则",
+      "title": "多端、更新与性能",
+      "body": "手机按指标卡片查看，图表有等价表格；显示数据截止、加载、无数据、失败；新增/确认/修订/冲销后刷新对应面板。",
+      "tasks": [
+        "T02.05",
+        "T09.05",
+        "T10.06",
+        "T00.01",
+        "T00.03",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS01",
+      "type": "图表验收",
+      "title": "完整纵向记录",
+      "body": "多日期、左右眼、多指标、课程与复评事件；核对原记录、点位、表格与导出一致",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS02",
+      "type": "图表验收",
+      "title": "稀疏与缺测",
+      "body": "不等间隔、仅一个点、同日多记录、缺测原因；不补零、不造趋势，空状态可用",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS03",
+      "type": "图表验收",
+      "title": "条件与单位切换",
+      "body": "散瞳/非散瞳、裸眼/矫正、外院/本店、不同视力记法与设备；不可比不算差值",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS04",
+      "type": "图表验收",
+      "title": "课程及家庭统计",
+      "body": "请假、补课、中止、取消、未提交、赠送和冲销；次数、分钟、完成率分母与明细一致",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS05",
+      "type": "图表验收",
+      "title": "历史修订与权限",
+      "body": "确认/修订/撤回/重新发布、计划版本变化、监护撤销及越家庭；旧快照与当前图分别正确",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    },
+    {
+      "id": "VS06",
+      "type": "图表验收",
+      "title": "多端和长期规模",
+      "body": "手机、电脑、键盘、放大、图表等价表格、弱网和大量历史；筛选与更新截止正确",
+      "tasks": [
+        "T09.05",
+        "T10.06",
+        "T10.05"
+      ],
+      "implementation": "未开始",
+      "verification": "未验收",
+      "evidence": []
+    }
+  ]
+}
