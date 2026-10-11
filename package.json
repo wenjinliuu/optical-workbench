@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.55.0",
+  "version": "0.56.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -55,6 +55,7 @@
     "test:money-review-browser": "node scripts/money-review-browser-check.mjs",
     "test:channel-review-browser": "node scripts/channel-review-browser-check.mjs",
     "test:expenses-browser": "node scripts/expenses-browser-check.mjs",
-    "test:family-progress-browser": "node scripts/family-progress-browser-check.mjs"
+    "test:family-progress-browser": "node scripts/family-progress-browser-check.mjs",
+    "test:family-requests-browser": "node scripts/family-requests-browser-check.mjs"
   }
 }
