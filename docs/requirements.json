@@ -3251,9 +3251,18 @@
         "test/family-requests.test.mjs",
         "scripts/family-requests-browser-check.mjs",
         "src/timeline.mjs",
-        "docs/family-requests.md"
+        "docs/family-requests.md",
+        "migrations/051_family_bookings.sql",
+        "src/family-bookings.mjs",
+        "src/family-bookings-api.mjs",
+        "src/family-bookings-recovery.mjs",
+        "public/family-bookings.js",
+        "src/demo-family-bookings.mjs",
+        "test/family-bookings.test.mjs",
+        "scripts/family-bookings-browser-check.mjs",
+        "docs/family-bookings.md"
       ],
-      "note": "当前本人授权预约/请假意向与独立公开回复、完整原提交历史/内部依据分离；实际原预约衔接/资源冲突、通知送达/同意调整、正式身份和整体家庭验收保留。"
+      "note": "本人意向/独立回复，加实际同客户原训练预约手工关联与固定版本公开/候补/真实请假/普通取消区分、当前授权及撤回和迟到读取保护；本人可公开时段自选/完整资源冲突解释、通知送达/同意调整、正式身份与整体家庭验收保留。"
     },
     {
       "id": "M16-F03",
@@ -3303,9 +3312,18 @@
         "test/family-requests.test.mjs",
         "scripts/family-requests-browser-check.mjs",
         "src/timeline.mjs",
-        "docs/family-requests.md"
+        "docs/family-requests.md",
+        "migrations/051_family_bookings.sql",
+        "src/family-bookings.mjs",
+        "src/family-bookings-api.mjs",
+        "src/family-bookings-recovery.mjs",
+        "public/family-bookings.js",
+        "src/demo-family-bookings.mjs",
+        "test/family-bookings.test.mjs",
+        "scripts/family-bookings-browser-check.mjs",
+        "docs/family-bookings.md"
       ],
-      "note": "当前本人授权预约/请假意向与独立公开回复、完整原提交历史/内部依据分离；实际原预约衔接/资源冲突、通知送达/同意调整、正式身份和整体家庭验收保留。"
+      "note": "本人意向/独立回复，加实际同客户原训练预约手工关联与固定版本公开/候补/真实请假/普通取消区分、当前授权及撤回和迟到读取保护；本人可公开时段自选/完整资源冲突解释、通知送达/同意调整、正式身份与整体家庭验收保留。"
     },
     {
       "id": "M16-D",
@@ -3340,9 +3358,18 @@
         "src/demo-family-requests.mjs",
         "test/family-requests.test.mjs",
         "scripts/family-requests-browser-check.mjs",
-        "docs/family-requests.md"
+        "docs/family-requests.md",
+        "migrations/051_family_bookings.sql",
+        "src/family-bookings.mjs",
+        "src/family-bookings-api.mjs",
+        "src/family-bookings-recovery.mjs",
+        "public/family-bookings.js",
+        "src/demo-family-bookings.mjs",
+        "test/family-bookings.test.mjs",
+        "scripts/family-bookings-browser-check.mjs",
+        "docs/family-bookings.md"
       ],
-      "note": "当前本人授权预约/请假意向与独立公开回复、完整原提交历史/内部依据分离；实际原预约衔接/资源冲突、通知送达/同意调整、正式身份和整体家庭验收保留。"
+      "note": "本人意向/独立回复，加实际同客户原训练预约手工关联与固定版本公开/候补/真实请假/普通取消区分、当前授权及撤回和迟到读取保护；本人可公开时段自选/完整资源冲突解释、通知送达/同意调整、正式身份与整体家庭验收保留。"
     },
     {
       "id": "M16-R",
@@ -3377,9 +3404,18 @@
         "src/demo-family-requests.mjs",
         "test/family-requests.test.mjs",
         "scripts/family-requests-browser-check.mjs",
-        "docs/family-requests.md"
+        "docs/family-requests.md",
+        "migrations/051_family_bookings.sql",
+        "src/family-bookings.mjs",
+        "src/family-bookings-api.mjs",
+        "src/family-bookings-recovery.mjs",
+        "public/family-bookings.js",
+        "src/demo-family-bookings.mjs",
+        "test/family-bookings.test.mjs",
+        "scripts/family-bookings-browser-check.mjs",
+        "docs/family-bookings.md"
       ],
-      "note": "当前本人授权预约/请假意向与独立公开回复、完整原提交历史/内部依据分离；实际原预约衔接/资源冲突、通知送达/同意调整、正式身份和整体家庭验收保留。"
+      "note": "本人意向/独立回复，加实际同客户原训练预约手工关联与固定版本公开/候补/真实请假/普通取消区分、当前授权及撤回和迟到读取保护；本人可公开时段自选/完整资源冲突解释、通知送达/同意调整、正式身份与整体家庭验收保留。"
     },
     {
       "id": "M16-L",
@@ -3414,9 +3450,18 @@
         "src/demo-family-requests.mjs",
         "test/family-requests.test.mjs",
         "scripts/family-requests-browser-check.mjs",
-        "docs/family-requests.md"
+        "docs/family-requests.md",
+        "migrations/051_family_bookings.sql",
+        "src/family-bookings.mjs",
+        "src/family-bookings-api.mjs",
+        "src/family-bookings-recovery.mjs",
+        "public/family-bookings.js",
+        "src/demo-family-bookings.mjs",
+        "test/family-bookings.test.mjs",
+        "scripts/family-bookings-browser-check.mjs",
+        "docs/family-bookings.md"
       ],
-      "note": "当前本人授权预约/请假意向与独立公开回复、完整原提交历史/内部依据分离；实际原预约衔接/资源冲突、通知送达/同意调整、正式身份和整体家庭验收保留。"
+      "note": "本人意向/独立回复，加实际同客户原训练预约手工关联与固定版本公开/候补/真实请假/普通取消区分、当前授权及撤回和迟到读取保护；本人可公开时段自选/完整资源冲突解释、通知送达/同意调整、正式身份与整体家庭验收保留。"
     },
     {
       "id": "M16-A",
