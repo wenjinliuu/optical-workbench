@@ -198,3 +198,8 @@ V0.30：schema27：practice_assignments固定原计划/需求/课程/指定家�
 
 
 V0.31：schema28：longitudinal_cases固定客户和随访周期版本，case_versions保存描述/资料来源，case_events保存责任人与状态/结案；longitudinal_observations与observation_versions保存实际时间/眼别/条件/来源及更正；review_plans与review_plan_events保存明确复查及处理后续。longitudinal_journal/current为派生视图。
+
+
+## V0.59 原预约变更
+
+参见 [family-changes.md](family-changes.md)：固定本人原公开预约/目标的不可变意向，两张 schema53 新表；员工明确实际leave/move/promote和独立结果公开同事务。当前授权/原版本/容量/冲突、幂等回放、审计失败回滚、同源读取/迟到撤权和独立恢复列为开发验证；正式身份/审批与通知等完整业务验收仍待用户集中核对。
