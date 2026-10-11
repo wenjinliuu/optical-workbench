@@ -6920,7 +6920,7 @@
       "focusedTests": 20,
       "focusedResult": "passed",
       "browserResult": "新增电脑请假/手机调课/迟到撤权检查及原时段开放、原预约公开、原家庭意向共4组相关浏览器通过；未重新执行其余历史浏览器组。",
-      "fullResult": "running",
+      "fullResult": "本地先前1083项全部通过；实现提交0e0b204的CI148跑1084项，1083通过，仅旧进度清单58断言与新59不符；已修正并专项核对，当前提交全量重跑。",
       "cliResult": "新建/重复示例初始化、schema53/228数据表备份核验及独立恢复通过，恢复会话0。",
       "syntaxResult": "npm run check passed"
     }
