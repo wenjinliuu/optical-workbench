@@ -1,6 +1,6 @@
 {
   "baseline": "V1.1",
-  "updated": "2026-10-10",
+  "updated": "2026-10-11",
   "requirements": [
     {
       "id": "M01-F01",
@@ -3013,9 +3013,19 @@
         "scripts/channel-review-browser-check.mjs",
         "src/timeline.mjs",
         "public/timeline.js",
-        "docs/channel-review.md"
+        "docs/channel-review.md",
+        "migrations/048_expenses.sql",
+        "src/expenses.mjs",
+        "src/expenses-api.mjs",
+        "src/expense-recovery.mjs",
+        "public/expenses.js",
+        "src/demo-expenses.mjs",
+        "test/expenses.test.mjs",
+        "scripts/expenses-browser-check.mjs",
+        "public/retail.js",
+        "docs/expenses.md"
       ],
-      "note": "本店原收退款同筛选完整精确核对，固定原业务来源的手工渠道材料/未知及零/一致差异结论、旧版撤回/来源变化手工重读、负责人客户历史/独立恢复；外部核验、正式财务岗位/科目/费用分摊/提成与整体验收保留。"
+      "note": "原实际收退款完整核对与渠道人工差异，加费用原材料/未知/原单关联与独立实际支付固定版本/原误录保留/材料撤回和新版本不改实际支付、完整同筛选精确汇总/独立恢复/负责人原历史；正式财务审批/科目/分摊/提成/渠道接口与整体验收保留。"
     },
     {
       "id": "M15-F04",
@@ -3088,9 +3098,19 @@
         "scripts/channel-review-browser-check.mjs",
         "src/timeline.mjs",
         "public/timeline.js",
-        "docs/channel-review.md"
+        "docs/channel-review.md",
+        "migrations/048_expenses.sql",
+        "src/expenses.mjs",
+        "src/expenses-api.mjs",
+        "src/expense-recovery.mjs",
+        "public/expenses.js",
+        "src/demo-expenses.mjs",
+        "test/expenses.test.mjs",
+        "scripts/expenses-browser-check.mjs",
+        "public/retail.js",
+        "docs/expenses.md"
       ],
-      "note": "本店原收退款同筛选完整精确核对，固定原业务来源的手工渠道材料/未知及零/一致差异结论、旧版撤回/来源变化手工重读、负责人客户历史/独立恢复；外部核验、正式财务岗位/科目/费用分摊/提成与整体验收保留。"
+      "note": "原实际收退款完整核对与渠道人工差异，加费用原材料/未知/原单关联与独立实际支付固定版本/原误录保留/材料撤回和新版本不改实际支付、完整同筛选精确汇总/独立恢复/负责人原历史；正式财务审批/科目/分摊/提成/渠道接口与整体验收保留。"
     },
     {
       "id": "M15-R",
@@ -3149,9 +3169,19 @@
         "scripts/channel-review-browser-check.mjs",
         "src/timeline.mjs",
         "public/timeline.js",
-        "docs/channel-review.md"
+        "docs/channel-review.md",
+        "migrations/048_expenses.sql",
+        "src/expenses.mjs",
+        "src/expenses-api.mjs",
+        "src/expense-recovery.mjs",
+        "public/expenses.js",
+        "src/demo-expenses.mjs",
+        "test/expenses.test.mjs",
+        "scripts/expenses-browser-check.mjs",
+        "public/retail.js",
+        "docs/expenses.md"
       ],
-      "note": "本店原收退款同筛选完整精确核对，固定原业务来源的手工渠道材料/未知及零/一致差异结论、旧版撤回/来源变化手工重读、负责人客户历史/独立恢复；外部核验、正式财务岗位/科目/费用分摊/提成与整体验收保留。"
+      "note": "原实际收退款完整核对与渠道人工差异，加费用原材料/未知/原单关联与独立实际支付固定版本/原误录保留/材料撤回和新版本不改实际支付、完整同筛选精确汇总/独立恢复/负责人原历史；正式财务审批/科目/分摊/提成/渠道接口与整体验收保留。"
     },
     {
       "id": "M15-L",
