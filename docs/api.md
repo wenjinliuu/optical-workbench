@@ -393,3 +393,6 @@ V0.58继续T08.02：员工向指定有效授权本人明确开放同客户原有
 
 
 V0.69新增原名单明确人工建档：screening_row_registrations/060，固定原行/新客户初版/原link、建档前完整候选与资料前缀/声明和原依据；原生单语句与审计事务共同核对。API /screening-registrations/:project/:batchVersion/:row[/review]，原创建岗位/责任/授权、候选及缓存前来源/慢请求会话/迟到证明保护；恢复拒绝半份或假初版。完整契约见[screening-registrations.md](screening-registrations.md)。
+
+
+V0.70原名单只读处理队列：/screening-batch-work/:project/:batchVersion[/authorization]，完整计数/关联/错误/原建档事实筛选与稳定分页，来源/筛选绑定和当前责任证明/迟到清空；无业务写入或专业完成。契约见screening-batch-work.md。
