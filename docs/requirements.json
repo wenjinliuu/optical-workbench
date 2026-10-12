@@ -3566,9 +3566,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "M17-F02",
@@ -3624,9 +3635,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "M17-R",
@@ -3640,9 +3662,20 @@
         "T10.02",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "M17-L",
@@ -3672,9 +3705,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "M18-F01",
@@ -5708,9 +5752,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "W6-N2",
@@ -5727,9 +5782,20 @@
         "T00.03",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "W6-N3",
@@ -6818,9 +6884,20 @@
         "T10.01",
         "T10.05"
       ],
-      "implementation": "未开始",
-      "verification": "未验收",
-      "evidence": []
+      "implementation": "部分实现",
+      "verification": "未整体验收",
+      "evidence": [
+        "src/screening-import.mjs",
+        "src/screening-import-api.mjs",
+        "src/server.mjs",
+        "public/screening-import.js",
+        "public/app.js",
+        "public/index.html",
+        "test/screening-import.test.mjs",
+        "scripts/screening-import-browser-check.mjs",
+        "docs/screening-import.md"
+      ],
+      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
     },
     {
       "id": "S13",
