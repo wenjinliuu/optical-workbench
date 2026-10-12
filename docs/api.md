@@ -385,3 +385,8 @@ V0.58继续T08.02：员工向指定有效授权本人明确开放同客户原有
 ## V0.59 原预约变更
 
 参见 [family-changes.md](family-changes.md)：固定本人原公开预约/目标的不可变意向，两张 schema53 新表；员工明确实际leave/move/promote和独立结果公开同事务。当前授权/原版本/容量/冲突、幂等回放、审计失败回滚、同源读取/迟到撤权和独立恢复列为开发验证；正式身份/审批与通知等完整业务验收仍待用户集中核对。
+
+
+## V0.68 原名单人工关联
+
+`/api/screening-row-links/:project/:batchVersion/:row[/context|customers|authorization]`明确采用本店已有客户所见资料版本、保存依据及撤回。固定原CSV版/行，旧版历史不换当前，新增CSV不继承；当前责任与授权、原资料来源和迟到响应在服务端复核。根GET的link_version准确查本行原修订，根POST严格动作/来源/客户版本与依据。完整契约见[screening-row-links.md](screening-row-links.md)。

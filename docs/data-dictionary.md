@@ -211,3 +211,8 @@ screening_project_versions：id/root_id、store_id、revision/sequence、record/
 ## V0.67 原筛查批次（058_screening_batches.sql）
 
 screening_batch_versions：id/root_id、store/project_id/project_version_id、project_sequence/customer_profile_prefix、原batch_key、revision/sequence、csv_text/sha256、规范完整customer_refs_json（customer_id/version）、source_note/record_reason、created_at/by/actor_role；原件与根/编号不可变，原活动/客户前缀固定。错误及候选由原资料版本/日期重建，不保存当前自动匹配结果，也无客户时间轴关联。
+
+
+## V0.68 原名单人工关联（059_screening_row_links.sql）
+
+`screening_row_link_versions` / `screening_row_link_current`：固定本店原活动/CSV原版/解析行号及完整原行快照、link/withdraw、连续行修订/门店序列、明确本店customer_id/customer_version、活动/批次/客户资料历史前缀、原角色/操作人/依据/UTC时间。客户资料用原不可变版本，撤回保留原关联；CSV新版不继承，原生解析守卫、审计事务、时间轴及恢复一同核对。详见screening-row-links.md。

@@ -1,12 +1,15 @@
 import {outboundBatches} from './inventory-batch-ledger.mjs';
+import {screeningRowLinksScope} from './screening-row-links-scope.mjs';
 import { Buffer } from 'node:buffer';
 
-export const timelineKinds=['family_notification','family_notification_read','family_communication_information','family_communication_action','family_change','family_change_execution','family_offer','family_selection','family_admission','family_booking','family_request','family_share','expense_material','expense_payment','channel_review','reserved_custody','specialty_continuity','specialty_archive','specialty_review','specialty_care','specialty_order','specialty_lot','specialty_case','specialty_consent','external_record','referral','referral_contact','contact_case','contact_attempt','contact_receipt','customer_appointment','longitudinal','observation','review_plan','practice','reassessment','profile','cycle','visit','contact','document','attachment','authorization','task','retail','inventory','payment','processing','fulfillment','dispatch','aftercare','aftercare_work','aftercare_replacement','aftercare_disposition','refund','parameter','training_plan','training_session','entitlement','scheduling'];
+export const timelineKinds=['screening_link','family_notification','family_notification_read','family_communication_information','family_communication_action','family_change','family_change_execution','family_offer','family_selection','family_admission','family_booking','family_request','family_share','expense_material','expense_payment','channel_review','reserved_custody','specialty_continuity','specialty_archive','specialty_review','specialty_care','specialty_order','specialty_lot','specialty_case','specialty_consent','external_record','referral','referral_contact','contact_case','contact_attempt','contact_receipt','customer_appointment','longitudinal','observation','review_plan','practice','reassessment','profile','cycle','visit','contact','document','attachment','authorization','task','retail','inventory','payment','processing','fulfillment','dispatch','aftercare','aftercare_work','aftercare_replacement','aftercare_disposition','refund','parameter','training_plan','training_session','entitlement','scheduling'];
 // Read existing records. Only customer-related, explicitly allowed audit actions
 // enter this projection; account/security logs and arbitrary audit JSON never do.
 const eventsSQL=`WITH events AS (
  SELECT 'profile:'||printf('%012d',version) AS event_id,created_at AS at,'profile' AS kind,customer_id AS entity_id,created_by AS actor_id,
  json_object('version',version,'name',name,'source',source,'reason',revision_reason) AS details FROM customer_profile_versions WHERE customer_id=:customer
+
+ UNION ALL SELECT 'screening-link:'||v.id,v.created_at,'screening_link',v.id,v.created_by,json_object('action',v.action,'revision',v.revision,'project_id',v.project_id,'batch_id',v.batch_id,'batch_version_id',v.batch_version_id,'batch_key',b.batch_key,'batch_revision',b.revision,'row_number',v.row_number,'customer_version',v.customer_version,'reason',v.record_reason) FROM screening_row_link_versions v JOIN screening_batch_versions b ON b.id=v.batch_version_id JOIN screening_project_current p ON p.root_id=v.project_id WHERE v.customer_id=:customer AND v.store_id=:store AND (:screening_manager=1 OR p.owner_id=:screening_actor)
 
  UNION ALL SELECT 'family-notification:'||v.id,v.created_at,'family_notification',v.root_id,v.created_by,json_object('title',v.title,'revision',v.revision,'action',v.action,'public_note',v.public_note,'source_kind',v.source_kind,'request_id',v.source_request_id,'request_revision',v.source_request_revision) FROM family_notification_versions v WHERE v.customer_id=:customer AND v.store_id=:store AND :family_request_allowed=1
  UNION ALL SELECT 'family-notification-read:'||r.id,r.created_at,'family_notification_read',v.root_id,r.recipient_id,json_object('title',v.title,'revision',v.revision,'version_id',v.id,'action','explicit_read') FROM family_notification_receipts r JOIN family_notification_versions v ON v.id=r.version_id WHERE v.customer_id=:customer AND v.store_id=:store AND :family_request_allowed=1
@@ -102,6 +105,7 @@ export function createTimelineHandler(db,{need,customer,fail}){
     if(['family_notification','family_notification_read','family_communication_information','family_communication_action','family_change','family_change_execution','family_offer','family_selection','family_admission','family_booking','family_request'].includes(kind)){need(user,'family:read');need(user,'scheduling:manage');}
     if(kind==='family_share'){need(user,'organization:manage');need(user,'family:read');}
     if(['channel_review','expense_material','expense_payment'].includes(kind)){need(user,'payments:read');need(user,'organization:manage');}
+    if(kind==='screening_link')need(user,'screening:prepare');
     if(kind==='scheduling')need(user,'scheduling:read');
     if(kind==='entitlement')need(user,'entitlements:read');
     if(['payment','refund'].includes(kind))need(user,'payments:read');
@@ -114,10 +118,11 @@ export function createTimelineHandler(db,{need,customer,fail}){
         if(!cursor||cursor.customer!==c.id||cursor.kind!==kind||cursor.from!==from||cursor.to!==to||typeof cursor.at!=='string'||cursor.at.length>40||Number.isNaN(Date.parse(cursor.at))||typeof cursor.id!=='string'||!/^[-\w:]{1,200}$/.test(cursor.id))throw Error();
       }catch{fail(422,'INVALID_CURSOR','分页标识无效或与当前筛选不一致');}
     }
-    const params={family_request_allowed:['manager','reception'].includes(user.role)?1:0,channel_allowed:user.role==='manager'?1:0,payment_allowed:['manager','reception'].includes(user.role)?1:0,customer:c.id,store:c.store_id,kind,from,to,at:cursor?.at||'',id:cursor?.id||'',limit:limit+1};
+    const params={screening_manager:user.role==='manager'?1:0,screening_actor:user.id,family_request_allowed:['manager','reception'].includes(user.role)?1:0,channel_allowed:user.role==='manager'?1:0,payment_allowed:['manager','reception'].includes(user.role)?1:0,customer:c.id,store:c.store_id,kind,from,to,at:cursor?.at||'',id:cursor?.id||'',limit:limit+1};
     const rows=db.prepare(eventsSQL+` SELECT e.*,u.display_name AS actor_name FROM events e LEFT JOIN users u ON u.id=e.actor_id WHERE (:kind='all' OR e.kind=:kind) AND (:from='' OR substr(e.at,1,10)>=:from) AND (:to='' OR substr(e.at,1,10)<=:to) AND (:at='' OR e.at<:at OR (e.at=:at AND e.event_id<:id)) ORDER BY e.at DESC,e.event_id DESC LIMIT :limit`).all(params);
     const more=rows.length>limit,items=rows.slice(0,limit).map(({details,...row})=>({...row,details:{...JSON.parse(details),...(row.kind==='dispatch'?{batch_source:outboundBatches(db,row.event_id.slice('dispatch:'.length))}:{})}})),last=items.at(-1);
     const next_cursor=more?Buffer.from(JSON.stringify({customer:c.id,kind,from,to,at:last.at,id:last.event_id})).toString('base64url'):null;
-    json(200,{items,next_cursor,limit,timezone:'UTC',order:'newest_first'});return true;
+    const screening_authorizations=[...new Map(items.filter(e=>e.kind==='screening_link').map(e=>{const d=e.details,key=d.project_id+'/'+d.batch_version_id+'/'+d.row_number;return [key,{path:'/screening-row-links/'+key+'/authorization',source_token:screeningRowLinksScope(db,user,d.project_id,d.batch_version_id,d.row_number)}];})).values()];
+    json(200,{items,next_cursor,limit,timezone:'UTC',order:'newest_first',screening_authorizations});return true;
   };
 }
