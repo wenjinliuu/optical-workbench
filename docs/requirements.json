@@ -3348,9 +3348,18 @@
         "public/family-communication.js",
         "test/family-communication.test.mjs",
         "scripts/family-communication-browser-check.mjs",
-        "docs/family-communication.md"
+        "docs/family-communication.md",
+        "migrations/055_family_notifications.sql",
+        "src/family-notifications.mjs",
+        "src/family-notifications-api.mjs",
+        "src/family-notifications-recovery.mjs",
+        "src/demo-family-notifications.mjs",
+        "public/family-notifications.js",
+        "test/family-notifications.test.mjs",
+        "scripts/family-notifications-browser-check.mjs",
+        "docs/family-notifications.md"
       ],
-      "note": "原预约公开/选择及实际请假调课已接；本轮指定本人通知与同意信息说明、本人明确偏好/调整意向和员工独立核对，原说明历史与撤回、当前授权和恢复已接。真实消息渠道/送达、正式身份/临床同意审批及完整家庭验收待后续。"
+      "note": "原预约/实际请假调课、通知偏好/同意说明调整意向已接；本轮工作台通知发布/撤回和原版主动已读、独立未读筛选与历史恢复已接。下一通知采用原本人申请/回复版本的明确业务来源，真实外部渠道/正式临床审批及整体家庭验收待后续。"
     },
     {
       "id": "M16-D",
