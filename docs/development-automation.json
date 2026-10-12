@@ -1,0 +1,20 @@
+{
+  "automation_id": "Automation_79e8bf46331081919cde8c52d1c637fa",
+  "title": "视光工作台持续开发",
+  "is_enabled": true,
+  "timezone": "Asia/Shanghai",
+  "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261013T080000\nRRULE:FREQ=HOURLY;INTERVAL=4\nEND:VEVENT",
+  "saved_at": "2026-10-12T22:03:26.081521+00:00",
+  "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
+  "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
+  "site_version": 50,
+  "first_scheduled_local": "2026-10-13 08:00 Asia/Shanghai",
+  "source_instructions_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site/downloads/autonomous-development.md",
+  "source_instructions_sha256": "3d8f03a63a45fc0da459af2311d211aa4a34d2d797f3e8f2cefed86fafdc7a66",
+  "authorization": "User 2026-10-12: continue step by step without another notification; push code and synchronize both progress locations.",
+  "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
+  "execution_status": "schedule_saved_enabled; first fresh task execution not yet observed",
+  "next_development_task": "T03.03",
+  "next_development_slice": "V0.71 self-only actual responsibility queue, separate role candidates and original authorized navigation",
+  "business_acceptance": "pending"
+}
