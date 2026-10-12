@@ -396,3 +396,6 @@ V0.69新增原名单明确人工建档：screening_row_registrations/060，固�
 
 
 V0.70原名单只读处理队列：/screening-batch-work/:project/:batchVersion[/authorization]，完整计数/关联/错误/原建档事实筛选与稳定分页，来源/筛选绑定和当前责任证明/迟到清空；无业务写入或专业完成。契约见screening-batch-work.md。
+
+
+V0.71 `GET /api/my-work[/authorization]`：本店当前员工本人13类原业务责任/独立岗位候选，scope/kind/q与完整数量/同源分页，默认30最多100；员工/门店不可请求选择，严格单值查询、只读与当前会话门禁。准确原任务办理、详情后再核对本人证明及字段边界见my-work.md。

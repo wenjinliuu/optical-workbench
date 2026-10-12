@@ -90,3 +90,9 @@
 #schedule-detail-actions{display:flex;flex-wrap:wrap}#schedule-detail-actions button{min-height:44px}#schedule-edit-form select[multiple]{min-height:155px}@media(max-width:600px){#schedule-detail-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}#schedule-detail-actions button{min-width:0;width:100%;padding:10px;font-size:13px}#schedule-edit-dialog .record-actions{display:grid;grid-template-columns:1fr}#schedule-edit-dialog .record-actions button{min-height:44px}}
 
 .money-review-summary .demo-stat strong{font-size:clamp(20px,2.3vw,30px);overflow-wrap:anywhere}.money-review-summary{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:850px){.money-review-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:420px){.money-review-summary{grid-template-columns:1fr}}
+
+/* Personal responsibility cards retain the existing light palette. */
+#my-work-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px;margin-top:16px}
+#my-work-items .record-card{background:#fff;border:1px solid var(--line,#dce4fa);border-top:3px solid #4b6bff;border-radius:16px;padding:20px;min-width:0;overflow-wrap:anywhere}
+#my-work-items .record-card h2{font-size:18px;margin:12px 0}
+#my-work-items .record-card p{line-height:1.65}
