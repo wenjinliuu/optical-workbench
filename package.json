@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.61.0",
+  "version": "0.62.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -62,6 +62,7 @@
     "test:family-changes-browser": "node scripts/family-changes-browser-check.mjs",
     "progress:verify": "node scripts/verify-progress-sync.mjs",
     "test:family-communication-browser": "node scripts/family-communication-browser-check.mjs",
-    "test:family-notifications-browser": "node scripts/family-notifications-browser-check.mjs"
+    "test:family-notifications-browser": "node scripts/family-notifications-browser-check.mjs",
+    "test:family-notification-sources-browser": "node scripts/family-notification-sources-browser-check.mjs"
   }
 }

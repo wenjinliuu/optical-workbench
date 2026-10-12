@@ -3357,9 +3357,15 @@
         "public/family-notifications.js",
         "test/family-notifications.test.mjs",
         "scripts/family-notifications-browser-check.mjs",
-        "docs/family-notifications.md"
+        "docs/family-notifications.md",
+        "migrations/056_family_notification_sources.sql",
+        "src/family-notification-sources.mjs",
+        "src/demo-family-notification-sources.mjs",
+        "test/family-notification-sources.test.mjs",
+        "scripts/family-notification-sources-browser-check.mjs",
+        "docs/family-notification-sources.md"
       ],
-      "note": "原预约/实际请假调课、通知偏好/同意说明调整意向已接；本轮工作台通知发布/撤回和原版主动已读、独立未读筛选与历史恢复已接。下一通知采用原本人申请/回复版本的明确业务来源，真实外部渠道/正式临床审批及整体家庭验收待后续。"
+      "note": "原预约/实际请假调课、通知偏好/同意说明及工作台通知/原版主动已读已接；本轮通知固定原本人申请/公开回复版本和原入口追溯，后来回复不替换旧来源、旧通知来源未知保留。下一原申请对应通知及原版回执反向入口，真实外部渠道/正式临床审批和整体家庭验收待后续。"
     },
     {
       "id": "M16-D",

@@ -65,7 +65,7 @@ async function api(path,{method='GET',data,key}={}){
   if(!r.ok){if(r.status===401&&path!=='/auth/login')showLogin();const error=Error((b.error?.message||'操作失败，请重试')+(b.request_id?`（故障编号：${b.request_id}）`:''));error.status=r.status;error.code=b.error?.code;throw error;}return b;
 }
 const documentPanels=createDocumentPanels({api,getMe:()=>me,getCustomer:()=>selected,getEpoch:()=>sessionEpoch,reload:openCustomer,toast,showLogin});
-const familyNotificationsPanel=createFamilyNotificationsPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch});
+const familyNotificationsPanel=createFamilyNotificationsPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch,openRequest:(id,c)=>familyRequestsPanel.showDetail(id,c)});
 const familyCommunicationPanel=createFamilyCommunicationPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch});
 const familyOffersPanel=createFamilyOffersPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch,openRequest:(id,c)=>familyRequestsPanel.showDetail(id,c),openBooking:id=>schedulingPanel.showDetail('bookings',id)});
 const familyChangesPanel=createFamilyChangesPanel({api,getMe:()=>me,getEpoch:()=>sessionEpoch,openRequest:(id,c)=>familyRequestsPanel.showDetail(id,c),openBooking:id=>schedulingPanel.showDetail('bookings',id)});

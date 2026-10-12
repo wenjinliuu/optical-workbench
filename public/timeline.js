@@ -4,7 +4,7 @@ const types={followup:'长期随访',training:'训练服务',retail:'配镜服�
 function el(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
 function describe(event){
  const d=event.details;
- if(["family_notification","family_notification_read"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:d.action+" · V"+d.revision};
+ if(["family_notification","family_notification_read"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:d.action+" · V"+d.revision+(d.source_kind==="family_request"?" · 本人原申请R"+d.request_revision:"")};
  if(["family_communication_information","family_communication_action"].includes(event.kind))return {title:kinds[event.kind],text:d.kind+" · "+d.action+" · R"+d.revision+" · "+d.public_note};
  if(['family_change','family_change_execution'].includes(event.kind))return {title:kinds[event.kind]+' · '+d.title,text:d.action+' · 原预约 '+d.booking_id};
  if(["specialty_continuity","specialty_archive","specialty_review","specialty_care","specialty_order","specialty_lot","specialty_case","specialty_consent"].includes(event.kind))return {title:kinds[event.kind]+" · "+d.title,text:d.action+(d.version?" · V"+d.version:"")+(d.revision?" · R"+d.revision:"")+(d.status?" · "+d.status:"")};
