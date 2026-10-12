@@ -1,6 +1,6 @@
 {
   "baseline": "V1.1",
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "requirements": [
     {
       "id": "M01-F01",
@@ -3339,9 +3339,18 @@
         "src/demo-family-offers.mjs",
         "test/family-offers.test.mjs",
         "scripts/family-offers-browser-check.mjs",
-        "docs/family-offers.md"
+        "docs/family-offers.md",
+        "migrations/054_family_communication.sql",
+        "src/family-communication.mjs",
+        "src/family-communication-api.mjs",
+        "src/family-communication-recovery.mjs",
+        "src/demo-family-communication.mjs",
+        "public/family-communication.js",
+        "test/family-communication.test.mjs",
+        "scripts/family-communication-browser-check.mjs",
+        "docs/family-communication.md"
       ],
-      "note": "本人意向、原事实公开，加指定本人原计划/时段明确开放和选择、前台原预约或候补接纳；原资源/容量/重复客户与冲突解释、授权/撤回/迟到读取/固定历史恢复。请假调课本人选择、通知送达及同意调整/正式身份和整体家庭验收待后续。"
+      "note": "原预约公开/选择及实际请假调课已接；本轮指定本人通知与同意信息说明、本人明确偏好/调整意向和员工独立核对，原说明历史与撤回、当前授权和恢复已接。真实消息渠道/送达、正式身份/临床同意审批及完整家庭验收待后续。"
     },
     {
       "id": "M16-D",

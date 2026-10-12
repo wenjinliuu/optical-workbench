@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.59.0",
+  "version": "0.60.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -60,6 +60,7 @@
     "test:family-bookings-browser": "node scripts/family-bookings-browser-check.mjs",
     "test:family-offers-browser": "node scripts/family-offers-browser-check.mjs",
     "test:family-changes-browser": "node scripts/family-changes-browser-check.mjs",
-    "progress:verify": "node scripts/verify-progress-sync.mjs"
+    "progress:verify": "node scripts/verify-progress-sync.mjs",
+    "test:family-communication-browser": "node scripts/family-communication-browser-check.mjs"
   }
 }
