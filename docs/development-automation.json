@@ -15,7 +15,7 @@
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
   "execution_status": "A scheduled occurrence timestamp was observed; at this manual continuation the remote branch still contained V0.70 with no new automated functional commit. This is not proof of completed unattended development.",
   "next_development_task": "T03.03",
-  "next_development_slice": "V0.71 self-only actual responsibility queue, separate role candidates and original authorized navigation",
+  "next_development_slice": "V0.72 original assigned screening preparation in shared responsibility projection and exact activity/CSV navigation",
   "business_acceptance": "pending",
   "schedule_updated_at": "2026-10-12T22:04:55.958055+00:00",
   "immediate_run_request": {
@@ -25,5 +25,6 @@
     "fallback": "Preserved the same task and four-hour cadence; updated its first normal occurrence to 2026-10-13 06:08 Asia/Shanghai. Native update and original Site linked readback succeeded."
   },
   "observed_last_run_at": "2026-10-12T22:12:34.528423+00:00",
-  "observed_at": "2026-10-12 23:02:23 UTC"
+  "observed_at": "2026-10-12 23:02:23 UTC",
+  "last_manual_verified_version": "V0.71"
 }
