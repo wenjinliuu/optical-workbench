@@ -59,6 +59,7 @@
     "test:family-requests-browser": "node scripts/family-requests-browser-check.mjs",
     "test:family-bookings-browser": "node scripts/family-bookings-browser-check.mjs",
     "test:family-offers-browser": "node scripts/family-offers-browser-check.mjs",
-    "test:family-changes-browser": "node scripts/family-changes-browser-check.mjs"
+    "test:family-changes-browser": "node scripts/family-changes-browser-check.mjs",
+    "progress:verify": "node scripts/verify-progress-sync.mjs"
   }
 }

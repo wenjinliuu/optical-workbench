@@ -1,0 +1,20 @@
+import {readFileSync,writeFileSync,existsSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawnSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+
+const repo=resolve(fileURLToPath(new URL('..',import.meta.url)));
+if(process.argv.length!==4||process.argv[2]!=='--site-root')throw Error('Usage: node scripts/sync-design-progress.mjs --site-root <existing Site checkout>');
+const site=resolve(process.argv[3]),manifest=JSON.parse(readFileSync(join(site,'.openai/hosting.json'),'utf8'));
+assert.equal(manifest.project_id,'appgprj_6ac5e84d0d68819182f1afe0cc54c6ba','Use the existing design Site; do not create a replacement.');
+assert.ok(existsSync(join(site,'scripts/generate-docs.mjs')),'Existing design generator required.');
+const source=readFileSync(join(repo,'docs/progress.json'),'utf8');
+writeFileSync(join(site,'docs/progress.json'),source);
+const panel=readFileSync(join(repo,'public/progress.js'),'utf8'),boundary=panel.indexOf('export function createProgressPanel');
+assert.ok(boundary>0,'Missing shared progress renderer boundary.');
+writeFileSync(join(site,'dist/project-progress.js'),panel.slice(0,boundary)+'\nrenderProjectProgress(document.querySelector("#project-progress"),DESIGN.progress);\n');
+const result=spawnSync(process.execPath,['scripts/generate-docs.mjs'],{cwd:site,stdio:'inherit'});
+if(result.status!==0)process.exit(result.status||1);
+assert.deepEqual(JSON.parse(readFileSync(join(site,'docs/progress.json'),'utf8')),JSON.parse(source),'Generator changed the authoritative progress; investigate before publishing.');
+console.log('Repository progress and generated design snapshot/downloads are synchronized locally. Publish this existing Site, then run npm run progress:verify.');
