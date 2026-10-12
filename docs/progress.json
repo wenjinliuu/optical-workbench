@@ -7351,9 +7351,12 @@
       "relatedFocusedTests": 55,
       "relatedFocusedResult": "passed",
       "browserResult": "新增原批次、原活动、原预检和基础协作4组桌面手机通过；UTF-8修复后新增批次与基础协作再复核，通过正文中文分块/大文件边界专项。",
-      "fullResult": "pending",
+      "fullResult": "passed",
       "cliResult": "完整CLI新建/重复、schema58/235数据表备份核验/独立恢复通过，7活动11版本及4批次5版本、全部非会话原行和固定活动/原名单/错误/候选投影一致，会话0。",
-      "syntaxResult": "npm run check passed"
+      "syntaxResult": "npm run check passed",
+      "verifiedCommit": "470342191482672fe9d6923b5e3202da60271acd",
+      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38243332659",
+      "fullVerification": "恢复窗口已读取精确提交CI：npm ci、npm run check、npm test全部success。旧窗口pending已补证；未将业务验收标为完成。"
     },
     "previousFullRun": {
       "focusedTests": 18,
