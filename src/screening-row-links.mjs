@@ -9,7 +9,7 @@ export function screeningRowSnapshot(csv,row,at){
  return r?JSON.stringify({row:r.row,line:r.line,raw_cells:r.raw_cells,values:r.values,errors:r.errors}):null;
 }
 export function registerScreeningRowFunctions(db){db.function('screening_csv_row',{deterministic:true},(csv,row,at)=>screeningRowSnapshot(csv,row,at));}
-export function screeningRowLinksSource(db,batchVersion){return createHash('sha256').update(JSON.stringify(db.prepare('SELECT id,sequence FROM screening_row_link_versions WHERE batch_version_id=? ORDER BY sequence').all(batchVersion))).digest('hex');}
+export function screeningRowLinksSource(db,batchVersion,{excludeLink=null}={}){return createHash('sha256').update(JSON.stringify(db.prepare('SELECT id,sequence FROM screening_row_link_versions WHERE batch_version_id=? AND id IS NOT ? ORDER BY sequence').all(batchVersion,excludeLink))).digest('hex');}
 export function screeningRowLinkCurrent(db,batchVersion,row){return db.prepare('SELECT * FROM screening_row_link_current WHERE batch_version_id=? AND row_number=?').get(batchVersion,row)||null;}
 export function screeningRowLinkProjection(db,v){
  if(!v)return null;

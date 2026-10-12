@@ -216,3 +216,6 @@ screening_batch_versions：id/root_id、store/project_id/project_version_id、pr
 ## V0.68 原名单人工关联（059_screening_row_links.sql）
 
 `screening_row_link_versions` / `screening_row_link_current`：固定本店原活动/CSV原版/解析行号及完整原行快照、link/withdraw、连续行修订/门店序列、明确本店customer_id/customer_version、活动/批次/客户资料历史前缀、原角色/操作人/依据/UTC时间。客户资料用原不可变版本，撤回保留原关联；CSV新版不继承，原生解析守卫、审计事务、时间轴及恢复一同核对。详见screening-row-links.md。
+
+
+V0.69新增原名单明确人工建档：screening_row_registrations/060，固定原行/新客户初版/原link、建档前完整候选与资料前缀/声明和原依据；原生单语句与审计事务共同核对。API /screening-registrations/:project/:batchVersion/:row[/review]，原创建岗位/责任/授权、候选及缓存前来源/慢请求会话/迟到证明保护；恢复拒绝半份或假初版。完整契约见[screening-registrations.md](screening-registrations.md)。

@@ -273,3 +273,6 @@ V0.58继续T08.02：员工向指定有效授权本人明确开放同客户原有
 
 
 V0.68恢复扩展：schema59新增screening_row_link_versions进入全表清单，独立核对固定CSV完整原行、逐行授权错误、原客户资料/活动/批次历史前缀、连续关联/撤回及原角色时间。备份读取不需要SQLite写入解析函数，业务写入由openDatabase注册screening_csv_row。当前工具拒绝schema58快照，原件用V0.67工具独立恢复后升级，再重新备份。完整示例CLI覆盖236个数据表及六条关联版本，会话0；详见screening-row-links.md。
+
+
+V0.69新增原名单明确人工建档：screening_row_registrations/060，固定原行/新客户初版/原link、建档前完整候选与资料前缀/声明和原依据；原生单语句与审计事务共同核对。API /screening-registrations/:project/:batchVersion/:row[/review]，原创建岗位/责任/授权、候选及缓存前来源/慢请求会话/迟到证明保护；恢复拒绝半份或假初版。完整契约见[screening-registrations.md](screening-registrations.md)。

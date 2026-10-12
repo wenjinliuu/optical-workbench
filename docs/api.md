@@ -390,3 +390,6 @@ V0.58继续T08.02：员工向指定有效授权本人明确开放同客户原有
 ## V0.68 原名单人工关联
 
 `/api/screening-row-links/:project/:batchVersion/:row[/context|customers|authorization]`明确采用本店已有客户所见资料版本、保存依据及撤回。固定原CSV版/行，旧版历史不换当前，新增CSV不继承；当前责任与授权、原资料来源和迟到响应在服务端复核。根GET的link_version准确查本行原修订，根POST严格动作/来源/客户版本与依据。完整契约见[screening-row-links.md](screening-row-links.md)。
+
+
+V0.69新增原名单明确人工建档：screening_row_registrations/060，固定原行/新客户初版/原link、建档前完整候选与资料前缀/声明和原依据；原生单语句与审计事务共同核对。API /screening-registrations/:project/:batchVersion/:row[/review]，原创建岗位/责任/授权、候选及缓存前来源/慢请求会话/迟到证明保护；恢复拒绝半份或假初版。完整契约见[screening-registrations.md](screening-registrations.md)。

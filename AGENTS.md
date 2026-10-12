@@ -27,3 +27,9 @@ two-location sync. If publishing is blocked, report the exact remaining mismatch
 and retain the pending sync; never claim both locations are current. Do not mark
 whole tasks accepted from a development slice or add a fake business delivery
 for documentation-only synchronization.
+
+User authorization (2026-10-12): continue the documented workflow step by step
+without waiting for another notification after each slice. Push code and finish
+the required repository/Site progress publication for every verified slice.
+Continue independent work around unresolved real-business rules; never invent
+the rules or claim pending business acceptance. Record the next entry on pauses.
