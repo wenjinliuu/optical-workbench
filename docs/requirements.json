@@ -3369,9 +3369,11 @@
         "public/app.js",
         "test/family-request-notifications.test.mjs",
         "scripts/family-request-notifications-browser-check.mjs",
-        "docs/family-request-notifications.md"
+        "docs/family-request-notifications.md",
+        "scripts/family-request-notification-publish-browser-check.mjs",
+        "docs/family-request-notification-publish.md"
       ],
-      "note": "原预约/实际请假调课、通知偏好/同意说明、工作台通知/原版已读及原申请固定来源已接；本轮原申请反向通知/回执及准确旧版查看、当前授权/嵌套读取清空接通。下一员工从本原申请明确采用公开版本并手工发布通知，真实外部渠道/正式临床审批和整体家庭验收待后续。"
+      "note": "原预约/实际请假调课、通知偏好/同意说明、工作台通知/原版已读、原申请固定来源及反向通知/回执已接；本轮员工从原申请所见公开版本明确手工发布通知并回到原入口，冲突保留输入/选择、撤权拒绝及电脑手机接通。真实外部渠道/正式临床审批和整体家庭验收待后续。"
     },
     {
       "id": "M16-D",
