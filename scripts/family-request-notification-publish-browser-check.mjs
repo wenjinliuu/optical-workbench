@@ -30,7 +30,7 @@ async function openOriginal(){await page.locator('#family-requests-nav').click()
 async function guided(){await rd.getByRole('button',{name:'从本原公开版本明确发布通知',exact:true}).click();await ed.locator('#family-notification-form').waitFor();}
 async function fill(title){await ed.locator('[name=title]').fill(title);await ed.locator('[name=public_note]').fill('手工公开通知：请从原申请核对，本通知不办理预约。');await ed.locator('[name=internal_reason]').fill('秘密内部核对依据，不向本人公开。');}
 try{
- await page.goto(origin);await login('demo-manager');await openOriginal();const before=count();await guided();
+ await page.goto(origin);await login('demo-manager');await openOriginal();await rd.getByText('当前公开 R1：本人期望时间明确未知，实际原预约须另核对',{exact:true}).waitFor();const before=count();await guided();
  assert.equal(await ed.locator('[name=source_kind]').inputValue(),'family_request');assert.equal(await ed.locator('[name=source_kind]').isDisabled(),true);
  assert.equal(await ed.locator('[name=source_request]').inputValue(),request+'|1');assert.equal(await ed.locator('[name=source_request] option').count(),2);
  for(const name of ['title','public_note','internal_reason'])assert.equal(await ed.locator('[name='+name+']').inputValue(),'');

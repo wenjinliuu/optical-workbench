@@ -7069,11 +7069,11 @@
     ],
     "currentRun": {
       "relatedFocusedTests": 48,
-      "relatedFocusedResult": "pending",
-      "browserResult": "新增原申请明确发布及原来源桌面/手机通过；原通知/反向入口回归接下核对。",
+      "relatedFocusedResult": "passed",
+      "browserResult": "新增原申请明确发布、原来源、原通知及原申请反向入口4组电脑/手机通过；最终当前公开版本提示已复核。",
       "fullResult": "pending",
       "cliResult": "无新数据模型，沿用V0.63完整CLI及本轮全量恢复回归。",
-      "syntaxResult": "npm run check接下核对"
+      "syntaxResult": "npm run check passed"
     },
     "previousFullRun": {
       "focusedTests": 14,
