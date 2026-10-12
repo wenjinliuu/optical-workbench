@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.66.0",
+  "version": "0.67.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -68,6 +68,7 @@
     "test:family-request-notification-publish-browser": "node scripts/family-request-notification-publish-browser-check.mjs",
     "test:screening-import-browser": "node scripts/screening-import-browser-check.mjs",
     "test:screening-projects-browser": "node scripts/screening-projects-browser-check.mjs",
-    "test:screening-projects-cli": "node scripts/screening-projects-cli-check.mjs"
+    "test:screening-projects-cli": "node scripts/screening-projects-cli-check.mjs",
+    "test:screening-batches-browser": "node scripts/screening-batches-browser-check.mjs"
   }
 }

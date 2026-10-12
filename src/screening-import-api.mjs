@@ -12,7 +12,7 @@ export function createScreeningImportHandler(db,{need,field,fail,body}){
    if(url.searchParams.has('expected_source')&&url.searchParams.get('expected_source')!==source_token)fail(409,'SCREENING_SOURCE_CHANGED','本店客户匹配资料或当前身份已有变化，请重新核对并预检');json(200,{source_token,store_id:u.store_id});return true;
   }
   if(req.method!=='POST')fail(405,'METHOD','明确提交名单仅作预检');if(url.search)fail(422,'VALIDATION','预检不接收查询字段');
-  const b=await body(req,524288);current();const keys=['institution','batch','source_note','csv','expected_source'];if(Object.keys(b).length!==keys.length||Object.keys(b).some(k=>!keys.includes(k)))fail(422,'VALIDATION','仅名单原机构、批次、来源、CSV和当前匹配来源');
+  const b=await body(req,2097152);current();const keys=['institution','batch','source_note','csv','expected_source'];if(Object.keys(b).length!==keys.length||Object.keys(b).some(k=>!keys.includes(k)))fail(422,'VALIDATION','仅名单原机构、批次、来源、CSV和当前匹配来源');
   const text=(v,n,max)=>{const s=field(v,n,max,true);if(/[\u0000-\u001f\u007f]/.test(s))fail(422,'VALIDATION',n+'不能包含控制字符');return s;},institution=text(b.institution,'原机构',160),batch=text(b.batch,'原批次',160),source_note=text(b.source_note,'名单原来源说明',1000),expected=text(b.expected_source,'当前匹配来源',64),source_token=screeningSource(db,u);
   if(expected!==source_token)fail(409,'SCREENING_SOURCE_CHANGED','本店客户匹配资料或当前身份已有变化，请重新核对并预检');
   let result;try{result=previewScreeningRows(b.csv,screeningCustomers(db,u.store_id));}catch(e){fail(422,'SCREENING_CSV',e.message);}

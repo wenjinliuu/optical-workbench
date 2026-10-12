@@ -207,3 +207,7 @@ V0.31：schema28：longitudinal_cases固定客户和随访周期版本，case_ve
 ## V0.66 筛查准备活动（057_screening_projects.sql）
 
 screening_project_versions：id/root_id、store_id、revision/sequence、record/withdraw、原标题/机构/范围、owner_id、authorization_status（unknown/recorded/refused）/reference/note、record_reason、created_at/by；固定根/门店、连续版本和不可变，撤回复制旧事实。当前视图取最新，授权核验/专业资质/报告许可始终独立未建立。活动尚无客户/名单关联，不补造客户时间轴来源。
+
+## V0.67 原筛查批次（058_screening_batches.sql）
+
+screening_batch_versions：id/root_id、store/project_id/project_version_id、project_sequence/customer_profile_prefix、原batch_key、revision/sequence、csv_text/sha256、规范完整customer_refs_json（customer_id/version）、source_note/record_reason、created_at/by/actor_role；原件与根/编号不可变，原活动/客户前缀固定。错误及候选由原资料版本/日期重建，不保存当前自动匹配结果，也无客户时间轴关联。

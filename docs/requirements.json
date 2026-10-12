@@ -3586,9 +3586,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "M17-F02",
@@ -3664,9 +3672,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "M17-R",
@@ -3700,9 +3716,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "M17-L",
@@ -3752,9 +3776,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "M18-F01",
@@ -5808,9 +5840,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "W6-N2",
@@ -5847,9 +5887,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "W6-N3",
@@ -6958,9 +7006,17 @@
         "test/screening-projects.test.mjs",
         "scripts/screening-projects-browser-check.mjs",
         "scripts/screening-projects-cli-check.mjs",
-        "docs/screening-projects.md"
+        "docs/screening-projects.md",
+        "migrations/058_screening_batches.sql",
+        "src/screening-batches.mjs",
+        "src/screening-batches-api.mjs",
+        "src/demo-screening-batches.mjs",
+        "public/screening-batches.js",
+        "test/screening-batches.test.mjs",
+        "scripts/screening-batches-browser-check.mjs",
+        "docs/screening-batches.md"
       ],
-      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
+      "note": "名单预检/原错误下载、本店活动/责任和原授权说明版本已接；本轮原活动下的批次CSV/错误明确保存，固定原活动和完整客户版本、显式批次新版/旧版查看、来源/当前责任/嵌套权限和恢复接通。身份未明和原错误保留，未自动匹配/建档/覆盖；下一人工采用原客户版本关联，正式身份/授权、现场专业实表和报告仍待后续。"
     },
     {
       "id": "S13",
