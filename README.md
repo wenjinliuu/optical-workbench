@@ -282,3 +282,5 @@ V0.59继续T08.02：本人原预约请假/调课意向固定旧安排与目标�
 ## 2026-10-12 双处进度同步与后续范围
 
 用户明确要求每完成一步同时更新仓库项目进度与原设计网页的项目进度/勾选。固定流程见 [进度同步规则](docs/progress-tracking.md) 和 [后续工作](docs/remaining-work.md)（docs内文档使用同目录文件）。当前仍V0.59/59项开发交付，补齐网页原V0.57漏同步的58/59，原50任务287要求/依赖及业务验收保留；本次不新增业务交付。复核任务剩余说明，后续V0.60先接家庭通知偏好/同意信息调整基础，再依实际规则补专业/训练闭环和原未启动模块。发布后通过progress:verify核验网页快照与三份下载，回执写docs/progress-sync.json；未核验成功不得声称两处一致。
+
+本次双处同步已核验：设计网页V0.59/59项开发勾选、任务需求与三份下载一致，线上电脑/手机检查通过。发布回执见[progress-sync.json](docs/progress-sync.json)，原设计网页：https://optical-workbench-blueprint.wenjinuu.chatgpt.site 。

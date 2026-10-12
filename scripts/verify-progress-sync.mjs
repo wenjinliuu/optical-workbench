@@ -8,15 +8,18 @@ import assert from 'node:assert/strict';
 const repo=resolve(fileURLToPath(new URL('..',import.meta.url))),origin='https://optical-workbench-blueprint.wenjinuu.chatgpt.site';
 const args=process.argv.slice(2);if(args.length&&!(args.length===2&&args[0]==='--receipt'))throw Error('Usage: npm run progress:verify [-- --receipt docs/progress-sync.json]');
 const progress=JSON.parse(readFileSync(join(repo,'docs/progress.json'),'utf8'));
-function get(path){const r=spawnSync('curl',['--fail','--silent','--show-error','--location','--max-time','30','--retry','2',origin+path],{encoding:'utf8',maxBuffer:8*1024*1024});if(r.status!==0)throw Error('Unable to verify live design resource '+path);return r.stdout;}
+function get(path){const r=spawnSync('curl',['--fail','--silent','--show-error','--location','--max-time','30','--retry','2','--header','Cache-Control: no-cache',origin+path],{encoding:'utf8',maxBuffer:8*1024*1024});if(r.status!==0)throw Error('Unable to verify live design resource '+path);return r.stdout;}
 const script=get('/progress-data.js'),prefix='DESIGN.progress=',start=script.indexOf(prefix),end=script.indexOf(';\nDESIGN.tasks.forEach',start);
 assert.ok(start>=0&&end>start,'Unexpected published snapshot format.');
 const live=JSON.parse(script.slice(start+prefix.length,end));
-assert.deepEqual(live,progress,'Published webpage progress differs from the repository.');
-assert.deepEqual(JSON.parse(get('/downloads/progress.json')),progress,'Published progress download differs from the repository.');
+assert.equal(live.developmentVerification?.version,progress.developmentVerification.version,'Published version is stale; wait for publication propagation and verify again.');
+assert.equal(live.releaseChecklist?.length,progress.releaseChecklist.length,'Published delivery count differs from the repository.');
+const equal=(a,b,label)=>{try{assert.deepEqual(a,b);}catch{throw Error(label);}};
+equal(live,progress,'Published webpage progress differs from the repository.');
+equal(JSON.parse(get('/downloads/progress.json')),progress,'Published progress download differs from the repository.');
 const baseline=JSON.parse(readFileSync(join(repo,'docs/requirements.json'),'utf8')).requirements,download=JSON.parse(get('/downloads/requirements.json'));
 assert.equal(download.baseline,progress.baseline);assert.equal(download.updated,progress.updated);
-assert.deepEqual(download.requirements,baseline.map(r=>({...r,...progress.requirements.find(x=>x.id===r.id)})),'Published requirements differ from the original content or current tracking.');
+equal(download.requirements,baseline.map(r=>({...r,...progress.requirements.find(x=>x.id===r.id)})),'Published requirements differ from the original content or current tracking.');
 const plan=get('/downloads/development-plan.md'),version=progress.releaseChecklist.at(-1).version,checked=progress.releaseChecklist.filter(x=>x.status==='completed').length;
 assert.ok(plan.includes(progress.productStatus),'Execution document has stale progress.');
 assert.equal((plan.match(/^- \[x\] V0\./gm)||[]).length,checked,'Execution document delivery checkboxes differ.');
