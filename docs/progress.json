@@ -6461,7 +6461,7 @@
     },
     "browser": {
       "command": "PLAYWRIGHT_MODULE_PATH=... node scripts/screening-import-browser-check.mjs 与原家庭入口",
-      "result": "pending_current_scope",
+      "result": "passed_current_scope",
       "viewports": [
         "1440x1050",
         "390x844"
@@ -7178,10 +7178,12 @@
     "currentRun": {
       "focusedTests": 17,
       "focusedResult": "passed",
-      "browserResult": "新增筛查名单预检桌面/手机及原家庭入口接下核对",
+      "browserResult": "新增筛查名单预检、原申请手工通知、基础协作完整入口3组桌面手机通过，含错误原下载、待核对候选、完整分页、源变化保留和迟到岗位/退出清空。",
       "fullResult": "pending",
       "cliResult": "无新增存储表；新增专项备份/独立恢复实测原档案候选和错误投影一致、会话0，沿用V0.63完整CLI。",
-      "syntaxResult": "npm run check passed"
+      "syntaxResult": "npm run check passed",
+      "relatedFocusedTests": 65,
+      "relatedFocusedResult": "passed"
     },
     "previousFullRun": {
       "relatedFocusedTests": 48,
