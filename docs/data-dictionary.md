@@ -203,3 +203,7 @@ V0.31：schema28：longitudinal_cases固定客户和随访周期版本，case_ve
 ## V0.59 原预约变更
 
 参见 [family-changes.md](family-changes.md)：固定本人原公开预约/目标的不可变意向，两张 schema53 新表；员工明确实际leave/move/promote和独立结果公开同事务。当前授权/原版本/容量/冲突、幂等回放、审计失败回滚、同源读取/迟到撤权和独立恢复列为开发验证；正式身份/审批与通知等完整业务验收仍待用户集中核对。
+
+## V0.66 筛查准备活动（057_screening_projects.sql）
+
+screening_project_versions：id/root_id、store_id、revision/sequence、record/withdraw、原标题/机构/范围、owner_id、authorization_status（unknown/recorded/refused）/reference/note、record_reason、created_at/by；固定根/门店、连续版本和不可变，撤回复制旧事实。当前视图取最新，授权核验/专业资质/报告许可始终独立未建立。活动尚无客户/名单关联，不补造客户时间轴来源。

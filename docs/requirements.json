@@ -3577,9 +3577,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "M17-F02",
@@ -3646,9 +3655,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "M17-R",
@@ -3673,9 +3691,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "M17-L",
@@ -3716,9 +3743,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "M18-F01",
@@ -5763,9 +5799,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "W6-N2",
@@ -5793,9 +5838,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "W6-N3",
@@ -6895,9 +6949,18 @@
         "public/index.html",
         "test/screening-import.test.mjs",
         "scripts/screening-import-browser-check.mjs",
-        "docs/screening-import.md"
+        "docs/screening-import.md",
+        "migrations/057_screening_projects.sql",
+        "src/screening-projects.mjs",
+        "src/screening-projects-api.mjs",
+        "src/demo-screening-projects.mjs",
+        "public/screening-projects.js",
+        "test/screening-projects.test.mjs",
+        "scripts/screening-projects-browser-check.mjs",
+        "scripts/screening-projects-cli-check.mjs",
+        "docs/screening-projects.md"
       ],
-      "note": "本轮仅名单CSV导入预检、原机构批次/授权原说明、原错误下载及本店候选建议，身份不明不强行关联/建档/合并，原档案不变；正式项目授权、批次和名单保存、人工匹配确认、现场检查/复核及后续报告仍待后续。"
+      "note": "名单CSV预检/原错误下载与本店待核对建议已接；本轮活动/机构/范围、准备责任与原名单处理授权说明的不可变版本、撤回/显式新版、责任移交和恢复已接。真实正式授权、原批次/名单明确保存、人工客户版本确认、现场检查/复核和专业报告继续后续；记录原说明不代表授权核验或临床批准。"
     },
     {
       "id": "S13",
