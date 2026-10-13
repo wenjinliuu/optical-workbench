@@ -114,7 +114,7 @@ test('task state is bound to paging and proof and reads do not write business or
 });
 
 test('candidate task states remain unassigned facts and independent restore preserves them',async t=>{
- const x=await setup(t,{seed:false,persist:true}),z=await newTask(x,{owner:null,role:'reception',title:'原候选阻塞任务'});x.db.prepare("UPDATE work_tasks SET lifecycle_status='blocked',exception_reason='明确候选原阻塞事实（虚构）' WHERE id=?").run(z.id);
+ const x=await setup(t,{seed:false,persist:true}),z=await newTask(x,{owner:null,role:'reception',title:'原候选阻塞任务'});good(await x.request('/api/tasks/'+z.id+'/block',{...x.m,method:'POST',data:{expected_revision:1,reason:'明确候选原阻塞事实（虚构）'}}));
  const before=await query(x,{scope:'candidates',kind:'task',task_state:'blocked'});assert.equal(before.total,1);assert.equal(before.items[0].id,z.id);assert.equal(before.items[0].owner_id,null);
  const u=x.db.prepare("SELECT * FROM users WHERE id='front'").get(),b=await createBackup(x.path,join(x.dir,'backup-task-state')),r=await restoreBackup(b.backup,join(x.dir,'restored-task-state')),db=openDatabase(r.database);t.after(()=>db.close());
  const after=myWork(db,u,before.filter);for(const k of ['filter','items','counts','matched_counts','date_counts','total','candidate_task_count'])assert.deepEqual(after[k],before[k],k);assert.equal(db.prepare('SELECT assignee_id FROM work_tasks WHERE id=?').get(z.id).assignee_id,null);
