@@ -5,10 +5,11 @@ const statuses={open:'待跟进',waiting:'等待后续',handoff:'待接管',acti
 const stateLabel=r=>r.kind==='screening_project'?'原准备说明已保存 · '+({unknown:'原授权说明未知',refused:'原授权说明为拒绝',recorded:'有原授权说明，正式核验待完成'}[r.status.split(' / ')[1]]||'原说明状态待核对'):r.status.split(' / ').map(s=>r.kind==='task'&&s==='pending'?'待开始':statuses[s]||s).join(' · ');
 
 export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}) {
-  let generation=0,data=null;
+  let generation=0,presentationGeneration=0,data=null,adoptedDisplay='cards';
   const view=el('section');view.id='my-work-view';view.hidden=true;document.querySelector('#main').append(view);
   const button=(text,fn,submit=false)=>{const b=el('button',text);b.type=submit?'submit':'button';b.onclick=fn;return b;};
-  const head=el('div',undefined,'page-head');head.append(el('h1','我的业务责任'),button('明确刷新当前筛选',()=>load()));
+  const head=el('div',undefined,'page-head'),controls=el('div',undefined,'my-work-controls'),displayLabel=el('label','显示方式'),display=el('select');
+  display.id='my-work-display';display.disabled=true;display.append(new Option('卡片','cards'),new Option('紧凑列表','compact'));displayLabel.append(display);controls.append(displayLabel,button('明确刷新当前筛选',()=>load()));head.append(el('h1','我的业务责任'),controls);
   const form=el('form',undefined,'retail-filters');form.id='my-work-filter';
   function select(name,label,options){const l=el('label',label),s=el('select');s.name=name;for(const[k,v]of options)s.append(new Option(v,k));l.append(s);form.append(l);return s;}
   const scope=select('scope','责任范围',[['mine','已指定本人'],['candidates','本岗位候选，尚未认领']]);
@@ -25,9 +26,15 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   form.onsubmit=e=>{e.preventDefault();load();};
   const filter=()=>({scope:scope.value,kind:kind.value,q:q.value,date_mode:dateMode.value,date_from:dateFrom.value,date_to:dateTo.value,sort:sort.value});
   const token=()=>({id:getMe()?.id,epoch:getEpoch()}),live=t=>t.id===getMe()?.id&&t.epoch===getEpoch();
-  function clear(){data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;}
+  function clear(){presentationGeneration++;display.disabled=true;display.value=adoptedDisplay;data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;}
   async function denied(e){clear();error.textContent=e.message;await onScopeChanged?.(e);}
   async function proof(s){await api('/my-work/authorization?'+new URLSearchParams({...s.filter,expected_source:s.source_token}));}
+  display.onchange=async()=>{
+    const t=token(),s=data,g=++presentationGeneration,requested=display.value;if(!s){display.value=adoptedDisplay;return;}
+    display.disabled=true;try{await proof(s);if(!live(t)||data!==s||g!==presentationGeneration)return;adoptedDisplay=requested;rows.classList.toggle('compact',requested==='compact');error.textContent='';}
+    catch(e){if(live(t)&&data===s&&g===presentationGeneration){display.value=adoptedDisplay;if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
+    finally{if(live(t)&&data===s&&g===presentationGeneration)display.disabled=false;}
+  };
   async function load(append=false){
     if(!getMe()?.permissions.includes('tasks:read'))return;
     const t=token(),g=++generation,f=append?data?.filter:filter();if(!f)return;
@@ -41,7 +48,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
       for(const r of z.items)appendRow(r,data,t);
       count.textContent='当前筛选完整 '+data.total+' 项；已显示 '+rows.querySelectorAll('[data-my-work-key]').length+' 项。';
       if(!data.total)rows.append(el('p','当前筛选没有记录。','muted'));
-      more.hidden=data.next_offset===null;
+      more.hidden=data.next_offset===null;display.disabled=false;
     }catch(e){if(live(t)&&g===generation){if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
     finally{if(live(t)&&g===generation)more.disabled=false;}
   }
@@ -65,5 +72,5 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
         catch(e){if(live(t)&&data===s){if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
       }));rows.append(a);
   }
-  return {load,reset(){generation++;clear();form.reset();error.textContent='';more.disabled=false;}};
+  return {load,reset(){generation++;adoptedDisplay='cards';clear();rows.classList.remove('compact');form.reset();error.textContent='';more.disabled=false;}};
 }
