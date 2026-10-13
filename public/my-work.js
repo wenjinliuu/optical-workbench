@@ -64,10 +64,11 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   }
   function renderSummary(z){
     summary.replaceChildren();
-    for(const [label,n,tone]of [['本人当前责任',z.total_responsibilities,'sky'],['本岗位未认领候选',z.candidate_task_count,'mint']]){
+    for(const [label,n,tone]of [['本人全量责任（筛选前）',z.total_responsibilities,'sky'],['本岗位未认领候选',z.candidate_task_count,'mint']]){
       const a=el('article',undefined,'demo-stat '+tone);a.append(el('span',label),el('strong',String(n)));summary.append(a);
     }
-    const p=el('p',Object.entries(z.counts).filter(([,n])=>n).map(([k,n])=>labels[k]+' '+n).join(' · ')||'暂无本人责任','small muted');summary.append(p,el('p','本责任范围：原日期已记录 '+z.date_counts.recorded+' 项 · 日期未知 '+z.date_counts.not_recorded+' 项（筛选前完整数量）','small muted'));
+    const p=el('p','本人全量分类（筛选前）：'+(Object.entries(z.counts).filter(([,n])=>n).map(([k,n])=>labels[k]+' '+n).join(' · ')||'暂无本人责任'),'small muted');
+    const matched=el('p','当前已应用筛选完整分类（'+(z.filter.scope==='candidates'?'本岗位候选':'已指定本人')+'）：'+(Object.entries(z.matched_counts).filter(([,n])=>n).map(([k,n])=>labels[k]+' '+n).join(' · ')||'无匹配责任'),'small');matched.id='my-work-matched-counts';summary.append(p,matched,el('p','本责任范围：原日期已记录 '+z.date_counts.recorded+' 项 · 日期未知 '+z.date_counts.not_recorded+' 项（筛选前完整数量）','small muted'));
   }
   const dateLabels={processing:'加工约定日期',aftercare:'售后安排日期',review:'复查安排日期',contact:'联系约定时间',appointment:'预约开始时间',referral_contact:'转介联系约定时间'};
   function dateLabel(r){const label=dateLabels[r.kind]||'办理日期';return r.due===null?'原'+label+'未记录':'原'+label+' '+r.due+(r.due_source==='due_at'||r.due_source==='starts_at'?'（UTC）':'');}

@@ -18,7 +18,7 @@ export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offs
     candidate_task_count:original.candidate_task_count,
     professional_qualification_status:'not_verified'
   };
-  if(scope==='mine') return {...result,date_counts:original.date_counts,total:original.total,next_offset:original.next_offset,items:original.items};
+  if(scope==='mine') return {...result,matched_counts:original.matched_counts,date_counts:original.date_counts,total:original.total,next_offset:original.next_offset,items:original.items};
   const where=`t.store_id=? AND t.assignee_id IS NULL AND t.assignment_status='queued'
     AND t.candidate_role=? AND t.lifecycle_status<>'cancelled'
     AND NOT EXISTS(SELECT 1 FROM task_completions WHERE task_id=t.id)
@@ -34,7 +34,7 @@ export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offs
     ' ORDER BY t.updated_at DESC,t.id LIMIT ? OFFSET ?').all(...args,limit,offset).map(r=>({
       ...r,key:'task:'+r.id+':0',due_source:null,deadline_status:'not_recorded',professional_qualification_status:'not_verified'
     }));
-  return {...result,date_counts:{recorded:0,not_recorded:original.candidate_task_count},total,next_offset:offset+limit<total?offset+limit:null,items};
+  return {...result,matched_counts:Object.fromEntries(responsibilityKinds.map(k=>[k,k==='task'?total:0])),date_counts:{recorded:0,not_recorded:original.candidate_task_count},total,next_offset:offset+limit<total?offset+limit:null,items};
 }
 
 export function createMyWorkHandler(db,{need,fail}) {

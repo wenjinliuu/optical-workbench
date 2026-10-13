@@ -25,11 +25,13 @@ export function employeeResponsibilities(db,store,id,{kind='all',q='',limit=30,o
  const employee=db.prepare(staffSQL+' AND u.id=?').get(store,id);if(!employee)return null;
  const where=" WHERE owner_id=? AND (?='all' OR kind=?) AND (instr(lower(title),lower(?)) OR instr(lower(coalesce(customer_name,institution)),lower(?)) OR instr(lower(id),lower(?))) AND (?='all' OR (?='recorded' AND due IS NOT NULL) OR (?='not_recorded' AND due IS NULL)) AND (?='' OR substr(due,1,10)>=?) AND (?='' OR substr(due,1,10)<=?)";
  const args=[store,id,kind,kind,q,q,q,date_mode,date_mode,date_mode,date_from,date_from,date_to,date_to];
- const total=db.prepare(sourceSQL+'SELECT count(*) n FROM scoped'+where).get(...args).n,counts=emptyCounts(),date_counts={recorded:0,not_recorded:0};
+ const counts=emptyCounts(),matched_counts=emptyCounts(),date_counts={recorded:0,not_recorded:0};
  for(const x of db.prepare(sourceSQL+'SELECT kind,count(*) n,sum(due IS NULL) missing FROM scoped WHERE owner_id=? GROUP BY kind').all(store,id)){counts[x.kind]=x.n;date_counts.not_recorded+=x.missing;date_counts.recorded+=x.n-x.missing;}
+ for(const x of db.prepare(sourceSQL+'SELECT kind,count(*) n FROM scoped'+where+' GROUP BY kind').all(...args))matched_counts[x.kind]=x.n;
+ const total=Object.values(matched_counts).reduce((n,count)=>n+count,0);
  const orderBy={updated:'event_at DESC,kind,id,position',date_asc:'due IS NULL,substr(due,1,10) ASC,event_at DESC,kind,id,position',date_desc:'due IS NULL,substr(due,1,10) DESC,event_at DESC,kind,id,position'}[sort];
  const dueFields={processing:'due_date',aftercare:'due_date',review:'due_date',contact:'due_at',appointment:'starts_at',referral_contact:'due_at'};
- return {employee,personnel_records:staffRecordCounts(db,store,id),...responsibilitySnapshot(db,store),kinds:responsibilityKinds,counts,date_counts,total,next_offset:offset+limit<total?offset+limit:null,
+ return {employee,personnel_records:staffRecordCounts(db,store,id),...responsibilitySnapshot(db,store),kinds:responsibilityKinds,counts,matched_counts,date_counts,total,next_offset:offset+limit<total?offset+limit:null,
  items:db.prepare(sourceSQL+'SELECT * FROM scoped'+where+' ORDER BY '+orderBy+' LIMIT ? OFFSET ?').all(...args,limit,offset).map(r=>({...r,key:r.kind+':'+r.id+':'+r.position,due_source:dueFields[r.kind]||null,deadline_status:r.due===null?'not_recorded':r.due.slice(0,10)<new Date().toISOString().slice(0,10)?'past_date':'recorded',professional_qualification_status:'not_verified'})),
  candidate_task_count:db.prepare("SELECT count(*) n FROM work_tasks WHERE store_id=? AND assignee_id IS NULL AND assignment_status='queued' AND candidate_role=? AND lifecycle_status<>'cancelled' AND NOT EXISTS(SELECT 1 FROM task_completions WHERE task_id=work_tasks.id)").get(store,employee.role).n};
 }
