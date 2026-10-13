@@ -15,7 +15,7 @@
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
   "execution_status": "A scheduled occurrence timestamp was observed; at this manual continuation the remote branch still contained V0.70 with no new automated functional commit. This is not proof of completed unattended development.",
   "next_development_task": "T03.03",
-  "next_development_slice": "V0.76 explicit applied filter summary and unapplied draft hint; original refresh/actions retain adopted filters; explicit reset and query preserves density",
+  "next_development_slice": "V0.77 complete matching-by-kind counts from the same adopted source, separate from full own responsibility counts and independent role candidates",
   "business_acceptance": "pending",
   "schedule_updated_at": "2026-10-12T22:04:55.958055+00:00",
   "immediate_run_request": {
@@ -26,6 +26,6 @@
   },
   "observed_last_run_at": "2026-10-12T22:12:34.528423+00:00",
   "observed_at": "2026-10-12 23:02:23 UTC",
-  "last_manual_verified_version": "V0.75",
-  "last_manual_site_version": 55
+  "last_manual_verified_version": "V0.76",
+  "last_manual_site_version": 56
 }
