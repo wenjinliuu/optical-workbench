@@ -45,9 +45,9 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
     catch(e){if(live(t)&&data===s&&g===presentationGeneration){display.value=adoptedDisplay;if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
     finally{if(live(t)&&data===s&&g===presentationGeneration)display.disabled=false;}
   };
-  async function load(append=false,applyDraft=false){
+  async function load(append=false,applyDraft=false,adoptFilter=null){
     if(!getMe()?.permissions.includes('tasks:read'))return;
-    const t=token(),g=++generation,f=append?data?.filter:(applyDraft||!appliedFilter?filter():appliedFilter);if(!f)return;
+    const t=token(),g=++generation,f=append?data?.filter:(adoptFilter||(applyDraft||!appliedFilter?filter():appliedFilter));if(!f)return;
     const previous=data;error.textContent='';more.disabled=true;if(!append)clear();
     try{
       const params=new URLSearchParams({...f,limit:'30',offset:String(append?previous.next_offset:0)});
@@ -62,6 +62,13 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
     }catch(e){if(live(t)&&g===generation){if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
     finally{if(live(t)&&g===generation)more.disabled=false;}
   }
+  async function applyKind(s,selected){
+    const t=token(),g=++generation;error.textContent='';
+    try{await proof(s);if(!live(t)||data!==s||g!==generation)return;
+      if(kind.value===s.filter.kind)kind.value=selected;
+      await load(false,false,{...s.filter,kind:selected});
+    }catch(e){if(live(t)&&data===s&&g===generation){if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
+  }
   function renderSummary(z){
     summary.replaceChildren();
     for(const [label,n,tone]of [['本人全量责任（筛选前）',z.total_responsibilities,'sky'],['本岗位未认领候选',z.candidate_task_count,'mint']]){
@@ -69,6 +76,11 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
     }
     const p=el('p','本人全量分类（筛选前）：'+(Object.entries(z.counts).filter(([,n])=>n).map(([k,n])=>labels[k]+' '+n).join(' · ')||'暂无本人责任'),'small muted');
     const matched=el('p','当前已应用筛选完整分类（'+(z.filter.scope==='candidates'?'本岗位候选':'已指定本人')+'）：'+(Object.entries(z.matched_counts).filter(([,n])=>n).map(([k,n])=>labels[k]+' '+n).join(' · ')||'无匹配责任'),'small');matched.id='my-work-matched-counts';summary.append(p,matched,el('p','本责任范围：原日期已记录 '+z.date_counts.recorded+' 项 · 日期未知 '+z.date_counts.not_recorded+' 项（筛选前完整数量）','small muted'));
+    const entries=el('div',undefined,'my-work-kind-entries');entries.id='my-work-kind-entries';entries.setAttribute('role','group');entries.setAttribute('aria-label','按当前完整匹配分类选择业务类型');
+    for(const [k,n]of [['all',null],...Object.entries(z.matched_counts).filter(([,n])=>n)]){
+      const b=button(k==='all'?'查看全部业务':labels[k]+' '+n,()=>applyKind(z,k));b.setAttribute('aria-pressed',String(z.filter.kind===k));entries.append(b);
+    }
+    summary.append(entries);
   }
   const dateLabels={processing:'加工约定日期',aftercare:'售后安排日期',review:'复查安排日期',contact:'联系约定时间',appointment:'预约开始时间',referral_contact:'转介联系约定时间'};
   function dateLabel(r){const label=dateLabels[r.kind]||'办理日期';return r.due===null?'原'+label+'未记录':'原'+label+' '+r.due+(r.due_source==='due_at'||r.due_source==='starts_at'?'（UTC）':'');}
