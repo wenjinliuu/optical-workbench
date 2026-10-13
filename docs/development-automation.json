@@ -15,7 +15,7 @@
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
   "execution_status": "Remote V0.79 functional commits d84d914 through c775fc6 and successful CI38359577005 were observed at this continuation, while repository/Site progress remained V0.78. Their caller or schedule origin is not established. This manual continuation strengthened original fields/tests and completed verified publication; the existing schedule is preserved.",
   "next_development_task": "T03.03",
-  "next_development_slice": "V0.80 current original generic-task blocker reason and revision, self/role source-bound and plain text",
+  "next_development_slice": "V0.81 independent self completed-task original records, bound to original actual completion actor/store/references and separate from current responsibilities and role candidates",
   "business_acceptance": "pending",
   "schedule_updated_at": "2026-10-12T22:04:55.958055+00:00",
   "immediate_run_request": {
@@ -26,7 +26,7 @@
   },
   "observed_last_run_at": "2026-10-12T22:12:34.528423+00:00",
   "observed_at": "2026-10-12 23:02:23 UTC",
-  "last_manual_verified_version": "V0.79",
-  "last_manual_site_version": 59,
+  "last_manual_verified_version": "V0.80",
+  "last_manual_site_version": 60,
   "observed_remote_functional_head": "c775fc6dd788379c373dccf27008290b5ce15989"
 }
