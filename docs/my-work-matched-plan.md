@@ -1,4 +1,4 @@
-V0.77待实施，不计交付：当前已应用筛选的完整分业务数量，与本人全量责任量分别显示。
+V0.77原计划已实施；实际验证与发布见progress.json/progress-sync.json：当前已应用筛选的完整分业务数量，与本人全量责任量分别显示。
 
 当前counts/date_counts及total_responsibilities是全量；total是筛选后的完整量。不能把已显示30页内的分类计数当完整匹配量。建议在employeeResponsibilities同一scoped+where绑定参数下读取GROUP BY kind并返回matched_counts（14类含0），sum必须等于total；mine沿原值，candidates仅task可匹配，不把本人全量counts混成候选匹配量。
 
