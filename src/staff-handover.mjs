@@ -23,7 +23,7 @@ export function responsibilitySnapshot(db,store){const users=db.prepare(staffSQL
 const emptyCounts=()=>Object.fromEntries(responsibilityKinds.map(k=>[k,0]));
 export function employeeResponsibilities(db,store,id,{kind='all',q='',limit=30,offset=0,date_mode='all',date_from='',date_to='',sort='updated',task_state='all'}={}){
  const employee=db.prepare(staffSQL+' AND u.id=?').get(store,id);if(!employee)return null;
- const taskState="(?='all' OR (kind='task' AND ((?='blocked' AND substr(status,1,instr(status,' / ')-1)='blocked') OR (?='awaiting' AND instr(status,' / awaiting / ')>0) OR (?='paused' AND substr(status,length(status)-length('paused')+1)='paused') OR (?='running' AND substr(status,length(status)-length('running')+1)='running'))))";
+ const taskState="(?='all' OR (kind='task' AND EXISTS(SELECT 1 FROM work_tasks t WHERE t.id=scoped.id AND t.store_id=scoped.store_id AND ((?='blocked' AND t.lifecycle_status='blocked') OR (?='awaiting' AND t.assignment_status='awaiting') OR (?='paused' AND t.execution_status='paused') OR (?='running' AND t.execution_status='running')))))";
  const where=" WHERE owner_id=? AND (?='all' OR kind=?) AND (instr(lower(title),lower(?)) OR instr(lower(coalesce(customer_name,institution)),lower(?)) OR instr(lower(id),lower(?))) AND (?='all' OR (?='recorded' AND due IS NOT NULL) OR (?='not_recorded' AND due IS NULL)) AND (?='' OR substr(due,1,10)>=?) AND (?='' OR substr(due,1,10)<=?) AND "+taskState;
  const args=[store,id,kind,kind,q,q,q,date_mode,date_mode,date_mode,date_from,date_from,date_to,date_to,task_state,task_state,task_state,task_state,task_state];
  const counts=emptyCounts(),matched_counts=emptyCounts(),date_counts={recorded:0,not_recorded:0};
