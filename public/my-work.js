@@ -93,11 +93,13 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   }
   const dateLabels={processing:'加工约定日期',aftercare:'售后安排日期',review:'复查安排日期',contact:'联系约定时间',appointment:'预约开始时间',referral_contact:'转介联系约定时间'};
   function dateLabel(r){if(r.completed_task)return '原完成时间 '+r.due+'（UTC）';const label=dateLabels[r.kind]||'办理日期';return r.due===null?'原'+label+'未记录':'原'+label+' '+r.due+(r.due_source==='due_at'||r.due_source==='starts_at'?'（UTC）':'');}
+  const sourceProof=p=>`四入口同源：原任务修订 ${p.task_revision} · 条件 V${p.condition_version} / 依据 V${p.evidence_version} · 说明更正 V${p.correction_version} · 后续 ${p.followup_count} · 来源指纹 ${p.source_fingerprint.slice(0,12)}`;
   function appendRow(r,s,t){
     const a=el('article',undefined,'record-card');a.dataset.myWorkKey=r.key;
     a.append(el('span',labels[r.kind],'badge sky'),el('h2',r.title),el('p',(r.customer_id===null?'机构 '+r.institution:r.customer_name)+' · 原记录 '+r.id+(r.position?' / 原行 '+r.position:''),'small muted'),
       el('p','原修订 '+r.revision+(r.version===null?'':' · 固定版本 '+r.version)+' · 当前状态 '+stateLabel(r)+(r.completed_task?' · 固定条件 V'+r.completion_condition_version+' / 依据 V'+r.completion_evidence_version+' · 说明更正 V'+r.completion_correction_version+' · 后续任务 '+r.completion_followup_count:'')+(r.kind==='task'&&Number.isSafeInteger(r.task_blocker_revision)?' · 原阻塞原因（原修订 '+r.task_blocker_revision+'）：'+(r.task_blocker_reason??'未记录'):''),'task-context'),
       el('p',dateLabel(r),'small'),
+      ...(r.task_source_proof?[el('p',sourceProof(r.task_source_proof),'task-source-proof small')]:[]),
       el('p',s.filter.scope==='candidates'?'本岗位候选，尚未指定本人；打开不自动认领或接收。':s.filter.scope==='completed'?'本人是原完成实际操作人；这里只读列出，整项业务完成与专业正文仍按原记录判断。':'已指定本人；打开不自动开始或完成。','muted'),
       button(s.filter.scope==='completed'?'查看原任务与完成记录':'打开原业务办理',async()=>{
         error.textContent='';try{await proof(s);if(!live(t)||data!==s)return;await openSource(r,()=>proof(s));}

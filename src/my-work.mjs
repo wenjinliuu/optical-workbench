@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto';
 import {employeeResponsibilities, responsibilityKinds} from './staff-handover.mjs';
+import {taskSourceProof} from './task-source-proof.mjs';
 
 // Reuse the original responsibility projection, but select only the public-to-self
 // business fields. Personnel records and the manager's employee directory never
@@ -41,7 +42,8 @@ export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offs
       c.condition_version completion_condition_version,c.evidence_version completion_evidence_version,c.snapshot_sha256 completion_sha256,
       coalesce((SELECT max(version) FROM task_completion_corrections WHERE task_id=t.id),0) completion_correction_version,
       (SELECT count(*) FROM task_followups WHERE parent_task_id=t.id) completion_followup_count`+from+' ORDER BY '+orderBy+' LIMIT ? OFFSET ?').all(...args,limit,offset).map(r=>({
-        ...r,key:'completed-task:'+r.id+':0',due_source:'completed_at',deadline_status:'recorded',completed_task:true,professional_qualification_status:'not_verified'
+      ...r,key:'completed-task:'+r.id+':0',due_source:'completed_at',deadline_status:'recorded',completed_task:true,
+      task_source_proof:taskSourceProof(db,r.id),professional_qualification_status:'not_verified'
       }));
     return {...result,matched_counts,date_counts:{recorded:completed_task_count,not_recorded:0},total,next_offset:offset+limit<total?offset+limit:null,items};
   }

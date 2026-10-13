@@ -1,6 +1,7 @@
 import {outboundBatches} from './inventory-batch-ledger.mjs';
 import {screeningRowLinksScope} from './screening-row-links-scope.mjs';
 import { Buffer } from 'node:buffer';
+import {taskSourceProof} from './task-source-proof.mjs';
 
 export const timelineKinds=['screening_link','family_notification','family_notification_read','family_communication_information','family_communication_action','family_change','family_change_execution','family_offer','family_selection','family_admission','family_booking','family_request','family_share','expense_material','expense_payment','channel_review','reserved_custody','specialty_continuity','specialty_archive','specialty_review','specialty_care','specialty_order','specialty_lot','specialty_case','specialty_consent','external_record','referral','referral_contact','contact_case','contact_attempt','contact_receipt','customer_appointment','longitudinal','observation','review_plan','practice','reassessment','profile','cycle','visit','contact','document','attachment','authorization','task','retail','inventory','payment','processing','fulfillment','dispatch','aftercare','aftercare_work','aftercare_replacement','aftercare_disposition','refund','parameter','training_plan','training_session','entitlement','scheduling'];
 // Read existing records. Only customer-related, explicitly allowed audit actions
@@ -120,7 +121,11 @@ export function createTimelineHandler(db,{need,customer,fail}){
     }
     const params={screening_manager:user.role==='manager'?1:0,screening_actor:user.id,family_request_allowed:['manager','reception'].includes(user.role)?1:0,channel_allowed:user.role==='manager'?1:0,payment_allowed:['manager','reception'].includes(user.role)?1:0,customer:c.id,store:c.store_id,kind,from,to,at:cursor?.at||'',id:cursor?.id||'',limit:limit+1};
     const rows=db.prepare(eventsSQL+` SELECT e.*,u.display_name AS actor_name FROM events e LEFT JOIN users u ON u.id=e.actor_id WHERE (:kind='all' OR e.kind=:kind) AND (:from='' OR substr(e.at,1,10)>=:from) AND (:to='' OR substr(e.at,1,10)<=:to) AND (:at='' OR e.at<:at OR (e.at=:at AND e.event_id<:id)) ORDER BY e.at DESC,e.event_id DESC LIMIT :limit`).all(params);
-    const more=rows.length>limit,items=rows.slice(0,limit).map(({details,...row})=>({...row,details:{...JSON.parse(details),...(row.kind==='dispatch'?{batch_source:outboundBatches(db,row.event_id.slice('dispatch:'.length))}:{})}})),last=items.at(-1);
+    const more=rows.length>limit,items=rows.slice(0,limit).map(({details,...row})=>{
+      const parsed=JSON.parse(details),sourceTaskId=row.kind==='task'?(parsed.action==='followup'?parsed.parent_task_id:row.entity_id):null;
+      return {...row,details:{...parsed,...(row.kind==='dispatch'?{batch_source:outboundBatches(db,row.event_id.slice('dispatch:'.length))}:{})},
+        ...(sourceTaskId?{task_source_proof:taskSourceProof(db,sourceTaskId)}:{})};
+    }),last=items.at(-1);
     const next_cursor=more?Buffer.from(JSON.stringify({customer:c.id,kind,from,to,at:last.at,id:last.event_id})).toString('base64url'):null;
     const screening_authorizations=[...new Map(items.filter(e=>e.kind==='screening_link').map(e=>{const d=e.details,key=d.project_id+'/'+d.batch_version_id+'/'+d.row_number;return [key,{path:'/screening-row-links/'+key+'/authorization',source_token:screeningRowLinksScope(db,user,d.project_id,d.batch_version_id,d.row_number)}];})).values()];
     json(200,{items,next_cursor,limit,timezone:'UTC',order:'newest_first',screening_authorizations});return true;

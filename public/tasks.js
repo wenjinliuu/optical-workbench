@@ -20,6 +20,7 @@ export function createTasksPanel({api,getMe,getCustomer,getEpoch,reload,toast,op
  function clear(){editing=undefined;pending=undefined;contexts=[];$('#task-form').reset();$('#task-error').textContent='';$('#task-context-note').textContent='';$('#task-form select[name=assignee_id]').replaceChildren();$('#task-form select[name=context]').replaceChildren();$('#task-dialog-label').textContent='';}
  $('#task-dialog').addEventListener('close',clear);
  function contextText(t){return [t.visit_id?`到店：${t.visit_purpose}`:'',t.cycle_id?`固定需求 V${t.cycle_version}：${t.cycle_goal}`:''].filter(Boolean).join(' · ')||'客户档案任务';}
+ function sourceProof(p){return `四入口同源：原任务 ${p.task_id} · 完成修订 ${p.task_revision} · 条件 V${p.condition_version} / 依据 V${p.evidence_version} · 说明更正 V${p.correction_version} · 后续 ${p.followup_count} · 来源指纹 ${p.source_fingerprint.slice(0,12)}`;}
  function setContext(){const c=contexts[Number($('#task-form').elements.context.value)];$('#task-context-note').textContent=c?.note||'';}
  $('#task-form').elements.context.onchange=setContext;
  async function open(action,task,customerId,options){
@@ -41,6 +42,7 @@ export function createTasksPanel({api,getMe,getCustomer,getEpoch,reload,toast,op
   if(flow){const facts=el('ol',undefined,'task-flow-facts');for(const [label,value] of [['责任归属',t.assignee_name||roleNames[t.candidate_role]+'候选队列'],['接收状态',stateNames[t.assignment_status]],['执行状态',executionNames[t.effective_execution_status||t.execution_status]],['异常状态',lifecycleNames[t.lifecycle_status]]]){const fact=el('li');fact.append(el('small',label),el('strong',value));facts.append(fact);}box.append(facts);}
   box.append(el('p',t.completion_status==='completed'?`提交责任人：${t.assignee_name} · ${new Date(t.completed_at).toLocaleString('zh-CN',{hour12:false})}`:t.assignment_status==='queued'?`${roleNames[t.candidate_role]}候选队列 · ${t.candidate_count} 位同岗可用员工`:`${t.assignee_name} · ${t.assignee_available?'接收人可用':'接收人暂不可用，请负责人安排交接'}`,'small muted'));
   if(queue)box.append(el('p',t.customer_name,'task-customer-name'));box.append(el('p',t.instructions),el('p',contextText(t),'task-context'));
+	  if(t.task_source_proof)box.append(el('p',sourceProof(t.task_source_proof),'task-source-proof small'));
   if(t.origin)box.append(el('p',`来源：${t.origin.parent_title} · ${t.origin.source_correction_version?'更正 V'+t.origin.source_correction_version:'原完成产出'} · 分派时采用：${t.origin.source_output_summary}`,'task-origin task-context'));
  const buttons=el('div',undefined,'record-actions'),me=getMe(),id=queue?undefined:getCustomer();
   function action(key,primary=false){const b=el('button',actions[key],primary?'primary':undefined);b.onclick=()=>open(key,t,id);buttons.append(b);}
