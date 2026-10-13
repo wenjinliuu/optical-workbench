@@ -4,10 +4,10 @@ import {employeeResponsibilities, responsibilityKinds} from './staff-handover.mj
 // Reuse the original responsibility projection, but select only the public-to-self
 // business fields. Personnel records and the manager's employee directory never
 // enter this response. The caller cannot choose an employee or store.
-export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offset=0, date_mode='all', date_from='', date_to=''}={}) {
-  const original=employeeResponsibilities(db,user.store_id,user.id,{kind,q,limit,offset,date_mode,date_from,date_to});
+export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offset=0, date_mode='all', date_from='', date_to='', sort='updated'}={}) {
+  const original=employeeResponsibilities(db,user.store_id,user.id,{kind,q,limit,offset,date_mode,date_from,date_to,sort});
   if(!original) return null;
-  const filter={scope,kind,q,date_mode,date_from,date_to};
+  const filter={scope,kind,q,date_mode,date_from,date_to,sort};
   const source_token=createHash('sha256').update(JSON.stringify({
     employee:user.id,role:user.role,store:user.store_id,source:original.source_token,filter
   })).digest('hex');
@@ -43,7 +43,7 @@ export function createMyWorkHandler(db,{need,fail}) {
     if(path!=='/api/my-work'&&!proof) return false;
     need(user,'tasks:read');
     if(req.method!=='GET') fail(405,'METHOD','本人工作台只读取原责任，办理沿原业务入口');
-    const known=['scope','kind','q','date_mode','date_from','date_to','expected_source',...(proof?[]:['limit','offset'])];
+    const known=['scope','kind','q','date_mode','date_from','date_to','sort','expected_source',...(proof?[]:['limit','offset'])];
     for(const k of url.searchParams.keys()) if(!known.includes(k)||url.searchParams.getAll(k).length!==1)
       fail(422,'VALIDATION','仅接受本人业务筛选和同源分页');
     const page=(k,d,min,max)=>{
@@ -52,8 +52,8 @@ export function createMyWorkHandler(db,{need,fail}) {
       return +v;
     };
     const options={scope:url.searchParams.get('scope')||'mine',kind:url.searchParams.get('kind')||'all',
-      q:url.searchParams.get('q')||'',date_mode:url.searchParams.get('date_mode')||'all',date_from:url.searchParams.get('date_from')||'',date_to:url.searchParams.get('date_to')||'',limit:page('limit',30,1,100),offset:page('offset',0,0,1e6)};
-    if(!['mine','candidates'].includes(options.scope)||!['all',...responsibilityKinds].includes(options.kind)
+      q:url.searchParams.get('q')||'',date_mode:url.searchParams.get('date_mode')||'all',date_from:url.searchParams.get('date_from')||'',date_to:url.searchParams.get('date_to')||'',sort:url.searchParams.get('sort')||'updated',limit:page('limit',30,1,100),offset:page('offset',0,0,1e6)};
+    if(!['updated','date_asc','date_desc'].includes(options.sort)||!['mine','candidates'].includes(options.scope)||!['all',...responsibilityKinds].includes(options.kind)
       ||options.q.length>120||options.q.includes('\0')) fail(422,'VALIDATION','本人业务筛选无效');
     const validDate=v=>/^\d{4}-\d{2}-\d{2}$/.test(v)&&Number.isFinite(Date.parse(v+'T00:00:00.000Z'))&&new Date(v+'T00:00:00.000Z').toISOString().slice(0,10)===v;
     if(!['all','recorded','not_recorded'].includes(options.date_mode)

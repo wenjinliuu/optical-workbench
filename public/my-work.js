@@ -14,15 +14,16 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   const scope=select('scope','责任范围',[['mine','已指定本人'],['candidates','本岗位候选，尚未认领']]);
   const kind=select('kind','业务类型',[['all','全部业务'],...Object.entries(labels)]);
   const l=el('label','原记录、客户或机构'),q=el('input');q.name='q';q.maxLength=120;l.append(q);form.append(l,button('查询',()=>{},true));
+  const sort=select('sort','原责任顺序',[['updated','原记录最近更新'],['date_asc','原日期从早到晚（未知在后）'],['date_desc','原日期从晚到早（未知在后）']]);
   const dateMode=select('date_mode','原业务日期',[['all','全部日期状态'],['recorded','已记录日期'],['not_recorded','日期未知']]);
   function dateInput(name,label){const l=el('label',label),i=el('input');i.type='date';i.name=name;l.append(i);form.append(l);return i;}
   const dateFrom=dateInput('date_from','原日期从（含当日）'),dateTo=dateInput('date_to','原日期至（含当日）');
   form.append(form.querySelector('button[type=submit]'));
   const summary=el('div',undefined,'demo-summary'),count=el('p','','small muted'),error=el('p','','form-error'),rows=el('div',undefined,'record-grid'),more=button('读取后续同来源责任',()=>load(true));
   summary.id='my-work-summary';count.id='my-work-count';error.id='my-work-error';rows.id='my-work-items';more.hidden=true;
-  view.append(head,el('p','读取已保存的本人业务责任，岗位候选单列；认领、接收、开始和专业确认仍在原业务分别办理。加工/售后/复查按原约定日期，联系/转介按原约定时间，预约按开始时间；含时间的原记录按 UTC 日期筛选。日期区间只匹配已记录日期，未知日期不补默认值。','notice'),form,summary,count,error,rows,more);
+  view.append(head,el('p','读取已保存的本人业务责任，岗位候选单列；认领、接收、开始和专业确认仍在原业务分别办理。加工/售后/复查按原约定日期，联系/转介按原约定时间，预约按开始时间；含时间的原记录按 UTC 日期筛选。日期区间只匹配已记录日期；日期排序时未知在后，同日按原更新顺序，未知日期不补默认值。','notice'),form,summary,count,error,rows,more);
   form.onsubmit=e=>{e.preventDefault();load();};
-  const filter=()=>({scope:scope.value,kind:kind.value,q:q.value,date_mode:dateMode.value,date_from:dateFrom.value,date_to:dateTo.value});
+  const filter=()=>({scope:scope.value,kind:kind.value,q:q.value,date_mode:dateMode.value,date_from:dateFrom.value,date_to:dateTo.value,sort:sort.value});
   const token=()=>({id:getMe()?.id,epoch:getEpoch()}),live=t=>t.id===getMe()?.id&&t.epoch===getEpoch();
   function clear(){data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;}
   async function denied(e){clear();error.textContent=e.message;await onScopeChanged?.(e);}
