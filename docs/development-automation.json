@@ -15,7 +15,7 @@
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
   "execution_status": "At this manual continuation the remote branch still contained V0.76 and no subsequent unattended functional commit was observed. The existing schedule is preserved; timestamps alone do not prove completed unattended development.",
   "next_development_task": "T03.03",
-  "next_development_slice": "V0.78 explicit original kind entry from adopted complete matching classification, retaining scope/text/date/order/density and independent drafts",
+  "next_development_slice": "V0.79 exact original generic-task blocked/awaiting/paused/running state filters, source-bound and task-only, preserving independent original actions",
   "business_acceptance": "pending",
   "schedule_updated_at": "2026-10-12T22:04:55.958055+00:00",
   "immediate_run_request": {
@@ -26,6 +26,6 @@
   },
   "observed_last_run_at": "2026-10-12T22:12:34.528423+00:00",
   "observed_at": "2026-10-12 23:02:23 UTC",
-  "last_manual_verified_version": "V0.77",
-  "last_manual_site_version": 57
+  "last_manual_verified_version": "V0.78",
+  "last_manual_site_version": 58
 }
