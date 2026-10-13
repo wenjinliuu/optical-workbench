@@ -50,8 +50,9 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   async function load(append=false,applyDraft=false,adoptFilter=null){
     if(!getMe()?.permissions.includes('tasks:read'))return;
     const t=token(),g=++generation,f=append?data?.filter:(adoptFilter||(applyDraft||!appliedFilter?filter():appliedFilter));if(!f)return;
-    const previous=data;error.textContent='';more.disabled=true;if(!append)clear();
+    const previous=data;error.textContent='';more.disabled=true;
     if(f.task_state!=='all'&&f.kind!=='task'){error.textContent='任务状态只适用于通用岗位任务；请改回通用岗位任务，或明确选择“全部原任务状态”后查询。';more.disabled=false;return;}
+    if(!append)clear();
     try{
       const params=new URLSearchParams({...f,limit:'30',offset:String(append?previous.next_offset:0)});
       if(append)params.set('expected_source',previous.source_token);
