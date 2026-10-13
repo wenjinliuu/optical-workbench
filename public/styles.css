@@ -114,3 +114,4 @@
 #my-work-items.compact>.record-card>button{grid-column:3;grid-row:1/5;align-self:center}
 @media(max-width:760px){#my-work-items.compact>.record-card{display:block}#my-work-items.compact>.record-card>h2{margin:8px 0}#my-work-items.compact>.record-card>p:nth-child(n){margin:8px 0}#my-work-items.compact>.record-card>button{margin-top:8px}}
 @media(max-width:760px){#my-work-view .page-head{flex-direction:column;align-items:stretch;gap:12px}}
+#my-work-applied-filter,#my-work-pending-filter{overflow-wrap:anywhere}
