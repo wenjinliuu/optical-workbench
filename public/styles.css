@@ -96,3 +96,7 @@
 #my-work-items .record-card{background:#fff;border:1px solid var(--line,#dce4fa);border-top:3px solid #4b6bff;border-radius:16px;padding:20px;min-width:0;overflow-wrap:anywhere}
 #my-work-items .record-card h2{font-size:18px;margin:12px 0}
 #my-work-items .record-card p{line-height:1.65}
+
+/* Keep original responsibility/date totals readable in both layouts. */
+#my-work-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+#my-work-summary>.small{grid-column:1/-1;margin:0}
