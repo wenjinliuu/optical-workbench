@@ -117,3 +117,5 @@
 #my-work-applied-filter,#my-work-pending-filter{overflow-wrap:anywhere}
 
 .my-work-kind-entries{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}.my-work-kind-entries button[aria-pressed=true]{background:var(--accent);color:#fff}
+
+#my-work-items .task-context{overflow-wrap:anywhere}

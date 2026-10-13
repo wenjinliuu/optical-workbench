@@ -27,3 +27,6 @@ jobs:
       - run: npm run test:my-work-task-state-browser
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
+      - run: npm run test:my-work-blockers-browser
+        env:
+          PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs

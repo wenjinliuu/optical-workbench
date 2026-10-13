@@ -31,7 +31,7 @@ export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offs
   const items=db.prepare(`SELECT 'task' kind,t.id,0 position,t.store_id,t.customer_id,
     NULL owner_id,t.title,t.revision,NULL version,NULL event_id,
     t.lifecycle_status||' / '||t.assignment_status||' / '||t.execution_status status,
-    NULL due,t.updated_at event_at,c.name customer_name`+from+
+    NULL due,t.updated_at event_at,c.name customer_name,CASE WHEN t.lifecycle_status='blocked' THEN t.exception_reason ELSE NULL END task_blocker_reason,CASE WHEN t.lifecycle_status='blocked' THEN t.revision ELSE NULL END task_blocker_revision`+from+
     ' ORDER BY t.updated_at DESC,t.id LIMIT ? OFFSET ?').all(...args,limit,offset).map(r=>({
       ...r,key:'task:'+r.id+':0',due_source:null,deadline_status:'not_recorded',professional_qualification_status:'not_verified'
     }));

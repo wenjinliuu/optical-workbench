@@ -94,7 +94,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   function appendRow(r,s,t){
     const a=el('article',undefined,'record-card');a.dataset.myWorkKey=r.key;
     a.append(el('span',labels[r.kind],'badge sky'),el('h2',r.title),el('p',(r.customer_id===null?'机构 '+r.institution:r.customer_name)+' · 原记录 '+r.id+(r.position?' / 原行 '+r.position:''),'small muted'),
-      el('p','原修订 '+r.revision+(r.version===null?'':' · 固定版本 '+r.version)+' · 当前状态 '+stateLabel(r),'task-context'),
+      el('p','原修订 '+r.revision+(r.version===null?'':' · 固定版本 '+r.version)+' · 当前状态 '+stateLabel(r)+(r.kind==='task'&&Number.isSafeInteger(r.task_blocker_revision)?' · 原阻塞原因（原修订 '+r.task_blocker_revision+'）：'+(r.task_blocker_reason??'未记录'):''),'task-context'),
       el('p',dateLabel(r),'small'),
       el('p',s.filter.scope==='candidates'?'本岗位候选，尚未指定本人；打开不自动认领或接收。':'已指定本人；打开不自动开始或完成。','muted'),
       button('打开原业务办理',async()=>{
