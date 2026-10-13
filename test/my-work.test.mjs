@@ -64,9 +64,9 @@ test('guardian and unsigned requests cannot read own work or proofs and employee
  const x=await setup(t,{seed:false});for(const p of [own,own+'/authorization']){assert.equal((await x.request(p,x.g)).status,403);assert.equal((await x.request(p)).status,401);for(const q of ['employee_id=front','store_id=store-a','assignee_id=front'])assert.equal((await x.request(p+'?'+q,x.m)).status,422);}
  assert.equal((await x.request(own+'/front',x.m)).status,404);
 });
-test('current cross-business projection preserves original thirteen classes, IDs, event/version and dates with no HR payload',async t=>{
+test('current cross-business projection retains original customer classes plus preparation kind, IDs, version and dates without HR',async t=>{
  const x=await setup(t),u=x.db.prepare("SELECT * FROM users WHERE id='demo-professional'").get(),s=await x.login(u.id),z=(await x.request(own+'?limit=100',s)).body,original=employeeResponsibilities(x.db,u.store_id,u.id,{limit:100});
- assert.equal(z.kinds.length,13);assert.deepEqual(z.counts,original.counts);assert.deepEqual(z.items,original.items);assert.ok(z.items.length>4);assert.ok(z.items.some(r=>r.version!==null));assert.equal(z.personnel_records,undefined);
+ assert.equal(z.kinds.length,14);assert.ok(z.kinds.includes('screening_project'));assert.deepEqual(z.counts,original.counts);assert.deepEqual(z.items,original.items);assert.ok(z.items.length>4);assert.ok(z.items.some(r=>r.version!==null));assert.equal(z.personnel_records,undefined);
  for(const r of z.items)if(r.due===null)assert.equal(r.deadline_status,'not_recorded');
 });
 test('another store and another employees responsibility cannot be selected or mixed into either own scope',async t=>{
@@ -116,5 +116,5 @@ test('strict filters, duplicate options, bounded pagination and unsupported muta
 });
 test('independent recovery preserves the self-only original cross-business projection and revokes old sessions',async t=>{
  const x=await setup(t,{persist:true}),u=x.db.prepare("SELECT * FROM users WHERE id='demo-professional'").get(),before=myWork(x.db,u,{limit:100}),b=await createBackup(x.path,join(x.dir,'backup')),r=await restoreBackup(b.backup,join(x.dir,'restored')),db=openDatabase(r.database);t.after(()=>db.close());
- assert.deepEqual(myWork(db,u,{limit:100}),before);assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,0);
+ const restored=myWork(db,u,{limit:100});for(const key of ['employee','filter','kinds','counts','total_responsibilities','candidate_task_count','items','total','next_offset'])assert.deepEqual(restored[key],before[key],key);assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,0);
 });

@@ -1,8 +1,8 @@
 const el=(tag,text,className)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;};
-const labels={task:'通用岗位任务',processing:'加工原单行',aftercare:'售后案例',training_plan:'个人训练计划',training_session:'当次课程',longitudinal:'长期档案',review:'复查安排',contact:'联系跟进',appointment:'客户预约',referral_professional:'转介专业责任',referral_contact:'转介联系责任',external_record:'外院资料复核',specialty:'接触镜专项责任'};
+const labels={task:'通用岗位任务',processing:'加工原单行',aftercare:'售后案例',training_plan:'个人训练计划',training_session:'当次课程',longitudinal:'长期档案',review:'复查安排',contact:'联系跟进',appointment:'客户预约',referral_professional:'转介专业责任',referral_contact:'转介联系责任',external_record:'外院资料复核',specialty:'接触镜专项责任',screening_project:'团体活动准备责任'};
 
 const statuses={active:'进行中',blocked:'有待解决的阻塞',cancelled:'已取消',queued:'尚未认领',awaiting:'待接收',accepted:'已接收',pending:'待处理',running:'执行中',paused:'已暂停',planned:'已安排',scheduled:'已安排',partial:'已有接收记录',draft:'草稿',confirmed:'已确认',ready:'待开始',recorded:'已记录',reviewed:'已核对',completed:'已完成',closed:'已结案',ended:'已结束',stopped:'已停用'};
-const stateLabel=r=>r.status.split(' / ').map(s=>r.kind==='task'&&s==='pending'?'待开始':statuses[s]||s).join(' · ');
+const stateLabel=r=>r.kind==='screening_project'?'原准备说明已保存 · '+({unknown:'原授权说明未知',refused:'原授权说明为拒绝',recorded:'有原授权说明，正式核验待完成'}[r.status.split(' / ')[1]]||'原说明状态待核对'):r.status.split(' / ').map(s=>r.kind==='task'&&s==='pending'?'待开始':statuses[s]||s).join(' · ');
 
 export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}) {
   let generation=0,data=null;
@@ -13,7 +13,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   function select(name,label,options){const l=el('label',label),s=el('select');s.name=name;for(const[k,v]of options)s.append(new Option(v,k));l.append(s);form.append(l);return s;}
   const scope=select('scope','责任范围',[['mine','已指定本人'],['candidates','本岗位候选，尚未认领']]);
   const kind=select('kind','业务类型',[['all','全部业务'],...Object.entries(labels)]);
-  const l=el('label','原记录或客户'),q=el('input');q.name='q';q.maxLength=120;l.append(q);form.append(l,button('查询',()=>{},true));
+  const l=el('label','原记录、客户或机构'),q=el('input');q.name='q';q.maxLength=120;l.append(q);form.append(l,button('查询',()=>{},true));
   const summary=el('div',undefined,'demo-summary'),count=el('p','','small muted'),error=el('p','','form-error'),rows=el('div',undefined,'record-grid'),more=button('读取后续同来源责任',()=>load(true));
   summary.id='my-work-summary';count.id='my-work-count';error.id='my-work-error';rows.id='my-work-items';more.hidden=true;
   view.append(head,el('p','读取已保存的本人业务责任，岗位候选单列；认领、接收、开始和专业确认仍在原业务分别办理。未记录日期保持未知，不补默认时限。','notice'),form,summary,count,error,rows,more);
@@ -49,7 +49,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   }
   function appendRow(r,s,t){
     const a=el('article',undefined,'record-card');a.dataset.myWorkKey=r.key;
-    a.append(el('span',labels[r.kind],'badge sky'),el('h2',r.title),el('p',r.customer_name+' · 原记录 '+r.id+(r.position?' / 原行 '+r.position:''),'small muted'),
+    a.append(el('span',labels[r.kind],'badge sky'),el('h2',r.title),el('p',(r.customer_id===null?'机构 '+r.institution:r.customer_name)+' · 原记录 '+r.id+(r.position?' / 原行 '+r.position:''),'small muted'),
       el('p','原修订 '+r.revision+(r.version===null?'':' · 固定版本 '+r.version)+' · 当前状态 '+stateLabel(r),'task-context'),
       el('p',r.due===null?'原办理日期未记录':'原明确日期 '+r.due,'small'),
       el('p',s.filter.scope==='candidates'?'本岗位候选，尚未指定本人；打开不自动认领或接收。':'已指定本人；打开不自动开始或完成。','muted'),
