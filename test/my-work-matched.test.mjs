@@ -93,3 +93,30 @@ test('cross-store, current role, guardian and inactive gates protect matching li
 test('independent restore preserves matching classifications, raw references and full counts while revoking sessions',async t=>{
  const x=await setup(t,{seed:false,persist:true});await contact(x,'2030-01-02T12:00:00.000Z');await newTask(x);project(x);const u=x.db.prepare("SELECT * FROM users WHERE id='front'").get(),options={date_mode:'not_recorded'},before=myWork(x.db,u,options),b=await createBackup(x.path,join(x.dir,'backup')),r=await restoreBackup(b.backup,join(x.dir,'restored')),db=openDatabase(r.database);t.after(()=>db.close());const after=myWork(db,u,options);verify(after);for(const k of ['filter','items','counts','matched_counts','date_counts','total','total_responsibilities','candidate_task_count'])assert.deepEqual(after[k],before[k],k);assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,0);
 });
+
+test('task state filters use original task dimensions without merging other business statuses',async t=>{
+ const x=await setup(t,{seed:false}),awaiting=await newTask(x,{title:'原待接收任务'}),paused=await newTask(x,{title:'原阻塞暂停任务'}),running=await newTask(x,{title:'原执行中任务'});
+ x.db.prepare("UPDATE work_tasks SET assignment_status='accepted',execution_status='paused',lifecycle_status='blocked' WHERE id=?").run(paused.id);
+ x.db.prepare("UPDATE work_tasks SET assignment_status='accepted',execution_status='running',lifecycle_status='active' WHERE id=?").run(running.id);
+ const expected={awaiting:[awaiting.id],blocked:[paused.id],paused:[paused.id],running:[running.id]};
+ for(const [task_state,ids]of Object.entries(expected)){const z=await query(x,{kind:'task',task_state});verify(z);assert.deepEqual(z.items.map(v=>v.id),ids);assert.equal(z.total,ids.length);assert.equal(z.matched_counts.task,ids.length);assert.ok(Object.entries(z.matched_counts).every(([k,n])=>k==='task'||n===0));}
+ const both=await query(x,{kind:'task',task_state:'all'});assert.equal(both.total,3);assert.equal(both.counts.task,3);
+ assert.equal((await x.request(own+'?kind=contact&task_state=blocked',x.f)).status,422);
+ assert.equal((await x.request(own+'?kind=task&task_state=guessed',x.f)).status,422);
+});
+
+test('task state is bound to paging and proof and reads do not write business or audit rows',async t=>{
+ const x=await setup(t,{seed:false});for(let i=0;i<4;i++){const z=await newTask(x,{title:'状态分页 '+i});x.db.prepare("UPDATE work_tasks SET assignment_status='accepted',execution_status='paused',lifecycle_status=? WHERE id=?").run(i===0?'blocked':'active',z.id);}
+ const before=snapshot(x.db),z=await query(x,{kind:'task',task_state:'paused',limit:2});assert.equal(z.total,4);assert.equal(z.items.length,2);assert.ok(z.next_offset!==null);good(await x.request(proofURL(z),x.f));
+ const page=await query(x,{...z.filter,limit:2,offset:z.next_offset,expected_source:z.source_token});assert.equal(page.items.length,2);
+ assert.equal((await x.request(own+'/authorization?'+new URLSearchParams({...z.filter,task_state:'running',expected_source:z.source_token}),x.f)).status,409);
+ assert.deepEqual(snapshot(x.db),before);
+});
+
+test('candidate task states remain unassigned facts and independent restore preserves them',async t=>{
+ const x=await setup(t,{seed:false,persist:true}),z=await newTask(x,{owner:null,role:'reception',title:'原候选阻塞任务'});x.db.prepare("UPDATE work_tasks SET lifecycle_status='blocked' WHERE id=?").run(z.id);
+ const before=await query(x,{scope:'candidates',kind:'task',task_state:'blocked'});assert.equal(before.total,1);assert.equal(before.items[0].id,z.id);assert.equal(before.items[0].owner_id,null);
+ const u=x.db.prepare("SELECT * FROM users WHERE id='front'").get(),b=await createBackup(x.path,join(x.dir,'backup-task-state')),r=await restoreBackup(b.backup,join(x.dir,'restored-task-state')),db=openDatabase(r.database);t.after(()=>db.close());
+ const after=myWork(db,u,before.filter);for(const k of ['filter','items','counts','matched_counts','date_counts','total','candidate_task_count'])assert.deepEqual(after[k],before[k],k);assert.equal(db.prepare('SELECT assignee_id FROM work_tasks WHERE id=?').get(z.id).assignee_id,null);
+});
+
