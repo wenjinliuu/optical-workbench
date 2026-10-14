@@ -39,7 +39,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   }
   function updateApplied(){taskState.disabled=scope.value==='completed'||kind.value!=='task'&&taskState.value==='all';if(!data){applied.textContent='';pending.textContent='';return;}applied.textContent='当前已应用：'+filterSummary(data.filter);const changed=Object.entries(filter()).some(([k,v])=>v!==data.filter[k])||Array.from(form.elements).some(i=>i.validity?.badInput);pending.textContent=changed?'筛选填写已变更；当前列表仍按上方条件显示，点击查询应用。':'';}
   form.addEventListener('input',updateApplied);form.addEventListener('change',updateApplied);
-  function clear(){followupsPanel.reset();presentationGeneration++;display.disabled=true;display.value=adoptedDisplay;data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;updateApplied();}
+  function clear(preserveFollowupState=false){followupsPanel.reset(preserveFollowupState);presentationGeneration++;display.disabled=true;display.value=adoptedDisplay;data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;updateApplied();}
   async function denied(e){clear();error.textContent=e.message;await onScopeChanged?.(e);}
   async function proof(s){await api('/my-work/authorization?'+new URLSearchParams({...s.filter,expected_source:s.source_token}));}
   const followupsPanel=createMyWorkFollowupsPanel({api,getMe,getEpoch,getAdopted:()=>data,openSource,onDenied:denied,onRefresh:()=>load()});
@@ -55,7 +55,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
     const previous=data;error.textContent='';more.disabled=true;
     if(f.scope==='completed'&&(!['all','task'].includes(f.kind)||f.task_state!=='all')){error.textContent='已办理记录仅支持全部或通用岗位任务，且不使用当前任务状态；请明确退出不适用筛选后查询。';more.disabled=false;return;}
     if(f.task_state!=='all'&&f.kind!=='task'){error.textContent='任务状态只适用于通用岗位任务；请改回通用岗位任务，或明确选择“全部原任务状态”后查询。';more.disabled=false;return;}
-    if(!append)clear();
+    if(!append)clear(true);
     try{
       const params=new URLSearchParams({...f,limit:'30',offset:String(append?previous.next_offset:0)});
       if(append)params.set('expected_source',previous.source_token);
