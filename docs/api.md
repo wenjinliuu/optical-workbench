@@ -458,3 +458,6 @@ T03.03/M01-F03/M01-D当前原通用任务阻塞原因和原修订只读元信息
 ## V0.84 后续引用当前原状态筛选
 
 `GET /api/my-work/completed/:id/followups` 与 `/authorization` 接受同一个 `task_state`：`all` 或任务链八种原状态。响应分别返回固定引用 `total`、完整 `state_counts`、当前 `matched_total`、已采用 `filter` 及同源分页；来源令牌绑定筛选和全部后续当前事实，不能跨状态复用。详见 `my-work-followups-state-plan.md`。
+
+
+V0.84显式空状态/重复参数拒绝；详情前后核对已采用结果身份，跨筛选或当前完整状态变化拒绝旧页/证明，固定引用保持。精确源CI1337/1337及4组云端浏览器通过；双处实际发布见progress-sync.json。
