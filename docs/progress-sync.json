@@ -1,12 +1,12 @@
 {
-  "verified_at": "2026-10-14T04:21:59.026Z",
+  "verified_at": "2026-10-14T08:55:51.286Z",
   "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
-  "development_version": "V0.83",
-  "checked_deliveries": 83,
+  "development_version": "V0.84",
+  "checked_deliveries": 84,
   "tasks": 50,
   "requirements": 287,
   "accepted_tasks": 0,
-  "progress_sha256": "cf79aeacbb67dd90737c90f7658976f6f1e54dd9257cf5d50d241401df441b01",
+  "progress_sha256": "8daa10b659a5c4e6595d759225191618518bd3ce114d4f68252cb0ecda6974e5",
   "resources": [
     "/progress-data.js",
     "/downloads/progress.json",
@@ -15,17 +15,17 @@
   ],
   "result": "passed",
   "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
-  "site_version": 63,
-  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_510d615c5f708191ab8da52adbb319c3",
-  "site_source_commit": "771e9d6a3edb399cd93bf17ee1fca860d5cdd986",
-  "deployment_id": "appgdep_6acf0352ec088191aca3c3e3c462ff3e",
+  "site_version": 64,
+  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_da74cb34a5c88191b2c312012da547e5",
+  "site_source_commit": "608ecdffbba1d824a3629c7f0498307f6777910e",
+  "deployment_id": "appgdep_6acf437f3d4c8191880a79928b2b6b95",
   "deployment_status": "succeeded",
-  "deployment_updated_at": "2026-10-14T04:21:47.175463+00:00",
-  "repository_progress_commit": "bca09f5462087d7a74b7b2a1a8da0a29519d20e3",
-  "repository_implementation_commit": "b10a756faa30667b2d50542d014d945465ec5e02",
-  "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38509855419",
+  "deployment_updated_at": "2026-10-14T08:55:35.977349+00:00",
+  "repository_progress_commit": "91f10167793ef215bdcd3a20a0599a348696ca0c",
+  "repository_implementation_commit": "b57b37b82b2be5a332cbb97af860fcd2479a2d28",
+  "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38536962970",
   "live_browser_verification": {
-    "desktop": "1440×1000: V0.83、83项勾选、50任务、287需求、业务验收0，搜索/原模块详情/导航通过，无运行时错误",
-    "mobile": "390×844: V0.83、83项勾选、完整任务/需求和三份下载一致，默认项目进度/导航通过，无错误或横向溢出"
+    "desktop": "1440×1000: V0.84、84项勾选、50任务、287需求、业务验收0，搜索/原模块详情/导航通过，无运行时错误",
+    "mobile": "390×844: V0.84、84项勾选、完整任务/需求和三份下载一致，默认项目进度/导航通过，无错误或横向溢出"
   }
 }

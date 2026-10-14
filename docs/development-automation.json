@@ -13,9 +13,9 @@
   "source_instructions_sha256": "3d8f03a63a45fc0da459af2311d211aa4a34d2d797f3e8f2cefed86fafdc7a66",
   "authorization": "User 2026-10-12: continue step by step without another notification; push code and synchronize both progress locations.",
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
-  "execution_status": "Remote V0.81/V0.82 functional/progress/publication commits through e03fe84 and live V0.82/82 deliveries were observed and verified at this continuation; their caller or schedule origin is not established. This manual continuation completed V0.83 functional development, exact-source CI and repository/original Site publication verification. The existing four-hour schedule and original linked Site are preserved.",
+  "execution_status": "Remote V0.84 implementation 766f86 and successful CI38521720709 were observed at this continuation, while repository/original Site progress remained V0.83/83 deliveries. Their caller or schedule origin is not established. This manual continuation strengthened selected-source and late-detail checks, verified the exact final implementation and completed V0.84 repository/original Site publication. The existing four-hour schedule and original linked Site are preserved.",
   "next_development_task": "T03.03",
-  "next_development_slice": "V0.84 self-completed parent direct followup current original task-state filtering and complete lane counts, with immutable adopted source and current source authorization",
+  "next_development_slice": "V0.85 direct followup current responsibility role and original-state cross filtering, complete counts and bound current source proof, with unknown roles preserved",
   "business_acceptance": "pending",
   "schedule_updated_at": "2026-10-12T22:04:55.958055+00:00",
   "immediate_run_request": {
@@ -26,7 +26,7 @@
   },
   "observed_last_run_at": "2026-10-12T22:12:34.528423+00:00",
   "observed_at": "2026-10-12 23:02:23 UTC",
-  "last_manual_verified_version": "V0.83",
-  "last_manual_site_version": 63,
-  "observed_remote_functional_head": "e03fe84ab9a6825a2d205b90bc02dc65431fba5f"
+  "last_manual_verified_version": "V0.84",
+  "last_manual_site_version": 64,
+  "observed_remote_functional_head": "766f86ba751753355d32db16c21965b5a34f995e"
 }
