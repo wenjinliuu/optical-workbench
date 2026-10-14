@@ -1,12 +1,12 @@
 {
-  "verified_at": "2026-10-14T14:22:23.332Z",
+  "verified_at": "2026-10-14T15:00:39.170Z",
   "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
   "development_version": "V0.86",
   "checked_deliveries": 86,
   "tasks": 50,
   "requirements": 287,
   "accepted_tasks": 0,
-  "progress_sha256": "e5d49a703e182a7539f563683a0a7839187e569d457e1c8b7f93a6674d32aa00",
+  "progress_sha256": "c66b90e76aa05a09f643936516a36bb6c11f1ecad189863ac0597b4c3614bc6b",
   "resources": [
     "/progress-data.js",
     "/downloads/progress.json",
@@ -15,19 +15,17 @@
   ],
   "result": "passed",
   "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
-  "site_version": 67,
-  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_d27f29ddb9ec8191bf5e2f1ac4bf34b9",
-  "site_source_commit": "8c99f9072fb1282d5dc879ae250300e2bd8d017e",
-  "site_archive_sha256": "3c03208f21e61e1c02b1ff447f37e503fc05af7cf60316bd877b00f34bdf1dda",
-  "deployment_id": "appgdep_6acf8ffcdf5c8191a328efcc48703cd8",
+  "site_version": 68,
+  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_8525fa4f31808191af5b1cc2eb239741",
+  "site_source_commit": "950faffa082daa1d60686bdb25be6eb51c6a043d",
+  "deployment_id": "appgdep_6acf9745ba6c819185523a7f405a8b8c",
   "deployment_status": "succeeded",
-  "deployment_updated_at": "2026-10-14T14:21:57.344674+00:00",
-  "repository_progress_commit": "482c402a7167b0ff49371565f36055ebbe07b2be",
+  "deployment_updated_at": "2026-10-14T14:53:04.007868+00:00",
+  "repository_progress_commit": "43c7227e8e50eba9091291c30045f5282e612931",
   "repository_implementation_commit": "e7fad309524a6e6443ce1a7a3e093112e868d1b7",
   "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38576156912",
   "live_browser_verification": {
-    "desktop": "1363×936: V0.86/86勾选、50任务/287需求/验收0；M14-F01搜索唯一命中，页面宽1348小于视口1363，无站点运行时错误或横向溢出",
-    "mobile": "本次设计Site只更新同源进度与下载数据，响应式外壳未变；当前版本移动端内容由精确功能源CI的5组电脑/手机浏览器覆盖，上一Site66的390×844线上外壳基线保持。未把本轮未直接改视口重跑写成新的线上手机实测。",
-    "downloads": "线上progress-data.js及progress.json、requirements.json、development-plan.md逐一回读一致；页面四个下载入口覆盖三份唯一下载资源"
+    "desktop": "1440×1000: V0.86、86项勾选、50任务、287需求、业务验收0，搜索/原模块详情/导航通过，无运行时错误",
+    "mobile": "390×844: V0.86、86项勾选、完整任务/需求和三份下载一致，默认项目进度/导航通过，无错误或横向溢出"
   }
 }
