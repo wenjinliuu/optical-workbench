@@ -1,58 +1,967 @@
-Y��x-���jם��i��+��j[h��ܢ�����:-jZ.����)޳R2[�X�K�Nh�R+r##b��0��[�>X��x��i��c��ɾYJ�K����[�nk�K��i��X�niJ�F�72�&�w&W72�6�����i�ikZ��x����Ί��Y�j�^Y��h�~X��K��K�XZ^X�>�xiʾ[�8.j�NX��x��i��K��X�nX�.��[�^�ɾX[~K�>K�NK��K��K��X����iKnX�nX����[�^8 ��22i�΋�࠮K��vV榖�ƗWR��F�6��v�&�&V�6�y�NX��Zx�$TD�R[��z��6�FW���6R���R�f�V�FF���X�niJ�8.���X�n����z��x+�c�y�NXh^Z�8h�~��ik�j�X�����[�n���K��yY�SK��K��X�8#�ri���k.8%�i[NK�>iʮ�	���~���[�>X��X��Y�yJ�K�Ί�XZ�X[[z^z����h��K��Y��zj>j�ZY{�n8 ��[{.Z��x��ɤ��FR#Bi��Y�����8Y8�[�N[��Z�.h�~�^��.8[�X��JnX�~y��[�^Y(�i*N�H8�y.��.X��K����z�[�r�iȞiX�y�h�N��X�n8x��z��Z�.h�~{�nX�~K��NY�j8{J.8�x�ZH�h�zK�8Y�i���؞z��8K��X���.�x�ZH�8Z���Y(΋�z{�8X^[�~j8i�^8K��{Nh
-~ZH~K��84��X�{��8 ��K�>zXZ^X�>�ɧ7&2�6W'fW"�֧>87&2�F"�֧>8֖w&F���2��f�V�FF����7�8V&Ɩ2��>8$�Y(�Z�XZ���yXΊx���B�&6��FV7GW&R��N8.���[�nK��X��Y�"X��[����iK�h�XZ�K��X�Z��h�8 ��22K��K�XZ^X�0��C��ɮh�~Z�K��X��I��J>K����Ί^y��Z��z�[�~�XNii�X���xNX��z��NK��h��8.[
-NX[nXX�j�Z��#8#.8#~8#���Ι��Y�Z��h�j�>[�����K���{�N{�~8��NK�nh�i�>Y(�x��i��i��X����K�ވ;�[ni��Y��y.��.Y(Έ؞z��[�>K��Z��i[B�.8 ��X��z���Y�z��K�R�ZY{�n���K�>�ɾx�nhz��N8��z{�8i*NY��8K�>K��X�[�>8�y�)ފxNX��Y(΋z�[�~h�i�>���hYN�z���h��8.X[nKْSK��K��X�K��hȞX��K�ދYn�;�hꎋ��8%C�By�Nj�>[��[�>X�K��i[h��[�>[�^yJ�h�~iz.iȞik�j��^XX^h�nX�^x��z��N8 ��22��Ί���[�P��##b��~�ɦ��'V�6�V6��	���~�ɶ��FW7B��	���~��Ίhny�nj�>[��8�x�ZH�8ZK�J^8�h�i�>X��Y��zi[h��h.ZH�8.iX^hH��znX�Z���ZK�J^y�NkX���^h�>X�K�i�&WVW7Bf��VC�W'&�.���ijފ�[{.��Ί�K��X�Xi�XZ^Y��k����΋��i���(Ni��ZK�J^�z�[�N8 ��6�&�֗V�kX��x�Y����Ί��	���~�ɣCC9sSyK^�I�xnX�>83�9s�CBh��iˮ�xnX�>�ɾy��[�^8Z�.h�~Z�^K��Zَ8K�NK��x��z��Y�i��8Z���i8�K��K��8izj��Y	k�.X{�8W66RX[>�z�[˞z�~8h��iˮ�X{�k�^��N�XNii�8iz����i{n�I����8.�I�i�Ίx67&�G2�'&�w6W"�6�V6��֧>�ɵ��w&�v�BX��Z螊8^Yʂ�F���Ί�y��[�^���iʮ[�^XZ^����K�ދYn8 ��K��X�ik����iKn8y��Z����ZH~8�xNj�h
-~�;�8j�>[��h.ZH�K��Z��i[NK��X��Jnj�Z��k*iȞZ��h�8.���z��4�K�R"Z�^{�>i��K��Xxn8 ��22iʮZ��h�����Z࠮izj�>[���:�{�.h�ny��Z��JnX�~h�^XZ^�ɾk*iȞy��Z��XNii�8.��NK�n8K�>K���K��X�x��i��8{�N{�~z�yn8Z�n�[�h�^Y�X�[�>8�z�[�~X��K��8Z��i[NZ�n[��X[>{;�8X�[�~Y(�Y�i��Z��i[NkX���Y�~[�^Z��x�8.h�>j�8�Z�8�j��8K�>K����X�^Y(΋J.X�X�>[�NK��K��yJ������N�xNX��8.����z��x+����[�nY�j�^iʮh�~�����K�^j�NK�>[�2F�72�&�w&W72�6��K��i�΋��[�X���[�^8 ��22c�"i�ikK�Nh�P��yJ�h�~z��NK��yY�kX^��.8h�����Xވ�.�)�i��[�n���[�n{�~{��[�X�8K��yY�YN��nj�^���i�N[^zK��ɾyJ�h�~i�.K��X�.K��kX���^8.i[Nz���x~yJ�K��9�i8�K��8�hN��~{��������8{J���.���{�>8x��y�j���XޙY����y��[�^�^K��iK�K��kX^��.8 ��ikZ)�֖w&F���2�%�f֖Ǖ�f�6�G2�7����Zَ�x�X�~{�~iz���x�{��[�>8.�I��J>K��X�����X�ni��[�~K��Y�[�nz�yn[{.iȞZ�n�[�y�NX[>�Nh�i�2�i*N�H�ȎX[>{;�Y(�K��h��[�^Z��Ȟ�ɾi��j�X�[�~X��X[>�NZI�K��Y�K�Z�.h�~Y�i�����X[>�z�i{niȞynyKY(�X��Y�Z������Y�i��K��X�~[�Y8�8.{�N{�~{�n��8�(��r�Z�nz�x�{��8j�>[��y�h�N��i��8K�>K��x��i��K�NK�nK��iʮZ��x�8 ��7&2�FV���FF�֧2K��yY�XZ�K�����i�NYˮi��[��xZ~�ɶ��'V�FV��Yʎiz.iȞzK�K�[�>X�����X�{ˮ[	j�K����K��yY�X���JnX�~8Z�nzX��[{.iȞi[h��8.kXz��Y��K��y�NK�>K��8���z��8X�[z^x�nhi��[^zK�j~i�����i[h��[�>Y�i��K��K���؞z���ɾK�ފxnK��Y�{��j�Y�~[{.Z��x�8.XZ�K��Yˮi���hny�nh�^[�^8[�^j8i�^8[�^��X�.z��N8h�~��8�XޙY�K�NK��Y(Ι�����8.ik[�>h����K�����i�NZ�.h�~�ɾX��zK�K�[�>���X�^K��8 ����'V�6�V6�8��FW7N�ȃb�n�Ȟ86�&�֗V�yK^�ICC9sSY(�h��iˣ3�9s�CNY�~�	���~8.ikZ)Ί�Z�n�[�h�i�2�i*N�H8ZI�Y�i��X�[�~8x��z��X[>�z�8XZ�Yˮi��XZ^X�>8X��[�>��z{�X��K�ފhny�nzK�K��ɾizj��Y	k�.X{�K�����i{n�I����8 ��K��K�XZ^X�>K��K��C�y�NZ�^�xNX��z��NX����NK�nh�i�2�K��X��X��x��i��Y��z�ɾX��K�^{�~{��x��z��Z��x�XZ�X[h�i��i��X����K�ވ;�h��[^zK�j~i��h�n�:�X�nZ��x�j~K��Z��i[N��nj�^���iKn8 ��22c�2i�ikK�Nh�P��yJ�h�~{�~{��h�i�>hꎋ�����K��h�[{.z��Ny�Ni��K��kX^��.�Xވ�.K��i�N��nj�^[^zK�8.i�΋��Z��x�C�>XZ�X[�XNii�Y��z�ɧ7&2�F�7V�V�G2�֧>8V&Ɩ2�F�7V�V�G2�>8֖w&F���2�5�F�7V�V�G5�GF6��V�G2�7�8.Y�[z^X��K��K��h�i�>K����ޙ�NK�n���K��K��^i��K��h�n�I��J>K��i*N�H����z��ɾ�XNii�x��i�Ί�[�^i�^k�8Xh^Z�8K��iK�K��h��Y(�[�>i{n��NK�n[�^yJ����iz~x��K�ފhny�n��Ι��iz~x��i��Xi�XZSC�8.iʮZ��x�K�>K��z��B�Z�h��h�nZ��ZInh�^Y�X�[�>���K��iK�X��X���xNX�����Z�8 ��i��Y�ih~K�niK�Yʅ5ƗFR$��.Xh^���K��XX>K�h�8x��i��8[�^yJ�8Z���K��X�K��{N�ɾZH~K��y�Nh�^X�^Y
-�ih~K�n8.�����C�.X��Db��r��Tr�UDbӎih~i���ɾK�^Y��z{�Y��ZKNj~��nj
-������yI�K�~ZَX*�Y(�h��h��[�^Z�8.Z�n�[�K�ފ��X�nXh^�:��XNii����NK�n8.iz~x����NK�nX�>K��i*N�HK��K��yY�[�^yJ����[�>X��K�����X�j�.8 ����'V�FV��h��[^XZ�Yˮi��y�CnK�����i�Nih~i�Ι�NK�n8nK�ދXNii���[�^8�K��x��i���ɾx�iȞ�JnX�r�i[h��K�ޘx�{��8.K�NK��Yˮi��X�^Y
-�K���.j~i��8##.����nh�kX���^K����k9^j8i�^�	���~��Ίhny�niki�>��8��.�x�ZH�8[�nX�8K��X�Y��k��K��X�^Y
-�K�΋��X�ny�Nh.ZH�8.kX��x�Y���I�i��{�~{�ފhny�nX��kXz��[�n��Ί�K��K��K������i*N�H8X[>�N�XNii�8c.K��X�nX�.8 ��K��K�XZ^X�>�ɥC�.Z��i[N���K���{�N{�~K��C�N����h.ZH����X��{�~{��h�i��Y��z�ɾK�>K����X�^8iˮi�N�΋J>8h�>j��j��8�J.X�Y(�j�>[��[�>X�K��[�^Z�^�xNX��8%�i[NK�>iʮ���iKn���k�zhꎋ��K��K�>�����K�����Z�[{.kh�ZK8 ��22c�Bi�ikK�Nh�P��yJ�h�~{�~{��h�i�>[�X�8.i�΋��Z��h�C�.i��Y�Y�[z^z�ynX�~x�~�ɦ֖w&F���2�E�66�V�E�6V7W&�G��7�87&2��&v旦F����֧>8V&Ɩ2��&v旦F����>8.�I��J>K��X��ikZ)�i��[�~Y�[z^8�>i[N[)~K���X�yJ�x�nh8�x�{��Z�nz8i*N�HKɮ����ɾ[�^��[�>X��K��Y�&Wf�6���K��K��h��8.�z�[�~8Z�n�[�y��j~X��i��K���y.��"�x�nhz�ynh�.{���ɾi��K��X����Ί�iz~Z�nzY�iK�Z�n8 ��X��Zx���x�{��Z�nzy��[�^Y�X��XX��i��K��K�h�8�X{�Y(�iK�Z�n�ɾK��X��K��X��z��Y�~��X�n8.X��i�Ni*N�Hy��j~iz~Kɮ������i��K��iK�Z�nK��yY�[�>X��Kɮ����ɾK��X��WFF���YʎK��X�Xh^�x�i�^Kɮ��ޙ�.j�.ZHNynK��i*N�Hz��h8.Z�nzK�ދ��XZ^Y8�[�N8Z���h�n[�.z؞{�>i��8.K�>K���y.��.K�ވ�~K�>K��z��Ni�>��8.Zَ�x���z{�K��iK�Z�nz8 ��zK�K�X��Zx�X�nZ)�X�FV�����&�&F��r�FV��֖�7F�f^�ɾZ�nz���iˮK�NK�ދ�>X{����yK�I��J>K���x�{��Y�k�NzK��ɾK�NK��iz.iȞ�JnX�~X��Z�nzK��yY�8#3����nh�kX���^8���k9^j8i�^K��jΙ�"�h��iˮkX��x�Y��i8�K�Θ	���~8.K��Y�Z�XZ�x�nh�x��i�Ι��5ƗF^ZH~K��h.ZH�8.k�zx��i���B����[�X�.K��Y�K��؞z��8 ��K��K�XZ^X�5C�N�ɮ����h.ZH�K��iX^���Z�K��h�i��Y��z8.Z��i[N���K��K�[�NYXn8{�N{�~[.{�~8�XN�J�j����8�z�[�~h�~kK�8�(��~�	�y�^K��K��h.ZH�iʮZ��x��ɾK��X��xNX��X��j�>[���:�{�.{�~{��[�^Z�8.X��SK��X��#�~��k.K��iK�{�nX�~���C�.K��h��:�X�nZ��x�����i[NK�>iʮ���iKn8 ��22c�RK�Nh�P��yJ�h�~{�~{��h�i�>hꎋ��C�Nh�i��Y��z8.ikZ)�7&2�&V6�fW'��֧>X��&6�W�fW&�g��&W7F�&R4Ğ�ɮX��[�>X�����K��{NZH~K�����k�^X�^K��[��xZ~j�Z���ɾh�.{��h��Y���K��X˞�X�{�>i�B�X[>�B���NK�n�ɾh.ZH�X�����XZ^iky��[�^���i*N�Hh�iȞiz~Kɮ���[�nyI�h�Y��h�~8.X��[�2�[��xZ~K�ފhny�n�ɾi8�K��K��Y���xF�72�&V6�fW'���N8 ��ikZ)�7&2�'V�F��R�֧2�V&Ɩ2��W&F���2�>X���I��J>K��(	΋���K��h.ZH�(	�8.j��K��Y8�[�E��&WVW7BԖN��ΙI�����4��&WVW7E��NK��^��"�iz^[�~Z��[�N�ɾiz^[�~K��Y
-�i�^��.8X�.i[Z�.h�~{�nX�~8��~k.K�>8Xz�h��h�nZnj�8#S{��K���DU$�����K��ij�X�^j�C���ɾj��[�s#��~k.Xh^Zَz�~X�>8i���#iX^���X��Y
-�X��{J�����Θx�Y
-�k�^��n8.iX^���iz^[�~K��i��K��X�Z����ɾ{��^K��h�~��h.ZH�8 ��CN���z�X��kX���^8���k9^j8i�^8yK^�I�h��iˮkX��x�Y���	���~��Ίhny�d4Ğh.ZH�8izv6����^ZKiX�8j�Z���h�.{�ދ�yX�8�z�[�~��Nzk�8iz^[�~�KiX�8iX^���h�zK�Z��[�N��[�^X��ZK�J^�xފ�^X��K��ZَK�K��8.x��i���R����Y��K��K��X���z{�K��X�����[�X�.K��h�Y�K��؞z��8.XZ�Yˮi��Y(�i��K��kX^��.�Xވ�.K��yY�8 ��K��K�h�i��XZ^X�5C"�Y��zj>j�{�n��K��Z�n[�ދXNii���Ί��ɾX��K�ދYnK��iʮi[NK�>�	���~���X��[�n{��Y��z��Ί�X�~x�~8.j�>[�����K����XN�J��΋J>8Z���8h�>j��j��8�J.X�8yI�K�~y�h�r�h.ZH�y��jr��:�{�.K��[�^Z�^�xNX��8.X��SK��X��#�~��k.K��iK�{�nX�~���C�NX���K��h��:�X�nZ��x�K��iʮi[NK�>���iKn8 ��22c�bK�Nh�P��ikZ)�7&2�&�f��W2�֧2�V&Ɩ2�&�f��W2�>K���z{�U�7W7F��W%�&�f��W2�7�8.Y��i�΋XNii�{�n���hk.Z��i[NY��Z�~j�^8i��z�i�^k�8K��iK�K��h��X��[�>X��x��i���ɾK��ZَK��X��X��[��xZ~K��[�>X��Z�~j�^���K��yY�{�nX�r�Y�i�����NK�b�h�i�>8.X�~{�~X��K��Zَ[�>X��Zَ�x�Y��{�����iz~{�n��X�nX�.iʮy�^�ɾZ�n�[�K�ފ��Xh^�:�j>j�X�nX�.8.�I��J>K���X��X�X��y����ZI�K�ވN{;�K��8{�n��Y(�X�yJ����Y�[z^���X�nX��hȞiȞiX�Zy>Y��yK^���j8{J.�ɾX[>{;�[�^XZ^K�ދX�K��i�^yȾh�i�>8 ��zK�K�Z)�X�XZ�Yˮi��.K�ވN{;�K�����Z��i[FFV��X�niȞXXN[��.K�����.K��Y��i�΋XNii�c�c.�ɾY�k9^K��iK�zK�K�Zy>Y�K��K��yY���nj�^XZ^X�>��Θx�ZH�6VVNK�ފhny�n[{.K���.�XNii���N{;�K��x�nh8#NK��K��i��NK��X[K��Z�n[��Z��K�>���K��j��K��K���i��j����iʮZ��x�8 ��S.���z�X��kX���^8���k9^j8i�^K��jΙ�"�h��iˮkX��x�Y���	���~���X�^Y
-�[�nX�8X��Z�Y��k��8��z{�Y��{��Y(�h.ZH�j�Z���ɾik66�V��^��΋���x��i���b�8.h.ZH�[z^X[~j
-���ik��X��[�>X���X�nX�.K��{N�ɵc�^iz~ZH~K��XX�Yʎx��z��X��i��yJ�c�^[z^X[~h.ZH����Xh�X�~{�~i[h��[�>[�n�x�ikZH~K���Ȏ[�>X��[z^X[~h�.{��iz~{�>i�N���K��yY�i�^k��Ȟ8.[�X�.{�~{��K��Y�K��؞z��8 ��K��K�h�i��XZ^X�>i��C"�.Z�.h�~h��x�K��X�nX�.i{n�{N��N���K�.�[~[{.iȞY�i���X�[�r�j>j���XNii���N{;�K����[�^�ɾZ��i[NY�i��x�nh8K�>K��z��Nz؞K�ދYnZ�^�xNX��{�~{��z؞[�^8.X��SK��X��#�~��k.8j�>[���:�{�.��X�nK�nj�^iʮi[NK�>���iKnK��h�8 ��22c�rK�Nh�P��ikZ)�7&2�F��VƖ�R�֧2�V&Ɩ2�F��VƖ�R�>���Y�[z^Z�.h�~��nh8^K��[^zK�XZޚ�Z��i[Ni[�x�8i���y����X�[�~K��X��h��X�X�nX�.i{n�{N��N8.j>j�8Y�i��8X�[�~8�N{;�K��8�XNii�8��NK�n8i�^yȾh�i�>K�>{����UD>iz^i��Y(�{�X��zپ��8#i������B�Si�K����X�n�^8[�>X�ޚ^��.Z�K���ɾiJ�h��J�y��X��h��iˮx��z��k��X��8'66�V�K��^���x��i���r����K��X��[���)�ZInK��K�nX��i��h�nK��X�x�nh8 ���XNii�Y(�j>j�yJ�K��X��X��X��x��i���ɾ�N{;�K���i�^yȾh�i�>X�����X�n��Z�X��K��K�Ni��[�~i��Z�.h�~y�NZ���i��h8.k*iȞ[��xZ~y�Niz�i���N{;�K��K�^i��zK�iʮyY�ZَX��x�����K��X	�yJ�[�>X��Zy>Y��ɾ{�>i��X�[�~k*iȞi8�K��K���K��h��[i��z�iʮy�^8&7F�%���^K��[�>X�ދJnX�~i��zK�Y�8.ik[�����i�N�N{;�K��Y�j�^[��z��Z���[��xZ~��Θx�ZH�6VVNK��k{�X�X~X�nX�.���iz~j~K�K��yY�X���XNii�K�Ni��zK�y��Z��{ˮZK��yX�8 ��S���kX���^8���k9^j8i�^X��jΙ�"�h��iˮi8�K�Θ	���~�ɾX�^h��i�>��8^i�Z��i[Ni[�x�8Y�X��X�n�R�K�ޘ	N���X�8UD>Xˮ�{B����k9^j~��n8k{~Y���[�R�iz~x���iʮy�^X�8x��z��h.ZH�X��Y�h��x�K��i{n�{N��NK��{N8.k*iȞiK�Z��XZ��x�Z������X�nh�nZ�n�[�Xh^�:��XNii�i�>��8 ��K��K�h�i��XZ^X�>{�~{��C"�.�ɮY�i���؞z��y�N��k.{�Nh�B�K���.K��h�^[�^K�Nh�^h�zK����K��h�x�iȞY�i�����K�����K��K�>i��K�>K����X�.z��N8.i�.X��h.ZH��{�>i��K�^X����.X�R�K�>K����X�.X[>�NK�ޙ�Z�^�xNX��8%C"�.�:�X�nZ��x����SK��X��#�~��k.8��nj�^iʮi[NK�>���iKnK��i��Y�[�X���yX�K��h�8 ��22c�i�ikK�Nh�P��yJ�h�~h�i�>hȞ��X�.�	K��h�~��[�n{��z۞K��X��;�X�����i�.{�>i��K��kX���^8.{�~{��[�X���Ί����K��X�ik����iKnK��h�X�ޚ(nX�n8.ikZ)�6&�ƗG�����NK��K���z�j�Y�~�Nh�^K��xNX��K�ދYnk�^X�^���tT�E2��N�hk.Y�{�ޙ�^���Y(�i�Nik8 ��ikZ)�7&2�7�6�W2�֧2�V&Ɩ2�7�6�W2�>X����z{�e�7�6�U�fW'6���2�7�8.Y�[z^X��K���.Y�i���؞z����k.8��[�^i�^k��K��h���[�>X��x��i���ɾX�nX�.K��X���hny�n8&7�6�U��B�Z�.h�r�{�Y��x�nhK��X����Ι�k.K��K�>K����X�.x��z��8.Y�i��{�n��iJ�h����X�ni�ik��k.8K��yY�iʮh�K�NXh^Z�K�j�Z���ɾ���iz~Xi�XZ^h�.{��8 ��f�6�E�7�6�U�fW'6���>[nj��j�X�[�~X[>�NY��Z�X���k.x��i��8.kX��x�Y��y����K�h��xx��i�����K��X�Xh^j
-���i�ikX��ɾikX[>�NyKi[h��[�>�znX�Y��h�^��~���iz~X�[�~K��Kɮ���[�>X�ޙ�k.i�NiK�8.��z{�X��[�^yJ�jv�Vv7��V���v�K�GfW'6�����V���ɾ[�>X��Y��{��K���Vv7����K��Kʮ�
-X�nX�.x��i��h�ni8�K��K��8.Z�.h�~i{n�{N��NK��yJ���k.x��i��X��X�[�~Y��Z�[�^yJ����h��x�i[�x���XNii����NK�b�h�i�>K��h�x��z��8 �����i�Nj~K�ikZ)�K�NK��Y�i��c.8������Z�.h�~z��K��K�����{�>��k.Y�i��X��K���.Y�ZHފ�����[^zK�iz~X�[�ucK��ikX�[�uc.8ZI�K��X�X[>�N8.X��ZH�h��[^K��yY�Y�{��K���.8#cn��kX���^8���k9^Y(�yK^�I�h��iˮj8i�^�	���~�ɾY
-�Xk.z��xފ��K��yY�Xh^Z�8c�c>[�^yJ�8X��Z�Y��k��8iz~[�>X�~{�~8x��z��h.ZH�8.x��i����866�V��n���h.ZH�[z^X[~ikZ)�x��i���[�^yJ��[�>X�ޙ�k.K��{Nj�Z��8 ��K��K�X��x��z��hꎋ��y�Nh�i��X�~x�~K��C2��	�yJ�K��X�X�nkK��h�^iKnK��h�^[�^K�Nh�^��΋��h�^x�iȞZ�.h�r�Y�i���X�[�r���k.x��i���ɵC"�>K�>K����X�^z؞�xNX��K�ދYnK��K��yY�8%C"�.K���K��h��:�X�nZ��x�8iʮi[NK�>���iKn���K��K�^�	�yJ�X��K��i��K�>K�>K��Z��h�i�K�n8.X��SK��X��#�~��k.X��i��Y�[�X���yX�K��h�8 ��22c�i�ikK�Nh�P��ikZ)�7&2�F6�2�֧2�V&Ɩ2�F6�2�>8��z{�u�v�&��F6�2�7�X��(	�h�^[�^K��K�Nh�^(	�[z^K��X�8.�I��J>K���X��X�YʎZ�.h�~��nh8^X�nkK�	�yJ�K��X����Y�[z^i��K��h�^iKn���[�>X��h�^iKnK����I��J>K��[�nK��h����K�N�ɾ���K�NY��X�v�F��~���ikh�^iKnK��Xh�j�z��N8&76�v��V�E�7FGW>K��W�V7WF����7FGW>x��z�����i�΋��h�~��K�WV�F��~8'F6��WfV�G>K��X��X��8&Wf�6���K��x.[�nX�8��~k.[�.z؞���K��X��X�nX�"�Z���Y�K��X��ɾK��ikZ)�K�>K��Z��h�x�nh8 ��K��X�K��K��ih~K��yJ�iz.iȞZ�.h�~8Y�i��8X�[�~���K��Zَi��z��k.x��i��8.X�^Y�i��X�nkK�j
-���[�>X��x��i���ɾX�[�r�Y�i��X�nkK�[�^��k+�yJ���^j�X�[�~Y��Z�[�^yJ����izucX��{�~{��K�Nh�^���X�>K��[�>X�ޙ�k%c>8&�Vv7��V���v�h�.{��k{~yJ���Κ^��.K�^h�K�iȖ6GW&VNx��i��y�N{�NY��ɾX��X�n[��K�^X�[�~h�n[�>X��Y�i��K��X�8.K��K��ihr�X����Ni��K��X���hny�n���X[>�z�X�[�~K��{�>i��K��X�h�nY�i��8 ��i��[�~�	�yJ����X�~K�Y�[z^X��K�����K��K�����X�~�����NK�^i��K���ɾXZ��:�X�~��i���i�[�ni��zK�G'V�6FVN8.Z�n�[�h�.{��8�z�[�sCN�ɾK��h��ZJ~{�N{�~z�yni�>��8.X	���h�^iKnK��K�^i��[�~iȞiX�K�NK��[�^iK�Z�nY�[z^�ɾK��Y�X�yJ���x�{��Y�i��zK�K��X��yJ���΋I��J>K��i��[�����K�N���K�ވz�X��h�~Z�K�>yn8.Y�[z^Zy>Y��Z�.h�~Zy>Y�K��[�>X��i��zK�Y����K�>K���XN�J�K��iʮz��N8 ��XZ�K�����i�Nj�K�ikZ)�K��X�X��X�nkK��h�^iKb�h�.x��X�nX�.�ɾx��z���JnX�~z�nY�zK�K辋��K��i{nh��K��yJ�8.�x�ZH�6VVNK�ޘx�{��Y�{��K�Nh�^���iz~[�>X�~{�~K��X��[�����i�NK��X�8.h.ZH�j�Z��ikZ)��Y(�X�nX�"�[�>X��x�nh8X�[�~Y��Z鮙�k.K��{N8.x��i����866�V��~8 ��s^���z�X��kX���^8���k9^j8i�^8jΙ�#CC9sSY(�h��iˣ3�9s�CN��Ί��	���~�ɾ�hny�n�y.��"��z�[�r�X	���i�>��8i��K��h�^iKb�z�yn���K�N8[�nX��[�.zؒ�Y��k��8iz~ik��k.[�^yJ�8iʮy�^X�nX�.h�.{��8h�^iKnK��K��X��yJ�8c�X�~{�~X��x��z��h.ZH�Y�K��X��i{n�{N��NK��{N8.kX��x�Y��Z��h�X�nkK�(i.h�^iKn(i.h�.x��(i.X�nK�Y�[z^h��iˮh�^iKn(i.Y��j�X�nX�.(i.X��j>j�Z�K���ɾX�n��Ί�ZI�K��Xk.z�Y�y�N�x�ik���X�nK��yY�i8�K��K��h�����[�nK��yY�X��XZ��:�kXz��8$4ĞXZ�ikK��x�ZH�zK�K�8ZH~K���j
-����x��z��h.ZH�j�Z���	���~8 ��K��K�h�i��X�~x�~{�~{��C2��ɮK��X�[�Zx��i�.X���Y��Y(�[)~K��X	����Nh�^���i��z�h�~��x�nhK��J>K��X��i�N���K�ވz��Ί^K�>K��Z��h�i�K�n8%C2��C2�>K�^�:�X�nZ��x����K�ދYn�;�X���iʮi[NK�>���iKnK��h����K��X�ik�Y�i����nK��K�>���8.X��SK��X��#�~��k.K��xNX��[�^z��N8i��Y�[�X�8Y�K��؞z��.��yX�K��h�8 ��22c�i�ikK�Nh�P��{�~{��yJ�h�~h�i�>y�EC2�X��K��X�~x�~8.��z{���F6��W�V7WF����7�YʎK��X�Xh^�x�[��K��X��X�nX�.�����K��yY�c㞋��K��8K��K��ih~8x�nh8K��K�n8i{n�{N8K���.Y(�[�.z؞�ɶ6�F�FFU�&��^Zَ�x�K���V�����K�ފ^�
-iz~�y.��.8.X��X�nkK�����K�N��>XZ^h�~{��K��h�X[�Z����iz~[�.z؞Y8�[�N�x�iK�K�ޘx�ZH�h�~��8 ��[)~K��X	���VWVVB�z��h�^iKnK�����Y�[z^Y�[)~i��K��6���Y�v�F��~���66WNx��z��z��N�ɾi��K��7F'B�W6R�&W7V�^X�nX��V�F��~(i''V���~8'V���~(i'W6VN8W6VN(i''V���~8'&WGW&�[�^��i��z�X	���[)~K��Y(�X��Y����k�^z���I��J>K���ɾh�~��K��&WGW&��G&�6fW.XX�i�.X����ik�I��J>K����N�(b�h�^iKnY�Xh�K��X��h.ZH����K��yY�X����k.[�^yJ����Ni��X��Z��i[NX�nX�.8.�I��J>K��X��K�^���K�N���K�ވ;�K�>i��h�~���ɾ[)~K��Y�i�^X��i�N���h�I��J>K���x�ikK�Nh�^8.i[h��[�7'V���~K�^XX��66WFVN���VWVVNK�^XX��i��z�[)~K��K�NizK���I��J>8 ��[z^K��X�K��K���i��K��[)~K��X	����i��[�~K��zxވ�>Y�N���{�NY�h�^iKb�h�~���X	���[)~K��zپ�����i���i�[�nh�zK�h��ij��ɾX˞�X�Z��i[Nh��x��[�^��N�(b�h�~��K���i�.X�i[�x�x��z��{����8.Z�n�[���z�[�~K��h�.{��8.i{n�{N��NY
-�XZ��:�iki8�K������TeB����K��yY�z��h�^iKnK��K��K�n���X�nX�.i��zK�h�~��x�nhY(ΘY��[)~K���ɾi{n�{Ni�^k�Y�~K��Z�^K��X��X��K��K�n8.X	���[)~K��K�^[{.iȞi��Y���vW"�&V6WF����&�fW76�������K��Z;z{K�>K���XN�J�[{.h�i�>8 ��ikZ)�K�NK��{�����i�Nh�~��j~K��ȇVWVVB�6���VB�'V���r�W6VB�&WGW&�VN�Ȟ��Θx�ZH�6VVNK��iK�X��K�Nh�^h�nY�{��h�~��8.Z��i[NzK�K�K��X��#nK��K�n�ɴ4ĞXZ�ik��x�ZH�8ZH~K���j�Z���x��z��h.ZHޘ	���~8.x��i����866�V�ӎ�ɾ[�>X��X	�����J>K���h�^iKb�h�~���i{n�{NK��i�Y�K��K�nK��{N��΋��{��K���.Y(�Y��Z�X�[�~[�^yJ����XZ^h.ZH�j�Z��8.izuc�[��xZ~K��h�X��K�n���K��yJ�X��[z^X[~x��z��h.ZH�Y�X�~{�~8 ���N���z�X��kX���^8���k9^j8i�^X��CC9sSyK^�I�3�9s�CNh��iˮ��Ί��	���~�ɾ�hny�nK�NY�[z^��N�(nz��K��8Y�[)r�i��K����z�[�~i�>��8x�nhi�K�n8iK�[)~K��Kɮ���i*N�H8^i�Z��i[N{����8Z���Y��k��8iz~[�.z؞X�~{�~8i�.XΘY��K��X�h.ZH��i{n�{N��NK��{N8j~K�K��yY�X��ikh��iˮkXz��8.yJ�h�~i��K��K�>���yY�Y�i�����K��X����iKn{�~{��[�^Z��h��ɾyI�K�~X�[�>K��iʮ���XZ^i�΋��8 ��K��K�h�i��XZ^X�5C2�.�	�yJ�K��X����Z��X�nkh��h.ZH�K��Z��h�K��h��؞j����[�n�Nh�UC2�>kXz��Y���yȾi���ɾK�>K��Z��h�i�K�n8�z�X��K��K�K��X�8[�x���K�.[�n��8[z^K��iz^X�b�i{n����	�y�^Y(�j�>[��K�>yn�XN�J��xNX��K��[�^Z�^i��z�8%C2��C2�>K�^�:�X�nZ��x�����K��X��K�ދYniʮi[NK�>���iKn�ɳSK��X��#�~��k.{�nX�~X��i��Y�[�X���yX�K��yY�8 ��22c�i�ikK�Nh�P��{�~{��C2�.�	�yJ�[�.[��ZHNynX��C2�>�xnY��X�~x�~8.ikZ)���F6��W�6WF���2�7��ɧv�&��F6�>Z)�X�ƖfV7�6�U�7FGW2�7F�fR�&��6�VB�6�6V��VB�8W�6WF����&V6��8&W7F�&U�7FGW2�&W7F�&U�&V6���ɷF6��WfV�G>�x�[��K��yY�X��K��K�n[�nZ)�X�Y�j~[��xZ~X��&��6��V�&��6��6�6V��&W7F�&^X��K��8.Zَ�x�XZ��:�7F�f^8K�ފ^�
-iz~[�.[���ɾK��K��ih~8X����Ni��8iz~h�~����J>K���x��i���i{n�{B�K���.X��[�.z؞K��h�8.{�ni��z�K��[�.[��K�ދ���8X��Y�X��X�nkh�X��x�nhK��{N���K��K�nK��K��X��K��iK��X���N8 ��[�>X��iȞiX��I��J>K��h�n�z�[�~�I��J>K��X��[�nX��Y�y�������Z�8�z>��N8X�nkh�8h.ZH��ɷVWVVNizK���I��J>i{nyK�z�[�~�I��J>K��ZHNyn8.����K��XX�W6VN���iʮ[�Zx�K��V�F��~8.���Z�XX��K�Nh�R��Y�����N�(b�h�^iKnK�nK�ވ;�[�Zx�h�nh.ZH�h�~���ɾh�.K��K�ފz>��N���Z�8.X�nkh�zhj�.h�iȞX��K�Nh�R�h�~��i8�K�����h.ZH�Y��X�X�nkh�X��7F�fR�&��6�VN[�nK��yY�iʮ�z>Xk>X��Y����K�ވz�X������8.i�Y�K��K�nY(�[�>X��Y��K��[�.[��Z�~j�^{�>XZ^h.ZH�j�Z���ɾK��X�8x��i��[�nX�8Kɮ���i�>��855$nK��[�.z؞k+�yJ�X[Y�iˮX�n8 ��K��X����X�~Z)�X�[�.[��zپ��8���Z��X�nkh�Z��i[N{����X����W>K�.ij^X�nX�~i[�x��ɾY�K�j�X˞�X�i[h��h�K�X�~��8K�>X�~yȾi��Y(΋J>K���h�^iKb�h�~���[�.[��x�nhkXz��8.X�~h�.K��yY�zپ��8K�ޘx�ik��~k.���X�~ikK��yY��xnY���ɾ�h^��si�i��zK�[{.[^zK��Z��i[NX˞�X�i[�x����K��h��h��ij�X�~[�>K��z��8.yȾi��h��iˮYʎZ�Y��Xh^j��Y	k��X�����h�iȞ�xnY��k+�yJ�i8�K��8X�nX�.8X��j>j�XZ^X�>8.x�nhkXz��iʮh�kX��z�K��X�K�ދYn���j�>[��K��X�kXz��Y����y.��.K��iz^K��X�X��K�>K��X��X�^K��[�^Z��h�8 ��6VVDFV��F6�W�6WF���>ikZ)�^K�����i�N[�.[����nj�^�ɮ���Z�8X�nkh�8�z>��NY�i�.X�8h.ZH�Y�i�.X�X��X�nkh�X��[{.iȞ���Z�8.Z��i[NzK�K�nK��X��C�K��K�n��Θx�ZH�X��Zx�X�nK�ފhny�nY�{��ZHNyn��Ι��zK�K�[�>h�.{��h��[^8.x��i����866�V�Ӟ���iz~[��xZ~XX�yJ�X��x��[z^X[~x��z��h.ZH�Y�X�~{�~�ɾi�΋��k*iȞyI�K�~X�[�>8 ���>���z�X��j8i�^K����k9^8CC9sSyK^�I�3�9s�CNh��iˮkX��x�Y��i8�K�Θ	���~8.X�^Y
-��I��J>K���[)~K����z�[�r�Z�n�[�i�>��8����K�ޙ��Z�X��K��X������{�ni��8X�nkh�h�iȞX��K��h�.{��8K��yY�X�����Z�y�Nh.ZH�8K�Nh�^Y�ik�I��J>K���z>��N8�x�ZH�X��z��K��i8�K��8Y��{�[�.[��Z���iX^���Y��k��8ni�Z��i[NX�~i[�x�8���z��c�X�~{�~8[�.[��[��xZ~x��z��h.ZH�Y(�K��K��{NX��Y�ZH~K��h�.{��8.kX��x�Y����Ί��z�K��X�nkh�Z�Έ{Niz~�z>��NXk.z�8���X�ni�ikK��yY��؞z��8h.ZH�K�ޙ��Z�(i.�z>��N(i.i�.X�(i.i��z�h.ZH����K���xnY��{�>Zق�K��yY�zپ��8h��iˮZ�Y��k��X��8X�j�X�nX�.X��X��XZ��:�kXz��8.K��X�ik�Y�i����nK��K�>������i[NK�>���iKniʮ�	���~8 ��K��K�XZ^X�>K��C2�.�	�yJ�Z��h�K��h���i�K�nj
-������Z��ikވ؞j��xF6��6���WF�����N�Ȏy��X��K�^�����Ȟ8.K��[�~h�X��yI�h�K�>K��z��N8�K�yJ�h�>j�8K�ދYnK�.[�n���[�x��h�nK��K�K��X�8.YNK��X�{�~{�ޘ	���v6&�ƗG�����NX[yJ����K��8�XNii�x��i��8i�>��8i{n�{N��NY(�h.ZH��ɳSK��X��#�~��k.X���iʮi[NK�>���iKnK��h����Y�K�.{�~{�ވ؞z��8 ��22c�"i�ikK�Nh�P��{�~{��C2�.�	�yJ�j�Z��K��h��X�~x�~���ikZ)�7&2�F6��Wf�FV�6R�֧>8V&Ɩ2�F6��Wf�FV�6R�>X����z{��F6��Wf�FV�6R�7�8'F6��6��F�F���>hȞK��X�x��z��x��i��K��ZنvV�W&�5�&V6�&E�&Wf�W~��>Y�N8�XNii����NK�n�hk.X�����{��K��h����Ί�Ni��[�^Z�yK�	�yJ��xNX��Y��Z��ɾ�I��J>K���X��X�i��z���{�����iz~K��X�izi�K�n���K��j�h��j~�)�h�nYˮi��x��kX�8'F6��Wf�FV�6^hȞK��X�x��z��x��i��K��Zن��FW>�ȎX��z���Ȟ86�W&6^86��F�F����fW'6���8F6��&Wf�6���8&V6��8Y�[zR�i{n�{NY(�Y��Z�[�^yJ�k�^X�^�ɾK�N{�[�^yJ�X[>�NK��X��X��F�7V�V�E�fW'6���2�NX����NK�f�N���Y�K��X�Z�.h�~ZH�Y�ZIn�J�8.Y��[���K��X[>�Nzhj�.K��iK��X���N���X�nX�.K��Kɮ����XNii�K���.iK�X��8 ��i�K�nY(Έ؞z��y�Nx��i��x��z��K��v�&��F6�2�&Wf�6������K��ZَK��iK�K��X��X��K��K��ihr�K��K�b�K�>K����XN�y�i�>y��x�nh8.i�K�n��h��xK��X�K���.8i�K�niz~x���ȎX��j��Ȟ�ɾ�؞z����h��xK��X��[�>X��i�K�b��؞z��iz~x���ȎX��j��Ȟ���Y�K��X�ZH�j���Ι��iz~X�nX��D4��4��dĔ5B�4��D�D����4��dĔ5B�Ud�DT�4U�4��dĔ5N8.X��h�^iKnK��i��K��8iȞiX�[)~K��Y(�[{.h�^iKnh�ވ;�K��Zَ�ɾi�.X�����Z�X��Zَ{ˮ���؞z�����X�nkh�K�ވ;�Zَ�ɾh�.K��Y�X��K��K�ވ;�Xi����ikK��h�^iKnY�X�nZَikx��i��8 ��tUB6���WF�����X�n[�>X��i�K�b��؞z��8i���x��i��X��[�>X��i�^yȾK��y�Nj
-����ɷ&VfW&V�6W>i�ZI�#K��ik��h�����[{.��iz~[�^yJ�x��z��K��yY�8%�5B6�V6�X��j�Z��iʮK��Zَ��>XZ^8k*iȞK��K�b�Z����[�.z؞Xi�XZ^���z؞[�V&�G�i���{NXh�j�j8i�^Kɮ���i*N�H8.�	�yJ�j8i�^[�>X��i��K���[)~K��8h�^iKn8����8j�>[��iz[�.[��8[�>X��i�K�b�K��X�K���.8��Ni��8[�^���XNii����NK�nX��[�^yJ�i��Y
-ni*N�H8'&V6�&E�&VG�K�^��zK��	�yJ�j�Z������ZH~���6���WF����V�&�VNZx�{��f�6^�ɾk*iȖ6���WF^h�n�z�X��K��K�K��X�8 ��yXΙ�.YʎZ�.h�~8K��K���[)~K���i��[�~X��K���xnY��X[yJ�(	�j�Z��K��h��(	�XZ^X�>�ɾi�K�n{�n�����I��J>K���X��X����h�iȞi��[�~Y�[z^X�����i�K�b�K��h��X�nX�.���[�>X��i��K��h�ވ;�Zَ8.��>XZ^{ˮ��X��yY��؞z���ɾX�����j
-���izK��Zَ��΋�>XZ^iK�X��Y�x�ikj�Z���ɾ���X�ni�ikK��yY���Ni���i�^k��X��Y�X����h�����x��i��Xk.z���Xh�j�Z��8.[�>X��i*N�H��NK�ni��z�i��zK����K�ވ;�K��Zَi*N�H[�^yJ����X�nX�.K��yY�X��X[>�N8.i{n�{N��GF6�{�X��k{�X�K��X��X��i�K�b�K��h��x��i����΋J>K���h�~��X�nK��Zَi{gF6��WfV�G>[��xZ~���K��X	�yJ�Y�i�^x�nh8 ��6VVDFV��F6�Wf�FV�6^Yʎx��z��zK�K�[�>���X�Ni�K�b�N�؞z���ɮ[)~K��X	���[�^j�Z��8����K��XX�{ˮ��Xhފ^���ȎK��[�^yJ�X���XNii�c�Ȟ8i�.X�Y�XNii���ZH~8���Z�[�^�^8.�x�ZH�h��[^K�ފhny�nK��iK����[{.{��K�Nh�R�iK�X��K��X�K���.y�Nj~K辋{>��~8.Z��i[NzK�K�nK��X��C�h�~��K��K�n8Ni�K�b�N�؞z��8.�XNii�[�^yJ��.��NK�n[�^yJ�8.x��i���"�866�V���ɾizuc����z��h�~���[�.[��X�~{�~K��h����iz~K��X�K�ފ^�
-i�K�nh�nK��h��8 ��N���z�X��j8i�^X�����k9^�	���~�ɾyK^�ICC9sS�h��iˣ3�9s�CN��Ί��I��J>K�����Z鮈�>Y�N8X�nK�h�^iKnK���؞z��K��X��K�>Zَ8izuc��h��8i�K�nXk.z��xފ��K��yY�Z�Xi����h��8�^XXUc>K��K��ZَX��cY(�iz~i�K�nx��i��X�nX�.8X�����{ˮ���i*N�Hh�zK�8izk9^Zَi*N�H[�^yJ�8h��iˮX�nX�.Y(ΘX{�k�^yn���X��XZ��:�kX��x�Y��kXz���	���~8$4ĞXZ�ik��x�ZH�8ZH~K��j
-����x��z��h.ZH�K��yY�XZ��:�ik��K��[�^yJ�8.h.ZH�j8i�^x��i�΋��{��Y(�[�^yJ�k�^X�^K��{N���h�.{��Y	iz~�؞z�����X��XNii��
-h�[�^yJ�K��K��{N�ɾi*N�H��NK�nK��yY�[�^yJ�K��[�>X��i*N�Hj~��8 ��K��K�XZ^X�>{�~{��C2�.�ɮi��z�	�yJ�j�Z��y�Nh�K�B�Z��h��z�zhK��Y��Z�K�~X{�[��xZ~���ZH�yJ�[{.K��Zَi�K�nX��K��h��j
-����ɾK�>K���΋J2�K�>K��z��N8�z�X��K��k���K�.[�n���[�x��8[z^K��iz^X�nY(Θ	�y�^K��X�^X�~[�^Z�^�xNX��8.yJ�h�~��nK��K�>���yY�Y�i�����X��SK��X��#�~��k.8�iʮi[NK�>���iKnK��i��Y�[�X��Y�K��؞z��.K��yY�8 ��22c�2i�ikK�Nh�P��{�~{��yJ�h�~h�i�>y�EC2�.�	�yJ�i��z�h�K�NX�~x�~8.ikZ)��z{��F6��6���WF���2�7�K��7&2�F6��6���WF���2�֧>�ɾK�^���X�Z��h���[�^K��K��h�N���K�ޘx�[��[�ni�K�b�K��h��[�^yJ�y�NK��X�K��K�n���K��iK�X��iz~K��K��ihr�h�~��K���"�X�nX�.8'F6��6���WF���>j��K��X�K�K��K�~X{����ZH�Y�[�^yJ�Y�Z�.h�~i�K�b�K��h��X��Z��h�X��h�~��K���.�ɷ66�^Y��Z�vV�W&�5�&V6�&E�&Wf�W~8.K�~X{�X�^Y
-���Ni���X��Y��Y�[zV�B�Z�^h�K�Ni{n�{N8Z��i[NX��K��X��i�K�b�K��h��8X��j~�)���XNii�x��i��8��NK�nz�>Z�XX>K�h�Y(�Xh^Z�Y8�[��8�	���~y�Nj�Z����K��xN��>[��xZr�h�~{��8.Zy>Y�k+�yJ�[�>X�ދJnX�~i��zK�Y�8 ���5B6���WF����7V&֗NK�^h�K�N[{.K��Zَx��i�����yK[�>X��iȞiX�[)~K��i��K��K�N[{.h�^iKn8����K��8iz���Z�h�nX�nkh�8[�>X��K��X��i�K�b�K��h���[�^yJ�����z��ZH~i{nZ��h�8.K��X�Xh^�xފ��Kɮ���8���K��Y(�i�ikx�nh�ɾ���izr�{ˮ���i*N�Hh�.{�����Z���ZK�J^Y��k��K�~X{��{��h�HZ���xފ�^8.K��YΙJ�z��K��K�K��h�X�����YΙJ�x�iK�X��Y8�[�N8.X�����6�V6�Zx�{��6���WF����V�&�VC�f�6^�ɴtUNK��ZَK��h��XZ��:�k��k>h��G'V^���X��z��iʮK��ZَX��i�Nh�n�(N�x�K�ވ;�Y
-�yJ�h�K�N8.h�K�N��X�^K��yY�K�~X{���Ni�����Xk.z��xފ��Y���x�ikK��ZَX˞�X�iki�K�b�K���.y�NK��h��8 ��Z��h�x��z��K��X��h�~��&Wf�6������6���WF����7FGW2�VffV7F�fU�W�V7WF����7FGW>h�^[�KɎXX�K��6���WFVN���izw'V���~K��Z��h�X��[��xZ~�ɾY�{��K�Nh�R�h�~���[�.[��X��K��X��i�K�b�K��h���[�^yJ�Xi�XZ^Yʄ�Y(�i[h��[�>zhj�.8.[�>X��k*iȞZ��h�Y�K��iK�8i�Nj�>h�n�x�ikh�>[�8.Z�.h�r����X�r�XZ�X�~yȾi���x�nhkXz��8Z��h�zپ���Z��i[N��i[8K�Nh�^X�nX�"�i{n�{N��NX[yJ�y��Z��Z��h���[�^�ɾ�����i�.X�{����h�.��NZ��h�8.K��YNK�ni*N�HK��yY�K�~X{����yXΙ�.i��zK�[�>X�ފ���z����Y�k9^Y�[z^iK�[)r�X�yJ��iK�Y�K��iK�X��K�~X{�8.h.ZH�Z��xZ~Y��Z�[��xZ~K��k�x��i��Y(�h�~{�����z�iK�[��xZ~X�>K���x�ik��z�~h�~{��K��h�.{��8 ��ikZ)�6VVDFV��F6�6���WF���>y�N[�^h�K�B�[{.Z��h�K�NK�����i�Nj�K����K�ފhny�nX��nK��X�h�nY�{��i8�K���ɾZ��i[C�K��X��S^h�~��K��K�n8ni�K�b�nK��h��8N�XNii�[�^yJ��N��NK�n[�^yJ�8Z��h�8.XZ�ik��x�ZH�4Ğ8ZH~K��j�Z���x��z��h.ZHޘ	��y��Y����h.ZH�Kɮ���K��8.x��i���2�866�V�����c�.���z��i�K�b�K��h��X�~{�~K��h�XZފ�K�Niz~K��X�iz�z�X��Z��h��ɾiz~[��xZ~yJ�Z��[�Nx��i��[z^X[~x��z��h.ZH�Y�X�~{�~8 ��~���z�X��j8i�^8���k9^8CC9sSyK^�I�3�9s�CNh��iˮkX��x�Y���	���~8.�hny�nX��c8i��K����z�[�r�Z�n�[�8{ˮ��Y(�[�>X��x��i��8i�.X�����Z��X�nkh������z�i*N�H8h�K�N�HZ�8Z���Y��k���[�nX���xފ�^8^i�Z��i[NZ��h�X�~8ZHNynK��Kɮ���i*N�H8Y��Z�[��xZ~x��z��h.ZH�8���z��X�~{�~X�����i�N�x�ZH��ɾX��h�iȞi8�K��K��yY�8.kX��x�Y��Z��h�iʮK��Zق��(N�x��z�zh8iz~h�K�NXk.z�(i.�xފ��K��yY�K�~X{�(i.�x�ZَX˞�X�i�K�n(i.i��z�h�K�N8X��cK�~X{�Y(�h��iˮZ��h�zپ���yȾi���X�nX�"��X{�k�^yn8.K��ZH�X��K��h��[�nX�yJ�K�y�NY��Z鮚in��~k.�9�X{�X~������j�Z��Z�^�9�X{��xފ�^8 ��K��K�XZ^X�>{�~{��C2�.Z��h�i�Nj�>X��i��[��Y�{��K��X�X[>�N���K��yY�X��K�~X{�8x��i��K��J>K�����ZH�yJ����K���Z����h.ZH�8.K�>K���΋J2�z��B�Z�h��8y��Z��K��k��j�i���K�.[�n���[�x��8i{n����	�y�^8�XN�y�i�>y���[�>Zَ�xNX��{�~{��X�^X�~[�^i��z�8.X��SK��X��#�~��k.8�K�ދYn�;�Y(�C2�"�C2�>�:�X�nZ��x�K��h��ɾyJ�h�~��nK��K�>���yY�Y�i�����i[NK�>���iKn[�^Z��h����Y�K�.K�ވ؞z�����izyI�K�~X�[�>8 ��22c�Bi�ikK�Nh�P��{�~{��C2�.Z��h���Ni��i�Nj�>K��i��[��Y�{��X[>�N��΋�z{�.Z)�X�F6��6���WF����6�'&V7F���>Y(�F6��f����wW>8X��Z��h�Y�Z�.h�~YJ�K�{J.[�^���K�ޘx�[��iz~���&V6V�N8'7&2�F6���V�F�V�G2�֧>X[yJ�[�>X��i�Nj�2�X��i�^k��Y�{��k�^X�R�i�^k�j8i�^X��h.ZH�j�Z���ɷF6��6���WF���>Z)�X�X�����kK�yI�[�>X�ފ�Ni��Y(�X�nX�"�X[>�N���X���WGWE�7V��'��6�6��B�{��hK��X��8 ���5B6���WF����6�'&V7F���>K�^X��h�K�NK���Ȏ[�>X��iȞiX�i��[�~Y�[z^�Ȟh�n�z�[�~�I��J>K�����X��WGWE�7V��'��&V6�����h��xX��h�~{��Y(�W�V7FVE�6�'&V7F����fW'6����ȎX��j��ȞZ��i{nZH�j����x��i�΋��{��8Y�Xh^Z�h�.{��8K��X��iK�X��ɾK��K���.X��i�K�b��XNii����NK�b�i8�K�΋��K���Z��h�i{n�{N���K��K�ޘx�ikh�>[�8%�5BF6�2�B�f����wW>���I��J>K���X��X�i��z�K��X���Ni��8iȞiX�h�^iKnK��h�nX	���[)~K���K��h�����X��Z�.h�r��z�[�r�Y�i��x��i���X�[�r�6��FW�E�&6�>{�~h�����X�>K��[�>X�ޙ�k%c>K��k+�yJ�X��c8.ZH�yJ�Y�K�K��76�v�Xi�XZ^Y��K��h�^iKnK���K��K�b�Z���iK�z�n���i�^k�Y��Z�X�nkK�i{nX��K�~X{�h�ni�Nj�>x��i��X����Ni�����Y�i�^i�Nj�>K��iK�iz~i�^k�8.Z�K��X�VWVVB�v�F��~8V�F��~8&Wf�6������i�K�b�K��h��iʮ�X�{����Ι�i��K����N�(b�h�^iKnY(�i��z�[�Zx�8 ��XZ��:�Xi�XZ^K��X�Xh^X�>i{nKɮ����[)~K����z�[�~8h��xx��i��855$b�[�.z؞�ɾi�Nj�>h�nK��K�X�nkK��X[>�NZ���ZK�J^Y��k����Θx�ZH�X�nkK�YΙJ�K�K��Z�K��X����K��iK���~k.Xh^Z�C�8.k�i�Nj�>K��X�nkK�z��K��hȞxZ~K��X�XX�Y�Y��Z�X����Ni��h�nh�.{�ޙ��iz~���K��yY��:�X�n��[�^8.[�>X��i��i��[��i�^k�X[>�N���K��h�kX��z�X��j�i���K�.[�n���k~Y��[�x��h�nK�>K��h�i�>8 ��V&Ɩ2�F6��Ɩ�2�>x��z��i�Nj�2�X�nkK�Z�����jn���Kɮ����Z�.h�r���~k.[��X�~��Nzk����X�Y8�[�N�ɾXk.z��xފ��K��yY���Ni��h�nY�z{�K�Nh�^��Ni���h�^iKn��h���K��h��8.X��Z��h��^i��zK�[�>X��i�Nj�>8X����Ni��X��X�nX�.8Y�{��k�^X�^�Ȏi���X��Z��i[N�x��Ȟ���Z�K��X�i��zK�[�>i{ni�^k�x��i�����Ni��Y(�i�^yȾX��K�~X{�XZ^X�>���K�Nh�^X�nX�.K��i{n�{N��NY�i[h���ɾ�X{�k�^ynik��X�R�X�nX�.8.h.ZH�j�Z�����{��i�Nj�2�X��h�~{��8X[~K�>iz~k�x��i��X����Ni���K��K��ihr�X�nkK�K���i{n�{N8i�^k�iz[�x�����Y�i�^K��Y������z�X��X�nh�n[�>X��i�Nj�>K��i��h�.X�nX�.8 ��6VVDFV��F6��V�F�V�G>K��yY�X���K��X����Z)�X�[{.Z��h���Ni��i�Nj�>8X����Ni��[�^h�^iKn8i�Nj�5c.[�^��N�(nK��K�����i�N��nj�^�ɾx�nK��X�X��X�[�~��k%c���K�NK��Y�{��X�nX���x~yJ�X����Ni��X��i�Nj�5c.8.�x�ZH�X��Zx�X�nK��yY�Y�{��h��[z^i�Nj�2�x�nh��Ι��zK�K�[�>h�.{��8.XZ��x�#K��X��ch�~��K��K�n8~i�K�b�~K��h��8^�XNii�[�^yJ��^��NK�n[�^yJ�8.Z��h��.i�Nj�2�.X[>�N8.x��i���B�866�V�.���c�>���z��X��K�~X{��K��X��i�K�b�K��h��K��h����iz~��[�^iz�z�X��i�Nj�>h�nX[>�N�ɾZ��[�Niz~x��i��[z^X[~x��z��h.ZH�Y�Xh�X�~{�~8 ��3.���z�X��j8i�^8���k9^8CC9sSyK^�I�3�9s�CNh��iˮY(�4Ğik[����x�ZH��ZH~K��j�Z���x��z��h.ZHޘ	���~�Ȏh.ZH�Kɮ����Ȟ8.ikZ)�^���hny�ni�>���x��i���[�nX���x�iK��K�N{�Z���Y��k��8X��c{�~h��8x��z��h�^iKnK��i�^k�Xk�{�>8X��Zx�iK�Z�b�ZKiX�h�^iKnK��8i�Nj�2�^X[>�NZ��i[N�x�8K��Y�K��Y������z�X��X�n8�I����i�^k��h�~{��h�.{��8���z��X�~{�r����i�NK��yY��ZHNynK��i*N�H8.kX��x�Y���I��J>K��c>K��X��h�K�NK�����izuc.Xk.z��xފ��K��yY�Y�cN�ɾX�nkK�izucN�~ikc^Xk.z�8K��yY�Y�z{���Ni���[)~K���K��h��Y�X��[��Y��Z�cR�cK��X����h��iˮ[)~K�ފ�N�(b�h�^iKnK��[�^[�Zx�8i�^k����k��Y(ΘX{�k�^yn�ɾX��XZ��:�kXz��K��yY�8 ��K��K�XZ^X�5C2�>[{.K��ZَX[>�NK��X��;�K��X��K�΋��[�n�xnY����Ί��Z�^i�^k�Y(�x�nh���Z�K��Z�.h�r�[)~K���X��K��X��ɾK��j�>[��K��X�K�ދYnY��XˮX�n8.K�>K���΋J2���X�R�z��B�Z�h���K�>K��i�Nj�>8y��Z��z�X��j�i���K�.[�n���k~Y��[�x��8i{n����	�y�^K��XN�y�i�>y���[�>Zَ{�~{��X�^X�~[�^i��z�8.X��SK��X��#�~��k.8C2�"�C2�>�:�X�nZ��x�K���K�ދYb�K��X����iKn[�^Z��h�K��h��ɾyJ�h�~��nK��K�>���yY�Y�i�����Y�K�.K�ވ؞z�����izyI�K�~X�[�>8 ��22c�Ri�ikK�Nh�P��{�~{��C2�>[{.K��ZَX[>�NK��X��;�K��X��K�΋��[�n8'7&2�F6��6���2�֧2�tUBF6�2�B�6�����k���[~Zx����Xhޘ	�{>Y�Z�.h�r��z�[�~���X�ni[NK��i�^k�{�NK�n�ɾx��z��K��X�K���.x+����[�x��[�.[��C�8.[�>X�ދJ>K���Ȏh�^iKnK��x�[)~K���X	���[)~�ȞK��XZ�x�nhhȞZ��h�(i.[�.[��(i.h�^iKn(i.h�~�����ZH�yJ�f�6�&�^K��h�izuc8K��X��X���&�v��Y(�Z��i{nh�^iKnK��X��yJ�h
-~8.Z��i[Ni[N�;��[)~K���XZ�x�nh�x�K��zپ���x�K��X�~X�n�SK�����ɾj�Y(�h���K��X�Zx�{��h�K�8.hȖFWF��7&VFVE�B��B�W�6WN���Ɩ֗C(	3�����CS���yXΙ�#38.k��j~{�Z�{�NK�n8Z�.h�~8zپ��8Ɩ֗NX��XZ��;�x�nhh�~{�����X�n�^�{NK��X����.x+��K��Y�i��zK�K��iȞiX�h
-~X��X�cC�4����4��tTNi��z�xފ����ΙI����k��jsC#.�ɾK��Xi�K��X��Z����[�.z؞8.iz��z{����66�V�.8 ��V&Ɩ2�F6��6���2�>Kɮ����Z�.h�r���~k.[��X�~��Nzk����X�{�>i�����[)~K���x�nhzپ��8Z�K��K��k��8x��z��Z�K��K��X��ȎX�>K��z��zپ��h�nYʎY�^�Ȟ8Z�^i�^k�j	[.{�~X�~��8Z��i[N���[�n8X����Y�{���ɾX[yJ�6&Ny�Nh�^h�>[�X��Z��h�K�~X{��j�Z��K��h���K�Nh�^X�nX�.X��i�>��Xh^[)~K��X��K���Z�.h�~j>j����X��K��K��ZَY�xފ���;�8.h��iˮ{ʞ���iȞyX�8hȞ�*�h�.����ΘX{�k�^yn�XNii��k��jr�{����8.X�~���yȾi���x�nhkXz��X��Z�.h�~K��X�Y�~iȞ�;�XZ^X�>���X��kXz��K��yY�8 ��6VVDFV��F6�6���>K�^���X�K�NK��K��X��ɮ�[~Zx�Z��h�8X����Ni��X�niJ�[�^��N�(n8i�Nj�5cz��K��[.Z��h�8z��K��[.i�Nj�5cz��K��[.���Z��h�~��K���ɾXZ��:�X��Z�.h�r�X�[�~��k%c���X�niJ�x��z��h�~�����K��K��iK�X��#K��X�8.ik[����x�ZH�4Ğ8ZH~K��X��x��z��h.ZH�K��{N�ɣ#nK��X��sNK��K�n8�i�K�b�K��h��8~�XNii�[�^yJ��~��NK�n[�^yJ�8NZ��h��Ni�Nj�2�nX[>�N���Kɮ���8.X��.���{��i�Nj�2�Y��Z�i�^k��iz[�x��j�Z��K��yY��ɾZI�[.�;�h.ZH�X��Y�[.{�r�x�nh�{����y��Y�8 ��C���z�X��j8i�^8���k9^8jΙ�#CC9sS�h��iˣ3�9s�CN�	���~8.ikZ)㞚��hny�nj��Y�{�r�ZI�[.i�^k�K��izXi�XZ^8i�>��8n��.x+�X�n�R�Z��i[N�x�8k��j~{�Z��X��i�Nh�.{��8Z��i{n[)~K���x�nh�z��X˞�X�Z�K��8K��Y�K��Y������z��i�Nj�>8h.ZH�X���x�ZHމ��i�NK��yY�8.kX��x�Y��Z��i[NK��[.�xnY��Y(�zپ���K��k��K�~X{�83n��.x+����iz~�^h�.{��(i.i��z�xފ��(i.X����XZ��:�8h��iˮ�;�Xh^��N�(b�x��z��h�^iKb�[�Zx�K��X�nX�"��X{�k�^yn���iz����i{n�I����8 ��K��K�XZ^X�5C2�>[)~K��K��X�j8{J.K��X��K�Θx�x+�Z�K�����Y��K��Z�^K��ZَK��X�8Y��Z�K��K��ih~8�J>K��Y(�[�.[��i�^yȾ8.K�>K����X�R��΋J2�z��B�Z�h��8j�>[��K��X��z�X��K�.[�n���k~Y��[�x��8[z^K��iz^i���i{n���	�y�^Y(΋XN�y�i�>y���[�>Zَ�xNX��{�~{��X��[�^i��z�8.X��SK��X��#�~��k.X���K�ދYn8C2�(	3>�:�X�nZ��x�K��h����yJ�h�~��nK��K�>���yY�Y�i�����i[NK�>���iKn[�^Z��h��ɾY�K�.K��h��؞z�����izyI�K�~X�[�>8 ��c�^i�{���^XX^kX��x�Y��j8i�^�ɮK��;�Xh^K��X����XZ^Z�.h�~j>j�KɮX[>�z�K��X��;��ɾ�X{�Y�iX^hH�[�n�������XX�X��h�i�>���X�ny�N�;�Y8�[�N��Έ�.x+��Z�K���j~z��K��k�^z�����K�ވ;ޘx�iki��zK�iz~�XNii�8.ikZ)�Yˮi��ZH�yJ�iȞiX�Kɮ��ޘ�XXޘx�ZH�y��[�^�znX�j�>[����kX���Z���j8i�^���X�ni�΋��X��X�yI�y�N��NK�ni*N�H��[�^���K��K�ދYni���i�K�^ZIny�Niz�i����[�^8 ��22c�bi�ikK�Nh�P��K��{��X�~X�CB��XޙY�YXnY8K��y��Z���.X�^�؞z�����x��i���b�866�V�>8'7&2�&WF���֧>Z��x�i��[�~y��[�R���.X�^h�^[�8�xN��>k�^X�^8h�.XZ^x��i��8h.ZH�j8i�^X���z�yK�ɾ��z{�>ikZ)�K�>��[�nK��h�NK��X��i�Nik�X���N8.�I��J>K��{�Nh�Ny��[�^�ɾ�I��J>K���X��X�[�^X�R�K���"�X�nkh����K�>K��K��Y�X�����8Z�n�[�h�.{�����Z��i{nK��X�ZH�j�Kɮ���K��z�[�~8.YXnY8x��i��K��i��X�^X�^K�~x��z��Y��Z��ɾi[Ni[X�nY���K��K�>��[�NiKnh�nh�K�N8 ����.X�^X��[��Y��Z�7W7F��W"�7F�&^8X��X�[�r��XޙYΙ�k.x��i�����iJ�h�7W7F��W"�7�6�R�f�6�B�f�6�E�7�6�^�ɾx��z��Y�i���hk.[�>X�����X�[�~XX��h�^��~izuc���ikx��Y�i��c>K��iK�X�nX�.8.�XNii�K�NK�nY��Z�Y�Z�.h�~���iz~�XNii�K��i��h�.�ɾi*N�H��NK�nX��K��yY�X��[�^yJ�K�nK�����K��h�.{��8.j��j�K���.Z��i[Nx��i�����X�nkh�ZH�X�nX��X�^Y�{��j�.Xi�XZ^�ɶW�V7FVE�fW'6���[�nX�8K�K��X�Z����[�.zؒ�Y��k�����izx�nh��[��hꎋ��8.�xN��6��fW7N��X�n�)�ZInX�nX�.i��{�b�[�^yJ���Θy�)�K��X�nkh�Xh^Z랊znX�Y��K��h�N�ɾh.ZH�j�Z�����{��X�nX�.8i{n�{N8i�^k�8j����{+�z�y�)�X��Y���8 ��V&Ɩ2�&WF���>X��x��z��Z�Έ��h�K�y��[�^{�Nh�N8��.X�^X�~���j8{J"�iȞyX�X����8ik[���K���"�X�nkh�8i��{�b�Y��Z鮋XNii���nh8^X��X�nX�.8.Z�.h�~j>j��XޙY�Xˮ8Z�.h�~h��x�K�涖�C�&WF��i{n�{N��N�J��	����Z�K�ފ�.X�^X��ɾ[�>X��zپ��Z��i[Ni[�x�K��X�sSi��^��.K����[�Y8�8.ik[���؞z���>K�~Xk.z�Y�xފ��i�NikYXnY8x��i�����K��yY�i��X�^K�r�i[�x�8�:�X�nz����Y(Ί�Ni���K��h����XNii���h���ɾ��.X�^K���.Xk.z��xފ��K��yY�Z�Xi�8.X�nX�.X��������iz~X�^[^zK�i�iky��[�^X��X�nK�nK��K��yY�X��i[h��8.h��iˣ3�9s�CN[�^X�R���nh8^izk�.X{����Kɮ����Z�.h�r���~k.[��X�~��Nzk����X�Y8�[�N��ΘX{�k�^z��YXnY8���.X�^X��Z�����jnXh^Z�8 ��6VVDFV��&WF��X��Zx�^YXnY8�nx��i��8N��.X�R�nx��i���.���n�XNii�[�^yJ��n��NK�n[�^yJ��ɾ[^zK��؞z��8�^XX^i[�x�8X�nkh�8X�^x��j>j�i�^k�K�^X��y��[�^�>K�~K��yY�iz~X�^8.�x�ZH�X��Zx�X�nK�ފhny�nY�{��h��[z^X��i�N���Xk.z�Y��k��8.izs#nK��X��sNK��K�nX���i�K�b�K��h���NZ��h��Ni�Nj�2�nX[>�NK��h�8$4Ğik[����x�ZH��ZH~K��j�Z���x��z��h.ZHޘ	��y��Y����h.ZH�Kɮ����ɵc�^���z��X�~{�~XZ��:�X����K��h����K�>K��ik��K��z�����K�ފ^�
-��.X�^8.iz~[��xZ~K��K��yJ�Z��[�N[z^X[~x��z��h.ZH�Y�X�~{�~8 ��c.���z�X��j8i�^8���k9^8X��yK^�I�h��iˮXZ�kXz��X��ikZ)�XޙY�kX��x�Y��kXz���	���~8##��K�>���hny�ni�>��84�R�YXnY8[�nX�8{+�z�X�n�y�)�8Y��Z�iz~X�[�r��XNii�8i*N�HX�nX�.8�؞z��K���"�X�nkh�8Z��i[NX�n�^�x�8iʮy�^Z�~j�^h�.{��8YXnY8x��i�Ίhk.8X��[���y��[�R�X�nkh�Z���ZK�J^Y��k��K��[�.z؞8[�nX�K���"�X�nkh�8ZH~K��h.ZH��h��Y��h�.{��8z؞[�^��~k.i*N�HKɮ���8�inj�iK�Z�n8K��h�N�znX�Y��8�x�ZH�zK�K�Y(Ι��z��iz~[�>X�~{�~8.ik67&�G2�&WF���'&�w6W"�6�V6��֧>�hny�nZ�^[�X�^8y��[�^X��X��K���.X�^[�nX�K��yY���>XZ^8X�nkh�X�nX�.8i{n�{N��B�h��iˮi�>��X���X{�Y�[�n���Y8�[�N8 ��CB�K�^�:�X�nZ��x����KɎh:8[�>Zق��(NyY�8��.�y[�j��8K�>K��ZHNik�8X�[z^�J�j8K�NK��[	�iʮh�^�	�8.K��K�c�~{�~{��Y��z[�>ZَK���.X�^�(NyY���x�iK��ɾY�{�ދXN�y8X�[z^8�J�j8K�NK��X��YJ�Y�hȞX��K��X���X�.h�^XZ^���iʮy�^Z��xNX��K��hȗ'V�W2��NK��yY�8%C>X��Kٞ�;�X�����K��X���k.Z�h�.���K��{��K��Xh�X�yY��	�yJ�K��X�[�K��8.K�ދYnK�nj�^i[NK�>���iKnK��X�����yJ�h�~Y�i��K�>���8[�>X��.K�ވ؞z�����i�΋��izyI�K�~X�[�>8 ���22c�ri�ikK�Nh�P��K��{��{�~{��CB�Z��x��[�>ZَK��X��X�^�(NyY���x�iK����x��i���r�866�V�N8'7&2���fV�F�'��֧>h�K龘	4�^[�>Zَh�^[�8X����.X�^��Y���k"�{ˮX�2�i��X�h�.��N8�xN��>��h�.XZ^X��h.ZH�j�Z����΋�z{�NK������[�^���{��[�>Zه6WVV�6^8�	��.X�W&W6W'fR�&V�V6R&Wf�6���X��Y��Z�X��YXnY8���.X�^i��{�n8X��Y	K��K�n8.�I��J>K��XZ^[�2���Nzk���z>��N��΋I��J>K���X��X�XZ��x��(NyY���x�iK����K�>K��X�����Z�n�[�h�.{�����Z��i{nKɮ�����z�[�r��inj�iK�Z�n�z�zhk+�yJ�8.k*iȞkXkNi��zK�iʮ[���Jn���i[�x�K�ދz�X�^K��y��X�8 ���(NyY�hȞZ��x��i[�x�X�yJ��ɮXZ��:�X��X�^Z��x����Yʄ$Tt�����TD�D^K��j
-���YXnY8Y
-�yJ��X�^K���[�>X��[�>Zَx��i��Y(΋k>�x�8�x�ZH�4�^��Y����K�ދk>K�ޘ:�X�nXi�XZ^�ɾ�x�iK�Y��Z�X��i[�x�K��6�W&6U��N���Z��x��Y���K��X�����X�yJ�K��X���x�iK�8.iȞiX��(NyY����j�.X��X�^K���"�X�nkh����i��z�x�iK�Y�Xh�iK����Xhޚ(NyY��x~yJ�ikx���ɾ[���JnY�y��[�^Y8{��X�^K�ޙHZ���΋>K�~z؞{�~{�ދ��X�x��i��8.K��X�K��X�8X����8Z���8[�.z؞X[Y�Y��k�����i[h��[�>��.�I�i[�z�~i������{��h
-r��)�ZIni��{�b��hny�nK���.X�^�HK��Y�ZH~K��h�N8 ��V&Ɩ2���fV�F�'��>x��z��Z�Έ��h�K�K��x�nhi[�x��Z��i[E4�^i[�x��zپ���X�n�R�kXkNX��X�^Z�K���ɷV&Ɩ2�&WF���>��nh8^h�^[�>Zَ�(N�x�8{ˮ�J~8�(NyY���x�iK�X��i�X�nX�.���iz~x��X�����K�N��Ni��i��zK�[�>X��[�>Zَx�nh8.Xk.z��xފ��K��yY�i[�x��X��K���K��h���ɾ��.X�^�(NyY�Xk.z��xފ��K��yY�K��h�����Xh�i��z�i8�K��8.h��iˣ3�9s�CNX���x�iK�[�n�x�ik�(NyY����izj��Y	k�.X{��ɾ�X{�k�^z��i[h��[�n��Nzk����X�Y8�[�N8.i[�x�i8�K��K��XN�y8�J�j8Y(�X{�[�>x�nhx��z��8 ��6VVDFV����fV�F�'�X��Zx�N[�>ZَK��K�b�>�(NyY��x�iK��Y��Z鮊����[^zK�X��yJ�8iȞiX�X����.X�Uc.�(NyY�8��Nzk���z>��N8X����.X�Uc�(NyY�Y�x�iK�X��iʮ[���JnYXnY8�ɾ[{.iȞ[�>ZَX��K�ދ��X����h��[z^X��X�nK��h�8.X��^YXnY8�nx��i��8N��.X�R�nx��i���.���n�XNii��n��NK�nX��#nK��X��sNK��K�nK��iK�8$4Ğik[����x�ZH��ZH~K��j�Z���x��z��h.ZHޘ	��y��Y����Kɮ����ɾ���z��c�niz~[�>h�iȞX����K��h����ikK����K��z��8.h.ZH�j8i�^i[�x�8���{��h
-r�i{n�{B�X�^K��8X��X�^k�^X�^K��YJ�K�[�>ZَK��K�n8�x�iK�i�^k�8iȞiX��(NyY�K��&W6W'fVNK��{N8iʮ�x�iK�K��[�~iK�X��X�^8.y��Y�i{n�{Ny�Ni{n�{N��NhȞ��.X�W&Wf�6���z�>Z�h�.[�����x��z��4�^X��K��K��Kʮ�
-Z�.h�~K��K�n8 ���n���z�X��j8i�^�ȃ#>[�>ZَK�>���Ȟ8���k9^8X��kX��x�Y��8�XޙY�K��[�>ZَK�>��yK^�I�h��iˮ�	���~8.�hny�nK��x�nhZ�h"�i��X�h�.��N8iz~����x�ZH�4�R�ZI�Y8zx�X��Z�h
-~8i�Y�K�K�nz��K��8�x�iK��K���.K�.ij^8x��i���[�.zؒ�Z���ZK�J^Y��k��8X�^K�ޙHX��[���JnX��X�^K��X��i�Niz~X�^h�.{��8�4�R�kXkNZ��i[NX�n�^8i{n�{N��N8i[h��[�>K��h�N8z؞[�^��~k.i*N�HKɮ�����inj�iK�Z�n8���z��X�~{�~8h��Y��h.ZH�h�.{��Y(�h��[z^X��i�N�x�ZH�j~K�8.kX��x�Y��j8i�^[�>Zق��(NyY�Xk.z�K��yY�Z�Xi�8X��X�^�H��x�iK�8{ˮ�J~zh�(NyY�8X��X�h��iˮK��X������y.��.8izk�.X{�X���X{�Y���X�h�i�>���X�n8 ��K��K�c��{�~{��CB�.Y��ziKnj���[�^��Ι��Y��.�J~X�[z^8�J�j8K�NK��8X��X�^YJ�Y�8.Z��i[N�x~�J��h��j��X{�[�2�y��x+�8KɎh:�{�NY����.�y[�j��8�:�X�n�j��K��K�>K���iJ�K���xNX��K��hȞX����X�.��Z�����K��h��Y��zX�~x�~[�5CB�i[N���	���~8.yJ�h�~Y�i��K�>������K��X����iKn[�^Z��h����Y�K�.K�ވ؞z�����izyI�K�~X�[�>8 ��c�~�^XXS3��K��ih~�[�ZH~k:�K���.j8i�^�ɮ��.X�^K���.��~k.K�>K��X��[��{��K�K��cSS3nZ�~��.���K��h�j����3Z�r���Ni��#Z�~y�Niz.Z�Z래x��ɾ�y�)�Y(�X����x��i��K��X�����ikZ)��^��Y�XZ��x��n��j8i�^�	���~8 ���22c��Y��ziKnj��K�Nh�P��c��Y��ziKnj���ɮ�I��J>K���X��X�h��[z^y����X�nj�Z��iKn���Y��Z�X����.X�^x��i���i��{�nY���K��[�zx��ɾ�I��J>K�����X����[�^K��[��K��yY�i�^k����Z�^�j��X�n��ZHNyn8.iȞiX�y����K��h�NX��X�^K���"�X�nkh����ZIn�:�ik�[���{�nX�~��.iȞiX��x�ZH�8Kɮ����x��i���Z����[�.z؞Y�K��X��ɾ�z�[�~i�^��.8yK^�Ih��iˮ8i{n�{N��NK��66�V�^h.ZHދJ��	�8"��XN�yK�>���#^XZ��x��z�X��kX���^X�����k9^8X��[z^K��X���XޙY��[�>Zق�iKnj��Y��{�NkX��x�Y��84Ğ�x�ZH�Y(�x��z��h.ZHޘ	���~8.���i�N���X�^��[�^���X��c.K�Nz�NiKnj��K��c���[�^{�j�2��x�[�^K��h����iz~[�>ZكNkXkB�>�(NyY��x�iK���Y(�#nK��X�sNK��K�nK��X��8.K�>z7&2���V�G2�֧>8V&Ɩ2���V�G2�>8��z{�^�ɾ��n{�nh�^X�2����[�^��yXΊx��V�G2��N8.[�>X��CB�.�:�X�nZ��x�����W�EF6�CB�>�ɾK��K�c����.�J~K��X�[z^X��K�Ni�����Y�{�ދJ�j8�z��iKnY(�YJ�Y�8.X��SK��X��#�~��k.K�ދYnK��iK����i[NK�>[�^K��X�ik���nK�ޚ��iKn���Y�K�.�؞z��8i��Y�[�X�8 ��22c��i�ikK�Nh�^�ȃ##b����Ȑ��c����.�J~K��X�[z^�ɮY��Z�X����.X�^x��i����	��Z��x�����i��z�K龋Jr�X�[z^ik�[��8K�[�Ni�^k�8�J>K��K��X��K�Ni���ɾX�nh��X��Jr�ZH~ii�8[�[z^8Z��h�Y(�[�ni��x��z�����i[�x�Z�h.8h�~��Y�Z�h�.�HX��X�nX�.K��yY��ɾX�[z^yȾi���X��X�^XZ^X�2�i{n�{N��N�J��	�8.kK�X��[z^X�^K��h�NX��X�^���7F�6�ZH~ii��hk.X��X�^�(NyY�[�n���j�.�x�iK��ɾKɮ����x��i���Z����[�.z؞Y�K��X����66�V�nh.ZH�j�Z��8 ��ikZ)�֖w&F���2�e�&�6W76��r�7�87&2�&�6W76��r�֧>8V&Ɩ2�&�6W76��r�>�ɾZ��i[Nx�nh�h�^X�2�i�>��Y(΋�yXΊxF�72�&�6W76��r��N8.X����.X�^��nh8^[��z��[z^X�R����X�nX�nX�.���x��z��X�[z^X�~���K�NX�~yȾi��X[yJ���~k�NK��Z��i[N�x��ɾj����i��z�K龋J~8Xh^ZInX�[z^8�J>K��K��X��K�Ni�����X�nh��X��K��K��ZَZ��i[N[��xZ~�ɾ[�ni��K��i[�x����[�n[�n��8.h�~��Y�HK龋Jr�X�[z^��Ni�����X��X�^x��i��Y��Z����7F�6�ZH~ii�[�^��X��X�^�(NyY�K�Nzhj�.�x�iK��ɾK�ވz�X���x~�J�XZ^[�>8h�>Xx�[�>Zَ8�J�j88K�NK��h�n[�Y8ދXN�y8 �����k9^j8i�^8##����z�X��j8i�^�ȃ#>��X�[z^K�>���ȞY(�X��kXz����XޙY��[�>Zق�iKnj���X�[z^K�N{�NyK^�ICC9sS8h��iˣ3�9s�CNkX��x�Y����Ί��	���~�ɾik[��zK�K�8�x�ZH�h��[^�	��K��h�8ZH~K��j�Z���x��z��h.ZHޘ	��K��{N�ȎKɮ����Ȟ8.K��X�ik�Y�i����nK��K�>������iʮ�(nX�ni[NK��X����iKn8"���z��c��X�~{�~�	��K��h�K�NK�ފ^[z^X�^���h.ZH�j�Z��X��������h�"�i[�x���H8.ikzK�K�^[z^X�S#K��K�n8~��.X�S�x��i��ni��{�n8~[�>ZَkXkN8^�XN�y��[�^8#n�	�yJ�K��X�sNK��K�n�ɾiz~��[�^K��h���Θx�ZH�X��Zx�X�nK�ފhny�nh��[z^��[�^8.���z��4�K�^i��j�h�K�Ny�E.Z�^{�>i��K��Xxn8 ��K��K�K��{��c�#�CB�N�J�j88��N[z^K��X�n��K�NK��8.X�[z^Z��h�K�^z؞[�^�J��x�z��N��Κ�x��z����[�^K��Y�jΚ�8��N[z^i�^k�Y(Θx�ik�J�j8���Z�^�J�j8��y���K�>K���΋J2�h���	r��	�y�R�z��iKnY(�[�j��i�K�nhȞi��z�xNX���Nh�^8%CB�>K��h��:�X�nZ��x��ɾK�>K��ZHNik��X�[z^X�.i[X��i�N[�Y8�z��N8j�>[���x~�J�K�[�NYXnK��ZIn�:�K�Ni��k)��	�iʮZ��h�8.{�~{��Y�K��؞z��.���K��j~��nj�^h�nK��X����iKn�	���~8 ��22c�#i�ikK�Nh�P��c�#�J�j8��N[z^K��X�n��z��iKn�ɮY��Z�X��X�[z^x��i���X����Y(�h��j�i�^k����i��z��y���{�>���ɾK��Y�j�h��j�X�nkK�J>K��K��8x��z��[�Zx��Z��h�X���x�ik�J�j8���XX�뎘x�ZHދ�N[z^�ɾK�^Y�j�i�^k�X��X�nh��z��iKn[�nK��yY�Z�^�(n]��~��G����ƭy�x�8 ��c�cni�{��h�K�CVFCc&cV##�Vc�s#�#&Fcs3�3sc�CfSFC3s���4�#�3�#3c�c33cnXZ��:�����	���~8ZK�J^8SCc#3��3��S��>�����6��6�V6��	���~8#�ikZ)��S^y��X[>K�>��8iz~X^[�r�k�^X�R�h.ZH��z�iK�CN���(�Z��j8i�^8kK�X��X��X���(Nj8K�N{�NjΙ�.h��iˮ�	���~���i�{��K�^j�X��j�X�.i[Y(�kX��x�Y��ZH�j�K�n�	���~8'66�V�Sr�#3Ni[h���Z��i[D4Ğik[����x�ZH��ZH~K��j�����x��z��h.ZHޘ	���~���~kK�X��x��i��8XZ��:�X�����Kɮ��ފ��h�^[�K��{N���Kɮ���8.�inj�ZK�J^iʮj~�	���~8[{.�^��izw66�V�Sb�#3>z�{�nzK�NK��yY�[�n[ˮX�nX��ijފ�8.i��Y�XZ��x�K��j�.K��j~Z��h����i�{��XZ��x�K�^{+�z�h�K�NK�z��K��Xxn8.{��^X�[�2�X��ZHNY��h�~���Y�j�������Xh�c�c~8 ��c�cnX��ZHNY�j�^Z��h��ɮX��6�F^x��i��Cb�6�W&6RS�c3S6#cV&#�#fCcs#c3&6fcV3C3C3�3s�"�FW����V�BvFW�f66&SS3#SC���3cs�c�3#CcSc>K��##b��%C�CS�C��sS���X�[�>h�X���ɳ�CS�S��#3�y��Z��{��^K��K��K��K�����c�cb�cn��X��X��SK��X�#�~�hk.Z��XZ�K��{N���{��K��jΙ�.h��iˮ�	���~8.Z��i[NY��h�~Yʇ&�w&W72�7��2�6��8.Y��h�~h�Y��Y�c�c~i��z�K��ZَX��kK�X��K��y�Nh��j�55b�Y�X�^K��X���I�������Y��Z�h��xkK�X���Z�.h�~i�^k����K�ވz�X��X˞�X��[��j2��hny�n8 ���22c�crX��kK�X��h��j�55nY(ΙI����i��z�K��Zـ��c�c~{�~{��C��>�ɮK��X��kK�X��i��z�K��ZمUDbӎX��h��j�55nX���I�������Y��Z�kK�X����Ni��x��i��8Z��i[NZ�.h�~�XNii�x��i��[�^yJ�X��X�nX�.X��{��ɾiz~Y�X�R��I�����X	���K�ޙ��Y�i�^i�^k�X��i�N���X��h��j�i��[�����X�x��i��Y(�Xxnz�iz~x��i�^yȾ8.[�>X�ދJ>K���X����Ni���Z�.h�~i�^k�K��{�>ZَX��Z�Xھ8X��K�eE�B�XZ�[��Z�XZ��I����55n8���X�[X�ZY~i*Ni�>k�^z��Y(�66�V�S�h.ZH�[{.h�^8#Nx��z�����i�Nh��j��^x��i����Κ(Nj8[�����K��iʮz��N���K�����K�ވz�X��X˞�X��[��j2�Y�[�nh�nh�K��h�^Y�i�>�����i[NK��X����iKnK��yY�8 ��ZY{�n�x�67&VV��r�&F6�W2��E҇67&VV��r�&F6�W2��B�8##ikZ)��S^y��X[>K�>��8N{�NjΙ�.h��iˮY(�Z��i[D4Ğh.ZHޘ	���~���XZ��x�{�~{��j�Z���ɾK�NZHNX�[�>X��Z�^[��xZr�K��K��K����ޘ	���~Y���XZUc�c�8.X��K��X��K�ދYb�i[NK�>���iKnK��yY�8 ��c�c~ZJ~ih~K�nK�>��X�x�iz~X[K��&�G��	'VffW.���Z�~z�nK�.X��h��Y���z�Y�uUDbӎ���iK�K��X��Z�~��.iKn�������Y�K�^jΊz>z���K��ih~X�nY�~Y(ĥ4����K����yX�K�>��Y�~�	���~�ɾX��55n���)�K��h�#Sb��.��ĥ4��[�8^XX��"֔.8.�I����55n�^��h�~X�nZ�~z�nX��{�XZ�[��K��h�N���X��ih~K�nK�ދ��h�.8##ikZ)��S^y��X[>�	���~���K��ZH�Y�h��j�X��Y��zX��K��kX��x�Y��Xh�ZH�j��	���~8.�inj�6��6^K��K�nk�^z���x�[��I����jnY(�Y��Z�x��X�n�^�I����[{.K��j�>���K��yY�X��K��X�ijފ�8 ���##b��.ikz�~X�>{��h�^�ɮ[{.j�Z��X������c�86�FW�X�niJ�X��c�c~K�>z8.{+�z�h�K�CCs3C#�C�#cs&fS�Cc�#6#VS3#&Fc#s6Ny�D4�3�#C333#cS�[{.Z��h������6��6�V6��FW7NY�w7V66W7>��Ί^��iz~z�~X�>XZ��x�V�F��~��h���ɾ{��^X��c�cnk��Y�j�^��XX��^��c�c~Y(�Z�^{��K��j�������Xhދ��XZUc�c�K��[z^X��Z�.h�~x��i��X[>�N8.K��X����iKnK��j�>[�����΋�yX�K��yY�8 ���c�c~X��ZHNY�j�^�^���ɮX��6�F^x��i��C~K��##b��%Cs�C��#u�X�[�>h�X�����s�C��3E�{��K��[��xZ~K��K��K��K�����j����c�cr�c~��8X��SK��X�#�~��k.Z��XZ�K��{N���yK^�I�h��iˮ[{.ZH�j����K��X����iKnK����8.Y��h�~�x&�w&W72�7��2�6��8.K��K�c�c��	��K��[z^X[>�Ni��[�~X��Z�.h�~�XNii�x��i�����k+�X��Y�X�R�x��i����J>K��i�>��Y(�h.ZH�j�Z��hꎋ��8 ���22c�c�[�X���Ί�K��+rikz�~X�>{��h�P��[{.Z��x�C��>i��x��X��Y�X�^�	��K��[z^�x~yJ�[{.iȞi��[�~Z�.h�~�XNii�8K��h��K��i*NY����x�X[>�N8Xxnz�X��x��X�nX�.8X��Z�.h�r�55ni{n�{N��N��NY��Y(�[�>X�ދJ>K����i���ȎY
-����X�i{n�{N��NY8�[�N�Ȟ8'66�V�S�X��yI�Z��i[D55n�z>i�8Z���[�.z؞K��X�8x��i��X��{�h.ZH�K��Nx��z�����i�N��nj�^[{.h�^8#�K�>��8Z��i[D4Ğh.ZH�X��ikZ)��X��zپi�R�Y��zX��K��yK^�Ih��iˮ[{.j�Z���ɾXZ��x�K�ދ������i�.K��ikZ)�[{.Z��h�X������{��^K��h�[{.j����c�c~8.XZ��x��	���~Y�i�NikYJ�K����[�nk�8X�[�>X��6�F^X��K��K��K�����[�nXi�Z�^Y�j�^Y��h�~8.i�΋��K��Z��h�i[NK��X����iKnh�nj�>[�����K���K�N[���h�^Y�h�i�>8.Z��i[NZY{�n�x67&VV��r�&�r�Ɩ�2��N�ɾK��K�K��X�~x�~i��X��Y�X�^i��z�K��[z^[��j>8 ���22c�c�i�{��[�X���Ί���c�c�{�~{��C��>�ɮY��Z�X��55nx��i�Θ	��h��[z^��h��i��[�~[{.iȞZ�.h�~�XNii����K��Zَj�Z��K��h��X��i*NY����x�X[>�N���Z��i[NX����8iz~�XNii�Y(�Xxnz�K���.X�nX�.K��yY��ɾik55nK��{�~h��iz~X[>�N8.X����h�i�>�I�����[�>X�ދJ>K���h��x�XNii�i�^k�8{�>ZَX��Z�XھY(΋��X�Y�X�R�Z�.h�~i{n�{N��N��i��8X��yI�55n�z>i�8Z���K��X�X��66�V�S�h.ZH�[{.h�^8#Nx��z�����i�NX[>�N��nj�^���X��Z�.h�r�Y�i����(N{�b��XN�y�[�>ZَK��iK��ɾj�>[�����K��8K�N[��Y�hH�8x�YˮK�>K��j8i�^K��h�^Y�X��i[NK��X����iKnK��yY�8 ��i�{��X���;�h�K�FCsV3cC�3S�cvcVScvC#3s�36FC3vcfs6C~�ɴ4�3�#��cs3#Cy�F��6��6�V6��FW7NXZ��:�7V66W7>���i��Y�XZ��x�##��##�8ZK�J^�ȃC3Csb�3Cc�f�>�Ȟ8#�ikZ)��s>y��X[>K�>���	���~�ɾikZ)�	��K��[z^X[>�NX��X��Y�X�^�(Nj8�kK�X���h��j�8Y��zX��K��X[^{�NyK^�Ih��iˮ�	���~�ɾ�hny�nh��[z^��h���Xk.z�K��yY�K��h����xޘ�8i*NY��x�X[>�N8Xxnz�#8X��Z�.h�r�55ni{n�{N��N��NY��8���X�i{n�{N��N�J>K����i��X��[X�ZY~Y�X�^i*Ni�>k�^z�����izk�.X{���^��.[�.[��8"i�{��Z��i[D4Ğik[����x�ZH�866�V�S��#3ni[h���ZH~K��j�����x��z��h.ZHޘ	���~���~kK�X��x��i��8�h��j��x��i��8ni�X[>�NX��h�iȞ���Kɮ���X�����Y��Z�h�^[�K��{N���Kɮ���8"X��SK��X��#�~��k.8K�ދYnY(�i[NK�>���iKnK��yY�8.{��^X�[�2�Z�^[��xZ~X��K��K��K�����j����h�^K��Z��h����i�{��Y��h�~Xi�&�w&W72�7��2�6���ɾh�X��h�Y��Y���XZUc�c�X��iȞiX�Y�X�^y�Ni��z�K��[z^[��j>8 ���c�c�X��ZHNY�j�^Z��h��ɮX��6�F^x��i��C��6�W&6RcS�ccsSFV&3f&fCf#V&#�SS#vS���CCS�F2�FW����V�BvFW�f6C#FFFFC���sf&S�fv#c&nK��##b��%C��#���CC��X�[�>h�X���ɳ��#�3"�c�5�Z�^{��^[��xZ~K��K��K��K�����c�c��c���8X��SK��X�#�~��k.Z��XZ�K��{N���{��K��yK^�I�h��iˮK�n�	���~8.Z��i[NY��h�~Yʇ&�w&W72�7��2�6�����YJ�K����[�nk�Y(�K�NZHN[{.Y�j�^8.K��X�{;�{��K��h�i��Y�[�X�8X��i[NK��X�K��K��X����iKniʮh�X�ޘ	���~�ɾX���;�k�z{+�z�4�[{.�	���~��Ι��Y�X��i�Nik���[�b�Y��h�~8.K��K�c�c��C��>X��iȞiX�Y�X�^y�Ni��z�K��[z^[��j>�ɾikz�~X�>XX����i��X�niJ�tT�E2��N8&�w&W72�6��8��F�fW.iʾ[�X��67&VV��r�&�r�Ɩ�2��N8 ���22c�c�[�X���Ί�K�Р�X��iȞiX�55n��i��z�K��[z^ikZ�.h�~Y��Z�~j�^K��i�^k�8Z��i[NY�Y��Y�yK^���X	���j�Z��X��izx�iȞX���x~yJ�j>j�Z;i��[{.h�^�ɾX��yI�X�^���X�^X��[��Z�.h�~X��x���YJ�K�X����X[>�NK��Y��h�~���Z����[�.z؞Y�K��X����i*NY��K��yY�Z�.h�~8�x�iK�K��K��j�[��j>8.[)~K����J>K���[�>X��h�i�>K��hZ.��~k.Kɮ���ZH�j�8X��Z�.h�~i{n�{N��NY(�66�V�ch.ZH�8Nx��z�����i�N��nj�^�J��	�8#�ikZ)�K�>��X��y��X[3�.8yK^�Ih��iˮY(�Z��i[D4Ğj�>Yʎi�{��j�Z�����XZ��x����Y�K�z��{+�z�h�K�Nz��N�ɾ[	�iʮikZ)�z��c���Z��h�X������{��^K��h�[{.j����c�c�8.ZY{�n�x67&VV��r�&Vv�7G&F���2��N�ɾK��K�X��Y�X�^ZHNynk~h��[�^j�Z�����X�~���K�ވz���X�nZ�x�Yˮj8i�^K�>K����X�^8 ���c�c�{��h�^ZH�j�X�x�c�c����[�b�Y��h�~h�K�CVSC��.y�NY�{��4�3�#�3�#ScnK�^iz~��y����[�nkX���^ijފ�c��c~ZK�J^�ȃ##r�##��Ȟ�ɾj�NX��X���;�h�K�FCsV>y�D4�X��i��Y�XZ��x�Y(�X��ZHNj����iȞiX����K�niʮ[nY�{��ZK�J^�xnK���	���~8.[{.iK�K���Y8�[�NK��YJ�K�&�w&W72�6��XZ�ih~y��z؞8x��i��YJ�K�X��Z��h�X���i�^k�j�Z�����K��yY�X���y.��"�SK��X��#�~��k.Y(�X[>�N[�.[�ijފ�8.{��x��Xh�j�XZ��x���Ί����K��Xh�j�����i��h�.z�{�nzi[�x�8 ���22c�c�i�{����Ί���c�c�{�~{��C��>�ɮX��iȞiX�55n��i��z�K��[z^ikZ�.h�~�XNii��i�^k���Θ	K�j�Z��Z��i[NY�Y�Y�yK^���X	���[�n��Ni��k*iȞx�iȞX���x~yJ�j>j��ɾX��yI�X�^���X�^X��[��ikZ�.h�~X��x��8YJ�K�X����X[>�NY(�X��K�nY��h�~���Z����[�.z؞Y�K��X�8.iK�Z�~j�R�i�^k����x�ikj�Z��8�x�iK�X��K��yY�X��h�X��8i*NY��X[>�NK��yY�j>j����X��[��[)~K���[�>X�ދJ>K���h�i�>K��hZ.��~k.Kɮ���X�����X�[X�ZY~i�>��K��h�N866�V�ch.ZH�Y(�Nx��z�����i�N��nj�^y�����8.j�>[�����K���Z�n�[��K�N[���h�^Y�i�>��K��X�����i[NK��X����iKnK��yY�8 ��X���;�h�K�FCV3SfFVSSc#F#�#6#�S�&cFcFV&S��c�N���4�3�3c�3C^y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s#Cr�#C~8ZK�J^�ȃSccr㓓###�>�Ȟ8#�ikZ)��.y��X[>X��X�����[�nXZ�ihr�i�>��K�>���	���~�ɾikZ)�K��[z^[��j>8X����X[>�NX��X��h��j�>{�NyK^�Ih��iˮ�	���~�ɾX	�����؞z��K��iK���i��ZKiX�8i�^k�Xk.z�K��yY���>XZ^[�n�x�j�Z��8X��Z�X��[���izikh�i�>8i*NY��K��yY�Z�.h�~Y(�X��Y��h�~8Xxnz�iz~x��X�����X�[X�ZY~i*Ni�2��X{�k�^z�����izk�.X{������i{n�I����8"66�V�c�#3~i[h���Z��i[D4Ğik[����x�ZH��ZH~K��j�����x��z��h.ZHޘ	���~�ɣ~kK�X��x��i��8.h��j�>x��i��86Ɩ�8N[��j>Y��h�~X��h�iȞ���Kɮ���X�����Y��Z�h�^[�K��{N���Kɮ���8"X��SK��X�#�~��k.8K�ދYnX��i[NK�>���iKnK��yY�8.{��^X�[�2�Z�^[��xZ~K��K��K��K�����j����h�^K��z��N���Y��h�~h�Y��Y�y�Nh�^���XZUc�s���iz��z؞[�^yJ�h�~�	�y�^8 ���c�c�X��ZHNY�j�^Z��h��ɮX��6�F^x��i��C��6�W&6RsVfC��S3FC�3c#CSSfc&#SSS#s�C36S��FW����V�BvFW�f6CSFSf3���#�3sfFVFSss�cK��##b��%C#�CS���X�[�>h�X���ɾ�inj�Y�K��izuc�c���.x+�j�>z�h�.{�����K�i*�Y�#�Cc�rビ%�y��Z��[��xZ~K��K��K��K�����c�c��c���K��{N���{��K��yK^�Ih��iˮK�n�	���~8.Y��h�~�x&�w&W72�7��2�6��8$v�D�V.X��yI�&��"�G&VR�6��֗B�W�V7FVE�6�i�NikK��&VF&6�[{.��Ί����h�{��[�X���Ni��xF�72�WF�����W2�FWfV���V�B��N�ɾih~j>{�Nh�NK��ikZ)�K��X�K�NK��8.Y��h�~h�Y��Y�K��yJ�h�~h�i�>y�Nh�^���XZUc�sX��Y�X�^ZHNynk~h��[�^j�Z�����X�~8 ���22c�s[�X���Ί�K�Р�y�Nh�^h�^{��yJ�h�~h�i�>���[{.h�^i��x��X��Y�X�^ZHNynk~h��[�^j�Z�����X�~�ɮZ��i[N�x�K��X[>�B�i*NY����I�����[��j>X��K�nx��z����i[8Y�zپ��X�n�^K��X����XZ^X�>���Y��Z�Z�.h�~�XNii��izt55ni�^k���΋��X�[�>X�ދJ>K����i��Y(�[X�ZY~zxiȞk�^z�����K��X��[��K��X�K��K�b�K��X�h�nK�>K��{�>��8#�K�>��Y(�ikZ)�yK^�Ih��iˮ�	���~���izik��z{�66�V�c8.X��X[>�B�[��j2�h��j�Y��[�.Y(�i�{��K�z��XZ��x�h�^K��z��N���{��^i�.K��h�[{.j����c�c��ɾK��[�~h�X��ikZ)�z��s��Z��h�X���8.ZY{�n�x67&VV��r�&F6��v�&���N8 ���22c�si�{��[�X���Ί���c�s{�~{��C��>�ɮY��Z�X��55nx��i�Ί��X�nZ��i[NX��Y�X�^ZHNynk~h��[�^j�Z�����X�~���X���I����8iʮX[>�B�iȞiX�X[>�B�i*NY��X��X��[��j>Y��h�~X�nX����i[���zپ��K��Y�k�Z��i[NX�n�^8Xxnz�X����X��yb�K��ZَY�X�~iky�����8.iz~Z�.h�~�XNii�K��izt55nY��Z�8[�>X�ދJ>K���x��i���zپ����i��X�����X�[X�ZY~i*Ni�>k�^z��8��nXi����X�nY(�h.ZH�h�^[�[{.��Ί��ɷ66�V�cK��ikZ)��z{�h�nK��X�K��K�n���j�>[�����K���x�YˮK�>K��j8i�R�h�^Y�K��i[NK��X����iKnK��yY�8 ��{+�z�X���;�h�K�Cs&3#F3�fF3�VCS���3CvSCCF3cVCvcf#C���4�3�33#�#C.y�F��6��6�V6��FW7NXZ��:�7V66W7>�ɾZ�^iz^[�s#Sb�#Sn8ZK�JR�K��j�.�ȃSC��3�3�s��>�Ȟ8#�ikZ)�8cny��X[>X��ikZ)�X��Y�X�^ZHNyn���X�~X��X��[��j2�X[>�B�h��j�N{�NyK^�Ih��iˮ�	���~�ɮZ��i[NK��zپ��i[�x�8Xxnz�X����K��[z^X��ynY�X�~ik8X���I�����[��j>x��z��8izt55nX��Y��Z鮋XNii�8���X�[�>X�ދJ>K����i��k�^z��h�iȞ[X�ZY~zxiȞXh^Z����izj��Y	k�.X{������i{n�I����8"i�΋��K�>��h.ZH�h�^[��	���~���izik�����z{��ɾK��yY�c�c�Z��i[D4Ğ��h���K��Z�>z{�xދy8.X��SK��X��#�~��k.K��i[N��K��X����iKnK��yY�8.h�^K��X�[�>X������6�F^[�nj�Z��Z�^[��xZr�K��K��K��������[nY��h�~h�Y��i��X�niJ��ɾK��K�C2�>i��K��Z�^�J>K��XZ^X�>���zپi�^K�>K��Z���K��yY�y��Z��K��h��Z�8 ���c�sX��ZHNY�j�^Z��h��ɮX��6�F^x��i��S�6�W&6RcV&F3CvF&#c��s�#FV3�#c�C�sCS&S�#V�FW����V�BvFW�f6CS�F�sC���#��s�SCvf3~K��##b��%C##�#��csssc��X�[�>h�X���ɳ##b��%C##�#�bビ��y��Z��{��^[��xZ~K��K��K��K�����c�s�s��Z��XZ�K��{N���{��K��yK^�Ih��iˮ�	���~���X���j�Y�r�~kXz���SK��X��#�~��k.Y(�i[N��K��X����iKnK��yY�8.Y��h�~�x&�w&W72�7��2�6��8.h�{��[�X���Ni��[{.���j�E6�F^k�z��ٞhK�����K��Zَ���[�n�	���v7W&Θ	Z�~j�Z���ȅ�F�����N��~k#C>���K��Xi.XX^��^j����X�nh�X���Ȟ�ɴv�D�V.���h�^y�NX��yI�i�^k����X�nX��i�K�nX�niJ�Xi�XZ^[{.x��z��j����8.Y��h�~h�Y��Y�Z�h�.h�{��{��h�^���K��K�C2�>i��K��Z�^�J>K��XZ^X�>���K�>K��Z���{�~{��z؞[�^Z�^K��h��8 ���h�{��{��h�^K��X�[{.K��Zَ[�nYʎX��6�F^X[>�B�Y
-�yJ��ɤWF��F����s�S�&cCc33���6FS�3S&C3c3vf���6��6��v��j��N[�i{n��ΚinK����X�.i{nX��##b��2��8.Z�^K��Zَi{n�{C##b��%C##�3�#e��ɾZ��i[N���{��xFWfV���V�B�WF��F����6�����h�zK�K��[{.X�[�>{��h�^��Ni��Y(�X��X�niJ�i�ikYJ�K����[�n{��h�^���K�ފhny�n���z��8K��X�n�
-y��Z��xNX��8.[�>X��K��Zق�Y
-�yJ�X����i��>[�n[{.���{�����[	�K�ފ�i��ikK�z�����j�Z��h��ɾ[nz��X�>��~k.�in��Ί�K��{��h�^���Z�^Xi�XZR�4��X�[�>��K�^���Y��h��K��Xxn8.�>[�nXX>K�h�K��ikZ)�z��s��K��X�K�NK�����{��R�K�>[�>K��h�[{.j����c�s8 ���h�{��{��h�^z��X�>�znX�y�NZ�^{�>i���ɦWF��F���5�'V����~Yʆ7F���>yJ�X�ދ�NY����E�d�T�B�EECB7F�����Bf�V�N���K�ވ;�Z;z{[{.��~k.h�X��h�nik���j�[{.h�~��8.[{.�	���~X��yJ�WF��F���5�WFF^K��yY�Y�K�K��X��N[�i{n�{N��N���[n�inj�j�>[���>[�niK�K��##b��2c��6��6��v���ɾX��6�F^X[>�N���X�n[{.j�Z��i�NikK��V�&�VC�G'V^���K��Y����C�������##���#��K��j�{��h�^8.[�>X��ikK�z�����X�b�Xi�XZ^[	�iʮ�x.Z�����K��h��in���[�^��Ί��ɾj�NZ�h�.K��ikZ)�K�NK��h�niK�X��c�sX��ZHN[��xZ~8 ���22c�s[�X���Ί�K�Р�Y�[z^i��K��K��X��J>K��XZ^X�>[{.h�^X��>{�[�>X�ދJ>K��K��x��z��[)~K��X	������Y�[zR��z�[�~X�nKɮ��ވ�K��X��yK��~k.��h���ɾK�ދ�NY��I��J>K��XZ�[�~K��K���XNii�8.Z��i[N�x��Y�k�X�n�^8X��x��i���iz^i��8Xxnz�X��K��X�X[yJ�X��K��X�x�~X����nh8^Y�K��j�i��K����i��8i��z��N�(b�h�^iKb�[�Zx�Y(�h�X��Y�X�~ik[{.h�^���66�V�cizik��z{���JnK��Z��8#>K�>��[{.�	���~���yK^�Ih��iˮY(�X��X��K��Y��[�"�Z��i[D4�h�^K��j�Z���ɾ���[�nK��h�[{.j����c�s���K��h�X��X���z��s��8.ZY{�n�xג�v�&���N�ɾK��K�X��Y�.K�>kK�X��XxnZH~�J>K��y�Ni��K��XZ^X�>8 ���22c�si�{��[�X���Ί���c�s{�~{��C2�>�ɮi��[�~Y�[z^i��K��>{�X��K��X��J>K��K��x��z��[)~K��X	���XZ^X�>[{.h�^���Y�[zR��z�[�~X�n[�>X��Kɮ������K�ދ�NY��XZ�[�~K��K���XNii�8.Z��i[N��i[�zپ���Y�k�X�n�^8X��Z�.h�r���[�R�x��i���i��z�iz^i��8X��K��X�X[yJ�X�x�~X�nX����N�(b�h�^iKb�[�Zx�8��nh8^Y�Xh�j�i��K����i��X��h�X��Y�X�~iky������ɾz{�K�B�iK�[)r�iK�Z�b�i*N�HK����X�[X�ZY~k�^z��8��nXi����X�nY(�x��z��h.ZH�[{.��Ί�8'66�V�cizik��z{����j�>[��K�>K����X���i{n���Z��i[NK���xnY��K��i[NK��X����iKnK��yY�8 ��{+�z�X���;�h�K�Csc�#vC3vfCcs�#S3CSvc�s�v3�6S33V&~���4�3�3#3s�SC�y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s#c��#c�8ZK�JR�K��j�.�ȃSc��s��3sS6�>�Ȟ�ɳ>ikZ)�8s>y��X[>X��i��K���J>K��8X��Y�[z^K�Nh�^X��Y��zX��K��>{�NyK^�Ih��iˮ{��x���	���~�ɮx��z��X	���8i��z�X����N�(b�h�^iKb�[�Zx�8i�.X�h�^iKnK��yY�8Xxnz�X�����x��i��8z{�K�NY���X�X��K��X���nh8^h�.{��8X��X�~���X{���y.��.X��i�N[X�ZY~k�^z��8X��K��X��;��Z��h��x��i��Y��[�.���iz����i{n�I�����k�.X{�8"i�΋��x��z��h.ZH�i��K��h�^[��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.8X��K�ދYnK��j�>[��K��X����iKnK��yY�8.h�^K��X�[�>Y�K�����6�F^K��K��K��K��������j�Z��y��Z��Y��h�~h�Y��Y�{�~{��c�s.i��K��Y�.K�>kK�X��XxnZH~�J>K��8 ���c�sX��ZHNY�j�^Z��h��ɮX��6�F^x��i��S�6�W&6R33vC33#�#v&F3sS�vc&3&6#3CFcsfS6R�FW����V�BvFW�f6Cfs�3V3���CcFS�3##FnK��##b��%C#3�s�#�3�C"��X�[�>h�X���ɳ##b��%C#3�s�#��s�y��Z��{��^[��xZ~K��K��K��K�����c�s�s��8X��SK��X��#�~��k.Z��XZ�K��{N���{��K��yK^�Ih��iˮ�	���~8.Z�^Y��h�~[{.K��Zه&�w&W72�7��2�6�����i[NK��X����iKc�[�^K��X���nK�ޚ��iKnK��h�8.k�z���Ί��Y��h�~h�Y��Y�y�Nh�^���XZUc�s.i��K��Y�.K�>kK�X��XxnZH~�J>K���ɾY�K�k�h�^[�K��h�^XZ^�I��J>K��K�Nh�^h��x����Z�.h�~i[�x�K����Z�.h�~kK�X��X�nX����z�~���K�>K��Z������X��{�~{��z؞[�^y��Z��K��h��8 ���22c�s"X��XxnZH~�J>K��X�~x�p��X��Y�.K�>kK�X��XxnZH~�J>K��X�XZ^i��K��X���I��J>K��X[K��N{�h�^[����iˮi�B�Z�.h�~X�nX����zK�8[�>X���v�W%��BK��X����Ni��x��i��{+�z�Nh�^���X��kK�X���55nXZ^X�>��nh8^Y�K��j���i�����h�X��X��X��K��X�~ik���ZKi�>���X�[X�ZY~k�^z��8.izik�����z{����K�ވz�X��[��z��Z�.h�r�K��X�h�nK�X~K�Nh�^���K�>K��i�>��K��h�X��Z�Xھ8#.ikZ)�8�y��X[>kX���^X��i��K��XxnZH~�J>K���X��i��K����I��J>K���kK�X���55nX[^{�NyK^�Ih��iˮj8i�^�	���~�ɾ{+�z�X���;�h�K�NZ��i[B4�#��#��	���~�ɾX��ZHNX�[�>Z��h�h8^Xk^�x&�w&W72�7��2�6�����ZY{�n�xג�v�&��67&VV��r��N8 ���22c�s"i�{��[�X���Ί���c�s.{�~{��C2�>�ɮ[{.iȞY�.K�>kK�X��XxnZH~�J>K��h�^XZ^i��K��X���I��J>K��X[K��N{�h�^[����X��X�n[�>X��Z�V�v�W%��B�X����Ni��x��i���ɾiˮi�NK��Z�.h�~X�nX����zK����X��iʮy�^iz^i��K��h�8.Xxnz�X��kK�X���55nXZ^X�>��nh8^Y�K��j�[�>X�ފ�i��8i��z��΋J>K���i*NY��Y�X�~ik8iz~x��K��ZKi�>���X�[X�ZY~k�^z��[{.h�^�ɳ^��Z��i[NX�n�^8��nXi��x��z��h.ZH�K��X��K�X~K�^K��X�K�Nh�^��yXΘ	���~8'66�V�cizik�����z{����K��h�K��K�>K��j8i�R�h�^Y�i�>�����i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�CSFVFFvs��V3�&Sv6fccF3�3#ff#C�33�>���4�3�3#s�#��y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s#��#�8ZK�JR�K��j�.�ȃS�s�Sb�s�#��>�Ȟ�ɳ.ikZ)�X�^Y
-�Yʃ�y��X[>�ȃ�#c�s3�V�>�ȞX��ikZ)�XxnZH~�J>K��X��X��i��K����I��J>K���kK�X���55nX[^{�NyK^�Ih��iˮ{��x���	���~�ɮi��K����I��J>K��Xxnz�X��kK�X��x��i��8iˮi�NK��Z�.h�~i[�x�x��z��8X��55nXZ^X�>8i��z��΋J>K���i*NY��Y�X�~ik8���X�iz~��Ni��h�.{��8�y.��.i*N�Hk�^z��X��[X�ZY~8X��K��X�X��yb�K�Nh�R���Ni���h��j�i�^k�Y��[�.���iz����i{n�I�����k�.X{�8"x��z��h.ZH�XxnZH~�J>K���Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.8X��K�ދYnK��j�>[��K��X����iKnK��yY�8.K��K�X�[�>Y�K�����6�F^K��K��K��K��������Z�^Y��h�~h�Y��Y�{�~{��c�s>i��K��X��[{.��[�R�iʮ��[�^iz^i��X��i��z�Xˮ�{Nzپ��8 ���22c�s"K�>[�>K��{��^Y�j�^Z��h�+r##b��0��X������6�F^K��Zَx��i��S.���k�zcFFFCCCSSC�VF6�C#&SC3#C&V#f�c�cFC>��Θ:�{�&vFW�f6Cv6c�C3&3��#6#3F3C�f&V>K��##b��5C�3c�b�3c��h�X��8.Z�^{��K��[��xZ~K��K��K��K�����K���3c�#r����	��j����K��{N�ȃs.X���8SK��X�8#�~��k.8i[N�����iKc�Ȟ���y��Z��yK^�I�h��iˮ�^��.�	���~8.X[~K�>Y��h�~�x&�w&W72�7��2�6���ɾK��X����[�nh�K�FC#�36F#�Sv#c��V#�f&c6cv3ss�Ss�f^���{+�z�X���;�h�K�CSFVFFvs��V3�&Sv6fccF3�3#ff#C�33�>XZ��x�#��	���~8 ��K��K�{�~{��C2�2�c�s>i��K���J>K��X��[{.��[�^iz^i��8iʮ��[�^iz^i��X��i��z�Xˮ�{Nzپ��8.XˮX�nX��X��yn{�nZ�iz^i��8�N{;�{�nZ�i{n�{NK��(N{�n[�Zx�i{n�{N�ɾi{n�{NY�X����[�^hȞ[{.K��ZمUD>iz^i��i��z��zK����K�ޘ�h�������N�
-^K��izR�i{nXˢ�i{n��h�n�8��xNX��8.Z��i[N��i[8zپ��i�^k���i��8���X�k�^z��8X��X��ynK��h.ZH�[�N{�~{��K��{N8.K�>K��Z�����XN�J�Y(�j�>[��i�ni�B�K��X����iKnK��K��yY�X�����Z��ɾh�{��K��X�K��K�^iȞX�nX�.����i{n�{N��[�^���iziky�N�z�X��X���;�h�K�N��h��8 ���22c�s2X��iz^i��zپ��X�~x�p��i��K��X��iz^i��[{.��[�R�iʮ��[�^K��in[�X�^Y
-�y�Ni��z�Xˮ�{Nzپ��[{.h�^���XZ�{�X��iz^i���UD>i{n�{NK��X��Z�~j�^X�nX����zK����X��X��[��i{n�{NK�ފ^X��yniz^i���ɾZ��i[Niz^i��i[�x�K��X˞�Xޘx�8X	���iʮy�^iz^i����Nzk�X��iz^i��zپ��{�Z�i�^k�8#.ikZ)�X��c>y��X[>8^{�NyK^�Ih��iˮj8i�^�ȎY
-�iz^i��[�>[{��x���Ȟ[{.�	���~�ɾ{+�z�X���;�h�K�NXZ��x�4�Z�S#�2�#�>�	���~���X��6�F^Y�j�^Z��h�h8^Xk^�x&�w&W72�7��2�6��8.ZY{�n�xג�v�&��FFW2��N�ɾK��K�X��iz^i���i�Niki{n�{Ni��z�h�.[��8 ���22c�s2i�{��[�X���Ί���c�s>{�~{��C2�>�ɮi��K��N{�X���J>K���x��z��[)~K��X	���[{.h�^X��iz^i��[{.��[�^8iʮy�^X���in[�X�^Y
-�y�Ni��z�Xˮ�{Nzپ���ɾX�[zR�YJ�Y��ZH�i�^X��{�nZ�iz^i��8�N{;�����K��i{n�{N8�(N{�n[�Zx�X��UD>iz^i��Y
-�K��X�n[�8.Z��i[Niz^i���x��X˞�Xޘx�8^��Y�k�X�n�^K��iz^i��{�Z鮊�i��8X��iz^i��K���.h�.{��iz~k�X��X�~ikK��yY�Xˮ�{N8iʮy�^X��K��X�i��z�h�^iKb�[)~K��X	���8i�>�����X�k�^z��K�nXi��x��z��h.ZHޘ	���~8'66�V�cizik�����z{����K�ޛ����N�
-^K��izR��8��i{n�����K�>K��K��i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�C��3&FVvfS#&F�fVC#C�fSV��cf&fV3�N���4�3�3#���3y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s#�2�#�>8ZK�JR�K��j�.�ȃ3�CcCB�cs��>�Ȟ�ɳ.ikZ)��ȃ##2�#Sc&�>�Ȟ8c>y��X[>�ȃ�#CSb�S#�#�v�>�ȞX��iz^i��ikZ)�X��X��i��K���J>K���Y�.K�>XxnZHr��I��J>K��K�Nh�R�K�X~h�^z�^{�NyK^�Ih��iˮ�	���~�ɣ^Z��i[NY�k�X�n�^8X���N{;�UD>iz^i��K��X��XZ^X�>8iz^i��X��i�Nh�.{��iz~k��X�~ikK��yY�Xˮ�{N8iʮy�^X��K��X�i��z�h�^iKnK��h�zپ��8X	���iz^i��iʮy�^K�ވz�X��h�~Z�8���X��y.��.i*N�Hk�^z�����K�^X��X��K��X��kK�X���K�Nh�^Y��[�.���iz����i{n�I�����k�.X{��ɾikZ)�iz^i��i[�x�[�>[{��x��[{.ZH�j�8"x��z��h.ZH�X��iz^i���Z��i[N�x�X��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.8X��K�ދYnK��i[NK�>���iKnK��yY�8.h�^K��X�[�>X������6�FR�K��K��K��������Z�^Y��h�~h�Y��Y�{�~{��c�sNi��K��X��iz^i���i�Niki{n�{Ni��z�h�.[��8 ���22c�s2K�>[�>K��{��^Y�j�^Z��h�+r##b��0��X��6�F^K��Zَx��i��S>���k�zv#&C#&#6��Sc�S3sF3FVFVC�sc�vc��Θ:�{�&vFW�f6C�#cVc�C���#�#Cs��f3C#�K���S��#㓃##2��h�X���ɾ{��K��[��xZr�K��K��K�����K���S��3b�3Su�Z��i[NK��{N�ȃs>X���8X��SK��X��#�~��k"����iKc�Ȟ���y��Z��yK^�Ih��iˮ�^��.�	���~8.K��X����[�nh�K�CvC#3&#Sff3SV&vfS6c3sSc#fSs6c3vCn���{+�z�X���;�h�K�C��3&FVvfS#&F�fVC#C�fSV��cf&fV3�NXZ��x�#�>�	���~�ɾY��h�~�x&�w&W72�7��2�6��8.K��K�K��yJ�h�~{�~{��hꎋ��c�sNX��iz^i���i�Niki{n�{Ni��z�h�.[�����iʮy�^Y��Z�Yʎ[{.��[�^K��Y����Y�iz^hȞX��i�Nik��B���z�>Z�h�.X�~���K�ފ^i{n�{Nh�n�8��xNX��8 ���22c�sBX���J>K����[��X�~x�p��X��iz^i��X�r����[��K��X��i�Nik��[��[{.h�^���iʮy�^iz^i��Y��Z�YʎY����Y�iz^K��h�i�Nik�X���B���z�>Z鮚�[�����K�ފ^[�i{nh�nKɎXX�{�~�ɾh�.[��{�Z�i�^k����Z��i[NX�n�^X��X�~h�.Y���X�iz~Y8�[�N��Nzk�8#�ikZ)�8s^y��X[>Y(�h�.[���X��iz^i���i��K���XxnZH~�J>K��N{�NyK^�Ih��iˮ�	���~�ɾ{+�z�X���;�h�K�NXZ��x�4�Z�S3�3�	���~�ɾX��ZHNX�[�>Z��h�h8^Xk^�x&�w&W72�7��2�6��8.ZY{�n�xג�v�&��6�'B��N�ɾK��K�i��K���J>K��{J~XyX�~��K��X�x�~z؞K�~i��zK�8 ���22c�sBi�{��[�X���Ί���c�sN{�~{��C2�>�ɮi��K��N{�X���J>K���[)~K��X	���X��i��z�hȞX��i�Nikh�nX��iz^i��X�r����[�����[{.��[�^iz^i��YʎXX�8iʮy�^Y��Z�YʎY����Y�iz^hȞX��i�Nik�{�Y���B���z�>Z�h�.[�����K�ފ^[�i{nh�nKɎXX�{�~8.iz^i���ih~Z�r�{�Y�zپ��K��Z��i[N�x�K��h����h�.[��{�Z�i�^k�8^[{.��[�^X�iʮy�^X��K��X�Z��i[NX�n�^X��nkX��x�Y���J>K���iʮy�^XxnZH~[��8���X�iz~h�.[����Nzk�Y(�h��iˮX��h�^iKnK��yY���h���	���~8.��nXi��X��iz^i��X��X�n��i���x��z��h.ZH�K��{N�ɷ66�V�cizik��z{����j�>[��K�>K���i{n��K��i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�CS�F#&cFfS#s3f#f�cVC&Ccc�&6#fF&3�#FS&���4�3�333CCcy�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3�38ZK�JR�K��j�.�ȃS�#3s��#SC�>�Ȟ�ɳ�ikZ)��ȃsc�CsC3��>�Ȟ8s^y��X[>�ȃ3�#��#Cs#�>�ȞX��ikZ)�h�.[��X��X��iz^i���i��K���Y�.K�>XxnZHsN{�NyK^�Ih��iˮ�	���~�ɣnZ��i[N�J>K���ȃ^[{.��[�R�iʮy�^XxnZH~[���Ȟ8iz�i����[��K��[{.��Xˮ�{N8X�~h�.i�^��.Y���X�iz~h�.[����Nzk�8h��iˮX��K��X�h�^iKnK��yY�iz^i���h�.[��8�X{�k�^z�����X�X�~��Y(�X��[X�ZY~���K�^X��X��i�^k��x��i���i�>��Y��[�.���iz����i{n�I�����k�.X{�8"x��z��h.ZH�X����[���iʮy�^[��X��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.K��i[NK�>���iKnK��yY�8.h�^K��X�[�>X��6�F^K��K��K��K��������Z�^Y��h�~h�Y��Y�K��K�c�s^i��K���J>K��{J~XyX�~��K��X�x�~z؞K�~i��zK�8 ���c�s^{��h�^��Ί���yX�X�n�xג�v�&��FV�6�G������N�ɾ[	�iʮZ��ik����K�ފ�ikZ)�K�NK��8 ���22c�sBK�>[�>K��{��^Y�j�^Z��h�+r##b��0��X������6�F^K��Zَx��i��SN���k�z3�c3#�6SSF&fVf&VfS�c�#&S�C�fs���Θ:�{�&vFW�f6C�cSCccC���Fcc�&csV63S&FK��##b��5C�c�2�s#��"��h�X��8.{��K��[��xZr�K��K��K����ޘ	��K��{N�ȃsNX���8X��SK��X��#�~��k"�i[N�����iKc�Ȟ���y��Z��yK^�Ih��iˮ�^��.�	���~���Z�^j����i{n�{NX��Y8�[�Ίx&�w&W72�7��2�6��8.K��X����[�nh�K�CvFc3#SsCvC�C36SV&#C&CSSS6fVFSCSV.���{+�z�X���;�h�K�CS�F#&cFfS#s3f#f�cVC&Ccc�&6#fF&3�#FS&XZ��x�3�	���~8 ��i�΋��c�s>8c�sNX�nX��Z��h�K�>zhꎘ8{+�z�k�Z��i[D4�K��Y�K�X��6�F^X��ZHNX�[�>j����8.K��K�C2�2�c�s^i��K���J>K��{J~XyX�~��K��X�x�~z؞K�~i��zK����h�i�����Ί���yXΊxג�v�&��FV�6�G������N�ɾ[	�iʮZ��ik����K�ފ�K�NK��8.K��h�Z��i[N[{.X���ޚ^8iz^i�����[���ih~Z�r�{�Y�8X��x��i��8��i���i�>��X��ZKi�>���X�k�^z�����K��h��ZJ~Y�[z^h�nK�>K����>Y�N8.j�>[��K��X����iKb�Z�����
-^K���xNX��z؞K��hȞX�����Z�K��yY�8 ���22c�sRz؞K�~i��zK�X�~x�p��i��K��X�x�r�{J~XyX�~��ZH�yJ�XZ��:�[{.�x~yJ��^Y(�X��Y��>���n��[�R�X��x��i���Z�~j�R�X��K��8Z��i[N�x�Y(�zپ��K��{N�ɾX�~h�.X��[�>X�ފ�i��8i�^k�X��i�Nh�.{��X�~h�"�K��yY�iz~�^K��i��z�X�~ik8X��h�^iKnK��yY�h��iˮZ�n[�n���ZKi�>X���X{����X���i��k�^z��[{.h�^8#C^y��X[>X��ikZ)�Z�n[�b�X��h�.[���i��K���Y�.K�>XxnZHsN{�NyK^�Ih��iˮ�	���~���{��x��h��iˮj~�)�[�>[[{.ZH�j��ɾ{��T�izikX�^XX2������z{�8.{+�z�X���;�h�K�NXZ��x�4�Z�S3�3�	���~�ɾX��ZHNX�[�>Z��h�h8^Xk^�x&�w&W72�7��2�6��8.ZY{�n�xג�v�&��FV�6�G���N�ɾK��K�[{.[�NyJ�zپ��i��h�[	�iʮi�^��.X��X��h�zK�K��i��z�x�{��i�^��.8 ���22c�sRi�{��[�X���Ί���c�s^{�~{��C2�>�ɮi��K���J>K��X��X�~h�.X�x�r�{J~XyX�~�����X[yJ�XZ��:�[{.�x~yJ��R�X��x��i���Z�~j�R�X��K�����ni�X�~h�.izK�.�^���Z��i[N�x�K��iz^i���h�.[���ih~Z�r�{�Y�K��h�8.X�~h�.X��[�>X�ފ�i��8i�^k�X��i�Nh�.{��iki��zK��K��yY�iz~�^8X��h�^iKb�X�~ikK��yY�h��iˮZ�n[�n8�X{�X��ZKi�>���X���i��k�^z���	���~8.{��T�izikK��X�Xi�XZR�X�^XX2������z{����66�V�cK��h����K�>K��Y(�i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�FVS���Sv3s�6S�SSfSS3S��C�CcS�FC##n���4�3�33##�y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3�38ZK�JR�K��j�.�ȃS�3C��#�Sv�>�Ȟ�ɾ{��T�izikX�^XX>8C^y��X[>�ȃSC�R�33�Sv�>�ȞX��ikZ)�Z�n[�nX��X��h�.[���i��K���Y�.K�>XxnZHsN{�NyK^�Ih��iˮ�	���~�ɣn[{.�x~yJ��^X���W��ih~Z�r�x��i���Z�~j�R�X��K��K��i[�x��zپ��Z��XZ�z؞K�~���X���N{;�XZ^X�>8i�^k�X��X�nh�.{��ik[�>[�X��X�~ikK��yY�{J~XyK��zپ��8h��iˮX��h�^iKnK��yY�Z�n[�b�iz^i�����[�����[�>X�ފy.��.h�.{��X���X{�Y���X�h�X����i��k�^z�����hȞ�*�{>[	CG����iz�I�����k�.X{����h��iˮj~�)�{��x��ZH�j�8"ZH�yJ�y��X[>X��h.ZH�X��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.K��i[NK�>���iKnK��yY�8.h�^K��X�[�>X��6�F^K��K��K��K��������Z�^Y��h�~h�Y��Y�K��K�c�sn[{.[�NyJ�zپ��i��h�[	�iʮi�^��.Z�Xi�h�zK�K��i��z�x�{��i�^��.8 ���22c�sRK�>[�>K��{��^Y�j�^Z��h�+r##b��0��X��6�F^K��Zَx��i��S^���k�z&SsCSv6Fv&6fc�3sF66#&6#F&f6C�CV#^��Θ:�{�&vFW�f6C�3C&c63�������&3&fC�fcv3K���C�#��S3SC"��h�X��8.{��K��[��xZr�K��K��K�����K��{N�ȃs^X���8X��SK��X��#�~��k"����iKc�Ȟ���y��Z��yK^�Ih��iˮ�	���~�ɾi{n�{B�Y8�[��X��{+�z�Y��h�~�x&�w&W72�7��2�6��8.K��X����[�nh�K�CS6SVS�&#&FFf3#3SfcS#Sv#c#CcVC�#cSn���{+�z�k�VS���Sv3s�6S�SSfSS3S��C�CcS�FC##ny�D4�3�33##�XZ��x�3�	���~8 ��K��K�K��h�{��h�i�>hꎋ��c�sn[{.[�NyJ�zپ��i��h�iʮi�^��.Z�Xi�h�zK�K��i��z�x�{��i�^��.8.X�~ikK��X��K��X�X��ynY�y�N�z�X��X�~ik[�^��k+�[{.[�NyJ�zپ�����K�ވ;ވz�X���x~yJ�iʮh�K�N��X�^X��ɾX��iȞi��z�i�^��"��x�{��i�^��.�x~yJ�ikX�8.�x�{��K��Xi�K��X�K��Z��8K�ޘx�{��i��zK�Z�n[�n�ɾK��yY�X��i�^k���i����y.��"����X�k�^z��8 ���22c�sb[{.[�NyJ�zپ��X�~x�p��i��K��[{.[�NyJ�zپ��i��hK��iʮi�^��.Z�Xi�X�n[���zK����i��	��X��h�X��X��K��X�~ikk+�i�Y�[{.�x~yJ�i�K�n[�nK��yY��؞z�����X��yKi��z�i�^��.h�n�x�{��i�^��.�x~yJ�ikX��ɾi��zK�Z�n[�nK��h�8{��ih~i��X���X{����X�i��h�h�zK�k�^z��[{.h�^8#C^y��X[>K��ikZ)�i��h�X��Z�n[�b�h�.[���i��K���XxnZHs^{�NyK^�Ih��iˮ�	���~�ɾ{��T�izikX�^XX2������z{�8.{+�z�X���;�h�K�NXZ��x�4�Z�S3�3�	���~�ɾX��ZHNX�[�>Z��h�h8^Xk^�x&�w&W72�7��2�6��8.ZY{�n�xג�v�&��ƖVB��N�ɾK��K�[�>X��zپ��X�nK��X�Z��i[Ni[�x�K��i��K��XZ��x��x�X�n[�8 ���22c�sbi�{��[�X���Ί���c�sn{�~{��C2�>�ɮi��K���J>K��[{.[�NyJ�zپ��i��hK��iʮi�^��.Z�Xi�X�nX����zK����X��ih~Z�~{��ih~i��8.i��	��X��h�X��X��K��X�~ikk+�i�Y�[{.�x~yJ�i�K�n[�nK��yY�iʮh�K�NZ�Xi����K�^i��z�i�^��"��x�{��i�^��.�x~yJ�ikX���Θx�{��K��Xi�K��X�K�NK��yY�i��zK�Z�n[�n�ɾh��iˮX��h�^iKn8i�^k��X��X��K��Y(ΘX{����X�i��hk�^z����Ί��	���~8.{��T�izikX�^XX2������z{����ZH�yJ�C^y��X[2�X��h.ZH����66�V�cX��K�>K���i[NK�>���iKn��yX�K��yY�8 ��{+�z�X���;�h�K�C��F3�S�&V&SS&VFC33csf3cfcSsc3SCc�3���4�3�333�##cny�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3�38ZK�JR�K��j�.�ȃcscB�#s�CV�>�Ȟ�ɾ{��T�izikX�^XX>8C^y��X[>�ȃSc�cSCS&�>�ȞX��ikZ)�[{.[�NyJ�i��hX��X��Z�n[�b�h�.[���i��K���XxnZHs^{�NyK^�Ih��iˮ�	���~�ɮ[{.[�NyJ�K��iʮi�^��.X����[�^i[�x�X�nX��K��h����i��	�X�~ikX��h��iˮX��h�^iKnK�ޘx~yJ�[�^i�^��.Z�Xi����X��iȞi��z�i�^��"��x�{��h�ޘx~yJ�ikX�[�nK��yY�Z�n[�n���X��ih~Z�t�D��K��h�{��ih~i����ΘX{�Y�y�N���X�X�~��K��h.ZH�i��h�h�zK��zxiȞ��nh8^���iz�I�����k�.X{�8"ZH�yJ�y��X[>X��h.ZH�X��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.K��i[NK�>���iKnK��yY�8.h�^K��X�[�>X��6�F^K��K��K��K��������Z�^Y��h�~h�Y��Y�K��K�c�s~[�>X��zپ��X�nK��X�Z��i[N�x�K��i��K��XZ��x��x�X�n[�8 ���c�s~��Ί�K��Z��ikދ�yX�X�n�xג�v�&���F6�VB�����N���[	�iʮZ��ik����K�ފ�ikZ)�K�NK��8 ���22c�sbK�>[�>K��{��^Y�j�^Z��h�+r##b��0��X��6�F^K��Zَx��i��Sn���k�zfv3#SSF6S#V#C�VF&6#&S�c��F#�&Cc3#N��Θ:�{�&vFW�f6C�CSCc����3#��FCs&c6S�6#�K��##b��5C#���cC3cb��h�X���ɾ{��K��[��xZr�XZ��:�K��K��K�����K��YJ�K�K�>[�4�4��	��K��{N�ȃsnX���8SK��X��#�~��k"�i[N�����iKc�Ȟ���y��Z��yK^�Ih��iˮ�^��.�	���~���Z�^j����i{n�{NK��Y8�[�Ίx&�w&W72�7��2�6��8.K��X����[�nh�K�FS&c�vCvC3Ccsc�SFc�&&F3&36f3�C#V���{+�z�k���F3�S�&V&SS&VFC33csf3cfcSsc3SCc�3y�D4�3�333�##cnXZ��x�3�38ZK�JR�K��j�.�	���~�ȃcscB�#s�CV�>�Ȟ8 ��i�΋��K��h�{��hꎋ��h�i�>Z��h�c�s>iz^i��x�nh�Xˮ�{N8c�sNX����[��8c�s^z؞K�~Z�n[�n8c�sn[{.[�NyJ��iʮi�^��.zپ����Nzk��ɾj��j�^X�nX����Ί�8hꎘY(�X��6�F^X�[�>j�������[�nK��Zَy��Z��Y��h�~8.K��K�C2�2�c�s~[�>X��zپ��X�nK��X�Z��i[N�x����K��i��K��XZ��x��x�X�n[����Z��ik����Ί���yXΊxג�v�&���F6�VB�����N�ɾ[	�iʮZ��ik����K�ފ�K�NK��8.{�~{��K��yY�X��i�^k��iz^i���h�.[���X	����iˮi�NK��Z�.h�r��y.��"�X��X��K��X��h.ZH��ɾX��K�>K��Z�����xNX��Y(�K��X����iKnK��[�^8.h�{��K��X�k+�X���NY(Έ�.ZX�K��Zَ���i�Ί�[�^K��Z;z{[{.Z��h�izK��X�Z�X���;�h�K�N8 ���22c�srZ��i[NX˞�X�X�n{�X�~x�p��C2�>[�>X��[{.[�NyJ�zپ��Z��i[NX�n{��F6�VE�6�V�G>�ɮX��X�Y��{�X�^Y
-���n8Y�K�66�VB�v�W&^X�n�^X��X�n{�N���h�Y(�z؞K��F�F��ɾi��K��XZ��x�6�V�G>K��X	���K��X�X˞�X�X�nX����zK�8.X��iz^i���ih~Z�r�h�.[�����i���X��X��ynK��K�X~K�^K��X�K��h����izikZ)�����z{�h�e5�Xi�8.�xF�72�ג�v�&���F6�VB��N8.{+�z�X���;�h�K�NXZ��x�4�Z�S3�3�	���~�ɾX��ZHNX�[�>Z��h�h8^Xk^�x&�w&W72�7��2�6��8 ���22c�sri�{��[�X���Ί���c�s~{�~{��C2�>�ɮ[�>X��[{.[�NyJ�zپ��Z��i[NX�n{��F6�VE�6�V�G>yKY�K�X��66�VB�v�W&^X�n�^X��X�n{�N���X�Y��{�Y
-���n���h�Y(�z؞K��F�F��ɾi��K��XZ��x�K��[)~K��X	���X˞�X�X�n[�8.Z��i[C~k{~Y��J>K���Y�Z�.h�~�x�ZH�X��nkX��x�Y��Y���^8iz^i���ih~Z�r�{�Y��h�.[��8X��h�^iKb�iʮh�K�NZ�Xi�����X��X{�8{��ynX��K�X~K�^K��X�X[�Z�8��nXi��x��z��h.ZHޘ	���~8'66�V�cizikZ)����z{����K�>K��Y(�i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�C3ScCS�Fc&f#��3Sv6F&c##�s�v33#F3SSc���4�3�3CC�sCsS�y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3�38ZK�JR�K��j�.�ȃcc�s3c�f�>�Ȟ�ɾikZ)㞚�X˞�X�kX���^8�.y��X[>�ȃ3cS3b�C3Sc36�>�ȞX��ikZ)�Z��i[NX�n{�X��X��[{.[�NyJ��Z�n[�b�h�.[���i��K���XxnZHr�Y�[z^K�Nh�R�K�>x�ӎ{�NyK^�Ih��iˮ�	���~�ɣnk{~Y�X���J>K��Y���^Z��i[NX�n{�K��{ʞkN���XZ��x�K��X˞�X��X	���i��z�X�n[����iz^i���iʮy�R�z��{�>i��8iʮh�K�NZ�Xi�8h��iˮX��h�^iKnK��yY�[{.[�NyJ��x����{��ynY(�K�X~K�^X��K��X�X[�Z�8���X��X{�zxiȞX�n{�k�^z�����iz�I�����k�.X{�8"ikZ)�X˞�X�X�n{�X��X��y��X[>h.ZH��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.K��i[NK�>���iKnK��yY�8.h�^K��X�[�>X��6�F^K��K��K��K��������Z�^Y��h�~h�Y��Y�K��K�c�s�[�>X��[{.[�NyJ�X�n{�i��z�zپ��XZ^X�>8 ���c�s~X��ZHNX�[�>j����Z��h��ɮX��6�F^x��i��S~���k�&C�sfcf3#VS6c�c��#cSVc3C33#fS���Θ:�{�&vFW�f6F#SsCc#���#�FFs�V3C6Ff3�7V66VVFVN�ɳ##b��5CC���Cb�C�u��	K����X�n{��K��6�6��NY(�K��K��������s~X����SK��X��#�~��k"�K��X����iKcK��k�y��Y����y��Z��yK^�I�h��iˮ�	���~8.Z�^Y��h�~�x&�w&W72�7��2�6���ɾK��K�XZ^X�6F�72�ג�v�&�ֶ��B�V�G'������Ny�Ec�s�X��X�n{�i��z�X�����zپ�����K�ޘx~yJ�iʮi�^��.Z�Xi�8.iz.iȞZ�i{nK��X�K��yY����i�΋��K��iziky�NizK��X�Z�X���;�h�K�N��h��8 ���22c�s�X��X�n{�i��z�XZ^X�>X�~x�p��C2�>[�>X��Z��i[NX˞�X�X�n{�y�Ni��z�X�����XZ^X�>�ɮ��h��{�Y�k+�[{.[�NyJ���>Y�B�ih~Z�r�iz^i���h�.[���Z�n[�n���K�ޘx~yJ�iʮi�^��.Z�Xi��ɾXX���i��[�>X��X��i�^k����iky�Ni��z�i�^��"��X{�KɎXX�K����X�iz~X�n{�8.X	����X��X��K���K�>K����yX�K��yY����{��T�izik����z{�8.�xF�72�ג�v�&�ֶ��B�V�G'���N8.{+�z�X���;�h�K�NXZ��x�4�Z�S3�3�	���~�ɾX��ZHNX�[�>Z��h�h8^Xk^�x&�w&W72�7��2�6��8 ���22c�s�i�{��[�X���Ί���c�s�{�~{��C2�>�ɮK��[�>X��Z��i[NX˞�X�X�n{�i��z���XZ^X��K��X�{�Y����k+�[{.[�NyJ��J>K����>Y�B�ih~Z�r�iz^i�����[��X��Z�n[�n���K�ޘx~yJ�iʮi�^��.Z�Xi��ɾ{�Y辈؞z��X�n��K��yY�[�nh�zK�8.�x~yJ�X��X��i�^k���i�����i�^k�iK�X��h�.{����΋��X�iz~X�n{�K�ފhny�niki�^��.���X	�����n�z�X��h�~kK�8h��iˮX��h�^iKnK��x��z��X��yn8�X{��X�yJ�k�^z���	���~8.{��T�izik����z{����X��X�Y��{�Z��i[N�x�K��K�>K���i[NK�>���iKn��yX�K��yY�8 ��{+�z�X���;�h�K�FfC�f#3s��#c��S3��6FSfCc33S��C�3#����4�3�3Cc##cy�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3�38ZK�JR�K��j�.�ȃ3�#�s��ssc�3V�>�Ȟ�ɾ{��T�izikX�^XX>8SNy��X[>�ȃSssr��C36�>�ȞX��ikZ)�X�n{�XZ^X�>X��X��Z��i[NX�n{��[{.[�NyJ��Z�n[�b�i��K���XxnZHsn{�NyK^�Ih��iˮ�	���~�ɮX��Z��i[NX˞�X�X�n{�i��z��h��{�Y�8XZ��:���NY�����[{.[�NyJ�ih~Z�r�iz^i��Xˮ�{B���[�����>Y�B�Z�n[�nY(�x��z��{�Y辈؞z��K��yY����X	���iz�z�X��h�~kK����X��h�^iKnK��x��z���ɾiz~X�n{���i��K�ފhny�niki�^��.8i�^k�iK�X��h�.{��8���X��X{�Y(�X�yJ�k�^z�����h��iˮhȞ�*�CG����iz�I�����k�.X{�8"SNy��X[>X��h.ZH��Kɮ���[{.j�Z�����izik�����z{��ɾiʮ�xދyX�nX�$4Ğ8.X��SK��X��#�~��k.K��i[NK�>���iKnK��yY�8.h�^K��X�[�>X��6�F^K��K��K��K��������Z�^Y��h�~h�Y��Y�K��K�c�s�X���	�yJ�K��X�x�nhzپ��8 ���c�s�X��ZHNX�[�>j����Z��h��ɮX��6�F^x��i��S����k�S3F33v6cf##sS�F&Cf6cScs#s�C�F3&FFSsv.��Θ:�{�&vFW�f6F#C3�CSCC��#&cc#CCF#�327V66VVFVN�ɳ##b��5CC�3#��Cu��	K����X�n{��K��6�6��NY(�K��K��������s�X����SK��X��#�~��k"�K��X����iKcK��k�y��Y����y��Z��yK^�I�h��iˮ�	���~8.Z�^Y��h�~�x&�w&W72�7��2�6���ɾK��K�XZ^X�6F�72�ג�v�&��F6��7FFR�����Ny�Ec�s�X���	�yJ�K��X�x�nhzپ�����hȞX��Z�~j�^K�NK��Y�[�nK��Y�K��X�x�nh8.iz.iȞZ�i{nK��X�K��yY����iziky�NizK��X�Z�X���;�h�K�N��h��8 ���22c�s�X��K��X�x�nhX�~x�p��C2�2���c>i��K��X���	�yJ�K��X�hȞyI�Y�Y�i�����Z�8[�^i��K��h�^iKn8h�~��i�.X��h�~��K��X��Z�~j�^zپ���ɾx�nhX���x�X����X[nK�nX�K��{�K��h�ij�8.[�>X��f��FW"�v��r�&��n{�Z�F6��7FF^�ɾ���K��X�K�ޘ.yJ�i{ni��z�h�.{��[�nK��yY�X��[{.[�NyJ�X�~��Y(�Z�Xi����X�n{�XZ��:�XZ^X�>i��z�X{�x�nh8.X��i8�K��[��K��Z��8^X�n�R���nXi��i�>���h.ZH�X��h��iˮX��h�^iKnX�~ikZH�j��ɷ66�V�cizik����z{�8.���z��[{.iȞX���;�K��K��j�>h�K�N[{.iKnX�n���i�΋��^j�X��Z�~j�^Y(Κ�Ί��ɾ{+�z�k�XZ��x�4�Z�S3��3��	���~�ɾX��ZHNZ�^X�[�>�x&�w&W72�7��2�6��8 ���22c�s�i�{��[�X���Ί���c�s�{�~{��C2�2���c>�ɮi��K��X���	�yJ�K��X�hȞX��yI�Y�Y�i�����Z�8z؞[�^i��K��h�^iKn8h�~��i�.X��h�~��K��Z�~j�^i��z�zپ�����x�nhX���x�X�K�NX[nK�nX�K��{�K��h�ij�8'F6��7FF^{�Z�X��i�^k��X�n�R���i����Ι��K��X�K�ޘ.yJ�i{nK��yY�[{.[�NyJ�X�~��K��؞z��[�ni��z�h�.{�����XZ��:�{�Y�XZ^X�>i��zK��X{�x�nh8.X��i8�K��[��z��K��K�n8^Z��i[NX�n�^8�ikZ)�x�nh�~X˞�X�x�nh�y��X[>8�{�NyK^�Ih��iˮX��x��z��h.ZH����nXi���y.��.�z�zh�	���~8'66�V�cizik����z{����j�>[��i{nXˢ�K�>K��Y(�i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�Cs�CS��V�##&C3f&vfC6F&66C�>���4�3�3�sC3csny�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3��3�8ZK�JR�K��j�.�ȃC��R�cS3�sF�>�Ȟ�ɳ~X˞�X��x�nhkX���^�ȃ#S��Cs�V�>���i��x���ikZ)�Yˮi���Ȟ8y��X[>�ȃ#�#3�c�s�>�ȞX��ikZ)�X��x�nhX��X��X�n{�XZ^X�2�Z��i[NX�n{��[{.[�NyJ��Z�n[�b�i��K���XxnZHr�Y�[z^K�Nh�R�K�>x�Ӟ{�NyK^�Ih��iˮ�	���~�ɮX��Y��K��Z�~j�^x�nhX�����Z�i�.XΘx�X�8���K��X��؞z��h�.{��K��yY�[{.[�NyJ�{�>i��8i��zK��X{�8X	���K�ވz�X��h�~kK�8h��iˮX��h�^iKnY�hȞ[�^h�^iKn��>Y�NX�~ikK��z��8k�X��X�b�X����nh8^8�X{����X�k�^z��X��CG�h�~K�n���iz�I�����k�.X{�8"ikZ)�i��K��YNX��x�nh�X	���Y(�y��X[>h.ZH����Kɮ������X��K��K�nX��[�^yJ�K��h��ɾizik����z{����iʮ�xދyX�nX�$4Ğ8.���z��C�FC�N�{63ssVf3n[{.iKnX�n[�n�^[ˮ���K��[nX�^x��X���;�hꎘz{[{.Z��h�X��ZHNY�j�^�ɾX��ZHNZ�^Y��h�~�x&�w&W72�7��2�6��8.K��K�c�X�����Z�X��Y�i��hY(�X��K���.8 ���c�s�X��ZHNX�[�>j����Z��h��ɮX��6�F^x��i��S����k�C�3V&6f#CSSc&&C#C#3�S6F#3V#S6n��Θ:�{�&vFW�f6S6cS#�3���6#vSSs&&B7V66VVFVN�ɳ##b��5C�C��Cr�s3��	K����X�n{��K��6�6��NY(�K��K��������s�X����SK��X��#�~��k"�K��X����iKcK��k�y��Y����y��Z��yK^�I�h��iˮ�	���~8.Y��h�~�x&�w&W72�7��2�6���ɾK��K�F�72�ג�v�&��F6��&��6�W'2�����Ny�Ec�X�����Z�X��Y�X��K���.8.���z��[{.iȖC�FC�N�{63ssVf3ny�NX���;��K��j�>Y(�h�X��4��*�iKnX�n���K�nX[n�>yJ��Z�i{nK��X�i�^k�iʮz�Z��ɾi�΋��Z�^�^[ˮ[�nZ��h�X��XX�iʮY�j�^y�NX�[�>8 ���22c�[�>X��X�����Z�X��Y�X�~x�p��C2�2���c2���N[�>X��X���	�yJ�K��X����Z�X��Y�Y(�X��K���.X�����XX>K�h����{�Z�K��X���z�[�r�X��K���.�ɾX[nK�nX�K��{�Y(�i��	�K��X�K��i��zK�X�nX�.X��Y�8.X�x�~{J~XyY�k�{��ih~i�����X���z>��NY�hȞ[{.[�NyJ�i�K�nX�~ik���X	���K�ވz�X��h�~kK�8.izik����z{�h�ni�>��h��[��ɾ��Ί��xF�72�ג�v�&��&��6�W'2��N8.{+�z�k�XZ��x�4�Z�S3#2�3#>�	���~�ɾX��ZHNZ�^X�[�>�x&�w&W72�7��2�6��8 ���22c�i�{��[�X���Ί���c�{�~{��C2�2���c2���N�ɮi��K��X��[)~K��X	���y�NX���	�yJ�K��X�i��zK�[�>X��X�����Z�X��Y�K��X��K���.���hȞX��K��X���z�[�r�X��K���.X[>�N���i��	�K��X�X��X[nK�nX�K��{�K��i��zK�X�nX�.X��Y�8.X�x�~{J~XyY�k�{��ih~i����ąD��K��h�~���ɾX���z>��NY�hȞ[{.[�NyJ����Z��>Y�Nz{�X{����iz~X��Y�K��yY�K��K�n��Έ؞z���Z�n[�b���i��K��h�8#^ikZ)�8^y��X[2�{�NyK^�Ih��iˮ8^Z��i[NX��X��Y�X�n�^K�nXi��x��z��h.ZHޘ	���~���66�V�cizik����z{����K�>K���i[NK�>���iKnK��yY�8 ��{+�z�X���;�h�K�C#�6F3�cV3ccc�6fcSsvS�s6ccfSv6&^���4�3�3�3sc�Ny�F��6��6�V6��FW7NX��K�z��X��x�nh����Z�X��Y�kX��x�Y��XZ��:�7V66W7>���Z�^iz^[�s3#2�3#>8ZK�JR�K��j�.�ȃCC3��CS�s��>�Ȟ�ɾikZ)�^���ȃcsb�c33v�>�Ȟ8^y��X[>�ȃSC��C#s��>�ȞX��ikZ)�X�����Z�X��Y�X��X��x�nh�X�n{�XZ^X�2�Z��i[NX�n{��[{.[�NyJ��Z�n[�b�i��K���XxnZHr�Y�[z^K�Nh�R�K�>x��{�NyK^�Ih��iˮ�	���~�ɮ[�>X��X��X��Y��K���.8�D��{��ih~i��Y(�X�x�~{J~Xyz؞K�~���X	���K�ވz�X��h�~kK�8i��	�K��X�K��i��zK�X�nX�.X��Y����h��iˮX���z>��NY�z{�X{�[{.[�NyJ����Z�zپ�����X��X�nX�"��؞z���Z�n[�nK��h���ΘX{����X�k�^z�����iz�I�����k�.X{�8"ikZ)�i��K���X	���X��X��Y�X��y��X[>h.ZH����Kɮ������X��K��K�nX��[�^yJ�K��h��ɾizik����z{����iʮ�xދyX�nX�$4Ğ8.X��ZHNZ�^Y��h�~�x&�w&W72�7��2�6��8.K��K�c�i��K��Z�^[{.X��ynZ��h�X��K��X���[�^X�^X�~8 ���c�X��ZHNX�[�>j����Z��h��ɮX��6�F^x��i��c���k�#63��S3�sS�C633SFVc3VCcf&Sf#3Sn��Θ:�{�&vFW�f6SV�##C���scFCS#6#�Sfc�Sb7V66VVFVN�ɳ##b��5C#�c�2�c�5��	K����X�n{��K��6�6��NY(�K��K�������ÃX����SK��X��#�~��k"�K��X����iKcK��k�y��Y����y��Z��yK^�I�h��iˮ�	���~8.Y��h�~�x&�w&W72�7��2�6���ɾK��K�F�72�ג�v�&��6���WFVB�����Ny�Ec�i��K��X��K��X�[{.X��ynZ��h���[�^X�^X�~���K��h�[�>X�ދJ>K���[)~K��X	���Y(�X��j�>ih~h�i�>8.X��Z�i{nK��X�K��yY���΋>yJ�i�^k�X��izK��X�Z�Z��i[Nh�~��K��j�h����z��h�K�N�z��Ί�NZ�8 ���22c�i��K��[{.X��ynZ��h�X��K��X�X�~x�p��i��K��[z^K��X�ikZ)�(	�i��K��[{.X��ynZ��h�y�NX��K��X�(	�x��z��X�������>Y�N���X��hȞX��Z��h�i8�K��K��8X��K��X��z�[�~Y(�[�>X��Kɮ���{�Z��ɾi��h�~kK�8h�>[�8��N�(n8h�^iKnh�n[�Zx�Y�~K��[�>K��Z��h�8.Y��Z�X��K��X�K���.8Z��h�i{n�{N8i�K�b�K��h��x��i��8i��hY8�[��8[�>X�ފ�Ni��i�Nj�>x��i��Y(�Y�{��i[�x��ɾ[�>X�ދJ>K��8[)~K��X	���Y(�[{.X��yn��[�^y�Ni[�x�8X�n�^K��i�^k���i��X�n[�8.ih~Z�~8UD>Z��h�iz^i��8X��Z��h�i{n�{Nh�.[��Y(�^Z��i[NX�n�^[{.h�^���X����nh8^K��K��j�h�i�>���K��ZH�X�nK�>K����XN�yj�>ih~8 ��{+�z�X���;�h�K�F6633sF#S�cCFSCCvS663#��S#�#��&CSS.���4�3�CCcs>y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3#R�3#^8ZK�JR�K��j�.�ȃc##S�sC��f�>�Ȟ8.i��Y���FR#NZH�j���6��6�V6�8^��i��K��[z^K��X�K�>���ȃ�sS2�sS#sf�>�ȞY(�{�NY�kX��x�Y��jΙ�"�h��iˮ�	���~�ɮi��K��Z��h�8[�>X�ދJ>K��8[)~K��X	���X�n[����Y��Z�i�K�b�K��h��8��Ni��i�Nj�2�Y�{��i[�x�X��������^Z��i[NX�n�^8i�^k�X��i�Nh�.{��8��nXi��x��z��h.ZH�8X����nh8^K��j�h�i�>8X�x�r�{J~Xyz؞K�~8�X{����X�k�^z��Y�~�	���~8'66�V�cizik�����z{��ɾX��SK��X��#�~��k.X��i[NK�>���iKnK��yY�8 ��i�΋��XX�iKnX�n[�n��Ί����z��[{.iȕc�X���;����iʮ�x�ZH�[��z��Y�K�j�^8.K�>[�>���[�n[{.i�Nik���h�^K��Y�j�^X������6�F^8K��K��K�����[�nh��Z�^Y��h�~h�Y��Y����{�~{��c�.Y�K�X��K��X�Yʎi��K��Z��h���[�^8K��X��;�8XZ�X�~yȾi��Y(�Z�.h�~i{n�{N��Ny�NX�����i�^k�K��{Nh
-~j�Z���ɾK�ފ^�
-K��iz^8KɎXX�{�~8i{n��h�nK�>K���xNX��8 ���22c�K�>[�>K��{��^Y�j�^Z��h�+r##b��@��X������6�F^x��i��c���k�zSF6cs��#�c#c�3Vcsv&f&C#�#cc&V6###���Θ:�{�&vFW�f6Sscv&F63���3SSs#&S#v&c�>K��##b��5C����2�#�s�"��h�X��8###b��5C����#��#3E��	K����X�n{��K��[��xZ~K��K��K��K��������c����8X��SK��X��#�~��k.8i[N��K��X����iKcK��YJ�K�K�>[�4�4��K��{N�ɾ{��K��CC9sSK��3�9s�CNX�nX��j�Z�����X���8izj��Y	k�.X{�h�n����i{n�I����8.K��X����[�nh�K�CFcC&ScvFc�&c�c&#6&F36&3�3S&#cS��C�����{+�z�X���;�h�K�F6633sF#S�cCFSCCvS663#��S#�#��&CSS.X��4�3�CCcs>XZ��x�3#^�	���~�ɾZ�^Y��h�~�x&�w&W72�7��2�6��8 ��K��K�c�.{�~{��C2�>���j�Z��Y�K�X��K��X�Yʎi��K��[{.X��yn��[�^8K��X��;�8XZ�X�~yȾi��Y(�Z�.h�~i{n�{N��Ny�NX�����i�^k�K��{Nh
-~�ɾX���^X��XZ^X�>8x��i�Ί�i��K����X�k�^z�����K��Z)�X�K��iz^8KɎXX�{�~8i{n��h�nK�>K���xNX��8 ���22c�"Y��XZ^X�>{��K�i�^k���i��X�~x�p��c�.{�~{��C2�2���c2���cB�3B�S^�ɮi��K��[{.X��yn��[�^8X��K��X���nh8R�XZ�X�~yȾi��8X[>�NK��X��;�Y(�Z�.h�~i{n�{N��NX[yJ�Y�K�X�����F6��6�W&6U�&��f8.��i��Y��Z�X��K��X�8Z�.h�r��z�[�~8Z��h�X��K���.8i�K�b�K��h��x��i��8Z��h�[��xZ~Y8�[��8Z�^Z��h�i8�K��K���i{n�{N8[�>X�ފ�Ni��i�Nj�>x��i��Y(�z�>Z�h�.[��y�NXZ��:�Y�{��K��X�[�^yJ����[�nyI�h�4��#Sni�^k�h�~{���ɾY�{��i{n�{N��NK��K�ni��z�Y��h�~X��&V�E�F6���F8.��i��K�ދ�NY��Z��h�8K�>K��h�n�XN�yj�>ih~���K��ikZ)�K��X�Xi�8��h�n��z{�8 ��{+�z�X���;�h�K�Cv&C�633CcC�SCFfS&cFf6CSvVC�6c#�&>���4�3�CsscSS�y�F��6��6�V6��FW7NXZ��:�7V66W7>���Z�^iz^[�s3#b�3#n8ZK�JR�K��j�"��{>��~�ȃc#3#��S3S#sV�>�Ȟ8.i��Y���FR#NZH�j���6��6�V6�8n��i��K��[z^K��X�K�>���ȃ#�s2�33C#F�>�Ȟ83#n��XZ��x��ȃ33#���3scC3��>�ȞX��{�NY�kX��x�Y��jΙ�"�h��iˮ�	���~�ɮi��K��Z��h���[�^8X��K��X�X��yn8K��X��;�8XZ�X�~yȾi��Y(�Z�.h�~i{n�{N��Ni��zK�Y�K�i�^k�h�~{����΋��X��X{�k�^z�����iz����i{n�I����h�nj��Y	k�.X{�8'66�V�cizik�����z{��ɾX��SK��X��#�~��k.X��i[NK�>���iKnK��yY�8 ��K�>[�>���[�nZ��h�Y�Y�j�^X������6�F^8K��K��K�����[�nh��Z�^Y��h�~h�Y���ɾK��K�c�>X�����[^[�Y��Z�Y�{��[�^yJ�y�N[�>X�ދJ>K��K��x�nh���ZH�yJ�X��K��X��;����K��X�nZ�K��iz^8KɎXX�{�~8i{n��8K�N[��8�J.X�h�nh�>j��xNX��8 ���22c�"K�>[�>K��{��^Y�j�^Z��h�+r##b��@��X������6�F^x��i��c.���k�z3C�C##f3#c3sCSSSV63ccf#�c#�c�6Sf&��Θ:�{�&vFW�f6VScVS��#c6&V&c6#fVV36K��##b��EC#�c�SR�c�s�SR��h�X��8###b��EC#�s�B�35��	K����X�n{��K��[��xZ~K��K��K��K��������c�"�.��8X��SK��X��#�~��k.8i[N��K��X����iKcK��YJ�K�K�>[�4�4��K��{N�ɾ{��K��CC9sSK��3�9s�CNX�nX��j�Z���.��X���8izj��Y	k�.X{�h�n����i{n�I����8.K��X����[�nh�K�FVcS�VSf#&CCf6SFSfcC��6Cf&VCffc��FCn���{+�z�X���;�h�K�Cv&C�633CcC�SCFfS&cFf6CSvVC�6c#�&>X��4�3�CsscSS�XZ��x�3#n�	���~�ɾZ�^Y��h�~�x&�w&W72�7��2�6��8 ��K��K�c�>{�~{��C2�>���K��i��K��[{.X��ynX��K��X�X�����[^[�Y��Z�Y�{��[�^yJ�X��[�>X�ދJ>K���x�nh���ZH�yJ�X��K��X��;�Y(�Y�k���i���ɾK��[�^XZ^K��iz^8KɎXX�{�~8i{n��8K�N[��8�J.X�h�nh�>j��xNX��8 
+# 开发交接 · 2026-10-13
+
+当前版本V0.81；唯一进度源为本分支docs/progress.json，最新实现/验证/同步回执及下一入口见末尾。此前版本为历史记录；具体交付与业务验收分别记录。
+
+## 本轮
+
+从 wenjinliuu/optical-workbench 的初始 README 建立 codex/phase-one-foundation 分支。读取设计站点 V1.1 的内容、执行方案及进度，保留 50 个任务、287 条需求。P00/P01 整体未通过，当前原型用于验证公共工程选择与基础档案契约。
+
+已实现：Node 24 本地运行、响应式客户页面、开发账号登录和撤销、角色动作/门店/有效监护限制、独立客户编号与联合检索、重复提示、周期草稿、事务防重复、审计和迁移、健康检查、一致性备份、CI 配置。
+
+代码入口：src/server.mjs、src/db.mjs、migrations/001_foundation.sql、public/app.js。API 和安全边界见 api.md / architecture.md。进度不可因 PR 创建而改成全任务完成。
+
+## 下一入口
+
+T00.01：指定业务负责人，补真实门店资料及规则确认依据。尤其先核实 R01、R02、R07、R08，随后完成正式身份/组织、附件授权和版本服务，不能将本地角色和草稿当作完整 P01/P02。
+
+前端/后端以 API 契约迭代；状态确认、迁移、撤回、专业发布、金额规则和跨店授权需要各自证据。其余 50 个任务仍按原依赖链推进。T00.04 的正式平台与数据库待用户既有方案补充或单独确认。
+
+## 验证记录
+
+2026-10-07：npm run check 通过；npm test 10/10 通过，覆盖正常、重复、失败、越权及基础数据恢复。故意触发审计失败的测试打印一条 Request failed: Error，断言已验证业务写入回滚，这是预期失败路径。
+
+Chromium 浏览器验证通过：1440×1050 电脑视口、390×844 手机视口；登录、客户实际保存、两个独立周期、审计操作人、无横向溢出、Escape 关闭弹窗、手机退出清除资料、无运行时错误。脚本见 scripts/browser-check.mjs；Playwright 只安装在 /tmp 验证目录，未引入运行依赖。
+
+业务方验收、真实设备、规模性能、正式恢复与完整业务账核对没有完成。远程 CI 以 PR 实际结果为准。
+
+## 未完成/阻塞
+
+无正式部署或真实账号接入；没有真实资料。附件、专业/业务版本、组织管理、家长报告发布、跨店协作、完整家庭关系、到店和周期完整流转均待实现。扣次、赠送、退款、专业表单和财务口径不使用默认规则。设计站点进度同步未执行，以此仓库 docs/progress.json 为本轮开发记录。
+
+## V0.2 最新交接
+
+用户确认保留浅色、提高配色鲜明度，并继续开发、保留各阶段虚构展示；用户暂不参与测试。整站采用亮蓝操作、薄荷绿随访、紫色训练、珊瑚橙配镜，登录页也改为浅色。
+
+新增 migrations/002_family_visits.sql，存量升级无需重置库。负责人可读取本店人员并管理已有家长的关联授权/撤销（关系和依据必填）；本次到店可关联多个同一客户周期，关闭时有理由和前后审计，周期不受影响。组织编辑、邀请/密码重置、正式监护证明、专业版本与附件仍未实现。
+
+src/demo-data.mjs 保留六个虚构场景快照；npm run demo 在既有示例库只追加缺少案例，保留原账号、密码及已有数据。流程图中的专业、课程、加工状态是展示样板，数据库周期仍为草稿；不视为后续模块已实现。六个场景覆盖接待、待检查、待计划确认、执行、配镜交付和随访。新库总计8个虚构客户；原示例库追加5个。
+
+npm run check、npm test（16/16）、Chromium电脑1440×1050和手机390×844均通过。新增验证家长授权/撤销、多周期到店、独立关闭、六场景入口、原库迁移及不覆盖示例；无横向溢出与运行时错误。
+
+下一入口仍为T00.01的实际规则确认及P01附件授权/不可变版本基础；可以继续独立实现公共技术服务，不能把展示样板或部分实现标为完整阶段验收。
+
+## V0.3 最新交接
+
+用户继续授权推进，保持已确认的明亮浅色配色与虚构阶段展示。本轮实现T01.03公共资料基础：src/documents.mjs、public/documents.js、migrations/003_documents_attachments.sql。员工可上传/授权下载附件，上传者本人或负责人撤销访问；资料版本记录来源、内容、修改依据和当时附件引用，旧版不覆盖，陈旧版本写入409。未实现专业确认/审批或对外报告发布，不改变原规则阻塞。
+
+本地文件放在SQLite BLOB内，与元信息、版本、引用、审计事务一致；备份直接包含文件。默认1 MB及PDF/PNG/JPEG/UTF-8文本；仅基础类型/头标识校验，生产存储和扫描待定。家长不读取内部资料/附件。旧版附件即使撤销也保留引用，当前下载停止。
+
+npm run demo扩展六场景的6个虚构文本附件、6份资料记录、8个版本；现有账号/数据不重置。两个场景包含修订样板。22项集成测试与语法检查通过，覆盖新权限、防重复、并发、事务回滚与包含二进制的恢复。浏览器脚本继续覆盖原流程并验证上传/下载/撤销、关联资料、V2与历史。
+
+下一入口：T01.02完整身份/组织与T01.04运行恢复，可继续技术基础；专业表单、机构职责、扣次退款、财务和正式平台仍待实际规则。P00/P01整体未验收，源码推进不代表这些阻塞已消失。
+
+## V0.4 最新交接
+
+用户继续授权开发。本轮完成T01.02本地员工管理切片：migrations/004_account_security.sql、src/organization.mjs、public/organization.js。负责人可新增本店员工、调整岗位/停用状态、重置密码、撤销会话；必须当前人员revision与依据。跨店、家长目标及本人角色/状态管理拒绝；本人可验证旧密码后改密。
+
+初始/重置密码登录后只允许本人信息、退出和改密；业务API与前端均限制。变更撤销目标旧会话，本人改密保留当前会话；业务mutation在事务内重查会话防止处理中撤销竞态。密码不进入响应、审计或幂等结果。专业角色不获专业确认权限。存量迁移不改密码。
+
+示例初始化增加demo-onboarding/demo-inactive；密码随机且不输出，由负责人重置后演示；五个既有账号及密码保留。31项集成测试、语法检查与桌面/手机浏览器操作通过。人员安全状态/版本随SQLite备份恢复。源码版本0.4.0，开发PR仍同一草稿。
+
+下一入口T01.04：运行恢复与故障定位技术基础。完整身份供应商、组织层级、资质核验、跨店指派、邀请通知与身份恢复未实现；业务规则及正式部署继续待定。原50任务/287需求不改编号，T01.02保持部分实现，P00/P01整体未验收。
+
+## V0.5 交接
+
+用户继续授权推进T01.04技术基础。新增src/recovery.mjs及backup:verify/restore CLI：原库只读一致备份，清单从快照核对；拒绝损坏/不匹配结构/关联/附件；恢复只进入新目录，撤销所有旧会话并生成回执。原库/快照不覆盖；操作与回退见docs/recovery.md。
+
+新增src/runtime.mjs/public/operations.js及负责人“运行与恢复”。每个响应X-Request-Id，错误JSON request_id与页面/日志对应；日志不含查询、参数客户编号、请求体、凭据或堆栈。500统一INTERNAL，中断单次499；每店200请求内存窗口、最近20故障及启动累计，重启清零。故障日志不是业务审计；网页不执行恢复。
+
+44项自动测试、语法检查、电脑/手机浏览器通过，覆盖CLI恢复、旧cookie失效、核对/拒绝边界、门店隔离、日志脱敏、故障提示对应记录及失败重试只保存一份。版本0.5.0，四个业务迁移不变，开发PR保持同一草稿。六场景和明亮浅色配色保留。
+
+下一技术入口T02.01基础档案编辑与家庭资料验证；原依赖仍未整体通过，只延续基础验证切片。正式身份/资质职责、实表、扣次退款、财务、生产监控/恢复目标/部署仍待实际规则。原50任务/287需求不改编号，T01.04及P00/P01保持部分实现与未整体验收。
+
+## V0.6 交接
+
+新增src/profiles.mjs / public/profiles.js与迁移005_customer_profiles.sql。基本资料编辑要求完整四字段、明确来源、修改依据及当前版本；保存不可变快照与当前字段，保留编号/周期/附件/授权。升级只保存当前存量基线，旧编辑历史未知；家长不读内部档案历史。负责人/前台可登记多位联系人、编辑和停用，员工读取及按有效姓名/电话检索；关系录入不赋予查看授权。
+
+示例增加六场景12位联系人，完整demo另有兄弟2位，2份基本资料V1/V2；合法修改示例姓名仍保留阶段入口，重复seed不覆盖已修订资料/联系人状态。14位不是14个共享家庭实体，付款身份与证明核验未实现。
+
+52项自动测试、语法检查与桌面/手机浏览器通过，包含并发、原子回滚、迁移基线和恢复核对；新schema=5，运行版本0.6.0。恢复工具校验新表及当前/历史一致；V0.5旧备份先在独立副本用V0.5工具恢复，再升级数据库并重新备份（当前工具拒绝旧结构，保留来源）。开发PR继续为同一草稿。
+
+下一技术入口是T02.02客户总览与历史时间轴，串起已有周期/到店/档案/资料/联系人记录；完整周期状态、专业确认等依赖实际规则继续等待。原50任务/287需求、正式部署限制与阶段未整体验收保持。
+
+## V0.7 交接
+
+新增src/timeline.mjs/public/timeline.js，员工客户详情中展示六项完整数量、最近登记到店与可折叠历史时间轴。档案、周期、到店、联系人、资料、附件、查看授权七类，UTC日期和类别筛选、20条默认/50条上限分页、当前页面定位；支持键盘及手机独立滚动。schema仍5，版本0.7.0，不创建额外事件副本或业务状态。
+
+资料和档案用不可变原版本；联系人/查看授权只读取限定动作且本店本客户的审计摘要。没有快照的早期联系人仅显示未留存初版，不借用当前姓名；结束到店没有操作人/依据就明确未知。actor_name为当前账号显示名。新建虚构联系人同步建立审计快照，重复seed不添加假历史，旧样例保留原资料且显示真实缺失边界。
+
+58项测试、语法检查及桌面/手机操作通过；包括权限、105条完整数量、同刻分页/中途追加、UTC区间/非法标识、混合记录/旧版/未知值、独立恢复前后总览与时间轴一致。没有放宽全量审计读取或家长内部资料权限。
+
+下一技术入口继续T02.02：周期草稿的需求维护/修订与接待交接提示，保持现有周期身份，不代替专业计划确认。暂停/恢复/结束以及订单/专业计划关联仍需实际规则。T02.02部分实现，50任务/287需求、阶段未整体验收与本地开发边界保持。
+
+## V0.8 最新交接
+
+用户授权按计划逐个执行并统筹业务能力，暂缓本人测试。继续开发验证，业务方验收不提前领取。新增capability-map.md作为跨模块衔接与规则依赖清单，AGENTS.md要求后续阅读和更新。
+
+新增src/cycles.mjs / public/cycles.js及迁移006_cycle_versions.sql。员工可修订周期草稿需求、记录来源/依据/当前版本；历史不可覆盖。cycle_id/客户/类型/状态不变，需求与专业计划独立。周期编辑支持读取最新需求、保留未提交内容供核对；陈旧写入拒绝。
+
+visit_cycle_versions将每次到店关联固定到需求版本。浏览器登记传所见版本，事务内校验最新值；新关联由数据库触发器捕获，旧到店不会随当前需求更改。迁移前引用标legacy_unknown且version=null；当前基线为legacy，不伪造历史版本或操作人。客户时间轴使用需求版本及到店固定引用，总览数量/资料/附件/授权保持独立。
+
+虚构样例新增两份周期V2、随访客户第二个训练需求周期及修订后复访，展示旧到店V1与新到店V2、多业务关联。反复扩展保留后续修订。66项测试、语法和电脑/手机检查通过；含冲突重读保留内容、V1/V3引用、原子回滚、旧库升级、独立恢复。版本0.8.0、schema=6，恢复工具新增版本/引用/当前需求一致核对。
+
+下一可独立推进的技术切片为T03.01通用任务分派/接收与接待交接，连接现有客户/周期/到店/需求版本；T02.03专业表单等规则依赖仍保留。T02.02与P00/P01保持部分实现、未整体验收，不以通用协作替代专业完成条件。原50任务/287需求及本地开发边界保持。
+
+## V0.9 最新交接
+
+新增src/tasks.mjs/public/tasks.js、迁移007_work_tasks.sql及“接待与交接”工作台。负责人/前台在客户详情分派通用任务，员工本人接收，当前接收人/负责人带依据转交；转交回到awaiting，新接收人再次确认。assignment_status与execution_status独立，本轮执行仅pending。task_events不可变、revision乐观并发、请求幂等，业务/历史/审计同事务；不新增专业完成状态。
+
+任务上下文使用既有客户、周期、到店，保存明确需求版本。单周期分派校验当前版本；到店+周期分派必须沿用该次到店固定引用，旧V1可继续交接，即使当前需求V3。legacy_unknown拒绝混用，页面仅提供有captured版本的组合；可另建仅到店或当前周期任务。上下文/原说明不可覆盖，关闭到店不结束任务或周期。
+
+本店通用队列供员工协作，个人队列默认仅本人；全部列表最近100条并显示truncated。家长拒绝、跨店404；不扩大组织管理权限。候选接收人仅本店有效且不待改密员工；人员停用/重置后显示不可用，负责人显式转交，不自动指定代理。员工姓名/客户姓名为当前显示名，专业资质仍未确认。
+
+六个虚构案例新增任务及分派/接收/换班历史；独立账号符合示例身份时才使用。重复seed不重置后续交接，旧库升级不创建虚构任务。恢复核对新增表和历史/当前状态、到店固定需求一致。版本0.9.0、schema=7。
+
+75项自动测试、语法检查、桌面1440×1050和手机390×844验证通过；覆盖角色/门店/候选权限、本人接收/管理转交、并发/幂等/回滚、旧新需求引用、未知历史拒绝、接收人不可用、V0.8升级及独立恢复后任务/时间轴一致。浏览器完成分派→接收→换班→另一员工手机接收→四次历史→原档案定位；另验证多人冲突后的重新读取保留操作依据，并保留原全部流程。CLI全新与重复示例、备份/校验/独立恢复核对通过。
+
+下一技术切片继续T03.01：任务开始/暂停/退回和岗位候选衔接，明确执行状态与责任变更，不自行补专业完成条件。T03.01/T03.03仅部分实现，依赖链及P00/P01未整体验收保持，业务方后期集中体验。原50任务/287需求与规则待确认、本地开发、同一草稿PR边界保持。
+
+## V0.10 最新交接
+
+继续用户授权的T03.01协作切片。迁移008_task_execution.sql在事务内重建任务/历史表，保留V0.9身份、上下文、状态、事件、时间、修订和幂等；candidate_role存量为null，不补造旧角色。原分派/转交输入指纹保持兼容，旧幂等响应重放不重复执行。
+
+岗位候选queued/空接收人，员工同岗本人claim后awaiting，accept独立确认；本人start/pause/resume分别pending→running、running→paused、paused→running。return必须明确候选岗位和原因，清空负责人；执行中return/transfer先暂停，新负责人认领/接收后再主动恢复，保留原需求引用/说明及完整历史。负责人可以转交，不能代替执行；岗位后来变更需要负责人重新交接。数据库running仅允许accepted，queued仅允许明确岗位且无人负责。
+
+工作台个人/本人岗位候选/本店三种范围，组合接收/执行/候选岗位筛选，最近100条并提示截断；匹配完整总量/待认领/执行中/暂停数量独立统计。家长/跨店仍拒绝。时间轴含全部新操作，LEFT JOIN保留空接收人事件，历史显示执行状态和退回岗位；时间来源均为实际不可变事件。候选岗位仅已有本地manager/reception/professional，不声称专业资质已授权。
+
+新增五个纯虚构执行样例（queued/claimed/running/paused/returned），重复seed不改原交接或后续执行。完整示例11任务/26事件；CLI全新/重复、备份/核对/独立恢复通过。版本0.10.0、schema=8；当前候选/责任/接收/执行/时间与最后事件一致，连续修订和固定到店引用进入恢复核对。旧V0.9快照保持原件，使用原工具独立恢复后升级。
+
+84项自动测试、语法检查及1440×1050电脑/390×844手机验证通过；覆盖两员工认领竞争、同岗/本人/门店权限、状态条件、改岗与会话撤销、105条完整统计、审计回滚、旧幂等升级、暂停退回任务恢复/时间轴一致、样例保留及新手机流程。用户本人体验留后期，业务验收继续待完成；生产发布仍未进入本轮。
+
+下一技术入口T03.02通用任务阻塞/取消/恢复与完成依据草案，并衔接T03.03流程图/看板；专业完成条件、自动下一任务、循环/串并行、工作日历/时限/通知和正式代理资质规则仍待实际明确。T03.01/T03.03仅部分实现，P00/P01与原依赖未整体验收；50任务/287需求编号及本地开发边界保留。
+
+## V0.11 最新交接
+
+继续T03.02通用异常处理及T03.03视图切片。新增009_task_exceptions.sql：work_tasks增加lifecycle_status(active/blocked/cancelled)、exception_reason、restore_status/restore_reason；task_events重建保留原事件并增加同样快照及block/unblock/cancel/restore动作。存量全部active、不补造旧异常；上下文、原说明、旧执行/责任/版本/时间/修订及幂等保持。约束确保异常不运行、原因及取消前状态一致，事件仍不可修改/删除。
+
+当前有效负责人或门店负责人可带原因登记阻塞、解除、取消、恢复；queued无人负责时由门店负责人处理。运行中先paused，未开始仍pending。阻塞允许交接/退回/认领/接收但不能开始或恢复执行；换人不解除阻塞。取消禁止所有原交接/执行操作，恢复回到取消前active/blocked并保留未解决原因，不自动运行。最后事件和当前四个异常字段纳入恢复核对；事务、版本并发、会话权限、CSRF与幂等沿用共同机制。
+
+任务队列增加异常筛选、阻塞/取消完整统计及lanes互斥分列数量；同一次匹配数据提供列表、七列看板和责任/接收/执行/异常状态流程。切换保留筛选、不重新请求，刷新保留视图；超过100条显示已展示/完整匹配数量，不把截断列当为空。看板手机在容器内横向滚动，所有视图沿用操作、历史、原档案入口。状态流程未推测跨任务依赖，正式业务流程图/角色今日任务及专业原单仍待完成。
+
+seedDemoTaskExceptions新增5个虚构异常阶段：阻塞、取消、解除后暂停、恢复后暂停及取消前已有阻塞。完整示例16任务/49事件，重复初始化不覆盖后续处理，非示例库拒绝扩展。版本0.11.0、schema=9，旧快照先用原版工具独立恢复后升级；本轮没有生产发布。
+
+93项自动检查与语法、1440×1050电脑/390×844手机浏览器操作通过。包含负责人/岗位/门店/家长权限、运行中阻塞及不可运行约束、取消所有动作拒绝、保留原阻塞的恢复、交接后新负责人解除、重复及竞争操作、四类异常审计故障回滚、106条完整列数量、非空V0.10升级、异常快照独立恢复和不一致原因备份拒绝。浏览器验证跨人取消导致旧解除冲突、读取最新保留草稿、恢复仍阻塞→解除→暂停→明确恢复，三视图缓存/保留筛选、手机容器滚动、十次历史及原全部流程。业务方后期集中体验，整体验收未通过。
+
+下一入口为T03.02通用完成依据/条件校验，实施草案见task-completion.md（目前仅设计）。不得提前生成专业确认、费用扣次、依赖串并行/循环或下一任务。各业务继续通过capability-map.md共用身份、资料版本、权限、时间轴和恢复；50任务/287需求及P00/P01未整体验收保持，同一PR继续草稿。
+
+## V0.12 最新交接
+
+继续T03.02通用核对依据切片，新增src/task-evidence.mjs、public/task-evidence.js及迁移010_task_evidence.sql。task_conditions按任务独立版本保存generic_record_review范围、资料/附件要求及设置依据，说明必填由通用规则固定；负责人/前台明确设置，旧任务无条件，不根据标题或场景猜测。task_evidence按任务独立版本保存notes（可空）、source、condition_version、task_revision、reason、员工/时间和固定引用清单；两类引用关联不可变document_versions.id及附件id，同任务客户复合外键。四张表与关联禁止修改/删除，历史不会随资料修订改变。
+
+条件和草稿的版本独立于work_tasks.revision，保存不改任务/原上下文/事件/专业/资金/权益状态。条件需所见任务修订、条件旧版（初次0）；草稿需所见任务/当前条件/草稿旧版（初次0），同事务复核，陈旧分别TASK_CONFLICT/CONDITION_CONFLICT/EVIDENCE_CONFLICT。原接收人本人、有效岗位和已接收才能保存；暂停/阻塞可存缺项草稿，取消不能存；换人后前人不能写，新人接收后另存新版本。
+
+GET completion读取当前条件/草稿、最近100版本及当前查看人的校验；references最多200个新选择，已选旧引用独立保留。POST check只核对未保存输入、没有事件/审计/幂等写入，等待body期间再次检查会话撤销。通用检查当前本人/岗位、接收、运行、正常无异常、当前条件/任务修订、说明、必需资料/附件及引用是否撤销。record_ready仅表示通用核对项齐备，completion_enabled始终false；没有complete或自动下一任务。
+
+界面在客户、个人/岗位/本店及三视图共用“核对依据”入口；条件编辑限负责人/前台，所有本店员工可读条件/依据历史，当前本人才能存。输入缺项可留草稿；只读校验无保存，输入改变后重新核对；读取最新保留说明/来源/原因及选择，版本冲突需再核对。当前撤销附件明确显示，不能保存撤销引用，历史保留原关联。时间轴task类别添加不可变条件/依据版本，责任/执行取保存时task_events快照，不借用后来状态。
+
+seedDemoTaskEvidence在独立示例库追加4条件/4草稿：岗位候选待核对、运行中先缺项再补齐（仍引用原资料V1）、暂停后资料齐备、阻塞待补。重复扩展不覆盖修改，已经交接/改变任务修订的样例跳过。完整示例16任务/49执行事件、4条件/4草稿、2资料引用/2附件引用。版本0.12.0、schema=10；旧V0.11非空执行/异常升级保持，旧任务不补造条件或依据。
+
+104项自动检查及语法通过；电脑1440×1050/手机390×844验证负责人设定范围、另一接收人草稿不可代存、旧V1选择、条件冲突重读保留填写/选择、补充V3仍保存原V1和旧条件版本历史、只读缺项/撤销提示、无法存撤销引用、手机历史和退出清理，原全部浏览器流程通过。CLI全新/重复、备份校验/独立恢复保留全部新表与引用。恢复检查版本连续和引用清单一致，拒绝向旧草稿追加资料造成引用不一致；撤销附件保留引用与当前撤销标记。
+
+下一入口继续T03.02：明确通用核对的提交/完成门禁与固定产出快照，复用已保存条件及依据校验；专业职责/专业确认、自动下游/串并行/循环、工作日历和通知仍单列待实际规则。用户集中体验留后期，原50任务/287需求、P00/P01未整体验收与本地开发/同一草稿PR保留。
+
+## V0.13 最新交接
+
+继续用户授权的T03.02通用明确提交切片。新增迁移011_task_completions.sql与src/task-completions.mjs；仅追加完成记录与保护，不重建带条件/依据引用的任务事件，不改变旧上下文/执行修订/历史。task_completions每任务一个产出，复合引用同客户条件/依据及完成前执行修订；scope固定generic_record_review。产出包含说明/原因/员工id/实际提交时间、完整原任务/条件/依据、原标题/资料版本、附件稳定元信息和内容哈希、通过的核对项与规范快照/指纹。姓名沿用当前账号显示名。
+
+POST completion/submit仅提交已保存版本，由当前有效岗位本人且已接收、运行中、无阻塞或取消、当前任务/条件/依据/引用访问齐备时完成。事务内重读会话、身份和最新状态；陈旧/缺项/撤销拒绝，审计失败回滚产出/终态锁定/重试。不同键竞争一个成功，同键重放原响应。只读check始终completion_enabled=false；GET保存依据全部满足才true，前端未保存变更或预览不能启用提交。提交表单保留产出说明，冲突重读后须重新保存匹配新条件/修订的依据。
+
+完成独立于原执行revision，completion_status/effective_execution_status投影优先为completed，旧running为完成前快照；后续11交接/执行/异常动作及条件/依据/引用写入在API和数据库禁止。当前没有完成后修改、更正或重新打开。客户/队列/八列看板/状态流程、完成筛选/完整计数、交接历史/时间轴共用真实完成记录；运行/暂停统计排除完成。事后附件撤销保留产出，界面显示当前访问，合法员工改岗/停用/改名不改原产出。恢复对照固定快照与源版本和指纹，篡改快照即使重新计算指纹仍拒绝。
+
+新增seedDemoTaskCompletions的待提交/已完成两个虚构案例，不覆盖原16任务或后续操作；完整18任务/55执行事件、6条件/6依据、4资料引用/4附件引用、1完成。全新/重复CLI、备份核对/独立恢复逐表相同，恢复会话为0。版本0.13.0、schema=11，V0.12非空条件/依据升级保持六表且旧任务无自动完成；旧快照用对应版本工具独立恢复后升级。
+
+117项自动检查、语法、1440×1050电脑/390×844手机浏览器通过。覆盖原V1、本人/门店/家长、缺项和当前版本、暂停/阻塞/取消/访问撤销、提交锁定、审计回滚/并发/重试、105条完整完成列、处理中会话撤销、固定快照独立恢复、非空升级及虚构重复；原所有操作保留。浏览器完成未保存/预览门禁、旧提交冲突→重读保留产出→重存匹配条件→明确提交、原V1产出和手机完成筛选/看板/历史/退出清理。修复原依据并发用例的固定首请求胜出假设，核对实际胜出重试。
+
+下一入口继续T03.02完成更正及显式后续任务关联，保留原产出、版本与责任，复用身份/审计/恢复。专业职责/确认/审批、真实下游模板/串并行/循环、时限/通知、资金/权益/库存规则继续单列待明确。原50任务/287需求、P00/P01依赖链和T03.02/T03.03部分实现保持；用户集中体验留后期，整体验收待完成，同一PR仍草稿，无生产发布。
+
+## V0.14 最新交接
+
+继续T03.02完成说明更正与显式后续关联，迁移012增加task_completion_corrections和task_followups、原完成同客户唯一索引，不重建旧表/receipt。src/task-amendments.mjs共用当前更正/原来源/后续清单/来源检查及恢复核对；task-completions增加只读派生当前说明和历史/关联，原output_summary/snapshot/终态不变。
+
+POST completion/corrections仅原提交人（当前有效本店员工）或门店负责人追加output_summary/reason，所见原指纹和expected_correction_version（初次0）实时复核，版本连续、同内容拒绝、不可改删；不修订原条件/资料/附件/操作身份/完成时间，也不重新打开。POST tasks/:id/followups限负责人/前台明确任务说明、有效接收人或候选岗位/依据，原客户/门店/周期版本/到店/context_basis继承，即使当前需求V3也沿用原V1。复用同一个assign写入器与接收人/事件/审计政策，来源固定分派时原产出或更正版本及说明，后来更正不改旧来源。子任务queued/awaiting、pending、revision1，条件/依据未配置，需本人认领/接收和明确开始。
+
+全部写入事务内即时会话/岗位/门店、所见版本、CSRF/幂等；更正或任一分派/关联审计失败回滚，重复分派同键一个子任务，修改请求内容409。源更正与分派竞争按照事务先后固定原说明或拒绝陈旧，不留部分记录。当前是显式来源关联，不推测自动模板/串并行/汇合/循环或专业授权。
+
+public/task-links.js独立更正/分派对话框，会话/客户/请求序号隔离迟到响应；冲突重读保留说明或名称/交接说明/接收选择/依据。原完成页显示当前更正、原说明及历史、后续清单（最近100及完整量），子任务显示当时来源版本/说明和查看原产出入口，交接历史与时间轴同数据；退出清理新表单/历史。恢复核对连续更正/原指纹、具体旧源版本及说明/上下文/分派身份/时间、来源无循环，后来人员/访问变化或当前更正不替换历史。
+
+seedDemoTaskAmendments保留原18任务，增加已完成说明更正、原说明待接收、更正V2待认领三个虚构阶段；父任务原到店需求V1，两个后续分别采用原说明及更正V2。重复初始化保留后续手工更正/状态，非示例库拒绝。全量21任务/60执行事件、7条件/7依据、5资料引用/5附件引用、2完成/2更正/2关联。版本0.14.0、schema12，V0.13非空原产出/任务/条件/依据保持，旧记录无自动更正或关联；对应旧版本工具独立恢复后再升级。
+
+132项自动检查、语法、1440×1050电脑/390×844手机和CLI新建/重复/备份核对/独立恢复通过（恢复会话0）。新增15项覆盖权限/版本/并发/重放/两类审计回滚、原V1继承、独立接收与来源冻结、初始改密/失效接收人、101更正/105关联完整量、事后人员/访问变化、错误来源/指纹拒绝、非空升级/虚构保留/处理中撤销。浏览器负责人V3与原提交人陈旧V2冲突重读保留后V4；分派旧V4遇新V5冲突、保留名称/说明/岗位/依据后创建固定V5/V1任务，手机岗位认领/接收仍待开始、来源追溯和退出清理；原全部流程保留。
+
+下一入口T03.03已保存关联任务链与协作进度视图，读实际来源和状态，定位客户/岗位/原任务；与正式业务依赖图区分。专业职责/表单/确认/审批/专业更正、真实自动模板/串并行/汇合/循环、时限/通知与资金/权益/库存继续单列待明确。原50任务/287需求、T03.02/T03.03部分实现与P00/P01依赖/业务验收待完成保持；用户集中体验留后期，同一PR仍草稿，无生产发布。
+
+## V0.15 最新交接
+
+继续T03.03已保存关联任务链与协作进度。src/task-chains.mjs+GET tasks/:id/chain追溯起始，再逐跳同客户/门店读取整个来源组件；独立任务一节点，循环异常409。当前责任（接收人现岗位/候选岗）与八状态按完成→异常→接收→执行，复用visible保持旧V1、不可变origin和实时接收人可用性。完整整链/岗位/八状态量与筛选量不受分页100上限；根和所选任务始终提供。按depth/created_at/id keyset，limit1–100默认50，界面30。游标绑定组件、客户、筛选、limit及全链状态指纹，分页间任务/节点/人员显示与有效性变化409 CHAIN_CHANGED明确重读，错误游标422；不写业务/审计/幂等。无迁移，schema12。
+
+public/task-chains.js会话/客户/请求序号隔离迟到结果，岗位/状态筛选、定位上游、独立定位任务（即使空筛选或在后页）、实际来源树层级列表、完整进度、加载后续；共用card直接打开原完成产出/核对依据/交接历史及权限内岗位动作/客户档案，动作保存后重读链。手机缩进有界、按钮换行，退出清理资料/游标/统计。列表/看板/状态流程及客户任务均有链入口，原流程保留。
+
+seedDemoTaskChains仅追加五个任务：起始完成、原说明分支待认领、更正V1第二层完成、第二层更正V1第三层阻塞/执行中；全部原客户/到店需求V1，分支独立执行，不修改原21任务。新建/重复CLI、备份及独立恢复一致：26任务/74事件、9条件/9依据、7资料引用/7附件引用、4完成/4更正/6关联，会话0。原012连续更正/固定来源/无循环核对保留；多层链恢复前后层级/状态/统计相同。
+
+141项自动检查、语法、桌面1440×1050/手机390×844通过。新增9项覆盖根/同级/多层来源与无写入、权限、106节点分页/完整量、游标绑定/变更拒绝、实时岗位/状态/空匹配定位、事后人员/访问/更正、恢复及重复虚构保留。浏览器完整三层视图和筛选/上游产出、36节点陈旧页拒绝→明确重读→加载全部、手机链内认领/独立接收/开始与历史/退出清理，无运行时错误。
+
+下一入口T03.03岗位任务检索与协作重点定位，基于实际保存任务、固定上下文、责任和异常查看。专业表单/职责/确认/审批、正式业务自动串并行/汇合/循环、工作日期/时限通知和资金/权益/库存规则继续原待明确。原50任务/287需求及P00/P01依赖、T03.01–03部分实现保持，用户集中体验留后期，整体验收待完成；同一PR保持草稿，无生产发布。
+
+V0.15最终补充浏览器检查：从链内任务进入客户档案会关闭任务链；退出后故意延迟送达先前授权读取的链响应，节点/定位/标签仍清空，不能重新显示旧资料。新增场景复用有效会话避免重复登录触发正常限流，审计检查读取本轮刚发生的附件撤销记录，不依赖最近100条以外的早期记录。
+
+## V0.16 最新交接
+
+主线切到T04.01配镜商品与真实订单草稿，版本0.16.0、schema13。src/retail.mjs实现本店目录/订单投影、规范清单、插入版本、恢复检查及路由；迁移013新增七表并保护不可更新/删除。负责人维护目录；负责人/前台录单/修订/取消，专业人员只读、家长拒绝，实时事务复核会话与门店。商品版本与本单单价独立固定；整数分合计不代表应收或成交。
+
+订单创建固定customer/store、原到店/配镜需求版本，支持customer/cycle/visit/visit_cycle；独立周期要求当前，到店允许捕获旧V1，新版周期V3不改历史。资料与附件固定同客户，旧资料不替换；撤销附件可保留原引用但下载仍拒绝。每次修订完整版本，取消复制原单后终止写入；expected_version并发、一事务审计/幂等/回滚，无状态隐式推进。规范manifest限制额外历史明细/引用，金额与取消内容触发器保护；恢复核对连续历史、时间、来源、每行精确金额及合计。
+
+public/retail.js及独立导航提供目录维护、订单列表/检索/有界加载、新建/修订/取消、明细/固定资料详情及历史。客户档案配镜区、客户总览与kind=retail时间轴贯通，定位订单卡；当前筛选完整数量不受50条页面上限影响。新建草稿调价冲突后重读更新商品版本，保留本单价/数量、部分空行和说明/依据/资料选择；订单修订冲突重读保留填写。历史只读，旧单展示最新目录变化但仍保留原数据。手机390×844录单/详情无溢出，会话/客户/请求序号隔离迟到响应，退出清空商品/订单及对话框内容。
+
+seedDemoRetail初始5商品/6版本、4订单/6版本/12行/6资料引用/6附件引用；展示草稿、补充数量、取消、单独档案来源以及目录调价保留旧单。重复初始化不覆盖后续手工变更，冲突回滚。旧26任务/74事件及9条件/9依据/4完成/4更正/6关联保持。CLI新建/重复/备份核对/独立恢复逐表相同，恢复会话0；V0.15非空升级全部原表保持，七个新表为空，不补造订单。旧快照仍使用对应工具独立恢复后升级。
+
+162项自动检查、语法、原电脑/手机全流程及新增配镜浏览器流程通过。21项专项覆盖权限、SKU/商品并发、精确分金额、固定旧到店/资料、撤销历史、草稿修订/取消、完整分页量、未知字段拒绝、商品版本要求、创建/目录/取消审计失败回滚与幂等、并发修订/取消、备份恢复/损坏拒绝、等待请求撤销会话、首次改密、保护触发器、重复示例和非空旧库升级。新scripts/retail-browser-check.mjs覆盖实际开单、目录变动与订单并发保留输入、取消历史、时间轴/手机权限及退出后延迟响应。
+
+T04.01仅部分实现，优惠、库存/预留、订金尾款、专业处方、加工质检交付尚未接通。下一V0.17继续基础库存与订单预留/释放；后续资金、加工、质检交付及售后按原任务计划接入，未知实规则仍按rules.md保留。T03剩余能力随业务需求安排，主线不再停留通用任务小修。依赖与阶段整体验收不变，用户后期体验、当前PR仍草稿，本轮无生产发布。
+
+
+## V0.17 最新交接
+
+主线继续T04.01实物库存与原单预留/释放，版本0.17.0、schema14。src/inventory.mjs提供逐SKU库存投影、原订单聚合需求/缺口/服务排除、规范行插入及恢复核对，迁移014三表记录连续库存sequence、逐订单reserve/release revision及固定原商品/订单明细、双向事件。负责人入库/隔离/解除，负责人/前台全量预留/释放，专业只读家长拒绝，实时会话/门店/首次改密门禁沿用。没有流水显示未建账，数量不跨单位相加。
+
+预留按实物数量占用：全部原单实物行在BEGIN IMMEDIATE中校验商品启用/单位/当前库存版本和足量、重复SKU聚合，不足不部分写入；释放固定原数量与source_id，实物合计不变，停用仍可释放。有效预留阻止原单修订/取消，明确释放后再改，再预留采用新版；建账后目录品类/单位锁定，调价等继续追加版本。事务业务、原行、审计、幂等共同回滚，数据库防负数/算术/连续性/额外明细/覆盖与订单锁作后备保护。
+
+public/inventory.js独立导航提供三状态数量/完整SKU数量/筛选/分页/流水原单定位；public/retail.js详情接库存预览、缺货、预留/释放及100条历史，旧版只读且说明显示当前库存状态。冲突重读保留数量/动作/依据；订单预留冲突重读保留依据，再明确操作。手机390×844可释放并重新预留，无横向溢出；退出清空数据并隔离迟到响应。数量操作与资金、质检和出库状态独立。
+
+seedDemoInventory初始14库存事件/3预留释放/8固定行，展示可用、有效原订单V2预留、隔离/解除、原订单V1预留后释放及未建账商品；已有库存则不追加，手工变化保持。原5商品/6版本、4订单/6版本/12行/6资料/6附件及26任务/74事件不改。CLI新建/重复/备份核对/独立恢复逐表相同，会话0；非空V0.16旧库所有原表保持，新三表为空。恢复检查数量、连续性/时间/单位、原单清单与唯一库存事件、释放来源、有效预留与reserved一致、未释放不得改原单。相同时间的时间轴按订单revision稳定排序，独立SKU动作不伪造客户事件。
+
+186项自动检查（23库存专项）、语法、原浏览器、配镜与库存专项电脑/手机通过。覆盖三状态守恒/服务排除、旧行/重复SKU/多品种原子性、最后一件竞争、释放/修订互斥、版本/幂等/审计失败回滚、单位锁及建账前单位变更旧单拒绝、100+SKU/流水完整分页、时间轴、数据库保护、等待请求撤销会话/首次改密、非空升级、损坏恢复拒绝和手工变更重复样例。浏览器检查库存/预留冲突保留填写、原单锁/释放、缺货禁预留、前台手机与只读角色、无溢出及退出后迟到授权读取。
+
+下一V0.18继续T04.02基础收款记录，随后订货加工、质检交付、原单售后。完整采购/批次/出库/盘点、优惠/组合/订金尾款、部分退款与专业/支付规则仍按原计划落实，不把基础切片当T04.01整项通过。用户后期体验，业务验收待完成，同一PR仍草稿，无生产发布。
+
+V0.17补充30行中文长备注修订检查：订单修订请求体与创建统一为65536字节，保持每行300字/说明2000字的既定容量；金额和原行版本不变，新增该项后全量186项检查通过。
+
+
+## V0.18 基础收款交接
+
+V0.18基础收款：负责人/前台手工登记分次实收，固定原订单版本/明细合计与币种；负责人追加误录作废保留来源，实际退款另行处理。有效登记保护原单修订/取消，外部方式/编号防有效重复、会话/版本/审计/幂等同事务；门店查询、电脑手机、时间轴与schema15恢复贯通。 19资金专项/205全量自动测试及语法、原工作台/配镜/库存/收款四组浏览器、CLI重复和独立恢复通过。虚构追加5记录，原V2两笔收款与V1误录纠正/重录保持，旧库存14流水/3预留释放/8行和26任务74事件不变。代码src/payments.mjs、public/payments.js、迁移015；详细接口/误录边界见payments.md。当前T04.02部分实现，nextTask T04.03；下一V0.19订货与加工及交期，后续质检/签收和售后。原50任务/287需求依赖不改，整体待业务方集中验收，同一PR草稿、本地开发。
+
+## V0.19 最新交接（2026-10-08）
+
+V0.19订货与加工：固定原订单版本/逐行实物，明确供货/加工方式、供应来源、责任人及交期；分批到货/备料、开工、完成和延期独立，数量守恒、执行后安排锁及历史保留；加工看板/原单入口/时间轴贯通。活动工单保护原单，stock备料要求原单预留并阻止释放；会话/版本/审计/幂等同事务，schema16恢复核对。
+
+新增migrations/016_processing.sql、src/processing.mjs、public/processing.js；完整状态/接口/权限和边界见docs/processing.md。原订单详情建立工单/读取历史，独立加工列表/五列看板共用过滤与完整量；每行明确供货、内外加工、责任人及交期，分批动作保存完整快照；延期与数量进度并行。执行后锁供货/加工说明，原单版本固定，stock备料必须原单预留且禁止释放；不自动采购入库、扣减库存、质检、交付或影响资金。
+
+语法检查、228项自动检查（23项加工专项）和原流程/配镜/库存/收款/加工五组电脑1440×1050、手机390×844浏览器验证通过；新建示例、重复扩展逐表保持、备份核对/独立恢复逐表一致（会话0）。业务方后期集中体验，未领取整任务验收。 非空V0.18升级逐表保持且不补工单，恢复核对原行/转换/数量/锁。新示例5工单21事件、7订单9版本16明细、17库存流水、5资金记录、26通用任务74事件；旧记录保持，重复初始化不覆盖手工记录。远程CI以本次提交的PR实际结果为准。
+
+下一主线V0.20/T04.04质检、返工与分项交付。加工完成仅等待质量确认，须独立记录不合格项、返工来源和重新质检，实际质检项目/专业职责/损耗/通知/签收和尾款条件按明确规则衔接。T04.03保持部分实现；专业处方/加工参数变更影响确认、正式采购供应商与外部交期沟通未完成。继续同一草稿PR，不标阶段或业务验收通过。
+
+## V0.20 最新交接
+
+V0.20质检返工与分项签收：固定原加工版本/原行和批次来源，明确项目/结论；不合格批次分派责任人、独立开始/完成及重新质检，允许重复返工；仅合格来源可分批签收并保留实际领取人/时间/调整说明。七类数量守恒，版本/实时权限/审计/幂等及schema17恢复贯通。 新增src/fulfillment.mjs、public/fulfillment.js、migration017，完整接口/状态/边界见fulfillment.md。质检交付入口与加工/原单入口贯通，回执/时间轴保留原加工版本、项目与结论、来源记录、责任人及签收说明。冲突重读保留字段/批次，失效来源须重新选；退出迟到响应隔离。
+
+19专项/全量247项及语法检查、六组电脑/手机浏览器、CLI新建/重复/备份/独立恢复开发验证。新库10订单12版本22明细、8工单42加工事件、13质检交付事件；原17库存流水/5资金记录/26任务74事件保持。非空V0.19升级新增表为空且原表相同；旧回执与人工进度重复初始化不覆盖。远程CI以最新提交为准，用户后期集中体验，业务验收未领取。
+
+下一V0.21衔接原单库存出库/未交付项及T04.05售后。当前签收是不可变手工记录，库存预留仍保持，未自动出库/退款；正式质检项目、资质、参数变更影响、报损、外部通知、签收凭证及尾款规则未补造。T04.04仅部分实现，50任务/287需求和原依赖不变，同一草稿PR。
+
+## V0.21 配镜实际出库与原单售后
+
+V0.21签收批次实际出库与原单售后：固定原签收/订单版本/原行，分次从原单预留或可用实物扣减，保留原分配流水并投影当前数量；售后需求、责任分派/独立执行/暂停/结束与重开保存连续历史，退回量固定原出库并独立隔离保管，结束记录不转可售或退款。实时权限/版本/审计/幂等、客户时间轴及schema18恢复贯通。 迁移018新增3表/实物投影，不改原库存历史；原库存sequence和outbound_revision共同保护最新数量，原预留优先且出库后禁止整单释放/新增。售后来源单活动案例、责任人及动作明确；退回件按原出库容量独立保管，结束记录不会释放隔离或退款。
+
+详见dispatch-aftercare.md；新增26项专项、七组电脑/手机以及CLI新建/重复/备份/独立恢复共同核对。新示例3出库/4案例14事件，旧业务记录保持，额外2条明确质检/签收，总15条；升级已有V0.20不会自动造历史。下一V0.22继续T04.05维修执行/重新质检与签收/隔离处置衔接，T05.01原依赖保留；退款/专业批准/采购批号/索赔召回待真实规则。50任务287需求和整项/阶段验收未提前变更，用户后期集中体验，开发仍本地/同一草稿PR。
+
+## V0.22 最新交接与继续入口
+
+原件维修新增019迁移/aftercare_work_events，固定接收退回事件、维修父来源及本批次责任人，维修和案例双版本防并发。明确复检记录项目/结论，不合格返工后再次复检；仅原合格件可分批登记实际归还签收。十类数量守恒，当前售后保管扣除实际归还量，保留累计接收记录与原单/出库，允许归还后新案例再次接收原件，不再扣正常库存。结束案例不自动归还、解隔离或退款。详见aftercare-work.md。
+
+进度维护源docs/progress.json，增加22个开发交付勾选与后续能力清单；业务系统左侧第一个入口为项目进度，原设计Site默认打开进度，并由同一源生成网页/下载。readonly勾选表示已核对开发交付，50原任务/287原要求、原依赖、整体待验收均保留。更新方案Site为用户本轮明确授权，公开内容仅进度及虚构案例。
+
+17项专项/全量290项、八组电脑手机浏览器、新建/重复初始化/备份/独立恢复开发验证。新样例5售后案例20案例事件、14维修事件；正常库存17流水/3出库、5资金、15质检签收、8工单42加工及旧通用任务记录保持。非空V0.21升级所有原表相同，新维修表为空，重复演示不覆盖手工修改。远程CI按最新提交核对，用户业务体验尚未进行。
+
+下一T04.05：正式重做换货、专业方案批准/新商品库存、明确隔离处置与费用退款，再统筹训练/随访等大模块。不得将原件维修路径扩充为新商品换货或报损默认规则。未知规则继续登记；本地业务系统和同一草稿PR，不领取整项或阶段验收。
+
+## V0.23 最新交接与下一主线
+
+售后重做/换货新增020的3表：固定原案例和同一客户独立新单版本；前台/负责人提出安排，负责人明确确认商业安排，原新单固定后复用既有预留、实收、加工、质检、签收与新商品实际出库。仅所有新实物行出库齐全且案例处理中才能明确记录安排交付完成。原件保管/退款/专业批准分别接续，完成新商品交付不结束原案例也不处置旧件。取消前已有占用/实收/工单必须按原流程明确处理；取消保留来源版本，后续先修订新订单再独立继续。
+
+案例版本、全案例安排sequence及单安排revision共同保护新来源和确认。每个共享业务操作由SQL保存不可变安排批准与案例版本，恢复完整回放与覆盖核对，迟到授权响应在退出后清空。详见aftercare-replacements.md；src/aftercare-replacements.mjs/replacement-gates.mjs、020、public/aftercare-replacements.js及demo-replacements.mjs。首次或重复初始化不覆盖旧业务记录。
+
+18专项/全量308项、九组电脑1440×1050手机390×844以及CLI新建/重复/校验备份/独立恢复验证。完整虚构新库13订单15版本25明细、9工单46加工、17质检签收、4实际出库、6售后案例25案例事件、15原件维修事件、3新商品安排6安排事件9固定操作引用；18库存流水、5原资金及26任务74事件。增加待确认、已确认待安排、旧件保管中新商品已交付阶段。非空V0.22升级逐表保持，新表为空，不补造批准或交付。
+
+23个具体开发版本已在第一进度入口勾选，原设计Site与三份下载同步；50原任务287要求原文/依赖、P00/P01及整项业务验收保留。远程CI按最新提交核对，本地业务后台/同一草稿PR，用户集中体验尚未进行。
+
+下一T04.05：原件明确处置（确认记录→实际流向→当前保管投影）与专业方案批准/参数影响、退款费用；随后训练/权益/排课、随访/家庭、分析接口和完整验收。R10登记真实规则待确认，不把商业确认当专业批准，不自动按新订单价格推出退款或免费换货。
+
+## V0.24 最新交接
+
+旧件明确处置新增021迁移、aftercare_disposition_events及aftercare_work_disposition_refs；固定原退回/复检来源与数量、检查依据和明确去向，申请→负责人批准/驳回→实际转出或未转出撤销。实际转出保存接收人、批准后的UTC时间、凭据和说明后扣售后保管；批准仍保管中，正常库存/原单/资金保持。维修、返工、原件归还和处置共用容量，跨记录固定版本使同一毫秒操作也可恢复核对。详见aftercare-dispositions.md。
+
+20专项/328全量、10组电脑手机浏览器、全表CLI新建/重复/备份核验/独立恢复开发验证。schema20非空升级原行不改，无处置事件；旧维修只增加明确处置序列0引用。完整示例保留V0.23业务记录，新增3处置申请6事件、15维修处置引用，待审核/已批准/实际报损三个阶段；重复初始化不覆盖手工数据。原13订单15版本25明细、9工单46加工、17质检签收、4出库、6案例25事件、15维修、3重做安排6事件9操作引用、18库存/5资金、26任务74事件保持。
+
+原方案首页24个具体交付勾选、50任务287要求及业务验收状态保留，同一公开方案Site同步源与下载；业务后台仍本地开发、PR草稿。下一T04.05专业方案/参数变更、退款费用及转可售/采购批号/供应商赔付、索赔召回回访，再推进训练随访等大模块。实际规则未知继续R10，不自动造金额、资质或转可售结论。
+
+## V0.25 原实收退款衔接
+
+T04.02/T04.05新增原有效实收人工退款申请、负责人批准/驳回、未退款撤销及已发生退款登记。固定原款/订单版本、人工金额与决定依据、可选原售后或固定新单案例；保留实际接收人、批准后的UTC时间和唯一凭据。申请与已退共用每笔原实收上限，退款资金单独投影；保护误录作废，原订单、商品库存与旧件保管独立。资金权限/时间轴、实时会话、幂等审计事务、原款/全序列/申请/案例版本及schema22交叉回放恢复贯通。完整契约见refunds.md。
+
+22退款专项/350全量、11组电脑手机浏览器、CLI新建/重复/全表备份核验与独立恢复开发验证。schema21非空升级逐表保持，新退款为空，旧5资金记录只加退款序列0引用。新库增加3退款申请6事件和5收款退款版本引用，原13订单15版本25明细、9工单46加工、17质检签收、4出库、6案例25事件、15维修、3重做安排6事件9引用、3处置申请6事件15交叉引用、18库存/5原实收及26任务74事件保持。重复初始化不改旧历史。
+
+第一进度入口25个具体开发交付已勾选，同一公开方案Site与下载同步；原50任务287要求/依赖及整项验收保持，用户后期集中体验。同一草稿PR，本地业务系统。下一T04.05专业方案/参数变更影响与正式凭证，再接训练/权益/排课、随访家庭等大模块；费用和优惠公式、到账/正式票据、应收/交班及专业资质继续按真实规则落实，不补默认结论。
+
+## V0.26 最新交付
+
+完成原订单实物行配镜参数不可变版本、提交/交接核对/退回、加工变更明确原版继续或暂缓；开工固定来源，后来新参数不覆盖，早期未知保持。加工/质检签收服务端与原生写入保护、实时身份/审计幂等、分页历史/时间轴/手机冲突保留、schema23非空升级和恢复相连。详见parameters.md。正式处方、资质与专业重做批准仍待R02/R10，不领取完整业务验收。
+
+验证：npm run check、npm test（372项）、12组浏览器电脑/手机、CLI新建/重复初始化/全表备份核验和独立恢复；原50任务/287要求保持，26个开发交付勾选。设计Site同步同版本，开发仓库同一草稿PR持续推进。下一T05.01训练个人计划和项目库/课程执行基础，随后权益流水与资源排课；真实扣次和排课规则继续明确登记。
+
+
+## V0.27 训练计划与现场课程
+
+训练项目库、个人计划及现场课程各自保存不可变历史。专业岗位当前计划责任人明确确认、调整/暂停/恢复/结束；课程引用当时计划/项目版本和实际到店需求，固定执行人记录实际开始/结束、逐项分钟数/完成情况/反馈及额外活动，未知与0分别保留。更正追加版本，固定原计划责任人核对；新计划不覆盖旧课程。具体契约见[训练说明](training.md)。
+
+T05.01与T05.04独立技术部分已接客户/训练周期/到店、资料附件、时间轴和恢复；原T04依赖、正式资质/专业表单、权益扣次、资源排课、家庭练习/专业复评和整体验收仍待完成。计划和现场课程不产生收费、扣次或预约。schema24新增十个不可变表，旧库不补造记录；双向计划修订/课程序列核对同一毫秒操作。
+
+开发验证：397项自动测试（新增25项训练专项）、13组电脑/手机浏览器、CLI新建/重复初始化/全表备份核验/独立恢复会话清零。新增2项目3模板版本、5个人计划6版本13状态事件、6课程15事件，展示待开始/执行中/暂停/记录待核对/已核对/中止；重复初始化与升级保留所有旧业务记录。
+
+项目进度保持最前，27项具体开发交付勾选；原50任务/287要求与依赖文本保留，整项与业务验收分别记录，同一原方案Site和下载同步。下一T05.02套餐权益流水与规则快照，随后T05.03资源排课、T05.05复评家庭；不补默认扣次/效期/容量规则，按R03/R05确认后的实际依据接通。同一草稿PR持续推进，业务后台保持本地开发系统。
+
+
+## V0.28 套餐与独立权益账
+
+套餐目录规则记录保存不可变版本，购买/赠送、按次数/人工明确期间分别登记；权益账固定原客户/训练需求、可选个人计划版本及登记采用的规则版本。未知扣次/效期/冻结/退款说明留空，不推定业务规则。负责人误录冲销引用原流水，次数可部分或全量，期间完整冲销；原资料/附件、原时间/凭据说明和来源保留，不生成资金退款或改变专业计划。具体契约见[权益说明](entitlements.md)。
+
+客户权限摘要只显示完整暂留数量，专业岗位没有购买凭据/完整流水；负责人/前台读取本店权益账并明确登记来源，负责人维护规则和冲销。时间轴按资金读取范围显示权益，schema25新四表进入备份和恢复。客户连续事件序列与套餐版本捕获的建账序号保护同一毫秒的跨账记录、冲销/重录和规则修订；版本/实时会话/审计幂等同事务，手机冲突重读保留填写。
+
+开发验证：421项自动测试（24权益专项）、14组电脑/手机浏览器；CLI新建/重复/75表备份核验及独立恢复，会话清零。虚构库增加2套餐3规则版本、3权益账8流水，展示购买/赠送、部分/全量次数冲销、期间登记/完整冲销及后来规则修订。schema24非空升级不补造权益，重复初始化保留全部旧业务。
+
+进度入口保持第一，28个具体开发交付勾选；原50任务287要求原文/编号/依赖与整体验收保留，同一草稿PR和原方案Site/下载继续同步。T05.02仍部分实现：真实销售订单/资金、扣次/效期执行、冻结延期/转套餐/套餐退款分摊待实际规则；用户后期集中体验。下一T05.03资源排课和候补基础，按明确资源/时段及R05实际容量接入；随后课程扣次联动、复评家庭与长期随访等完整范围。
+
+
+## V0.29 训练资源与排期
+
+资源目录固定员工/房间/设备与明确容量、准备收尾分钟、人工来源和版本。单次/小组/维护时段占用资源，按各资源固定版本的准备收尾计算半开区间冲突；员工只允许一个同刻时段，小组在同一个时段内共享，所有资源容量都须满足明确人数。客户预约与候补固定原个人计划，候补不占名额且不自动转正；前台转预约/单次调课重新核对原计划、当前资源和容量、客户重叠。取消/当次请假不改其他组员或课程/权益/资金，已有客户时段不能整组覆盖。后续资源修订不覆盖旧时段，新接纳需明确核对来源。具体契约见[排期说明](scheduling.md)。
+
+本店连续全序列覆盖资源版本、时段与客户操作，版本与审计/幂等同事务，schema26新六表进入时间轴、备份和恢复；同毫秒资源修订按序列回放，拒绝后来版本替换早期时段。schema25非空升级不补造排期，虚构展示增加3资源4版本、4时段5事件、3预约4事件，重复初始化和旧资金/库存/训练保持。
+
+开发验证：446项自动测试（25排期专项）、15组电脑/手机浏览器；81表CLI新建/重复/备份核验/独立恢复，会话清零。进度第一入口勾选29个具体开发交付，原50任务287要求/依赖文本及整体验收保留，同一草稿PR和原方案Site/下载继续同步。T05.03仅部分实现：周期系列/单次例外、排班、自动替代时间、通知/家长预约/签到和实际补课、权益联动尚未完成；未知R03/R05规则仍等待真实依据。下一T05.05专业复评及家庭练习基础，衔接计划、课程与家长授权，正式临床表单/资质及发布规则不补默认值。
+
+
+## V0.30 家庭练习与阶段复评
+
+练习固定原客户/需求/个人计划、一个明确家长与可选实际课程；草稿与已发布说明分开，家长仅见当前有效授权下明确发布内容、本人自报及共享反馈。专业内部说明、员工/设备人工转录和原专业资料不进入家长响应。原责任专业人员布置/修订/发布/反馈，负责人可撤回或结束；撤回后结束不再公开，已发布结束保留本人历史并停止提交。家长授权/账号撤销或强制改密阻断新读取/提交和旧幂等重放，请求体等待后再次核对。分钟未记录与明确零分别保存，不从实际记录推导疗效。
+
+阶段复评记录人工检查对比、判断方向及下一步，固定课程、练习反馈、检查资料和既有后续任务版本。保存/核对时来源已变化须明确修订，核对后不可覆盖；计划调整/结束独立办理，不取消预约、清零权益、生成扣次或自动通知。需跟进反馈须显式关联本周期任务，新任务在接待与交接办理。具体契约见[家庭练习与复评](family-training.md)。
+
+开发验证：476项自动测试（30项家庭/复评专项）、16组电脑/手机浏览器；schema27新增八表，89表CLI新建/重复/备份核验/独立恢复，会话清零。进度首位勾选30项具体开发交付，原50任务287要求/前置文本及业务验收保留，同一草稿PR和原方案Site/下载同步。T05.05仅部分实现：正式专业表单/指标/资质、到期规则、专业调整闭环与通知仍待依据。下一T06.01长期档案/复查计划基础；真实扣次效期、周期排课和通知继续等待明确规则。虚构阶段新增独立demo-practice-parent及明确演示关联，初始化仅追加，不重设旧账号/授权或人工记录。
+
+
+## V0.31 长期档案与复查计划
+
+长期档案固定客户/本店/明确随访需求、资料和已核对阶段复评版本，保存基线缺失、目标及人工来源。当前档案与每条复查责任人分别留痕，移交不改原创建人或默改复查人员。实际检查时间轴可筛眼别、条件状态/说明、来源和日期；更正追加版本，实际时间和录入时间分开。双眼合并资料保留原标注，不拆成两组虚构测量。临床指标/单位/表单尚未确认，数值趋势和专业评价待依据。
+
+明确日期/项目/负责人逐条安排复查，到期只显示逾期，不当作通知/到店/完成。完成须实际检查版本、真实处理时间、结果及下一步，取消保留原说明并明确后续；下一次复查另建。结案原因及后续必填，所有待复查和暂停安排先逐条处理；结案后未来需求另建档案，不自动改周期、训练/订单/资金权益。具体契约见[长期档案与复查](longitudinal.md)。
+
+开发验证：504项自动测试（28项长期专项）、17组电脑/手机浏览器；schema28新增七表，96张表CLI新建/重复/备份核验/独立恢复，会话清零。原方案进度首位勾选31项具体开发交付，原50任务287要求/前置文本和业务验收保留，同一草稿PR与原方案Site/下载同步。T06.01仅部分实现：正式双眼数值趋势、指标/单位/表单及资质待依据；外院资料转录不视为正式结果确认。下一T06.02联系、预约和失败接管；发出不视为已读，目的/授权/回执分别记录。虚构阶段仅追加七表和审计，重复保留原周期、资料、账号/授权及人工记录。
+
+
+## V0.32 联系、预约和失败接管
+
+联系目的与明确授权独立保存；服务/营销分开，撤回立即阻止新联系及幂等重放。人工实际联系与回执追加历史，发出不视为已读；失败转明确责任人，重试/延期填写下一步及日期。固定复查/订单/训练版本，变化后明确重建来源。预约独立记录改期、取消、手工未到与既有到店关联，不产生训练容量、专业完成或资金变化。
+
+验证：533项自动测试（29项联系专项）、18组电脑手机浏览器；schema29八表，104表CLI新建/重复/备份核验/独立恢复，会话清零。具体契约见contact.md。原方案首位勾选32项开发交付，50任务287要求/依赖和整体验收保留，同一草稿PR与原Site。T06.02部分实现：真实渠道发送、自动通知及正式授权规则未补造。用户已授权逐项连续推进，下一直接T06.03外院复查/专业确认与转介跟踪。
+
+
+## V0.33 外院复查与转介跟踪
+
+外院原报告/客户自报/无法测、附件/固定资料与确认意见分开。当前本店专业责任人明确确认/暂不采纳；负责人仅行政移交，不代填专业意见。修订重新待确认、旧意见和原版本保留，不覆盖本店检查。转介固定长期档案/实际检查/原单售后/实际课程/已确认外院来源，专业与联系责任分别保存，明确安排/重新排期/延期、实际联系回执预约关联、收到已确认结果或未获取/无法测及后续。
+
+验证：563项自动测试（30项外院/转介专项）、19组电脑手机浏览器；schema30新增六表，110表CLI新建/重复/备份核验/独立恢复，会话清零。原方案首位勾选33项交付，50任务287要求/依赖与整体验收保留，同一草稿PR和Site。契约见referrals.md。正式专业表单/数值/资质和外部渠道、自动异常任务尚待依据，T06.03部分实现。用户授权继续逐项推进，下一T06.04接触镜/OK镜专项技术基础；不补造临床适用结论或专业默认字段。
+
+
+## V0.34 接触镜/OK镜条件来源、评估与本版同意
+
+条件来源明确机构范围/职责及评估同意、参数追溯、护理复查要求，不把本地配置采用当作正式机构资质。客户固定原条件/需求或到店版本；待评估/待补/不适用/适用及实际来源由专业责任人明确记录，评估与采用独立。本版同意另记实际当事人/关系/时间/依据，不继承联系或查看授权；改版重新核对，撤回/条件变更即刻保护新采用或恢复，旧事实保留。暂停恢复结束及移交保存理由和后续。
+
+验证：589项自动测试（26专项）、20组电脑手机浏览器；schema31八表，118表CLI新建/重复/备份核验/独立恢复，会话清零。两种虚构条件/五个客户阶段实际保存，只追加自己的来源附件，原客户/业务/授权保持。原方案首位勾选34交付，50任务287要求/依赖与整体验收保留，同一草稿PR和Site。契约见specialty.md。下一V0.35继续T06.04参数订片/批号追溯，再接护理、复查异常/更换停用；真实临床字段/机构人员资质继续待依据。用户授权逐步连续推进。
+
+
+## V0.35 专项参数订片与产品追溯
+
+专业明确核对当前评估/有效本版同意、每项原参数及未执行同客户需求镜片原单，复用原商品/加工/质量/签收/出库。来源或责任变化须重新专业核对；已开工新评估不替换原执行。实际到货批号/序列说明、未知和来源更正独立保存，每次实际到货量不重复分配；合格质检签收出库需本行到货追溯齐全。新业务API及原生SQL实时保护，受保护动作固定当时专项/订片/参数及批号快照，后撤回更正不改旧事实。
+
+验证：608项自动检查（19专项）、21组电脑手机浏览器；schema32五表、123表CLI新建/重复/备份核验/独立恢复，会话清零。三个虚构订片/批号/合格签收出库阶段只追加自己的商品原单，不改已有评估同意和商业事实；旧schema31非空升级保留。首位进度35交付勾选，原50任务287要求/依赖及整体验收保留；同一草稿PR/Site。契约specialty-trace.md。下一V0.36护理指导与明确掌握/待补/暂停，之后复查异常、更换停用及长期归档；正式处方/资质/质量、护理及业务规则依实际来源办理。
+
+
+## V0.36 原产品护理指导与掌握情况
+
+固定实际合格/签收原产品、原批号、明确掌握规则来源与实际材料版本；实际指导/练习、掌握待补、专业核对和明确放行分开。交付前已登记护理要求的批次，待补/暂停或来源失效阻止新签收及相关出库，旧事实不补授权。新资料版本/恢复返回待核对，结束本条不结束临床周期或自动退款。每次签收/出库固定当时护理序列与版本，后更正/撤回保留旧依据。
+
+验证：628项自动检查（20专项护理）、22组电脑手机页面；schema33四表、127表CLI新建/重复/备份核验/独立恢复，会话清零；同毫秒来源与schema32非空升级保留。三阶段虚构指导待核对/需补练/明确放行只追加自己的原单与材料，不改原评估同意和商业事实。首位进度36交付勾选，原50任务287要求/依赖和整体验收保留；同一草稿PR/Site。契约specialty-care.md。下一V0.37专业复查/异常处理，之后更换停用与长期归档；专业方法/指标/频率和业务规则依实际来源。
+
+
+## V0.37 原镜片专业复查与异常处理
+
+固定实际专项原签收产品/数量、原评估批准、原批号与护理版本。实际佩戴反馈/检查、未知条件/无法测独立于本版专业意见；当前专业责任人明确继续、调整、暂停、停用、转介或暂不能判断和下一步。暂停/停用同时追加原专项临床状态和复查意见，审计失败一起回滚；其他意见不自动改参数/预约/资金。新反馈返回待确认，原意见/实际处理人保留。复用原实际检查/已确认外院版本，关联既有复查/转介/实际服务联系，不推定已到店/结果/回执。
+
+验证：653项自动检查（25专项）、23组电脑手机页面，schema34四表、131表CLI新建/重复/备份核验/独立恢复，会话清零；非空schema33升级及同毫秒来源/原临床效果核对。四阶段虚构展示待核对/调整/遗失无法测/明确停用，停用单独追加自己专项和原产品，不修改此前事实，重复保留人工记录。首位进度37项交付，原50任务287要求/依赖和整体验收保留；同一草稿PR/Site。契约specialty-review.md。下一V0.38更换重订、停用后长期归档与质量责任，费用/退货退款/实际临床规则按明确来源。
+
+
+## V0.38 专项更换与长期来源归档
+
+复用原售后/独立新单商业批准，独立新专项当前专业责任人明确采用原具体复查继续/调整意见及新单评估/本版同意/原参数。原停用状态保留。共享幂等前门禁和SQLite原生门禁保护未来正向执行，逐次保存专业来源；事实到货、失败质量、更正释放/原退款分别按原规则继续。不可变归档保存相关临床/产品/护理/复查/售后/新单/退款来源与待续事项，逐表rowid前缀和SHA256恢复重建，归档不结束其他业务。
+
+验证入口：672项自动检查（19专项）、24组电脑手机页面；schema35新增五表/136表CLI重复与独立恢复，非空schema34升级保持旧事实和未知专业历史。三种独立新单阶段和三份原索引不覆盖此前数据。进度首位勾选38项具体交付，原50任务287要求/依赖与整体验收保留。契约specialty-continuity.md；下一V0.39/T07.01供应商资料与采购需求审批，接原商品、库存、加工到货及退供。实际专业/质量责任/保留及资金规则待真实来源。
+
+
+## V0.39 供应商与采购主线
+
+本店供应商原资料与版本保留未知联系/结算，采购需求固定原供应商/实物商品/规格单位和人工整数分单价，商业提交、负责人批准/驳回和已发生实际订货分别记录。来源改变显式退回草稿追加原版本，缓存前与原生门禁重核；实际订货时间/同供应商编号防重，在途原单位/类别保护，旧意见固定。没有自动实际消息、库存或资金流水。
+
+验证入口：693项自动检查（21采购）、25组电脑手机页面；schema36五表/141表CLI重复与独立恢复，非空schema35不补造采购事实，同毫秒供应商序列/原商品前缀核对。两目录/五阶段重复保留此前业务与人工变化。39项具体交付前置，原50任务287要求/依赖和业务验收保留，T07.01/W5-N1/N2部分。下一V0.40分批验收、批号效期仓位、差异隔离与合格入库/退供；真实资质预算/仓库质量职责与完整供应商对账按实际来源。
+
+
+## V0.40 原采购收货验收入库
+
+V0.40贯通原采购分批收货、实际验收与原库存：固定实际订货原行/数量单位，匹配与超收分别留痕，未知批号效期仓位保留；明确检查项目/要求与合格不合格结果，负责人选择一次可用或隔离入库。资料更正保留旧验收/原库存，不自动放行或付款；schema37四表/145表恢复、四独立虚构收货阶段与电脑手机贯通。40项具体开发交付勾选，原50任务287要求/依赖及业务验收保留。下一V0.41实际退供与库存纠错/质量处理，继续接加工原来源。
+
+验证入口：713项自动检查（20收货）、26组电脑手机；schema37四表/145表CLI重复和独立恢复，非空schema36无补造，原库存与收货固定来源核对。用户集中体验及正式仓库质量岗位/实际规则和整任务验收待后续。主应用仍本地开发，同一草稿PR；原方案进度与下载同步。
+
+
+## V0.41 原批复检隔离与放行
+
+V0.41继续采购与库存质量主线：固定原收货/入库和人工实际在库身份数量，负责人实际隔离或占用原隔离，未知及原资料版本保留；逐项复检/实际要求与明确解除隔离分别记录。待检/失败数量受保护，普通库存页面和原生操作不能绕过；原收货更正须明确采用新版本再复检，旧质量/库存保留。schema38五表/150表恢复、五独立虚构复检阶段与电脑手机贯通；41项具体交付勾选，原50任务287要求/依赖及业务验收保留。下一V0.42实际退供安排、实物交接与收件结果，不推定库存/资金已退。
+
+验证入口：733项自动检查（20质量）、27组电脑手机；schema38五表/150表CLI重复与独立恢复，旧库存只补空新账技术前缀，旧专业历史不补造。原批失败保护、普通库存/API/原生绕行、原资料更正后重新采用复检、原库存和同刻前缀检查。原50任务287要求/依赖和整体验收保留，本地主应用同一草稿PR；集中业务体验待后续。
+
+V0.40本地全量712/713，既有并发检查默认第一个请求获胜导致断言不稳定；修正为实际成功方重试，25项排期检查通过，精确HEAD 4fd3bff7dad91f5047f813b99932c9444a97361f 的CI96/38046739648全713通过。26浏览器及145表恢复通过，原方案V0.40已发布saved version21。
+
+
+## V0.42 原批分批退供与供应方收件
+
+V0.42继续采购库存主线：原隔离批次退供安排/商业审核、实际分批交出及供应方分批收件分别留存；安排审批不动库存，真实交出扣隔离实物，收件不重复扣账。多安排共享余量，部分交出可停止剩余安排，旧实际事实保留；复检新观察采用实际剩余后才可明确放行，原销售出库快照保留。schema39九表/159表恢复、七独立虚构退供阶段与电脑手机贯通；42项具体交付勾选，原50任务287要求/依赖及整体验收保留。下一库存实际批次/仓位分配和跨业务来源查询，不补造费用责任或供应方退款。
+
+验证入口：754项自动检查（21退供）、28组电脑手机；schema39九表/159表CLI重复与独立恢复，旧世界只补空新账技术前缀。实际交出扣隔离、收件不重复扣账，剩余新观察复检及放行容量、旧销售快照和同刻上下文核对。原50任务287要求/依赖和整体验收保留，本地主应用同一草稿PR。
+
+V0.41精确HEAD 6b5bb0097420d3f7b2f5bf685a4117073824d9b6 的CI98/38047383717、733本地全量、27浏览器及150表恢复全部通过，原方案V0.41发布saved version22/source fefa31896434c2b15935aaf361b43966101c75cc/deployment appgdep_6aca205025b88191ab69cf7233b0ab40 succeeded。
+
+
+## V0.43 库存业务来源总览
+
+V0.43接通库存业务来源总览：同SKU六类采购收货、原批质量、供应退供、配镜原单预留、销售实际出库和原累计库存流水；当前实物数量明确核对原累计账减销售/实际退供，原批未知今天保管量不从入账量推定。逐类完整数量/稳定分页/来源冲突重读、原业务入口和电脑手机贯通；schema39/159表保持，43项具体交付勾选，原50任务287要求/依赖和整体验收保留。下一超收未匹配数量的独立实际退回与供应方收件，未入账来源不能借用已入账库存扣减。
+
+验证入口：764全量、10来源专项、29组电脑手机，schema39/159表保持与独立恢复投影一致。来源token、六类完整计数/稳定分页和原业务引用核对，未知当前原批保管量不补造。原50任务287要求/依赖及整体验收保留。
+
+V0.42精确HEAD d7e1fb79296efb47ab7cd81a7d0554ecc2e0b705 的CI100/38049231757通过754项，联合41质量/退供、28浏览器及159表恢复通过；原方案V0.42 saved version23/source fdfed780a95f3955b90e0931ed2b8174deeb29b8/deployment appgdep_6aca25eb3ec481918d58ebec36021e0d succeeded。
+
+
+## V0.44 超收未匹配原件的分批退回
+
+V0.44接通超收未匹配原件的独立商业退回安排、分批实际交出及供应方分批收件；原超收身份数量与实际保管核对来源固定，多个安排共享容量，未交出取消与部分停止分别保留事实。超收未入SKU账，交出及收件均不重复扣商品库存或自动退款；原收货取消受有效安排/实际交出保护，旧原件今天保管量仍未知。schema40六表/165表恢复、七独立虚构阶段与电脑手机贯通；44项具体交付勾选，原50任务287要求/依赖和整体验收保留。下一实际批次/仓位分配基础与配镜出库来源贯通。
+
+验证入口：784全量、20超收专项、30组电脑手机，schema40/165表独立恢复。用户集中业务体验及正式质量仓库身份/合同政策待后续，原50任务287要求/依赖和整体验收保留；主应用本地开发，同一草稿PR。
+
+V0.43精确HEAD f267d5d8f4684f1b8f0c88b4f15c1215e7b55c84 的CI104/38050516749与764本地全量通过；29套浏览器初次27通过，两项旧异步断言修正等待刷新后各自通过，10专项及159表恢复通过。原方案saved version24/source891b3e4cc86de8c191f914a72cc5362d64df2646/deploymentappgdep_6aca2bbf4c48819182d0afacaa5e3a50 succeeded。
+
+
+## V0.45 原批实际保管与仓位核对
+
+V0.45接通原匹配入库批次的人工实际身份、数量与仓位核对，原收货/固定商品单位、当时库存/销售/退供/质量来源保留；新观察与明确撤回解释追加留痕，不累计观察为今天批次余量或独占库存分配。被保护原批不能借用另一箱可用库存，原销售和退供快照不变。schema41八表/173表恢复、六独立虚构阶段与电脑手机贯通；45项具体交付勾选，原50任务287要求/依赖及整体验收保留。下一明确批次仓位分配和销售实际出库选取原批，不自动推定原件仍在库或仓库政策。
+
+验证入口：806全量、22仓位专项、31组电脑手机，schema41/173表CLI重复/独立恢复。原50任务287要求/依赖和整体验收保留；正式仓库身份/规则和集中业务体验待后续，主应用本地开发，同一草稿PR。
+
+V0.44精确HEAD814066d43246ef71bec00cf62ac94b345e6d0f93 的CI108/38052042101通过全784项，20专项/30浏览器/165表恢复通过。首次CI106的29项旧schema39断言修正至schema40，业务实现未改变；本地最终回归继续完成。原方案saved version25/source8d1ff65ee31a41ae8fcd63bd4dd9787e8b725bc6/deploymentappgdep_6aca30d0cfe08191a6deaed8dcbcd43b succeeded。
+
+
+## V0.46 实际出库原批追溯
+
+V0.46接通配镜实际可用库存出库的明确原批来源选取，固定原收货/原件与仓位观察、数量单位、当时质量及实际交出依据；原采购批次可查已交付客户与原订单。一次原实物扣减，原批已明确售出数量约束后续在库核对和质量保管；旧未记录或原单预留来源继续未知，不补造批次、不推定今天批次余量或完整独占分配。schema42七表/180表恢复、七独立虚构阶段，46项具体交付勾选；原50任务287要求/依赖及业务验收保持。下一原单预留的实际原批核对与固定分配依据。
+
+验证入口：827全量、21选批专项、32组电脑手机，schema42/180表CLI重复/独立恢复；主应用本地开发，同一草稿PR，用户后期集中业务验收。
+
+V0.45精确HEAD1180ce4820a15a17b48a178ca187176a2ac927e6 的CI110/38052777038及本地806/806通过，22专项/31浏览器/173表恢复通过。V0.44最终本地784/784也已通过。原方案V0.45 saved version26/source15d0333e43eb7d441c9ad965f63966e444bd0e83/deploymentappgdep_6aca342dc0f48191add9b470ac4031e6 succeeded。
+
+
+## V0.47 原预留实际原件与仓位核对
+
+V0.47接通原订单预留行内的人工实际原收货原件身份、数量与仓位核对，固定原预留/原单版本和原收货资料、当时实物/出库/退供/质量/已售来源；原预留释放或改用新预留后保留旧观察，不能静默替换。观察不再次预留或扣库存、不累计为今日原批余额或独占分配，数量受原预留剩余、原质量保护及已售原件上限约束。原配镜订单/预留出库和库存来源总览、客户时间轴已接；schema43十表/190表恢复、七独立虚构阶段，47项具体交付勾选。下一实际预留出库明确选取本原单原批来源并追溯客户；原50任务287要求/依赖及整体验收保持。
+
+验证入口：848全量、21原预留专项、33组电脑手机，schema43/190表CLI重复/独立恢复；主应用本地开发，同一草稿PR，用户后期集中业务验收。
+
+V0.46最终HEADbf2e204ea0c135625d00c8be0ac55f72d425763b 的CI114/38075285864及本地827/827通过，21专项和2原生错误断言修正复核、32浏览器/180表恢复通过。初次CI112仅两项旧错误文案断言，训练浏览器补等待真实刷新后通过，业务实现不改。原方案V0.46 saved version27/source00fb99bc40ec29032a760093e3832dd9de1be1da/deploymentappgdep_6aca830afbec8191b4c21821cf5ad37d succeeded。
+
+
+## V0.48 实际原预留原批出库与客户追溯
+
+V0.48贯通原单预留实际出库的固定原件观察、原收货原批与已交付客户，明确信息完整对应本次数量，原实际reserved只扣一次；可用和预留来源分开，旧未知不补造。两类已售原件和原退供/质量保护共同约束后续观察及出库，保留负事实重试、原专业签收保护、数字旧版与来源变化时填写；schema44九表/199表恢复、七独立原预留实际交付虚构阶段、48项具体交付。原50任务287要求/依赖和整体验收保持；下一T07.03本店员工责任与交接入口，完整仓库矩阵/正式政策待依据。
+
+验证入口：872全量、24专项、34组电脑手机，schema44/199表CLI重复/独立恢复；主应用本地开发，同一草稿PR，用户后期集中业务验收。
+
+V0.47 HEAD3a23e94a53fba43c263b2ab16bc1236e7049d413的CI116/38076988207及本地848/848通过，21专项、33浏览器/190表恢复通过。原方案saved28/source0446da97f87b1de744c7005495ca43ae3382d09b/deploymentappgdep_6aca8a155b888191b519636ca82c094b succeeded。
+
+
+## V0.49 本店员工13类业务责任与原流程交接
+
+V0.49按T07.03接通本店员工13类业务责任与交接入口，核对原客户/原单行/版本及实际当前责任，停用/待改密原责任保留，岗位候选单列且完整总数/有界分页。通用任务显式接原转交接口，执行暂停后待新人接收、阻塞原因保留；专业/同意/资质不自动采用或替换。源变化和退出隔离、七独立任务阶段及旧账号/资金库存不改、schema44/199表恢复、49项具体交付；下一员工资质与明确排班资料基础，原50任务287要求/依赖及整体验收保持。
+
+验证入口：888全量、16专项、35组电脑手机，schema44/199表CLI重复/独立恢复；主应用本地开发，同一草稿PR，用户后期集中业务验收。
+
+V0.48初始HEAD249dcbc30202605ebae1299ea90b8d337945c1c9 的CI118/38078594771全部872通过；24专项/199表恢复通过。34浏览器首轮仅专项批号旧版立即断言跑在异步响应前，明确等旧版实际渲染后通过；没有业务运行实现变更。最终HEAD77d5d0385f150a5f3da5d0a667a9006408b729ea/CI12038079274891继续核对，V0.48本地872全量仍进行中，原方案48 source/download已核对。
+
+
+## V0.50 四类型员工原来源、人工安排与培训事实
+
+V0.50继续T07.03：固定本店员工的资质原来源、人工班次/休假缺勤安排、员工培训事实四类型，未知明确保留、旧版本/撤回解释不可覆盖，专业资质仍未核验。接入员工责任入口，当前账号来源变化阻止旧提交并保留填写，权限/会话和缓存复核；七独立虚构阶段、22专项、36电脑手机流程、schema45/202表恢复及50项具体交付。原18模块7流程50任务287要求/依赖保持，整体验收待后续。
+
+验证入口：910全量、22专项、36组电脑手机，schema45/202表CLI重复/独立恢复；主应用本地开发，同一草稿PR，用户后期集中业务验收。
+
+V0.49 HEAD075d6d0ff929c093af5d75d9a965e017f2b8b4e6的CI122/38079804265全部888通过；16专项、35组浏览器和199表恢复通过。本地888仍进行中。原方案保存30/source6ec0db6423e0d74d4512bb6cb7907773169e3dc3，deployment appgdep_6aca948e08308191a88b5179553379be 已成功，进度首位49项交付勾选。V0.48最终本地872/872通过，耗时1632191.458774ms；CI120也通过。
+
+
+## V0.51 固定原休假任务逐项人工交接安排
+
+V0.51继续T07.03：本店固定原休假/缺勤与员工，手工选择1至30项原通用任务修订和逐项拟接收人，保留原员工/接收人快照、安排来源、旧版与撤回；实际责任不自动转移。每项独立核对，真实原任务转交仍待新员工接收/执行，已转交一项不阻塞剩余原责任；13类专业/加工责任沿原入口分别办理。八独立虚构安排、22专项、37电脑手机流程、schema46/206表恢复及51项具体交付，整体验收与正式资质/人事/多店规则仍待后续。
+
+验证入口：932全量、22专项、37组电脑手机，schema46/206表CLI重复/独立恢复；主应用本地开发、同一草稿PR，用户后期集中业务验收。
+
+V0.50 HEAD9486e884e2db44ca008af03caf5481b25872aac2的CI124/38081366924全部910通过；22专项、36组浏览器和202表恢复通过，本地910仍进行中。原方案保存31/source38457049e5d8b2bd39df191963dc0840cc72a8db，deployment appgdep_6aca99c8ef4881918df828d7c6d363d0已成功，进度首位50项具体交付勾选。V0.49本地888/888通过（1428255.243369ms），与CI122一致。
+
+
+## V0.52 本店收退款事实与同筛选精确核对
+
+V0.52进入T07.04：本店负责人按同一文字/日期/方式/类型/状态筛选核对原有效收款、误录作废与已执行退款，完整明细总数与精确整数金额一致；原订单/客户/固定版本/原实收与退款申请来源，变化拒绝旧分页/原来源办理，沿原业务核对。作废非另一次现金动作，未实际执行退款不计资金；不默认收入、预收、利润或提成。七独立虚构阶段、15专项、38电脑手机流程、schema46/206表恢复及52项具体交付，整体验收保留。
+
+验证入口：947全量、15专项、38组电脑手机，schema46/206表CLI重复/独立恢复；主应用本地开发、同一草稿PR，用户后期集中业务验收。
+
+V0.51 HEAD3b3c3b79b6f12adc5eedcfd747f082733480e0da的CI126/38082528471全部932通过；22专项、新电脑手机、38项员工集成及206表恢复通过，37组浏览器和本地932仍进行中。原方案51 source/download原18模块7流程50任务287要求已核对；验证脚本升级时误将原任务50断言替换为51，修正原任务仍50、仅开发勾选51后通过，实际设计范围保持。V0.50本地910/910通过（1565406.132589ms），与CI124一致。
+
+
+## V0.53 手工渠道凭据与差异记录
+
+V0.53继续T07.04：固定原收款/误录作废/实际执行退款来源，明确手工渠道材料/凭据编号和日期/观察金额未知或零/人工一致差异结论，不可变版本与撤回保留；原钱款来源或名称变化拒绝旧正向采用与分页，手工重新核对保留填写。客户原历史仅负责人可读，沿原收退款办理；不自动调整资金或默认收入/费用分摊/提成。八独立虚构阶段，18专项/39电脑手机，schema47/209表恢复及53项具体交付，整体验收保留。
+
+验证入口：965全量、18专项、39组电脑手机，schema47/209表重复/独立恢复；主应用本地开发、同一草稿PR，用户后期集中业务验收。
+
+V0.52 HEADa082f8225501d17b103ab2028188f51adbdcb636的CI128/38083634557全部947通过（379342.734303ms），15专项、新电脑手机、206表CLI恢复、38组浏览器与52项勾选方案源码/下载检查通过。方案source338e1d297e0c4a99b954b2e0290ffaf60381680b已保存version33/appgver_275dac62ed3081919f0e28cc7cc16061并发布，deployment appgdep_6acacf72ccec8191a8b5d8f4ca1f31a8成功；本地947复核继续。V0.51本地932在用户继续指令期间中断，未记录最终完成；已通过的CI126/932与37组浏览器结论保留。
+
+
+## V0.54 原费用材料与独立实际支付
+
+V0.54继续T07.04：费用原材料/人工用途与未知或零，明确固定相关原单或未知；实际分次支付独立采用原材料版本，原误录作废保留原来源不二次现金。新材料/撤回不挪用或抹去实际支付，相关原单变化须手工补充当前材料；同筛选完整总数与精确实际金额、仅负责人客户原历史、原单双向入口。八独立虚构阶段，19专项/40电脑手机，schema48/213表恢复及54项具体交付；不默认会计/成本分摊/利润/提成，整体验收保留。
+
+验证入口：984全量、19专项、40组电脑手机，schema48/213表重复/独立恢复；主应用本地开发、同一草稿PR，用户后期集中业务验收。
+
+V0.53最终HEAD1bf11df5638fefd860af6789f21c34c5de6197ad：CI130首轮965项中963通过，仅旧健康/运行迁移断言46与实际47不符；两断言已更新并2专项通过。上传核对中发现单次读取大测试文件被截断，完整分块恢复后tree385a2ff1d90de33679e434a5573aff1aa1d48b51与本地一致，CI134进行中。18渠道专项、新电脑手机、59项员工/收退款事实联动、209表CLI恢复、全部39组浏览器及53项方案源码/下载通过；方案尚未发布，仍V0.52/version33公开。V0.52本地947全量继续。
+
+
+## V0.55 指定本人服务与权益公开入口
+
+V0.55进入T08.01：明确指定有效授权监护人的服务与权益发布，逐项采用原权益版本/流水前缀；内部依据不公开，家庭仅本人已发布内容及已有已发布练习。撤回和授权撤销关闭访问，后续新版不恢复旧撤回版本；家庭响应采用前复核当前授权及发布来源，迟到内容不重新显示。新版本空白/明确选择/手工来源续读，购买/赠送次数及期间登记分开，不推断扣次或可用资格。八独立虚构阶段、21专项/41电脑手机、schema49/217表恢复及55具体交付；正式身份核验/临床报告历史与整体验收保留。
+
+验证入口：1005全量、21专项、41组电脑手机、schema49/217表重复/独立恢复；主应用本地开发、同一草稿PR，用户后期集中业务验收。
+
+V0.54 HEADc6e2686cded0159b4ff59438901909aa15da7718/CI136/38097400805已成功：984项全部通过、0失败、334345.017875ms，40组浏览器全部通过。19费用专项/55员工渠道资金联动/2健康专项/213表CLI恢复和54项设计源码下载通过。方案source103aafa2beae19b8a74f5c714b44adfa50729ec0，保存version35原样ID appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_53d77765d5e881919035af33461c396c，deploy appgdep_6acad6e1555881919b34c4fe2d22ec98 succeeded 2026-10-11T00:23:04.440399+00:00。V0.53最终CI134/38097049283全部965通过，全部39组浏览器通过，方案version34已于00:09:35.949180发布。此前本地947/965/984全量仍运行，未伪称完成。
+
+
+## V0.56 本人预约请假意向与员工核对
+
+V0.56继续T08.02：当前有效授权本人预约/请假意向，期望时间明确或请假未知保留；员工明确接收/补资料/公开回复/结束，内部依据不外泄。原提交和回复不可变、本人撤回保留历史；当前授权/幂等/并发重复/同源完整分页及迟到读取保护、仅负责人前台客户实际历史。八独立虚构阶段、19专项/42电脑手机，schema50/219表恢复及56具体交付；不自动占名额/批准请假/改原预约/扣次退款或消息送达，整体验收保留。
+
+验证入口1024全量/19专项/42组浏览器/schema50及219表恢复；用户后期集中业务验收。V0.55 HEAD831ce51dd7e51ff0345e2788a89c675a6ba8f167，21专项、新电脑手机、76项原家庭练习/权益/人员联动、217表CLI恢复及设计源码下载通过；CI138/38098606781已成功，全部41组浏览器与本地1005继续。V0.52本地947全部通过，0失败，2524934.022992ms。
+
+
+## V0.57 原训练预约实际事件与本人公开
+
+V0.57继续T08.02：员工明确将原家庭申请与同客户实际原训练预约关联并公开最小原事实；固定原计划/周期/当次时段及事件版本，候补/真实请假/普通取消/调课分别按原动作展示。旧公开事实保留，新版本手工采用当前来源，撤回和当前授权守卫/缓存及迟到读取保护/仅负责人前台原客户历史。八独立虚构阶段、19专项/43电脑手机，schema51/222表恢复及57具体交付；不写原排期/占名额/推断扣次退款或消息送达，整体家庭验收保留。
+
+验证入口1043全量/19专项/43组电脑手机/schema51及222表恢复，用户后期集中业务验收。V0.56 HEAD7d517d62fcf44f7ea8e10643c5a1f24e0013112c/CI140/38099227268全部1024通过，0失败，341570.311836ms；19申请专项、新电脑手机、75项原公开/排期/联系联动、219表CLI恢复和56项设计源码下载通过。42浏览器首轮41通过，家庭权益授权迟到检查一次等待超时；同一V56源码独立复核通过，合计42组均有通过记录。本轮三个家庭迟到检查调整为先观察授权拒绝/清空再移除网络拦截，保留原断言。V0.55 CI138全部1005通过，41浏览器全部通过，21专项/76联动/217表CLI通过；方案source64962e273670d7c01a679e7acf9daabe9c95140e，保存version36原样ID appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_be644de0152481918b670b9b95cf8006，deploy appgdep_6acadc6f6e3481918faed05e4a916a6d于2026-10-11T00:46:46.786182+00:00成功公开。V0.53/54/55/56旧本地全量在各自相同提交的云端全量已通过后停止，集中验证新版本；未伪称本地完成。V0.52本地947确实全部通过。
+
+
+## V0.58 指定本人原时段开放、选择与实际接纳
+
+V0.58继续T08.02：员工向指定有效授权本人明确开放同客户原有效计划/原时段固定版本，家长明确选择保存原意向；前台独立选择实际原预约或候补，沿原计划/资源/容量/重复与时间冲突守卫只写一次原预约。开放、选择、实际接纳三者独立；满额提示不自动接纳，当前授权/撤回/来源与迟到读取保护、原客户实际历史。八独立虚构阶段、21专项/44电脑手机，schema52/227表恢复及58具体交付；不推断权益扣次/实际到店/专业适用性/消息送达，整体家庭验收保留。
+
+验证入口1064全量、21专项、44组电脑手机、schema52及227表CLI恢复。V0.57 HEAD9aebce839ce2aed088d81b89a5f4aa6eb9020870/CI142/38100326411成功1043/1043、0失败、415756.380483ms；全部43浏览器首轮通过，19专项/65联动/222表CLI恢复及57项设计源码下载通过。方案source5f62edb67ec106b7e1f4b3178ba323085921932d，保存version38原样ID appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_78d1442038d88191a19b59803338ca1f，deploy appgdep_6acae1a532588191b86bfb6df3a2c93e于2026-10-11T01:09:00.656496+00:00成功公开。V0.56方案source89ad366944d2c301121956361fdf590497ad428c/version37/deploy appgdep_6acadf6ba7b88191ac718fb2bd781551于00:59:30.537045成功公开。V0.57冗余旧本地1043全量在完全相同提交云端全量已通过后停止，未伪称本地完成；V0.53–56同理。主应用本地开发、同一草稿PR与业务待验收。
+
+V0.58员工原开放列表修复：客户筛选SQL的第二个门店参数此前未绑定，SQLite返回空列表；保存事实与本人范围正确。补齐门店绑定和21专项中的完整列表/分页回归，保留原标题范围与58交付。CI144原提交1063全部通过；44浏览器首轮43通过，原开放保存后列表失败并同源码复现。本次修复后重新执行专项、新浏览器及云端1064和44浏览器，不把旧失败伪称全通过。
+
+
+## V0.59 原预约请假/调课意向与实际办理
+
+V0.59继续T08.02：本人针对明确公开的原实际预约提出当次请假或选同原计划已开放时段的调整意向，固定旧安排与新期望；前台明确leave/move/promote核对原来源、容量和冲突，一次实际原事件与独立结果公开同事务保存。旧公开历史保留，当前授权/撤回、缓存与迟到读取保护；八独立虚构阶段、schema53/229表，正式通知、同意调整和整体家庭验收保持待完成。
+
+固定原客户/周期/计划版本、原预约公开及目标版本；提交不修改排期。员工实际办理和明确公开同事务，原历史不覆盖；新增客户时间轴和恢复核对。20专项通过，4组相关浏览器（新电脑/手机/迟到撤权及原时段/公开/申请）通过，全量回归继续，结果以最终验证记录为准。主应用保持本地开发，用户后期集中业务验收。契约见 [family-changes.md](family-changes.md)。下一通知偏好及同意信息调整基础，不虚构外部送达或专业审批。
+
+当前开发分支：`codex/phase-one-foundation`。`main` 只有初始 README；恢复工作时先 `git fetch origin` 并切换本分支，再读取 AGENTS.md 与本交接。源码与项目进度都在这个分支，不依赖旧会话。公开 Sites 是设计蓝图，本地工作台代码不做正式生产发布。
+
+本轮 npm run check、20原预约变更专项、4组相关电脑/手机浏览器和完整示例CLI新建/重复/228数据表备份核验/独立恢复均通过。V0.58最后HEAD48779ead7cbf3e67ed5518b33f1900681af4e4e1的CI38102073238与38102070087已成功，修复后的完整列表/分页结果可继续采用。V0.59全量回归与当前提交CI继续核对，未提前记录通过。旧原预约公开浏览器首次仅等待旧授权错误文案超时，新增拒绝入口已清空内容；统一当前授权无效提示后原完整断言通过，权限边界未放宽。
+
+V0.59实现提交0e0b2047039f45b7bb7bad1749f63275f5ed4ade的CI148/38182283442跑1084项：1083通过，仅test/aftercare-work.test.mjs旧releaseChecklist长度58与实际59不符。保留原50任务287要求，更新具体开发交付数59并重跑；该进度专项与最终界面文案的家庭申请/新变更浏览器复核通过。本地先前1083项全部通过（887197.281668ms），后来新增正文等待的专项包含在20项独立验证及云端1084内。
+
+V0.59最终运行代码提交`7ade2118902888fba380a1c333f88e04fa463e6a`的[CI150/38182850725](https://github.com/wenjinliuu/optical-workbench/actions/runs/38182850725)已成功：1084/1084，0失败，346681.934625ms；npm ci与npm run check通过。20新增专项、4组相关电脑/手机浏览器（新原预约变更、原开放、原预约公开、原本人申请）和完整虚构CLI新建/重复/228数据表备份核验/独立恢复均通过，恢复会话0。原进度59断言修复后单项通过；最终提示文案的家庭申请和新变更浏览器也通过。原50任务287要求、正式阶段/业务验收保持。随后仅补充进度与交接验证记录，实际运行代码不再变更。下一V0.60按本交接通知/同意信息基础继续；原设计Site未在本轮同步，工作台仍为本地开发。
+
+
+## 2026-10-12 双处进度同步与后续范围
+
+用户明确要求每完成一步同时更新仓库项目进度与原设计网页的项目进度/勾选。固定流程见 [进度同步规则](progress-tracking.md) 和 [后续工作](remaining-work.md)（docs内文档使用同目录文件）。当前仍V0.59/59项开发交付，补齐网页原V0.57漏同步的58/59，原50任务287要求/依赖及业务验收保留；本次不新增业务交付。复核任务剩余说明，后续V0.60先接家庭通知偏好/同意信息调整基础，再依实际规则补专业/训练闭环和原未启动模块。发布后通过progress:verify核验网页快照与三份下载，回执写docs/progress-sync.json；未核验成功不得声称两处一致。
+
+双处同步最终核验（2026-10-12）：原Site第39发布版本已成功，source25944f87a8dd9da0a4f612faf8d70bf59dffd433，deployment appgdep_6acc2eb97a448191bdb4055231207c85。网页实际读取V0.59/59项，progress-data.js及三份下载与仓库同源/原需求一致，线上电脑/手机导航、搜索、模块详情、无报错/无溢出均通过；发布后短暂旧快照未通过校验，传播后复核确实通过。完整发布ID/版本/哈希与时间见progress-sync.json。原18模块7流程50任务287要求保留，33任务进行中/17未开始，159需求部分实现/128未开始，业务验收仍待集中进行。本次只同步进度/复核剩余说明并固定自动核验流程，不新增第60项业务交付。后续每一步必须继续执行同样双处更新/发布/线上核验。
+
+
+## V0.60 本人通知偏好与同意信息调整意向
+
+V0.60继续T08.02：员工向指定本人明确公开通知/同意信息说明，本人登记通知偏好或提交同意说明调整意向，员工独立公开核对回复。固定原说明、明确未知/拒绝、最新撤回不回退旧偏好、公开撤回不恢复旧版；当前授权/并发/幂等重放/迟到读取及内部依据隔离、八独立虚构阶段和schema54/231表恢复。真实渠道送达、正式监护身份与临床同意审批、整体家庭验收仍待后续。
+
+契约与验证入口见 [family-communication.md](family-communication.md)。23专项与相关桌面/手机、完整示例CLI及全量回归核对后记录结果；两处进度必须发布并通过progress:verify才进入V0.61。
+
+V0.60初次全量CI158/38191561043（b1a1d42f0c3a211912ec2f44c6073392a90de3f8）1107项中1106通过；唯一失败为旧staff-records非空schema44升级快照把新两张空表误当原表。修正为逐表核对所有原记录，新增表必须空，保留原员工资料空状态断言；新专项23通过，电脑手机与原本人申请/原预约变更共3组、230表CLI恢复通过。修正后重新核对全量，未提前标成功。
+
+V0.60最终运行代码与修正测试提交0872ed33f8b8f36d4b1f931171680542bcf1d7b4，CI160/38191987120全部1107/1107通过、0失败、459842.045439ms，npm ci/check通过；本地npm test亦1107全部通过、917733.572855ms。23专项、3组相关电脑手机浏览器（通知/同意、本人预约意向、原预约变更）和schema54/230数据表完整CLI示例新建/重复/备份核验/独立恢复通过，恢复会话0。下一V0.61工作台内服务通知/本人主动已读；本轮方案发布和线上双处回执接下执行，不提前声称完成同步。
+
+V0.60双处同步完成：原Site版本40/source bc0985342e8ab2dbae8e39a8c0355de2a6dd7c8d/deployment appgdep_6acc39cca6948191b620ac93eef2f692于2026-10-12T01:37:24.354812+00:00成功发布；01:37:41.762Z实际读取V0.60/60项与三份下载和原50任务287要求一致。完整回执与哈希在progress-sync.json。确认后进入V0.61工作台内服务通知与本人主动已读回执；主应用仍本地开发，正式业务验收保留。
+
+
+## V0.61 工作台通知与本人主动已读
+
+V0.61继续T08.02：门店明确发布/修订/撤回指定本人的工作台服务通知，本人主动标记固定原版已读。读取不自动生成回执、旧版已读不覆盖新版未读，撤回后重新发布不恢复旧内容；当前授权/来源与同筛选分页、私有依据隔离/幂等原子审计/迟到撤权及八独立虚构阶段和schema55/233表恢复。真实外部渠道送达、正式临床同意和整体家庭验收仍待后续。
+
+契约与验证入口见 [family-notifications.md](family-notifications.md)。20专项和新增电脑/手机已通过，全量/完整CLI/原家庭入口回归接下核对；两处进度必须发布并通过progress:verify才进入V0.62。
+
+V0.61运行提交1711bb132335cd236b2163b6749dcaadd6f3167a，CI166/38193468660全部1127/1127通过、0失败、459355.116328ms，npm ci/check通过。20新增专项与原偏好/同意23专项合计43通过，新增通知及原通知偏好两组电脑/手机通过，schema55/232数据表CLI新建/重复/备份核验/独立恢复通过，通知14条/主动原版回执3条保留，恢复会话0。云端准确提交全量通过后停止冗余本地全量，没有将未完成本地全量写成通过；网页发布/双处回执随后核对。
+
+V0.61双处同步完成：原Site版本41/source dbe20a22dd257940c0d01ec02a8fa67be74bf883/deployment appgdep_6acc3fcf4d1881919a5e7ca799cfb168于2026-10-12T02:03:03.470465+00:00发布成功；第一次快照仍V0.60而校验拒绝，传播后02:04:08.959Z实际读取V0.61/61项与三份下载及原50任务287要求一致。完整回执在progress-sync.json。接下V0.62原本人申请/回复通知来源固定引用与原入口追溯；工作台仍本地开发，业务验收保留。
+
+
+## V0.62 服务通知固定原申请/回复来源
+
+V0.62继续T08.02：服务通知明确采用本客户/指定本人原申请或员工公开回复版本，固定原公开内容并从通知回到原申请。后来回复不换旧来源，明确不关联与旧来源未追溯分别保留；原来源变更拒绝/保留填写与手工新版选择、当前授权/撤回/私有依据/原版已读和恢复已接。八独立虚构阶段、schema56/234表；不自动改预约、发送外部消息或批准临床同意，整体家庭验收保持待后续。
+
+契约与验证入口见 [family-notification-sources.md](family-notification-sources.md)。14专项和新增电脑/手机已通过，全量/完整CLI/原通知入口回归接下核对；两处进度发布和progress:verify确认后才进入V0.63。
+
+V0.62最终运行提交141b7819e44357b1a773ac58e61c4b8535783d61，CI174/38195561200全部1141/1141通过、0失败、526601.183688ms，npm ci/check通过。14新增专项与原通知20/原本人申请19合计53专项通过，null来源选择拒绝单项及最终全量亦通过；原来源与原服务通知两组电脑/手机、最终中文提示复核及schema56/233数据表CLI新建/重复/备份核验/独立恢复通过，固定原来源8条保留，恢复会话0。本地全量未完成，不标本地通过；最终全量以准确提交云端结果为准。两处进度发布/回执接下核对，再进入V0.63。
+
+V0.62双处同步完成：原Site版本42/source 9595ec04eca30f3557299964ca6fd1d75f8c9c7d/deployment appgdep_6acc99e6a48c8191a2e0d4986e43e615于2026-10-12T08:27:35.769367+00:00发布成功；08:27:37.983Z实际读取V0.62/62项及三份下载与原50任务287要求一致。完整回执在progress-sync.json。确认后继续V0.63原申请关联通知/原版已读反向入口；工作台仍本地开发，正式验收保留。
+
+
+## V0.63 原申请通知/原版回执反向入口
+
+V0.63继续T08.02：原本人申请/回复反向读取明确关联的具体通知版本和主动已读回执，按已读状态/同原申请来源分页；打开旧通知固定原版，不跳到最新，旧已读与新未读分别保留并刷新原入口。当前授权/通知撤回/迟到读取和嵌套已读撤权清空、私有依据隔离及恢复投影已接。复用八原来源虚构阶段、schema56/234表；只读不生成已读、不办理原预约或外部送达，整体家庭验收保留。
+
+契约与验证入口见 [family-request-notifications.md](family-request-notifications.md)。14新增/48相关专项与新增及原通知/原来源电脑手机通过，全量/完整CLI接下核对；两处进度发布和progress:verify确认后进入V0.64。
+
+V0.63最终运行/测试提交30e05944e61f2fb5317bb0ad3f8cdf3de97c406f，CI182/38226286929全部1155/1155通过、0失败、553732.061069ms，npm ci/check通过。14新增与原通知20/原来源14合计48专项、固定版本参数和第63交付进度单项通过；新增反向入口、原通知、原来源共3组电脑/手机通过，schema56/233数据表CLI新建/重复/备份核验/独立恢复通过，反向投影完全一致、恢复会话0。精确提交云端全量通过后停止冗余本地全量，不标本地完成。发布/回执随后核对，再进入V0.64。浏览器首次撤权清空原列表后，重新授权需明确重新读取；测试补齐此操作后所有原断言通过。
+
+V0.63双处同步完成：原Site版本43/source 30451e514db890bf8dae8b44908c4361b706b5a6/deployment appgdep_6acca2b112fc81919a70c526eda0c988于2026-10-12T09:04:58.352268+00:00发布成功；09:05:01.241Z实际读取V0.63/63项及三份下载与原50任务287要求一致。完整回执在progress-sync.json。确认后V0.64员工从原申请明确采用所见版本手工发布通知，工作台仍本地开发、正式验收保留。
+
+
+## V0.64 原申请明确手工发布服务通知
+
+V0.64继续T08.02：员工从本人原申请所见公开修订明确进入通知编辑，限定本申请来源且正文手工填写；新回复冲突保留输入和原选择，手工读取并选择新版后发布，回到原申请核对具体通知/回执。当前本人授权失效拒绝发布并清空编辑内容，家长不提供发布动作；不自动办理预约、结束意向或外部送达。schema56/234表保持，整体家庭验收保留。
+
+契约与验证入口见 [family-request-notification-publish.md](family-request-notification-publish.md)。新增原申请入口及原来源桌面/手机通过，48相关专项和原通知/反向入口、全量继续核对；两处进度发布并通过progress:verify后才进入V0.65。
+
+V0.64新增真实API原申请手工发布浏览器及原通知/来源/反向共4组桌面手机通过，48相关服务端专项通过；补齐原申请当前公开R与内容展示，避免旧历史页误认所采用版本，最终原申请发布复核通过。全量及两处发布继续核对。
+
+V0.64最终运行/测试提交02af63cf0d39a1e276b4b909e5d6f5cf72d00e01，CI190/38229327397全部1155/1155通过、0失败、321092.303455ms，npm ci/check通过。48相关专项、新增原申请明确发布与原来源/原通知/反向入口共4组桌面手机通过，最终当前公开R及内容提示亦已复核。无新迁移，沿用V0.63 schema56/233数据表完整CLI，本轮全量再核对原来源与恢复；未将中止的本地全量标为通过。网页同步及回执接下核对，然后V0.65先接T08.03名单导入预检/错误明细与身份不明建议，不自动合并旧档。
+
+V0.64双处同步完成：原Site版本44/source 85352ff341c1b995ec32dd9fd84798dd0fe5cf8a/deployment appgdep_6acca84528d481919f8697edbad9ed75于2026-10-12T09:28:45.314972+00:00发布成功；09:28:54.709Z实际网页与三份下载V0.64/64项及原50任务287要求完全一致，线上桌面手机亦通过。完整回执在progress-sync.json。回执推回原分支后V0.65进入T08.03名单CSV导入预检/错误明细下载与待人工核对建议；正式授权/保存/现场专业结果后续衔接。
+
+
+## V0.65 团体筛查名单导入预检
+
+V0.65进入T08.03团体筛查名单导入预检：UTF-8 CSV完整模板、原机构/批次/来源、逐行错误与授权未知/拒绝/撤回、重复编号和同名多候选、本店来源绑定、完整名单分页及带原字段/批次的公式安全错误下载。只给待人工核对建议，不保存名单、合并或覆盖原档案，不授予专业检查、临床同意或个人/汇总报告权限。当前身份/迟到读取/退出清空与schema56原档案恢复投影已接，整项业务验收保留。
+
+契约与验证入口见 [screening-import.md](screening-import.md)。17新增专项通过，桌面/手机、原家庭回归及全量接下核对；两处进度发布并通过progress:verify后进入V0.66。原阶段依赖和完整验收保留。
+
+V0.65新增17专项和原通知/来源/反向48专项合计65通过，新增筛查预检、原申请手工通知、基础协作完整入口3组桌面手机通过，进度第65项单项亦通过。恢复专项原档案错误/候选投影一致且会话0；无新存储表。首次错误下载核对补齐核对代码/批次与原始字段，CSV文本按浏览器标准LF核对；所有业务断言保留。全量和双处发布接下确认。
+
+手机视觉复核发现页脚硬编码仍V0.29，改为“本地开发 · 进度见项目进度”固定说明，避免后续迭代再次遗漏版本。最终当前HTML与筛查浏览器复核后提交。
+
+V0.65功能提交f117be7d52c42934bf6865d29eb363bd73d5c14e，CI196/38231604059全部1172/1172通过、0失败、524126.333188ms，npm ci/check通过。17新增/65相关专项、筛查预检/原申请通知/基础协作3组桌面手机通过，恢复投影和会话0专项通过。之后4a08c38a582342589dbd64b2df568480631ee14f只改静态页脚说明、其浏览器断言及进度/交接，所有功能JS/src/服务端测试一致；当前HTML、语法和筛查浏览器再复核通过。未把中止本地全量标为完成，也未将后续页脚提交CI未完成写为通过。正式验收保留，网页发布及回执接下确认。
+
+V0.65双处同步完成：原Site版本45/source 17bc6e78def6b8454bfa885aec34b6928164d280/deployment appgdep_6accae44bc988191a7b83d7d34d77adc于2026-10-12T09:54:20.023800+00:00发布成功；第一次实际网页仍64而校验拒绝，传播后09:55:18.481Z真实网页和三份下载V0.65/65项与原50任务287要求完全一致，线上桌面手机通过。完整回执在progress-sync.json。回执推回后才V0.66本店活动/责任人及原名单处理授权说明版本；正式授权/现场专业检查/报告仍待后续。
+
+V0.65后续页脚提交4a08c38a582342589dbd64b2df568480631ee14f的CI198/38232231882亦于2026-10-12T09:57:16Z全部1172/1172通过、0失败、528439.327014ms，npm ci/check通过。原已发布V0.65进度记录的功能/最终页面核对仍有效，本补充不新增交付项。
+
+
+## V0.66 本店筛查活动与原名单处理说明版本
+
+V0.66继续T08.03：保存本店筛查活动、原机构/范围、明确准备责任人及名单处理授权的原说明版本；未知、有原说明和拒绝分开，撤回保留旧事实、重新记录需明确新版，负责人明确移交责任。当前人员来源/责任范围/同源分页、冲突保留输入、迟到编辑撤权与原生不可变/原子审计已接；7独立虚构活动/11版本、schema57/235表恢复相连。不授予正式授权、临床同意或专业/个人汇总报告权限，完整筛查验收保留。
+
+契约见 [screening-projects.md](screening-projects.md)。18新增/55相关专项、两组桌面手机和完整CLI恢复通过，全量继续核对；两处发布/实际快照与三份下载通过后再V0.67。原任务/依赖/完整验收保留。
+
+V0.66第一次CI204/38235450670功能提交e356490b2c79f18f2e8a0cfe087cb7768c17fa3e全量1190项中14处旧健康/备份清单数量断言仍固定schema56，实际schema57而失败；全部为57!=56。补齐按当前迁移目录完整核对，原逐表/权限/资金/恢复断言保留，针对失败组和最终全量再验证；不把首次CI记为通过。
+
+针对旧失败检查继续执行后，发现人员/交接两处清单数据表数量仍233，新增项目表后实际234；改为清单表名与实际数据库全部非schema_migrations表逐项相等，覆盖所有新增表且比单个数量更严格。扩大针对组至backup/restore/recovery/health/operations，并再做最终全量。
+
+V0.66最终提交1edd62f5b295f1872922df07381376846e4ad371，CI210/38236863366全部1190/1190通过、0失败、546238.309959ms，npm ci/check通过。18新增/55相关专项、旧健康/清单/恢复/篡改44项针对检查、活动及原预检两组桌面手机通过，最终严格原根参数和浏览器复核亦通过。schema57/234数据表完整CLI新建/重复/备份核验/独立恢复通过，7活动11版本、全部原非会话行/投影一致，会话0。首次失败未标通过、已补齐旧schema56/233硬编码且保留并强化原断言。本地全量中止不标完成，最终全量以精确提交云端为准。网页发布/双处回执随后核验，再V0.67。
+
+V0.66双处同步完成：原Site版本46/source e9f31513b615abb926d672632cff15c43438379b/deployment appgdep_6accba5532548191936781609c246563于2026-10-12T10:45:48.871591+00:00发布成功；10:45:58.231Z真实网页与三份下载V0.66/66项及原50任务287要求完全一致，线上桌面手机通过。完整回执在progress-sync.json。回执推回后V0.67明确保存原活动下的批次CSV/名单与原错误，固定所见活动/客户来源，不自动匹配/建档/覆盖。
+
+
+## V0.67 原活动批次CSV和错误明确保存
+
+V0.67继续T08.03：从原活动明确保存UTF-8原批次CSV及错误，固定活动说明版本、完整客户资料版本引用及历史前缀；旧名单/错误/候选不随后来来源变更，原批次显式追加版本和准确旧版查看。当前责任/原说明/客户来源与缓存前守卫、原件TXT/公式安全错误CSV、迟到嵌套撤权清空和schema58恢复已接。4独立虚构批次/5版本，预检建议仍未确认身份，不自动匹配/建档/合并或授予报告权限，整任务验收保留。
+
+契约见 [screening-batches.md](screening-batches.md)。20新增/55相关专项、4组桌面手机和完整CLI恢复通过，全量继续核对；两处发布及实际快照/三份下载通过后进入V0.68。原任务/依赖/整体验收保留。
+
+V0.67大文件专项发现旧共享body逐Buffer转字符串可损坏跨块UTF-8，改为原字节收齐/计限后严格解码，中文分块和JSON转义边界专项均通过；原CSV限额保持256 KiB，JSON封装允许2 MiB。错误CSV补齐控制字符前缀公式保护，原文件不转换。20新增/55相关通过，修复后批次及基础协作浏览器再复核通过。首次close事件清空重开错误框和固定版分页错误已修正，保留原业务断言。
+
+
+2026-10-12新窗口续接：已核对原设计V1.1、Codex分支及V0.67代码。精确提交470342191482672fe9d6923b5e3202da60271acd的CI38243332659已完成，npm ci/check/test均success，补齐旧窗口全量pending证据；网页原V0.66漏同步需先补齐V0.67和实际线上核验，再进入V0.68人工原客户版本关联。业务验收与正式运行边界保留。
+
+
+V0.67双处同步补齐：原Site版本47于2026-10-12T17:48:27Z发布成功，17:48:34Z线上快照与三份下载核验V0.67/67项、原50任务287需求完全一致，电脑/手机已复核，业务验收仍0项。回执见progress-sync.json。下一V0.68逐行人工关联本店原客户资料版本，沿原名单/版本/责任权限和恢复核对推进。
+
+
+## V0.68 开发验证中 · 新窗口续接
+
+已实现T08.03本版原名单逐行人工采用已有本店客户资料、依据与撤回/重关联、准确原版历史、原客户/CSV时间轴返回和当前责任证明（含迟到时间轴响应）。schema59原生完整CSV解析、审计幂等事务、版本前缀恢复与4独立虚构阶段已接。18专项、完整CLI恢复及新增/原筛查/基础协作电脑手机已核对；全量仍运行，暂不新增已完成勾选，网页保持已核验V0.67。全量通过后更新唯一进度源、发布原Site及三份下载并写实际同步回执。本轮不完成整任务验收或正式身份/临床/报告授权。完整契约见screening-row-links.md；下一个切片是原名单明确人工建档。
+
+
+## V0.68 最终开发验证
+
+V0.68继续T08.03：固定原CSV版本逐行手工选择本店已有客户资料，保存核对依据及撤回/重关联，完整原行、旧资料和准确修订历史保留；新CSV不继承旧关联。原行授权错误/当前责任/所见资料来源、缓存前守卫和迟到名单/客户时间轴证明、原生CSV解析、审计事务及schema59恢复已接。4独立虚构关联阶段，原客户/周期/预约/资金/库存不改；正式身份、临床同意、现场专业检查与报告及整任务验收保留。
+
+最终功能提交d75c649359167f5e67d203719c3dd37f06a70cd7；CI38288673241的npm ci/check/test全部success，本地全量1228/1228、0失败（1143476.341686ms）。18新增/73相关专项通过；新增逐行人工关联及原名单预检/活动/批次、基础协作共5组电脑手机通过；覆盖手工选择/冲突保留依据/重选、撤回重关联、准确R1、原客户/CSV时间轴返回、迟到时间轴责任证明及嵌套名单撤权清空，无溢出/页面异常。 最终完整CLI新建/重复、schema59/236数据表备份核验/独立恢复通过，7活动11版本、8批次9版本、6条关联及所有非会话原行/固定投影一致，会话0。 原50任务/287需求、依赖和整体验收保留。网页发布/实际快照及三份下载核验接下完成，最终回执写progress-sync.json；成功推回后进入V0.69原有效名单的明确人工建档。
+
+
+V0.68双处同步完成：原Site版本48/source 65960f754aebc6bfd6b5bb9e1e27e999404594a3/deployment appgdep_6acd24daddd0819180706be96a7a262f于2026-10-12T18:20:19.448Z发布成功；18:20:32.693Z实际网页快照与三份下载V0.68/68项、原50任务287需求完全一致，线上电脑/手机亦通过。完整回执在progress-sync.json，唯一进度源和两处已同步。业务系统保持本地开发、原整任务与业务验收未提前通过；功能源码精确CI已通过，随后只更新进度/回执。下一V0.69/T08.03原有效名单的明确人工建档；新窗口先读本分支AGENTS.md、progress.json、handover末尾及screening-row-links.md。
+
+
+## V0.69 开发验证中
+
+原有效CSV行明确人工新客户四字段与来源、完整同名/同电话候选核对及无现有可采用档案声明已接；原生单语句创建客户初版/唯一原行关联与回执，审计/幂等同事务，撤回保留客户、重放不二次建档。岗位/责任/当前授权与慢请求会话复核、原客户时间轴和schema60恢复、4独立虚构阶段贯通。19新增专项及相关92、电脑手机和完整CLI正在最终核对，全量随后云端精确提交确认；尚未新增第69项完成勾选，网页保持已核验V0.68。契约见screening-registrations.md；下一原名单处理汇总/待核对队列，不自行制定现场检查专业表单。
+
+
+V0.69续接复核发现V0.68进度/回执提交5e4981b的后续CI38290382566仅旧项目进度测试断言68!=67失败（1227/1228）；此前功能提交d75c的CI及本地全量和双处核验有效，但未将后续失败视为通过。已改为API响应与唯一progress.json全文相等、版本唯一及完成勾选来源核对，保留原角色/50任务/287需求和关联归属断言。终版再次全量验证，不再每轮替换硬编码数量。
+
+
+## V0.69 最终验证
+
+V0.69继续T08.03：原有效CSV行明确人工新客户资料/来源，逐一核对完整同名同电话候选并说明没有现有可采用档案；原生单语句创建新客户初版、唯一原行关联和原件回执，审计/幂等同事务。改字段/来源需重新核对、重放只保留原成功、撤回关联保留档案，创建岗位/当前责任/授权与慢请求会话及迟到嵌套权限保护、schema60恢复和4独立虚构阶段相连。正式身份/家长/临床/报告权限不变，整任务验收保留。
+
+功能提交d0ec50fdee5624b920cb9e91a2f04f0debe9968d，CI38311068345的npm ci/check/test全部success，实际日志1247/1247、0失败（566017.992221ms）。19新增/92相关及原进度全文/权限专项通过；新增人工建档、原行关联及原批次3组电脑手机通过；候选/草稿修改证明失效、来源冲突保留输入并重核对、原子创建/无新授权、撤回保留客户和原回执、准确旧版及迟到嵌套撤权/退出清空，无溢出/运行时错误。 schema60/237数据表完整CLI新建/重复/备份核验/独立恢复通过：7活动11版本、12批次13版本、13link、4建档回执及所有非会话原行/固定投影一致，会话0。 原50任务287需求、依赖及整体验收保留。网页发布/实际快照与三份下载核验接下确认，回执推回后直接进入V0.70，无须等待用户通知。
+
+
+V0.69双处同步完成：原Site版本49/source 75fad8a9530da408c624556f12b555279d33e810/deployment appgdep_6acd54e6c1808191ab9376dede77860a于2026-10-12T21:45:19Z发布成功；首次命中旧V0.68节点正确拒绝，传播后21:46:17.892Z真实快照与三份下载V0.69/69项一致，线上电脑手机亦通过。回执见progress-sync.json。GitHub原生blob/tree/commit/expected_sha更新与readback已验证，持续开发说明见docs/autonomous-development.md；文档维护不新增业务交付。回执推回后依用户授权直接进入V0.70原名单处理汇总/待核对队列。
+
+
+## V0.70 开发验证中
+
+直接接续用户授权，已接本版原名单处理汇总/待核对队列：完整量与关联/撤回/错误/建档原件独立计数、同筛选分页与原行入口，固定客户资料/旧CSV来源，迟到当前责任证明和嵌套私有清空，不创建业务事件/任务或专业结论。9专项和新增电脑手机通过，无新迁移schema60。原关联/建档/批次回归和最终云端全量接下确认，网页暂保持已核验V0.69；不得提前新增第70项完成勾选。契约见screening-batch-work.md。
+
+
+## V0.70 最终开发验证
+
+V0.70继续T08.03：固定原CSV版本读取完整原名单处理汇总/待核对队列，原错误、未关联/有效关联/撤回及原建档回执分别计数，筛选与同源完整分页、准确原行办理/保存后刷新相连。旧客户资料与旧CSV固定、当前责任/版本/筛选证明及迟到嵌套撤权清空、零写读取和恢复投影已验证；schema60不新增迁移或业务事件，正式身份/现场专业检查/报告与整任务验收保留。
+
+精确功能提交71ba0324c9fdc9ed5988c47e440dc165d17f6b40，CI38313219242的npm ci/check/test全部success；实际日志1256/1256、0失败/中止（548830.838079ms）。9新增、66相关及新增原名单处理队列及原建档/关联/批次4组电脑手机通过：完整与筛选数量、准确原行人工办理后刷新、原错误/建档独立、旧CSV及固定资料、迟到当前责任证明清空所有嵌套私有内容，无横向溢出/运行时错误。 本轮专项恢复投影通过，无新表/迁移；保留V0.69完整CLI证据而不宣称重跑。原50任务/287需求与整项业务验收保留。接下发布原设计Site并核对实际快照/三份下载，将回执推回本分支；下一T03.03本人实际责任入口，筛查专业实表保留真实依据阻塞。
+
+
+V0.70双处同步完成：原Site版本50/source f5bdc0d7dbb0f98780b4ec8b68487452e80210ea/deployment appgdep_6acd58da871481919b91978e147fa0c7于2026-10-12T22:02:10.677761+00:00发布成功；2026-10-12T22:02:16.899Z真实网页快照与三份下载V0.70/70项完全一致，线上电脑手机通过，原18模块/7流程/50任务/287需求和0整项业务验收保留。回执见progress-sync.json。持续开发说明已随此Site源码/静态下载保存，并通过curl逐字核对（Python默认请求403，不冒充该次读取成功）；GitHub连接的原生来源读取及条件分支写入已独立核验。回执推回后安排持续续接，下一T03.03本人实际责任入口，专业实表继续等待实际依据。
+
+
+持续续接任务已保存并在原Site关联/启用：Automation_79e8bf46331081919cde8c52d1c637fa，Asia/Shanghai每4小时，首个计划时刻2026-10-13 08:00。实际保存时间2026-10-12T22:03:26Z；完整设置见development-automation.json，提示从已发布续接说明和原分支最新唯一进度续接，不覆盖远程、不制造真实规则。当前保存/启用只证明调度已设置，尚不证明新云端轮次完成；将立即请求首轮验证与续接，实际写入/CI/发布须以随后证据为准。调度元信息不新增第71项业务交付，网页/仓库保持已核验V0.70。
+
+
+持续续接立即触发的实际结果：automations_run_now在action调用前返回NOT_FOUND/HTTP404 Action not found，不能声称已请求成功或新轮次已执行。已通过可用automations_update保留同一任务/4小时间隔，将首次正常调度改为2026-10-13 06:08 Asia/Shanghai；原Site关联读取已核对更新与enabled=true，之后10:08/14:08/18:08/22:08/02:08依次续接。当前新云端读取/写入尚未观察，保持首轮待验证；此安排不新增交付或改变V0.70双处快照。
+
+
+## V0.71 开发验证中
+
+员工本人业务责任入口已接原13类当前责任与独立岗位候选，员工/门店取会话而不可由请求选择；不返回负责人全店人事资料。完整量/同源分页、原版本/日期、准确原任务共用动作卡片及详情后二次本人证明、明确认领/接收/开始和成功后刷新已接，schema60无新迁移/账事实。13专项已通过，电脑手机和原协作回归/完整CI接下核对；进度保持已核验V0.70，不提前勾选第71项。契约见my-work.md；下一原团体活动准备责任的本人入口。
+
+
+## V0.71 最终开发验证
+
+V0.71继续T03.03：本店员工本人13类原业务责任与独立岗位候选入口已接，员工/门店取当前会话，不返回全店人事资料。完整计数/筛选/同源分页、原客户/记录/版本/明确日期、原任务共用卡片分别认领/接收/开始、详情后再次本人证明及成功后刷新相连；移交/改岗/改密/撤销与迟到嵌套清空、零写读取和独立恢复已验证。schema60无新迁移，正式专业许可/时限/完整三视图与整任务验收保留。
+
+精确功能提交700af827d37fd678253457f18787c9aa3e335ba7，CI38320378548的npm ci/check/test全部success，实际日志1269/1269、0失败/中止（569878.137153ms）；13新增、73相关及本人责任、原员工交接及基础协作3组电脑手机终版通过：独立候选、明确原认领/接收/开始、暂停接收保留、准确原行/版本、移交后迟到原任务详情拒绝、原列表退出/角色变更嵌套清空、原任务链/完成/版本回归，无运行时错误/溢出。 本轮独立恢复本人投影/会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求、原依赖与正式业务验收保留。接下发布同一设计Site与三份下载，核对真实回执推回后继续V0.72本人团体活动准备责任。
+
+
+V0.71双处同步完成：原Site版本51/source 31a37d3328b7aba4ac7587f2c2cb344f700fe03e/deployment appgdep_6acd6a78305c81918a464e9030b0b04f于2026-10-12T23:17:21.318412+00:00发布成功；2026-10-12T23:17:28.971Z真实网页快照与三份下载V0.71/71项、原50任务/287需求完全一致，线上电脑手机通过。实际回执已保存progress-sync.json，整任务验收0/待业务集中验收保持。源码/验证/回执推回后直接进入V0.72本人团体活动准备责任；同一源投影也接入负责人交接总览，客户数量与非客户活动分别计算，专业实表/许可继续等待真实依据。
+
+
+## V0.72 原准备责任切片
+
+原团体活动准备责任加入本人及负责人共享14类投影，机构/客户分别表示、当前 owner_id 与原说明版本精确衔接，原活动/CSV入口详情后二次证明，成功原动作刷新，失权迟到嵌套清空。无新表/迁移，不自动建立客户/任务或休假交接，专业权限保持原守卫。12新增、81相关测试及本人准备责任/原本人/负责人/活动/CSV共5组电脑手机检查通过；精确功能提交完整 CI 1281/1281通过；双处发布完成情况见progress-sync.json，契约见my-work-screening.md。
+
+
+## V0.72 最终开发验证
+
+V0.72继续T03.03：已有团体活动准备责任接入本人及负责人共享14类投影，只取当前实际owner_id/原说明版本；机构与客户分别表示，原未知日期保持。准确原活动/CSV入口详情后二次当前证明、明确转责任/撤回后刷新、旧版与失权迟到嵌套清空已接；105项完整分页、零写/独立恢复与原休假仅任务交接边界通过。schema60无新表/迁移，不授予专业检查/报告权限，整体验收保留。
+
+精确功能提交154edda7a0798ec8be7cff064c9c26fa24903383，CI38327082099的npm ci/check/test全部success，实际日志1281/1281、0失败/中止（587956.790209ms）；12新增包含在81相关（92061.73095ms）及新增准备责任及原本人/负责人/活动/CSV共5组电脑手机终版通过：本人/负责人准确原活动版本、机构与客户数量独立、原CSV入口、明确转责任/撤回后刷新、迟到旧说明拒绝、角色撤销清空原嵌套、原任务办理/交接/说明/批次来源回归，无运行时错误/溢出。 独立恢复准备责任/会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求、原依赖与正式业务验收保留。下一发布同一设计Site与三份下载，实际回执推回后继续V0.73本人原已记录/未记录日期及明确区间筛选。
+
+
+## V0.72 仓库与网页同步完成 · 2026-10-13
+
+原设计Site保存版本52，源码64ddd4455408edca9d10b2e43242eb6a8a6864d3，部署appgdep_6acd7cf9432c8191ab3b304c4086a2ec于2026-10-13T00:36:16.900361+00:00成功。实际线上快照与三份下载于00:36:27.109Z逐项核验一致（72勾选、50任务、287需求、整项验收0），真实电脑/手机页面通过。具体回执见progress-sync.json；业务进度提交ad28313db1957b688eb1816bf3f7a31779e78fa5，精确功能提交154edda7a0798ec8be7cff064c9c26fa24903383全量1281通过。
+
+下一继续T03.03 / V0.73本人责任原已记录日期、未记录日期及明确区间筛选。区分原办理约定日期、联系约定时间与预约开始时间；时间型原记录按已保存UTC日期明确表示，不选择默认营业日/时区/时限或风险规则。完整计数、筛选来源证明、迟到清空、原办理与恢复应继续一致。专业实表/资质和正式架构/业务验收仍保留原阻塞；持续任务仍仅有历史运行时间记录，无新的自动功能提交证据。
+
+
+## V0.73 原日期筛选切片
+
+本人原日期已记录/未记录与首尾包含的明确区间筛选已接，六类原日期/UTC时间与原字段分别表示，原创建时间不补办理日期；完整日期数量与匹配量、候选未知日期隔离及日期筛选绑定来源。12新增及63相关、5组电脑手机检查（含日期布局终版）已通过；精确功能提交全量CI实际1293/1293通过，原Site同步完成情况见progress-sync.json。契约见my-work-dates.md；下一原日期/更新时间明确排序。
+
+
+## V0.73 最终开发验证
+
+V0.73继续T03.03：本人14类原责任/独立岗位候选已接原日期已记录、未知及首尾包含的明确区间筛选；加工/售后/复查原约定日期、联系/转介时间、预约开始及UTC日期含义分开。完整日期量/匹配量、105项同源分页与日期绑定证明、原日期修订拒绝旧源及刷新保留区间、未知原任务明确接收/岗位候选、权限迟到清空与零写/独立恢复通过。schema60无新表/迁移，不默认营业日/风险/时限，专业与整体验收保留。
+
+精确功能提交98132adea7fe22da86ed11b48fe5a89166bfec9d，CI38329199311的npm ci/check/test全部success，实际日志1293/1293、0失败/中止（394644.810678ms）；12新增（12213.925602ms）、63相关（82456.529297ms）及日期新增及原本人责任/团体准备/负责人交接/休假接管5组电脑手机通过：105完整同源分页、原联系UTC日期与原入口、日期变更拒绝旧源/刷新保留区间、未知原任务明确接收保持筛选、候选日期未知不自动指定、迟到角色撤销清空，以及原任务/活动/交接回归，无运行时错误/溢出；新增日期数量布局终版已复核。 独立恢复原日期/完整量及会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求、原依赖与整体验收保留。接下发布原设计Site/三份下载，实际回执推回后继续V0.74本人原日期/更新时间明确排序。
+
+
+## V0.73 仓库与网页同步完成 · 2026-10-13
+
+原Site保存版本53，源码7b2d22b3a980ae68ae374ac4a5a14a5d917687f1，部署appgdep_6acd82605f94819192820d1a7986c429于00:59:20.982123+00:00成功；线上快照/三份下载于00:59:36.357Z完整一致（73勾选、原50任务/287需求/验收0），真实电脑手机页面通过。业务进度提交7aad230a2b1e6fc55ba7fe3f3750626e73f037d6，精确功能提交98132adea7fe22da86ed11b48fe5a89166bfec9d全量1293通过；回执见progress-sync.json。下一依用户继续推进V0.74原日期/更新时间明确排序，未知固定在已记录之后，同日按原更新/ID/行稳定排列，不补时间或风险规则。
+
+
+## V0.74 原责任顺序切片
+
+原日期升/降序与原更新顺序已接，未知日期固定在后，同日保持更新/原ID/行稳定顺序，不补小时或优先级；排序绑定来源，完整分页及切换后迟到旧响应隔离。8新增、75相关和排序/原日期/本人/准备责任4组电脑手机通过；精确功能提交全量CI实际1301/1301通过；双处发布完成情况见progress-sync.json。契约见my-work-sort.md；下一本人责任紧凑列表与卡片等价显示。
+
+
+## V0.74 最终开发验证
+
+V0.74继续T03.03：本人14类原责任/岗位候选可明确按原更新或原日期升/降序，已记录日期在先、未知固定在后，同日按原更新/类型/ID/行稳定排序，不补小时或优先级。日期/文字/类型筛选与完整量保持，排序绑定来源、105已记录加未知原任务完整分页及106浏览器责任/未知准备尾项、迟到旧排序隔离和手机原接收保留选择通过。零写/原日期变化证明/独立恢复一致；schema60无新迁移，正式专业/时限与整体验收保留。
+
+精确功能提交59db2f4fe27306b6a9f5d2ad6682cb6dbc824e2a，CI38330344061的npm ci/check/test全部success，实际日志1301/1301、0失败/中止（592379.825401ms）；8新增（7600.947438ms）、75相关（103829.824721ms）及新增排序及原日期/本人/团体准备4组电脑手机通过：106完整责任（105已记录/未知准备尾项）、早晚顺序与已选区间、切换查询后迟到旧排序隔离、手机原任务接收保留日期/排序、退出清空迟到列表和原嵌套，以及原来源/版本/权限回归，无运行时错误/溢出。 独立恢复原顺序/未知尾项及会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求与整体验收保留。接下发布原Site与三份下载，实际回执推回后下一V0.75本人责任紧凑列表与卡片等价显示。
+
+
+V0.75续接验证边界另见my-work-density-plan.md；尚未实施，不计新增交付。
+
+
+## V0.74 仓库与网页同步完成 · 2026-10-13
+
+原设计Site保存版本54，源码38a6320903e514bfefba15fe8a609b2e9486a781，部署appgdep_6acd865461f4819184f609bf75cc52da于2026-10-13T01:16:13.172982+00:00成功。线上快照/三份下载逐项一致（74勾选、原50任务/287需求/整项验收0），真实电脑手机页面通过，实际核验时间及哈希见progress-sync.json。业务进度提交7df3125071a47d8431ce1ebb42d5553fede455a2，精确功能提交59db2f4fe27306b6a9f5d2ad6682cb6dbc824e2a全量1301通过。
+
+本轮V0.73、V0.74分别完成代码推送、精确源完整CI与同一原Site双处发布核验。下一T03.03/V0.75本人责任紧凑列表与卡片等价显示，技术/验证边界见my-work-density-plan.md；尚未实施，不计交付。保持完整已加载页、日期/顺序/文字/类型、原版本、证明/权限及失权迟到清空，不扩大员工或专业范围。正式业务验收/实表/营业规则等仍按原阻塞保留。
+
+
+## V0.75 等价显示切片
+
+本人卡片/紧凑列表复用全部已采用页和原回调，106记录/原版本/字段/动作、完整量和筛选一致；切换前当前证明、来源变更拒绝切换/保留旧页与明确刷新、原接收保留手机密度，失权及退出迟到证明清空已接。45相关及新增密度/原排序/本人/团体准备4组电脑手机通过，终版手机标题布局已复核；纯UI无新单元/表/迁移。精确功能提交全量CI实际1301/1301通过；双处发布完成情况见progress-sync.json。契约见my-work-density.md；下一已应用筛选摘要/尚未查询变动提示与明确重置查询。
+
+
+## V0.75 最终开发验证
+
+V0.75继续T03.03：本人责任可切换卡片/紧凑列表，共用全部已采用页/原版本/字段/动作，106条切换无丢页，完整量与日期/排序/文字/类型保持。切换前当前证明、来源变更拒绝新显示/保留旧页、原接收/刷新保留手机密度、退出及失权迟到证明清空通过。纯UI无新业务写入/单元/表/迁移，schema60保持，专业和整体验收保留。
+
+精确功能提交ee088857c793e08e56a5153598d9d0f58dd22116，CI38332291011的npm ci/check/test全部success，实际日志1301/1301、0失败/中止（593149.828507ms）；纯UI无新单元、45相关（51495.33857ms）及新增密度及原排序/本人/团体准备4组电脑手机通过：106已采用页原key/文字/版本/字段/动作与数量/筛选完全等价，原联系入口、来源变化拒绝新布局/原刷新保留紧凑与筛选、手机原接收保留密度/日期/顺序，当前角色拒绝及退出后迟到成功证明清空，按钮至少44px，无错误/溢出，手机标题终版复核。 复用相关原恢复及会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求与整体验收保留。接下发布原Site与三份下载，实际回执推回后下一V0.76已应用筛选摘要/尚未查询填写提示与明确重置查询。
+
+
+## V0.75 仓库与网页同步完成 · 2026-10-13
+
+原Site保存版本55，源码be70d57ca4a17bcff8c71a1dccb2cb4bfcd945b5，部署appgdep_6acd8c042f3c819199988bc2fd9ff7c0于01:40:29.535412+00:00成功。线上快照/三份下载一致（75勾选、原50任务/287需求/验收0），真实电脑手机通过；时间/哈希及精确回执见progress-sync.json。业务进度提交53e05e9bb2ddfc23506f51257b61b1d65d09b656，精确源ee088857c793e08e56a5153598d9d0f58dd22116的CI38332291011全量1301通过。
+
+下一依持续授权推进V0.76已应用筛选摘要/未查询填写提示与明确重置查询。刷新与原任务办理后的自动刷新必须沿已应用筛选，不能自动采用未提交表单值；只有明确查询/重置查询采用新值。重置不写业务事实、不重置显示密度；保留原来源证明/角色/迟到清空。
+
+
+## V0.76 已应用筛选切片
+
+本人已应用筛选摘要与未查询填写分开表示，普通/原成功动作刷新沿最后已采用条件并保留草稿，只由明确查询或重置查询采用新值；显示密度保持、纯文本及退出迟到摘要/提示清空已接。45相关与新增摘要/原密度/排序/本人/准备5组电脑手机通过；纯UI无新单元/表/迁移。精确功能提交全量CI实际1301/1301通过；双处发布完成情况见progress-sync.json。契约见my-work-applied.md；下一当前筛选分业务完整数量与本人全量量分开。
+
+
+## V0.76 最终开发验证
+
+V0.76继续T03.03：本人责任已应用筛选摘要与未查询填写分别表示，原文字纯文本。普通/原成功动作刷新沿最后已采用条件并保留未提交填写，仅明确查询/重置查询采用新值，重置不写业务且保留显示密度；手机原接收、来源/原动作和退出迟到摘要清空验证通过。纯UI无新单元/表/迁移，复用45相关/原恢复，schema60及专业/整体验收边界保留。
+
+精确功能提交88dc8582ebe152edd0c361706c66f576354068c0，CI38333812266的npm ci/check/test全部success，实际日志1301/1301、0失败/中止（617064.270845ms）；纯UI无新单元、45相关（56000.615452ms）及新增已应用摘要及原密度/排序/本人/准备5组电脑手机通过：已应用与未查询值/记录数量分别保持，普通刷新及手机原接收不采用待查询填写，只有明确查询/重置才采用新值并保留密度，原文字HTML保持纯文本，退出后的迟到列表不恢复摘要/提示/私有详情，无错误/溢出。 复用相关原恢复及会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求与整体验收保留。接下发布原Site与三份下载，实际回执推回后下一V0.77当前筛选分业务完整量与本人全量量分开。
+
+
+V0.77验证与实施边界另见my-work-matched-plan.md，尚未实施，不计新增交付。
+
+
+## V0.76 仓库与网页同步完成 · 2026-10-13
+
+原Site保存版本56，源码6a7c2554ce25ab0d18edbcb2e8680a9db8bd6324，部署appgdep_6acd90d5469081919c299dd72f3e9cb8于2026-10-13T02:01:10.640366+00:00成功；线上快照/全部三份下载与唯一仓库JSON逐项一致（76勾选、50任务/287需求/整项验收0），真实电脑手机页面通过，实际核验时间与哈希见progress-sync.json。业务进度提交e2f97d7d346701f9e1df8bba4c2ac3fc8425a0a1，精确源88dc8582ebe152edd0c361706c66f576354068c0的CI38333812266全量1301/1301、0失败/中止通过（617064.270845ms）。
+
+本轮依持续推进授权完成V0.73日期状态/区间、V0.74原顺序、V0.75等价密度、V0.76已应用/未查询筛选隔离；每步分别验证、推送和原Site发布核验，并保存真实回执。下一T03.03/V0.77当前筛选分业务完整量，与本人全量量分开，实施/验证边界见my-work-matched-plan.md；尚未实施，不计交付。继续保留原来源/日期/排序/候选/机构与客户/角色/原动作及恢复；原专业实表/规则和业务验收仍待。持续任务沿原ID和节奏保存，本记录不声称已完成无人值守功能提交。
+
+
+## V0.77 完整匹配分类切片
+
+T03.03当前已应用筛选完整分类matched_counts：原十四类包含零、同一scoped+where分页前分组，总和等于total；本人全量counts与候选任务匹配分别表示。原日期/文字/排序/证明/原办理与休假仅任务保持，无新增表/迁移或SQL写。见docs/my-work-matched.md。精确功能提交全量CI实际1310/1310通过；双处发布完成情况见progress-sync.json。
+
+
+## V0.77 最终开发验证
+
+V0.77继续T03.03：当前已应用筛选完整分类matched_counts由同一原scoped+where分页前分组，十四类含零，总和等于total；本人全量与岗位候选匹配分开。完整107混合责任/同客户重复及106浏览器四页、日期/文字/类型/排序、原接收/未提交填写/迟到退出、经理及休假仅任务兼容、零写/独立恢复通过。schema60无新增表迁移，专业和整体验收保留。
+
+精确功能提交3564594f2fb9830e7cdbf0a229797c324c550af1，CI38344974759的npm ci/check/test全部success，实际日志1310/1310、0失败/中止（606011.73686ms）；新增9项匹配测试、92相关（136536.435633ms）及新增完整分类及原已应用/密度/排序/本人/准备/员工交接/代班8组电脑手机通过：106混合原责任四页完整分类不缩水，全量与匹配/候选明确分开，日期/未知/空结果、未提交填写、手机原接收保留已应用量，经理和休假仅原任务兼容、迟到退出私有分类清空，无错误/溢出。 新增匹配分类及原相关恢复/会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求与整体验收保留。接下发布原Site与三份下载，实际回执推回后下一V0.78当前已应用分类明确筛选入口。
+
+
+V0.77双处发布核验完成：原Site版本57，源102a48716f6c0ab5e03f80f981b655f3143326e9，部署appgdep_6acdb15746288191b094da78ec43dfc9 succeeded；2026-10-13T04:19:46.497Z逐一读取线上snapshot和三下载，77勾选/50任务/287需求/业务验收0与源相同，真实电脑/手机通过。实际回执见progress-sync.json；下一入口docs/my-work-kind-entry-plan.md的V0.78原分类明确只读筛选，不采用未查询填写。既有定时任务保留，本轮仍无新的无人值守功能提交证据。
+
+
+## V0.78 原分类明确入口切片
+
+T03.03当前完整匹配分类的明确只读入口：选择类型沿已应用范围/文字/日期/排序/密度，不采用未查询填写；先证明当前原来源，新的明确查询/退出优先于迟到旧分类。候选/原动作/专业边界保留，纯UI无新表迁移。见docs/my-work-kind-entry.md。精确功能提交全量CI实际1310/1310通过；双处发布完成情况见progress-sync.json。
+
+
+## V0.78 最终开发验证
+
+V0.78继续T03.03：从当前完整匹配分类明确进入原业务类型，沿已应用责任范围/文字/日期/顺序及密度，不采用未查询填写；类型草稿另行保留并提示。采用前原来源证明，来源改变拒绝，迟到旧分类不覆盖新查询，候选零自动指派、手机原接收仍独立办理、退出/停用清空通过。纯UI无新表迁移，原十四类完整量与专业/整体验收边界保留。
+
+精确功能提交fd8fa0237892689e30918cde16d6330599d83281，CI38346200261的npm ci/check/test全部success，实际日志1310/1310、0失败/中止（392979.776935ms）；纯UI无新单元、54相关（57077.019433ms）及新增分类入口及原完整分类/已应用/密度/本人/准备6组电脑手机通过：原完整匹配分类明确选择类型、全部返回，已应用文字/日期区间/顺序/范围/密度和独立类型草稿保留，候选无自动指派，原接收仍独立；旧分类证明不覆盖新查询、来源改变拒绝、迟到退出和停用清空，手机按钮44px，无错误/溢出。 54相关原恢复/会话0已核对，无新表/迁移；未重跑历史CLI。原50任务/287需求与整体验收保留。接下发布原Site与三份下载，实际回执推回后下一V0.79原通用任务状态筛选。
+
+
+V0.78双处发布核验完成：原Site版本58，源1534c37cf6b2758dbd6cf567279d8dc2da4e77ab，部署appgdep_6acdb43945448191b2f6240d014b8313 succeeded；2026-10-13T04:32:10.407Z逐一读取线上snapshot和三下载，78勾选/50任务/287需求/业务验收0与源相同，真实电脑/手机通过。实际回执见progress-sync.json；下一入口docs/my-work-task-state-plan.md的V0.79原通用任务状态筛选，按原字段且不合并不同业务状态。既有定时任务保留，无新的无人值守功能提交证据。
+
+
+## V0.79 原任务状态切片
+
+T03.03/M01-F03本人原通用任务按生命周期阻塞、待本人接收、执行暂停/执行中原字段筛选；状态可重叠，其他十三类不推断。当前filter/paging/proof绑定task_state；非任务不适用时明确拒绝并保留原已应用列表和填写，分类全部入口明确退出状态。原操作建事实、105分页/零写/权限/恢复及手机原接收刷新复核；schema60无新表迁移。远端已有功能与修正提交已收取，本轮补核原字段和验证；精确源全量CI实际1318/1318通过；双处实际发布见progress-sync.json。
+
+
+## V0.79 最终开发验证
+
+V0.79继续T03.03/M01-F03：本人原通用任务按原生命周期阻塞、等待本人接收、执行暂停/执行中字段明确筛选，状态可重叠且其他十三类不推断。task_state绑定原来源/分页/证明，非任务不适用时保留已应用列表与草稿并明确拒绝，全部类型入口明示退出状态。原操作建立事件、105完整分页、8新增状态/17匹配状态/100相关、9组电脑手机及独立恢复/零写/角色门禁通过。schema60无新表迁移，正式时区/专业和整体验收保留。
+
+精确功能提交7945995a08b1212a0aad31fbaa7fa43da12ccd83，CI38391743676的npm ci/check/test全部success，实际日志1318/1318、0失败/中止（480805.653874ms）；17匹配/状态测试（21590.401785ms，本版8新增场景）、100相关（128230.68711ms）及新增原状态及原分类入口/完整分类/已应用/密度/本人/准备/员工交接/代班9组电脑手机通过：原四个字段状态及阻塞暂停重叠、非任务草稿拒绝保留已应用结果、明示退出、候选不自动指派、手机原接收后按待接收范围刷新为空、源变化/原详情、退出迟到清空及44px控件，无错误/溢出。 新增本人各原状态/候选和相关恢复，会话0，原事件及引用保持；无新表迁移，未重跑历史CLI。远端d84d914至c775fc6已收取并补强，不将单独功能推送称已完成双处同步；双处实际回执见progress-sync.json。下一V0.80原阻塞原因摘要和原修订。
+
+
+V0.79双处发布核验完成：原Site版本59，源4935bcfb4000e51f1a2bd021a41238e3db35b53f，部署appgdep_6ace1acf529c8191aa9cb7a055170bbd succeeded；2026-10-13T11:49:47.730Z逐一读取线上snapshot和三下载，79勾选/50任务/287需求/业务验收0与源相同，真实电脑/手机通过。回执见progress-sync.json；下一docs/my-work-task-blockers-plan.md的V0.80原阻塞原因及修订。远端已有d84d914至c775fc6的功能/修正和成功CI被收取，但其调用/定时任务来源未确定；本轮实际补强并完成原先未同步的发布。
+
+
+## V0.80 当前原阻塞原因切片
+
+T03.03/M01-F03/M01-D当前原通用任务阻塞原因和原修订只读元信息，绑定任务/门店/原修订；其他十三类和普通任务不显示历史原因。卡片紧凑同源纯文本，原解除后按已应用条件刷新，候选不自动指派。无新表迁移或权限扩张；验证见docs/my-work-blockers.md。精确源全量CI实际1323/1323通过；双处实际发布见progress-sync.json。
+
+
+## V0.80 最终开发验证
+
+V0.80继续T03.03/M01-F03/M01-D：本人及岗位候选的原通用任务显示当前原阻塞原因与原修订，按原任务/门店/原修订关联，普通任务及其他十三类不显示历史原因。卡片紧凑同源纯文本，HTML不执行；原解除后按已应用阻塞范围移出，旧原因保留事件，草稿/密度/证明保持。5新增、105相关/10组电脑手机、105完整原原因分页与零写/独立恢复通过，schema60无新表迁移，专业/整体验收保留。
+
+精确功能提交28cdc086015c01f66801cff577e873f1f6e7cba5，CI38393706914的npm ci/check/test及云端原状态/阻塞原因浏览器全部success，实际日志1323/1323、0失败/中止（414039.458178ms）；新增5项（6176.613137ms）、105相关（150418.421719ms）及新增原阻塞原因及原状态/分类入口/完整分类/已应用/密度/本人/准备/员工交接/代班10组电脑手机通过：当前原原因/修订、HTML纯文本和卡片紧凑等价，候选不自动指派、普通任务不显示历史原因，手机原解除后移出已应用阻塞筛选，原历史/草稿/密度保持，退出迟到清空，无错误/溢出。 新增本人/候选原原因及相关恢复，会话0，原事件及引用保持；无新表迁移，未重跑历史CLI。双处实际回执见progress-sync.json。下一V0.81本人实际已办理完成原任务记录单列。
+
+
+V0.80双处发布核验完成：原Site版本60，源23c99539758d3ac0351def35a4000f6be6b31e0f，部署appgdep_6ace1ea821b481919764d523b856f8e6 succeeded；2026-10-13T12:06:13.683Z逐一读取线上snapshot和三下载，80勾选/50任务/287需求/业务验收0与源相同，真实电脑/手机通过。回执见progress-sync.json；下一docs/my-work-completed-plan.md的V0.81本人原任务已办理完成记录单列，保持当前责任/岗位候选和原正文授权。原定时任务保留，调用来源及无人值守完整执行不根据远端提交自行认定。
+
+
+## V0.81 本人已办理完成原任务切片
+
+本人工作台新增“本人已办理完成的原任务”独立只读范围，只按原完成操作人、原任务门店和当前会话绑定；曾指派、打开、认领、接收或开始均不当作完成。固定原任务修订、完成时间、条件/依据版本、摘要哈希、当前说明更正版本和后续数量；当前责任、岗位候选和已办理记录的数量、分页与来源证明分开。文字、UTC完成日期、原完成时间排序和105完整分页已接，原详情仍二次授权，不复制专业/资金正文。
+
+精确功能提交ccc374b0e9f41de41d7ae3cc288e219b982d5502，CI38414061173的npm ci/check/test全部success，实际日志1325/1325、0失败/中止（620251.749086ms）。本地Node 24复核npm ci/check、15项本人工作台专项（19753.752176ms）和组合浏览器桌面/手机通过：本人完成、当前责任、岗位候选分开，固定条件/依据、说明更正/后续数量只读，105完整分页、来源变更拒绝、零写/独立恢复、原详情二次授权、卡片/紧凑等价、退出迟到清空均通过。schema60无新表/迁移；原50任务/287需求及整体验收保留。
+
+本轮先收取并验证远程已有V0.81功能，未重复建立同一步。仓库进度已更新，接下同步原设计Site、三份下载并把实际回执推回后，继续V0.82同一原任务在本人完成记录、任务链、八列看板和客户时间轴的只读来源一致性核对；不补造今日、优先级、时限或专业规则。
+
+
+## V0.81 仓库与网页同步完成 · 2026-10-14
+
+原设计Site版本61，源码1e4cf79829f269c5f77bfba4290b662ecb2218aa，部署appgdep_6ace7607bdcc81919c5570b2e207bf83于2026-10-13T18:19:03.297802+00:00成功。2026-10-13T18:19:29.234Z逐一读取线上快照与三份下载，V0.81/81项、原50任务/287需求、整项业务验收0与唯一仓库JSON一致；线上1440×1050与390×844分别核对81项勾选、无横向溢出或运行时错误。业务进度提交4f42e0f7da692f862b3bdc3bc9c52b6598049018，精确功能提交ccc374b0e9f41de41d7ae3cc288e219b982d5502及CI38414061173全量1325通过；实际回执见progress-sync.json。
+
+下一V0.82继续T03.03，核对同一原任务在本人已办理记录、任务链、八列看板和客户时间轴的只读来源一致性；只补原入口、版本证明与迟到清空，不增加今日、优先级、时限或专业规则。
+
+
+## V0.82 四入口统一来源证明切片
+
+V0.82继续T03.03/M01-F03/M01-F04/C04/U05：本人已办理记录、原任务详情/八列看板、关联任务链和客户时间轴共用同一只读 `task_source_proof`。证明固定原任务、客户/门店、完成前修订、条件/依据版本、完成快照哈希、实际完成操作人/时间、当前说明更正版本和稳定排序的全部后续任务引用，并生成SHA-256来源指纹；后续时间轴事件明确回指原 `parent_task_id`。证明不返回完成、专业或资金正文，不新增业务写、表或迁移。
+
+精确功能提交7bd91cc30ad648e44fe2f4fcd57ed803f201092c，CI38477651591的npm ci/check/test全部success，实际日志1326/1326、0失败/中止/跳过（623281.535275ms）。本地Node 24复核npm ci/check、16项本人工作台专项（28173.833424ms）、1326项全量（331298.376438ms）及组合浏览器桌面/手机通过：本人完成记录、原任务办理、任务链、八列看板和客户时间轴显示同一来源指纹，迟到退出清空，无运行时错误或横向溢出。schema60无新表/迁移；原50任务/287需求及整体验收保留。
+
+仓库进度完成后同步原设计Site、三份下载并把实际回执推回；下一V0.83只读展开固定后续引用的当前责任与状态，复用原任务链，不制定今日、优先级、时限、临床、财务或扣次规则。
+
+
+## V0.82 仓库与网页同步完成 · 2026-10-14
+
+原设计Site版本62，源码3419ad226c26371451555cc666a29f28f083e6ba，部署appgdep_6acee6105e108191b63bebf3ab6eec3a于2026-10-14T02:16:55.697955+00:00成功。2026-10-14T02:17:14.933Z逐一读取线上快照与三份下载，V0.82/82项、原50任务/287需求、整项业务验收0与唯一仓库JSON一致；线上1440×1050与390×844分别核对82项勾选、无横向溢出或运行时错误。业务进度提交ef585e06b2d46ce4e16f0d98cd6bea46ff994ad6，精确功能提交7bd91cc30ad648e44fe2f4fcd57ed803f201092c及CI38477651591全量1326通过；实际回执见progress-sync.json。
+
+下一V0.83继续T03.03，从本人已办理原任务只读展开固定后续引用及当前责任/状态，复用原任务链和同源证明；不引入今日、优先级、时限、临床、财务或扣次规则。
