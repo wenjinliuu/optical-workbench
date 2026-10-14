@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-14",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.84继续T03.03/M01-F03：本人完成原任务的固定直接后续引用按任务链八种当前原状态明确筛选，完整状态计数/直接总数/匹配数分开，含零且不从当前页估算。状态证明不可跨用，筛选外原办理变化也拒绝旧计数来源；详情采用结果前后核对，草稿/刷新/追加及手机原接收后沿用已采用状态，旧引用不改写。3新增/11专项、119相关、7组电脑手机及精确源1337全量与4组云端浏览器通过，105引用/103候选四页、迟到旧页/查询/详情/退出和独立恢复通过，schema60无新表迁移，整体验收保留。",
+  "productStatus": "V0.85继续T03.03/M01-F03：本人完成原任务的固定直接后续引用按当前接收人实际岗位或未指派任务原候选岗位，与八种当前原状态明确交叉筛选；负责人/接待/专业/未知完整岗位计数、八状态计数、32格交叉矩阵、固定总数及组合匹配量分别返回，含零且不从当前页估算。岗位不从标题、历史或当前本人推断，专业岗位不授予资格；岗位/状态草稿与已采用组合隔离，转交/改岗/停用/状态变化拒绝旧证明。12专项、98相关、精确源1338全量及4组云端电脑手机浏览器通过，schema60无新表迁移，整体验收保留。",
   "currentTask": "T03.03",
   "nextTask": "T03.03",
   "stage": "P00",
@@ -521,6 +521,12 @@
       "version": "V0.84",
       "type": "工程推进",
       "summary": "V0.84继续T03.03/M01-F03：本人完成原任务的固定直接后续引用按任务链八种当前原状态明确筛选，完整状态计数/直接总数/匹配数分开，含零且不从当前页估算。状态证明不可跨用，筛选外原办理变化也拒绝旧计数来源；详情采用结果前后核对，草稿/刷新/追加及手机原接收后沿用已采用状态，旧引用不改写。3新增/11专项、119相关、7组电脑手机及精确源1337全量与4组云端浏览器通过，105引用/103候选四页、迟到旧页/查询/详情/退出和独立恢复通过，schema60无新表迁移，整体验收保留。"
+    },
+    {
+      "date": "2026-10-14",
+      "version": "V0.85",
+      "type": "工程推进",
+      "summary": "V0.85继续T03.03/M01-F03：固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知岗位不推断，专业岗位不授予资格；岗位与状态草稿只有明确查询才采用，转交/改岗/停用及筛选外变化使旧页/详情证明失效。12专项、98相关、精确源1338全量及4组云端浏览器通过，schema60无新表迁移，整体验收保留。"
     }
   ],
   "tasks": [
@@ -8353,10 +8359,18 @@
         "T03.03"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.85",
+      "title": "后续引用当前实际责任岗位与八状态交叉筛选、完整矩阵及组合来源保护",
+      "task_ids": [
+        "T03.03"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "V0.85继续T03.03：固定后续引用按当前接收人/原候选的实际责任岗位与八状态明确交叉筛选，完整数量、固定来源、同源分页和原入口前后证明保持；未知岗位不推断，不授予专业资格或新增规则。",
+    "V0.86继续T03.03：固定后续引用按原任务标题作字面文字筛选，并与当前实际责任岗位/八状态交叉采用；完整数量、同源分页和原入口前后证明保持，不读取说明正文或推断优先级。",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -8365,12 +8379,14 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.84",
-    "automatedTests": 1337,
+    "version": "V0.85",
+    "automatedTests": 1338,
     "schema": 60,
     "browserSuites": 68,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
+      "docs/my-work-followups-role.md",
+      "docs/my-work-followups-role-plan.md",
       "scripts/my-work-followups-state-browser-check.mjs",
       "docs/my-work-followups-state-plan.md",
       "src/my-work-followups.mjs",
@@ -8383,6 +8399,24 @@
       "docs/my-work-followups.md"
     ],
     "currentRun": {
+      "newTests": 1,
+      "focusedTests": 12,
+      "focusedResult": "passed",
+      "focusedDurationMs": 11096.696495,
+      "relatedFocusedTests": 98,
+      "relatedFocusedResult": "passed",
+      "relatedDurationMs": 43409.916288,
+      "browserResult": "云端原任务状态、阻塞/完成四入口、固定后续引用及岗位×状态边界4组电脑手机通过：四岗位×八状态完整含零计数、105引用/103候选四页，岗位/状态草稿刷新与追加隔离，迟到旧页/查询/详情拒绝，手机原接收后保留已采用组合且固定引用不变，退出清空私有计数/组合记忆，无错误或横向溢出。",
+      "syntaxResult": "npm ci/check passed",
+      "fullResult": "passed",
+      "fullTests": 1338,
+      "fullFailures": 0,
+      "cloudFullDurationMs": 610197.595784,
+      "verifiedCommit": "4725899b1a73feeb7218909ad5e3b960e5aab0bf",
+      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38549016638",
+      "recoveryResult": "本人实际完成原任务、固定直接引用/当时更正、当前责任岗位与八状态组合独立恢复/证明一致，98相关测试通过；会话0，schema60，无新表迁移，未重跑历史完整CLI。"
+    },
+    "previousFullRun": {
       "newTests": 3,
       "focusedTests": 11,
       "focusedResult": "passed",
@@ -8399,24 +8433,6 @@
       "verifiedCommit": "b57b37b82b2be5a332cbb97af860fcd2479a2d28",
       "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38536962970",
       "recoveryResult": "原操作建立的本人实际完成原任务、固定直接引用/当时更正与当前状态独立恢复/证明一致，119相关测试通过；会话0，schema60，无新表迁移，未重跑历史完整CLI。"
-    },
-    "previousFullRun": {
-      "newTests": 8,
-      "focusedTests": 8,
-      "focusedResult": "passed",
-      "focusedDurationMs": 7427.606677,
-      "relatedFocusedTests": 116,
-      "relatedFocusedResult": "passed",
-      "relatedDurationMs": 133722.064427,
-      "browserResult": "本人后续引用、本人阻塞/完成四入口、原任务状态、分类入口、密度、本人工作6组电脑手机通过：固定采用V0/当前父更正V2分别显示，直接引用当前责任/状态，原详情和手机明确接收后刷新、旧引用不改写，卡片紧凑/HTML纯文本，退出迟到清空，无错误/溢出。云端原状态/阻塞及新增后续引用3组通过。",
-      "syntaxResult": "npm ci/check passed",
-      "fullResult": "passed",
-      "fullTests": 1334,
-      "fullFailures": 0,
-      "cloudFullDurationMs": 612709.320984,
-      "verifiedCommit": "b10a756faa30667b2d50542d014d945465ec5e02",
-      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38509855419",
-      "recoveryResult": "原操作建立的本人实际完成原任务、固定直接引用/当时更正与当前状态独立恢复/证明一致，116相关测试通过；会话0，schema60，无新表迁移，未重跑历史完整CLI。"
     }
   },
   "progressTracking": {
