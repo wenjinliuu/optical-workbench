@@ -1,12 +1,12 @@
 {
-  "verified_at": "2026-10-13T18:19:29.234Z",
+  "verified_at": "2026-10-14T02:17:14.933Z",
   "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
-  "development_version": "V0.81",
-  "checked_deliveries": 81,
+  "development_version": "V0.82",
+  "checked_deliveries": 82,
   "tasks": 50,
   "requirements": 287,
   "accepted_tasks": 0,
-  "progress_sha256": "dc52f1fce9ef2b4c42948ef4d0a7e345510345dc647e7bc6301f32eeaccb2b62",
+  "progress_sha256": "3a0741920db1ab5d0a48e6f42e7405adef394317ef8a189387a8fed9ac65958e",
   "resources": [
     "/progress-data.js",
     "/downloads/progress.json",
@@ -15,14 +15,17 @@
   ],
   "result": "passed",
   "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
-  "site_version": 61,
-  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_fade677bec90819192e40980d3cdb911",
-  "source_commit": "1e4cf79829f269c5f77bfba4290b662ecb2218aa",
-  "deployment_id": "appgdep_6ace7607bdcc81919c5570b2e207bf83",
+  "site_version": 62,
+  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_8281a86736a08191afb127565149ecab",
+  "site_source_commit": "3419ad226c26371451555cc666a29f28f083e6ba",
+  "deployment_id": "appgdep_6acee6105e108191b63bebf3ab6eec3a",
   "deployment_status": "succeeded",
-  "published_at": "2026-10-13T18:19:03.297802+00:00",
-  "repository_progress_commit": "4f42e0f7da692f862b3bdc3bc9c52b6598049018",
-  "repository_implementation_commit": "ccc374b0e9f41de41d7ae3cc288e219b982d5502",
-  "implementation_ci": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38414061173",
-  "live_browser_verification": "passed desktop 1440x1050/mobile 390x844; 81 checked; no overflow or runtime errors"
+  "deployment_updated_at": "2026-10-14T02:16:55.697955+00:00",
+  "repository_progress_commit": "ef585e06b2d46ce4e16f0d98cd6bea46ff994ad6",
+  "repository_implementation_commit": "7bd91cc30ad648e44fe2f4fcd57ed803f201092c",
+  "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38477651591",
+  "live_browser_verification": {
+    "desktop": "1440x1050: V0.82、82项勾选、50任务、287需求、业务验收0，无横向溢出或运行时错误",
+    "mobile": "390x844: V0.82、82项勾选、50任务、287需求、业务验收0，无横向溢出或运行时错误"
+  }
 }
