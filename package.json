@@ -83,6 +83,7 @@
     "test:my-work-kind-browser": "node scripts/my-work-kind-browser-check.mjs",
     "test:my-work-task-state-browser": "node scripts/my-work-task-state-browser-check.mjs",
     "test:my-work-blockers-browser": "node scripts/my-work-blockers-browser-check.mjs",
-    "test:my-work-followups-browser": "node scripts/my-work-followups-browser-check.mjs"
+    "test:my-work-followups-browser": "node scripts/my-work-followups-browser-check.mjs",
+    "test:my-work-followups-state-browser": "node scripts/my-work-followups-state-browser-check.mjs"
   }
 }
