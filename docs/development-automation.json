@@ -13,9 +13,9 @@
   "source_instructions_sha256": "3d8f03a63a45fc0da459af2311d211aa4a34d2d797f3e8f2cefed86fafdc7a66",
   "authorization": "User 2026-10-12: continue step by step without another notification; push code and synchronize both progress locations.",
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
-  "execution_status": "Remote V0.84 implementation 766f86 and successful CI38521720709 were observed at this continuation, while repository/original Site progress remained V0.83/83 deliveries. Their caller or schedule origin is not established. This manual continuation strengthened selected-source and late-detail checks, verified the exact final implementation and completed V0.84 repository/original Site publication. The existing four-hour schedule and original linked Site are preserved.",
+  "execution_status": "Observed and verified remote V0.85 implementation, exact CI38549016638 and published Site65; caller/schedule origin is not established. Manual continuation repaired omitted task/requirement/validation records and completed same-Site publication and receipt without adding a delivery. Existing schedule preserved.",
   "next_development_task": "T03.03",
-  "next_development_slice": "V0.85 direct followup current responsibility role and original-state cross filtering, complete counts and bound current source proof, with unknown roles preserved",
+  "next_development_slice": "V0.86 literal original followup task-title filtering with adopted role/state and source proof",
   "business_acceptance": "pending",
   "schedule_updated_at": "2026-10-12T22:04:55.958055+00:00",
   "immediate_run_request": {
@@ -26,7 +26,7 @@
   },
   "observed_last_run_at": "2026-10-12T22:12:34.528423+00:00",
   "observed_at": "2026-10-12 23:02:23 UTC",
-  "last_manual_verified_version": "V0.84",
-  "last_manual_site_version": 64,
-  "observed_remote_functional_head": "766f86ba751753355d32db16c21965b5a34f995e"
+  "last_manual_verified_version": "V0.85",
+  "last_manual_site_version": 66,
+  "observed_remote_functional_head": "f22db1c"
 }
