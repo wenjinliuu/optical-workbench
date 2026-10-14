@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {employeeResponsibilities, responsibilityKinds} from './staff-handover.mjs';
 import {taskSourceProof} from './task-source-proof.mjs';
+import {createMyWorkFollowupsHandler} from './my-work-followups.mjs';
 
 // Reuse the original responsibility projection, but select only the public-to-self
 // business fields. Personnel records and the manager's employee directory never
@@ -67,7 +68,9 @@ export function myWork(db, user, {scope='mine', kind='all', q='', limit=30, offs
 }
 
 export function createMyWorkHandler(db,{need,fail}) {
+  const followups=createMyWorkFollowupsHandler(db,{need,fail});
   return async(req,path,url,user,json)=>{
+    if(await followups(req,path,url,user,json))return true;
     const proof=path==='/api/my-work/authorization';
     if(path!=='/api/my-work'&&!proof) return false;
     need(user,'tasks:read');

@@ -119,3 +119,7 @@
 .my-work-kind-entries{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}.my-work-kind-entries button[aria-pressed=true]{background:var(--accent);color:#fff}
 
 #my-work-items .task-context{overflow-wrap:anywhere}
+
+#my-work-followups-dialog{width:min(920px,95vw)}#my-work-followups-dialog .record-card p{overflow-wrap:anywhere}#my-work-followups-dialog button{min-height:44px}#my-work-followups-dialog>.record-grid{margin:16px 0}
+
+#my-work-items.compact>.completed-task{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}#my-work-items.compact>.completed-task>p:nth-child(7){grid-column:1/3;grid-row:5}#my-work-items.compact>.completed-task>button:nth-child(8){grid-column:1;grid-row:6}#my-work-items.compact>.completed-task>button:nth-child(9){grid-column:2;grid-row:6}

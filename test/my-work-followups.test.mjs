@@ -1,0 +1,94 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {once} from 'node:events';
+import {request as httpRequest} from 'node:http';
+import {mkdtempSync,rmSync,readFileSync,readdirSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {DatabaseSync} from 'node:sqlite';
+import {createApp} from '../src/server.mjs';
+import {hashPassword,openDatabase} from '../src/db.mjs';
+import {createBackup,restoreBackup} from '../src/recovery.mjs';
+
+
+async function fixture(t,{persist=false}={}){
+ const dir=mkdtempSync(join(tmpdir(),'optical-stock-')),path=persist?join(dir,'source.sqlite'):':memory:',{server,db}=createApp({databasePath:path,mode:'test',logger:()=>{}});db.exec("INSERT INTO stores VALUES ('store-a','A'),('store-b','B')");for(const [id,role,store] of [['manager','manager','store-a'],['front','reception','store-a'],['professional','professional','store-a'],['other','manager','store-b'],['parent','guardian',null]])db.prepare('INSERT INTO users VALUES (?,?,?,?,?,?,1)').run(id,id,id,hashPassword('synthetic-only-password'),role,store);for(const [id,store] of [['one','store-a'],['two','store-a'],['other-child','store-b']])db.prepare('INSERT INTO customers VALUES (?,?,?,?,?,?,?,?)').run(id,store,id,null,null,null,new Date().toISOString(),store==='store-a'?'manager':'other');db.prepare('INSERT INTO guardian_links (user_id,customer_id,active) VALUES (?,?,1)').run('parent','one');server.listen(0,'127.0.0.1');await once(server,'listening');const origin=`http://127.0.0.1:${server.address().port}`;t.after(async()=>{await new Promise(r=>server.close(r));rmSync(dir,{recursive:true,force:true});});
+ const request=async(path,{cookie,csrf,method='GET',data,key=crypto.randomUUID(),headers={}}={})=>{const r=await fetch(origin+path,{method,headers:{...(cookie?{Cookie:cookie}:{}),...(csrf?{'X-CSRF-Token':csrf}:{}),...(method!=='GET'?{'Idempotency-Key':key}:{}),...(data?{'Content-Type':'application/json'}:{}),...headers},body:data?JSON.stringify(data):undefined});return {status:r.status,body:await r.json(),cookie:r.headers.get('set-cookie')?.split(';')[0]};};const login=async id=>{const r=await request('/api/auth/login',{method:'POST',data:{username:id,password:'synthetic-only-password'}});assert.equal(r.status,200);const me=await request('/api/me',{cookie:r.cookie});return {cookie:r.cookie,csrf:me.body.csrf};};return {db,request,login,origin,path,dir};
+}
+
+import {seedDemoBatches} from '../src/demo-inventory-batches.mjs';
+import {verifyBatches} from '../src/inventory-batch-recovery.mjs';
+import * as R from '../src/purchase-receiving.mjs';
+import {seedDemoCustody} from '../src/demo-inventory-custody.mjs';
+import {verifyCustody} from '../src/inventory-custody-recovery.mjs';
+import {seedDemoExtraReturns} from '../src/demo-purchase-extra-returns.mjs';
+import {verifyExtraReturns} from '../src/purchase-extra-return-recovery.mjs';
+import {seedDemoSupplierReturns} from '../src/demo-supplier-returns.mjs';
+import {verifySupplierReturns} from '../src/supplier-return-recovery.mjs';
+import {seedDemoPurchaseQuality} from '../src/demo-purchase-quality.mjs';
+import {verifyPurchaseQuality} from '../src/purchase-quality-recovery.mjs';
+import {seedDemoReceiving} from '../src/demo-purchase-receiving.mjs';
+import {verifyReceiving} from '../src/purchase-receiving-recovery.mjs';
+import {seedDemoProcurement} from '../src/demo-procurement.mjs';
+import {seedDemoSpecialtyReviews} from '../src/demo-specialty-review.mjs';
+import {seedDemoSpecialtyCare} from '../src/demo-specialty-care.mjs';
+import {seedDemoSpecialtyTrace} from '../src/demo-specialty-trace.mjs';
+import {seedDemoSpecialty} from '../src/demo-specialty.mjs';
+import {seedDemoReferrals} from '../src/demo-referrals.mjs';
+import {seedDemoContact} from '../src/demo-contact.mjs';
+import {seedDemoLongitudinal} from '../src/demo-longitudinal.mjs';
+import {seedDemoFamilyTraining} from '../src/demo-family-training.mjs';
+import {seedDemoScheduling} from '../src/demo-scheduling.mjs';
+import {seedDemoEntitlements} from '../src/demo-entitlements.mjs';
+import {seedDemoScenarios,seedDemoRetail,seedDemoInventory,seedDemoPayments,seedDemoProcessing,seedDemoFulfillment,seedDemoAftercare,seedDemoAftercareWork,seedDemoReplacements,seedDemoDispositions,seedDemoRefunds,seedDemoParameters,seedDemoTraining} from '../src/demo-data.mjs';
+import {employeeDirectory,employeeResponsibilities,responsibilityKinds,responsibilitySnapshot} from '../src/staff-handover.mjs';
+import {seedDemoStaffHandover} from '../src/demo-staff-handover.mjs';
+import {transaction} from '../src/db.mjs';
+import {completionSnapshot,completionDigest} from '../src/task-completions.mjs';
+async function setup(t,{persist=false,seed=true}={}){const x=await fixture(t,{persist});Object.assign(x,{m:await x.login('manager'),f:await x.login('front'),p:await x.login('professional'),g:await x.login('parent'),o:await x.login('other')});if(seed){for(const[id,role]of [['demo-manager','manager'],['demo-front','reception'],['demo-professional','professional'],['demo-parent','guardian']])x.db.prepare('INSERT INTO users VALUES(?,?,?,?,?,?,1)').run(id,id,id,hashPassword('synthetic-only-password'),role,role==='guardian'?null:'store-a');seedDemoScenarios(x.db);seedDemoRetail(x.db);seedDemoInventory(x.db);seedDemoPayments(x.db);seedDemoProcessing(x.db);seedDemoFulfillment(x.db);seedDemoAftercare(x.db);seedDemoAftercareWork(x.db);seedDemoReplacements(x.db);seedDemoDispositions(x.db);seedDemoRefunds(x.db);seedDemoParameters(x.db);seedDemoTraining(x.db);seedDemoEntitlements(x.db);seedDemoScheduling(x.db);x.db.prepare('INSERT INTO users VALUES(?,?,?,?,?,?,1)').run('demo-practice-parent','demo-practice-parent','家庭练习家长（虚构）',hashPassword('synthetic-only-password'),'guardian',null);seedDemoFamilyTraining(x.db);seedDemoLongitudinal(x.db);seedDemoContact(x.db);seedDemoReferrals(x.db);seedDemoSpecialty(x.db);seedDemoSpecialtyTrace(x.db);seedDemoSpecialtyCare(x.db);seedDemoSpecialtyReviews(x.db);seedDemoStaffHandover(x.db);}return x;}
+const path='/api/staff-handover/employees',duties=id=>path+'/'+id+'/responsibilities',good=(z,status=200)=>assert.equal(z.status,status,JSON.stringify(z.body));
+const snapshot=db=>Object.fromEntries(db.prepare("SELECT name FROM sqlite_schema WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name").all().map(x=>[x.name,db.prepare('SELECT * FROM '+x.name+' ORDER BY rowid').all()]));
+async function newTask(x,{owner='front',title='明确原客户资料核对',role=null}={}){const z=await x.request('/api/customers/one/tasks',{...x.m,method:'POST',data:{title,instructions:'仅原客户通用资料核对',assignee_id:owner,...(role?{candidate_role:role}:{}),cycle_id:null,cycle_version:null,visit_id:null,reason:'实际明确原任务'}});good(z,201);return z.body.task||z.body;}
+async function completeTask(x,{owner='front',title='本人实际完成原任务',session=x.f}={}){
+ const task=await newTask(x,{owner,title});
+ for(const [action,revision] of [['accept',1],['start',2]])good(await x.request('/api/tasks/'+task.id+'/'+action,{...session,method:'POST',data:{expected_revision:revision,reason:'本人明确办理原任务（虚构）'}}));
+ good(await x.request('/api/tasks/'+task.id+'/completion/conditions',{...x.m,method:'POST',data:{expected_task_revision:3,expected_condition_version:0,description:'通用资料来源核对（虚构）',require_document:false,require_attachment:false,reason:'明确通用核对范围'}}),201);
+ good(await x.request('/api/tasks/'+task.id+'/completion/evidence',{...session,method:'POST',data:{expected_task_revision:3,expected_evidence_version:0,condition_version:1,notes:'本人已核对原来源（虚构）',source:'employee',document_version_ids:[],attachment_ids:[],reason:'保存本人实际依据'}}),201);
+ good(await x.request('/api/tasks/'+task.id+'/completion/submit',{...session,method:'POST',data:{expected_task_revision:3,condition_version:1,evidence_version:1,output_summary:'本人通用核对完成（虚构）',reason:'本人明确提交原完成记录'}}),201);
+ return x.db.prepare('SELECT * FROM work_tasks WHERE id=?').get(task.id);
+}
+
+import {myWork} from '../src/my-work.mjs';
+const own='/api/my-work';
+
+import {myWorkFollowups} from '../src/my-work-followups.mjs';
+import {taskSourceProof} from '../src/task-source-proof.mjs';
+const route=id=>own+'/completed/'+id+'/followups';
+const qs=(x,id,extra={})=>new URLSearchParams({expected_parent_source:taskSourceProof(x.db,id).source_fingerprint,...extra});
+const read=async(x,id,extra={},session=x.f)=>{const z=await x.request(route(id)+'?'+qs(x,id,extra),session);good(z);return z.body;};
+async function add(x,id,{owner='front',role=null,title='原后续任务'}={}){const c=x.db.prepare('SELECT snapshot_sha256 FROM task_completions WHERE task_id=?').get(id),version=x.db.prepare('SELECT coalesce(max(version),0) n FROM task_completion_corrections WHERE task_id=?').get(id).n;const z=await x.request('/api/tasks/'+id+'/followups',{...x.m,method:'POST',data:{expected_correction_version:version,completion_sha256:c.snapshot_sha256,title,instructions:'禁止进入薄元信息的交接正文',assignee_id:owner,...(role?{candidate_role:role}:{}),reason:'明确固定原后续引用'}});good(z,201);return z.body.task;}
+async function act(x,id,action,extra={},session=x.f){const rev=x.db.prepare('SELECT revision FROM work_tasks WHERE id=?').get(id).revision,z=await x.request('/api/tasks/'+id+'/'+action,{...session,method:'POST',data:{expected_revision:rev,reason:'实际原办理（虚构）',...extra}});good(z);return z.body.task;}
+test('fixed direct references expose original source and current responsibility only, and read no task or completion bodies',async t=>{
+ const x=await setup(t,{seed:false}),p=await completeTask(x),a=await add(x,p.id),b=await add(x,p.id,{owner:null,role:'professional'}),before=snapshot(x.db),z=await read(x,p.id);assert.equal(z.total,2);assert.equal(z.parent_source_proof.source_fingerprint,taskSourceProof(x.db,p.id).source_fingerprint);assert.deepEqual(new Set(z.items.map(r=>r.id)),new Set([a.id,b.id]));for(const r of z.items){assert.equal(r.parent_task_id,p.id);assert.equal(r.completion_sha256,z.parent_source_proof.completion_sha256);assert.equal(r.source_correction_version,null);assert.equal(r.revision,1);}assert.equal(z.items.find(r=>r.id===a.id).assignee_name,'front');assert.equal(z.items.find(r=>r.id===b.id).candidate_role,'professional');assert.ok(!JSON.stringify(z).includes('禁止进入薄元信息'));assert.ok(!JSON.stringify(z).includes('本人通用核对完成'));assert.ok(!JSON.stringify(z).includes('password'));good(await x.request(route(p.id)+'/authorization?'+qs(x,p.id,{expected_source:z.source_token}),x.f));assert.deepEqual(snapshot(x.db),before);
+});
+test('only actual self completion in this store can anchor the expansion, not assignment, another employee or guardian',async t=>{
+ const x=await setup(t,{seed:false}),a=await completeTask(x),b=await completeTask(x,{owner:'professional',session:x.p}),c=await newTask(x);await add(x,a.id,{owner:'professional'});assert.equal((await read(x,a.id)).total,1);for(const [id,s]of [[a.id,x.p],[a.id,x.o],[b.id,x.f]])assert.equal((await x.request(route(id)+'?'+qs(x,id),s)).status,404);assert.equal((await x.request(route(a.id)+'?'+qs(x,a.id),x.g)).status,403);assert.equal((await x.request(route(a.id)+'?'+qs(x,a.id))).status,401);assert.equal((await x.request(route(c.id)+'?'+qs(x,a.id),x.f)).status,404);
+});
+test('complete 105 fixed references paginate in stable original order with full totals and no automatic assignment',async t=>{
+ const x=await setup(t,{seed:false}),p=await completeTask(x);for(let i=0;i<105;i++)await add(x,p.id,{owner:null,role:'reception',title:'原后续 '+i});const before=snapshot(x.db),a=await read(x,p.id,{limit:100}),b=await read(x,p.id,{offset:100,expected_source:a.source_token});assert.equal(a.total,105);assert.equal(a.items.length,100);assert.equal(b.items.length,5);assert.equal(b.next_offset,null);assert.equal(new Set([...a.items,...b.items].map(r=>r.id)).size,105);assert.deepEqual([...a.items,...b.items].map(r=>r.id),a.parent_source_proof.followups.map(r=>r.task_id));assert.ok(b.items.every(r=>r.assignee_id===null));assert.equal((await x.request(route(p.id)+'?'+qs(x,p.id,{offset:100}),x.f)).status,409);assert.deepEqual(snapshot(x.db),before);
+});
+test('old child-state proofs and continuations reject explicit acceptance, transfer and cancellation while fixed links stay unchanged',async t=>{
+ const x=await setup(t,{seed:false}),p=await completeTask(x),c=await add(x,p.id),z=await read(x,p.id),fixed=z.parent_source_proof;await act(x,c.id,'accept');assert.equal((await x.request(route(p.id)+'/authorization?'+qs(x,p.id,{expected_source:z.source_token}),x.f)).status,409);const accepted=await read(x,p.id);assert.match(accepted.items[0].status,/accepted/);assert.deepEqual(accepted.parent_source_proof,fixed);await act(x,c.id,'transfer',{assignee_id:'professional'},x.m);const transferred=await read(x,p.id);assert.equal(transferred.items[0].assignee_id,'professional');assert.equal(transferred.items[0].assignee_role,'professional');await act(x,c.id,'cancel',{},x.m);const cancelled=await read(x,p.id);assert.equal(cancelled.total,1);assert.match(cancelled.items[0].status,/cancelled/);assert.deepEqual(cancelled.parent_source_proof,fixed);
+});
+test('parent corrections and new links reject the adopted parent proof and do not rewrite earlier adopted correction versions',async t=>{
+ const x=await setup(t,{seed:false}),p=await completeTask(x),c=await add(x,p.id),z=await read(x,p.id),cpl=x.db.prepare('SELECT * FROM task_completions WHERE task_id=?').get(p.id);x.db.prepare('INSERT INTO task_completion_corrections VALUES (?,?,?,?,?,?,?,?)').run(p.id,'one',1,cpl.snapshot_sha256,'新的原完成说明（虚构）','明确更正',new Date().toISOString(),'front');assert.equal((await x.request(route(p.id)+'?'+new URLSearchParams({expected_parent_source:z.parent_source_proof.source_fingerprint}),x.f)).status,409);const next=await read(x,p.id);assert.equal(next.parent_source_proof.correction_version,1);assert.equal(next.items[0].source_correction_version,null);const d=await add(x,p.id);assert.equal((await x.request(route(p.id)+'?'+new URLSearchParams({expected_parent_source:next.parent_source_proof.source_fingerprint}),x.f)).status,409);const now=await read(x,p.id);assert.equal(now.items.find(r=>r.id===d.id).source_correction_version,1);assert.equal(now.items.find(r=>r.id===c.id).completion_sha256,cpl.snapshot_sha256);
+});
+test('strict read-only query fields, parent proof and page bounds reject identity selection and unsupported writes',async t=>{
+ const x=await setup(t,{seed:false}),p=await completeTask(x),valid=qs(x,p.id).toString();for(const q of ['',valid+'&employee_id=professional',valid+'&store_id=store-b',valid+'&limit=101',valid+'&limit=0',valid+'&offset=-1',valid+'&expected_source=wrong',valid+'&expected_parent_source=wrong',valid+'&kind=task'])assert.equal((await x.request(route(p.id)+'?'+q,x.f)).status,422,q);assert.equal((await x.request(route(p.id)+'/authorization?'+valid+'&limit=1',x.f)).status,422);assert.equal((await x.request(route(p.id)+'?'+valid,{...x.f,method:'POST',data:{}})).status,405);assert.equal((await x.request(route(p.id)+'/authorization?'+valid,x.f)).status,409);
+});
+test('current actor role and session revocation protect expansion proofs, target role changes invalidate current responsibility proof',async t=>{
+ const x=await setup(t,{seed:false}),p=await completeTask(x);await add(x,p.id,{owner:'professional'});const z=await read(x,p.id);x.db.prepare("UPDATE users SET role='reception' WHERE id='professional'").run();assert.equal((await x.request(route(p.id)+'/authorization?'+qs(x,p.id,{expected_source:z.source_token}),x.f)).status,409);const next=await read(x,p.id);x.db.prepare("UPDATE users SET role='professional' WHERE id='front'").run();assert.equal((await x.request(route(p.id)+'/authorization?'+qs(x,p.id,{expected_source:next.source_token}),x.f)).status,409);x.db.prepare("UPDATE users SET active=0 WHERE id='front'").run();assert.equal((await x.request(route(p.id)+'?'+qs(x,p.id),x.f)).status,401);
+});
+test('independent restore keeps original fixed references/current metadata and hashes and revokes old sessions',async t=>{
+ const x=await setup(t,{seed:false,persist:true}),p=await completeTask(x);await add(x,p.id);await add(x,p.id,{owner:null,role:'reception'});const u=x.db.prepare("SELECT * FROM users WHERE id='front'").get(),before=myWorkFollowups(x.db,u,p.id),links=x.db.prepare('SELECT * FROM task_followups ORDER BY rowid').all(),b=await createBackup(x.path,join(x.dir,'backup-followup-view')),r=await restoreBackup(b.backup,join(x.dir,'restored-followup-view')),db=openDatabase(r.database);t.after(()=>db.close());assert.deepEqual(myWorkFollowups(db,u,p.id),before);assert.deepEqual(db.prepare('SELECT * FROM task_followups ORDER BY rowid').all(),links);assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,0);
+});

@@ -1,3 +1,4 @@
+import {createMyWorkFollowupsPanel} from './my-work-followups.js';
 const el=(tag,text,className)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(className)e.className=className;return e;};
 const labels={task:'通用岗位任务',processing:'加工原单行',aftercare:'售后案例',training_plan:'个人训练计划',training_session:'当次课程',longitudinal:'长期档案',review:'复查安排',contact:'联系跟进',appointment:'客户预约',referral_professional:'转介专业责任',referral_contact:'转介联系责任',external_record:'外院资料复核',specialty:'接触镜专项责任',screening_project:'团体活动准备责任'};
 
@@ -38,9 +39,10 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   }
   function updateApplied(){taskState.disabled=scope.value==='completed'||kind.value!=='task'&&taskState.value==='all';if(!data){applied.textContent='';pending.textContent='';return;}applied.textContent='当前已应用：'+filterSummary(data.filter);const changed=Object.entries(filter()).some(([k,v])=>v!==data.filter[k])||Array.from(form.elements).some(i=>i.validity?.badInput);pending.textContent=changed?'筛选填写已变更；当前列表仍按上方条件显示，点击查询应用。':'';}
   form.addEventListener('input',updateApplied);form.addEventListener('change',updateApplied);
-  function clear(){presentationGeneration++;display.disabled=true;display.value=adoptedDisplay;data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;updateApplied();}
+  function clear(){followupsPanel.reset();presentationGeneration++;display.disabled=true;display.value=adoptedDisplay;data=null;rows.replaceChildren();summary.replaceChildren();count.textContent='';more.hidden=true;updateApplied();}
   async function denied(e){clear();error.textContent=e.message;await onScopeChanged?.(e);}
   async function proof(s){await api('/my-work/authorization?'+new URLSearchParams({...s.filter,expected_source:s.source_token}));}
+  const followupsPanel=createMyWorkFollowupsPanel({api,getMe,getEpoch,getAdopted:()=>data,openSource,onDenied:denied,onRefresh:()=>load()});
   display.onchange=async()=>{
     const t=token(),s=data,g=++presentationGeneration,requested=display.value;if(!s){display.value=adoptedDisplay;return;}
     display.disabled=true;try{await proof(s);if(!live(t)||data!==s||g!==presentationGeneration)return;adoptedDisplay=requested;rows.classList.toggle('compact',requested==='compact');error.textContent='';}
@@ -95,7 +97,7 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
   function dateLabel(r){if(r.completed_task)return '原完成时间 '+r.due+'（UTC）';const label=dateLabels[r.kind]||'办理日期';return r.due===null?'原'+label+'未记录':'原'+label+' '+r.due+(r.due_source==='due_at'||r.due_source==='starts_at'?'（UTC）':'');}
   const sourceProof=p=>`四入口同源：原任务修订 ${p.task_revision} · 条件 V${p.condition_version} / 依据 V${p.evidence_version} · 说明更正 V${p.correction_version} · 后续 ${p.followup_count} · 来源指纹 ${p.source_fingerprint.slice(0,12)}`;
   function appendRow(r,s,t){
-    const a=el('article',undefined,'record-card');a.dataset.myWorkKey=r.key;
+    const a=el('article',undefined,'record-card');a.dataset.myWorkKey=r.key;if(r.completed_task)a.classList.add('completed-task');
     a.append(el('span',labels[r.kind],'badge sky'),el('h2',r.title),el('p',(r.customer_id===null?'机构 '+r.institution:r.customer_name)+' · 原记录 '+r.id+(r.position?' / 原行 '+r.position:''),'small muted'),
       el('p','原修订 '+r.revision+(r.version===null?'':' · 固定版本 '+r.version)+' · 当前状态 '+stateLabel(r)+(r.completed_task?' · 固定条件 V'+r.completion_condition_version+' / 依据 V'+r.completion_evidence_version+' · 说明更正 V'+r.completion_correction_version+' · 后续任务 '+r.completion_followup_count:'')+(r.kind==='task'&&Number.isSafeInteger(r.task_blocker_revision)?' · 原阻塞原因（原修订 '+r.task_blocker_revision+'）：'+(r.task_blocker_reason??'未记录'):''),'task-context'),
       el('p',dateLabel(r),'small'),
@@ -104,7 +106,9 @@ export function createMyWorkPanel({api,getMe,getEpoch,openSource,onScopeChanged}
       button(s.filter.scope==='completed'?'查看原任务与完成记录':'打开原业务办理',async()=>{
         error.textContent='';try{await proof(s);if(!live(t)||data!==s)return;await openSource(r,()=>proof(s));}
         catch(e){if(live(t)&&data===s){if([401,403,404].includes(e.status))await denied(e);else error.textContent=e.message;}}
-      }));rows.append(a);
+      }));
+    if(r.completed_task)a.append(button('查看后续任务（'+r.completion_followup_count+'）',()=>followupsPanel.open(r,s,()=>proof(s))));
+    rows.append(a);
   }
   updateApplied();
   return {load,reset(){generation++;appliedFilter=null;adoptedDisplay='cards';clear();rows.classList.remove('compact');form.reset();updateApplied();error.textContent='';more.disabled=false;}};
