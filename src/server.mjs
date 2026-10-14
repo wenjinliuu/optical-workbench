@@ -58,6 +58,11 @@ import { createRetailHandler } from './retail.mjs';
 import { createServer } from 'node:http';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
+
+// Project progress changes only with a deployed source revision. Loading it once
+// avoids a request-time file descriptor race while the full test suite runs many
+// independent servers in parallel.
+const projectProgress=JSON.parse(readFileSync(new URL('../docs/progress.json',import.meta.url),'utf8'));
 import { fileURLToPath } from 'node:url';
 import { openDatabase, transaction, hashPassword, verifyPassword } from './db.mjs';
 import { demoScenarios, matchesDemoCustomer } from './demo-data.mjs';
@@ -277,7 +282,7 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       if(path==='/api/me' && req.method==='GET') return json(200,{id:user.id,name:user.display_name,role:user.role,store:user.store_id?db.prepare('SELECT * FROM stores WHERE id=?').get(user.store_id):null,permissions:roles[user.role],csrf:session.csrf,must_change_password:Boolean(user.must_change_password)});
       if(path==='/api/auth/logout' && req.method==='POST') { transaction(db,()=>{db.prepare('DELETE FROM sessions WHERE token_hash=?').run(sha(token));audit(user,'session.logout',user.id,{});});res.setHeader('Set-Cookie','ow_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return json(200,{ok:true}); }
       if(user.must_change_password&&path!=='/api/auth/password')fail(403,'PASSWORD_CHANGE_REQUIRED','请先修改初始或重置密码');
-      if(path==='/api/progress'){need(user,'progress:read');if(req.method!=='GET')fail(405,'METHOD','项目进度只读');return json(200,JSON.parse(readFileSync(new URL('../docs/progress.json',import.meta.url),'utf8')));}
+      if(path==='/api/progress'){need(user,'progress:read');if(req.method!=='GET')fail(405,'METHOD','项目进度只读');return json(200,projectProgress);}
       if(path==='/api/operations'&&req.method==='GET'){
         need(user,'operations:read');if(!user.store_id)fail(403,'FORBIDDEN','账号未分配门店');db.prepare('SELECT 1').get();
         return json(200,{database:'ok',mode,schema:db.prepare('SELECT count(*) n FROM schema_migrations').get().n,...runtime.snapshot(user.store_id)});
