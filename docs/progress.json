@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-14",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.85继续T03.03/M01-F03：本人完成原任务的固定直接后续引用按当前接收人实际岗位或未指派任务原候选岗位，与八种当前原状态明确交叉筛选；负责人/接待/专业/未知完整岗位计数、八状态计数、32格交叉矩阵、固定总数及组合匹配量分别返回，含零且不从当前页估算。岗位不从标题、历史或当前本人推断，专业岗位不授予资格；岗位/状态草稿与已采用组合隔离，转交/改岗/停用/状态变化拒绝旧证明。12专项、98相关、精确源1338全量及4组云端电脑手机浏览器通过，schema60无新表迁移，整体验收保留。",
+  "productStatus": "V0.86继续T03.03/M01-F02/M01-F03/M01-F04：本人完成原任务的固定直接后续引用新增原任务标题字面文字筛选，与当前实际责任岗位及八状态交叉采用；参数化SQLite只匹配原标题，英文ASCII忽略大小写，百分号、下划线、引号及括号均不作通配符或表达式，说明正文、完成产出、客户身份及任务编号不进入匹配。固定总数、四岗位、八状态、32格矩阵及三条件匹配量分别返回；标题/岗位/状态草稿与已采用组合隔离，分页、详情、原办理返回、重置和退出均绑定同一来源。18专项、104相关、精确源1344全量及5组云端电脑手机浏览器通过，schema60无新表迁移，整体验收保留。",
   "currentTask": "T03.03",
   "nextTask": "T03.03",
   "stage": "P00",
@@ -527,6 +527,12 @@
       "version": "V0.85",
       "type": "工程推进",
       "summary": "V0.85继续T03.03/M01-F03：固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知岗位不推断，专业岗位不授予资格；岗位与状态草稿只有明确查询才采用，转交/改岗/停用及筛选外变化使旧页/详情证明失效。12专项、98相关、精确源1338全量及4组云端浏览器通过，schema60无新表迁移，整体验收保留。"
+    },
+    {
+      "date": "2026-10-14",
+      "version": "V0.86",
+      "type": "工程推进",
+      "summary": "V0.86继续T03.03/M01-F02/M01-F03/M01-F04：固定直接后续引用按原任务标题作参数化字面筛选，并与当前责任岗位/八状态交叉；只匹配原标题，符号不作通配符或表达式，说明、完成正文、身份和编号不命中。固定总数及完整岗位/状态/32格矩阵不随标题结果缩水，三条件来源/分页/详情共同证明；采用组合与草稿、快捷入口、重置、原办理返回及退出清空通过。18专项、104相关、精确源1344全量及5组云端浏览器通过，schema60无新表迁移，整体验收保留。"
     }
   ],
   "tasks": [
@@ -1013,10 +1019,12 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
       "updated": "2026-10-14",
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。"
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。"
     },
     {
       "id": "T03.04",
@@ -2301,9 +2309,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -2338,9 +2348,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -2394,9 +2406,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -2456,9 +2470,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -2512,9 +2528,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -2568,9 +2586,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -2629,9 +2649,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -5478,9 +5500,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -5540,9 +5564,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -5676,9 +5702,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -5751,9 +5779,11 @@
         "scripts/my-work-followups-state-browser-check.mjs",
         "docs/my-work-followups-state-plan.md",
         "docs/my-work-followups-role.md",
-        "docs/my-work-followups-role-plan.md"
+        "docs/my-work-followups-role-plan.md",
+        "docs/my-work-followups-title.md",
+        "scripts/my-work-followups-title-browser-check.mjs"
       ],
-      "note": "V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务原候选岗位，与八状态明确交叉筛选；四岗位、八状态及32格完整矩阵含零，固定总数/组合匹配/同源分页分开。未知不推断、专业岗位不授予资格；已采用组合与未查询填写分开，普通刷新/追加/原办理后沿用组合。转交/改岗/停用、候选/状态及筛选外变化拒绝旧证明，迟到旧页/查询/详情/退出清空、固定引用保持与独立恢复通过。精确源CI1338全量及4组云端电脑手机通过，schema60无新表迁移；下一V0.86原标题字面文字筛选。整体验收保留。",
+      "note": "V0.86固定直接后续引用按原标题作字面文字筛选，与当前责任岗位和八状态交叉采用；参数化SQLite只匹配标题，英文ASCII忽略大小写，百分号、下划线、引号和括号不作通配符或表达式，说明/完成正文/身份/编号不命中。固定总数及四岗位、八状态、32格矩阵保持完整，三条件匹配、分页和详情绑定同一来源；采用组合与草稿、快捷入口、重置、原办理返回、迟到拒绝及退出清空通过。精确源CI1344全量及5组云端电脑手机通过，schema60无新表迁移；下一V0.87当前接收人账号可用状态明确筛选。整体验收保留。",
       "updated": "2026-10-14"
     },
     {
@@ -8388,10 +8418,18 @@
         "T03.03"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.86",
+      "title": "后续引用原标题字面筛选、岗位与状态三条件来源保护",
+      "task_ids": [
+        "T03.03"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "V0.86继续T03.03：固定后续引用按原任务标题作字面文字筛选，并与当前实际责任岗位/八状态交叉采用；完整数量、同源分页和原入口前后证明保持，不读取说明正文或推断优先级。",
+    "V0.87继续T03.03：固定后续引用按当前接收人账号可用状态作明确筛选，并与原标题文字、实际责任岗位及八状态交叉采用；未指派任务保持明确未知，不把岗位、资质或历史推断为账号可用。",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -8400,12 +8438,14 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.85",
-    "automatedTests": 1338,
+    "version": "V0.86",
+    "automatedTests": 1344,
     "schema": 60,
     "browserSuites": 68,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
+      "docs/my-work-followups-title.md",
+      "scripts/my-work-followups-title-browser-check.mjs",
       "docs/my-work-followups-role.md",
       "docs/my-work-followups-role-plan.md",
       "scripts/my-work-followups-state-browser-check.mjs",
@@ -8420,6 +8460,24 @@
       "docs/my-work-followups.md"
     ],
     "currentRun": {
+      "newTests": 6,
+      "focusedTests": 18,
+      "focusedResult": "passed",
+      "focusedDurationMs": 28837.093131,
+      "relatedFocusedTests": 104,
+      "relatedFocusedResult": "passed",
+      "relatedDurationMs": 94966.021935,
+      "browserResult": "云端原任务状态、阻塞/完成四入口、固定后续引用、岗位×状态及原标题文字5组电脑手机通过：字面中英文/符号和仅标题匹配，105引用/103标题匹配四页，完整岗位×状态计数不缩水；标题/岗位/状态草稿刷新、追加和快捷入口隔离，迟到旧页/查询/详情拒绝，手机原接收后保留采用三条件与独立草稿，明确重置及退出隐私，无错误或横向溢出。",
+      "syntaxResult": "npm ci/check passed",
+      "fullResult": "passed",
+      "fullTests": 1344,
+      "fullFailures": 0,
+      "cloudFullDurationMs": 607930.236556,
+      "verifiedCommit": "e7fad309524a6e6443ce1a7a3e093112e868d1b7",
+      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38576156912",
+      "recoveryResult": "本人实际完成原任务、固定直接引用/当时更正、标题文字×责任岗位×八状态组合独立恢复/证明一致，104相关测试通过；会话0，schema60，无新表迁移，未重跑历史完整CLI。"
+    },
+    "previousFullRun": {
       "newTests": 1,
       "focusedTests": 12,
       "focusedResult": "passed",
@@ -8436,24 +8494,6 @@
       "verifiedCommit": "4725899b1a73feeb7218909ad5e3b960e5aab0bf",
       "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38549016638",
       "recoveryResult": "本人实际完成原任务、固定直接引用/当时更正、当前责任岗位与八状态组合独立恢复/证明一致，98相关测试通过；会话0，schema60，无新表迁移，未重跑历史完整CLI。"
-    },
-    "previousFullRun": {
-      "newTests": 3,
-      "focusedTests": 11,
-      "focusedResult": "passed",
-      "focusedDurationMs": 10750.492527,
-      "relatedFocusedTests": 119,
-      "relatedFocusedResult": "passed",
-      "relatedDurationMs": 178892.139129,
-      "browserResult": "后续当前状态边界、后续引用、本人阻塞/完成四入口、原任务状态、分类入口、密度、本人工作7组电脑手机通过：105直接引用/103候选四页，八状态/零计数、完整匹配、未查询填写不进入刷新或追加，迟到旧页/查询/原详情拒绝，手机原接收后沿用已采用状态并移出且固定引用不变，退出清空私有计数/状态记忆，无错误/溢出。云端原状态/阻塞/后续及状态边界4组通过。",
-      "syntaxResult": "npm ci/check passed",
-      "fullResult": "passed",
-      "fullTests": 1337,
-      "fullFailures": 0,
-      "cloudFullDurationMs": 644960.343306,
-      "verifiedCommit": "b57b37b82b2be5a332cbb97af860fcd2479a2d28",
-      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38536962970",
-      "recoveryResult": "原操作建立的本人实际完成原任务、固定直接引用/当时更正与当前状态独立恢复/证明一致，119相关测试通过；会话0，schema60，无新表迁移，未重跑历史完整CLI。"
     }
   },
   "progressTracking": {
