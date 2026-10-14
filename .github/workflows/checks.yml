@@ -36,3 +36,6 @@ jobs:
       - run: npm run test:my-work-followups-state-browser
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
+      - run: npm run test:my-work-followups-title-browser
+        env:
+          PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
