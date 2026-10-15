@@ -28,7 +28,7 @@ npm run backup
 
 V0.5 备份同时生成核对清单，可用 npm run backup:verify -- 备份路径 校验，并用 npm run restore -- 备份路径 新目录 恢复。完整步骤见[恢复操作手册](docs/recovery.md)。
 
-当前1349项自动测试覆盖会话撤销、跨店/越动作/越家庭拒绝、关系撤销、重复写入、共享电话独立档案、原子回滚、持久化和基础数据恢复。CI 已配置，实际远程运行状态见进度回执。
+当前1350项自动测试覆盖会话撤销、跨店/越动作/越家庭拒绝、关系撤销、重复写入、共享电话独立档案、原子回滚、持久化和基础数据恢复。CI 已配置，实际远程运行状态见进度回执。
 
 电脑与手机浏览器验证脚本为 scripts/browser-check.mjs；可将 Playwright 安装到独立临时目录，设置 PLAYWRIGHT_MODULE_PATH 指向其 index.mjs（绝对路径），再运行 npm run test:browser。CHROMIUM_PATH 默认 /usr/bin/chromium。测试自建内存库，截图写入已忽略的 data/browser-check/，不会改现有档案。
 
