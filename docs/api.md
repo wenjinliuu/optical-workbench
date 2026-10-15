@@ -471,3 +471,7 @@ V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务
 ## V0.86 原标题字面筛选切片
 
 固定直接后续引用增加原标题字面q，与当前责任岗位/八状态交叉；参数化原SQLite口径、完整计数/组合匹配分开，三条件来源/分页/详情共同证明。已采用与独立草稿隔离、快捷入口及原办理返回保持、退出迟到清空。契约见my-work-followups-title.md，schema60无新表迁移。精确源CI实际1344/1344及5组云端浏览器通过；双处实际发布见progress-sync.json。
+
+## V0.88 账号状态、岗位与八状态完整矩阵
+
+`GET /api/my-work/completed/:id/followups` 在既有响应中增加 `availability_role_state_counts`。第一层固定为 `available`、`unavailable`、`unknown`，第二层固定为 `manager`、`reception`、`professional`、`unknown`，第三层固定为八种原任务状态；完整 96 格始终返回并保留零值。矩阵从全部固定直接后续引用在分页前计算，不受 `q`、已采用账号/岗位/状态、匹配量或当前页缩小，总和等于 `total`。来源令牌、权限、严格参数和原固定引用边界不变；详见 `my-work-followups-matrix.md`。

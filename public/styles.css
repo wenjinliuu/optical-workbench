@@ -121,5 +121,6 @@
 #my-work-items .task-context{overflow-wrap:anywhere}
 
 #my-work-followups-dialog{width:min(920px,95vw)}#my-work-followups-dialog .record-card p{overflow-wrap:anywhere}#my-work-followups-dialog button{min-height:44px}#my-work-followups-dialog>.record-grid{margin:16px 0}
+.followup-matrix-wrap{max-width:100%;overflow-x:auto;margin:12px 0 18px}.followup-matrix-wrap table{border-collapse:collapse;min-width:820px;width:100%;font-size:13px}.followup-matrix-wrap caption{text-align:left;font-weight:700;padding:8px 0}.followup-matrix-wrap th,.followup-matrix-wrap td{border:1px solid var(--line);padding:4px;text-align:center}.followup-matrix-wrap tbody th{text-align:left;white-space:nowrap}.followup-matrix-wrap button{min-width:44px;width:100%;padding:6px}.followup-matrix-wrap button[aria-pressed=true]{background:var(--accent);color:#fff}
 
 #my-work-items.compact>.completed-task{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}#my-work-items.compact>.completed-task>p:nth-child(7){grid-column:1/3;grid-row:5}#my-work-items.compact>.completed-task>button:nth-child(8){grid-column:1;grid-row:6}#my-work-items.compact>.completed-task>button:nth-child(9){grid-column:2;grid-row:6}
