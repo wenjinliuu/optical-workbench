@@ -1,31 +1,17 @@
 {
-  "verified_at": "2026-10-14T15:00:39.170Z",
+  "verified_at": "2026-10-15T10:20:19.003Z",
   "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
-  "development_version": "V0.86",
-  "checked_deliveries": 86,
+  "development_version": "V0.87",
+  "checked_deliveries": 87,
   "tasks": 50,
   "requirements": 287,
   "accepted_tasks": 0,
-  "progress_sha256": "c66b90e76aa05a09f643936516a36bb6c11f1ecad189863ac0597b4c3614bc6b",
+  "progress_sha256": "deeaf96cd4dd9a4b361fd8142e841b2ceb88f55cc381ef29d3403a88f0c87de1",
   "resources": [
     "/progress-data.js",
     "/downloads/progress.json",
     "/downloads/requirements.json",
     "/downloads/development-plan.md"
   ],
-  "result": "passed",
-  "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
-  "site_version": 68,
-  "site_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_8525fa4f31808191af5b1cc2eb239741",
-  "site_source_commit": "950faffa082daa1d60686bdb25be6eb51c6a043d",
-  "deployment_id": "appgdep_6acf9745ba6c819185523a7f405a8b8c",
-  "deployment_status": "succeeded",
-  "deployment_updated_at": "2026-10-14T14:53:04.007868+00:00",
-  "repository_progress_commit": "43c7227e8e50eba9091291c30045f5282e612931",
-  "repository_implementation_commit": "e7fad309524a6e6443ce1a7a3e093112e868d1b7",
-  "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38576156912",
-  "live_browser_verification": {
-    "desktop": "1440×1000: V0.86、86项勾选、50任务、287需求、业务验收0，搜索/原模块详情/导航通过，无运行时错误",
-    "mobile": "390×844: V0.86、86项勾选、完整任务/需求和三份下载一致，默认项目进度/导航通过，无错误或横向溢出"
-  }
+  "result": "passed"
 }
