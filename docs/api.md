@@ -475,3 +475,5 @@ V0.85固定直接后续引用采用当前接收人实际岗位或未指派任务
 ## V0.88 账号状态、岗位与八状态完整矩阵
 
 `GET /api/my-work/completed/:id/followups` 在既有响应中增加 `availability_role_state_counts`。第一层固定为 `available`、`unavailable`、`unknown`，第二层固定为 `manager`、`reception`、`professional`、`unknown`，第三层固定为八种原任务状态；完整 96 格始终返回并保留零值。矩阵从全部固定直接后续引用在分页前计算，不受 `q`、已采用账号/岗位/状态、匹配量或当前页缩小，总和等于 `total`。来源令牌、权限、严格参数和原固定引用边界不变；详见 `my-work-followups-matrix.md`。
+
+同一响应另返回 `title_availability_role_state_counts`，键序与固定全量矩阵相同。它只按当前已采用 `q` 对固定后续原任务标题作字面匹配，在分页前形成完整96格含零矩阵；不受已采用账号状态、岗位、状态、分页或当前页缩小，总和等于该标题文字的完整命中数。空 `q` 时与固定全量矩阵相同，无命中时96格全部为零；详见 `my-work-followups-title-matrix.md`。
