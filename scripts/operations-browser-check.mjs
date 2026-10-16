@@ -1,0 +1,49 @@
+import assert from 'node:assert/strict';
+import {once} from 'node:events';
+import {mkdirSync} from 'node:fs';
+import {pathToFileURL} from 'node:url';
+import {createApp} from '../src/server.mjs';
+import {hashPassword} from '../src/db.mjs';
+
+if(!process.env.PLAYWRIGHT_MODULE_PATH)throw Error('Set PLAYWRIGHT_MODULE_PATH to an installed Playwright index.mjs');
+const {chromium}=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE_PATH).href);
+const {server,db}=createApp({databasePath:':memory:',mode:'test',logger:()=>{}});
+db.exec("INSERT INTO stores VALUES('a','运行验证门店（虚构）')");
+db.prepare('INSERT INTO users VALUES(?,?,?,?,?,?,1)').run('manager','manager','运行负责人（虚构）',hashPassword('browser-test-only'),'manager','a');
+server.listen(0,'127.0.0.1');await once(server,'listening');
+const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox']});
+const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
+page.on('pageerror',e=>errors.push(e.message));
+try{
+  await page.goto(`http://127.0.0.1:${server.address().port}`);
+  await page.locator('#login-form input[name=username]').fill('manager');
+  await page.locator('#login-form input[name=password]').fill('browser-test-only');
+  await page.locator('#login-form button[type=submit]').click();
+  await page.locator('#customers-view').waitFor({state:'visible'});
+  const faults=await page.evaluate(async()=>{
+    const results=[];
+    for(const path of ['/api/my-work?PRIVATE_QUERY=x','/api/screening-projects/PRIVATE_PROJECT','/api/staff-records/employees/PRIVATE_EMPLOYEE']){
+      const r=await fetch(path);results.push({status:r.status,...await r.json()});
+    }
+    return results;
+  });
+  assert.deepEqual(faults.map(x=>x.status),[422,404,404]);
+  await page.locator('[data-view=operations]').click();
+  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).waitFor();
+  mkdirSync('data/browser-check',{recursive:true});
+  for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
+    await page.setViewportSize(viewport);await page.locator('#refresh-operations').click();
+    for(const fault of faults)await page.locator('#operations-errors code').getByText(fault.request_id,{exact:true}).waitFor();
+    assert.doesNotMatch(await page.locator('#operations-errors').textContent(),/PRIVATE_/);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.screenshot({path:`data/browser-check/v090-operations-${name}.png`,fullPage:true});
+  }
+  let release,arrived;const pending=new Promise(resolve=>arrived=resolve),held=new Promise(resolve=>release=resolve);
+  await page.route('**/api/operations',async route=>{const response=await route.fetch();arrived();await held;await route.fulfill({response});});
+  await page.locator('#refresh-operations').click();await pending;
+  await page.locator('#logout-mobile').click();await page.locator('#login-view').waitFor({state:'visible'});
+  release();await page.unrouteAll({behavior:'wait'});
+  assert.equal(await page.locator('#operations-errors').textContent(),'');
+  assert.equal(await page.locator('#operations-summary').textContent(),'');assert.deepEqual(errors,[]);
+  console.log('Operations desktop/mobile passed: three diagnostic areas, correlated request IDs, no sensitive route data or overflow, and late response after logout cleared.');
+}finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

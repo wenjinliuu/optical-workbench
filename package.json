@@ -1,6 +1,6 @@
 {
   "name": "optical-workbench",
-  "version": "0.89.0",
+  "version": "0.90.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -85,6 +85,7 @@
     "test:my-work-blockers-browser": "node scripts/my-work-blockers-browser-check.mjs",
     "test:my-work-followups-browser": "node scripts/my-work-followups-browser-check.mjs",
     "test:my-work-followups-state-browser": "node scripts/my-work-followups-state-browser-check.mjs",
-    "test:my-work-followups-title-browser": "node scripts/my-work-followups-title-browser-check.mjs"
+    "test:my-work-followups-title-browser": "node scripts/my-work-followups-title-browser-check.mjs",
+    "test:operations-browser": "node scripts/operations-browser-check.mjs"
   }
 }

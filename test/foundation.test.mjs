@@ -401,6 +401,23 @@ test('operations is manager-only and its metrics and fault records stay within t
   const otherStatus=await request('/api/operations',other);assert.ok(otherStatus.body.errors.some(e=>e.request_id===b.body.request_id));assert.ok(!otherStatus.body.errors.some(e=>e.request_id===a.body.request_id));
   assert.equal(status.body.errors[0].store_id,undefined);assert.equal(status.body.errors[0].actor_id,undefined);
 });
+
+test('collaboration API faults correlate to sanitized operations labels without widening access or writing business data',async t=>{
+  const events=[],{request,login,db}=await fixture(t,{logger:e=>events.push(e)}),manager=await login('manager'),other=await login('other'),front=await login('front');
+  const before=db.prepare('SELECT count(*) n FROM audit_events').get().n;
+  const cases=[['/api/my-work?PRIVATE_QUERY=value',422,'/api/my-work'],
+    ['/api/my-work/completed/PRIVATE_TASK/followups?expected_parent_source='+('a'.repeat(64)),404,'/api/my-work/completed/:id/followups'],
+    ['/api/screening-row-links/PRIVATE_PROJECT/PRIVATE_VERSION/678901',404,'/api/screening-row-links/:id/:version/:row'],
+    ['/api/staff-records/employees/PRIVATE_EMPLOYEE',404,'/api/staff-records/employees/:id']];
+  for(const [url,status,label] of cases){const r=await request(url,manager);assert.equal(r.status,status);assert.equal(events.find(e=>e.request_id===r.body.request_id).route,label);}
+  const foreign=await request('/api/screening-projects/PRIVATE_FOREIGN',other);
+  const status=(await request('/api/operations',manager)).body;
+  for(const [, ,label] of cases)assert.ok(status.errors.some(e=>e.route===label));
+  assert.ok(!status.errors.some(e=>e.request_id===foreign.body.request_id));
+  assert.equal((await request('/api/operations',front)).status,403);
+  assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,before);
+  assert.doesNotMatch(JSON.stringify(events)+JSON.stringify(status),/PRIVATE_|678901/);
+});
 test('runtime request window and fault list stay bounded while cumulative counters keep accurate totals',async t=>{
   const {request,login}=await fixture(t),session=await login('manager');
   for(let i=0;i<205;i++)assert.equal((await request(`/api/customers/missing-${i}`,session)).status,404);

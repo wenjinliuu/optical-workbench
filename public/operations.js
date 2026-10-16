@@ -1,7 +1,7 @@
 const $=selector=>document.querySelector(selector);
 const routeNames={'/api/customers':'客户档案','/api/auth/password':'本人改密','/api/organization/staff':'新增员工','/api/audit':'操作审计','/api/operations':'运行状态'};
 function el(tag,text,className){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;}
-function routeName(route){if(routeNames[route])return routeNames[route];if(route.startsWith('/api/customers/:id/'))return '客户关联资料';if(route.startsWith('/api/organization/'))return '人员与账号';if(route.startsWith('/api/attachments/'))return '附件访问';if(route.startsWith('/api/documents/'))return '资料版本';return '工作台请求';}
+export function routeName(route){if(routeNames[route])return routeNames[route];if(route==='/api/my-work'||route.startsWith('/api/my-work/'))return '本人工作台';if(route.startsWith('/api/screening-'))return '团体筛查与名单';if(route.startsWith('/api/staff-'))return '员工责任与交接';if(route.startsWith('/api/customers/:id/'))return '客户关联资料';if(route.startsWith('/api/organization/'))return '人员与账号';if(route.startsWith('/api/attachments/'))return '附件访问';if(route.startsWith('/api/documents/'))return '资料版本';return '工作台请求';}
 export function createOperationsPanel({api,getMe,getEpoch}){
   let version=0;
   async function load(){

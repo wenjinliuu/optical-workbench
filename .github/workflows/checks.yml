@@ -39,3 +39,17 @@ jobs:
       - run: npm run test:my-work-followups-title-browser
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
+  browser-operations:
+    if: contains(github.event.head_commit.message, '[browser-operations]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: npm install --no-save playwright@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:operations-browser
+        env:
+          PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
