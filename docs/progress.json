@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-16",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.91继续T01.04/N07运行保障：按实际处理器补齐家庭发布与进度、申请与回复、时段选择、预约办理、请假与调课、偏好与说明、通知与原版回执、申请通知追溯、练习与复评九类固定脱敏诊断。客户、监护人、记录、原版本、查询及凭据不进入日志；非法扩展继续匿名，权限、有限窗口和中断只计一次保持。净增4项、7专项及精确源1359全量、电脑手机运行诊断通过；schema60无新表迁移，原50任务/287需求与整体验收保留。",
+  "productStatus": "V0.92继续T01.04/N07运行保障：修复pull_request事件没有head_commit导致两组浏览器回归实际跳过的问题。PR现在无条件执行本人工作台五组及运行诊断浏览器回归，push继续只由原标记触发；新增3项工作流契约测试防止退化。精确源1362全量、PR两组云端浏览器成功，push两组按约定跳过；schema60无新表迁移，原50任务/287需求与整体验收保留。",
   "currentTask": "T01.04",
   "nextTask": "T01.04",
   "stage": "P00",
@@ -563,6 +563,12 @@
       "version": "V0.91",
       "type": "工程推进",
       "summary": "V0.91继续T01.04/N07运行保障：按实际处理器补齐家庭发布与进度、申请与回复、时段选择、预约办理、请假与调课、偏好与说明、通知与原版回执、申请通知追溯、练习与复评九类固定脱敏诊断。客户、监护人、记录、原版本、查询及凭据不进入日志；非法扩展继续匿名，权限、有限窗口和中断只计一次保持。净增4项、7专项及精确源1359全量、电脑手机运行诊断通过；schema60无新表迁移，原50任务/287需求与整体验收保留。"
+    },
+    {
+      "date": "2026-10-16",
+      "version": "V0.92",
+      "type": "工程推进",
+      "summary": "V0.92继续T01.04/N07运行保障：修复pull_request事件没有head_commit导致两组浏览器回归实际跳过的问题。PR现在无条件执行本人工作台五组及运行诊断浏览器回归，push继续只由原标记触发；新增3项工作流契约测试防止退化。精确源1362全量、PR两组云端浏览器成功，push两组按约定跳过；schema60无新表迁移，原50任务/287需求与整体验收保留。"
     }
   ],
   "tasks": [
@@ -762,7 +768,10 @@
         "scripts/operations-browser-check.mjs",
         "docs/runtime-collaboration-diagnostics.md",
         "src/runtime-family-routes.mjs",
-        "docs/runtime-family-diagnostics.md"
+        "docs/runtime-family-diagnostics.md",
+        ".github/workflows/checks.yml",
+        "test/workflow-triggers.test.mjs",
+        "docs/ci-browser-triggers.md"
       ],
       "updated": "2026-10-16",
       "note": "V0.5部分实现：一致备份/核对清单、独立恢复/会话撤销/回执，请求编号/脱敏日志、本店运行状态与有限窗口；正式容量/监控/恢复目标及完整业务账待完成。 V0.68新增原名单行/客户资料不可变关联、受当前名单责任保护的客户时间轴及完整恢复核对；只交付基础技术切片，完整任务/专业验收待完成。 V0.91继续T01.04/N07运行保障：按实际处理器补齐家庭发布与进度、申请与回复、时段选择、预约办理、请假与调课、偏好与说明、通知与原版回执、申请通知追溯、练习与复评九类固定脱敏诊断。客户、监护人、记录、原版本、查询及凭据不进入日志；非法扩展继续匿名，权限、有限窗口和中断只计一次保持。净增4项、7专项及精确源1359全量、电脑手机运行诊断通过；schema60无新表迁移，原50任务/287需求与整体验收保留。"
@@ -8583,10 +8592,18 @@
         "T01.04"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.92",
+      "title": "PR与push浏览器回归明确触发及防退化契约",
+      "task_ids": [
+        "T01.04"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "下一可独立入口V0.92/T01.04：修复PR事件下浏览器任务因head_commit不存在而跳过，并继续核对后期专业、采购、库存及费用模块的实际诊断缺口；保留隐私/权限和原业务。见runtime-diagnostics-next-plan.md。R01–R10真实业务规则仍待确认。",
+    "下一可独立入口V0.93/T01.04：按runtime-diagnostics-next-plan.md逐项核对后期专业、采购、库存及费用模块的真实API是否仍落入未知诊断；仅修复有实际处理器依据的静态脱敏分类。R01–R10真实业务规则仍待确认。",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -8595,21 +8612,32 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.91",
-    "automatedTests": 1359,
+    "version": "V0.92",
+    "automatedTests": 1362,
     "schema": 60,
-    "browserSuites": 71,
+    "browserSuites": 73,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/runtime.mjs",
-      "src/runtime-family-routes.mjs",
-      "public/operations.js",
-      "test/runtime-routes.test.mjs",
-      "test/foundation.test.mjs",
-      "scripts/operations-browser-check.mjs",
-      "docs/runtime-family-diagnostics.md"
+      ".github/workflows/checks.yml",
+      "test/workflow-triggers.test.mjs",
+      "docs/ci-browser-triggers.md"
     ],
     "currentRun": {
+      "newTests": 3,
+      "focusedTests": 3,
+      "focusedResult": "passed",
+      "focusedDurationMs": 82.983643,
+      "browserResult": "PR运行38917855129实际执行并通过browser-v079本人工作台五组和browser-operations运行诊断；同一功能提交的push运行38917847164仅执行verify，两组浏览器均按无标记约定跳过。",
+      "syntaxResult": "npm ci/check passed",
+      "fullResult": "passed",
+      "fullTests": 1362,
+      "fullFailures": 0,
+      "cloudFullDurationMs": 621227.112504,
+      "verifiedCommit": "705073adb4283e320dd27bc81c84273e7adc091a",
+      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38917855129",
+      "recoveryResult": "仅改变CI事件条件并增加静态契约测试，不新增业务写入、数据库迁移或恢复格式；完整CI包含既有恢复测试。"
+    },
+    "previousFullRun": {
       "newTests": 4,
       "focusedTests": 7,
       "focusedResult": "passed",
@@ -8617,7 +8645,7 @@
       "relatedFocusedTests": 133,
       "relatedFocusedResult": "passed",
       "relatedFocusedDurationMs": 109883.960039,
-      "browserResult": "本地及云端运行诊断电脑手机通过：三类协作和九类家庭名称/故障编号关联、固定脱敏、无错误/溢出及退出迟到清空。push事件浏览器任务通过；PR事件同任务因head_commit不存在跳过，已保留为V0.92实际修复入口。",
+      "browserResult": "本地及云端运行诊断电脑手机通过：三类协作和九类家庭名称/故障编号关联、固定脱敏、无错误/溢出及退出迟到清空。push事件浏览器任务通过；PR事件同任务因head_commit不存在跳过。",
       "syntaxResult": "npm ci/check passed",
       "fullResult": "passed",
       "fullTests": 1359,
@@ -8625,24 +8653,7 @@
       "cloudFullDurationMs": 603168.18833,
       "verifiedCommit": "c48709038aa7581e6cd25aa94cf9eebb149b217b",
       "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38914435376",
-      "recoveryResult": "仅增加固定诊断标签与展示，不新增业务写入、数据库迁移或恢复格式；完整CI包含既有恢复测试，未额外宣称重跑历史CLI。"
-    },
-    "previousFullRun": {
-      "newTests": 5,
-      "focusedTests": 9,
-      "focusedResult": "passed",
-      "focusedDurationMs": 4509.146905,
-      "relatedFocusedTests": 9,
-      "relatedFocusedResult": "passed",
-      "browserResult": "本地新增运行诊断及原基础工作流两组电脑手机通过；云端运行诊断电脑手机通过：三类名称/故障编号、脱敏、无错误/溢出及退出迟到清空。原任务状态五组云端浏览器本次未触发，未计为通过。",
-      "syntaxResult": "npm ci/check passed",
-      "fullResult": "passed",
-      "fullTests": 1355,
-      "fullFailures": 0,
-      "cloudFullDurationMs": 627213.403351,
-      "verifiedCommit": "5f0845d8f59a738aba8531c36d6e0ffdc0ad965a",
-      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38903678885",
-      "recoveryResult": "仅诊断标签与展示变动，无业务写入、数据库迁移或恢复格式变化；完整CI包含既有恢复测试，未额外宣称重跑历史CLI。"
+      "recoveryResult": "仅增加固定诊断标签与展示，不新增业务写入、数据库迁移或恢复格式；完整CI包含既有恢复测试。"
     }
   },
   "progressTracking": {
