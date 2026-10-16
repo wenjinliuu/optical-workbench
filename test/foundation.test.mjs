@@ -437,6 +437,21 @@ test('family API faults correlate to nine sanitized operations areas without cha
   assert.equal(db.prepare('SELECT count(*) n FROM family_request_roots').get().n,beforeRequests);
   assert.doesNotMatch(JSON.stringify(events),/PRIVATE_/);
 });
+test('late-stage API faults correlate to four sanitized operations areas without business writes',async t=>{
+  const events=[],{request,login,db}=await fixture(t,{logger:e=>events.push(e)}),manager=await login('manager');
+  const beforeAudit=db.prepare('SELECT count(*) n FROM audit_events').get().n;
+  const cases=[
+    ['/api/specialty/cases/PRIVATE_CASE',404,'/api/professional/:scope'],
+    ['/api/purchases/PRIVATE_PURCHASE',404,'/api/procurement/:scope'],
+    ['/api/inventory-custody/PRIVATE_CUSTODY',404,'/api/inventory-trace/:scope'],
+    ['/api/expenses/PRIVATE_EXPENSE',404,'/api/financial-review/:scope']
+  ];
+  for(const [url,status,label] of cases){const r=await request(url,manager);assert.equal(r.status,status,url);assert.equal(events.find(e=>e.request_id===r.body.request_id).route,label);}
+  const operations=(await request('/api/operations',manager)).body;
+  for(const [, ,label] of cases)assert.ok(operations.errors.some(e=>e.route===label));
+  assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,beforeAudit);
+  assert.doesNotMatch(JSON.stringify(events)+JSON.stringify(operations),/PRIVATE_/);
+});
 test('runtime request window and fault list stay bounded while cumulative counters keep accurate totals',async t=>{
   const {request,login}=await fixture(t),session=await login('manager');
   for(let i=0;i<205;i++)assert.equal((await request(`/api/customers/missing-${i}`,session)).status,404);

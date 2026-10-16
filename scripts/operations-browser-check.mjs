@@ -31,16 +31,19 @@ try{
     }
     return results;
   });
-  assert.deepEqual(faults.map(x=>x.status),[422,404,404,404,404,404,404,404,404,404,404,404]);
+  for(const path of ['/api/specialty/cases/PRIVATE_CASE','/api/purchases/PRIVATE_PURCHASE','/api/inventory-custody/PRIVATE_CUSTODY','/api/expenses/PRIVATE_EXPENSE']){
+    const r=await page.evaluate(async path=>{const response=await fetch(path);return {status:response.status,...await response.json()};},path);faults.push(r);
+  }
+  assert.deepEqual(faults.map(x=>x.status),[422,404,404,404,404,404,404,404,404,404,404,404,404,404,404,404]);
   await page.locator('[data-view=operations]').click();
-  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接','家庭发布与进度','家庭申请与回复','家庭时段选择','家庭预约办理','家庭请假与调课','家庭偏好与说明','家庭通知与回执','申请通知追溯','家庭练习与复评'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).waitFor();
+  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接','家庭发布与进度','家庭申请与回复','家庭时段选择','家庭预约办理','家庭请假与调课','家庭偏好与说明','家庭通知与回执','申请通知追溯','家庭练习与复评','专业随访与转介','采购收货与退供','库存实物与出库','费用与渠道核对'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).waitFor();
   mkdirSync('data/browser-check',{recursive:true});
   for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
     await page.setViewportSize(viewport);await page.locator('#refresh-operations').click();
     for(const fault of faults)await page.locator('#operations-errors code').getByText(fault.request_id,{exact:true}).waitFor();
     assert.doesNotMatch(await page.locator('#operations-errors').textContent(),/PRIVATE_/);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-    await page.screenshot({path:`data/browser-check/v091-operations-${name}.png`,fullPage:true});
+    await page.screenshot({path:`data/browser-check/v093-operations-${name}.png`,fullPage:true});
   }
   let release,arrived;const pending=new Promise(resolve=>arrived=resolve),held=new Promise(resolve=>release=resolve);
   await page.route('**/api/operations',async route=>{const response=await route.fetch();arrived();await held;await route.fulfill({response});});
@@ -49,5 +52,5 @@ try{
   release();await page.unrouteAll({behavior:'wait'});
   assert.equal(await page.locator('#operations-errors').textContent(),'');
   assert.equal(await page.locator('#operations-summary').textContent(),'');assert.deepEqual(errors,[]);
-  console.log('Operations desktop/mobile passed: three collaboration and nine family diagnostic areas, correlated request IDs, no sensitive route data or overflow, and late response after logout cleared.');
+  console.log('Operations desktop/mobile passed: three collaboration, nine family and four late-stage diagnostic areas, correlated request IDs, no sensitive route data or overflow, and late response after logout cleared.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}

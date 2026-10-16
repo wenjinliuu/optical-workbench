@@ -98,7 +98,7 @@ test('family labels retain store isolation, bounded windows and one interrupted 
   assert.ok(b.errors.every(e=>e.route==='/api/family-requests/:scope'&&!('store_id' in e)));
 });
 
-test('operations gives the three collaboration areas recognizable plain-language names',()=>{
+test('operations gives all fixed diagnostic areas recognizable plain-language names',()=>{
   assert.equal(routeName('/api/my-work/completed/:id/followups'),'本人工作台');
   assert.equal(routeName('/api/screening-row-links/:id/:version/:row/authorization'),'团体筛查与名单');
   assert.equal(routeName('/api/staff-cover/:id/events'),'员工责任与交接');
@@ -111,5 +111,56 @@ test('operations gives the three collaboration areas recognizable plain-language
   assert.equal(routeName('/api/family-notifications/:scope'),'家庭通知与回执');
   assert.equal(routeName('/api/family-notifications/:scope/sources'),'申请通知追溯');
   assert.equal(routeName('/api/family-training/:scope'),'家庭练习与复评');
+  assert.equal(routeName('/api/professional/:scope'),'专业随访与转介');
+  assert.equal(routeName('/api/procurement/:scope'),'采购收货与退供');
+  assert.equal(routeName('/api/inventory-trace/:scope'),'库存实物与出库');
+  assert.equal(routeName('/api/financial-review/:scope'),'费用与渠道核对');
   assert.equal(routeName('/api/unknown'),'工作台请求');
+});
+
+test('late-stage handler faults use four fixed diagnostic areas without business identities',()=>{
+  const events=[],runtime=createRuntime({logger:event=>events.push(event)});
+  for(const [url,label] of [
+    ['/api/specialty/cases/PRIVATE_CASE/events?expected_source=PRIVATE_SOURCE','/api/professional/:scope'],
+    ['/api/contacts/cases/PRIVATE_CONTACT/attempts','/api/professional/:scope'],
+    ['/api/customers/PRIVATE_CUSTOMER/longitudinal','/api/professional/:scope'],
+    ['/api/purchases/PRIVATE_PURCHASE/versions','/api/procurement/:scope'],
+    ['/api/purchase-receipts/PRIVATE_RECEIPT/quality','/api/procurement/:scope'],
+    ['/api/supplier-return-handoffs/PRIVATE_HANDOFF/receipts','/api/procurement/:scope'],
+    ['/api/inventory/reservations/PRIVATE_RESERVATION/lines/678901/batch-sources','/api/inventory-trace/:scope'],
+    ['/api/inventory/products/PRIVATE_PRODUCT/batch-sources','/api/inventory-trace/:scope'],
+    ['/api/fulfillment/events/PRIVATE_EVENT/dispatch','/api/inventory-trace/:scope'],
+    ['/api/expenses/PRIVATE_EXPENSE/payments','/api/financial-review/:scope'],
+    ['/api/money-review/refund/PRIVATE_REFUND','/api/financial-review/:scope'],
+    ['/api/channel-review/source/receive/PRIVATE_RECEIVE','/api/financial-review/:scope']
+  ]){record(runtime,url);assert.equal(events.at(-1).route,label);}
+  assert.equal(events.length,12);
+  assert.doesNotMatch(JSON.stringify(events),/PRIVATE_|678901|expected_source/);
+});
+
+test('all audited late-stage handler families map to fixed templates and malformed extensions stay unknown',()=>{
+  const events=[],runtime=createRuntime({logger:event=>events.push(event)});
+  for(const url of [
+    '/api/specialty-orders','/api/specialty-lots/l/versions','/api/referrals/records/r/contacts','/api/contacts/attempts/a/receipts',
+    '/api/procurement/options','/api/purchase-receipts/r/events','/api/purchase-extra-returns/r/handoffs',
+    '/api/inventory-custody/c/observations','/api/inventory-reserved/r/events','/api/inventory/outbounds/o/batches','/api/dispatch/receipts',
+    '/api/expenses/context','/api/money-review','/api/channel-review/c/versions'
+  ])record(runtime,url);
+  assert.ok(events.every(e=>e.route!=='/api/unknown'));
+  for(const url of [
+    '/api/specialty/cases/c/events/private','/api/purchases/p/versions/private','/api/purchase-receipts/r/quality/private',
+    '/api/inventory/reservations/r/lines/not-a-position/batch-sources','/api/inventory/outbounds/o/batches/private',
+    '/api/expenses/e/payments/private','/api/channel-review/source/receive/r/private'
+  ]){record(runtime,url);assert.equal(events.at(-1).route,'/api/unknown');}
+});
+
+test('late-stage labels retain store isolation, bounded windows and one interrupted request',()=>{
+  const runtime=createRuntime({logger:()=>{throw Error('PRIVATE_LOGGER_FAILURE');}});
+  record(runtime,'/api/specialty/cases/PRIVATE_CASE',{aborted:true});
+  for(let i=0;i<205;i++)record(runtime,`/api/expenses/PRIVATE_${i}`,{store:'b'});
+  const a=runtime.snapshot('a'),b=runtime.snapshot('b');
+  assert.equal(a.requests,1);assert.equal(a.aborted,1);assert.equal(a.errors.length,1);
+  assert.equal(a.errors[0].route,'/api/professional/:scope');
+  assert.equal(b.requests,205);assert.equal(b.window_size,200);assert.equal(b.errors.length,20);
+  assert.ok(b.errors.every(e=>e.route==='/api/financial-review/:scope'&&!('store_id' in e)));
 });
