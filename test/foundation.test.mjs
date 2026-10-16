@@ -418,6 +418,25 @@ test('collaboration API faults correlate to sanitized operations labels without 
   assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,before);
   assert.doesNotMatch(JSON.stringify(events)+JSON.stringify(status),/PRIVATE_|678901/);
 });
+test('family API faults correlate to nine sanitized operations areas without changing permissions or business data',async t=>{
+  const events=[],{request,login,db}=await fixture(t,{logger:e=>events.push(e)}),manager=await login('manager');
+  const beforeAudit=db.prepare('SELECT count(*) n FROM audit_events').get().n,beforeRequests=db.prepare('SELECT count(*) n FROM family_request_roots').get().n;
+  const cases=[
+    ['/api/family-progress/customers/PRIVATE_CUSTOMER',404,'/api/family-progress/:scope'],
+    ['/api/family-requests/PRIVATE_REQUEST',404,'/api/family-requests/:scope'],
+    ['/api/family-offers/PRIVATE_OFFER',404,'/api/family-offers/:scope'],
+    ['/api/family-bookings/PRIVATE_BOOKING',404,'/api/family-bookings/:scope'],
+    ['/api/family-changes/requests/PRIVATE_CHANGE',404,'/api/family-changes/:scope'],
+    ['/api/family-communication/context/PRIVATE_CUSTOMER',404,'/api/family-communication/:scope'],
+    ['/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN',404,'/api/family-notifications/:scope'],
+    ['/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN/sources',404,'/api/family-notifications/:scope/sources'],
+    ['/api/family-training/practices/PRIVATE_PRACTICE',404,'/api/family-training/:scope']
+  ];
+  for(const [url,status,label] of cases){const r=await request(url,manager);assert.equal(r.status,status,url);assert.equal(events.find(e=>e.request_id===r.body.request_id).route,label);}
+  assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,beforeAudit);
+  assert.equal(db.prepare('SELECT count(*) n FROM family_request_roots').get().n,beforeRequests);
+  assert.doesNotMatch(JSON.stringify(events),/PRIVATE_/);
+});
 test('runtime request window and fault list stay bounded while cumulative counters keep accurate totals',async t=>{
   const {request,login}=await fixture(t),session=await login('manager');
   for(let i=0;i<205;i++)assert.equal((await request(`/api/customers/missing-${i}`,session)).status,404);

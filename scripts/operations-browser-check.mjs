@@ -22,21 +22,25 @@ try{
   await page.locator('#customers-view').waitFor({state:'visible'});
   const faults=await page.evaluate(async()=>{
     const results=[];
-    for(const path of ['/api/my-work?PRIVATE_QUERY=x','/api/screening-projects/PRIVATE_PROJECT','/api/staff-records/employees/PRIVATE_EMPLOYEE']){
+    for(const path of ['/api/my-work?PRIVATE_QUERY=x','/api/screening-projects/PRIVATE_PROJECT','/api/staff-records/employees/PRIVATE_EMPLOYEE',
+      '/api/family-progress/customers/PRIVATE_CUSTOMER','/api/family-requests/PRIVATE_REQUEST','/api/family-offers/PRIVATE_OFFER',
+      '/api/family-bookings/PRIVATE_BOOKING','/api/family-changes/requests/PRIVATE_CHANGE','/api/family-communication/context/PRIVATE_CUSTOMER',
+      '/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN',
+      '/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN/sources','/api/family-training/practices/PRIVATE_PRACTICE']){
       const r=await fetch(path);results.push({status:r.status,...await r.json()});
     }
     return results;
   });
-  assert.deepEqual(faults.map(x=>x.status),[422,404,404]);
+  assert.deepEqual(faults.map(x=>x.status),[422,404,404,404,404,404,404,404,404,404,404,404]);
   await page.locator('[data-view=operations]').click();
-  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).waitFor();
+  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接','家庭发布与进度','家庭申请与回复','家庭时段选择','家庭预约办理','家庭请假与调课','家庭偏好与说明','家庭通知与回执','申请通知追溯','家庭练习与复评'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).waitFor();
   mkdirSync('data/browser-check',{recursive:true});
   for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
     await page.setViewportSize(viewport);await page.locator('#refresh-operations').click();
     for(const fault of faults)await page.locator('#operations-errors code').getByText(fault.request_id,{exact:true}).waitFor();
     assert.doesNotMatch(await page.locator('#operations-errors').textContent(),/PRIVATE_/);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-    await page.screenshot({path:`data/browser-check/v090-operations-${name}.png`,fullPage:true});
+    await page.screenshot({path:`data/browser-check/v091-operations-${name}.png`,fullPage:true});
   }
   let release,arrived;const pending=new Promise(resolve=>arrived=resolve),held=new Promise(resolve=>release=resolve);
   await page.route('**/api/operations',async route=>{const response=await route.fetch();arrived();await held;await route.fulfill({response});});
@@ -45,5 +49,5 @@ try{
   release();await page.unrouteAll({behavior:'wait'});
   assert.equal(await page.locator('#operations-errors').textContent(),'');
   assert.equal(await page.locator('#operations-summary').textContent(),'');assert.deepEqual(errors,[]);
-  console.log('Operations desktop/mobile passed: three diagnostic areas, correlated request IDs, no sensitive route data or overflow, and late response after logout cleared.');
+  console.log('Operations desktop/mobile passed: three collaboration and nine family diagnostic areas, correlated request IDs, no sensitive route data or overflow, and late response after logout cleared.');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));}
