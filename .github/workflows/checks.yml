@@ -14,7 +14,7 @@ jobs:
       - run: npm run check
       - run: npm test
   browser-v079:
-    if: contains(github.event.head_commit.message, '[browser-v079]')
+    if: github.event_name == 'pull_request' || contains(github.event.head_commit.message, '[browser-v079]')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
   browser-operations:
-    if: contains(github.event.head_commit.message, '[browser-operations]')
+    if: github.event_name == 'pull_request' || contains(github.event.head_commit.message, '[browser-operations]')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
