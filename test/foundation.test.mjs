@@ -430,6 +430,7 @@ test('family API faults correlate to nine sanitized operations areas without cha
     ['/api/family-communication/context/PRIVATE_CUSTOMER',404,'/api/family-communication/:scope'],
     ['/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN',404,'/api/family-notifications/:scope'],
     ['/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN/sources',404,'/api/family-notifications/:scope/sources'],
+    ['/api/family-request-notifications/staff/PRIVATE_REQUEST/authorization',404,'/api/family-notifications/:scope/sources'],
     ['/api/family-training/practices/PRIVATE_PRACTICE',404,'/api/family-training/:scope']
   ];
   for(const [url,status,label] of cases){const r=await request(url,manager);assert.equal(r.status,status,url);assert.equal(events.find(e=>e.request_id===r.body.request_id).route,label);}
@@ -451,6 +452,18 @@ test('late-stage API faults correlate to four sanitized operations areas without
   for(const [, ,label] of cases)assert.ok(operations.errors.some(e=>e.route===label));
   assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,beforeAudit);
   assert.doesNotMatch(JSON.stringify(events)+JSON.stringify(operations),/PRIVATE_/);
+});
+test('registered reverse-notification and refund roots use fixed diagnostics without business writes',async t=>{
+  const events=[],{request,login,db}=await fixture(t,{logger:e=>events.push(e)}),manager=await login('manager');
+  const beforeAudit=db.prepare('SELECT count(*) n FROM audit_events').get().n,beforeRefunds=db.prepare('SELECT count(*) n FROM refund_events').get().n;
+  const cases=[
+    ['/api/family-request-notifications/staff/PRIVATE_REQUEST',404,'/api/family-notifications/:scope/sources'],
+    ['/api/refunds?status=PRIVATE_STATUS',422,'/api/refunds']
+  ];
+  for(const [url,status,label] of cases){const r=await request(url,manager);assert.equal(r.status,status,url);assert.equal(events.find(e=>e.request_id===r.body.request_id).route,label);}
+  assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,beforeAudit);
+  assert.equal(db.prepare('SELECT count(*) n FROM refund_events').get().n,beforeRefunds);
+  assert.doesNotMatch(JSON.stringify(events),/PRIVATE_/);
 });
 test('runtime request window and fault list stay bounded while cumulative counters keep accurate totals',async t=>{
   const {request,login}=await fixture(t),session=await login('manager');

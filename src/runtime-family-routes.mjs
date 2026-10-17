@@ -1,6 +1,7 @@
 // Diagnostic labels only: fixed templates derived from the existing API handlers.
 // They never authorize, dispatch or copy caller-supplied family/customer/version IDs.
 const routes = [
+  [/^\/api\/family-request-notifications\/(?:family|staff)\/[\w-]+(?:\/authorization)?$/, '/api/family-notifications/:scope/sources'],
   [/^\/api\/family-progress\/family-authorization$/, '/api/family-progress/:scope'],
   [/^\/api\/family-progress\/family(?:\/[\w-]+(?:\/(?:authorization|publications\/[\w-]+))?)?$/, '/api/family-progress/:scope'],
   [/^\/api\/family-progress\/customers\/[\w-]+(?:\/options)?$/, '/api/family-progress/:scope'],

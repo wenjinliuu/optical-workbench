@@ -45,9 +45,10 @@ test('family faults use nine fixed diagnostic areas without customer, guardian, 
     ['/api/family-communication/family/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN/actions/PRIVATE_ACTION','/api/family-communication/:scope'],
     ['/api/family-notifications/family/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN/PRIVATE_NOTICE/read/PRIVATE_VERSION','/api/family-notifications/:scope'],
     ['/api/family-notifications/staff/PRIVATE_CUSTOMER/PRIVATE_GUARDIAN/sources','/api/family-notifications/:scope/sources'],
+    ['/api/family-request-notifications/staff/PRIVATE_REQUEST/authorization?expected_source=PRIVATE_SOURCE','/api/family-notifications/:scope/sources'],
     ['/api/family-training/practices/PRIVATE_PRACTICE/reports','/api/family-training/:scope']
   ]){record(runtime,url);assert.equal(events.at(-1).route,label);}
-  assert.equal(events.length,9);
+  assert.equal(events.length,10);
   assert.doesNotMatch(JSON.stringify(events),/PRIVATE_|expected_authorization|offer_id/);
 });
 
@@ -57,11 +58,11 @@ test('all current family handler shapes map to fixed templates and malformed ext
     '/api/family-requests/r/events','/api/family-offers/customers/c/source','/api/family-bookings/requests/r/options',
     '/api/family-changes/requests/r/authorization','/api/family-communication/context/c',
     '/api/family-notifications/staff/c/g/authorization','/api/family-training/reports/r/reviews',
-    '/api/customers/c/family-training'])record(runtime,url);
+    '/api/customers/c/family-training','/api/family-request-notifications/family/r/authorization'])record(runtime,url);
   assert.ok(events.every(e=>e.route!=='/api/unknown'));
   for(const url of ['/api/family-progress/family/c/publications/v/private','/api/family-requests/family/c/r/events/private',
     '/api/family-offers/selections/s/admit/private','/api/family-notifications/family/c/g/n/read/v/private',
-    '/api/family-training/practices/p/reports/private']){record(runtime,url);assert.equal(events.at(-1).route,'/api/unknown');}
+    '/api/family-training/practices/p/reports/private','/api/family-request-notifications/staff/r/authorization/private']){record(runtime,url);assert.equal(events.at(-1).route,'/api/unknown');}
 });
 
 test('unrecognized or malformed collaboration paths remain anonymous and static assets stay excluded',()=>{
@@ -115,7 +116,16 @@ test('operations gives all fixed diagnostic areas recognizable plain-language na
   assert.equal(routeName('/api/procurement/:scope'),'采购收货与退供');
   assert.equal(routeName('/api/inventory-trace/:scope'),'库存实物与出库');
   assert.equal(routeName('/api/financial-review/:scope'),'费用与渠道核对');
+  assert.equal(routeName('/api/refunds'),'退款记录');
   assert.equal(routeName('/api/unknown'),'工作台请求');
+});
+
+test('registered reverse-notification and refund roots no longer fall through to unknown',()=>{
+  const events=[],runtime=createRuntime({logger:event=>events.push(event)});
+  record(runtime,'/api/family-request-notifications/family/PRIVATE_REQUEST?filter=PRIVATE_QUERY');
+  record(runtime,'/api/refunds?status=PRIVATE_STATUS');
+  assert.deepEqual(events.map(e=>e.route),['/api/family-notifications/:scope/sources','/api/refunds']);
+  assert.doesNotMatch(JSON.stringify(events),/PRIVATE_/);
 });
 
 test('late-stage handler faults use four fixed diagnostic areas without business identities',()=>{
