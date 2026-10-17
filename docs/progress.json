@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-17",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.93继续T01.04/N07运行保障：按现有handler补齐专业随访/转介、采购收货/退供、库存实物/出库和费用/渠道核对四组固定脱敏诊断。业务标识、版本、位置与查询不进入日志，畸形扩展继续匿名；新增4项，精确源1366全量及PR两组云端浏览器成功，push浏览器按约定跳过。schema60无新表迁移，原50任务/287需求与整体验收保留。",
+  "productStatus": "V0.94继续T01.04/N07运行保障：静态枚举服务器62个已注册业务handler并逐项绑定合法诊断样例，修复原申请反向通知/授权核对与全店退款只读根入口两个实际未知分类。净增3项，精确源1369全量及PR两组云端浏览器成功。独立诊断差集已闭合；剩余工作均待R01–R10真实规则、表单/算例、正式架构或业务验收，记录恢复入口后暂停，不作空更新。schema60无迁移，原50任务/287需求与整体验收保留。",
   "currentTask": "T01.04",
   "nextTask": "T01.04",
   "stage": "P00",
@@ -575,6 +575,12 @@
       "version": "V0.93",
       "type": "工程推进",
       "summary": "V0.93继续T01.04/N07运行保障：逐项对照现有handler，将专业随访/转介、采购收货/退供、库存实物/出库及费用/渠道核对的合法故障归入四个固定匿名标签，修复未知或过宽旧分类。客户/订单/批次/费用/版本/位置/查询不进入日志，畸形扩展继续匿名；4新增、11专项及精确源1366全量、运行诊断与本人工作台云端浏览器通过。schema60无新表迁移，原50任务/287需求与整体验收保留。"
+    },
+    {
+      "date": "2026-10-17",
+      "version": "V0.94",
+      "type": "工程推进",
+      "summary": "V0.94继续T01.04/N07运行保障：静态枚举62个已注册业务handler及合法诊断样例，修复原申请反向通知/授权核对和全店退款只读根入口两个实际未知分类；诊断仍只显示固定匿名标签，不记录业务标识或查询。3新增、15专项、本地及精确源1369全量、本人工作台与运行诊断云端浏览器通过。当前独立工程诊断差集已闭合，R01–R10须取得真实规则/表单/算例/正式架构/业务验收后恢复；schema60、原50任务/287需求及整体验收保留。"
     }
   ],
   "tasks": [
@@ -779,10 +785,12 @@
         "test/workflow-triggers.test.mjs",
         "docs/ci-browser-triggers.md",
         "src/runtime-late-routes.mjs",
-        "docs/runtime-late-diagnostics.md"
+        "docs/runtime-late-diagnostics.md",
+        "test/runtime-handler-coverage.test.mjs",
+        "docs/runtime-handler-diagnostics-audit.md"
       ],
       "updated": "2026-10-17",
-      "note": "V0.5部分实现：一致备份/核对清单、独立恢复/会话撤销/回执，请求编号/脱敏日志、本店运行状态与有限窗口；正式容量/监控/恢复目标及完整业务账待完成。 V0.68新增原名单行/客户资料不可变关联、受当前名单责任保护的客户时间轴及完整恢复核对；只交付基础技术切片，完整任务/专业验收待完成。 V0.93继续T01.04/N07运行保障：按现有handler补齐专业随访/转介、采购收货/退供、库存实物/出库和费用/渠道核对四组固定匿名标签；业务标识、版本、位置及查询不进入日志，畸形扩展匿名，权限、有限窗口和中断单次计数保持。4新增、11专项及精确源1366全量、两组云端浏览器通过；schema60无迁移，整体验收保留。"
+      "note": "V0.5部分实现：一致备份/核对清单、独立恢复/会话撤销/回执，请求编号/脱敏日志、本店运行状态与有限窗口；正式容量/监控/恢复目标及完整业务账待完成。 V0.68新增原名单行/客户资料不可变关联、受当前名单责任保护的客户时间轴及完整恢复核对；只交付基础技术切片，完整任务/专业验收待完成。 V0.94继续T01.04/N07运行保障：静态枚举62个已注册业务handler及合法诊断样例，修复原申请反向通知/授权核对和全店退款只读根入口两个未知分类；3新增、15专项及精确源1369全量、两组云端浏览器通过。独立诊断差集已闭合；正式容量/恢复目标、R01–R10真实规则和业务验收仍待依据，记录入口后暂停。schema60无迁移，整体验收保留。"
     },
     {
       "id": "T02.01",
@@ -6098,9 +6106,11 @@
         "src/runtime-family-routes.mjs",
         "docs/runtime-family-diagnostics.md",
         "src/runtime-late-routes.mjs",
-        "docs/runtime-late-diagnostics.md"
+        "docs/runtime-late-diagnostics.md",
+        "test/runtime-handler-coverage.test.mjs",
+        "docs/runtime-handler-diagnostics-audit.md"
       ],
-      "note": "V0.93继续T01.04/N07运行保障：按现有handler补齐专业随访/转介、采购收货/退供、库存实物/出库和费用/渠道核对四组固定匿名标签；业务标识、版本、位置及查询不进入日志，畸形扩展匿名，权限、有限窗口和中断单次计数保持。4新增、11专项及精确源1366全量、两组云端浏览器通过；schema60无迁移，整体验收保留。",
+      "note": "V0.94继续T01.04/N07运行保障：静态枚举62个已注册业务handler及合法诊断样例，修复原申请反向通知/授权核对和全店退款只读根入口两个未知分类；固定匿名标签保持，不记录业务标识或查询。3新增、15专项及精确源1369全量、两组云端浏览器通过。独立诊断差集已闭合；R01–R10真实规则、表单/算例、正式架构和业务验收待取得依据后恢复。schema60无迁移，整体验收保留。",
       "updated": "2026-10-17"
     },
     {
@@ -7834,13 +7844,13 @@
         "V0.89 distinct fixed-total and title-matched zero-inclusive 3×4×8 matrices, 192 cells and exact title-cell shortcut, 105 references/103 title matches over four pages, adopted four-condition and draft isolation, stale response/detail rejection, mobile native action return, reset/logout privacy and no errors/overflow."
       ],
       "currentRun": {
-        "version": "V0.93",
+        "version": "V0.94",
         "result": "passed",
         "suites": [
           "browser-v079",
           "browser-operations"
         ],
-        "scope": "PR云端本人工作台五组及运行诊断电脑手机通过；运行诊断覆盖三类协作、九类家庭和四类后期模块名称/故障编号关联、固定脱敏、无错误/溢出及退出迟到清空。push两组浏览器按无标记约定跳过。"
+        "scope": "PR云端本人工作台五组及运行诊断电脑手机通过；运行诊断增加原申请反向通知/授权核对和全店退款只读根入口，继续覆盖名称/故障编号关联、固定脱敏、无错误/溢出及退出迟到清空。"
       }
     },
     "baseline": {
@@ -8615,10 +8625,18 @@
         "T01.04"
       ],
       "status": "completed"
+    },
+    {
+      "version": "V0.94",
+      "title": "62个已注册业务处理器诊断覆盖契约及两处实际差集闭合",
+      "task_ids": [
+        "T01.04"
+      ],
+      "status": "completed"
     }
   ],
   "nextDeliveries": [
-    "下一入口V0.94/T01.04：重新枚举全部已注册handler与诊断模板差集，只在合法API仍落入未知或错误分类时继续；若差集只剩真实规则、业务验收或正式部署，则记录具体恢复入口后暂停。R01–R10继续待真实依据。",
+    "已暂停独立工程迭代：V0.94已闭合当前62个已注册业务handler的诊断差集；仅在取得R01–R10的决定人、依据日期和至少一个实际实例，或新增handler触发覆盖契约失败时，从对应原任务恢复。",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -8627,33 +8645,35 @@
     "长期随访、家长已发布资料与家庭授权，分析/接口/迁移和整阶段验收"
   ],
   "developmentVerification": {
-    "version": "V0.93",
-    "automatedTests": 1366,
+    "version": "V0.94",
+    "automatedTests": 1369,
     "schema": 60,
     "browserSuites": 73,
     "businessAcceptance": "待用户后期集中验收",
     "evidence": [
-      "src/runtime-late-routes.mjs",
+      "src/runtime-family-routes.mjs",
+      "src/runtime.mjs",
       "public/operations.js",
+      "test/runtime-handler-coverage.test.mjs",
       "test/runtime-routes.test.mjs",
       "test/foundation.test.mjs",
       "scripts/operations-browser-check.mjs",
-      "docs/runtime-late-diagnostics.md"
+      "docs/runtime-handler-diagnostics-audit.md"
     ],
     "currentRun": {
-      "newTests": 4,
-      "focusedTests": 11,
+      "newTests": 3,
+      "focusedTests": 15,
       "focusedResult": "passed",
-      "focusedDurationMs": 2910.473872,
-      "browserResult": "PR运行38974862720实际执行并通过browser-v079本人工作台五组和browser-operations运行诊断；后者覆盖三类协作、九类家庭和四类后期模块的电脑手机展示、编号关联、脱敏、无溢出及退出迟到清空。同一功能提交的push运行38974858708中两组浏览器按无标记约定跳过。",
+      "focusedDurationMs": 5714.34194,
+      "browserResult": "PR运行39009928372实际执行并通过browser-v079本人工作台五组和browser-operations运行诊断；后者在电脑手机验证原申请反向通知/授权核对与全店退款只读根入口的固定标签、编号关联、脱敏和无溢出。",
       "syntaxResult": "npm ci/check passed",
       "fullResult": "passed",
-      "fullTests": 1366,
+      "fullTests": 1369,
       "fullFailures": 0,
-      "cloudFullDurationMs": 622509.412656,
-      "verifiedCommit": "fda9ba4d3a256b26910bca5da506e7ab41591f90",
-      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/38974862720",
-      "recoveryResult": "仅增加固定诊断分类与显示，不新增业务写入、数据库迁移或恢复格式；完整CI包含既有恢复测试。"
+      "cloudFullDurationMs": 611001.731819,
+      "verifiedCommit": "fdc4bc31c84f51018c46c80ae799de3c0d5312f4",
+      "workflowRun": "https://github.com/wenjinliuu/optical-workbench/actions/runs/39009928372",
+      "recoveryResult": "仅增加已注册handler诊断覆盖契约、两处固定分类与显示，不新增业务写入、数据库迁移或恢复格式；完整CI包含既有恢复测试。"
     },
     "previousFullRun": {
       "newTests": 3,
