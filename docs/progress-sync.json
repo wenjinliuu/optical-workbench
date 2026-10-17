@@ -1,12 +1,12 @@
 {
-  "verified_at": "2026-10-16T22:32:48.575Z",
+  "verified_at": "2026-10-17T06:42:43.507Z",
   "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
-  "development_version": "V0.93",
-  "checked_deliveries": 93,
+  "development_version": "V0.94",
+  "checked_deliveries": 94,
   "tasks": 50,
   "requirements": 287,
   "accepted_tasks": 0,
-  "progress_sha256": "92d57897b9686e124bc289251ac6bfd082138e7ee9a25b436bb2384454310fa2",
+  "progress_sha256": "66e08ae8e4245133e5b2b383fca77428fca44535c1b46ccb476827c2ea26dacb",
   "resources": [
     "/progress-data.js",
     "/downloads/progress.json",
