@@ -1,0 +1,12 @@
+CREATE TABLE stores(id TEXT PRIMARY KEY, name TEXT NOT NULL);
+CREATE TABLE users(id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE, display_name TEXT NOT NULL, password_hash TEXT NOT NULL, role TEXT NOT NULL CHECK(role IN ('manager','reception','professional','guardian')), store_id TEXT REFERENCES stores(id), active INTEGER NOT NULL DEFAULT 1 CHECK(active IN(0,1)));
+CREATE TABLE sessions(token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), csrf TEXT NOT NULL, expires_at INTEGER NOT NULL);
+CREATE TABLE customers(id TEXT PRIMARY KEY, store_id TEXT NOT NULL REFERENCES stores(id), name TEXT NOT NULL, birth_date TEXT, contact_name TEXT, phone TEXT, created_at TEXT NOT NULL, created_by TEXT NOT NULL REFERENCES users(id));
+CREATE INDEX customers_store ON customers(store_id,created_at);
+CREATE TABLE guardian_links(user_id TEXT NOT NULL REFERENCES users(id), customer_id TEXT NOT NULL REFERENCES customers(id), active INTEGER NOT NULL DEFAULT 1 CHECK(active IN(0,1)), PRIMARY KEY(user_id,customer_id));
+CREATE TABLE service_cycles(id TEXT PRIMARY KEY, customer_id TEXT NOT NULL REFERENCES customers(id), type TEXT NOT NULL CHECK(type IN ('followup','training','retail')), goal TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'draft' CHECK(status='draft'), created_at TEXT NOT NULL, created_by TEXT NOT NULL REFERENCES users(id));
+CREATE INDEX cycles_customer ON service_cycles(customer_id,created_at);
+CREATE TABLE audit_events(id TEXT PRIMARY KEY, store_id TEXT REFERENCES stores(id), actor_id TEXT NOT NULL REFERENCES users(id), action TEXT NOT NULL, entity_id TEXT NOT NULL, before_json TEXT, after_json TEXT, created_at TEXT NOT NULL);
+CREATE TRIGGER audit_no_update BEFORE UPDATE ON audit_events BEGIN SELECT RAISE(ABORT,'audit events are append-only'); END;
+CREATE TRIGGER audit_no_delete BEFORE DELETE ON audit_events BEGIN SELECT RAISE(ABORT,'audit events are append-only'); END;
+CREATE TABLE idempotency(actor_id TEXT NOT NULL REFERENCES users(id), operation TEXT NOT NULL, request_key TEXT NOT NULL, request_hash TEXT NOT NULL, response_json TEXT NOT NULL, PRIMARY KEY(actor_id,operation,request_key));

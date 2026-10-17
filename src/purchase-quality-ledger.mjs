@@ -1,0 +1,2 @@
+export function qualityProtectedStock(db,id){return db.prepare("SELECT 1 FROM sqlite_schema WHERE name='purchase_quality_holds'").get()?db.prepare('SELECT coalesce(sum(quantity),0) n FROM purchase_quality_holds WHERE product_id=?').get(id).n:0;}
+export function guardQualityUnquarantine(db,id,quantity,fail){const held=qualityProtectedStock(db,id);if(!held)return;const stock=db.prepare('SELECT quarantined FROM inventory_balances WHERE product_id=?').get(id);if(quantity>(stock?.quarantined||0)-held)fail(409,'QUALITY_HELD','这部分隔离数量已有原批复检来源，请从原收货批次明确复检和放行');}
