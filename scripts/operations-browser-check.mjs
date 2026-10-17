@@ -38,7 +38,7 @@ try{
   }
   assert.deepEqual(faults.map(x=>x.status),[422,404,404,404,404,404,404,404,404,404,404,404,404,422,404,404,404,404]);
   await page.locator('[data-view=operations]').click();
-  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接','家庭发布与进度','家庭申请与回复','家庭时段选择','家庭预约办理','家庭请假与调课','家庭偏好与说明','家庭通知与回执','申请通知追溯','家庭练习与复评','退款记录','专业随访与转介','采购收货与退供','库存实物与出库','费用与渠道核对'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).waitFor();
+  for(const name of ['本人工作台','团体筛查与名单','员工责任与交接','家庭发布与进度','家庭申请与回复','家庭时段选择','家庭预约办理','家庭请假与调课','家庭偏好与说明','家庭通知与回执','申请通知追溯','家庭练习与复评','退款记录','专业随访与转介','采购收货与退供','库存实物与出库','费用与渠道核对'])await page.locator('#operations-errors strong').getByText(name,{exact:true}).first().waitFor();
   mkdirSync('data/browser-check',{recursive:true});
   for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
     await page.setViewportSize(viewport);await page.locator('#refresh-operations').click();
