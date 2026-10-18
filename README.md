@@ -383,7 +383,9 @@ V0.96为新建活动数据库路径明确采用`0700`目录与排他原子保留
 
 ## 静态体验
 
-当前业务版本V0.96，持续开发已按用户要求暂停。静态体验显示虚构样例，可浏览35个菜单、已收录详情和六个流程；不保存业务修改。发布流程、GitHub Pages一次性启用步骤和体验回执见[静态体验说明](docs/static-preview.md)。
+[打开只读体验](https://optical-workbench-preview.wenjinuu.chatgpt.site) · [发布与暂停回执](docs/static-preview-release.json)
+
+当前业务版本V0.96，当前成果已合并main，持续开发已按用户要求暂停。静态体验显示虚构样例，可浏览35个菜单、已收录详情和六个流程；不保存业务修改。发布流程、GitHub Pages一次性启用步骤和体验回执见[静态体验说明](docs/static-preview.md)。
 
 ## 本地完整试用
 

@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-18",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.96现有功能保留；2026-10-18按用户要求暂停业务开发、关闭每4小时持续开发。当前仅准备虚构数据只读静态体验与主分支合并；35个菜单区域、电脑/手机及GitHub项目子路径验证通过。GitHub Pages首次启用受仓库设置权限403阻塞，工作流与本地完整试用说明已准备；业务验收仍为0。",
+  "productStatus": "V0.96现有框架已合并main；2026-10-18按用户要求暂停业务开发、关闭每4小时持续开发。只读静态体验已发布：https://optical-workbench-preview.wenjinuu.chatgpt.site；35个菜单区域、876个真实只读接口快照，电脑/手机及GitHub项目子路径验证通过。GitHub Pages工作流已提交main，首次启用仍需所有者设置权限（接口403）；业务验收仍为0。",
   "currentTask": "T01.04",
   "nextTask": "T01.04",
   "stage": "P00",
@@ -8769,7 +8769,7 @@
   },
   "staticPreview": {
     "business_version": "V0.96",
-    "status": "verified_local",
+    "status": "published",
     "menu_areas": 35,
     "read_only": true,
     "synthetic_only": true,
@@ -8782,6 +8782,15 @@
       "scripts/pages-browser-check.mjs",
       "preview/entry.mjs",
       "test/preview-snapshot-key.test.mjs"
-    ]
+    ],
+    "url": "https://optical-workbench-preview.wenjinuu.chatgpt.site",
+    "responses": 876,
+    "main_merge_commit": "933414d36ebeca6f095ed1c835690c0f6a80b283",
+    "source_commit": "54f8411d9d4d19ced483b44656c6db5e39340b4a",
+    "full_ci_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/39137904344",
+    "full_ci_result": "success",
+    "pages_workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/39175802003",
+    "preview_site_project": "appgprj_6ad4dc31af548191b69d0b1deeaeff30",
+    "preview_site_deployment": "appgdep_6ad553207bb48191bbcb6d4b67c911da"
   }
 }

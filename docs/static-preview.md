@@ -1,12 +1,14 @@
 # 静态体验与开发暂停
 
-当前业务开发停在V0.96。用户已于2026-10-18要求关闭每4小时持续开发任务、暂停后续开发，并授权将当前成果合并到main；本次只准备静态体验和发布工作流。
+当前业务开发停在V0.96。用户已于2026-10-18要求关闭每4小时持续开发任务、暂停后续开发，并授权将当前成果合并到main；当前成果已合并main，静态体验已发布。
 
 - [x] 关闭原持续开发任务，保留历史记录。
 - [x] 生成35个菜单区域的虚构只读样例，电脑/手机和项目子目录验证通过。
-- [ ] 合并当前开发分支到main。
-- [ ] 发布可直接打开的静态体验地址。
+- [x] 合并当前开发分支到main（PR #1）。
+- [x] 发布可直接打开的静态体验地址：https://optical-workbench-preview.wenjinuu.chatgpt.site（保留仅本人访问范围）。
 - [ ] GitHub Pages首次启用（需要仓库所有者设置权限）。
+
+当前可用地址：[https://optical-workbench-preview.wenjinuu.chatgpt.site](https://optical-workbench-preview.wenjinuu.chatgpt.site)，点击“进入体验”。此地址托管与Pages相同的静态产物；GitHub Pages标准地址需以下一次性设置后才会生效。
 
 ## 能体验什么
 

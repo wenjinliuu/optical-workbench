@@ -23,7 +23,7 @@ verification and keep business acceptance pending. Update the capability map eac
 
 Every completed development slice MUST update both the repository progress and
 the published design Site progress in the same iteration. The authority is
-docs/progress.json on codex/phase-one-foundation. Update the concrete delivery
+docs/progress.json on main. Update the concrete delivery
 checkbox, affected task/requirement notes, validation, capability map and handover;
 then run scripts/sync-design-progress.mjs against the existing Site checkout,
 publish the same Site, and run npm run progress:verify against its live URL.
