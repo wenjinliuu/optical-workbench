@@ -1,12 +1,12 @@
 {
-  "verified_at": "2026-10-18T14:25:54.309Z",
+  "verified_at": "2026-10-18T23:18:27.278Z",
   "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
   "development_version": "V0.96",
   "checked_deliveries": 96,
   "tasks": 50,
   "requirements": 287,
   "accepted_tasks": 0,
-  "progress_sha256": "37eebfd67c059f2870a5578a4ed4018d699c0c32cf444d1fb177553db7b3ead6",
+  "progress_sha256": "8ac7a41d73f723c879d65cdbf756b54fe9fd186f691c6788e43eaf2c75b5c4dd",
   "resources": [
     "/progress-data.js",
     "/downloads/progress.json",
@@ -15,25 +15,29 @@
   ],
   "result": "passed",
   "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
-  "site_version": 78,
-  "saved_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_9f2adc3b04d881919c5546dfd43a9bc2",
-  "site_source_commit": "204116af4f40dd292c4a7e8fc6b3cbc1f29cf596",
-  "deployment_id": "appgdep_6ad4d6cd62f88191a6437a175246c383",
+  "site_version": 79,
+  "saved_version_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba~appgver_c0c65bb0c418819186b8a3e30a3c0e6b",
+  "site_source_commit": "da61601bcc5b4d472b1116522b0f6cf2bd2ebc60",
+  "deployment_id": "appgdep_6ad553b5925c8191853f0cdd3c459372",
   "deployment_status": "succeeded",
-  "deployed_at": "2026-10-18T14:25:26.060822+00:00",
-  "repository_progress_commit": "d4ec50fe6da4d0dbd30bc2e9cec8d9b62be77466",
-  "implementation_commit": "ca2965c58c8c73b2f73d6e9eb7b038a52bb857de",
-  "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/39135296559",
-  "automated_tests": 1380,
+  "deployed_at": "2026-10-18T23:18:21.779405+00:00",
+  "repository_progress_commit": "eb87fc5120edfed61375674ac0083bacd24d63e4",
+  "implementation_commit": "54f8411d9d4d19ced483b44656c6db5e39340b4a",
+  "main_merge_commit": "933414d36ebeca6f095ed1c835690c0f6a80b283",
+  "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/39137904344",
+  "automated_tests": 1383,
+  "development_state": "paused_by_user",
+  "automation_enabled": false,
+  "static_preview_url": "https://optical-workbench-preview.wenjinuu.chatgpt.site",
   "live_browser": {
     "result": "passed",
     "viewports": [
-      "1363x936 live Site",
-      "1440x1000 / 390x844 CI regressions"
+      "1440x1000",
+      "390x844"
     ],
     "horizontal_overflow": false,
     "original_modules": 18,
     "original_workflows": 7
   },
-  "continuation_guide_sha256": "3de0fc0cad324122c168e3f610a52760bfe800cf389af64c92a506016cb07512"
+  "continuation_guide_sha256": "a5ef1801b1eee7d2c090ae1223ed658534187f91e5be2b6078602b78ae90c6db"
 }

@@ -41,7 +41,12 @@
     "project_subpath": "/optical-workbench/",
     "api_network_requests": 0,
     "syntax_check": "passed",
-    "snapshot_key_tests_passed": 3
+    "snapshot_key_tests_passed": 3,
+    "automated_tests": 1383,
+    "passed": 1383,
+    "failures": 0,
+    "cancelled": 0,
+    "duration_ms": 376467.115448
   },
   "github_pages": {
     "status": "awaiting_owner_activation",
@@ -55,5 +60,12 @@
     "artifact_uploaded": true,
     "static_browser_status": "passed",
     "deploy_status": "skipped_until_owner_activation"
+  },
+  "blueprint_sync": {
+    "site_version": 79,
+    "status": "passed",
+    "receipt": "docs/progress-sync.json",
+    "checked_deliveries": 96,
+    "accepted_tasks": 0
   }
 }
