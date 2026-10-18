@@ -1,7 +1,7 @@
 {
   "automation_id": "Automation_79e8bf46331081919cde8c52d1c637fa",
   "title": "视光工作台持续开发",
-  "is_enabled": true,
+  "is_enabled": false,
   "timezone": "Asia/Shanghai",
   "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261013T060800\nRRULE:FREQ=HOURLY;INTERVAL=4\nEND:VEVENT",
   "saved_at": "2026-10-12T22:03:26.081521+00:00",
@@ -13,11 +13,11 @@
   "source_instructions_sha256": "d55eaac12a679c58daa4fac561e45e40a5f053a45bb9444d3b0c8cabe1308a3f",
   "authorization": "User 2026-10-12: continue step by step without another notification; push code and synchronize both progress locations. User 2026-10-16: resume stepwise development without stopping; fix independently verifiable runtime defects while business rules remain pending. User 2026-10-18: continue development; resume existing task for verified independent runtime defects.",
   "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
-  "execution_status": "V0.91–94 remote work and Site76 were read; V0.95 manually reproduced and fixed login limiter retention, verified exact CI39128080685 (1376 tests and seven cloud browser flows), and synchronized original Site77 with fresh page/three-download/desktop-mobile receipt. Existing four-hour task resumed; next execution is not yet evidenced.",
+  "execution_status": "Paused by explicit user request on 2026-10-18. No further business development or scheduled fixes are authorized. Current scope is static preview publication and merging existing work into main.",
   "next_development_task": "T01.04",
-  "next_development_slice": "V0.96 private new active database files; then review reproduced local shared-database initialization lock timing",
+  "next_development_slice": "Paused until the user explicitly requests resumption",
   "business_acceptance": "pending",
-  "schedule_updated_at": "2026-10-18T12:50:46.593332+00:00",
+  "schedule_updated_at": "2026-10-18T14:37:11.540877+00:00",
   "immediate_run_request": {
     "result": "failed_prior_to_action_invocation",
     "error_code": "NOT_FOUND",

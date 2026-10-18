@@ -4,3 +4,4 @@ backups/
 .env
 *.log
 test-results/
+pages-dist/

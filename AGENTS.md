@@ -1,5 +1,11 @@
 # Optical Workbench
 
+Latest user direction (2026-10-18): pause ongoing business development and keep
+the four-hour automation disabled until the user asks to resume. Only the
+requested static preview/publication work is authorized now. The user explicitly
+authorized merging the current work into main; older keep-draft/no-merge notes
+describe the previous development policy and do not block this release.
+
 Read docs/phase-one.md, docs/progress.json, docs/handover.md and
 docs/capability-map.md before editing.
 Keep original V1.1 task and requirement identifiers. Implementation and business

@@ -2,7 +2,7 @@
   "baseline": "V1.1",
   "updated": "2026-10-18",
   "designStatus": "本轮设计文档已补充",
-  "productStatus": "V0.96继续T01.04/N07运行保障：新建本地活动数据目录使用0700，数据库路径以排他创建原子保留0600文件；Linux、umask022下数据库、WAL与SHM均实测0600。并发路径准备仅一个进程取得新建标记；既有目录/数据库内容和权限保持，:memory:不触碰文件系统。新增4项专项及精确源1380全量、PR本人工作台与运行诊断浏览器通过；schema60无迁移，原50任务/287需求与业务验收0保持。",
+  "productStatus": "V0.96现有功能保留；2026-10-18按用户要求暂停业务开发、关闭每4小时持续开发。当前仅准备虚构数据只读静态体验与主分支合并；35个菜单区域、电脑/手机及GitHub项目子路径验证通过。GitHub Pages首次启用受仓库设置权限403阻塞，工作流与本地完整试用说明已准备；业务验收仍为0。",
   "currentTask": "T01.04",
   "nextTask": "T01.04",
   "stage": "P00",
@@ -8703,7 +8703,7 @@
     }
   ],
   "nextDeliveries": [
-    "下一T01.04：核对已复现的同一全新数据库初始化锁等待，处理等待设置顺序、迁移内重查与失败清理；见runtime-security-next-plan.md。R01–R10真实业务规则和整体验收继续等待资料。",
+    "已按用户明确要求暂停业务开发；关闭持续开发任务。当前只完成静态体验、工作流配置及主分支合并，之后等待用户试用反馈或新的继续指示。",
     "排期继续：周期系列/单次例外、明确排班与替代时段生成、家长预约及通知、到店签到/实际补课；按R05实际规则接通",
     "权益真实扣次/效期/冻结延期/转套餐、套餐销售与资金对账及退款分摊，按R03/R04明确来源和规则接通课程；权益登记基础已接",
     "训练专业复评与家庭练习、正式专业表单和资质",
@@ -8756,9 +8756,32 @@
     }
   },
   "progressTracking": {
-    "authority": "docs/progress.json on codex/phase-one-foundation",
+    "authority": "docs/progress.json on main after the user-authorized preview release",
     "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
     "required": "每个开发步骤同步仓库、网页勾选与三份下载，发布后通过progress:verify核验；验收单独记录。",
     "verification_receipt": "docs/progress-sync.json"
+  },
+  "developmentState": {
+    "status": "paused_by_user",
+    "date": "2026-10-18",
+    "automation_enabled": false,
+    "allowed_current_scope": "static preview publication and merge of existing work into main"
+  },
+  "staticPreview": {
+    "business_version": "V0.96",
+    "status": "verified_local",
+    "menu_areas": 35,
+    "read_only": true,
+    "synthetic_only": true,
+    "workflow": ".github/workflows/pages.yml",
+    "pages_status": "awaiting_owner_activation",
+    "pages_activation_error": "HTTP 403 Resource not accessible by integration",
+    "evidence": [
+      "docs/static-preview.md",
+      "scripts/build-pages.mjs",
+      "scripts/pages-browser-check.mjs",
+      "preview/entry.mjs",
+      "test/preview-snapshot-key.test.mjs"
+    ]
   }
 }

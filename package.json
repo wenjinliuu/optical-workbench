@@ -87,6 +87,8 @@
     "test:my-work-followups-state-browser": "node scripts/my-work-followups-state-browser-check.mjs",
     "test:my-work-followups-title-browser": "node scripts/my-work-followups-title-browser-check.mjs",
     "test:operations-browser": "node scripts/operations-browser-check.mjs",
-    "test:login-browser": "node scripts/login-browser-check.mjs"
+    "test:login-browser": "node scripts/login-browser-check.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "test:pages-browser": "node scripts/pages-browser-check.mjs"
   }
 }
