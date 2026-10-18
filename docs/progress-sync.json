@@ -21,6 +21,7 @@
   "deployment_id": "appgdep_6ad4d6cd62f88191a6437a175246c383",
   "deployment_status": "succeeded",
   "deployed_at": "2026-10-18T14:25:26.060822+00:00",
+  "repository_progress_commit": "d4ec50fe6da4d0dbd30bc2e9cec8d9b62be77466",
   "implementation_commit": "ca2965c58c8c73b2f73d6e9eb7b038a52bb857de",
   "workflow_run": "https://github.com/wenjinliuu/optical-workbench/actions/runs/39135296559",
   "automated_tests": 1380,
