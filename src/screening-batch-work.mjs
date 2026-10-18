@@ -1,0 +1,7 @@
+import {screeningBatchProjection} from './screening-batches.mjs';
+export function screeningBatchWork(db,batch,{state='all',errors='all',registered='all',q=''}={}){
+ const v=screeningBatchProjection(db,batch),links=new Map(v.manual_links.map(x=>[x.row_number,x])),receipts=new Map(db.prepare('SELECT row_number,id,customer_id FROM screening_row_registrations WHERE batch_version_id=? ORDER BY row_number').all(batch.id).map(x=>[x.row_number,x]));
+ const rows=v.preview.rows.map(row=>{const link=links.get(row.row),r=receipts.get(row.row);return {...row,link_state:link?(link.action==='link'?'linked':'withdrawn'):'unlinked',manual_link:link||null,registration:r||null};});
+ const summary={total:rows.length,error_rows:rows.filter(r=>r.errors.length).length,unlinked:rows.filter(r=>r.link_state==='unlinked').length,linked:rows.filter(r=>r.link_state==='linked').length,withdrawn:rows.filter(r=>r.link_state==='withdrawn').length,registered:receipts.size};summary.pending=summary.unlinked+summary.withdrawn;
+ const term=q.toLocaleLowerCase();return {summary,rows:rows.filter(r=>(state==='all'||r.link_state===state)&&(errors==='all'||(errors==='has_errors')===!!r.errors.length)&&(registered==='all'||(registered==='created')===!!r.registration)&&(!term||r.values['名单编号'].toLocaleLowerCase().includes(term)||r.values['姓名'].toLocaleLowerCase().includes(term))),batch:{id:batch.id,root_id:batch.root_id,batch_key:batch.batch_key,revision:batch.revision},identity_verification:'not_established',clinical_consent:'not_established',report_permission:'not_established'};
+}

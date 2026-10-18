@@ -1,0 +1,33 @@
+{
+  "automation_id": "Automation_79e8bf46331081919cde8c52d1c637fa",
+  "title": "视光工作台持续开发",
+  "is_enabled": false,
+  "timezone": "Asia/Shanghai",
+  "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261013T060800\nRRULE:FREQ=HOURLY;INTERVAL=4\nEND:VEVENT",
+  "saved_at": "2026-10-12T22:03:26.081521+00:00",
+  "project_id": "appgprj_6ac5e84d0d68819182f1afe0cc54c6ba",
+  "site_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site",
+  "site_version": 50,
+  "first_scheduled_local": "2026-10-13 06:08 Asia/Shanghai",
+  "source_instructions_url": "https://optical-workbench-blueprint.wenjinuu.chatgpt.site/downloads/autonomous-development.md",
+  "source_instructions_sha256": "d55eaac12a679c58daa4fac561e45e40a5f053a45bb9444d3b0c8cabe1308a3f",
+  "authorization": "User 2026-10-12: continue step by step without another notification; push code and synchronize both progress locations. User 2026-10-16: resume stepwise development without stopping; fix independently verifiable runtime defects while business rules remain pending. User 2026-10-18: continue development; resume existing task for verified independent runtime defects.",
+  "readiness": "Published guide byte-for-byte verified; connected GitHub read and native conditional branch write/readback independently verified; original Site owner/write/publish verified.",
+  "execution_status": "Paused by explicit user request on 2026-10-18. No further business development or scheduled fixes are authorized. Current scope is static preview publication and merging existing work into main.",
+  "next_development_task": "T01.04",
+  "next_development_slice": "Paused until the user explicitly requests resumption",
+  "business_acceptance": "pending",
+  "schedule_updated_at": "2026-10-18T14:37:11.540877+00:00",
+  "immediate_run_request": {
+    "result": "failed_prior_to_action_invocation",
+    "error_code": "NOT_FOUND",
+    "reason": "HTTPException 404: Action not found",
+    "fallback": "Preserved the same task and four-hour cadence; updated its first normal occurrence to 2026-10-13 06:08 Asia/Shanghai. Native update and original Site linked readback succeeded."
+  },
+  "observed_last_run_at": "2026-10-17T06:52:59.990408+00:00",
+  "observed_at": "2026-10-18T12:51:24.186Z",
+  "last_manual_verified_version": "V0.95",
+  "last_manual_site_version": 77,
+  "observed_remote_functional_head": "a450ab168f94af005e15530505dbd63527202c69",
+  "last_guide_site_version": 77
+}
