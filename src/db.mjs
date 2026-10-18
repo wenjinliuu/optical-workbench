@@ -1,13 +1,13 @@
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync, readdirSync, readFileSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 import {registerScreeningRowFunctions} from './screening-row-links.mjs';
 import {registerRegistrationFunctions} from './screening-registrations.mjs';
+import {prepareDatabaseFile} from './database-files.mjs';
 
 export function openDatabase(path) {
-  if (path !== ':memory:') mkdirSync(dirname(path), { recursive: true });
+  prepareDatabaseFile(path);
   const db = new DatabaseSync(path);
   registerScreeningRowFunctions(db);
   registerRegistrationFunctions(db);
