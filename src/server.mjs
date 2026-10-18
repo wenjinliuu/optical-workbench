@@ -69,6 +69,7 @@ import { demoScenarios, matchesDemoCustomer } from './demo-data.mjs';
 import { createDocumentsHandler } from './documents.mjs';
 import { createOrganizationHandler } from './organization.mjs';
 import { createRuntime } from './runtime.mjs';
+import { createLoginLimiter } from './login-limiter.mjs';
 import { createProfilesHandler } from './profiles.mjs';
 import { createTimelineHandler } from './timeline.mjs';
 import { createCyclesHandler } from './cycles.mjs';
@@ -146,7 +147,7 @@ async function body(req,limit=16384) {
 }
 export function createApp({databasePath='data/workbench.sqlite', mode='development',logger=event=>console.error(JSON.stringify(event))}={}) {
   if(mode !== 'development' && mode !== 'test') throw new Error('Production is blocked pending architecture and identity review.');
-  const db=openDatabase(databasePath), attempts=new Map();
+  const db=openDatabase(databasePath), loginLimiter=createLoginLimiter();
   const runtime=createRuntime({logger});
   function customer(user,id) {
     need(user,'customers:read');
@@ -259,9 +260,8 @@ export function createApp({databasePath='data/workbench.sqlite', mode='developme
       if(path==='/api/health' && req.method==='GET') { db.prepare('SELECT 1').get();return json(200,{status:'ok',mode,schema:db.prepare('SELECT count(*) AS count FROM schema_migrations').get().count}); }
       if(path==='/api/auth/login' && req.method==='POST') {
         const input=await body(req), username=field(input.username,'账号',80,true), password=field(input.password,'密码',200,true);
-        const now=Date.now(), key=req.socket.remoteAddress;
-        const recent=(attempts.get(key)||[]).filter(t=>t>now-60000);attempts.set(key,recent);
-        if(recent.length>=10) fail(429,'RATE_LIMIT','登录尝试过多，请一分钟后重试');recent.push(now);
+        const now=Date.now();
+        if(!loginLimiter.consume(req.socket.remoteAddress)) fail(429,'RATE_LIMIT','登录尝试过多，请一分钟后重试');
         const user=db.prepare('SELECT * FROM users WHERE username=? AND active=1').get(username);
         if(!verifyPassword(password,user?.password_hash||dummyHash)||!user) fail(401,'INVALID_CREDENTIALS','账号或密码不正确');
         const token=randomBytes(32).toString('hex'),csrf=randomBytes(24).toString('hex');

@@ -53,3 +53,6 @@ jobs:
       - run: npm run test:operations-browser
         env:
           PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs
+      - run: npm run test:login-browser
+        env:
+          PLAYWRIGHT_MODULE_PATH: ${{ github.workspace }}/node_modules/playwright/index.mjs

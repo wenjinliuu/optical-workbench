@@ -46,6 +46,26 @@ test('unauthenticated requests, invalid credentials and CSRF are rejected; logou
   assert.equal((await request('/api/auth/logout',{...session,method:'POST'})).status,200);
   assert.equal((await request('/api/me',session)).status,401);
 });
+
+test('login limiting preserves existing sessions and creates no session or audit on a rejected attempt',async t=>{
+  const {request,login,db}=await fixture(t),manager=await login('manager');
+  for(let i=0;i<9;i++)assert.equal((await request('/api/auth/login',{method:'POST',data:{username:'unknown-synthetic',password:'wrong-password'}})).status,401);
+  const before=db.prepare('SELECT count(*) n FROM audit_events').get().n;
+  const denied=await request('/api/auth/login',{method:'POST',data:{username:'manager',password:'test-password-only'}});
+  assert.equal(denied.status,429);assert.equal(denied.body.error.code,'RATE_LIMIT');
+  assert.equal(denied.cookie,undefined);assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,1);
+  assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,before);
+  assert.equal((await request('/api/me',manager)).status,200);
+});
+
+test('caller-supplied forwarding addresses cannot split the real peer login limit',async t=>{
+  const {request,db}=await fixture(t);
+  for(let i=0;i<10;i++)assert.equal((await request('/api/auth/login',{method:'POST',data:{username:'unknown-synthetic',password:'wrong-password'},headers:{'X-Forwarded-For':'192.0.2.'+i,'X-Real-IP':'198.51.100.'+i}})).status,401);
+  const denied=await request('/api/auth/login',{method:'POST',data:{username:'manager',password:'test-password-only'},headers:{'X-Forwarded-For':'203.0.113.99'}});
+  assert.equal(denied.status,429);assert.equal(denied.body.error.code,'RATE_LIMIT');
+  assert.equal(db.prepare('SELECT count(*) n FROM sessions').get().n,0);
+  assert.equal(db.prepare('SELECT count(*) n FROM audit_events').get().n,0);
+});
 test('store scope and action permissions are enforced on lists, direct access and writes',async t=>{
   const {request,login}=await fixture(t), manager=await login('manager'),professional=await login('professional'),front=await login('front');
   const list=await request('/api/customers',manager);assert.equal(list.body.items.length,2);assert.ok(list.body.items.every(c=>c.store_id==='a'));
