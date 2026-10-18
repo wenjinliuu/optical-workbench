@@ -50,3 +50,7 @@ Publication receipts must come from a successful verification of the current
 progress SHA and all three current downloads after the actual deployment time.
 Never enrich or reuse an older passed receipt just because its version matches,
 especially after a documentation-only repair.
+
+When recording a slice, align the handover's current-version header and the
+remaining-work headline/counts with docs/progress.json. Preserve old sections
+as history; do not restore a stale current-version header from an older file.
